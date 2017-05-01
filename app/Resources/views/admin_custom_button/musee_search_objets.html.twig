@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <a href="{{ path('admin_app_objetmusee_list', {filter: {'fkMuseeOrigine' : {'type':'', 'value' : object.id}}}) }}" class="btn btn-sm btn-default delete_link" title="{{ 'musee.search_objets.button'|trans }}">
+        <i class="fa fa-search" aria-hidden="true"></i>
+        {{ 'musee.search_objets.button'|trans }}
+    </a>
+{% endblock body %}

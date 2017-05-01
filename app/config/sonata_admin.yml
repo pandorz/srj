@@ -1,0 +1,38 @@
+sonata_admin:
+    title: 'Rouen Japon Administration'
+    title_logo: bundles/sonataadmin/logo_title.png # TODO LTS
+    options:
+        html5_validate: true
+        # Auto order groups and admins by label or id
+        sort_admins: false
+        confirm_exit: true # prevent data corruption when multiple users edit an object at the same tim
+    security:
+        handler: sonata.admin.security.handler.acl
+        # acl security information
+        information:
+            GUEST:    [VIEW, LIST]
+            STAFF:    [EDIT, LIST, CREATE]
+            EDITOR:   [OPERATOR, EXPORT]
+            ADMIN:    [MASTER]
+
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+    templates:
+        dashboard: SonataAdminBundle:Core:dashboard.html.twig
+    dashboard:
+        blocks:
+            -
+                class: col-lg-3 col-xs-6
+                position: top
+                type: app.admin.block.stats
+                settings:
+                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    icon:  fa-users
+                    text:  stats.utilisateur.number
+                    color: bg-green
+                    entity: AppBundle\Entity\Utilisateur
+                    filters:
