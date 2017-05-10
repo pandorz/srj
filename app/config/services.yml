@@ -14,3 +14,8 @@ services:
         arguments: [~, AppBundle\Entity\Image, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Image, show_in_dashboard: false}
+    app.admin.date_calendrier:
+        class: AppBundle\Admin\DateCalendrierAdmin
+        arguments: [~, AppBundle\Entity\DateCalendrier, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: DateCalendrier, show_in_dashboard: false}
