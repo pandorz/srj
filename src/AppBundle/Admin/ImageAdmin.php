@@ -22,11 +22,18 @@ class ImageAdmin extends AbstractAdmin
         ]);
 
         $options = [
-            'required'  => false,
-            'label'     => 'image.add.file',
+            'required'      => false,
+            'label'         => 'image.add.file',
+            'constraints'   => [new File([
+                        'mimeTypes' => [
+                                'image/png',
+                                'image/jpeg',
+                                'image/jpeg'
+                            ]
+                    ])]
         ];
 
-        if ($image && ($webPath = $ressource->getUrl())) {
+        if ($image && ($webPath = $image->getUrl())) {
             // get the container so the full path to the image can be set
             $container = $this->getConfigurationPool()->getContainer();
             $fullPath = $container->get('request_stack')->getCurrentRequest()->getBasePath().'/'.$webPath;
