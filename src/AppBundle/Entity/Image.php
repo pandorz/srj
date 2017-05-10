@@ -45,7 +45,20 @@ class Image
     private $updated;
     
     const PATH_TO_UPLOAD = 'Images';
-    const EXT_AUTORISEES = ['jpg', 'jpeg', 'png'];
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
+     */
+    private $timestampCreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
+     */
+    private $timestampModification;
 
     /**
      * Get id
@@ -218,5 +231,69 @@ class Image
     public function __toString()
     {
         return (is_null($this->getUrl()) ? '' : $this->getUrl());
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setTimestampCreation(new \DateTime('now'));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setTimestampModification(new \DateTime('now'));
+    }
+    
+    /**
+     * Set timestampCreation
+     *
+     * @param \DateTime $timestampCreation
+     *
+     * @return Musee
+     */
+    public function setTimestampCreation($timestampCreation)
+    {
+        $this->timestampCreation = $timestampCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampCreation
+     *
+     * @return \DateTime
+     */
+    public function getTimestampCreation()
+    {
+        return $this->timestampCreation;
+    }
+    
+    /**
+     * Set timestampModification
+     *
+     * @param \DateTime $timestampModification
+     *
+     * @return Musee
+     */
+    public function setTimestampModification($timestampModification)
+    {
+        $this->timestampModification = $timestampModification;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampModification
+     *
+     * @return \DateTime
+     */
+    public function getTimestampModification()
+    {
+        return $this->timestampModification;
     }
 }

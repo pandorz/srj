@@ -59,6 +59,20 @@ class DateCalendrier
      */
     private $evenements;
 
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
+     */
+    private $timestampCreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
+     */
+    private $timestampModification;
 
     /**
      * Get id
@@ -306,5 +320,69 @@ class DateCalendrier
     public function getSortiesLimite()
     {
         return $this->sorties_limite;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setTimestampCreation(new \DateTime('now'));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setTimestampModification(new \DateTime('now'));
+    }
+    
+    /**
+     * Set timestampCreation
+     *
+     * @param \DateTime $timestampCreation
+     *
+     * @return Musee
+     */
+    public function setTimestampCreation($timestampCreation)
+    {
+        $this->timestampCreation = $timestampCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampCreation
+     *
+     * @return \DateTime
+     */
+    public function getTimestampCreation()
+    {
+        return $this->timestampCreation;
+    }
+    
+    /**
+     * Set timestampModification
+     *
+     * @param \DateTime $timestampModification
+     *
+     * @return Musee
+     */
+    public function setTimestampModification($timestampModification)
+    {
+        $this->timestampModification = $timestampModification;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampModification
+     *
+     * @return \DateTime
+     */
+    public function getTimestampModification()
+    {
+        return $this->timestampModification;
     }
 }
