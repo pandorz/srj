@@ -139,20 +139,6 @@ class Utilisateur extends BaseUser
      */
     private $parents;
 
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
-     */
-    private $timestampCreation;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
-     */
-    private $timestampModification;
-
 
     /**
     * Constructor
@@ -686,71 +672,6 @@ class Utilisateur extends BaseUser
         return $this->locked;
     }
 
-    /**
-     * Set timestampCreation
-     *
-     * @param \DateTime $timestampCreation
-     *
-     * @return Utilisateur
-     */
-    public function setTimestampCreation($timestampCreation)
-    {
-        $this->timestampCreation = $timestampCreation;
-
-        return $this;
-    }
-
-    /**
-     * Get timestampCreation
-     *
-     * @return \DateTime
-     */
-    public function getTimestampCreation()
-    {
-        return $this->timestampCreation;
-    }
-
-    /**
-     * Set timestampModification
-     *
-     * @param \DateTime $timestampModification
-     *
-     * @return Utilisateur
-     */
-    public function setTimestampModification($timestampModification)
-    {
-        $this->timestampModification = $timestampModification;
-
-        return $this;
-    }
-
-    /**
-     * Get timestampModification
-     *
-     * @return \DateTime
-     */
-    public function getTimestampModification()
-    {
-        return $this->timestampModification;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function prePersist()
-    {
-        $this->setTimestampCreation(new \DateTime('now'));
-        parent::prePersist();
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function preUpdate()
-    {
-        $this->setTimestampModification(new \DateTime('now'));
-        parent::preUpdate();
-    }
 
     public function __toString()
     {

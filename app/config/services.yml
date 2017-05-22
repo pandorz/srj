@@ -19,3 +19,8 @@ services:
         arguments: [~, AppBundle\Entity\DateCalendrier, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: DateCalendrier, show_in_dashboard: false}
+    app.admin.evenements:
+        class: AppBundle\Admin\EvenementAdmin
+        arguments: [~, AppBundle\Entity\Evenement, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: menu.group.principal.evenement }

@@ -24,6 +24,21 @@ sonata_admin:
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
     dashboard:
+        groups:
+            app.admin.group.principal.menu:
+                on_top: true
+                label: "Evenements"
+                icon: '<i class="fa fa-bank"></i>'
+                items:
+                    - app.admin.evenements
+            app.admin.group.principal.users:
+                keep_open: false
+                label: "Utilisateurs"
+                label_catalogue: AppBundle
+                icon: '<i class="fa fa-users"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
         blocks:
             -
                 class: col-lg-3 col-xs-6
