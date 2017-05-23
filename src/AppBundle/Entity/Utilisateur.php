@@ -26,14 +26,7 @@ class Utilisateur extends BaseUser
      */
     protected $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\UtilisateurDroits")
-     * @ORM\JoinTable(name="utilisateur_droits",
-     *      joinColumns={@ORM\JoinColumn(name="fk_id_utilisateur", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="id", referencedColumnName="id")}
-     * )
-     */
-    //protected $groups;
+    
 
     /**
      * @var string

@@ -47,7 +47,7 @@ sonata_admin:
                 settings:
                     template: SonataAdminBundle:Block:block_stats.html.twig
                     icon:  fa-users
-                    text:  stats.utilisateur.number
+                    text:  Utilisateurs
                     color: bg-green
                     entity: AppBundle\Entity\Utilisateur
                     filters:
