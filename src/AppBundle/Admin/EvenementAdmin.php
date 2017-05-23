@@ -102,11 +102,17 @@ class EvenementAdmin extends AbstractAdmin
                 'multiple'  => true,
                 'placeholder' => 'evenement.placeholder.superviseurs'
             ])
-            ->add('date', 'sonata_type_model_autocomplete', [
-                'class'     => DateCalendrier::class,
-                'property'  => 'date',
-                'label'     => 'evenement.date',
-                'placeholder' => 'evenement.placeholder.date'
+            ->add('dateDebut', 'sonata_type_datetime_picker', [
+                'label' => 'evenement.date_debut',
+                'attr'  => [
+                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_debut')
+                ]
+            ])
+            ->add('dateFin', 'sonata_type_datetime_picker', [
+                'label' => 'evenement.liste.date_fin',
+                'attr'  => [
+                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_fin')
+                ]
             ])
             ->add('image', 'sonata_type_admin', [
                 'delete' => false,

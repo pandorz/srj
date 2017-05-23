@@ -37,26 +37,33 @@ class Evenement
     private $slug;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="affiche", type="integer")
+     * @ORM\Column(name="affiche", type="boolean")
      */
     private $affiche;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="annule", type="integer")
+     * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
 
 	
-	/**
+    /**
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="DateCalendrier", inversedBy="evenements")
-     * @ORM\JoinColumn(nullable=false, name="fk_date", referencedColumnName="id")
+     * @ORM\Column(name="date_debut", type="date", nullable=true)
      */
-    private $date;
+    private $dateDebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_fin", type="date", nullable=true)
+     */
+    private $dateFin;
     
     /**
     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
@@ -139,7 +146,7 @@ class Evenement
     /**
      * Set affiche
      *
-     * @param integer $affiche
+     * @param boolean $affiche
      *
      * @return Evenement
      */
@@ -153,7 +160,7 @@ class Evenement
     /**
      * Get affiche
      *
-     * @return int
+     * @return boolean
      */
     public function getAffiche()
     {
@@ -163,7 +170,7 @@ class Evenement
     /**
      * Set annule
      *
-     * @param integer $annule
+     * @param boolean $annule
      *
      * @return Evenement
      */
@@ -177,7 +184,7 @@ class Evenement
     /**
      * Get annule
      *
-     * @return int
+     * @return boolean
      */
     public function getAnnule()
     {
@@ -188,35 +195,57 @@ class Evenement
      */
     public function __construct()
     {
-        $this->annule       = 0;
-        $this->affiche      = 1;
+        $this->annule       = false;
+        $this->affiche      = true;
         $this->superviseurs = new ArrayCollection();
     }
 
-
-
     /**
-     * Set date
+     * Set dateDebut
      *
-     * @param \AppBundle\Entity\DateCalendrier $date
+     * @param \DateTime $dateDebut
      *
-     * @return Evenement
+     * @return ObjetMuseeMouvement
      */
-    public function setDate(DateCalendrier $date)
+    public function setDateDebut($dateDebut)
     {
-        $this->date = $date;
+        $this->dateDebut = $dateDebut;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get dateDebut
      *
-     * @return \AppBundle\Entity\DateCalendrier
+     * @return \DateTime
      */
-    public function getDate()
+    public function getDateDebut()
     {
-        return $this->date;
+        return $this->dateDebut;
+    }
+
+    /**
+     * Set dateFin
+     *
+     * @param \DateTime $dateFin
+     *
+     * @return ObjetMuseeMouvement
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFin
+     *
+     * @return \DateTime
+     */
+    public function getDateFin()
+    {
+        return $this->dateFin;
     }
 
     /**

@@ -5,6 +5,7 @@ namespace AppBundle\Admin;
 use AppBundle\Entity\Image;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
+use Symfony\Component\Validator\Constraints\File;
 
 class ImageAdmin extends AbstractAdmin
 {

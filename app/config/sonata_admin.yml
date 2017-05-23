@@ -28,7 +28,7 @@ sonata_admin:
             app.admin.group.principal.menu:
                 on_top: true
                 label: "Evenements"
-                icon: '<i class="fa fa-bank"></i>'
+                icon: '<i class="fa fa-calendar"></i>'
                 items:
                     - app.admin.evenements
             app.admin.group.principal.users:

@@ -152,7 +152,7 @@ class Utilisateur extends BaseUser
         $this->evenementSupervise   = new ArrayCollection();
         $this->atelierSupervise     = new ArrayCollection();
         $this->professeurDe         = new ArrayCollection();
-        $this->sousUtilisateurs            = new ArrayCollection();
+        $this->sousUtilisateurs     = new ArrayCollection();
         $this->parents              = new ArrayCollection();
         $this->setEstProfesseur(0);
         $this->setAccesSite(1);
@@ -676,8 +676,8 @@ class Utilisateur extends BaseUser
     public function __toString()
     {
         $sAffichage = $this->getNom().' '.$this->getPrenom();
-        if(empty(trim($sAffichage)) && !empty($this->getUtilisateurname())) {
-            $sAffichage = "(Non-configuré) -> ".$this->getUtilisateurname();
+        if(empty(trim($sAffichage)) && !empty($this->getUsername())) {
+            $sAffichage = "(Non-configuré) -> ".$this->getUsername();
         } else {
             $sAffichage = '';
         }
