@@ -18,4 +18,14 @@ services:
         class: AppBundle\Admin\EvenementAdmin
         arguments: [~, AppBundle\Entity\Evenement, SonataAdminBundle:CRUD]
         tags:
-            - { name: sonata.admin, manager_type: orm, group: admin, label: menu.group.principal.evenement }
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Evenements }
+    app.admin.sorties:
+        class: AppBundle\Admin\SortieAdmin
+        arguments: [~, AppBundle\Entity\Sortie, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Sorties }
+    app.admin.ateliers:
+        class: AppBundle\Admin\AtelierAdmin
+        arguments: [~, AppBundle\Entity\Atelier, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Ateliers }

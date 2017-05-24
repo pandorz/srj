@@ -10,13 +10,13 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 
-use AppBundle\Entity\Evenement;
+use AppBundle\Entity\Sortie;
 use AppBundle\Entity\Utilisateur;
 
-class EvenementAdmin extends AbstractAdmin
+class SortieAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_evenement';
-    protected $baseRoutePattern = 'evenement';
+    protected $baseRouteName    = 'admin_sortie';
+    protected $baseRoutePattern = 'sortie';
 
     public $supportsPreviewMode = false;
 
@@ -31,20 +31,26 @@ class EvenementAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('nom', 'text', [
-                'label' => 'evenement.liste.nom'
+                'label' => 'sortie.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'evenement.liste.affiche',
+                'label' => 'sortie.liste.affiche',
             ])
             ->add('annule', 'boolean', [
-                'label' => 'evenement.liste.annule',
+                'label' => 'sortie.liste.annule',
             ])
-            ->add('dateDebut', 'date', [
-                'label' => 'evenement.liste.dateDebut',
+            ->add('reserveMembre', 'boolean', [
+                'label' => 'sortie.liste.annule',
+            ])
+            ->add('nbPlace', 'integer', [
+                'label' => 'sortie.liste.nb_place',
+            ])
+            ->add('date', 'date', [
+                'label' => 'sortie.liste.date',
                 'sortable'  => 'name'
             ])
-            ->add('dateFin', 'date', [
-                'label' => 'evenement.liste.dateFin',
+            ->add('dateLimite', 'date', [
+                'label' => 'sortie.liste.dateLimite',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(
@@ -66,59 +72,77 @@ class EvenementAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('evenement.add_edit.details'),
+                'name'          => $this->trans('sortie.add_edit.details'),
                 'class'         => 'col-md-7'
             ])
             ->add('nom', 'text', [
-                'label' => 'evenement.nom',
+                'label' => 'sortie.nom',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.nom'
+                    'placeholder' => 'sortie.placeholder.nom'
                 ]
             ])
             ->add('affiche', 'checkbox', [
-                'label' => 'evenement.actif',
+                'label' => 'sortie.actif',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.actif'
+                    'placeholder' => 'sortie.placeholder.actif'
                 ]
             ])
             ->add('annule', 'checkbox', [
-                'label' => 'evenement.annule',
+                'label' => 'sortie.annule',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.annule'
+                    'placeholder' => 'sortie.placeholder.annule'
+                ]
+            ])
+            ->add('reserveMembre', 'checkbox', [
+                'label' => 'sortie.reserve_membre',
+                'attr'  => [
+                    'placeholder' => 'sortie.placeholder.reserve_membre'
+                ]
+            ])
+            ->add('nbPlace', 'integer', [
+                'label' => 'sortie.nb_place',
+                'attr'  => [
+                    'placeholder' => 'sortie.placeholder.nb_place'
+                ]
+            ])
+            ->add('prix', 'text', [
+                'label' => 'sortie.prix',                
+                'attr'  => [
+                    'placeholder' => 'sortie.placeholder.prix'
                 ]
             ])
             ->add('contenu', CKEditorType::class, [
-                'label' => 'evenement.contenu',
+                'label' => 'sortie.contenu',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.contenu'
+                    'placeholder' => 'sortie.placeholder.contenu'
                 ]
             ])            
             ->end()
             ->with('Meta data', [
-                'name'      => $this->trans('evenement.add_edit.meta_data'),
+                'name'      => $this->trans('sortie.add_edit.meta_data'),
                 'class'     => 'col-md-5'
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
                 'property'  => 'slug',
-                'label'     => 'evenement.superviseurs',
+                'label'     => 'sortie.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'evenement.placeholder.superviseurs'
+                'placeholder' => 'sortie.placeholder.superviseurs'
             ])
-            ->add('dateDebut', 'sonata_type_datetime_picker', [
-                'label' => 'evenement.date_debut',
+            ->add('date', 'sonata_type_datetime_picker', [
+                'label' => 'sortie.date',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_debut')
+                    'placeholder' => $this->getTranslationLabel('sortie.placeholder.date')
                 ]
             ])
-            ->add('dateFin', 'sonata_type_datetime_picker', [
-                'label' => 'evenement.date_fin',
+            ->add('dateLimite', 'sonata_type_datetime_picker', [
+                'label' => 'sortie.date_limite',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_fin')
+                    'placeholder' => $this->getTranslationLabel('sortie.placeholder.date_limite')
                 ]
             ])
             ->add('image', 'sonata_media_type', array(
-                'label' => 'evenement.image',
+                'label' => 'sortie.image',
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'image'
             ))
@@ -137,8 +161,11 @@ class EvenementAdmin extends AbstractAdmin
             ->add('nom')
             ->add('affiche')
             ->add('annule')
-            ->add('dateDebut')
-            ->add('dateFin')    
+            ->add('nbPlace')
+            ->add('reserveMembre')
+            ->add('prix')    
+            ->add('date')
+            ->add('dateLimite')    
             ->add('utilisateurCreation')
             ->add('utilisateurModification')
         ;
@@ -155,8 +182,11 @@ class EvenementAdmin extends AbstractAdmin
             ->add('nom')
             ->add('affiche')
             ->add('annule')
-            ->add('dateDebut')
-            ->add('dateFin')
+            ->add('nbPlace')
+            ->add('reserveMembre')
+            ->add('prix')
+            ->add('date')
+            ->add('dateLimite')
         ;
     }
 
@@ -185,8 +215,8 @@ class EvenementAdmin extends AbstractAdmin
      */
     public function toString($object)
     {
-        return $object instanceof Evenement
+        return $object instanceof Sortie
             ? $object->getNom()
-            : $this->trans('evenement.add_edit.to_string');
+            : $this->trans('sortie.add_edit.to_string');
     }
 }

@@ -101,7 +101,7 @@ class Sortie
     /**
      * @var boolean
      *
-     * @ORM\Column(name="reserveMembre", type="boolean")
+     * @ORM\Column(name="reserve_membre", type="boolean")
      */
     private $reserveMembre;
     

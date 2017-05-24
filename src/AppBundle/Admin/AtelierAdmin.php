@@ -10,13 +10,13 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 
-use AppBundle\Entity\Evenement;
+use AppBundle\Entity\Atelier;
 use AppBundle\Entity\Utilisateur;
 
-class EvenementAdmin extends AbstractAdmin
+class AtelierAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_evenement';
-    protected $baseRoutePattern = 'evenement';
+    protected $baseRouteName    = 'admin_atelier';
+    protected $baseRoutePattern = 'atelier';
 
     public $supportsPreviewMode = false;
 
@@ -31,20 +31,26 @@ class EvenementAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('nom', 'text', [
-                'label' => 'evenement.liste.nom'
+                'label' => 'atelier.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'evenement.liste.affiche',
+                'label' => 'atelier.liste.affiche',
             ])
             ->add('annule', 'boolean', [
-                'label' => 'evenement.liste.annule',
+                'label' => 'atelier.liste.annule',
             ])
-            ->add('dateDebut', 'date', [
-                'label' => 'evenement.liste.dateDebut',
+            ->add('reserveMembre', 'boolean', [
+                'label' => 'atelier.liste.annule',
+            ])
+            ->add('nbPlace', 'integer', [
+                'label' => 'atelier.liste.nb_place',
+            ])
+            ->add('date', 'date', [
+                'label' => 'atelier.liste.date',
                 'sortable'  => 'name'
             ])
-            ->add('dateFin', 'date', [
-                'label' => 'evenement.liste.dateFin',
+            ->add('dateLimite', 'date', [
+                'label' => 'atelier.liste.dateLimite',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(
@@ -66,59 +72,77 @@ class EvenementAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('evenement.add_edit.details'),
+                'name'          => $this->trans('atelier.add_edit.details'),
                 'class'         => 'col-md-7'
             ])
             ->add('nom', 'text', [
-                'label' => 'evenement.nom',
+                'label' => 'atelier.nom',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.nom'
+                    'placeholder' => 'atelier.placeholder.nom'
                 ]
             ])
             ->add('affiche', 'checkbox', [
-                'label' => 'evenement.actif',
+                'label' => 'atelier.actif',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.actif'
+                    'placeholder' => 'atelier.placeholder.actif'
                 ]
             ])
             ->add('annule', 'checkbox', [
-                'label' => 'evenement.annule',
+                'label' => 'atelier.annule',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.annule'
+                    'placeholder' => 'atelier.placeholder.annule'
+                ]
+            ])
+            ->add('reserveMembre', 'checkbox', [
+                'label' => 'atelier.reserve_membre',
+                'attr'  => [
+                    'placeholder' => 'atelier.placeholder.reserve_membre'
+                ]
+            ])
+            ->add('nbPlace', 'integer', [
+                'label' => 'atelier.nb_place',
+                'attr'  => [
+                    'placeholder' => 'atelier.placeholder.nb_place'
+                ]
+            ])
+            ->add('prix', 'text', [
+                'label' => 'atelier.prix',                
+                'attr'  => [
+                    'placeholder' => 'atelier.placeholder.prix'
                 ]
             ])
             ->add('contenu', CKEditorType::class, [
-                'label' => 'evenement.contenu',
+                'label' => 'atelier.contenu',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.contenu'
+                    'placeholder' => 'atelier.placeholder.contenu'
                 ]
             ])            
             ->end()
             ->with('Meta data', [
-                'name'      => $this->trans('evenement.add_edit.meta_data'),
+                'name'      => $this->trans('atelier.add_edit.meta_data'),
                 'class'     => 'col-md-5'
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
                 'property'  => 'slug',
-                'label'     => 'evenement.superviseurs',
+                'label'     => 'atelier.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'evenement.placeholder.superviseurs'
+                'placeholder' => 'atelier.placeholder.superviseurs'
             ])
-            ->add('dateDebut', 'sonata_type_datetime_picker', [
-                'label' => 'evenement.date_debut',
+            ->add('date', 'sonata_type_datetime_picker', [
+                'label' => 'atelier.date',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_debut')
+                    'placeholder' => $this->getTranslationLabel('atelier.placeholder.date')
                 ]
             ])
-            ->add('dateFin', 'sonata_type_datetime_picker', [
-                'label' => 'evenement.date_fin',
+            ->add('dateLimite', 'sonata_type_datetime_picker', [
+                'label' => 'atelier.date_limite',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_fin')
+                    'placeholder' => $this->getTranslationLabel('atelier.placeholder.date_limite')
                 ]
             ])
             ->add('image', 'sonata_media_type', array(
-                'label' => 'evenement.image',
+                'label' => 'atelier.image',
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'image'
             ))
@@ -137,8 +161,11 @@ class EvenementAdmin extends AbstractAdmin
             ->add('nom')
             ->add('affiche')
             ->add('annule')
-            ->add('dateDebut')
-            ->add('dateFin')    
+            ->add('nbPlace')
+            ->add('reserveMembre')
+            ->add('prix')    
+            ->add('date')
+            ->add('dateLimite')    
             ->add('utilisateurCreation')
             ->add('utilisateurModification')
         ;
@@ -155,8 +182,11 @@ class EvenementAdmin extends AbstractAdmin
             ->add('nom')
             ->add('affiche')
             ->add('annule')
-            ->add('dateDebut')
-            ->add('dateFin')
+            ->add('nbPlace')
+            ->add('reserveMembre')
+            ->add('prix')
+            ->add('date')
+            ->add('dateLimite')
         ;
     }
 
@@ -185,8 +215,8 @@ class EvenementAdmin extends AbstractAdmin
      */
     public function toString($object)
     {
-        return $object instanceof Evenement
+        return $object instanceof Atelier
             ? $object->getNom()
-            : $this->trans('evenement.add_edit.to_string');
+            : $this->trans('atelier.add_edit.to_string');
     }
 }

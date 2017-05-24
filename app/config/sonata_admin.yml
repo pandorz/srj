@@ -25,12 +25,24 @@ sonata_admin:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
     dashboard:
         groups:
-            app.admin.group.principal.menu:
+            app.admin.group.principal.evenements:
                 on_top: true
                 label: "Evenements"
                 icon: '<i class="fa fa-calendar"></i>'
                 items:
                     - app.admin.evenements
+            app.admin.group.principal.sorties:
+                on_top: true
+                label: "Sorties"
+                icon: '<i class="fa fa-random"></i>'
+                items:
+                    - app.admin.sorties
+            app.admin.group.principal.ateliers:
+                on_top: true
+                label: "Ateliers"
+                icon: '<i class="fa fa-pencil"></i>'
+                items:
+                    - app.admin.ateliers
             app.admin.group.principal.users:
                 keep_open: false
                 label: "Utilisateurs"
