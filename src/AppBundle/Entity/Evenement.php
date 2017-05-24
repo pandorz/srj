@@ -74,10 +74,10 @@ class Evenement
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
      */
-   private $image;
+    private $image;
    
    /**
-     * @ORM\OneToMany(targetEntity="Contenu", mappedBy="evenement")
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
 
@@ -116,7 +116,7 @@ class Evenement
     
     /**
      * For Sonata Admin Doctrine lock
-     *
+     * @var int
      * @ORM\Column(type="integer")
      * @ORM\Version
      */
@@ -286,7 +286,7 @@ class Evenement
     }
     
     /**
-     * @return mixed
+     * @return int
      */
     public function getVersion()
     {
@@ -294,11 +294,15 @@ class Evenement
     }
     
     /**
-     * @param mixed $version
+     * @param int $version
+     * 
+     * @return Evenement
      */
     public function setVersion($version)
     {
         $this->version = $version;
+        
+        return $this;
     }
 
     /**
@@ -326,33 +330,23 @@ class Evenement
     }
 
     /**
-     * Add contenu
+     * Set contenu
      *
-     * @param \AppBundle\Entity\Contenu $contenu
+     * @param string $contenu
      *
-     * @return Evenement
+     * @return Musee
      */
-    public function addContenu(Contenu $contenu)
+    public function setContenu($contenu)
     {
-        $this->contenu[] = $contenu;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
     /**
-     * Remove contenu
-     *
-     * @param \AppBundle\Entity\Contenu $contenu
-     */
-    public function removeContenu(Contenu $contenu)
-    {
-        $this->contenu->removeElement($contenu);
-    }
-
-    /**
      * Get contenu
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return string
      */
     public function getContenu()
     {

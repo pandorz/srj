@@ -9,7 +9,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Cour
  *
- * @ORM\Table(name="cour")
+ * @ORM\Table(name="cour", indexes={
+ *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="affiche", columns={"affiche"}),
+ *     @ORM\Index(name="annule", columns={"annule"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CourRepository")
  */
 class Cour
@@ -37,16 +41,16 @@ class Cour
     private $slug;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="annule", type="integer")
+     * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="affiche", type="integer")
+     * @ORM\Column(name="affiche", type="boolean")
      */
     private $affiche;
 	
@@ -96,6 +100,14 @@ class Cour
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
+    
+    /**
+     * For Sonata Admin Doctrine lock
+     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Version
+     */
+    protected $version;
 
 
     /**
@@ -135,7 +147,7 @@ class Cour
     /**
      * Set annule
      *
-     * @param integer $annule
+     * @param boolean $annule
      *
      * @return Cour
      */
@@ -149,17 +161,37 @@ class Cour
     /**
      * Get annule
      *
-     * @return int
+     * @return boolean
      */
     public function getAnnule()
     {
         return $this->annule;
     }
+    
+    /**
+     * @param int $version
+     * 
+     * @return Cour
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+        
+        return $this;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
 
     /**
      * Set affiche
      *
-     * @param integer $affiche
+     * @param boolean $affiche
      *
      * @return Cour
      */
@@ -173,12 +205,13 @@ class Cour
     /**
      * Get affiche
      *
-     * @return int
+     * @return boolean
      */
     public function getAffiche()
     {
         return $this->affiche;
     }
+    
     /**
      * Constructor
      */
@@ -186,8 +219,6 @@ class Cour
     {
         $this->users = new ArrayCollection();
         $this->dates = new ArrayCollection();
-		$this->setAnnule(0);
-		$this->setAffiche(1);
     }
 
     /**

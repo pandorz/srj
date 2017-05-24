@@ -5,11 +5,16 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * Sortie
  *
- * @ORM\Table(name="sortie")
+ * @ORM\Table(name="sortie", indexes={
+ *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="affiche", columns={"affiche"}),
+ *     @ORM\Index(name="annule", columns={"annule"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\SortieRepository")
  */
 class Sortie
@@ -37,16 +42,16 @@ class Sortie
     private $slug;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="affiche", type="integer")
+     * @ORM\Column(name="affiche", type="boolean")
      */
     private $affiche;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="annule", type="integer")
+     * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
 	
@@ -56,18 +61,18 @@ class Sortie
     private $inscriptions;
 	
     /**
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="DateCalendrier", inversedBy="sorties")
-     * @ORM\JoinColumn(nullable=false, name="fk_date", referencedColumnName="id")
+     * @ORM\Column(name="date", type="date", nullable=true)
      */
     private $date;
     
-    /**
+   /**
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="DateCalendrier", inversedBy="sorties_limite")
-     * @ORM\JoinColumn(nullable=false, name="fk_date_limite", referencedColumnName="id")
+     * @ORM\Column(name="date_limite", type="date", nullable=true)
      */
-    private $date_limite;
+    private $dateLimite;
     
     /**
      * @var int
@@ -77,13 +82,13 @@ class Sortie
     private $nbPlace;
     
     /**
-    * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
-    */
-
-   private $image;
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
+     */
+    private $image;
    
    /**
-     * @ORM\OneToMany(targetEntity="Contenu", mappedBy="sortie")
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
 
@@ -94,9 +99,9 @@ class Sortie
     private $superviseurs;
     
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="reserveMembre", type="integer")
+     * @ORM\Column(name="reserveMembre", type="boolean")
      */
     private $reserveMembre;
     
@@ -136,14 +141,19 @@ class Sortie
     private $utilisateurModification;
     
     /**
+     * For Sonata Admin Doctrine lock
+     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Version
+     */
+    protected $version;
+    
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->superviseurs     = new ArrayCollection();
-        $this->annule           = 0;
-        $this->affiche          = 1;
-        $this->reserveMembre    = 0;
         $this->prix             = 0;
     }
 
@@ -209,7 +219,7 @@ class Sortie
     /**
      * Set affiche
      *
-     * @param integer $affiche
+     * @param boolean $affiche
      *
      * @return Sortie
      */
@@ -223,7 +233,7 @@ class Sortie
     /**
      * Get affiche
      *
-     * @return integer
+     * @return boolean
      */
     public function getAffiche()
     {
@@ -233,7 +243,7 @@ class Sortie
     /**
      * Set annule
      *
-     * @param integer $annule
+     * @param boolean $annule
      *
      * @return Sortie
      */
@@ -247,7 +257,7 @@ class Sortie
     /**
      * Get annule
      *
-     * @return integer
+     * @return boolean
      */
     public function getAnnule()
     {
@@ -283,11 +293,11 @@ class Sortie
     /**
      * Set date
      *
-     * @param \AppBundle\Entity\DateCalendrier $date
+     * @param \DateTime $date
      *
      * @return Sortie
      */
-    public function setDate(DateCalendrier $date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
 
@@ -297,7 +307,7 @@ class Sortie
     /**
      * Get date
      *
-     * @return \AppBundle\Entity\DateCalendrier
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -307,13 +317,13 @@ class Sortie
     /**
      * Set dateLimite
      *
-     * @param \AppBundle\Entity\DateCalendrier $dateLimite
+     * @param \DateTime $dateLimite
      *
      * @return Sortie
      */
-    public function setDateLimite(DateCalendrier $dateLimite)
+    public function setDateLimite(\DateTime $dateLimite)
     {
-        $this->date_limite = $dateLimite;
+        $this->dateLimite = $dateLimite;
 
         return $this;
     }
@@ -321,21 +331,21 @@ class Sortie
     /**
      * Get dateLimite
      *
-     * @return \AppBundle\Entity\DateCalendrier
+     * @return \DateTime
      */
     public function getDateLimite()
     {
-        return $this->date_limite;
+        return $this->dateLimite;
     }
 
     /**
      * Set image
      *
-     * @param \AppBundle\Entity\Image $image
+     * @param MediaInterface $image
      *
      * @return Sortie
      */
-    public function setImage(Image $image = null)
+    public function setImage(MediaInterface $image)
     {
         $this->image = $image;
 
@@ -345,7 +355,7 @@ class Sortie
     /**
      * Get image
      *
-     * @return \AppBundle\Entity\Image
+     * @return MediaInterface
      */
     public function getImage()
     {
@@ -353,37 +363,47 @@ class Sortie
     }
 
     /**
-     * Add contenu
+     * Set contenu
      *
-     * @param \AppBundle\Entity\Contenu $contenu
+     * @param string $contenu
      *
-     * @return Sortie
+     * @return Musee
      */
-    public function addContenu(Contenu $contenu)
+    public function setContenu($contenu)
     {
-        $this->contenu[] = $contenu;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
     /**
-     * Remove contenu
-     *
-     * @param \AppBundle\Entity\Contenu $contenu
-     */
-    public function removeContenu(Contenu $contenu)
-    {
-        $this->contenu->removeElement($contenu);
-    }
-
-    /**
      * Get contenu
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return string
      */
     public function getContenu()
     {
         return $this->contenu;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+    
+    /**
+     * @param int $version
+     * 
+     * @return Sortie
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+        
+        return $this;
     }
 
     /**
@@ -457,7 +477,7 @@ class Sortie
     /**
      * Set reserveMembre
      *
-     * @param integer $reserveMembre
+     * @param boolean $reserveMembre
      *
      * @return Sortie
      */
@@ -471,7 +491,7 @@ class Sortie
     /**
      * Get reserveMembre
      *
-     * @return integer
+     * @return boolean
      */
     public function getReserveMembre()
     {

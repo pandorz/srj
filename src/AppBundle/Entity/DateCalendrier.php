@@ -33,31 +33,6 @@ class DateCalendrier
      * @ORM\ManyToMany(targetEntity="Cour", mappedBy="dates")
      */
     private $cours;
-	
-    /**
-     * @ORM\OneToMany(targetEntity="Atelier", mappedBy="date")
-     */
-    private $ateliers;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Atelier", mappedBy="date_limite")
-     */
-    private $ateliers_limite;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Sortie", mappedBy="date")
-     */
-    private $sorties;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Sortie", mappedBy="date_limite")
-     */
-    private $sorties_limite;
-	
-	/**
-     * @ORM\OneToMany(targetEntity="Evenement", mappedBy="date")
-     */
-    private $evenements;
 
     
     /**

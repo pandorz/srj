@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+
 /**
  * Utilisateur
  *
@@ -67,12 +68,7 @@ class Utilisateur extends BaseUser
     *
     * @ORM\Column(name="est_professeur", type="integer")
     */
-    private $est_professeur;
-    
-    /**
-    * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
-    */
-    private $image;
+    private $est_professeur;    
     
     /**
      *
