@@ -49,23 +49,23 @@ class Utilisateur extends BaseUser
     private $slug;
     
     /**
-    * @var int
+    * @var boolean
     *
-    * @ORM\Column(name="acces_site", type="integer")
+    * @ORM\Column(name="acces_site", type="boolean")
     */
     private $acces_site;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="locked", type="integer")
+     * @ORM\Column(name="boolean", type="integer")
      */
     private $locked;
 	
     /**
-    * @var int
+    * @var boolean
     *
-    * @ORM\Column(name="est_professeur", type="integer")
+    * @ORM\Column(name="est_professeur", type="boolean")
     */
     private $est_professeur;    
     
@@ -114,7 +114,7 @@ class Utilisateur extends BaseUser
     private $auteurDe;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur",  inversedBy="parents")
+     * @ORM\OneToMany(targetEntity="Utilisateur",  mappedBy="parent")
      * @ORM\JoinTable(name="Utilisateur_relations",
      *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="enfant_utilisateur_id", referencedColumnName="id")}
@@ -123,9 +123,9 @@ class Utilisateur extends BaseUser
     private $sousUtilisateurs;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur",  mappedBy="sousUtilisateurs")
+     * @ORM\ManyToOne(targetEntity="Utilisateur",  inversedBy="sousUtilisateurs")
      */
-    private $parents;
+    private $parent;
 
 
     /**
@@ -141,7 +141,6 @@ class Utilisateur extends BaseUser
         $this->atelierSupervise     = new ArrayCollection();
         $this->professeurDe         = new ArrayCollection();
         $this->sousUtilisateurs     = new ArrayCollection();
-        $this->parents              = new ArrayCollection();
         $this->setEstProfesseur(0);
         $this->setAccesSite(1);
         $this->setLocked(0);
@@ -229,35 +228,11 @@ class Utilisateur extends BaseUser
         return $this->email;
     }
     
-    /**
-     * Set image
-     *
-     * @param \AppBundle\Entity\Image $image
-     *
-     * @return Utilisateur
-     */
-    public function setImage(Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \AppBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
 
     /**
      * Set accesSite
      *
-     * @param integer $accesSite
+     * @param boolean $accesSite
      *
      * @return Utilisateur
      */
@@ -271,7 +246,7 @@ class Utilisateur extends BaseUser
     /**
      * Get accesSite
      *
-     * @return integer
+     * @return boolean
      */
     public function getAccesSite()
     {
@@ -374,14 +349,14 @@ class Utilisateur extends BaseUser
     /**
      * Set estProfesseur
      *
-     * @param integer $estProfesseur
+     * @param boolean $estProfesseur
      *
      * @return Utilisateur
      */
     public function setEstProfesseur($estProfesseur)
     {
         //si pas sous utilisateur
-        if(count($this->getParents()) == 0)
+        if(is_null($this->getParent()))
             $this->est_professeur = $estProfesseur;
 
         return $this;
@@ -390,7 +365,7 @@ class Utilisateur extends BaseUser
     /**
      * Get estProfesseur
      *
-     * @return integer
+     * @return boolean
      */
     public function getEstProfesseur()
     {
@@ -431,39 +406,26 @@ class Utilisateur extends BaseUser
         return $this->sousUtilisateurs;
     }
 
-
     /**
-     * Add parent
-     *
-     * @param \AppBundle\Entity\Utilisateur $parent
+     * Set parent
      *
      * @return Utilisateur
      */
-    public function addParent(Utilisateur $parent)
+    public function setParent(Utilisateur $parent)
     {
-        $this->parents[] = $parent;
-
+        $this->parent = $parent;
+        
         return $this;
-    }
-
-    /**
-     * Remove parent
-     *
-     * @param \AppBundle\Entity\Utilisateur $parent
-     */
-    public function removeParent(Utilisateur $parent)
-    {
-        $this->parents->removeElement($parent);
     }
 
     /**
      * Get parents
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Utilisateur
      */
-    public function getParents()
+    public function getParent()
     {
-        return $this->parents;
+        return $this->parent;
     }
 
     /**
@@ -639,7 +601,7 @@ class Utilisateur extends BaseUser
     /**
      * Set locked
      *
-     * @param integer $locked
+     * @param boolean $locked
      *
      * @return Utilisateur
      */
@@ -653,7 +615,7 @@ class Utilisateur extends BaseUser
     /**
      * Get locked
      *
-     * @return integer
+     * @return boolean
      */
     public function getLocked()
     {
