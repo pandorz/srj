@@ -1,0 +1,26 @@
+# Sonata Utilisateur
+sonata_user:
+    security_acl: true
+    manager_type: orm
+    #table:
+        #user_group: "prosc_utilisateur_droits"
+#    impersonating:
+#        route: page_slug
+#        parameters: { path: / }
+    profile:
+        default_avatar: 'bundles/sonatauser/default_avatar.png' # Default avatar displayed if user doesn't have one
+
+    class: # Entity Classes
+        user: AppBundle\Entity\Utilisateur
+        group: AppBundle\Entity\UtilisateurDroits
+
+    admin: # Admin Classes
+         user:
+             class:          AppBundle\Admin\UtilisateurAdmin
+             controller:     SonataAdminBundle:CRUD
+             translation:    SonataUserBundle
+
+         group:
+             class:          AppBundle\Admin\UtilisateurDroitsAdmin
+             controller:     SonataAdminBundle:CRUD
+             translation:    SonataUserBundle

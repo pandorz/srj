@@ -40,7 +40,11 @@ class EvenementAdmin extends AbstractAdmin
             ->add('annule', 'boolean', [
                 'label' => 'evenement.liste.annule',
             ])
-            ->add('date', 'many_to_one', [
+            ->add('dateDebut', 'date', [
+                'label' => 'evenement.liste.date',
+                'sortable'  => 'name'
+            ])
+            ->add('dateFin', 'date', [
                 'label' => 'evenement.liste.date',
                 'sortable'  => 'name'
             ])
@@ -109,15 +113,16 @@ class EvenementAdmin extends AbstractAdmin
                 ]
             ])
             ->add('dateFin', 'sonata_type_datetime_picker', [
-                'label' => 'evenement.liste.date_fin',
+                'label' => 'evenement.date_fin',
                 'attr'  => [
                     'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_fin')
                 ]
             ])
-            ->add('image', 'sonata_type_admin', [
-                'delete' => false,
+            ->add('image', 'sonata_media_type', array(
                 'label' => 'evenement.image',
-            ])
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'image'
+            ))
             ->end()
         ;
     }
@@ -132,7 +137,9 @@ class EvenementAdmin extends AbstractAdmin
         $showMapper
             ->add('nom')
             ->add('affiche')
-            ->add('annule')            
+            ->add('annule')
+            ->add('dateDebut')
+            ->add('dateFin')    
             ->add('utilisateurCreation')
             ->add('utilisateurModification')
         ;
@@ -149,10 +156,8 @@ class EvenementAdmin extends AbstractAdmin
             ->add('nom')
             ->add('affiche')
             ->add('annule')
-            ->add('date', null, [], 'entity', [
-                'class'         => DateCalendrier::class,
-                'choice_label'  => 'date',
-            ])
+            ->add('dateDebut')
+            ->add('dateFin')
         ;
     }
 

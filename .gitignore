@@ -18,5 +18,7 @@ puphpet/config-custom.yaml
 .vagrant
 !/web/medias
 /web/medias/*
+/web/upload/media/*
+!web/upload/media/.gitkeep
 !web/medias/.gitkeep
 /nbproject/private/

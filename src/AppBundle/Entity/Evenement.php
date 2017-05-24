@@ -5,11 +5,16 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * Evenement
  *
- * @ORM\Table(name="evenement")
+ * @ORM\Table(name="evenement", indexes={
+ *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="affiche", columns={"affiche"}),
+ *     @ORM\Index(name="annule", columns={"annule"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EvenementRepository")
  */
 class Evenement
@@ -66,9 +71,9 @@ class Evenement
     private $dateFin;
     
     /**
-    * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
-    */
-
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
+     */
    private $image;
    
    /**
@@ -108,6 +113,14 @@ class Evenement
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
+    
+    /**
+     * For Sonata Admin Doctrine lock
+     *
+     * @ORM\Column(type="integer")
+     * @ORM\Version
+     */
+    protected $version;
     
     /**
      * Get id
@@ -271,15 +284,31 @@ class Evenement
     {
         return $this->slug;
     }
+    
+    /**
+     * @return mixed
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+    
+    /**
+     * @param mixed $version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
 
     /**
      * Set image
      *
-     * @param \AppBundle\Entity\Image $image
+     * @param MediaInterface $image
      *
      * @return Evenement
      */
-    public function setImage(Image $image = null)
+    public function setImage(MediaInterface $image)
     {
         $this->image = $image;
 
@@ -289,7 +318,7 @@ class Evenement
     /**
      * Get image
      *
-     * @return \AppBundle\Entity\Image
+     * @return MediaInterface
      */
     public function getImage()
     {
