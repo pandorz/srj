@@ -5,7 +5,7 @@ namespace Utility\ClassBundle\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Utility\ClassBundle\Entity\TypeRubrique;
+use AppBundle\Entity\TypeRubrique;
 
 /**
  * Class LoadTypeRubrique
@@ -29,7 +29,7 @@ class LoadTypeRubrique extends AbstractFixture  implements OrderedFixtureInterfa
         foreach ($liste as $nom=>$libelle) 
         {
             $type = $manager
-                        ->getRepository('Utility\ClassBundle\Entity\TypeRubrique')
+                        ->getRepository('AppBundle\Entity\TypeRubrique')
                         ->findOneByNom($nom);
             if(empty($type))
             {
