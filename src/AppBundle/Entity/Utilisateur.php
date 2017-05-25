@@ -125,15 +125,9 @@ class Utilisateur extends BaseUser
      * @ORM\OneToMany(targetEntity="Cour", mappedBy="professeur")
      */
     private $professeurDe;
-    
-    
+        
     /**
-     * @ORM\OneToMany(targetEntity="Contenu", mappedBy="auteur")
-     */
-    private $auteurDe;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Utilisateur",  mappedBy="parent")
+     * @ORM\ManyToOne(targetEntity="Utilisateur",  inversedBy="parent")
      * @ORM\JoinTable(name="Utilisateur_relations",
      *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="enfant_utilisateur_id", referencedColumnName="id")}
@@ -142,7 +136,7 @@ class Utilisateur extends BaseUser
     private $sousUtilisateurs;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Utilisateur",  inversedBy="sousUtilisateurs")
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="sousUtilisateurs")
      */
     private $parent;
 
@@ -153,16 +147,9 @@ class Utilisateur extends BaseUser
     public function __construct() 
     {
         parent::__construct();
-	$this->cours                = new ArrayCollection();
-        $this->inscriptions         = new ArrayCollection();
-        $this->sortieSupervise      = new ArrayCollection();
-        $this->evenementSupervise   = new ArrayCollection();
-        $this->atelierSupervise     = new ArrayCollection();
-        $this->professeurDe         = new ArrayCollection();
-        $this->sousUtilisateurs     = new ArrayCollection();
-        $this->setEstProfesseur(0);
-        $this->setAccesSite(1);
-        $this->setLocked(0);
+        $this->setEstProfesseur(false);
+        $this->setAccesSite(true);
+        $this->setLocked(false);
     }
 
     /**
@@ -299,7 +286,7 @@ class Utilisateur extends BaseUser
     /**
      * Get cours
      *
-     * @return Collection
+     * @return ArrayCollection
      */
     public function getCours()
     {
@@ -333,7 +320,7 @@ class Utilisateur extends BaseUser
     /**
      * Get atelier
      *
-     * @return Collection
+     * @return ArrayCollection
      */
     public function getAteliers()
     {
@@ -367,7 +354,7 @@ class Utilisateur extends BaseUser
     /**
      * Get atelier
      *
-     * @return Collection
+     * @return ArrayCollection
      */
     public function getSorties()
     {
@@ -377,7 +364,7 @@ class Utilisateur extends BaseUser
     /**
      * Add professeurDe
      *
-     * @param \AppBundle\Entity\Cour $professeurDe
+     * @param Cour $professeurDe
      *
      * @return Utilisateur
      */
@@ -391,7 +378,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove professeurDe
      *
-     * @param \AppBundle\Entity\Cour $professeurDe
+     * @param Cour $professeurDe
      */
     public function removeProfesseurDe(Cour $professeurDe)
     {
@@ -401,7 +388,7 @@ class Utilisateur extends BaseUser
     /**
      * Get professeurDe
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getProfesseurDe()
     {
@@ -461,7 +448,7 @@ class Utilisateur extends BaseUser
     /**
      * Add sousUtilisateur
      *
-     * @param \AppBundle\Entity\Utilisateur $sousUtilisateur
+     * @param Utilisateur $sousUtilisateur
      *
      * @return Utilisateur
      */
@@ -475,7 +462,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove sousUtilisateur
      *
-     * @param \AppBundle\Entity\Utilisateur $sousUtilisateur
+     * @param Utilisateur $sousUtilisateur
      */
     public function removeSousUtilisateur(Utilisateur $sousUtilisateur)
     {
@@ -485,7 +472,7 @@ class Utilisateur extends BaseUser
     /**
      * Get sousUtilisateurs
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getSousUtilisateurs()
     {
@@ -515,43 +502,9 @@ class Utilisateur extends BaseUser
     }
 
     /**
-     * Add auteurDe
-     *
-     * @param \AppBundle\Entity\Contenu $auteurDe
-     *
-     * @return Utilisateur
-     */
-    public function addAuteurDe(Contenu $auteurDe)
-    {
-        $this->auteurDe[] = $auteurDe;
-
-        return $this;
-    }
-
-    /**
-     * Remove auteurDe
-     *
-     * @param \AppBundle\Entity\Contenu $auteurDe
-     */
-    public function removeAuteurDe(Contenu $auteurDe)
-    {
-        $this->auteurDe->removeElement($auteurDe);
-    }
-
-    /**
-     * Get auteurDe
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAuteurDe()
-    {
-        return $this->auteurDe;
-    }
-
-    /**
      * Add atelierSupervise
      *
-     * @param \AppBundle\Entity\Atelier $atelierSupervise
+     * @param Atelier $atelierSupervise
      *
      * @return Utilisateur
      */
@@ -565,7 +518,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove atelierSupervise
      *
-     * @param \AppBundle\Entity\Atelier $atelierSupervise
+     * @param Atelier $atelierSupervise
      */
     public function removeAtelierSupervise(Atelier $atelierSupervise)
     {
@@ -575,7 +528,7 @@ class Utilisateur extends BaseUser
     /**
      * Get atelierSupervise
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getAtelierSupervise()
     {
@@ -585,7 +538,7 @@ class Utilisateur extends BaseUser
     /**
      * Add evenementSupervise
      *
-     * @param \AppBundle\Entity\Evenement $evenementSupervise
+     * @param Evenement $evenementSupervise
      *
      * @return Utilisateur
      */
@@ -599,7 +552,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove evenementSupervise
      *
-     * @param \AppBundle\Entity\Evenement $evenementSupervise
+     * @param Evenement $evenementSupervise
      */
     public function removeEvenementSupervise(Evenement $evenementSupervise)
     {
@@ -609,7 +562,7 @@ class Utilisateur extends BaseUser
     /**
      * Get evenementSupervise
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getEvenementSupervise()
     {
@@ -619,7 +572,7 @@ class Utilisateur extends BaseUser
     /**
      * Add sortieSupervise
      *
-     * @param \AppBundle\Entity\Sortie $sortieSupervise
+     * @param Sortie $sortieSupervise
      *
      * @return Utilisateur
      */
@@ -633,7 +586,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove sortieSupervise
      *
-     * @param \AppBundle\Entity\Sortie $sortieSupervise
+     * @param Sortie $sortieSupervise
      */
     public function removeSortieSupervise(Sortie $sortieSupervise)
     {
@@ -643,45 +596,11 @@ class Utilisateur extends BaseUser
     /**
      * Get sortieSupervise
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getSortieSupervise()
     {
         return $this->sortieSupervise;
-    }
-
-    /**
-     * Add inscription
-     *
-     * @param \AppBundle\Entity\Inscription $inscription
-     *
-     * @return Utilisateur
-     */
-    public function addInscription(Inscription $inscription)
-    {
-        $this->inscriptions[] = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * Remove inscription
-     *
-     * @param \AppBundle\Entity\Inscription $inscription
-     */
-    public function removeInscription(Inscription $inscription)
-    {
-        $this->inscriptions->removeElement($inscription);
-    }
-
-    /**
-     * Get inscriptions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInscriptions()
-    {
-        return $this->inscriptions;
     }
 
     /**

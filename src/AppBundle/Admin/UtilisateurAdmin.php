@@ -45,8 +45,7 @@ class UtilisateurAdmin extends UserAdmin
                 'sortable'      => 'position'           
             ])
             ->end()
-            ->end();
-        
+            ->end();        
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
