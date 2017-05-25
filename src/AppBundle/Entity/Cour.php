@@ -57,7 +57,7 @@ class Cour
     /**
      * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="cours")
      */
-    private $users;
+    private $inscrits;
 	
     /**
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
@@ -220,37 +220,37 @@ class Cour
     }
 
     /**
-     * Add user
+     * Add inscrit
      *
-     * @param Utilisateur $user
+     * @param Utilisateur $inscrits
      *
      * @return Cour
      */
-    public function addUser(Utilisateur $user)
+    public function addInscrit(Utilisateur $inscrits)
     {
-        $this->users[] = $user;
+        $this->inscrits[] = $inscrits;
 
         return $this;
     }
 
     /**
-     * Remove user
+     * Remove inscrit
      *
-     * @param Utilisateur $user
+     * @param Utilisateur $inscrits
      */
-    public function removeUser(Utilisateur $user)
+    public function removeInscrit(Utilisateur $inscrits)
     {
-        $this->users->removeElement($user);
+        $this->inscrits->removeElement($inscrits);
     }
 
     /**
-     * Get users
+     * Get inscrits
      *
      * @return ArrayCollection
      */
-    public function getUsers()
+    public function getInscrits()
     {
-        return $this->users;
+        return $this->inscrits;
     }
 
     /**

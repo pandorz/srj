@@ -71,10 +71,33 @@ class Utilisateur extends BaseUser
     
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Cour", inversedBy="utilisateurs")
-     * @ORM\JoinColumn(nullable=true, name="fk_cours", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Cour", inversedBy="inscrits")
+     * @ORM\JoinTable(name="cours_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")}
+     * )
      */
     private $cours;
+    
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Sortie", inversedBy="inscrits")
+     * @ORM\JoinTable(name="sorties_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="sortie_id", referencedColumnName="id")}
+     * )
+     */
+    private $sorties;
+    
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Atelier", inversedBy="inscrits")
+     * @ORM\JoinTable(name="ateliers_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")}
+     * )
+     */
+    private $ateliers;
     
     /**
      *
@@ -103,10 +126,6 @@ class Utilisateur extends BaseUser
      */
     private $professeurDe;
     
-    /**
-     * @ORM\OneToMany(targetEntity="Inscription", mappedBy="utilisateur")
-     */
-    private $inscriptions;
     
     /**
      * @ORM\OneToMany(targetEntity="Contenu", mappedBy="auteur")
@@ -256,7 +275,7 @@ class Utilisateur extends BaseUser
     /**
      * Add cour
      *
-     * @param \AppBundle\Entity\Cour $cour
+     * @param Cour $cour
      *
      * @return Utilisateur
      */
@@ -270,7 +289,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove cour
      *
-     * @param \AppBundle\Entity\Cour $cour
+     * @param Cour $cour
      */
     public function removeCour(Cour $cour)
     {
@@ -280,13 +299,80 @@ class Utilisateur extends BaseUser
     /**
      * Get cours
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getCours()
     {
         return $this->cours;
+    }    
+
+    /**
+     * Add atelier
+     *
+     * @param Atelier $atelier
+     *
+     * @return Utilisateur
+     */
+    public function addAtelier(Atelier $atelier)
+    {
+        $this->atelier[] = $atelier;
+
+        return $this;
     }
 
+    /**
+     * Remove atelier
+     *
+     * @param Atelier $atelier
+     */
+    public function removeAtelier(Atelier $atelier)
+    {
+        $this->ateliers->removeElement($atelier);
+    }
+
+    /**
+     * Get atelier
+     *
+     * @return Collection
+     */
+    public function getAteliers()
+    {
+        return $this->ateliers;
+    }
+    
+    /**
+     * Add sortie
+     *
+     * @param Sortie $sortie
+     *
+     * @return Utilisateur
+     */
+    public function addSortie(Sortie $sortie)
+    {
+        $this->sortie[] = $sortie;
+
+        return $this;
+    }
+
+    /**
+     * Remove atelier
+     *
+     * @param Sortie $sortie
+     */
+    public function removeSortie(Sortie $sortie)
+    {
+        $this->sorties->removeElement($sortie);
+    }
+
+    /**
+     * Get atelier
+     *
+     * @return Collection
+     */
+    public function getSorties()
+    {
+        return $this->sorties;
+    }
 
     /**
      * Add professeurDe

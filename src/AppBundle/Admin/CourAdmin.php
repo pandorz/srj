@@ -102,7 +102,7 @@ class CourAdmin extends AbstractAdmin
                 'multiple'  => false,
                 'placeholder' => 'cour.placeholder.professeur'
             ])
-            ->add('users', 'sonata_type_model_autocomplete', [
+            ->add('inscrits', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
                 'property'  => 'slug',
                 'label'     => 'cour.users',

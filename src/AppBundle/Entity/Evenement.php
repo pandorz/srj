@@ -84,7 +84,8 @@ class Evenement
     /**
      * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="evenementSupervise")
      */
-    private $superviseurs;
+    private $superviseurs;    
+    
     
     /**
      * @var \DateTime
@@ -357,7 +358,7 @@ class Evenement
     /**
      * Add superviseur
      *
-     * @param \AppBundle\Entity\Utilisateur $superviseur
+     * @param Utilisateur $superviseur
      *
      * @return Evenement
      */
@@ -371,7 +372,7 @@ class Evenement
     /**
      * Remove superviseur
      *
-     * @param \AppBundle\Entity\Utilisateur $superviseur
+     * @param Utilisateur $superviseur
      */
     public function removeSuperviseur(Utilisateur $superviseur)
     {
@@ -381,7 +382,7 @@ class Evenement
     /**
      * Get superviseurs
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getSuperviseurs()
     {
@@ -482,5 +483,39 @@ class Evenement
     public function setUtilisateurModification(string $utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
+    }
+    
+    /**
+     * Add inscrit
+     *
+     * @param Utilisateur $inscrits
+     *
+     * @return Cour
+     */
+    public function addInscrit(Utilisateur $inscrits)
+    {
+        $this->inscrits[] = $inscrits;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscrit
+     *
+     * @param Utilisateur $inscrits
+     */
+    public function removeInscrit(Utilisateur $inscrits)
+    {
+        $this->inscrits->removeElement($inscrits);
+    }
+
+    /**
+     * Get inscrits
+     *
+     * @return ArrayCollection
+     */
+    public function getInscrits()
+    {
+        return $this->inscrits;
     }
 }

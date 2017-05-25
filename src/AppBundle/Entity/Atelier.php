@@ -56,11 +56,6 @@ class Atelier
     private $annule;
 	
     /**
-     * @ORM\OneToMany(targetEntity="Inscription", mappedBy="atelier")
-     */
-    private $inscriptions;
-	
-    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="date", nullable=true)
@@ -111,6 +106,11 @@ class Atelier
      * @ORM\Column(name="prix", type="float")
      */
     private $prix;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="ateliers")
+     */
+    private $inscrits;
     
     /**
      * @var \DateTime
@@ -404,43 +404,9 @@ class Atelier
     }
 
     /**
-     * Add inscription
-     *
-     * @param \AppBundle\Entity\Inscription $inscription
-     *
-     * @return Atelier
-     */
-    public function addInscription(Inscription $inscription)
-    {
-        $this->inscriptions[] = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * Remove inscription
-     *
-     * @param \AppBundle\Entity\Inscription $inscription
-     */
-    public function removeInscription(Inscription $inscription)
-    {
-        $this->inscriptions->removeElement($inscription);
-    }
-
-    /**
-     * Get inscriptions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInscriptions()
-    {
-        return $this->inscriptions;
-    }
-
-    /**
      * Add superviseur
      *
-     * @param \AppBundle\Entity\Utilisateur $superviseur
+     * @param Utilisateur $superviseur
      *
      * @return Atelier
      */
@@ -454,7 +420,7 @@ class Atelier
     /**
      * Remove superviseur
      *
-     * @param \AppBundle\Entity\Utilisateur $superviseur
+     * @param Utilisateur $superviseur
      */
     public function removeSuperviseur(Utilisateur $superviseur)
     {
@@ -464,7 +430,7 @@ class Atelier
     /**
      * Get superviseurs
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getSuperviseurs()
     {
@@ -613,5 +579,39 @@ class Atelier
     public function setUtilisateurModification(string $utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
+    }
+    
+    /**
+     * Add inscrit
+     *
+     * @param Utilisateur $inscrits
+     *
+     * @return Atelier
+     */
+    public function addInscrit(Utilisateur $inscrits)
+    {
+        $this->inscrits[] = $inscrits;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscrit
+     *
+     * @param Utilisateur $inscrits
+     */
+    public function removeInscrit(Utilisateur $inscrits)
+    {
+        $this->inscrits->removeElement($inscrits);
+    }
+
+    /**
+     * Get inscrits
+     *
+     * @return ArrayCollection
+     */
+    public function getInscrits()
+    {
+        return $this->inscrits;
     }
 }
