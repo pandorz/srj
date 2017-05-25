@@ -33,8 +33,8 @@ class UtilisateurAdmin extends UserAdmin
         $formMapper
             ->tab($this->trans('utilisateur.tab.sousUtilisateurs'))
             ->with('content_sousUtilisateur', [
-                'name'          => $this->trans('utilisateur.content.sousUtilisateurs'),
-                'description'   => $this->trans('utilisateur.description.sousUtilisateurs')
+                'name'          => $this->trans('utilisateur.with.sousUtilisateurs'),
+                'description'   => $this->trans('utilisateur.with.description')
             ])
             ->add('sousUtilisateurs', 'sonata_type_model_list', [
                 'label'     => 'utilisateur.sousUtilisateurs',

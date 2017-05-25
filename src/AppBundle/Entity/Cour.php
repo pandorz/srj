@@ -60,11 +60,9 @@ class Cour
     private $users;
 	
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="DateCalendrier", inversedBy="cours")
-     * @ORM\JoinColumn(nullable=false, name="fk_date", referencedColumnName="id")
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
-    private $dates;
+    private $contenu;
 	
     /**
      *
@@ -224,11 +222,11 @@ class Cour
     /**
      * Add user
      *
-     * @param \AppBundle\Entity\Utilisateur $user
+     * @param Utilisateur $user
      *
      * @return Cour
      */
-    public function addUtilisateur(Utilisateur $user)
+    public function addUser(Utilisateur $user)
     {
         $this->users[] = $user;
 
@@ -238,9 +236,9 @@ class Cour
     /**
      * Remove user
      *
-     * @param \AppBundle\Entity\Utilisateur $user
+     * @param Utilisateur $user
      */
-    public function removeUtilisateur(Utilisateur $user)
+    public function removeUser(Utilisateur $user)
     {
         $this->users->removeElement($user);
     }
@@ -248,51 +246,41 @@ class Cour
     /**
      * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
-    public function getUtilisateurs()
+    public function getUsers()
     {
         return $this->users;
     }
 
     /**
-     * Add date
+     * Set contenu
      *
-     * @param \AppBundle\Entity\DateCalendrier $date
+     * @param string $contenu
      *
      * @return Cour
      */
-    public function addDate(DateCalendrier $date)
+    public function setContenu($contenu)
     {
-        $this->dates[] = $date;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
     /**
-     * Remove date
+     * Get contenu
      *
-     * @param \AppBundle\Entity\DateCalendrier $date
+     * @return string
      */
-    public function removeDate(DateCalendrier $date)
+    public function getContenu()
     {
-        $this->dates->removeElement($date);
-    }
-
-    /**
-     * Get dates
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDates()
-    {
-        return $this->dates;
+        return $this->contenu;
     }
 
     /**
      * Set professeur
      *
-     * @param \AppBundle\Entity\Utilisateur $professeur
+     * @param Utilisateur $professeur
      *
      * @return Cour
      */
@@ -306,7 +294,7 @@ class Cour
     /**
      * Get professeur
      *
-     * @return \AppBundle\Entity\Utilisateur
+     * @return Utilisateur
      */
     public function getProfesseur()
     {

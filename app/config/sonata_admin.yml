@@ -43,6 +43,12 @@ sonata_admin:
                 icon: '<i class="fa fa-pencil"></i>'
                 items:
                     - app.admin.ateliers
+            app.admin.group.principal.cours:
+                on_top: true
+                label: "Cours"
+                icon: '<i class="fa fa-book"></i>'
+                items:
+                    - app.admin.cours
             app.admin.group.principal.users:
                 keep_open: false
                 label: "Utilisateurs"

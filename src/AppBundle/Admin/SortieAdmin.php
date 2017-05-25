@@ -72,7 +72,7 @@ class SortieAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('sortie.add_edit.details'),
+                'name'          => $this->trans('sortie.with.details'),
                 'class'         => 'col-md-7'
             ])
             ->add('nom', 'text', [
@@ -119,7 +119,7 @@ class SortieAdmin extends AbstractAdmin
             ])            
             ->end()
             ->with('Meta data', [
-                'name'      => $this->trans('sortie.add_edit.meta_data'),
+                'name'      => $this->trans('sortie.with.meta_data'),
                 'class'     => 'col-md-5'
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [

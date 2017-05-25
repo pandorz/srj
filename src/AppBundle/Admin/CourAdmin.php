@@ -10,13 +10,13 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 
-use AppBundle\Entity\Evenement;
+use AppBundle\Entity\Cour;
 use AppBundle\Entity\Utilisateur;
 
-class EvenementAdmin extends AbstractAdmin
+class CourAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_evenement';
-    protected $baseRoutePattern = 'evenement';
+    protected $baseRouteName    = 'admin_cour';
+    protected $baseRoutePattern = 'cour';
 
     public $supportsPreviewMode = false;
 
@@ -31,20 +31,17 @@ class EvenementAdmin extends AbstractAdmin
     {
         $listMapper
             ->addIdentifier('nom', 'text', [
-                'label' => 'evenement.liste.nom'
+                'label' => 'cour.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'evenement.liste.affiche',
+                'label' => 'cour.liste.affiche',
             ])
             ->add('annule', 'boolean', [
-                'label' => 'evenement.liste.annule',
+                'label' => 'cour.liste.annule',
             ])
-            ->add('dateDebut', 'date', [
-                'label' => 'evenement.liste.dateDebut',
-                'sortable'  => 'name'
-            ])
-            ->add('dateFin', 'date', [
-                'label' => 'evenement.liste.dateFin',
+            ->add('professeur', 'many_to_one', [
+                'label'     => 'cour.liste.professeur',
+                'route'     => ['name' => 'show'],
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(
@@ -66,62 +63,52 @@ class EvenementAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('evenement.with.details'),
+                'name'          => $this->trans('cour.with.details'),
                 'class'         => 'col-md-7'
             ])
             ->add('nom', 'text', [
-                'label' => 'evenement.nom',
+                'label' => 'cour.nom',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.nom'
+                    'placeholder' => 'cour.placeholder.nom'
                 ]
             ])
             ->add('affiche', 'checkbox', [
-                'label' => 'evenement.actif',
+                'label' => 'cour.actif',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.actif'
+                    'placeholder' => 'cour.placeholder.actif'
                 ]
             ])
             ->add('annule', 'checkbox', [
-                'label' => 'evenement.annule',
+                'label' => 'cour.annule',
                 'attr'  => [
-                    'placeholder' => 'evenement.placeholder.annule'
-                ]
-            ])
-            ->add('contenu', CKEditorType::class, [
-                'label' => 'evenement.contenu',
-                'attr'  => [
-                    'placeholder' => 'evenement.placeholder.contenu'
+                    'placeholder' => 'cour.placeholder.annule'
                 ]
             ])            
-            ->end()
+            ->add('contenu', CKEditorType::class, [
+                'label' => 'cour.contenu',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.contenu'
+                ]
+            ])            
+            ->end() 
             ->with('Meta data', [
-                'name'      => $this->trans('evenement.with.meta_data'),
-                'class'     => 'col-md-5'
+                'name'      => $this->trans('cour.with.meta_data'),
+                 'class'     => 'col-md-5'
             ])
-            ->add('superviseurs', 'sonata_type_model_autocomplete', [
+            ->add('professeur', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
                 'property'  => 'slug',
-                'label'     => 'evenement.superviseurs',
+                'label'     => 'cour.professeur',
+                'multiple'  => false,
+                'placeholder' => 'cour.placeholder.professeur'
+            ])
+            ->add('users', 'sonata_type_model_autocomplete', [
+                'class'     => Utilisateur::class,
+                'property'  => 'slug',
+                'label'     => 'cour.users',
                 'multiple'  => true,
-                'placeholder' => 'evenement.placeholder.superviseurs'
-            ])
-            ->add('dateDebut', 'sonata_type_datetime_picker', [
-                'label' => 'evenement.date_debut',
-                'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_debut')
-                ]
-            ])
-            ->add('dateFin', 'sonata_type_datetime_picker', [
-                'label' => 'evenement.date_fin',
-                'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_fin')
-                ]
-            ])
-            ->add('image', 'sonata_media_type', array(
-                'label' => 'evenement.image',
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'image'
-            ))
+                'placeholder' => 'cour.placeholder.users'
+            ])  
             ->end()
         ;
     }
@@ -136,9 +123,7 @@ class EvenementAdmin extends AbstractAdmin
         $showMapper
             ->add('nom')
             ->add('affiche')
-            ->add('annule')
-            ->add('dateDebut')
-            ->add('dateFin')    
+            ->add('annule')   
             ->add('utilisateurCreation')
             ->add('utilisateurModification')
         ;
@@ -155,8 +140,10 @@ class EvenementAdmin extends AbstractAdmin
             ->add('nom')
             ->add('affiche')
             ->add('annule')
-            ->add('dateDebut')
-            ->add('dateFin')
+            ->add('professeur', null, [], 'entity', [
+                'class'         => Utilisateur::class,
+                'choice_label'  => 'nom',
+            ])
         ;
     }
 
@@ -185,8 +172,8 @@ class EvenementAdmin extends AbstractAdmin
      */
     public function toString($object)
     {
-        return $object instanceof Evenement
+        return $object instanceof Cour
             ? $object->getNom()
-            : $this->trans('evenement.add_edit.to_string');
+            : $this->trans('cour.add_edit.to_string');
     }
 }
