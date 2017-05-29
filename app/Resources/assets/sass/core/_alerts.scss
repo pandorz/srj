@@ -1,0 +1,58 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+/*---
+title:      Alertes
+section:    Composants CSS
+---
+
+``` exemple:html
+<div class="alert alert-error icon-error-empty">Attention ! Vous avez oublié certaines infos obligatoires !</div>
+<div class="alert alert-warning icon-warning-empty">Oups ! Il y a du avoir quelques erreurs !</div>
+<div class="alert alert-success icon-success-empty">Super ! Votre requête a bien été prise en compte !</div>
+<div class="alert alert-info icon-info-empty">Voici une information pas trop importante !</div>
+```
+
+*/
+
+.alert {
+    padding: $margin-s $margin-m;
+    margin-bottom: $margin-m;
+    border: 1px solid currentColor;
+    border-radius: 4px;
+    &[class*="icon-"]:before {
+        margin-left: 0;
+        font-size: 20px;
+    }
+    a {
+        text-decoration: underline;
+        color: inherit;
+    }
+    hr {
+        border-top-color: currentColor;
+    }
+    > :first-child {
+        margin-top: 0;
+    }
+    > :last-child {
+        margin-bottom: 0;
+    }
+}
+.alert-success {
+    color: $color-success-dark;
+    background-color: $color-success;
+}
+.alert-info {
+    color: $color-info-dark;
+    background-color: $color-info;
+}
+.alert-warning {
+    color: $color-warning-dark;
+    background-color: $color-warning;
+}
+.alert-error {
+    color: $color-error-dark;
+    background-color: $color-error;
+}

@@ -1,0 +1,238 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+@import "vendor/select2.min.css";
+
+
+::-webkit-input-placeholder {
+    font-style: italic;
+    color: $color-grey-dark;
+    opacity: 1;
+    @include transition();
+}
+:-moz-placeholder {
+    font-style: italic;
+    color: $color-grey-dark;
+    opacity: 1;
+    @include transition();
+}
+::-moz-placeholder {
+    font-style: italic;
+    color: $color-grey-dark;
+    opacity: 1;
+    @include transition();
+}
+:-ms-input-placeholder {
+    font-style: italic;
+    color: $color-grey-dark;
+    opacity: 1;
+    @include transition();
+}
+:focus::-webkit-input-placeholder {
+    opacity: .5;
+}
+:focus:-moz-placeholder {
+    opacity: .5;
+}
+:focus::-moz-placeholder {
+    opacity: .5;
+}
+:focus:-ms-input-placeholder {
+    opacity: .5;
+}
+
+.formItem {
+    display: block;
+    margin-bottom: $margin-s;
+    @include media('>laptop') {
+        .formItem {
+            margin-bottom: $margin-m;
+        }
+    }
+}
+.fldLabel {
+    display: inline-block;
+    margin-bottom: rem(5);
+}
+.fld,
+.customSelectInner,
+.select2-selection,
+.fldIcon {
+    display: block;
+    width: 100%;
+    max-width: rem(500);
+}
+.fld,
+.customSelectInner,
+.select2-selection {
+    height: $fldHeight-m;
+    padding: 0 $margin-m 0 $margin-s;
+    border: 1px solid $color-grey-medium;
+    border-radius: $btn-radius;
+    .fldIcon > & {
+        padding-right: $margin-l;
+    }
+}
+.formSelect {
+    position: relative;
+    display: inline-block;
+    .select2 {
+        width: auto !important;
+        min-width: rem(150);
+    }
+    .select2 + .select2-container,
+    .select2-dropdown {
+        width: auto !important;
+        min-width: 100%;
+    }
+    .select2-results__option {
+        white-space: nowrap;
+    }
+}
+.customSelect,
+.customSelectInner {
+    display: block !important;
+    width: 100% !important;
+    line-height: rem(38);
+}
+.fldArea {
+    @extend .fld;
+    height: rem(182);
+    padding-top: $margin-s;
+    padding-bottom: $margin-s;
+}
+
+/**
+ * Override select2 styles
+ */
+
+.select2-container--default .select2-selection--single {
+    @extend .fld;
+}
+.select2-container .select2-selection--single .select2-selection__rendered {
+    padding: 0;
+}
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: $fldHeight-m;
+    margin-top: -1px;
+    color: $color-grey-dark;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    width: $margin-m;
+    height: $fldHeight-m;
+    margin-top: -1px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b,
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    margin-left: -10px;
+}
+.select2-container--default .select2-selection--single .select2-selection__arrow b {
+    border-width: 7px 6px 0;
+    border-color: $color-grey-medium transparent transparent;
+}
+.select2-container--default.select2-container--open .select2-selection--single .select2-selection__arrow b {
+    border-width: 0 6px 7px;
+    border-color: transparent transparent $color-grey-medium;
+}
+.select2-dropdown {
+    border-color: $color-grey-medium;
+}
+.select2-container--open .select2-dropdown--below {
+/*    width: auto !important;
+    white-space: nowrap;*/
+    border-top: 1px solid $color-grey-medium;
+    border-radius: 4px;
+}
+[class*="select2"] li {
+    text-indent: 0;
+    &:before {
+        display: none;
+    }
+}
+.select2-results__option {
+    padding: $margin-s;
+}
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: $color-grey-lighter;
+}
+.select2-container--default .select2-results__option--highlighted[aria-selected] {
+    background-color: $color-rj;
+}
+
+/**
+ * Checkboxes and radios
+ */
+
+.dummyCheck,
+.dummyRadio {
+    display: inline-block;
+    width: rem(15);
+    height: rem(15);
+    border: 1px solid $color-grey-medium;
+    vertical-align: -1px;
+    background-color: $color-white;
+    input {
+        position: absolute;
+        width: rem(15);
+        height: rem(15);
+        opacity: 0;
+    }
+}
+.dummySelected {
+    position: absolute;
+    display: none;
+}
+.dummyRadio {
+    border-radius: rem(15);
+    .dummySelected {
+        width: rem(7);
+        height: rem(7);
+        margin: 3px 0 0 3px;
+        border-radius: rem(10);
+        background-color: $color-rj;
+    }
+    input[type="radio"]:checked + .dummySelected {
+        display: block;
+    }
+}
+.dummyCheck {
+    border-radius: 4px;
+    .dummySelected {
+        width: rem(18);
+        height: rem(14);
+        margin: -2px 0 0 1px;
+        background: url(../images/checked.svg) no-repeat 0 0 / contain;
+    }
+    input[type="checkbox"]:checked + .dummySelected {
+        display: block;
+    }
+}
+
+/**
+ * Errors
+ */
+
+.form-error {
+    .fld,
+    .dummyRadio,
+    .dummyCheck {
+        border-color: $color-error-dark;
+    }
+    .fldIcon:before {
+        color: $color-error-dark;
+    }
+}
+.errorInfo {
+    display: inline-block;
+    margin: 0 0 rem(5);
+    padding: 0 $margin-s;
+    color: $color-error-dark;
+    background-color: $color-error;
+}
+.fldHelper {
+    margin: 0;
+    font-size: rem(14);
+    color: $color-grey-dark;
+}

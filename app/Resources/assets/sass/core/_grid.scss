@@ -1,0 +1,197 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+/* 
+    Original Grid Layout from KNACSS (grillade) : 
+    * Tuto : http://www.alsacreations.com/tuto/lire/1659-une-grille-responsive-avec-flexbox-et-LESS.html
+    * Demo : http://codepen.io/raphaelgoetter/pen/ZYjwEB
+
+    Modified and enhanced by Arcange (mainly for custom columns sizes -> .gridItem-n)
+*/
+
+
+
+
+/*---
+title:      Grille
+section:    Composants CSS
+---
+
+La grille est configurée pour 8 colonnes.
+
+### Grille simple
+Pour créer une mise en page en colonnes, il suffit d'encapsuler lesdites colonnes dans une conteneur de classe `.grid-N`, où *N* est le nombre de colonnes souhaité.
+
+* Les colonnes ont toutes la même taille (largeur)
+* Si le nombre de blocs au sein du conteneur est supérieur à *N*, les blocs passeront à la ligne. (voir exemple ci-dessous)
+* Toutes les colonnes d'une même ligne prendront automatiquement la hauteur de la plus haute
+
+``` example:html
+    <div class="grid-4">
+        <div class="u-box">Bloc 1</div>
+        <div class="u-box">
+            <p>Bloc 2</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="u-box">Bloc 3</div>
+        <div class="u-box">Bloc 4</div>
+        <div class="u-box">Bloc 5</div>
+    </div>
+```
+
+
+
+### Colonnes de tailles différentes
+Pour attribuer à une colonne une taille personnalisée, on peut utiliser les classes `.gridItem-N`.
+Une colonne de classe `.gridItem-3` occupera un espace de 3 X sa largeur par défaut. 
+
+``` example:html
+    <div class="grid-5">
+        <div class="u-box gridItem-3">Bloc 1</div>
+        <div class="u-box">Bloc 2</div>
+        <div class="u-box">Bloc 3</div>
+        <div class="u-box">Bloc 4</div>
+        <div class="u-box">Bloc 5</div>
+    </div>
+```
+
+**Remarque:** Un conteneur de classe `.grid-5` ne pourra pas contenir de colonne de classe `.gridItem-6` (ou 5+), car cela voudrait dire que cette colonne serait plus large que son conteneur.
+
+
+
+### Espacements
+Utiliser les classes `.pull` et `push` conjointement aux classes de la grille pour obtenir des mises en pages personnalisées :
+
+``` example:html
+    <div class="grid-3">
+        <div class="u-box push">Bloc 1</div>
+    </div>
+```
+
+``` example:html
+    <div class="grid-3">
+        <div class="u-box push pull">Bloc 1</div>
+        <div class="u-box push pull">Bloc 2</div>
+    </div>
+```
+
+*/
+
+
+
+$colsNb: 8;
+
+/* grid container */
+[class*="grid-"] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left: -$margin-s;
+    @include media('>phablet') {
+        margin-left: -$margin-m;
+    }
+}
+
+/* grid children */
+[class*="grid-"] > * {
+    flex: 0 0 auto;
+    width: calc(100% - #{$margin-s} - .01px); // @bugfix IE https://github.com/alsacreations/KNACSS/issues/133;
+    min-width: 0;
+    min-height: 0;
+    margin-left: $margin-s;
+    @include media('>phablet') {
+        // children are 50% width by default
+        width: calc(100% * 1 / 2 - #{$margin-m} - .01px);
+        margin-left: $margin-m;
+    }
+}
+
+// Sass mixins for *equal* columns grid container
+@mixin grid($grid-number:$grid-number, $grid-gutter:$margin-m) {
+    & > * {
+        width: calc(100% * 1 / #{$grid-number} - #{$grid-gutter} - .01px);
+    }
+}
+
+/* *equal* columns grid container */
+@include media('>phablet') {
+    @for $i from 2 through $colsNb {
+        .grid-#{$i} {
+            @include grid($i, $margin-m);
+        }
+    }
+}
+
+// Sass mixins for single .gridItem
+@mixin gridItem($grid-number:$grid-number, $grid-gutter:$margin-m) {
+    @for $j from 2 through $grid-number {
+        & > .gridItem-#{$j} {
+            width: calc(100% * #{$j} / #{$grid-number} - #{$grid-gutter});
+        }
+    }
+}
+
+/* single .gridItem */
+@include media('>phablet') {
+    @for $i from 2 through $colsNb {
+        .grid-#{$i} {
+            @include gridItem($i, $margin-m);
+        }
+    }
+}
+
+/* Responsive grid */
+
+// Sass mixins for single .gridItem-small
+
+@mixin gridItemSmall($grid-number:$grid-number) {
+    @for $j from 1 through $grid-number {
+        & > .gridItem-small-#{$j} {
+            width: calc(100% * #{$j} / #{$grid-number} - #{$margin-m});
+        }
+    }
+}
+
+@include media('>phablet', '<=laptop') {
+    @for $i from 1 through $colsNb {
+        .grid-#{$i} {
+            @include gridItemSmall($i);
+        }
+    }
+}
+
+@include media('>phablet', '<=laptop') {
+    .grid-small-4 > *,
+    .grid-small-4 > [class*="gridItem"] {
+        width: calc(100% * 1 / 4 - #{$margin-m} - .01px);
+    }
+    .grid-small-3 > *,
+    .grid-small-3 > [class*="gridItem"] {
+        width: calc(100% * 1 / 3 - #{$margin-m} - .01px);
+    }
+    .grid-small-2 > *,
+    .grid-small-2 > [class*="gridItem"] {
+        width: calc(100% * 1 / 2 - #{$margin-m} - .01px);
+    }
+    .grid-small-1 > *,
+    .grid-small-1 > [class*="gridItem"] {
+        width: calc(100% - #{$margin-m} - .01px);
+    }
+}
+
+@include media('>phablet', '<=laptop') {
+    @for $i from 2 through $colsNb {
+        .grid-small-#{$i} {
+            @include gridItemSmall($i);
+        }
+    }
+}
+
+.pull {
+    margin-right: auto;
+}
+.push {
+    margin-left: auto;
+}

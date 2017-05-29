@@ -1,0 +1,8 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+@function rem($pixels){
+  @return #{$pixels/13}rem;
+}

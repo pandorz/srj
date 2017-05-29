@@ -1,0 +1,255 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+@mixin hiddenVisually {
+    border: 0 !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+}
+
+/**
+ * Contain floats
+ *
+ * Make an element expand to contain floated children.
+ * Uses pseudo-elements (micro clearfix).
+ *
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of the
+ *    element.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+@mixin clearfix {
+    &::before,
+    &::after {
+      content: " ";
+      display: table;
+    }
+    &::after {
+      clear: both;
+    }
+}
+
+/**
+ * 1. Make sure fixed elements are promoted into a new layer, for performance
+ *    reasons.
+ */
+@mixin posFixed {
+    backface-visibility: hidden; /* 1 */
+    position: fixed;
+}
+
+@mixin absOrFixCenter {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin posFullScreen {
+    bottom: 0;
+    left: 0;
+    margin: auto;
+    right: 0;
+    top: 0;
+}
+
+/**
+ * Text truncation
+ *
+ * Prevent text from wrapping onto multiple lines, and truncate with an
+ * ellipsis.
+ *
+ * 1. Ensure that the node has a maximum width after which truncation can
+ *    occur.
+ * 2. Fix for IE 8/9 if `word-wrap: break-word` is in effect on ancestor
+ *    nodes.
+ */
+
+@mixin textTruncate {
+  max-width: 100% !important; /* 1 */
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important; /* 2 */
+}
+
+/**
+ * Text
+ */
+@mixin niceText() {
+    font-family: 'Oswald', sans-serif;
+}
+
+/**
+ * Links
+ */
+@mixin activeLink() {
+  &:hover,
+  &:focus,
+  &:active {
+      @content
+  }
+}
+
+/**
+ * Blocks
+ */
+
+@mixin box() {
+    margin-bottom: $margin-l;
+    padding: $margin-m $margin-l;
+    background-color: $color-grey-lighter;
+}
+
+@mixin box-blank() {
+    @extend .u-box;
+    border: 1px solid $color-grey-medium;
+    background-color: $color-white;
+}
+
+/**
+ * Placeholder for form fields
+ */
+
+@mixin optional-at-root($sel) {
+  @at-root #{if(not &, $sel, selector-append(&, $sel))} {
+    @content;
+  }
+}
+
+@mixin placeholder {
+  @include optional-at-root('::-webkit-input-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root('::-moz-placeholder') {
+    @content;
+  }
+
+  @include optional-at-root(':-ms-input-placeholder') {
+    @content;
+  }
+}
+
+/**
+ * Transitions
+ */
+@mixin transition($prop:all, $duration:0.3s, $timing:ease, $delay:0s) {
+  transition: $prop $duration $timing $delay;
+}
+@mixin trans-prop($prop...) {
+    transition-property: $prop;
+}
+@mixin trans-duration($duration...) {
+    transition-property: $duration;
+}
+@mixin trans-timing-function($timing...) {
+    transition-timing-function: $timing;
+}
+@mixin trans-delay($delay...) {
+    transition-delay: $delay;
+}
+
+/**
+ * Show/Hide transitions
+ */
+@mixin hideInactive() {
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s ease-in .3s, opacity .3s ease-in;
+}
+@mixin showActive() {
+    visibility: visible;
+    opacity: 1;
+    transition: visibility 0s ease-in 0s, opacity .3s ease-in;
+}
+
+/**
+ * Linear-gradient
+ */
+
+/// Convert angle
+/// @author Chris Eppstein
+/// @param {Number} $value - Value to convert
+/// @param {String} $unit - Unit to convert to
+/// @return {Number} Converted angle
+@function convert-angle($value, $unit) {
+  $convertable-units: deg grad turn rad;
+  $conversion-factors: 1 (10grad/9deg) (1turn/360deg) (3.1415926rad/180deg);
+  @if index($convertable-units, unit($value)) and index($convertable-units, $unit) {
+    @return $value
+             / nth($conversion-factors, index($convertable-units, unit($value)))
+             * nth($conversion-factors, index($convertable-units, $unit));
+  }
+  
+  @warn "Cannot convert `#{unit($value)}` to `#{$unit}`.";
+}
+
+/// Test if `$value` is an angle
+/// @param {*} $value - Value to test
+/// @return {Bool}
+@function is-direction($value) {
+  $is-direction: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
+  $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+  
+  @return $is-direction or $is-angle;
+}
+
+/// Convert a direction to legacy syntax
+/// @param {Keyword | Angle} $value - Value to convert
+/// @require {function} is-direction
+/// @require {function} convert-angle
+@function legacy-direction($value) {
+  @if is-direction($value) == false {
+    @warn "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be an angle or a direction";
+  }
+  
+  $conversion-map: ( 
+    to top          : bottom,
+    to top right    : bottom left,
+    to right top    : left bottom,
+    to right        : left,
+    to bottom right : top left,
+    to right bottom : left top,
+    to bottom       : top,
+    to bottom left  : top right,
+    to left bottom  : right top,
+    to left         : right,
+    to left top     : right bottom,
+    to top left     : bottom right
+  );
+    
+  @if map-has-key($conversion-map, $value) {
+    @return map-get($conversion-map, $value);
+  }
+  
+  @return 90deg - convert-angle($value, 'deg');
+}
+
+/// Mixin printing a linear-gradient 
+/// as well as a plain color fallback 
+/// and the `-webkit-` prefixed declaration
+/// @access public
+/// @param {String | List | Angle} $direction - Linear gradient direction
+/// @param {Arglist} $color-stops - List of color-stops composing the gradient
+@mixin linear-gradient($direction, $color-stops...) {
+  @if is-direction($direction) == false {
+    $color-stops: ($direction, $color-stops);
+    $direction: 180deg;
+  }
+  
+  background: nth(nth($color-stops, 1), 1);
+  background: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
+  background: linear-gradient($direction, $color-stops);
+}

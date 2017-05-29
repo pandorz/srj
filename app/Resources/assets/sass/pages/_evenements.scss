@@ -1,0 +1,86 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+/*Regroupe les pages Ateliers et Sorties*/
+
+.workshops {
+	.hero {
+		background: url(../images/ateliers_bkg.jpg) right 23% center / cover no-repeat;
+	}
+}
+
+.outings {
+	.hero {
+		background: url(../images/sorties_bkg.jpg) right 23% center / cover no-repeat;
+	}
+}
+
+.events {
+
+	.workshopsIntro {
+		.sectionTitle {
+			text-align: left;
+		}
+	}
+
+	.comingEvents {
+		background: url(../images/lanterns_big_bkg.jpg) 0 0 / cover no-repeat;
+		.sectionTitle {
+			color: $color-white;
+		}
+		.postItemCtn {
+			margin: 0 auto;
+		}
+	}
+	.noWorkshop {
+		color: $color-white;
+		.nothing {
+			@include niceText;
+			font-size: rem(48);
+			&:before {
+				content: '';
+				display: block;
+				width: rem(200);
+				height: rem(54);
+				margin: 0 auto;
+				background: url(../images/no-workshop.png) 0 0 no-repeat;
+			}
+		}
+		p {
+			font-size: rem(16);
+		}
+		.newsletterForm {
+			width: 100%;
+			max-width: rem(480);
+			margin: $margin-xl auto 0;			
+			.fld {
+				background-color: rgba(255, 255, 255, .9);
+			}
+			.btn {
+				border-color: $color-black;
+				font-size: rem(14);
+				background-color: $color-black;
+			}
+
+			@include media('>phablet') {
+				display: flex;
+				.formItem {
+					flex-grow: 2;
+				}
+				.fld {
+					border-radius: $btn-radius 0 0 $btn-radius;
+				}
+				.btn {
+					border-radius: 0 $btn-radius $btn-radius 0;
+				}
+			}
+		}
+	}
+	.comingEvents + .sectionCTA {
+		margin-top: 0;
+		border-top: none;
+	}
+	
+}

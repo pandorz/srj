@@ -3,6 +3,25 @@
   "version": "1.0.0",
   "description": "Site associatif Rouen Japon",
   "main": "index.js",
+  "dependencies": {
+    "del": "2.2.2",
+    "gulp": "3.9.1",
+    "gulp-autoprefixer": "3.1.1",
+    "gulp-concat": "2.6.0",
+    "gulp-if": "2.0.1",
+    "gulp-imagemin": "3.0.3",
+    "gulp-livereload": "3.8.1",
+    "gulp-load-plugins": "1.2.4",
+    "gulp-minify-css": "1.2.4",
+    "gulp-plumber": "1.1.0",
+    "gulp-real-favicon": "0.2.1",
+    "gulp-rev": "7.1.2",
+    "gulp-sass": "2.3.2",
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-uglify": "2.0.0",
+    "gulp-util": "3.0.7",
+    "q": "1.4.1"
+  },
   "directories": {
     "test": "tests"
   },
@@ -13,7 +32,7 @@
     "type": "git",
     "url": "git+https://github.com/pandorz/srj.git"
   },
-  "author": "Lucie Guilbert",
+  "author": "Lucie Guilbert <guilbert.lucie.89@gmail.com> - Cécile JEANNE <contact@cecile-jeanne.be>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/pandorz/srj/issues"

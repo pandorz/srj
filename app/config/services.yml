@@ -4,6 +4,11 @@ parameters:
     #parameter_name: value
 
 services:
+    twig_asset_version_extension:
+        class: AppBundle\Twig\AssetVersionExtension
+        arguments: ["%kernel.root_dir%"]
+        tags:
+            - { name: twig.extension }
     app.admin.block.stats:
         class: AppBundle\Service\StatBlockService
         arguments: ["app.admin.block.stats", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]

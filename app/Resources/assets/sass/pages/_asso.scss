@@ -1,0 +1,119 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+.asso {
+
+	/* A propos */
+	.aboutText {
+		text-align: center;
+		font-size: rem(16);
+	}
+
+	/* Membres */
+	.membersList {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin: -#{$margin-m};
+	}
+	.memberItem {
+		width: calc(50% - #{$margin-xl});
+		margin: $margin-m;
+	}
+	.memberPhoto,
+	.memberName,
+	.membreJob {
+		display: block;
+	}
+	.memberPhoto {
+		margin-bottom: $margin-s;
+	}
+	.memberJob {
+		color: $color-rj;
+	}
+
+	@include media('>phablet') {
+		.memberItem {
+			width: calc(25% - #{$margin-xl});
+		}
+	}
+
+	@include media('>laptop') {
+		.memberItem {
+			width: calc(100%/6 - #{$margin-xl});
+		}
+	}
+
+	@include media('>1280px') {
+		.memberItem {
+			width: calc(100%/7 - #{$margin-xl});
+		}
+	}
+
+	/* Partenaires */
+	.partnerItem {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		margin-bottom: $margin-s;
+		font-size: rem(16);
+	}
+	.partnerName,
+	.partnerDescr {
+		width: 100%;
+	}
+	.partnerName {
+		font-weight: 600;
+	}
+
+	@include media('>phablet') {
+		.partnerName,
+		.partnerDescr {
+			width: 50%;
+		}
+		.partnerName {
+			padding-right: $margin-m;
+			text-align: right;
+		}
+		.partnerDescr {
+			padding-left: $margin-m;
+		}
+	}
+
+	/* Devenir membre */
+	.join {
+		.sectionTitle {
+			text-align: left;
+		}
+		.btn {
+			margin-bottom: $margin-l;
+		}
+	}
+	.joinChapo {
+		margin-bottom: $margin-xl;
+		font-size: rem(16);
+	}
+
+	@include media('>phablet') {
+		.join {
+			position: relative;
+			width: 50%;
+			margin: rem(70) 0 rem(70) auto;
+			padding-top: 0;
+			padding-bottom: 0;
+			&:before {
+				content: '';
+				position: absolute;
+				top: 0;
+				left: -100%;
+				display: block;
+				width: calc(100% - #{$margin-m}*2);
+				height: 100%;
+				margin-left: $margin-m;
+				background: url(../images/adherer-a-lasso.gif) 0 0 / contain no-repeat;
+			}
+		}
+	}
+}
