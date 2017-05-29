@@ -14,6 +14,7 @@ class UtilisateurAdmin extends UserAdmin
 {
     protected $baseRouteName    = 'admin_utilisateur';
     protected $baseRoutePattern = 'utilisateur';
+    protected $classnameLabel   = 'user';
 
     protected function configureListFields(ListMapper $listMapper)
     {

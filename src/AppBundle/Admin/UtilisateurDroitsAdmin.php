@@ -11,6 +11,6 @@ class UtilisateurDroitsAdmin extends GroupAdmin
     protected $baseRouteName    = 'admin_utilisateur_droits';
     protected $baseRoutePattern = 'utilisateur_droits';
 
-
+    protected $classnameLabel   = 'group';
 
 }
