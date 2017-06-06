@@ -62,7 +62,7 @@ app.doStyles = function() {
 
     pipeline.add([
         config.assetsDir+'/sass/app.scss',
-    ], 'main.css');
+    ], 'app.css');
     return pipeline.run(app.addStyle);
 };
 
@@ -80,8 +80,18 @@ app.doScripts = function() {
         config.assetsDir+'/js/07-maps.js',
         config.assetsDir+'/js/08-accordion.js',
         config.assetsDir+'/js/09-modal.js',
-        config.assetsDir+'/js/99-pages.js'
-    ], 'main.js');
+        config.assetsDir+'/js/99-pages.js',
+        config.assetsDir+'/js/vendor/_jquery-ui.min.js',
+        config.assetsDir+'/js/vendor/bootstrap-slider.min.js',
+        config.assetsDir+'/js/vendor/jquery.customSelect.min.js',
+        config.assetsDir+'/js/vendor/jquery.knob.min.js',
+        config.assetsDir+'/js/vendor/jquery-ui.min.js',
+        config.assetsDir+'/js/vendor/nouislider.min.js',
+        config.assetsDir+'/js/vendor/ofi.browser.js',
+        config.assetsDir+'/js/vendor/select2.min.js',
+        config.assetsDir+'/js/vendor/slick.min.js',
+        config.assetsDir+'/js/vendor/wNumb.js'
+    ], 'app.js');
 
 
     return pipeline.run(app.addScript);
