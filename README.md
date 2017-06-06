@@ -56,6 +56,7 @@ bin/console fos:user:create --super-admin
 ```sh
 bin/console cache:clear
 bin/console assets:install
+gulp
 ```
 -----
 
