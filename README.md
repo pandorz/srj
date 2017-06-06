@@ -14,6 +14,13 @@ git clone
 composer install
 ```
 
+## Node
+
+```sh
+npm install
+```
+
+
 ## Bower
 
 ```sh
@@ -22,7 +29,17 @@ bower install ./vendor/sonata-project/admin-bundle/bower.json
 
 You have to set a value for mailer_user and mailer_password
 
+## Node
+
+```sh
+npm install gulp
+```
+
 ## Create database tables
+
+```sh
+bin/console doctrine:database:create
+```
 
 ```sh
 bin/console doctrine:migrations:migrate
