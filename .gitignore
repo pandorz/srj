@@ -27,3 +27,5 @@ puphpet/config-custom.yaml
 !web/upload/media/.gitkeep
 !web/medias/.gitkeep
 /nbproject/private/
+/app/Resources/assets/rev-manifest.json
+/composer.phar
