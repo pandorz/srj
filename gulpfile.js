@@ -61,9 +61,8 @@ app.doStyles = function() {
     var pipeline = new Pipeline();
 
     pipeline.add([
-        config.assetsDir+'/sass/app.scss'
-    ], 'app.css');
-
+        config.assetsDir+'/sass/app.scss',
+    ], 'main.css');
     return pipeline.run(app.addStyle);
 };
 
@@ -71,65 +70,35 @@ app.doScripts = function() {
     var pipeline = new Pipeline();
 
     pipeline.add([
-        config.assetsDir+'/js/00-app.js'
-    ], 'app.js');
-
-    pipeline.add([
-        config.assetsDir+'/js/01-common.js'
-    ], 'app.js');
-    
-    pipeline.add([
-        config.assetsDir+'/js/02-header.js'
-    ], 'app.js');
-    
-    pipeline.add([
-        config.assetsDir+'/js/03-forms.js'
-    ], 'app.js');
-    
-    pipeline.add([
-        config.assetsDir+'/js/04-showhide.js'
-    ], 'app.js');
-    
-    pipeline.add([
-        config.assetsDir+'/js/05-dropdown.js'
-    ], 'app.js');
-    
-    pipeline.add([
-        config.assetsDir+'/js/06-slider.js'
-    ], 'app.js');
-    
-    pipeline.add([
-        config.assetsDir+'/js/07-maps.js'
-    ], 'app.js');
-    
-    pipeline.add([
-        config.assetsDir+'/js/08-accordion.js'
-    ], 'app.js');
-    
-    pipeline.add([
-        config.assetsDir+'/js/09-modal.js'
-    ], 'app.js');
-    
-    pipeline.add([
+        config.assetsDir+'/js/00-app.js',
+        config.assetsDir+'/js/01-common.js',
+        config.assetsDir+'/js/02-header.js',
+        config.assetsDir+'/js/03-forms.js',
+        config.assetsDir+'/js/04-showhide.js',
+        config.assetsDir+'/js/05-dropdown.js',
+        config.assetsDir+'/js/06-slider.js',
+        config.assetsDir+'/js/07-maps.js',
+        config.assetsDir+'/js/08-accordion.js',
+        config.assetsDir+'/js/09-modal.js',
         config.assetsDir+'/js/99-pages.js'
-    ], 'app.js');
+    ], 'main.js');
+
+
     return pipeline.run(app.addScript);
 };
 
 app.img = function() {
     return gulp.src(config.assetsDir+'/medias/img/**/*')
-        .pipe(plugins.imagemin())
         .pipe(gulp.dest('web/medias/img'));
 };
 
-app.favicons = function() {
+app.favicon = function() {
     return gulp.src(config.assetsDir+'/medias/favicons/**/*')
-        .pipe(plugins.imagemin())
         .pipe(gulp.dest('web/medias/favicons'));
 };
 
 app.livereload_on_templates = function() {
-    return gulp.src('app/Resources/views/template/base_front.html.twig')
+    return gulp.src('app/Resources/views/base_front.html.twig')
         .pipe(plugins.livereload());
 };
 
@@ -170,9 +139,77 @@ gulp.task('styles', function() {
     return app.doStyles();
 });
 
+gulp.task('styles_libraries', ['styles'], function() {
+    var pipeline = new Pipeline();
+
+    pipeline.add([
+        config.bowerDir+'/jquery-ui/themes/smoothness/jquery-ui.min.css',
+        config.bowerDir+'/semantic/dist/semantic.css',
+        config.bowerDir+'/font-awesome/css/font-awesome.css',
+        config.bowerDir+'/toastr/toastr.css',
+        config.assetsDir+'/icomoon/style.css'
+    ], 'libraries.css');
+
+    pipeline.add([
+        config.assetsDir+'/soundmanager/css/bar-ui.css'
+    ], 'soundmanager/css/soundmanager.css');
+
+    return pipeline.run(app.addStyle);
+});
+
+gulp.task('scripts', ['styles_libraries'], function() {
+    return app.doScripts();
+});
+
+gulp.task('scripts_libraries', ['scripts'], function() {
+    var pipeline = new Pipeline();
+
+    pipeline.add([
+        config.bowerDir+'/jquery/dist/jquery.js',
+        config.bowerDir+'/jquery-ui/jquery-ui.min.js',
+        config.bowerDir+'/blueimp-file-upload/js/jquery.iframe-transport.js',
+        config.bowerDir+'/blueimp-file-upload/js/jquery.fileupload.js',
+        config.bowerDir+'/semantic/dist/semantic.js',
+        config.bowerDir+'/toastr/toastr.js'
+    ], 'libraries.js');
+
+    pipeline.add([
+        config.bowerDir+'/soundmanager2/script/soundmanager2.js'
+    ], 'soundmanager.js');
+
+    return pipeline.run(app.addScript);
+});
+
+gulp.task('ressources', function() {
+    app.copy(
+        config.bowerDir+'/font-awesome/fonts/*',
+        'web/fonts'
+    );
+
+    app.copy(
+        config.bowerDir+'/semantic/dist/themes/default/**/*',
+        'web/css/themes/default'
+    );
+
+    app.copy(
+        config.assetsDir+'/icomoon/fonts/*',
+        'web/css/fonts'
+    );
+
+    app.copy(
+        config.assetsDir+'/soundmanager/image/**/*',
+        'web/css/soundmanager/image'
+    );
+
+    app.copy(
+        config.bowerDir+'/jquery-ui/themes/smoothness/images/**/*',
+        'web/css/images'
+    );
+});
+
 gulp.task('medias', function() {
     app.img();
-    app.favicons();
+    app.favicon();
 });
 
 gulp.task('livereload_on_templates', function() {
@@ -202,7 +239,7 @@ gulp.task('watch', function() {
     gulp.watch(config.assetsDir+'/js/**/*.js', ['watch_scripts']);
 });
 
-var tasks_to_launch = ['clean', 'medias'];
+var tasks_to_launch = ['clean', 'styles', 'styles_libraries', 'scripts', 'scripts_libraries', 'ressources', 'medias'];
 
 if( !config.production ) {
     tasks_to_launch.push('watch');
@@ -256,7 +293,7 @@ gulp.task('generate-favicon', function(done) {
                 pictureAspect: 'noChange',
                 themeColor: '#ffffff',
                 manifest: {
-                    name: 'Rouen Japon',
+                    name: 'M&M',
                     display: 'standalone',
                     orientation: 'notSet',
                     onConflict: 'override',
@@ -286,7 +323,7 @@ gulp.task('generate-favicon', function(done) {
 // this task whenever you modify a page. You can keep this task
 // as is or refactor your existing HTML pipeline.
 gulp.task('inject-favicon-markups', function() {
-     gulp.src(['app/Resources/views/template/base_front.html.twig'])
+    gulp.src(['app/Resources/views/template/base_tpl.html.twig'])
         .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
         .pipe(gulp.dest('app/Resources/views/template'));
 });
