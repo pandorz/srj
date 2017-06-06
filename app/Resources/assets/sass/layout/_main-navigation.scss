@@ -1,0 +1,245 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+.mainNav {
+    position: relative;
+} 
+.toggleNav {
+    position: relative;
+    z-index: 1100; // must be higher than .mainNavContent
+    width: rem(40);
+    height: rem(60);
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-size: contain;
+        transition: all .5s ease-out;
+    }
+    &:before {
+        background-image: url(../images/nav-menu-open.svg);
+        /**/
+        opacity: 1;
+    }
+    &.is-active:before {
+        opacity: 0;
+    }
+    &:after {
+        background-image: url(../images/nav-menu-close.svg);
+        /**/
+        opacity: 0;
+    }
+    &.is-active:after {
+        opacity: 1;
+    }
+}
+
+.mainSubNavList,
+.mainSubSubNavList {
+    overflow: hidden;
+}
+
+.mainNavLink,
+.mainSubNavLink,
+.mainSubSubNavLink {
+    display: block;
+    padding: rem(8) 1em;
+    text-decoration: none;
+    @include transition;
+    cursor: pointer;
+}
+.mainNavLink,
+.mainSubNavLink {
+    font-size: rem(14);
+}
+.mainNavLink,
+.mainSubSubNavLink {
+    color: $color-text;
+}
+.mainSubNavLink {
+    border-bottom: 1px solid $color-rj-dark;
+    color: $color-white;
+    background-color: $color-rj;
+    @include activeLink {
+        color: $color-white;
+        background-color: $color-rj-darker;
+    }
+}
+.mainSubSubNavLink {
+    border-bottom: 1px solid $color-grey-light;
+    font-size: rem(12);
+    font-style: italic;
+    background-color: $color-white;
+}
+.has-subMenu > a {
+    position: relative;
+    padding-right: $margin-l;
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        right: 1em;
+        transform: translate(0, -50%);
+        display: block;
+        border-style: solid;
+        border-width: rem(5) rem(5) 0;
+        border-color: $color-rj transparent;
+    }
+    &.mainSubNavLink:after {
+        border-top-color: $color-white;
+    }
+}
+.mainNavMemberLink {
+    &.login {
+        position: relative;
+        line-height: rem(28);
+        padding-right: $margin-l;
+        color: $color-rj;
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: block;
+            width: rem(20);
+            height: rem(20);
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            background-size: rem(20);
+            @include transition;
+        }
+        &:before {
+            background-image: url(../images/icon-user-red.svg);
+            opacity: 1;
+        }
+        &:after {
+            background-image: url(../images/icon-user-black.svg);
+            opacity: 0;
+        }
+        @include activeLink {
+            color: $color-text;
+            &:before {
+                opacity: 0;
+            }
+            &:after {
+                opacity: 1;
+            }
+        }
+    }
+}
+
+@include media('<=1100px') {
+    .mainNavContent {
+        position: fixed;
+        top: 0;
+        right: 0;
+        z-index: 1000; // must be higher than overlay
+        display: flex;
+        flex-direction: column;
+        width: rem(260);
+        height: 100%;
+        overflow: auto;
+        padding-top: rem(60);
+        background-color: $color-white;
+        transition: all .5s ease-out;
+        /**/
+        transform: translate(100%, 0);
+        opacity: 0;
+        .is-active + & {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+    }
+    .mainNavLink,
+    .mainSubSubNavLink {
+        @include activeLink {
+            color: $color-text;
+            background-color: $color-grey-light;
+        }
+    }
+    .mainNavMember {
+        flex-grow: 2;
+        display: flex;
+        flex-flow: column nowrap;
+        align-items: center;
+        padding: $margin-m 1em;
+        background-color: $color-grey-lighter;
+        .btn {
+            padding-left: 1em;
+            padding-right: 1em;
+        }
+    }
+    .mainNavMemberLink {
+        &.signup {
+            margin-bottom: $margin-m;
+        }
+    }
+}
+
+@include media('>1100px') {
+    .toggleNav {
+        display: none;
+    }
+    .mainNav {
+        padding: 0 $margin-s 0 0;
+    }
+    .mainNavContent,
+    .mainNavList ,
+    .mainNavMember {
+        display: flex;
+        align-items: center;
+    }
+    .mainNavItem.has-subMenu {
+        position: relative;
+    }
+    .mainSubNavList {
+        position: absolute;
+        min-width: rem(180);
+    }
+    .mainNavLink,
+    .mainSubNavLink,
+    .mainSubSubNavLink {
+        padding-left: $margin-s;
+        padding-right: $margin-s;
+    }
+    .mainNavMember {
+        margin-left: $margin-s;
+    }
+    .mainNavMemberLink {
+        &.login {
+            margin-left: $margin-m;
+        }
+    }
+}
+
+@include media('>#{$site-width}') {
+    .mainNav {
+        padding: 0 $margin-m;
+    }
+    .mainNavLink,
+    .mainSubNavLink,
+    .mainSubSubNavLink {
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+    .mainNavMemberLink {
+        &.login {
+            margin-left: $margin-s;
+        }
+    }
+}

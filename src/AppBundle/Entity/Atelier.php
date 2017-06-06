@@ -5,11 +5,16 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * Atelier
  *
- * @ORM\Table(name="atelier")
+ * @ORM\Table(name="atelier", indexes={
+ *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="affiche", columns={"affiche"}),
+ *     @ORM\Index(name="annule", columns={"annule"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\AtelierRepository")
  */
 class Atelier
@@ -37,37 +42,32 @@ class Atelier
     private $slug;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="affiche", type="integer")
+     * @ORM\Column(name="affiche", type="boolean")
      */
     private $affiche;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="annule", type="integer")
+     * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
 	
     /**
-     * @ORM\OneToMany(targetEntity="Inscription", mappedBy="atelier")
-     */
-    private $inscriptions;
-	
-    /**
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="DateCalendrier", inversedBy="ateliers")
-     * @ORM\JoinColumn(nullable=false, name="fk_date", referencedColumnName="id")
+     * @ORM\Column(name="date", type="date", nullable=true)
      */
     private $date;
     
     /**
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="DateCalendrier", inversedBy="ateliers_limite")
-     * @ORM\JoinColumn(nullable=false, name="fk_date_limite", referencedColumnName="id")
+     * @ORM\Column(name="date_limite", type="date", nullable=true)
      */
-    private $date_limite;
+    private $dateLimite;
     
     /**
      * @var int
@@ -77,13 +77,13 @@ class Atelier
     private $nbPlace;
     
     /**
-    * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
-    */
-
-   private $image;
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
+     */
+    private $image;
    
     /**
-     * @ORM\OneToMany(targetEntity="Contenu", mappedBy="atelier")
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
     
@@ -94,9 +94,9 @@ class Atelier
     private $superviseurs;
     
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="reserveMembre", type="integer")
+     * @ORM\Column(name="reserveMembre", type="boolean")
      */
     private $reserveMembre;
     
@@ -106,7 +106,47 @@ class Atelier
      * @ORM\Column(name="prix", type="float")
      */
     private $prix;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="ateliers")
+     */
+    private $inscrits;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
+     */
+    private $timestampCreation;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
+     */
+    private $timestampModification;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur_creation", type="string", length=255, nullable=true)
+     */
+    private $utilisateurCreation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
+     */
+    private $utilisateurModification;
+    
+    /**
+     * For Sonata Admin Doctrine lock
+     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Version
+     */
+    protected $version;
 
     /**
      * Get id
@@ -145,7 +185,7 @@ class Atelier
     /**
      * Set affiche
      *
-     * @param integer $affiche
+     * @param boolean $affiche
      *
      * @return Atelier
      */
@@ -159,7 +199,7 @@ class Atelier
     /**
      * Get affiche
      *
-     * @return int
+     * @return boolean
      */
     public function getAffiche()
     {
@@ -169,7 +209,7 @@ class Atelier
     /**
      * Set annule
      *
-     * @param integer $annule
+     * @param boolean $annule
      *
      * @return Atelier
      */
@@ -183,7 +223,7 @@ class Atelier
     /**
      * Get annule
      *
-     * @return int
+     * @return boolean
      */
     public function getAnnule()
     {
@@ -194,10 +234,7 @@ class Atelier
      */
     public function __construct()
     {
-        $this->annule           = 0;
-        $this->affiche          = 1;
         $this->superviseurs     = new ArrayCollection();
-        $this->reserveMembre    = 0;
         $this->prix             = 0;
     }
 
@@ -205,11 +242,11 @@ class Atelier
     /**
      * Set date
      *
-     * @param \AppBundle\Entity\DateCalendrier $date
+     * @param \DateTime $date
      *
      * @return Atelier
      */
-    public function setDate(DateCalendrier $date)
+    public function setDate(\DateTime $date)
     {
         $this->date = $date;
 
@@ -219,7 +256,7 @@ class Atelier
     /**
      * Get date
      *
-     * @return \AppBundle\Entity\DateCalendrier
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -277,13 +314,13 @@ class Atelier
     /**
      * Set dateLimite
      *
-     * @param \AppBundle\Entity\DateCalendrier $dateLimite
+     * @param \DateTime $dateLimite
      *
      * @return Atelier
      */
-    public function setDateLimite(DateCalendrier $dateLimite)
+    public function setDateLimite(\DateTime $dateLimite)
     {
-        $this->date_limite = $dateLimite;
+        $this->dateLimite = $dateLimite;
 
         return $this;
     }
@@ -291,21 +328,21 @@ class Atelier
     /**
      * Get dateLimite
      *
-     * @return \AppBundle\Entity\DateCalendrier
+     * @return \DateTime
      */
     public function getDateLimite()
     {
-        return $this->date_limite;
+        return $this->dateLimite;
     }
 
     /**
      * Set image
      *
-     * @param \AppBundle\Entity\Image $image
+     * @param MediaInterface $image
      *
-     * @return Atelier
+     * 
      */
-    public function setImage(Image $image = null)
+    public function setImage(MediaInterface $image = null)
     {
         $this->image = $image;
 
@@ -315,41 +352,51 @@ class Atelier
     /**
      * Get image
      *
-     * @return \AppBundle\Entity\Image
+     * @return MediaInterface
      */
     public function getImage()
     {
         return $this->image;
     }
-
+    
     /**
-     * Add contenu
-     *
-     * @param \AppBundle\Entity\Contenu $contenu
-     *
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+    
+    /**
+     * @param int $version
+     * 
      * @return Atelier
      */
-    public function addContenu(Contenu $contenu)
+    public function setVersion($version)
     {
-        $this->contenu[] = $contenu;
+        $this->version = $version;
+        
+        return $this;
+    }
+
+    /**
+     * Set contenu
+     *
+     * @param string $contenu
+     *
+     * @return Musee
+     */
+    public function setContenu($contenu)
+    {
+        $this->contenu = $contenu;
 
         return $this;
     }
 
     /**
-     * Remove contenu
-     *
-     * @param \AppBundle\Entity\Contenu $contenu
-     */
-    public function removeContenu(Contenu $contenu)
-    {
-        $this->contenu->removeElement($contenu);
-    }
-
-    /**
      * Get contenu
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return string
      */
     public function getContenu()
     {
@@ -357,43 +404,9 @@ class Atelier
     }
 
     /**
-     * Add inscription
-     *
-     * @param \AppBundle\Entity\Inscription $inscription
-     *
-     * @return Atelier
-     */
-    public function addInscription(Inscription $inscription)
-    {
-        $this->inscriptions[] = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * Remove inscription
-     *
-     * @param \AppBundle\Entity\Inscription $inscription
-     */
-    public function removeInscription(Inscription $inscription)
-    {
-        $this->inscriptions->removeElement($inscription);
-    }
-
-    /**
-     * Get inscriptions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInscriptions()
-    {
-        return $this->inscriptions;
-    }
-
-    /**
      * Add superviseur
      *
-     * @param \AppBundle\Entity\Utilisateur $superviseur
+     * @param Utilisateur $superviseur
      *
      * @return Atelier
      */
@@ -407,7 +420,7 @@ class Atelier
     /**
      * Remove superviseur
      *
-     * @param \AppBundle\Entity\Utilisateur $superviseur
+     * @param Utilisateur $superviseur
      */
     public function removeSuperviseur(Utilisateur $superviseur)
     {
@@ -417,7 +430,7 @@ class Atelier
     /**
      * Get superviseurs
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getSuperviseurs()
     {
@@ -427,7 +440,7 @@ class Atelier
     /**
      * Set reserveMembre
      *
-     * @param integer $reserveMembre
+     * @param boolean $reserveMembre
      *
      * @return Atelier
      */
@@ -441,7 +454,7 @@ class Atelier
     /**
      * Get reserveMembre
      *
-     * @return integer
+     * @return boolean
      */
     public function getReserveMembre()
     {
@@ -470,5 +483,135 @@ class Atelier
     public function getPrix()
     {
         return $this->prix;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setTimestampCreation(new \DateTime('now'));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setTimestampModification(new \DateTime('now'));
+    }
+    
+    /**
+     * Set timestampCreation
+     *
+     * @param \DateTime $timestampCreation
+     *
+     * @return Musee
+     */
+    public function setTimestampCreation($timestampCreation)
+    {
+        $this->timestampCreation = $timestampCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampCreation
+     *
+     * @return \DateTime
+     */
+    public function getTimestampCreation()
+    {
+        return $this->timestampCreation;
+    }
+    
+    /**
+     * Set timestampModification
+     *
+     * @param \DateTime $timestampModification
+     *
+     * @return Musee
+     */
+    public function setTimestampModification($timestampModification)
+    {
+        $this->timestampModification = $timestampModification;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampModification
+     *
+     * @return \DateTime
+     */
+    public function getTimestampModification()
+    {
+        return $this->timestampModification;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getUtilisateurCreation()
+    {
+        return $this->utilisateurCreation;
+    }
+
+    /**
+     * @param string $utilisateurCreation
+     */
+    public function setUtilisateurCreation(string $utilisateurCreation)
+    {
+        $this->utilisateurCreation = $utilisateurCreation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUtilisateurModification()
+    {
+        return $this->utilisateurModification;
+    }
+
+    /**
+     * @param string $utilisateurModification
+     */
+    public function setUtilisateurModification(string $utilisateurModification)
+    {
+        $this->utilisateurModification = $utilisateurModification;
+    }
+    
+    /**
+     * Add inscrit
+     *
+     * @param Utilisateur $inscrits
+     *
+     * @return Atelier
+     */
+    public function addInscrit(Utilisateur $inscrits)
+    {
+        $this->inscrits[] = $inscrits;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscrit
+     *
+     * @param Utilisateur $inscrits
+     */
+    public function removeInscrit(Utilisateur $inscrits)
+    {
+        $this->inscrits->removeElement($inscrits);
+    }
+
+    /**
+     * Get inscrits
+     *
+     * @return ArrayCollection
+     */
+    public function getInscrits()
+    {
+        return $this->inscrits;
     }
 }

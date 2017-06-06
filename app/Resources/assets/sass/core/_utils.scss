@@ -1,0 +1,232 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+/*---
+title:      Classes utilitaires
+section:    Styles de base
+---
+
+*/
+
+
+
+
+/**
+ * Positionnement utilities
+ */
+.u-posFixed {
+    @include posFixed;
+}
+
+/**
+ * Element will be centered to its nearest relatively-positioned
+ * ancestor.
+ */
+.u-absOrFixCenter {
+    @include absOrFixCenter;
+}
+.u-posFullScreen {
+    @include posFullScreen;
+}
+
+.u-fitted {
+    max-width: $site-width;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+
+/**
+ * Display-type utilities
+ */
+.u-block {
+    display: block !important;
+}
+
+/**
+ * 1. Fix for Firefox bug: an image styled `max-width:100%` within an
+ * inline-block will display at its default size, and not limit its width to
+ * 100% of an ancestral container.
+ */
+.u-inlineBlock {
+    display: inline-block !important;
+    max-width: 100% !important; /* 1 */
+}
+
+.u-inline {
+    display: inline !important;
+}
+
+.u-hidden {
+    display: none !important;
+}
+
+/**
+ * Completely remove from the flow but leave available to screen readers.
+ */
+.u-hiddenVisually {
+    @include hiddenVisually;
+}
+
+
+
+/**
+ * Contain floats
+ *
+ * Make an element expand to contain floated children.
+ * Uses pseudo-elements (micro clearfix).
+ */
+.u-cf {
+    @include clearfix;
+}
+
+
+
+/**
+ * Margins
+ */
+.u-hMarged {
+    margin-left: $margin-m !important;
+    margin-right: $margin-m !important;
+}
+.u-vMarged {
+    margin-top: $margin-m !important;
+    margin-bottom: $margin-m !important;
+}
+.u-marged {
+    margin: $margin-m !important;
+}
+
+
+
+/**
+ * Horizontal text alignment
+ */
+
+.u-textCenter {
+    text-align: center;
+}
+
+.u-textLeft {
+    text-align: left;
+}
+
+.u-textRight {
+    text-align: right;
+}
+
+
+
+/**
+ * Blocks
+ */
+
+.u-box {
+    @include box;
+}
+.u-box-blank {
+    @include box-blank;
+}
+
+
+
+/**
+ * Text
+ */
+
+.u-niceText {
+    @include niceText();
+}
+
+/* Colors */
+.u-textWhite {
+    color: $color-white !important;
+}
+
+.u-textColorRJ {
+    color: $color-rj !important;
+}
+.u-textWhite {
+    color: #fff !important;
+}
+.u-textGrey {
+    color: $color-grey-dark !important;
+}
+.u-textBlack {
+    color: #000 !important;
+}
+a.u-textBlack {
+    text-decoration: underline;
+}
+
+.u-note {
+    font-size: rem(11);
+    font-style: italic;
+    color: $color-grey-dark;
+}
+
+
+
+/**
+ * Text truncation
+ *
+ * Prevent text from wrapping onto multiple lines, and truncate with an
+ * ellipsis.
+ */
+
+.u-textTruncate {
+    @include textTruncate;
+}
+
+/**
+ * Lists
+ */
+
+.u-li {
+    @extend li;
+    display: inline-block;
+}
+.u-li-grey {
+    @extend li;
+    &:before {
+        color: $color-grey-light;
+    }
+}
+.u-ul-grey > li {
+    @extend .u-li-grey;
+}
+.u-li-colorRJ {
+    @extend li;
+    &:before {
+        color: $color-rj;
+    }
+}
+.u-ul-colorRJ > li {
+    @extend .u-li-colorRJ;
+}
+.u-li-mute {
+    padding-left: 0;
+    text-indent: 0;
+    &:before {
+        display: none;
+    }
+}
+.u-ul-mute li {
+    @extend .u-li-mute;
+}
+
+.u-warning {
+    font-style: italic;
+    color: $color-rj;
+}
+
+/**
+ * Borders
+ */
+
+.u-bordered {
+    border-top: 1px solid $color-grey-medium;
+}

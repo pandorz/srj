@@ -9,7 +9,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
 /**
  * Cour
  *
- * @ORM\Table(name="cour")
+ * @ORM\Table(name="cour", indexes={
+ *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="affiche", columns={"affiche"}),
+ *     @ORM\Index(name="annule", columns={"annule"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CourRepository")
  */
 class Cour
@@ -37,30 +41,28 @@ class Cour
     private $slug;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="annule", type="integer")
+     * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="affiche", type="integer")
+     * @ORM\Column(name="affiche", type="boolean")
      */
     private $affiche;
 	
     /**
      * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="cours")
      */
-    private $users;
+    private $inscrits;
 	
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="DateCalendrier", inversedBy="cours")
-     * @ORM\JoinColumn(nullable=false, name="fk_date", referencedColumnName="id")
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
-    private $dates;
+    private $contenu;
 	
     /**
      *
@@ -68,6 +70,42 @@ class Cour
      * @ORM\JoinColumn(nullable=false, name="fk_professeur", referencedColumnName="id")
      */
     private $professeur;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
+     */
+    private $timestampCreation;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
+     */
+    private $timestampModification;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur_creation", type="string", length=255, nullable=true)
+     */
+    private $utilisateurCreation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
+     */
+    private $utilisateurModification;
+    
+    /**
+     * For Sonata Admin Doctrine lock
+     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Version
+     */
+    protected $version;
 
 
     /**
@@ -107,7 +145,7 @@ class Cour
     /**
      * Set annule
      *
-     * @param integer $annule
+     * @param boolean $annule
      *
      * @return Cour
      */
@@ -121,17 +159,37 @@ class Cour
     /**
      * Get annule
      *
-     * @return int
+     * @return boolean
      */
     public function getAnnule()
     {
         return $this->annule;
     }
+    
+    /**
+     * @param int $version
+     * 
+     * @return Cour
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+        
+        return $this;
+    }
+    
+    /**
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
 
     /**
      * Set affiche
      *
-     * @param integer $affiche
+     * @param boolean $affiche
      *
      * @return Cour
      */
@@ -145,12 +203,13 @@ class Cour
     /**
      * Get affiche
      *
-     * @return int
+     * @return boolean
      */
     public function getAffiche()
     {
         return $this->affiche;
     }
+    
     /**
      * Constructor
      */
@@ -158,82 +217,70 @@ class Cour
     {
         $this->users = new ArrayCollection();
         $this->dates = new ArrayCollection();
-		$this->setAnnule(0);
-		$this->setAffiche(1);
     }
 
     /**
-     * Add user
+     * Add inscrit
      *
-     * @param \AppBundle\Entity\Utilisateur $user
+     * @param Utilisateur $inscrits
      *
      * @return Cour
      */
-    public function addUtilisateur(Utilisateur $user)
+    public function addInscrit(Utilisateur $inscrits)
     {
-        $this->users[] = $user;
+        $this->inscrits[] = $inscrits;
 
         return $this;
     }
 
     /**
-     * Remove user
+     * Remove inscrit
      *
-     * @param \AppBundle\Entity\Utilisateur $user
+     * @param Utilisateur $inscrits
      */
-    public function removeUtilisateur(Utilisateur $user)
+    public function removeInscrit(Utilisateur $inscrits)
     {
-        $this->users->removeElement($user);
+        $this->inscrits->removeElement($inscrits);
     }
 
     /**
-     * Get users
+     * Get inscrits
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
-    public function getUtilisateurs()
+    public function getInscrits()
     {
-        return $this->users;
+        return $this->inscrits;
     }
 
     /**
-     * Add date
+     * Set contenu
      *
-     * @param \AppBundle\Entity\DateCalendrier $date
+     * @param string $contenu
      *
      * @return Cour
      */
-    public function addDate(DateCalendrier $date)
+    public function setContenu($contenu)
     {
-        $this->dates[] = $date;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
     /**
-     * Remove date
+     * Get contenu
      *
-     * @param \AppBundle\Entity\DateCalendrier $date
+     * @return string
      */
-    public function removeDate(DateCalendrier $date)
+    public function getContenu()
     {
-        $this->dates->removeElement($date);
-    }
-
-    /**
-     * Get dates
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getDates()
-    {
-        return $this->dates;
+        return $this->contenu;
     }
 
     /**
      * Set professeur
      *
-     * @param \AppBundle\Entity\Utilisateur $professeur
+     * @param Utilisateur $professeur
      *
      * @return Cour
      */
@@ -247,7 +294,7 @@ class Cour
     /**
      * Get professeur
      *
-     * @return \AppBundle\Entity\Utilisateur
+     * @return Utilisateur
      */
     public function getProfesseur()
     {
@@ -276,5 +323,101 @@ class Cour
     public function getSlug()
     {
         return $this->slug;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setTimestampCreation(new \DateTime('now'));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setTimestampModification(new \DateTime('now'));
+    }
+    
+    /**
+     * Set timestampCreation
+     *
+     * @param \DateTime $timestampCreation
+     *
+     * @return Musee
+     */
+    public function setTimestampCreation($timestampCreation)
+    {
+        $this->timestampCreation = $timestampCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampCreation
+     *
+     * @return \DateTime
+     */
+    public function getTimestampCreation()
+    {
+        return $this->timestampCreation;
+    }
+    
+    /**
+     * Set timestampModification
+     *
+     * @param \DateTime $timestampModification
+     *
+     * @return Musee
+     */
+    public function setTimestampModification($timestampModification)
+    {
+        $this->timestampModification = $timestampModification;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampModification
+     *
+     * @return \DateTime
+     */
+    public function getTimestampModification()
+    {
+        return $this->timestampModification;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getUtilisateurCreation()
+    {
+        return $this->utilisateurCreation;
+    }
+
+    /**
+     * @param string $utilisateurCreation
+     */
+    public function setUtilisateurCreation(string $utilisateurCreation)
+    {
+        $this->utilisateurCreation = $utilisateurCreation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUtilisateurModification()
+    {
+        return $this->utilisateurModification;
+    }
+
+    /**
+     * @param string $utilisateurModification
+     */
+    public function setUtilisateurModification(string $utilisateurModification)
+    {
+        $this->utilisateurModification = $utilisateurModification;
     }
 }

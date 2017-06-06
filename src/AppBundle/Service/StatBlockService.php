@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
 
+use Sonata\AdminBundle\Admin\AdminInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,6 +14,10 @@ use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Sonata\AdminBundle\Admin\Pool;
 
 
+/**
+ * Class StatBlockService
+ * @package AppBundle\Service
+ */
 class StatBlockService extends AbstractBlockService
 {
 
@@ -21,10 +26,23 @@ class StatBlockService extends AbstractBlockService
      */
     protected $em;
 
+    /**
+     * @var Pool
+     */
     protected $pool;
 
+    /**
+     * @var AdminInterface
+     */
     protected $admin;
 
+    /**
+     * StatBlockService constructor.
+     * @param null|string $name
+     * @param \Symfony\Bundle\FrameworkBundle\Templating\EngineInterface $templating
+     * @param EntityManager $entityManager
+     * @param Pool $pool
+     */
     public function __construct($name, $templating, EntityManager $entityManager, Pool $pool)
     {
         parent::__construct($name, $templating);
@@ -40,6 +58,13 @@ class StatBlockService extends AbstractBlockService
     }
 
 
+    /**
+     * Calcule est affiche le block
+     *
+     * @param BlockContextInterface $blockContext
+     * @param Response|null $response
+     * @return Response
+     */
     public function execute(BlockContextInterface $blockContext, Response $response = null)
     {
         $settings = $blockContext->getSettings();
@@ -55,11 +80,19 @@ class StatBlockService extends AbstractBlockService
     }
 
 
+    /**
+     * @return array
+     */
     public function getDefaultSettings()
     {
         return array();
     }
 
+    /**
+     * Liste des options necessaires dans le fichier yml
+     *
+     * @param OptionsResolver $resolver
+     */
     public function configureSettings(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
@@ -72,6 +105,13 @@ class StatBlockService extends AbstractBlockService
         ));
     }
 
+    /**
+     * Recupère les statistiques selon l'entité
+     *
+     * @param $entityName
+     * @return ArrayCollection
+     * @throws \Exception
+     */
     private function getStats($entityName)
     {
         if (!class_exists($entityName)) {

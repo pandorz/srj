@@ -5,11 +5,16 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * Evenement
  *
- * @ORM\Table(name="evenement")
+ * @ORM\Table(name="evenement", indexes={
+ *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="affiche", columns={"affiche"}),
+ *     @ORM\Index(name="annule", columns={"annule"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\EvenementRepository")
  */
 class Evenement
@@ -37,43 +42,87 @@ class Evenement
     private $slug;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="affiche", type="integer")
+     * @ORM\Column(name="affiche", type="boolean")
      */
     private $affiche;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="annule", type="integer")
+     * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
 
 	
-	/**
+    /**
+     * @var \DateTime
      *
-     * @ORM\ManyToOne(targetEntity="DateCalendrier", inversedBy="evenements")
-     * @ORM\JoinColumn(nullable=false, name="fk_date", referencedColumnName="id")
+     * @ORM\Column(name="date_debut", type="date", nullable=true)
      */
-    private $date;
+    private $dateDebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_fin", type="date", nullable=true)
+     */
+    private $dateFin;
     
     /**
-    * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
-    */
-
-   private $image;
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
+     */
+    private $image;
    
    /**
-     * @ORM\OneToMany(targetEntity="Contenu", mappedBy="evenement")
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
 
     /**
      * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="evenementSupervise")
      */
-    private $superviseurs;
+    private $superviseurs;    
+    
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
+     */
+    private $timestampCreation;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
+     */
+    private $timestampModification;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur_creation", type="string", length=255, nullable=true)
+     */
+    private $utilisateurCreation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
+     */
+    private $utilisateurModification;
+    
+    /**
+     * For Sonata Admin Doctrine lock
+     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Version
+     */
+    protected $version;
+    
     /**
      * Get id
      *
@@ -111,7 +160,7 @@ class Evenement
     /**
      * Set affiche
      *
-     * @param integer $affiche
+     * @param boolean $affiche
      *
      * @return Evenement
      */
@@ -125,7 +174,7 @@ class Evenement
     /**
      * Get affiche
      *
-     * @return int
+     * @return boolean
      */
     public function getAffiche()
     {
@@ -135,7 +184,7 @@ class Evenement
     /**
      * Set annule
      *
-     * @param integer $annule
+     * @param boolean $annule
      *
      * @return Evenement
      */
@@ -149,7 +198,7 @@ class Evenement
     /**
      * Get annule
      *
-     * @return int
+     * @return boolean
      */
     public function getAnnule()
     {
@@ -160,35 +209,57 @@ class Evenement
      */
     public function __construct()
     {
-        $this->annule       = 0;
-        $this->affiche      = 1;
+        $this->annule       = false;
+        $this->affiche      = true;
         $this->superviseurs = new ArrayCollection();
     }
 
-
-
     /**
-     * Set date
+     * Set dateDebut
      *
-     * @param \AppBundle\Entity\DateCalendrier $date
+     * @param \DateTime $dateDebut
      *
-     * @return Evenement
+     * @return ObjetMuseeMouvement
      */
-    public function setDate(DateCalendrier $date)
+    public function setDateDebut($dateDebut)
     {
-        $this->date = $date;
+        $this->dateDebut = $dateDebut;
 
         return $this;
     }
 
     /**
-     * Get date
+     * Get dateDebut
      *
-     * @return \AppBundle\Entity\DateCalendrier
+     * @return \DateTime
      */
-    public function getDate()
+    public function getDateDebut()
     {
-        return $this->date;
+        return $this->dateDebut;
+    }
+
+    /**
+     * Set dateFin
+     *
+     * @param \DateTime $dateFin
+     *
+     * @return ObjetMuseeMouvement
+     */
+    public function setDateFin($dateFin)
+    {
+        $this->dateFin = $dateFin;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFin
+     *
+     * @return \DateTime
+     */
+    public function getDateFin()
+    {
+        return $this->dateFin;
     }
 
     /**
@@ -214,15 +285,35 @@ class Evenement
     {
         return $this->slug;
     }
+    
+    /**
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+    
+    /**
+     * @param int $version
+     * 
+     * @return Evenement
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+        
+        return $this;
+    }
 
     /**
      * Set image
      *
-     * @param \AppBundle\Entity\Image $image
+     * @param MediaInterface $image
      *
      * @return Evenement
      */
-    public function setImage(Image $image = null)
+    public function setImage(MediaInterface $image)
     {
         $this->image = $image;
 
@@ -232,7 +323,7 @@ class Evenement
     /**
      * Get image
      *
-     * @return \AppBundle\Entity\Image
+     * @return MediaInterface
      */
     public function getImage()
     {
@@ -240,33 +331,23 @@ class Evenement
     }
 
     /**
-     * Add contenu
+     * Set contenu
      *
-     * @param \AppBundle\Entity\Contenu $contenu
+     * @param string $contenu
      *
-     * @return Evenement
+     * @return Musee
      */
-    public function addContenu(Contenu $contenu)
+    public function setContenu($contenu)
     {
-        $this->contenu[] = $contenu;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
     /**
-     * Remove contenu
-     *
-     * @param \AppBundle\Entity\Contenu $contenu
-     */
-    public function removeContenu(Contenu $contenu)
-    {
-        $this->contenu->removeElement($contenu);
-    }
-
-    /**
      * Get contenu
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return string
      */
     public function getContenu()
     {
@@ -277,7 +358,7 @@ class Evenement
     /**
      * Add superviseur
      *
-     * @param \AppBundle\Entity\Utilisateur $superviseur
+     * @param Utilisateur $superviseur
      *
      * @return Evenement
      */
@@ -291,7 +372,7 @@ class Evenement
     /**
      * Remove superviseur
      *
-     * @param \AppBundle\Entity\Utilisateur $superviseur
+     * @param Utilisateur $superviseur
      */
     public function removeSuperviseur(Utilisateur $superviseur)
     {
@@ -301,10 +382,140 @@ class Evenement
     /**
      * Get superviseurs
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getSuperviseurs()
     {
         return $this->superviseurs;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setTimestampCreation(new \DateTime('now'));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setTimestampModification(new \DateTime('now'));
+    }
+    
+    /**
+     * Set timestampCreation
+     *
+     * @param \DateTime $timestampCreation
+     *
+     * @return Musee
+     */
+    public function setTimestampCreation($timestampCreation)
+    {
+        $this->timestampCreation = $timestampCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampCreation
+     *
+     * @return \DateTime
+     */
+    public function getTimestampCreation()
+    {
+        return $this->timestampCreation;
+    }
+    
+    /**
+     * Set timestampModification
+     *
+     * @param \DateTime $timestampModification
+     *
+     * @return Musee
+     */
+    public function setTimestampModification($timestampModification)
+    {
+        $this->timestampModification = $timestampModification;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampModification
+     *
+     * @return \DateTime
+     */
+    public function getTimestampModification()
+    {
+        return $this->timestampModification;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getUtilisateurCreation()
+    {
+        return $this->utilisateurCreation;
+    }
+
+    /**
+     * @param string $utilisateurCreation
+     */
+    public function setUtilisateurCreation(string $utilisateurCreation)
+    {
+        $this->utilisateurCreation = $utilisateurCreation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUtilisateurModification()
+    {
+        return $this->utilisateurModification;
+    }
+
+    /**
+     * @param string $utilisateurModification
+     */
+    public function setUtilisateurModification(string $utilisateurModification)
+    {
+        $this->utilisateurModification = $utilisateurModification;
+    }
+    
+    /**
+     * Add inscrit
+     *
+     * @param Utilisateur $inscrits
+     *
+     * @return Cour
+     */
+    public function addInscrit(Utilisateur $inscrits)
+    {
+        $this->inscrits[] = $inscrits;
+
+        return $this;
+    }
+
+    /**
+     * Remove inscrit
+     *
+     * @param Utilisateur $inscrits
+     */
+    public function removeInscrit(Utilisateur $inscrits)
+    {
+        $this->inscrits->removeElement($inscrits);
+    }
+
+    /**
+     * Get inscrits
+     *
+     * @return ArrayCollection
+     */
+    public function getInscrits()
+    {
+        return $this->inscrits;
     }
 }

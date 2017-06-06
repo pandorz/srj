@@ -1,0 +1,90 @@
+
+/*
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+/*---
+title:      Couleurs
+section:    Styles de base
+---
+
+### Couleurs du thème Marché Privé :
+
+```example:color
+@color: #ffffff @name: $color-white
+@color: #efebeb @name: $color-grey-lighter
+@color: #e0d8d7 @name: $color-grey-light
+@color: #b2a9a8 @name: $color-grey-medium
+@color: #6d6766 @name: $color-grey-dark
+@color: #33302f @name: $color-grey-darker
+@color: #000000 @name: $color-black
+@color: #ef7d00 @name: $color-rj
+@color: #8ab833 @name: $color-shop
+```
+
+### Couleurs des alertes :
+
+```example:color
+@color: #ffd0ca @name: $color-error
+@color: #b2422b @name: $color-error-dark
+@color: #fff9de @name: $color-warning
+@color: #e2b700 @name: $color-warning-dark
+@color: #eeffe1 @name: $color-success
+@color: #8ab833 @name: $color-success-dark
+@color: #ebf6ff @name: $color-info
+@color: #3993ff @name: $color-info-dark
+```
+
+*/
+
+$color-white: #fff;
+$color-grey-lighter: #f5f5f5;
+$color-grey-light: #eee;
+$color-grey-medium: #e0e0e0;
+$color-grey-dark: #999;
+$color-grey-darker: #333;
+$color-grey-darkest: #1c1c1c;
+$color-black: #000;
+$color-text: $color-black;
+$color-rj: #e30613;
+$color-rj-dark: #c80b0f;
+$color-rj-darker: #b90004;
+
+$color-error: #ffd0ca;
+$color-error-dark: #b2422b;
+$color-warning: #fff9de;
+$color-warning-dark: #e2b700;
+$color-success: #eeffe1;
+$color-success-dark: #8ab833;
+$color-info: #ebf6ff;
+$color-info-dark: #3993ff;
+
+$text-fontfamily : Arial, "Lucida Grande", sans-serif;
+$text-lineheight: 1.25;
+
+$margin-s: rem(10);
+$margin-m: rem(20);
+$margin-l: rem(30);
+$margin-xl: rem(40);
+
+$site-width: 1280px;
+
+// breakpoints (overrides include-media.scss)
+$breakpoints: (
+  phone       : 320px,
+  phablet     : 640px,
+  tablet      : 768px,
+  laptop      : 960px,
+  desktop     : 1366px
+);
+
+$btnHeight-s: rem(34);
+$btnHeight-m: rem(40);
+$btnHeight-l: rem(64);
+$btn-radius: rem(12);
+$fldHeight-m: $btnHeight-m;
+
+$trans-prop: transform opacity;
+$trans-duration: .3s;
+$trans-function: ease;
+$trans-delay: 0s;

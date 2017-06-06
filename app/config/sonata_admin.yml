@@ -24,6 +24,39 @@ sonata_admin:
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
     dashboard:
+        groups:
+            app.admin.group.principal.evenements:
+                on_top: true
+                label: "Evenements"
+                icon: '<i class="fa fa-calendar"></i>'
+                items:
+                    - app.admin.evenements
+            app.admin.group.principal.sorties:
+                on_top: true
+                label: "Sorties"
+                icon: '<i class="fa fa-random"></i>'
+                items:
+                    - app.admin.sorties
+            app.admin.group.principal.ateliers:
+                on_top: true
+                label: "Ateliers"
+                icon: '<i class="fa fa-pencil"></i>'
+                items:
+                    - app.admin.ateliers
+            app.admin.group.principal.cours:
+                on_top: true
+                label: "Cours"
+                icon: '<i class="fa fa-book"></i>'
+                items:
+                    - app.admin.cours
+            app.admin.group.principal.users:
+                keep_open: false
+                label: "Utilisateurs"
+                label_catalogue: AppBundle
+                icon: '<i class="fa fa-users"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
         blocks:
             -
                 class: col-lg-3 col-xs-6
@@ -32,7 +65,7 @@ sonata_admin:
                 settings:
                     template: SonataAdminBundle:Block:block_stats.html.twig
                     icon:  fa-users
-                    text:  stats.utilisateur.number
+                    text:  Utilisateurs
                     color: bg-green
                     entity: AppBundle\Entity\Utilisateur
                     filters:

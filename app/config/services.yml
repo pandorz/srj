@@ -4,8 +4,33 @@ parameters:
     #parameter_name: value
 
 services:
+    twig_asset_version_extension:
+        class: AppBundle\Twig\AssetVersionExtension
+        arguments: ["%kernel.root_dir%"]
+        tags:
+            - { name: twig.extension }
     app.admin.block.stats:
         class: AppBundle\Service\StatBlockService
         arguments: ["app.admin.block.stats", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]
         tags:
             - { name: sonata.block }
+    app.admin.evenements:
+        class: AppBundle\Admin\EvenementAdmin
+        arguments: [~, AppBundle\Entity\Evenement, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Evenements }
+    app.admin.sorties:
+        class: AppBundle\Admin\SortieAdmin
+        arguments: [~, AppBundle\Entity\Sortie, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Sorties }
+    app.admin.ateliers:
+        class: AppBundle\Admin\AtelierAdmin
+        arguments: [~, AppBundle\Entity\Atelier, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Ateliers }
+    app.admin.cours:
+        class: AppBundle\Admin\CourAdmin
+        arguments: [~, AppBundle\Entity\Cour, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Cours }

@@ -71,7 +71,34 @@ class Contenu
      * @ORM\JoinColumn(nullable=true, name="fk_evenement", referencedColumnName="id")
      */
     private $evenement;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
+     */
+    private $timestampCreation;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
+     */
+    private $timestampModification;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur_creation", type="string", length=255, nullable=true)
+     */
+    private $utilisateurCreation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
+     */
+    private $utilisateurModification;
 
     /**
      * Contenu constructor.
@@ -258,5 +285,101 @@ class Contenu
     public function getEvenement()
     {
         return $this->evenement;
+    }
+    
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setTimestampCreation(new \DateTime('now'));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setTimestampModification(new \DateTime('now'));
+    }
+    
+    /**
+     * Set timestampCreation
+     *
+     * @param \DateTime $timestampCreation
+     *
+     * @return Musee
+     */
+    public function setTimestampCreation($timestampCreation)
+    {
+        $this->timestampCreation = $timestampCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampCreation
+     *
+     * @return \DateTime
+     */
+    public function getTimestampCreation()
+    {
+        return $this->timestampCreation;
+    }
+    
+    /**
+     * Set timestampModification
+     *
+     * @param \DateTime $timestampModification
+     *
+     * @return Musee
+     */
+    public function setTimestampModification($timestampModification)
+    {
+        $this->timestampModification = $timestampModification;
+
+        return $this;
+    }
+
+    /**
+     * Get timestampModification
+     *
+     * @return \DateTime
+     */
+    public function getTimestampModification()
+    {
+        return $this->timestampModification;
+    }
+    
+    /**
+     * @return string
+     */
+    public function getUtilisateurCreation()
+    {
+        return $this->utilisateurCreation;
+    }
+
+    /**
+     * @param string $utilisateurCreation
+     */
+    public function setUtilisateurCreation(string $utilisateurCreation)
+    {
+        $this->utilisateurCreation = $utilisateurCreation;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUtilisateurModification()
+    {
+        return $this->utilisateurModification;
+    }
+
+    /**
+     * @param string $utilisateurModification
+     */
+    public function setUtilisateurModification(string $utilisateurModification)
+    {
+        $this->utilisateurModification = $utilisateurModification;
     }
 }

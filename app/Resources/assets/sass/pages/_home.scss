@@ -1,0 +1,227 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+.home {
+
+	.hero {
+		height: rem(420);
+	}
+	@include media('>laptop') {
+	    .hero {
+	        height: 44vw;
+	        max-height: rem(600);
+	    }
+	}
+
+	/* Activités */
+	.activities {
+		padding: $margin-xl 0;
+	}
+	.activitiesList {
+		justify-content: center;
+	}
+	.activityItem {
+		width: auto;
+		max-width: rem(210);
+		text-align: center;
+		&:first-child {
+			margin-left: 0;
+		}
+		&:last-child {
+			margin-right: 0;
+		}
+		&:before {
+			content: '';
+			display: block;
+			width: rem(150);
+			height: rem(150);
+			margin: 0 auto;
+			border-radius: rem(110);
+			background-color: $color-rj;
+			background-repeat: no-repeat;
+			background-position: center center;
+			background-size: 50%;
+		}
+	}
+	.lessons {
+		&:before {
+			background-image: url(../images/icon-lessons.svg);
+		}
+	}
+	.workshops {
+		&:before {
+			background-image: url(../images/icon-workshops.svg);
+		}
+	}
+	.outings {
+		&:before {
+			background-image: url(../images/icon-outings.svg);
+		}
+	}
+	.activityTitle {
+		margin-top: rem(12);
+	}
+
+	@include media('<=480px') {
+		.activitiesList {
+			flex-direction: column;
+			align-items: center;
+		}
+		.activityItem {
+			margin-bottom: $margin-xl;
+		}
+	}
+
+	@include media('>laptop') {
+		.activities {
+			padding: rem(80) 0;
+		}
+		.activityItem {
+			max-width: rem(220);
+			margin: 0 rem(50);
+			&:before {
+				width: rem(220);
+				height: rem(220);
+				background-size: auto;
+			}
+		}
+	}
+
+	/* Evénements */
+	.comingEvent,
+	.pastEvents {
+		padding: rem(40) 0;
+	}
+	.comingEvent {
+		justify-content: flex-end;
+		padding: $margin-m $margin-m $margin-xl;
+		background: url(../images/lanterns_bkg.jpg) right center / cover no-repeat;
+	}
+	.comingTitle {
+		width: 100%;
+		text-align: center;
+		color: $color-white;
+	}
+	.pastEvents {
+		background: url(../images/asanoha.png) left center repeat;
+	}
+	.pastTitle {
+		width: 100%;
+		text-align: center;
+		color: $color-rj;
+	}
+
+	@include media('>phablet') {
+		.comingEvent,
+		.pastEvents {
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center;
+			align-content: flex-start;
+		}
+		.eventItemCtn {
+			margin: 0;
+		}
+	}
+
+	@include media('>phablet', '<=1280px') {
+		.pastEvents {
+			padding-left: $margin-s;
+			padding-right: $margin-s;
+		}
+	}
+
+	@include media('>phablet', '<=tablet') {
+		
+	}
+
+	@include media('>tablet', '<=1280px') {
+		
+	}
+
+	@include media('>1280px') {
+		.events {
+			display: flex;
+		}
+		.comingEvent,
+		.pastEvents {
+			padding: rem(80) 0;
+		}
+		.comingEvent {
+			width: calc( ((100% - #{$site-width}) / 2) +  #{rem(330)} );
+			padding-left: $margin-m;
+			padding-right: $margin-m;
+			.eventItem {
+				width: 100%;
+			}
+		}
+		.comingTitle {
+			text-align: right;
+		}
+		.pastEvents {
+			justify-content: flex-start;
+			width: calc( ((100% - #{$site-width}) / 2) +  #{rem(950)} );
+		}
+		.pastTitle {
+			padding-left: $margin-m;
+			text-align: left;
+		}
+		.comingEvent {		
+			.eventItemCtn {
+				margin-left: auto;
+				margin-right: 0;
+			}
+		}
+		.pastEvents {
+			.eventItem {
+				margin-left: $margin-m;
+			}
+			.eventsCalendar {
+				margin-left: $margin-xl;
+				.eventItemCtn {
+					margin: auto;
+				}
+			}
+		}
+	}
+
+	/* Actualités */
+	.lastNews {
+		padding: $margin-l 0 $margin-l;
+	}
+	.lastNewsTitle {
+		margin: 0 0 rem(55);
+		text-align: center;
+		color: $color-rj;
+	}
+
+	@include media('>phablet') {
+		
+	}
+
+	@include media('>phablet', '<=1280px') {
+		
+	}
+
+	@include media('>phablet', '<=tablet') {
+		
+	}
+
+	@include media('>tablet', '<=1280px') {
+		
+	}
+
+	@include media('>1280px') {
+		.lastNews {
+			padding-left: $margin-m;
+			padding-right: $margin-m;
+		}
+		.newsList {
+			width: rem(1220);
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
+}

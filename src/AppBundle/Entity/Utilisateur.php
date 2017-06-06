@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
+
 
 /**
  * Utilisateur
@@ -24,16 +26,7 @@ class Utilisateur extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\UtilisateurDroits")
-     * @ORM\JoinTable(name="utilisateur_droits",
-     *      joinColumns={@ORM\JoinColumn(name="fk_id_utilisateur", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="id", referencedColumnName="id")}
-     * )
-     */
-    //protected $groups;
+    protected $id;    
 
     /**
      * @var string
@@ -56,37 +49,55 @@ class Utilisateur extends BaseUser
     private $slug;
     
     /**
-    * @var int
+    * @var boolean
     *
-    * @ORM\Column(name="acces_site", type="integer")
+    * @ORM\Column(name="acces_site", type="boolean")
     */
     private $acces_site;
 
     /**
-     * @var int
+     * @var boolean
      *
-     * @ORM\Column(name="locked", type="integer")
+     * @ORM\Column(name="boolean", type="integer")
      */
     private $locked;
 	
     /**
-    * @var int
+    * @var boolean
     *
-    * @ORM\Column(name="est_professeur", type="integer")
+    * @ORM\Column(name="est_professeur", type="boolean")
     */
-    private $est_professeur;
-    
-    /**
-    * @ORM\OneToOne(targetEntity="AppBundle\Entity\Image", cascade={"persist"})
-    */
-    private $image;
+    private $est_professeur;    
     
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Cour", inversedBy="utilisateurs")
-     * @ORM\JoinColumn(nullable=true, name="fk_cours", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Cour", inversedBy="inscrits")
+     * @ORM\JoinTable(name="cours_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")}
+     * )
      */
     private $cours;
+    
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Sortie", inversedBy="inscrits")
+     * @ORM\JoinTable(name="sorties_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="sortie_id", referencedColumnName="id")}
+     * )
+     */
+    private $sorties;
+    
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Atelier", inversedBy="inscrits")
+     * @ORM\JoinTable(name="ateliers_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")}
+     * )
+     */
+    private $ateliers;
     
     /**
      *
@@ -114,19 +125,9 @@ class Utilisateur extends BaseUser
      * @ORM\OneToMany(targetEntity="Cour", mappedBy="professeur")
      */
     private $professeurDe;
-    
+        
     /**
-     * @ORM\OneToMany(targetEntity="Inscription", mappedBy="utilisateur")
-     */
-    private $inscriptions;
-    
-    /**
-     * @ORM\OneToMany(targetEntity="Contenu", mappedBy="auteur")
-     */
-    private $auteurDe;
-    
-    /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur",  inversedBy="parents")
+     * @ORM\ManyToOne(targetEntity="Utilisateur",  inversedBy="parent")
      * @ORM\JoinTable(name="Utilisateur_relations",
      *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="enfant_utilisateur_id", referencedColumnName="id")}
@@ -135,23 +136,9 @@ class Utilisateur extends BaseUser
     private $sousUtilisateurs;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur",  mappedBy="sousUtilisateurs")
+     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="sousUtilisateurs")
      */
-    private $parents;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
-     */
-    private $timestampCreation;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
-     */
-    private $timestampModification;
+    private $parent;
 
 
     /**
@@ -160,17 +147,9 @@ class Utilisateur extends BaseUser
     public function __construct() 
     {
         parent::__construct();
-	$this->cours                = new ArrayCollection();
-        $this->inscriptions         = new ArrayCollection();
-        $this->sortieSupervise      = new ArrayCollection();
-        $this->evenementSupervise   = new ArrayCollection();
-        $this->atelierSupervise     = new ArrayCollection();
-        $this->professeurDe         = new ArrayCollection();
-        $this->sousUtilisateurs            = new ArrayCollection();
-        $this->parents              = new ArrayCollection();
-        $this->setEstProfesseur(0);
-        $this->setAccesSite(1);
-        $this->setLocked(0);
+        $this->setEstProfesseur(false);
+        $this->setAccesSite(true);
+        $this->setLocked(false);
     }
 
     /**
@@ -255,35 +234,11 @@ class Utilisateur extends BaseUser
         return $this->email;
     }
     
-    /**
-     * Set image
-     *
-     * @param \AppBundle\Entity\Image $image
-     *
-     * @return Utilisateur
-     */
-    public function setImage(Image $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return \AppBundle\Entity\Image
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
 
     /**
      * Set accesSite
      *
-     * @param integer $accesSite
+     * @param boolean $accesSite
      *
      * @return Utilisateur
      */
@@ -297,7 +252,7 @@ class Utilisateur extends BaseUser
     /**
      * Get accesSite
      *
-     * @return integer
+     * @return boolean
      */
     public function getAccesSite()
     {
@@ -307,7 +262,7 @@ class Utilisateur extends BaseUser
     /**
      * Add cour
      *
-     * @param \AppBundle\Entity\Cour $cour
+     * @param Cour $cour
      *
      * @return Utilisateur
      */
@@ -321,7 +276,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove cour
      *
-     * @param \AppBundle\Entity\Cour $cour
+     * @param Cour $cour
      */
     public function removeCour(Cour $cour)
     {
@@ -331,18 +286,85 @@ class Utilisateur extends BaseUser
     /**
      * Get cours
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getCours()
     {
         return $this->cours;
+    }    
+
+    /**
+     * Add atelier
+     *
+     * @param Atelier $atelier
+     *
+     * @return Utilisateur
+     */
+    public function addAtelier(Atelier $atelier)
+    {
+        $this->atelier[] = $atelier;
+
+        return $this;
     }
 
+    /**
+     * Remove atelier
+     *
+     * @param Atelier $atelier
+     */
+    public function removeAtelier(Atelier $atelier)
+    {
+        $this->ateliers->removeElement($atelier);
+    }
+
+    /**
+     * Get atelier
+     *
+     * @return ArrayCollection
+     */
+    public function getAteliers()
+    {
+        return $this->ateliers;
+    }
+    
+    /**
+     * Add sortie
+     *
+     * @param Sortie $sortie
+     *
+     * @return Utilisateur
+     */
+    public function addSortie(Sortie $sortie)
+    {
+        $this->sortie[] = $sortie;
+
+        return $this;
+    }
+
+    /**
+     * Remove atelier
+     *
+     * @param Sortie $sortie
+     */
+    public function removeSortie(Sortie $sortie)
+    {
+        $this->sorties->removeElement($sortie);
+    }
+
+    /**
+     * Get atelier
+     *
+     * @return ArrayCollection
+     */
+    public function getSorties()
+    {
+        return $this->sorties;
+    }
 
     /**
      * Add professeurDe
      *
-     * @param \AppBundle\Entity\Cour $professeurDe
+     * @param Cour $professeurDe
      *
      * @return Utilisateur
      */
@@ -356,7 +378,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove professeurDe
      *
-     * @param \AppBundle\Entity\Cour $professeurDe
+     * @param Cour $professeurDe
      */
     public function removeProfesseurDe(Cour $professeurDe)
     {
@@ -366,7 +388,7 @@ class Utilisateur extends BaseUser
     /**
      * Get professeurDe
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getProfesseurDe()
     {
@@ -400,14 +422,14 @@ class Utilisateur extends BaseUser
     /**
      * Set estProfesseur
      *
-     * @param integer $estProfesseur
+     * @param boolean $estProfesseur
      *
      * @return Utilisateur
      */
     public function setEstProfesseur($estProfesseur)
     {
         //si pas sous utilisateur
-        if(count($this->getParents()) == 0)
+        if(is_null($this->getParent()))
             $this->est_professeur = $estProfesseur;
 
         return $this;
@@ -416,7 +438,7 @@ class Utilisateur extends BaseUser
     /**
      * Get estProfesseur
      *
-     * @return integer
+     * @return boolean
      */
     public function getEstProfesseur()
     {
@@ -426,7 +448,7 @@ class Utilisateur extends BaseUser
     /**
      * Add sousUtilisateur
      *
-     * @param \AppBundle\Entity\Utilisateur $sousUtilisateur
+     * @param Utilisateur $sousUtilisateur
      *
      * @return Utilisateur
      */
@@ -440,7 +462,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove sousUtilisateur
      *
-     * @param \AppBundle\Entity\Utilisateur $sousUtilisateur
+     * @param Utilisateur $sousUtilisateur
      */
     public function removeSousUtilisateur(Utilisateur $sousUtilisateur)
     {
@@ -450,86 +472,39 @@ class Utilisateur extends BaseUser
     /**
      * Get sousUtilisateurs
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getSousUtilisateurs()
     {
         return $this->sousUtilisateurs;
     }
 
-
     /**
-     * Add parent
-     *
-     * @param \AppBundle\Entity\Utilisateur $parent
+     * Set parent
      *
      * @return Utilisateur
      */
-    public function addParent(Utilisateur $parent)
+    public function setParent(Utilisateur $parent)
     {
-        $this->parents[] = $parent;
-
+        $this->parent = $parent;
+        
         return $this;
-    }
-
-    /**
-     * Remove parent
-     *
-     * @param \AppBundle\Entity\Utilisateur $parent
-     */
-    public function removeParent(Utilisateur $parent)
-    {
-        $this->parents->removeElement($parent);
     }
 
     /**
      * Get parents
      *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getParents()
-    {
-        return $this->parents;
-    }
-
-    /**
-     * Add auteurDe
-     *
-     * @param \AppBundle\Entity\Contenu $auteurDe
-     *
      * @return Utilisateur
      */
-    public function addAuteurDe(Contenu $auteurDe)
+    public function getParent()
     {
-        $this->auteurDe[] = $auteurDe;
-
-        return $this;
-    }
-
-    /**
-     * Remove auteurDe
-     *
-     * @param \AppBundle\Entity\Contenu $auteurDe
-     */
-    public function removeAuteurDe(Contenu $auteurDe)
-    {
-        $this->auteurDe->removeElement($auteurDe);
-    }
-
-    /**
-     * Get auteurDe
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAuteurDe()
-    {
-        return $this->auteurDe;
+        return $this->parent;
     }
 
     /**
      * Add atelierSupervise
      *
-     * @param \AppBundle\Entity\Atelier $atelierSupervise
+     * @param Atelier $atelierSupervise
      *
      * @return Utilisateur
      */
@@ -543,7 +518,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove atelierSupervise
      *
-     * @param \AppBundle\Entity\Atelier $atelierSupervise
+     * @param Atelier $atelierSupervise
      */
     public function removeAtelierSupervise(Atelier $atelierSupervise)
     {
@@ -553,7 +528,7 @@ class Utilisateur extends BaseUser
     /**
      * Get atelierSupervise
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getAtelierSupervise()
     {
@@ -563,7 +538,7 @@ class Utilisateur extends BaseUser
     /**
      * Add evenementSupervise
      *
-     * @param \AppBundle\Entity\Evenement $evenementSupervise
+     * @param Evenement $evenementSupervise
      *
      * @return Utilisateur
      */
@@ -577,7 +552,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove evenementSupervise
      *
-     * @param \AppBundle\Entity\Evenement $evenementSupervise
+     * @param Evenement $evenementSupervise
      */
     public function removeEvenementSupervise(Evenement $evenementSupervise)
     {
@@ -587,7 +562,7 @@ class Utilisateur extends BaseUser
     /**
      * Get evenementSupervise
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getEvenementSupervise()
     {
@@ -597,7 +572,7 @@ class Utilisateur extends BaseUser
     /**
      * Add sortieSupervise
      *
-     * @param \AppBundle\Entity\Sortie $sortieSupervise
+     * @param Sortie $sortieSupervise
      *
      * @return Utilisateur
      */
@@ -611,7 +586,7 @@ class Utilisateur extends BaseUser
     /**
      * Remove sortieSupervise
      *
-     * @param \AppBundle\Entity\Sortie $sortieSupervise
+     * @param Sortie $sortieSupervise
      */
     public function removeSortieSupervise(Sortie $sortieSupervise)
     {
@@ -621,7 +596,7 @@ class Utilisateur extends BaseUser
     /**
      * Get sortieSupervise
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return ArrayCollection
      */
     public function getSortieSupervise()
     {
@@ -629,43 +604,9 @@ class Utilisateur extends BaseUser
     }
 
     /**
-     * Add inscription
-     *
-     * @param \AppBundle\Entity\Inscription $inscription
-     *
-     * @return Utilisateur
-     */
-    public function addInscription(Inscription $inscription)
-    {
-        $this->inscriptions[] = $inscription;
-
-        return $this;
-    }
-
-    /**
-     * Remove inscription
-     *
-     * @param \AppBundle\Entity\Inscription $inscription
-     */
-    public function removeInscription(Inscription $inscription)
-    {
-        $this->inscriptions->removeElement($inscription);
-    }
-
-    /**
-     * Get inscriptions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getInscriptions()
-    {
-        return $this->inscriptions;
-    }
-
-    /**
      * Set locked
      *
-     * @param integer $locked
+     * @param boolean $locked
      *
      * @return Utilisateur
      */
@@ -679,84 +620,19 @@ class Utilisateur extends BaseUser
     /**
      * Get locked
      *
-     * @return integer
+     * @return boolean
      */
     public function getLocked()
     {
         return $this->locked;
     }
 
-    /**
-     * Set timestampCreation
-     *
-     * @param \DateTime $timestampCreation
-     *
-     * @return Utilisateur
-     */
-    public function setTimestampCreation($timestampCreation)
-    {
-        $this->timestampCreation = $timestampCreation;
-
-        return $this;
-    }
-
-    /**
-     * Get timestampCreation
-     *
-     * @return \DateTime
-     */
-    public function getTimestampCreation()
-    {
-        return $this->timestampCreation;
-    }
-
-    /**
-     * Set timestampModification
-     *
-     * @param \DateTime $timestampModification
-     *
-     * @return Utilisateur
-     */
-    public function setTimestampModification($timestampModification)
-    {
-        $this->timestampModification = $timestampModification;
-
-        return $this;
-    }
-
-    /**
-     * Get timestampModification
-     *
-     * @return \DateTime
-     */
-    public function getTimestampModification()
-    {
-        return $this->timestampModification;
-    }
-
-    /**
-     * @ORM\PrePersist
-     */
-    public function prePersist()
-    {
-        $this->setTimestampCreation(new \DateTime('now'));
-        parent::prePersist();
-    }
-
-    /**
-     * @ORM\PreUpdate
-     */
-    public function preUpdate()
-    {
-        $this->setTimestampModification(new \DateTime('now'));
-        parent::preUpdate();
-    }
 
     public function __toString()
     {
         $sAffichage = $this->getNom().' '.$this->getPrenom();
-        if(empty(trim($sAffichage)) && !empty($this->getUtilisateurname())) {
-            $sAffichage = "(Non-configuré) -> ".$this->getUtilisateurname();
+        if(empty(trim($sAffichage)) && !empty($this->getUsername())) {
+            $sAffichage = "(Non-configuré) -> ".$this->getUsername();
         } else {
             $sAffichage = '';
         }

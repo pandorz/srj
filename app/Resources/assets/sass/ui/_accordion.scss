@@ -1,0 +1,83 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+.accordion {
+    margin-top: -#{$margin-s};
+}
+.ui-accordion-header {
+    position: relative;
+    margin-top: $margin-s;
+    padding: $margin-s $margin-s $margin-s rem(35);
+    border: 1px solid $color-grey-medium;
+    color: $color-grey-dark;
+    background-color: $color-white;
+    cursor: pointer;
+    outline: 0;
+    transition: all, .3s ease-in;
+}
+.ui-accordion-header-active {
+    border-color: transparent;
+    color: $color-text;
+    background-color: $color-grey-light;
+}
+.ui-accordion-header-icon {
+    position: absolute;
+    top: 50%;
+    left: $margin-s;
+    transform: translate(0, -50%) rotate(0);
+    display: block;
+    width: rem(16);
+    height: rem(16);
+    background-color: $color-rj;
+    border-radius: rem(10);
+    transition: transform .3s ease;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0);
+        display: block;
+        width: rem(8);
+        height: 2px;
+        background-color: $color-white;
+        opacity: 1;
+        transition: opacity .3s ease;
+    }
+    &:after {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+    .ui-accordion-header-active & {
+        transform: translate(0, -50%) rotate(90deg);
+        &:before {
+            opacity: 0;
+        }
+    }
+}
+.ui-accordion-content {
+    padding: $margin-s;
+    background-color: $color-grey-lighter;
+}
+
+@include media('>laptop') {
+    .ui-accordion-header {
+        padding: $margin-m $margin-m $margin-m rem(60);
+        font-size: rem(30);
+    }
+    .ui-accordion-header-icon {
+        left: $margin-m;
+        width: rem(27);
+        height: rem(27);
+        border-radius: rem(15);
+        &:before,
+        &:after {
+            width: rem(14);
+        }
+    }
+    .ui-accordion-content {
+        padding: $margin-m;
+    }
+}

@@ -1,0 +1,119 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+/*---
+title:      Dropdowns
+section:    Composants UI
+---
+
+*/
+
+.dropdownGroup {
+    position: relative;
+    display: inline-block;
+}
+.dropdown {
+    @include hideInactive;
+    /**/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999;
+    display: block;
+    width: calc(100% - 4em);
+    max-height: calc(100% - 4em);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: $margin-s;
+    border: 1px solid $color-grey-medium;
+    border-radius: 5px;
+    background-color: $color-white;
+    > * {
+        margin: 0;
+    }
+    &.has-title {
+        &:before {
+            background-position: -40px 0;
+        }
+    }
+    &.is-active {
+        @include showActive;
+    }
+}
+.dropdownTitle {
+    display: block;
+    padding: $margin-s;
+    margin: 0 calc(-#{$margin-s} - 1px);
+    margin-top: -#{$margin-s};
+    margin-bottom: #{$margin-s};
+    border-radius: 4px 4px 0 0;
+    white-space: nowrap;
+    color: $color-white;
+    background-color: $color-grey-medium;
+    &:first-child {
+        margin-top: calc(-#{$margin-s} - 1px);
+    }
+}
+.user-rank {
+    .dropdownAccount {
+        &:before {
+            background-position: -80px 0;
+        }
+        .dropdownTitle {
+            background-color: #f7bf4d;
+        }
+    }
+}
+.dropdownList {
+    @extend .u-ul-mute;
+    margin-left: -#{$margin-s};
+    margin-right: -#{$margin-s};
+    &:last-child {
+        margin-bottom: -#{$margin-s};
+    }
+}
+.dropdownLink {
+    display: block;
+    padding: $margin-s;
+    @include activeLink {
+        color: $color-white;
+        background-color: $color-rj;
+    }
+}
+
+@include media('>=tablet') {
+    .dropdown {
+        position: absolute;
+        top: calc(100% + 20px);
+        left: 50%;
+        margin-left: -#{rem(40)};
+        transform: translate(0, 0);
+        width: auto;
+        min-width: rem(200);
+        max-height: none;
+        overflow: visible;
+        &:before {
+            content: '';
+            position: absolute;
+            bottom: 100%;
+            left: rem(25);
+            display: block;
+            width: rem(30);
+            height: rem(13);
+            background: url(../images/arrow-dropdown.svg) no-repeat;
+        }
+        &.dropdown-right {
+            left: auto;
+            right: 50%;
+            margin-left: 0;
+            margin-right: -#{rem(40)};
+            &:before {
+                left: auto;
+                right: rem(25);
+            }
+        }
+    }
+} 

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 16.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Calque_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="40px" height="60px" viewBox="0 0 40 60" enable-background="new 0 0 40 60" xml:space="preserve">
+<rect fill="#E30613" width="40.001" height="60"/>
+<rect x="24" y="25" fill="#FFFFFF" width="10" height="3"/>
+<rect x="24" y="16" fill="#FFFFFF" width="10" height="3"/>
+<rect x="24" y="7" fill="#FFFFFF" width="10" height="3"/>
+<rect x="18" y="7" fill="#FFFFFF" width="3" height="21"/>
+<rect x="7" y="7" fill="#FFFFFF" width="3" height="21"/>
+<rect x="7" y="32" fill="#FFFFFF" width="3" height="21"/>
+<rect x="15" y="32" fill="#FFFFFF" width="3" height="21"/>
+<polygon fill="#FFFFFF" points="15,53 18,53 10,32 7,32 "/>
+<polygon fill="#FFFFFF" points="12,28 15,28 10,7 7,7 "/>
+<polyline fill="#FFFFFF" points="21,7 16,28 13,28 18,7 "/>
+<polygon fill="#FFFFFF" points="31,32 31,50 25,50 25,32 22,32 22,50 22,53 25,53 31,53 34,53 34,50 34,32 "/>
+</svg>

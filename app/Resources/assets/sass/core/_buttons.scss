@@ -1,0 +1,103 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+.btn {
+    display: inline-block;
+    height: $btnHeight-m;
+    line-height: 1em;
+    padding: calc( (#{$btnHeight-m} - 1em - #{rem(4)}) / 2 ) $margin-m;
+    border: 2px solid transparent;
+    border-radius: $btn-radius;
+    white-space: nowrap;
+    vertical-align: middle;
+    text-align: center;
+    font-size: rem(16);
+    text-decoration: none;
+    color: $color-white;
+    background-color: $color-rj;
+    background-clip: padding-box;
+    cursor: pointer;
+    @include transition;
+    @include trans-prop(color, background);
+    @include activeLink {
+        color: $color-white;
+        background-color: $color-rj-darker;
+    }
+}
+
+.btn-blank {
+    border-color: $color-rj;
+    color: $color-rj;
+    background-color: transparent;
+    @include activeLink {
+        border-color: $color-rj;
+        background-color: $color-rj;
+    }
+}
+
+.btn-blank-secondary {
+    border-color: $color-grey-dark;
+    color: $color-grey-dark;
+    background-color: transparent;
+    @include activeLink {
+        border-color: $color-rj;
+        color: $color-rj;
+        background-color: transparent;
+    }
+}
+
+
+.btn.is-disabled {
+    border-color: $color-grey-medium;
+    color: $color-grey-medium;
+    background-color: $color-grey-lighter;
+    cursor: default;
+}
+
+.btn-small {
+    height: $btnHeight-s;
+    padding-top: calc( (#{$btnHeight-s} - 1em - #{rem(4)}) / 2 );
+    padding-bottom: calc( (#{$btnHeight-s} - 1em - #{rem(4)}) / 2 );
+    font-size: rem(14);
+}
+
+.btn-big {
+    height: $btnHeight-l;
+    padding-top: calc( (#{$btnHeight-l} - 1em - #{rem(4)}) / 2 );
+    padding-bottom: calc( (#{$btnHeight-l} - 1em - #{rem(4)}) / 2 );
+    font-size: rem(24);
+}
+
+/* Pour les icones */
+.btn {
+    &:before,
+    &:after {
+        margin-left: 0;
+    }
+}
+
+.btnGroup {
+    display: inline-flex;
+}
+.btnGroupItem {
+    border-radius: 0;
+    &:first-of-type {
+        border-radius: $btn-radius 0 0 $btn-radius;
+    }
+    &:last-of-type {
+        border-radius: 0 $btn-radius $btn-radius 0;
+    }
+
+    &:not(:first-of-type) {
+        margin-left: -1px;
+    }
+    &:hover,
+    &.is-active {
+        z-index: 10;
+        border-color: $color-rj-darker;
+        color: $color-white;
+        background-color: $color-rj;
+    }
+}

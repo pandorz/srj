@@ -1,0 +1,76 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+/*---
+title:      Modale
+section:    Composants UI
+---
+
+Permet d'ouvrir un contenu en fenêtre modale en cliquant sur un lien ou un bouton
+
+``` example:html
+    <a class="btn btn-small btn-blank modal" data-modal-title="Conditions de l'offre" data-modal-content-id="modal-conditions">Conditions particulières</a>
+    <div id="modal-conditions" class="u-hidden">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus dolor felis, ullamcorper a eros eget, dictum fringilla libero. Donec nisl massa, cursus in ante vel, pretium condimentum nunc. Aliquam erat volutpat. Pellentesque eget nisi suscipit, pharetra augue vitae, eleifend magna. Vestibulum pretium, massa rutrum lobortis fermentum, velit velit pulvinar mi, rhoncus condimentum enim odio et nisi. Mauris pulvinar eros dapibus purus molestie interdum.</div>
+```
+
+### Markup: ###
+
+* L'élément déclencheur doit avoir une classe `.modal` et au minimum l'un des deux attributs suivants :
+ * `data-modal-text` : avec pour valeur le texte devant apparaître dans la modale
+ * `data-modal-content-id` : avec pour valeur l'id de l'élément devant apparaître dans la modale (dans ce cas, l'élément peut-être caché avec la classe `.u-hidden`)
+* On peut aussi spécifier un attribut `data-modal-title`, avec pour valeur le titre de la modale
+
+*/
+
+.js-modal {
+  position: fixed;
+  left: 10%;
+  right: auto;
+  top: 5%;
+  width: 80%;
+  background: #fff;
+  z-index: 999;
+  @include box-blank;
+  @include media('>laptop') {
+      left: 25%;
+      top: 15%;
+      width: 50%;
+  }
+}
+.modal-close {
+    position: absolute;
+    top: $margin-m;
+    right: $margin-m;
+    transform: rotate(45deg);
+    display: block;
+    width: rem(25);
+    height: rem(25);
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: $color-white;
+    border-radius: rem(10);
+    transition: transform .3s ease;
+    &:before,
+    &:after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(0);
+        display: block;
+        width: rem(20);
+        height: 2px;
+        background-color: $color-black;
+        opacity: 1;
+        transition: opacity .3s ease;
+    }
+    &:after {
+        transform: translate(-50%, -50%) rotate(90deg);
+    }
+}
+.modal-close__text {
+    @include hiddenVisually;
+}

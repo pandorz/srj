@@ -1,15 +1,15 @@
 <?php
 
-namespace Utility\ClassBundle\DataFixtures\ORM;
+namespace AppBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use Utility\ClassBundle\Entity\Rubrique;
+use AppBundle\Entity\Rubrique;
 
 /**
  * Class LoadRubrique
- * @package Utility\ClassBundle\DataFixtures\ORM
+ * @package AppBundle\DataFixtures\ORM
  */
 class LoadRubrique extends AbstractFixture  implements OrderedFixtureInterface
 {
@@ -107,11 +107,11 @@ class LoadRubrique extends AbstractFixture  implements OrderedFixtureInterface
         foreach ($liste as $info) 
         {
             $rubrique   = $manager
-                        ->getRepository('Utility\ClassBundle\Entity\Rubrique')
+                        ->getRepository('AppBundle\Entity\Rubrique')
                         ->findOneByNom($info['nom']);
 						
 			$type       = $manager
-                        ->getRepository('Utility\ClassBundle\Entity\TypeRubrique')
+                        ->getRepository('AppBundle\Entity\TypeRubrique')
                         ->findOneByNom($info['type']);
 						
             if(empty($rubrique) && !empty($type))

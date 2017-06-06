@@ -1,0 +1,190 @@
+
+.postsList {
+	display: flex;
+	flex-wrap: wrap;
+}
+.postItem {
+	width: 100%;
+	margin-bottom: $margin-m;
+}
+.postItemCtn {
+	position: relative;
+	width: rem(280);
+	height: 100%;
+	margin: auto;
+	background-color: $color-white;
+}
+.postPhoto {
+	width: 100%;
+}
+.postTitle {
+	margin: $margin-s $margin-m;
+}
+.postTitle {
+	color: $color-rj;
+}
+.postDate {
+	position: absolute;
+	top: 0;
+	left: $margin-s;
+	z-index: 1;
+	width: rem(35);
+	padding: 2px 0 5px 5px;
+	@include niceText;
+	color: $color-white;
+	background: $color-rj;
+	.day,
+	.month {
+		display: block;
+	}
+	.day {
+		font-size: rem(24);
+	}
+	.month {
+		font-size: rem(12);
+		text-transform: uppercase;
+	}
+}
+.postSummary,
+.postMoreText {
+	margin: 0 $margin-m;
+	p {
+		//margin: 0;
+	}
+}
+.postSummary {
+	padding-bottom: $margin-s;
+	font-size: rem(13);
+}
+.postMoreText {
+	padding: 1px 0;
+}
+.postHover {
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	text-decoration: none;
+	/**/
+	@include transition;
+	background-color: rgba(0, 0, 0, 0);
+	* {
+		opacity: 0;
+	}
+	.btn {
+		border-color: $color-white;
+		color: $color-white;
+		background-color: transparent;
+	}
+	@include activeLink {
+		background-color: rgba(0, 0, 0, .5);
+		* {
+			opacity: 1;
+		}
+	}
+}
+.seeAllPosts {
+	width: 100%;
+	margin-top: $margin-xl;
+	text-align: center;
+}
+.shortPost {
+	.seeMore {
+		position: relative;
+		display: block;
+		width: 100%;
+		line-height: rem(30);
+		margin-top: $margin-s;
+		padding: 0 $margin-s;
+		border: none;
+		text-align: left;
+		font-size: rem(14);
+		color: $color-grey-dark;
+		background-color: $color-grey-medium;
+		&:after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			right: $margin-s;
+			transform: translate(0, -50%) rotate(0);
+			border-style: solid solid none;
+			border-width: 5px 5px 0;
+			border-color: $color-grey-dark transparent transparent;
+			//@include transition;
+		}
+		&.is-active {
+			color: $color-white;
+			background-color: $color-rj;
+			&:after {
+				transform: translate(0, -50%) rotate(180deg);
+				border-color: $color-white transparent transparent;
+			} 
+		}
+	}
+}
+
+@include media('>phablet') {
+	.postsList {
+		padding-left: $margin-s;
+		padding-right: $margin-s;
+	}
+	.postItem {
+		width: auto;
+	}
+	.postItemCtn {
+		margin: 0 $margin-s;
+	}
+}
+
+@include media('>phablet', '<=1280px') {
+	.postItemCtn {
+		width: auto;
+		margin: 0 $margin-s;
+	}
+}
+
+@include media('>phablet', '<=tablet') {
+	.postItem {
+		width: 50%;
+	}
+}
+
+@include media('>tablet', '<=1280px') {
+	.postItem {
+		width: 33.33%;
+	}
+}
+
+@include media('>1280px') {
+	.postItem {
+		margin-bottom: 0;
+	}
+}
+
+/* Blog */
+.blog {
+	padding: $margin-xl $margin-m;
+	background: url(../images/sayagata.png) left center repeat;
+}
+.blogItemCtn {
+	width: auto;
+	max-width: rem(580);
+	margin-left: auto;
+	margin-right: auto;
+	&:before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: $margin-m;
+		z-index: 100;
+		display: block;
+		width: 38px;
+		height: 55px;
+		background: url(../images/blog-sticker.png) no-repeat;
+	}
+}

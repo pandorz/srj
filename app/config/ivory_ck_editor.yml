@@ -1,0 +1,5 @@
+ivory_ck_editor:
+    configs:
+        my_config:
+            language: fr
+            toolbar: "basic"
