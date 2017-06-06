@@ -39,14 +39,17 @@ npm install gulp
 
 ```sh
 bin/console doctrine:database:create
-```
-
-```sh
 bin/console doctrine:migrations:migrate
 ```
 
-## Create a root user
+## Required data
 
+### Headings list
+```sh
+bin/console doctrine:fixtures:load
+```
+
+### Create a root user
 ```sh
 bin/console fos:user:create --super-admin
 ```
