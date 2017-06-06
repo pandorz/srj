@@ -24,6 +24,7 @@ npm install
 ## Bower
 
 ```sh
+npm install -g bower
 bower install ./vendor/sonata-project/admin-bundle/bower.json
 ```
 
@@ -32,7 +33,7 @@ You have to set a value for mailer_user and mailer_password
 ## Node
 
 ```sh
-npm install gulp
+npm install -g gulp
 ```
 
 ## Create database tables
