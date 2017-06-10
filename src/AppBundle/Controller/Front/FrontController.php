@@ -105,7 +105,8 @@ class FrontController extends BaseController
     */
     public function sortiesAction(Request $request)
     {        
-        return $this->render('sorties.html.twig', []);
+        $sorties = $this->getTopSorties(6);
+        return $this->render('sorties.html.twig', ['sorties' => $sorties]);
     }
     
     /**
@@ -135,7 +136,8 @@ class FrontController extends BaseController
     */
     public function ateliersAction(Request $request)
     {        
-        return $this->render('ateliers.html.twig', []);
+        $ateliers = $this->getTopAteliers(6);
+        return $this->render('ateliers.html.twig', ['ateliers' => $ateliers]);
     }
     
     /**

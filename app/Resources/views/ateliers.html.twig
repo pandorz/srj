@@ -32,41 +32,37 @@
     </section>
 
     <section class="comingEvents section">
-        <!-- A afficher lorsqu'il n'y a pas d'atelier à venir -->
+        {% if ateliers is empty %}
         <div class="noWorkshop u-textCenter">
             <b class="nothing">Aucun atelier n'est encore programmé...</b>
-            <p>Ça ne devrait pourtant pas tarder !</p>
-            <form class="newsletterForm">
-                <div class="formItem">
-                    <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
-                    <input class="fld" type="email" placeholder="Mon adresse email">
-                </div>
-                <input class="btn" type="submit" value="Me tenir informé(e) svp !">
-            </form>
+            <p>Ça ne devrait pourtant pas tarder !</p>            
         </div>
-        <!-- Le contenu ci-dessous disparaît lorsqu'il n'y a pas d'atelier à venir -->
-        <!--<h2 class="sectionTitle">Atelier(s) à venir</h2>
-        <div class="postItem shortPost">
-            <div class="postItemCtn">
-                <img class="postPhoto" src="images/ev-atelier-gyozas.jpg" alt="">
-                <h4 class="postTitle">Atelier Gyozas</h4>
-                <time class="postDate" datetime="2016-07-21T08:00">
-                    <span class="day">24</span> 
-                    <span class="month">avr.</span>
-                </time>
-                <p class="postSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
-                <div class="postMoreText" style="display: none;">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
-                    Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
-                    <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
-                    <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
-                    <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
+        {% else %} 
+        <h2 class="sectionTitle">Sortie&(s) à venir</h2>
+        {% for atelier in ateliers %}
+            <div class="postItem shortPost">
+                <div class="postItemCtn">
+                    {% media atelier.image, 'big' with {'class': 'postPhoto'} %}
+                    <h4 class="postTitle">{{ atelier.nom }}</h4>
+                    <time class="postDate" datetime="{{atelier.dateDebut|date('Y-m-d')}}">
+                        <span class="day">{{atelier.dateDebut|date('d')}}</span> 
+                        <span class="month">{{atelier.dateDebut|date('F')|slice(0, 3)}}.</span>
+                    </time>
+                    <p class="postSummary">{% if atelier.contenu|length > 99 %}{{ atelier.contenu|raw|slice(0, 100) }}{% else %}{{ atelier.contenu|raw }}{% endif %}</p>
+                    {% if atelier.contenu|length > 99 %}
+                    <div class="postMoreText" style="display: none;">
+                        {{ atelier.contenu|raw }}
+                        <p><b class="u-textColorRJ">Conditions :</b> {{atelier.prix|replace({'.':','})}} euros par personne. {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                            <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
+                    </div>
+                    <button class="seeMore" aria-hidden="true">En savoir plus</button> 
+                    {% endif %}                       
                 </div>
-                <button class="seeMore" aria-hidden="true">En savoir plus</button>   
             </div>
-        </div>-->
-    </section>
-
+        {% endfor %}
+        {% endif %}        
+    </section>       
+    
     {#% include 'bandeau_devenir_membre.html.twig' %#}
     {% include 'follow_us.html.twig' %}
     

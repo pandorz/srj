@@ -5,6 +5,8 @@ namespace AppBundle\Controller\Front;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Evenement;
 use AppBundle\Entity\Actualite;
+use AppBundle\Entity\Atelier;
+use AppBundle\Entity\Sortie;
 
 
 /**
@@ -73,6 +75,42 @@ class BaseController extends Controller
                         'annule' => false
                     ],
                     ['dateDebut' => 'DESC'],
+                    $limit
+                );
+    }
+    
+    /**
+     * @param int $limit
+     * @return type
+     */
+    protected function getTopAteliers($limit)
+    {
+        return $this->getEm()
+                ->getRepository(Atelier::class)
+                ->findBy(
+                    [
+                        'affiche' => true, 
+                        'annule' => false
+                    ],
+                    ['date' => 'DESC'],
+                    $limit
+                );
+    }
+    
+    /**
+     * @param int $limit
+     * @return type
+     */
+    protected function getTopSorties($limit)
+    {
+        return $this->getEm()
+                ->getRepository(Sortie::class)
+                ->findBy(
+                    [
+                        'affiche' => true, 
+                        'annule' => false
+                    ],
+                    ['date' => 'DESC'],
                     $limit
                 );
     }

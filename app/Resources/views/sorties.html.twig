@@ -32,39 +32,35 @@
     </section>
 
     <section class="comingEvents section">
-        <!-- A afficher lorsqu'il n'y a pas d'atelier à venir -->
-        <!-- <div class="noWorkshop u-textCenter">
+        {% if sorties is empty %}
+        <div class="noWorkshop u-textCenter">
             <b class="nothing">Aucune sortie n'est encore programmée pour le moment...</b>
-            <p>Ça ne devrait pourtant pas tarder !</p>
-            <form class="newsletterForm">
-                <div class="formItem">
-                    <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
-                    <input class="fld" type="email" placeholder="Mon adresse email">
-                </div>
-                <input class="btn" type="submit" value="Me tenir informé(e) svp !">
-            </form>
-        </div> -->
-        <!-- Le contenu ci-dessous disparaît lorsqu'il n'y a pas d'atelier à venir -->
-        <h2 class="sectionTitle">Atelier(s) à venir</h2>
-        <div class="postItem shortPost">
-            <div class="postItemCtn">
-                <img class="postPhoto" src="{{ asset('medias/img/ev-atelier-gyozas.jpg') }}" alt="">
-                <h4 class="postTitle">Atelier Gyozas</h4>
-                <time class="postDate" datetime="2016-07-21T08:00">
-                    <span class="day">24</span> 
-                    <span class="month">avr.</span>
-                </time>
-                <p class="postSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
-                <div class="postMoreText" style="display: none;">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
-                    Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
-                    <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
-                    <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
-                    <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
-                </div>
-                <button class="seeMore" aria-hidden="true">En savoir plus</button>   
-            </div>
+            <p>Ça ne devrait pourtant pas tarder !</p>            
         </div>
+        {% else %} 
+        <h2 class="sectionTitle">Sortie&(s) à venir</h2>
+        {% for sortie in sorties %}
+            <div class="postItem shortPost">
+                <div class="postItemCtn">
+                    {% media sortie.image, 'big' with {'class': 'postPhoto'} %}
+                    <h4 class="postTitle">{{ sortie.nom }}</h4>
+                    <time class="postDate" datetime="{{sortie.dateDebut|date('Y-m-d')}}">
+                        <span class="day">{{sortie.dateDebut|date('d')}}</span> 
+                        <span class="month">{{sortie.dateDebut|date('F')|slice(0, 3)}}.</span>
+                    </time>
+                    <p class="postSummary">{% if sortie.contenu|length > 99 %}{{ sortie.contenu|raw|slice(0, 100) }}{% else %}{{ sortie.contenu|raw }}{% endif %}</p>
+                    {% if sortie.contenu|length > 99 %}
+                    <div class="postMoreText" style="display: none;">
+                        {{ sortie.contenu|raw }}
+                        <p><b class="u-textColorRJ">Conditions :</b> {{sortie.prix|replace({'.':','})}} euros par personne. {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                            <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}</p>
+                    </div>
+                    <button class="seeMore" aria-hidden="true">En savoir plus</button> 
+                    {% endif %}                       
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}        
     </section>
 
     {#% include 'bandeau_devenir_membre.html.twig' %#}
