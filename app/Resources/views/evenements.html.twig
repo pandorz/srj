@@ -1,0 +1,95 @@
+{% extends "template/base_front.html.twig" %}
+{% block body_class %}events allEvent{% endblock %}
+{% block html_title %} - Evenements{% endblock %}
+{% block main %}
+    {% include 'bandeau_jap.html.twig' %}
+
+    <section class="comingEvents section">
+        <!-- A afficher lorsqu'il n'y a pas d'événement à venir -->
+        <!-- <div class="noWorkshop u-textCenter">
+            <b class="nothing">Aucun événement n'est encore programmée pour le moment...</b>
+            <p>Ça ne devrait pourtant pas tarder !</p>
+            <form class="newsletterForm">
+                <div class="formItem">
+                    <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
+                    <input class="fld" type="email" placeholder="Mon adresse email">
+                </div>
+                <input class="btn" type="submit" value="Me tenir informé(e) svp !">
+            </form>
+        </div> -->
+        <!-- Le contenu ci-dessous disparaît lorsqu'il n'y a pas d'atelier à venir -->
+        <h2 class="sectionTitle">Prochainement</h2>
+        <div class="postsList u-fitted">
+            <div class="postItem shortPost">
+                <div class="postItemCtn">
+                    <img class="postPhoto" src="images/ev-surprise.jpg" alt="">
+                    <h4 class="postTitle">Surprise...</h4>
+                    <time class="postDate" datetime="2016-07-21T08:00">
+                        <span class="day">21</span> 
+                        <span class="month">jui.</span>
+                    </time>
+                    <p class="postSummary">Restez connectés, nous vous en dirons plus bientôt !</p>
+                </div>
+            </div>
+            <div class="postItem shortPost">
+                <div class="postItemCtn">
+                    <img class="postPhoto" src="images/ev-atelier-gyozas.jpg" alt="">
+                    <h4 class="postTitle">Atelier Gyozas</h4>
+                    <time class="postDate" datetime="2016-07-21T08:00">
+                        <span class="day">24</span> 
+                        <span class="month">avr.</span>
+                    </time>
+                    <p class="postSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
+                    <div class="postMoreText" style="display: none;">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
+                        Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
+                        <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
+                        <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
+                        <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
+                    </div>
+                    <button class="seeMore" aria-hidden="true">En savoir plus</button>   
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pastEvents section">
+        <h2 class="sectionTitle">Prochainement</h2>
+        <div class="postsList u-fitted">
+            <div class="postItem shortPost">
+                <div class="postItemCtn">
+                    <img class="postPhoto" src="images/ev-atelier-gyozas.jpg" alt="">
+                    <h4 class="postTitle">Atelier Gyozas</h4>
+                    <time class="postDate" datetime="2016-07-21T08:00">
+                        <span class="day">24</span> 
+                        <span class="month">avr.</span>
+                    </time>
+                    <p class="postSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
+                </div>
+            </div>
+            <div class="postItem shortPost">
+                <div class="postItemCtn">
+                    <img class="postPhoto" src="images/ev-repas-nouvel-an.jpg" alt="">
+                    <h4 class="postTitle">Dernièrement</h4>
+                    <time class="postDate" datetime="2016-07-21T08:00">
+                        <span class="day">24</span> 
+                        <span class="month">jan.</span>
+                    </time>
+                    <p class="postSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
+                    <div class="postMoreText" style="display: none;">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
+                        Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
+                        <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
+                        <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
+                        <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
+                    </div>
+                    <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                </div>
+            </div>
+        </div>
+        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="#">Charger plus</a></div>
+    </section>
+
+    {% include 'follow_us.html.twig' %}
+    
+{% endblock %}

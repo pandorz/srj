@@ -19,6 +19,11 @@ services:
         arguments: [~, AppBundle\Entity\Evenement, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Evenements }
+    app.admin.actualites:
+        class: AppBundle\Admin\ActualiteAdmin
+        arguments: [~, AppBundle\Entity\Actualite, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Actualites }
     app.admin.sorties:
         class: AppBundle\Admin\SortieAdmin
         arguments: [~, AppBundle\Entity\Sortie, SonataAdminBundle:CRUD]

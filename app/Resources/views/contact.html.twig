@@ -1,0 +1,43 @@
+{% extends "template/base_front.html.twig" %}
+{% block body_class %}contact{% endblock %}
+{% block html_title %} - Nous contacter{% endblock %}
+{% block main %}
+    {% include 'bandeau_jap.html.twig' %}
+
+    <section class="section u-fitted">
+        <h2 class="sectionTitle">Laissez-nous un message !</h2>
+        <form class="contactForm">
+            <div class="grid-2">
+                <div>
+                    <div class="formItem">
+                        <label for="fld-nom" class="u-hiddenVisually">Nom</label>
+                        <input id="fld-nom" class="fld" type="text" placeholder="*Nom" required>
+                    </div>
+                    <div class="formItem">
+                        <label for="fld-prenom" class="u-hiddenVisually">Prénom</label>
+                        <input id="fld-prenom" class="fld" type="text" placeholder="*Prénom" required>
+                    </div>
+                    <div class="formItem">
+                        <label for="fld-mail" class="u-hiddenVisually">Adresse e-mail</label>
+                        <input id="fld-mail" class="fld" type="email" placeholder="*Mon adresse e-mail" required>
+                    </div>
+                    <div class="formItem">
+                        <label for="fld-objet" class="u-hiddenVisually">Objet</label>
+                        <input id="fld-objet" class="fld" type="text" placeholder="Objet">
+                    </div>
+                </div>
+                <div>
+                    <div class="formItem">
+                        <label for="fld-message" class="fldLabel">Votre message</label>
+                        <textarea id="fld-message" class="fld" rows="8" placeholder="Bonjour,"></textarea>
+                    </div>
+                </div>
+                <a class="btn" href="#">Envoyer</a>
+            </div>
+        </form>
+    </section>
+
+    {#% include 'bandeau_devenir_membre.html.twig' %#}
+    {% include 'follow_us.html.twig' %}
+    
+{% endblock %}

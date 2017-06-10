@@ -7,13 +7,19 @@
 
 .workshops {
 	.hero {
-		background: url(../images/ateliers_bkg.jpg) right 23% center / cover no-repeat;
+		background: url(../medias/img/ateliers_bkg.jpg) right 23% center / cover no-repeat;
 	}
 }
 
 .outings {
 	.hero {
-		background: url(../images/sorties_bkg.jpg) right 23% center / cover no-repeat;
+		background: url(../medias/img/sorties_bkg.jpg) right 23% center / cover no-repeat;
+	}
+}
+
+.allEvents {
+	.hero {
+		background: url(../medias/img/evenements_bkg.jpg) right 23% center / cover no-repeat;
 	}
 }
 
@@ -26,13 +32,13 @@
 	}
 
 	.comingEvents {
-		background: url(../images/lanterns_big_bkg.jpg) 0 0 / cover no-repeat;
+		background: url(../medias/img/lanterns_big_bkg.jpg) 0 0 / cover no-repeat;
 		.sectionTitle {
 			color: $color-white;
 		}
-		.postItemCtn {
-			margin: 0 auto;
-		}
+	}
+	.pastEvents {
+		background: url(../medias/img/asanoha.png) left center repeat;
 	}
 	.noWorkshop {
 		color: $color-white;
@@ -45,7 +51,7 @@
 				width: rem(200);
 				height: rem(54);
 				margin: 0 auto;
-				background: url(../images/no-workshop.png) 0 0 no-repeat;
+				background: url(../medias/img/no-workshop.png) 0 0 no-repeat;
 			}
 		}
 		p {

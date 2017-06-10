@@ -1,0 +1,56 @@
+<section class="events">
+    <div class="comingEvent">
+        <h3 class="comingTitle">Prochainement</h3>
+        <div class="postItem shortPost eventItem">
+            <div class="postItemCtn eventItemCtn">
+                <img class="postPhoto eventPhoto" src="{{ asset('medias/img/ev-surprise.jpg') }}" alt="">
+                <h4 class="postTitle eventTitle">Surprise...</h4>
+                <time class="postDate eventDate" datetime="2016-07-21T08:00">
+                    <span class="day">21</span> 
+                    <span class="month">jui.</span>
+                </time>
+                <p class="postSummary eventSummary">Restez connectés, nous vous en dirons plus bientôt !</p>
+            </div>
+        </div>
+    </div>
+    <div class="pastEvents">
+        <h3 class="pastTitle">Dernièrement</h3>
+        <div class="postItem shortPost eventItem">
+            <div class="postItemCtn eventItemCtn">
+                <img class="postPhoto eventPhoto" src="{{ asset('medias/img/ev-atelier-gyozas.jpg') }}" alt="">
+                <h4 class="postTitle eventTitle">Atelier Gyozas</h4>
+                <time class="postDate eventDate" datetime="2016-07-21T08:00">
+                    <span class="day">24</span> 
+                    <span class="month">avr.</span>
+                </time>
+                <p class="postSummary eventSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
+            </div>
+        </div>
+        <div class="postItem shortPost eventItem">
+            <div class="postItemCtn eventItemCtn">
+                <img class="postPhoto eventPhoto" src="{{ asset('medias/img/ev-repas-nouvel-an.jpg') }}" alt="">
+                <h4 class="postTitle eventTitle">Repas du nouvel an</h4>
+                <time class="postDate eventDate" datetime="2016-07-21T08:00">
+                    <span class="day">24</span> 
+                    <span class="month">jan.</span>
+                </time>
+                <p class="postSummary eventSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
+                <div class="postMoreText" style="display: none;">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
+                    Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
+                    <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
+                    <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
+                    <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
+                </div>
+                <button class="seeMore" aria-hidden="true">En savoir plus</button>
+            </div>
+        </div>
+        <div class="postItem shortPost eventItem eventsCalendar">
+            <div class="postItemCtn eventItemCtn">
+                <div class="calendarTitle">Calendar</div>
+                <div id='calendar'></div>
+                <a class="btn btn-blank-secondary" href="#">Voir tous les événements</a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,70 @@
+{% extends "template/base_front.html.twig" %}
+{% block body_class %}events outings{% endblock %}
+{% block html_title %} - Les sorties{% endblock %}
+{% block main %}
+    {% include 'bandeau_jap.html.twig' %}
+
+    <section class="outingsIntro section u-fitted">
+        <div class="grid-2">
+            <div><img src="{{ asset('medias/img/sorties.jpg') }}" alt="" width="580" height="435"></div>
+            <div>
+                <h2 class="sectionTitle">Les sorties</h2>
+                <div class="sectionChapo">
+                    <p>Avec Rouen Japon, on fait aussi des sorties ! On va au musée voir des expositions, on va à des conférences, on visite des jardins... Tous les ans on vous organise des petites sorties, très souvent à tarifs préférentiels*.</p>
+                </div>
+
+                <div class="sectionText">
+                    <p>Comme pour les ateliers, le nombre et le type de sorties peut varier d'une saison à l'autre, c'est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="#">ici</a> et <a href="#">là</a>, et pourquoi pas de vous abonner à notre <a href="#">Newsletter</a>.</p>
+                    <p><b>Pour cette saison 2016-2017</b> par exemple, Rouen Japon pense vous faire bénéficier de quelques sorties intéressantes :</p>
+                    <ul class="u-ul-colorRJ">
+                        <li><b>Expo Ghibli @ Art Ludique</b> (à programmer)</li>
+                        <li><b>Conférence sur les samouraï @ Musée XXX</b> (à programmer)</li>
+                    </ul>
+                    <p>Presque chaque sortie est ouverte à tous, dans la limite des places disponibles et se règle à l'unité (évidemment, les tarifs diffèrent en fonction du fait que vous soyez adhérent(e) ou non).</p>
+                    <p>Allez, mets ton kimono on sort !</p>
+                    <p class="u-note">* À condition de faire partie de l'association :-)</p>
+                </div>
+            </div>
+        </div>                
+    </section>
+
+    <section class="comingEvents section">
+        <!-- A afficher lorsqu'il n'y a pas d'atelier à venir -->
+        <!-- <div class="noWorkshop u-textCenter">
+            <b class="nothing">Aucune sortie n'est encore programmée pour le moment...</b>
+            <p>Ça ne devrait pourtant pas tarder !</p>
+            <form class="newsletterForm">
+                <div class="formItem">
+                    <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
+                    <input class="fld" type="email" placeholder="Mon adresse email">
+                </div>
+                <input class="btn" type="submit" value="Me tenir informé(e) svp !">
+            </form>
+        </div> -->
+        <!-- Le contenu ci-dessous disparaît lorsqu'il n'y a pas d'atelier à venir -->
+        <h2 class="sectionTitle">Atelier(s) à venir</h2>
+        <div class="postItem shortPost">
+            <div class="postItemCtn">
+                <img class="postPhoto" src="{{ asset('medias/img/ev-atelier-gyozas.jpg') }}" alt="">
+                <h4 class="postTitle">Atelier Gyozas</h4>
+                <time class="postDate" datetime="2016-07-21T08:00">
+                    <span class="day">24</span> 
+                    <span class="month">avr.</span>
+                </time>
+                <p class="postSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
+                <div class="postMoreText" style="display: none;">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
+                    Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
+                    <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
+                    <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
+                    <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
+                </div>
+                <button class="seeMore" aria-hidden="true">En savoir plus</button>   
+            </div>
+        </div>
+    </section>
+
+    {#% include 'bandeau_devenir_membre.html.twig' %#}
+    {% include 'follow_us.html.twig' %}
+    
+{% endblock %}

@@ -10,7 +10,7 @@
 
 .slick-list {
     .slick-loading & {
-        background: #fff url(../images/ajax-loader.gif) center center no-repeat;
+        background: #fff url(../medias/img/ajax-loader.gif) center center no-repeat;
     }
 }
 
@@ -38,7 +38,7 @@
     transform: translate(0, -50%) rotate(0);
     padding: 0;
     border: none;
-    background: url(../images/arrow-v.svg) no-repeat right 1.25rem center/110px auto no-repeat;
+    background: url(../medias/img/arrow-v.svg) no-repeat right 1.25rem center/110px auto no-repeat;
     outline: none;
     opacity: 1;
     &:hover, &:focus {

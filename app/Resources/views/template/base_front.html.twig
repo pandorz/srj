@@ -7,14 +7,17 @@
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="apple-touch-icon" sizes="180x180" href="favicons/apple-touch-icon.png">
-        <link rel="icon" type="image/png" href="favicons/favicon-32x32.png" sizes="32x32">
-        <link rel="icon" type="image/png" href="favicons/favicon-16x16.png" sizes="16x16">
-        <link rel="manifest" href="favicons/manifest.json">
-        <link rel="mask-icon" href="favicons/safari-pinned-tab.svg" color="#e30613">
+        <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('medias/favicons/apple-touch-icon.png') }}">
+        <link rel="icon" type="image/png" href="{{ asset('medias/favicons/favicon-32x32.png') }}" sizes="32x32">
+        <link rel="icon" type="image/png" href="{{ asset('medias/favicons/favicon-16x16.png') }}" sizes="16x16">
+        <link rel="manifest" href="{{ asset('medias/favicons/manifest.json') }}">
+        <link rel="mask-icon" href="{{ asset('medias/favicons/safari-pinned-tab.svg') }}" color="#e30613">
         <meta name="theme-color" content="#ffffff">
 
         <link rel="stylesheet" href="{{asset('css/app.css'|asset_version)}}">
+        <link rel="stylesheet" href="{{ asset('fullcalendar/lib/cupertino/jquery-ui.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('fullcalendar/fullcalendar.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('fullcalendar/fullcalendar.print.min.css') }}" media="print" />
     </head>
     <body class="{% block body_class %}{% endblock %}">
         <!--[if lt IE 10]>
@@ -26,11 +29,71 @@
         </main>
         {% include 'template/footer.html.twig' %}
         {% block javascript %}
-        <script type="text/javascript" src="{{ asset('js/vendor/jquery-3.0.0.min.js'|asset_version) }}"></script>
         <script src="{{ asset('js/app.js'|asset_version) }}"></script>
         <script>
             $(document).ready(function(){
                 app.headerController.defaultAction.init();
+            });
+        </script>
+        <script src="{{ asset('fullcalendar/lib/moment.min.js') }}"></script>
+        <script src="{{ asset('fullcalendar/fullcalendar.min.js') }}"></script>
+        <script src="{{ asset('fullcalendar/locale/fr.js') }}"></script>
+        
+        <script>
+
+            var events = [
+                    {
+                        title: 'All Day Event',
+                        start: '2016-12-01'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: '2016-12-09T16:00:00'
+                    },
+                    {
+                        id: 999,
+                        title: 'Repeating Event',
+                        start: '2016-12-16T16:00:00'
+                    },
+                    {
+                        title: 'Conference',
+                        start: '2016-12-11',
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2016-12-12T10:30:00',
+                    },
+                    {
+                        title: 'Lunch',
+                        start: '2016-12-12T12:00:00'
+                    },
+                    {
+                        title: 'Meeting',
+                        start: '2016-12-12T14:30:00'
+                    },
+                    {
+                        title: 'Happy Hour',
+                        start: '2016-12-12T17:30:00'
+                    },
+                    {
+                        title: 'Dinner',
+                        start: '2016-12-12T20:00:00'
+                    },
+                    {
+                        title: 'Birthday Party',
+                        start: '2016-12-13T07:00:00'
+                    },
+                    {
+                        title: 'Click for Google',
+                        url: 'http://google.com/',
+                        start: '2016-12-28'
+                    }
+                ];
+
+            $(document).ready(function() {
+                
+                
             });
         </script>
         {% endblock %}

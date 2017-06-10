@@ -26,7 +26,7 @@
         max-width: $site-width;
         height: rem(38);
         margin: 0 auto;
-        background: url(../images/icon-footer.svg) center bottom / rem(90) auto no-repeat;
+        background: url(../medias/img/icon-footer.svg) center bottom / rem(90) auto no-repeat;
     }
 }
 .footerItem {
@@ -52,7 +52,7 @@
             display: block;
             width: 50px;
             height: 55px;
-            background: url(../images/logo-ringo.png) 0 0 / contain no-repeat;
+            background: url(../medias/img/logo-ringo.png) 0 0 / contain no-repeat;
         }
     }
 }
@@ -149,18 +149,18 @@
 }
 .contactFacebook {
     &:before {
-        background-image: url(../images/icon-facebook-red.svg);
+        background-image: url(../medias/img/icon-facebook-red.svg);
     }
     &:after {
-        background-image: url(../images/icon-facebook.svg);
+        background-image: url(../medias/img/icon-facebook.svg);
     }
 }
 .contactTwitter {
     &:before {
-        background-image: url(../images/icon-twitter-red.svg);
+        background-image: url(../medias/img/icon-twitter-red.svg);
     }
     &:after {
-        background-image: url(../images/icon-twitter.svg);
+        background-image: url(../medias/img/icon-twitter.svg);
     }
 }
 .siteCredits {

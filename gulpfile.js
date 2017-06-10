@@ -3,6 +3,7 @@ var plugins = require('gulp-load-plugins')();
 var del = require('del');
 var Q = require('q');
 
+
 var config = {
     assetsDir: 'app/Resources/assets',
     sassPattern: 'sass/**/*.scss',
@@ -61,7 +62,7 @@ app.doStyles = function() {
     var pipeline = new Pipeline();
 
     pipeline.add([
-        config.assetsDir+'/sass/app.scss',
+        config.assetsDir+'/sass/app.scss'
     ], 'app.css');
     return pipeline.run(app.addStyle);
 };
@@ -70,6 +71,7 @@ app.doScripts = function() {
     var pipeline = new Pipeline();
 
     pipeline.add([
+        config.assetsDir+'/js/vendor/jquery-3.0.0.min.js',
         config.assetsDir+'/js/00-app.js',
         config.assetsDir+'/js/01-common.js',
         config.assetsDir+'/js/02-header.js',
@@ -81,7 +83,7 @@ app.doScripts = function() {
         config.assetsDir+'/js/08-accordion.js',
         config.assetsDir+'/js/09-modal.js',
         config.assetsDir+'/js/99-pages.js',
-        config.assetsDir+'/js/vendor/_jquery-ui.min.js',
+        config.assetsDir+'/js/vendor/_jquery-ui.min.js',        
         config.assetsDir+'/js/vendor/bootstrap-slider.min.js',
         config.assetsDir+'/js/vendor/jquery.customSelect.min.js',
         config.assetsDir+'/js/vendor/jquery.knob.min.js',
@@ -93,18 +95,7 @@ app.doScripts = function() {
         config.assetsDir+'/js/vendor/wNumb.js'
     ], 'app.js');
 
-
     return pipeline.run(app.addScript);
-};
-
-app.img = function() {
-    return gulp.src(config.assetsDir+'/medias/img/**/*')
-        .pipe(gulp.dest('web/medias/img'));
-};
-
-app.favicon = function() {
-    return gulp.src(config.assetsDir+'/medias/favicons/**/*')
-        .pipe(gulp.dest('web/medias/favicons'));
 };
 
 app.livereload_on_templates = function() {
@@ -217,11 +208,6 @@ gulp.task('ressources', function() {
     );
 });
 
-gulp.task('medias', function() {
-    app.img();
-    app.favicon();
-});
-
 gulp.task('livereload_on_templates', function() {
     app.livereload_on_templates();
 });
@@ -239,7 +225,6 @@ gulp.task('clean', function() {
     del.sync('web/css/*');
     del.sync('web/js/*');
     del.sync('web/fonts/*');
-    del.sync('web/medias/img/*');
 });
 
 gulp.task('watch', function() {
@@ -249,7 +234,7 @@ gulp.task('watch', function() {
     gulp.watch(config.assetsDir+'/js/**/*.js', ['watch_scripts']);
 });
 
-var tasks_to_launch = ['clean', 'styles', 'styles_libraries', 'scripts', 'scripts_libraries', 'ressources', 'medias'];
+var tasks_to_launch = ['clean', 'styles', 'styles_libraries', 'scripts', 'scripts_libraries', 'ressources'];
 
 if( !config.production ) {
     tasks_to_launch.push('watch');

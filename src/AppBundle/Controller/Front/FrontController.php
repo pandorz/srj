@@ -27,4 +27,124 @@ class FrontController extends BaseController
     {        
         return $this->render('home.html.twig', []);
     }
+    
+    /**
+    * Sorties
+    *
+    * -------------------- *
+    * @Route("/sorties", name="sorties")
+    * @Method("GET")
+    * -------------------- *
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
+    public function sortiesAction(Request $request)
+    {        
+        return $this->render('sorties.html.twig', []);
+    }
+    
+    /**
+    * Cours
+    *
+    * -------------------- *
+    * @Route("/cours", name="cours")
+    * @Method("GET")
+    * -------------------- *
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
+    public function coursAction(Request $request)
+    {        
+        return $this->render('cours.html.twig', []);
+    }
+    
+    /**
+    * Ateliers
+    *
+    * -------------------- *
+    * @Route("/ateliers", name="ateliers")
+    * @Method("GET")
+    * -------------------- *
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
+    public function ateliersAction(Request $request)
+    {        
+        return $this->render('ateliers.html.twig', []);
+    }
+    
+    /**
+    * Association
+    *
+    * -------------------- *
+    * @Route("/association", name="association")
+    * @Method("GET")
+    * -------------------- *
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
+    public function associationAction(Request $request)
+    {        
+        return $this->render('association.html.twig', []);
+    }
+    
+    /**
+    * Actualites
+    *
+    * -------------------- *
+    * @Route("/actualites", name="actualites")
+    * @Method("GET")
+    * -------------------- *
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
+    public function actualitesAction(Request $request)
+    {        
+        return $this->render('actualites.html.twig', []);
+    }
+    
+    /**
+    * Evenements
+    *
+    * -------------------- *
+    * @Route("/evenements", name="evenements")
+    * @Method("GET")
+    * -------------------- *
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
+    public function evenementsAction(Request $request)
+    {        
+        return $this->render('evenements.html.twig', []);
+    }
+    
+    /**
+    * Presentation japonaise
+    *
+    * -------------------- *
+    * @Route("/kyokai", name="presentation_japonaise")
+    * @Method("GET")
+    * -------------------- *
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
+    public function presJapAction(Request $request)
+    {        
+        return $this->render('presentation_japonaise.html.twig', []);
+    }
+    
+    /**
+    * Contact
+    *
+    * -------------------- *
+    * @Route("/contact", name="contact")
+    * @Method("GET")
+    * -------------------- *
+    *
+    * @return \Symfony\Component\HttpFoundation\Response
+    */
+    public function contactAction(Request $request)
+    {        
+        return $this->render('contact.html.twig', []);
+    }
 }
