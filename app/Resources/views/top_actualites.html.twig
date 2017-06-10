@@ -1,42 +1,22 @@
 <section class="lastNews u-fitted">
     <h3 class="lastNewsTitle">Actualités</h3>
     <div class="postsList newsList">
+    {% for actualite in actualites %}       
         <div class="postItem shortPost newsItem">
             <div class="postItemCtn newsItemCtn">
-                <img class="postPhoto newsPhoto" src="{{ asset('medias/img/ev-repas-nouvel-an.jpg') }}" alt="">
-                <h4 class="postTitle newsTitle">Repas du nouvel an</h4>
-                <p class="postSummary newsSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-            </div>
-        </div>
-        <div class="postItem shortPost newsItem">
-            <div class="postItemCtn newsItemCtn">
-                <img class="postPhoto newsPhoto" src="{{ asset('medias/img/ev-repas-nouvel-an.jpg') }}" alt="">
-                <h4 class="postTitle newsTitle">Repas du nouvel an</h4>
-                <p class="postSummary newsSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-            </div>
-        </div>
-        <div class="postItem shortPost newsItem">
-            <div class="postItemCtn newsItemCtn">
-                <img class="postPhoto newsPhoto" src="{{ asset('medias/img/ev-repas-nouvel-an.jpg') }}" alt="">
-                <h4 class="postTitle newsTitle">Repas du nouvel an</h4>
-                <p class="postSummary newsSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-                <div class="postMoreText" style="display: none;">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
-                    Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
-                    <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
-                    <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
-                    <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
+                    {% media actualite.image, 'big' with {'class': 'postPhoto newsPhoto'} %}                    
+                    <h4 class="postTitle newsTitle">{{ actualite.nom }}</h4>                    
+                    <p class="postSummary newsSummary">{% if actualite.contenu|length > 99 %}{{ actualite.contenu|raw|slice(0, 100) }}{% else %}{{ actualite.contenu|raw }}{% endif %}</p>
+                    {% if actualite.contenu|length > 99 %}
+                    <div class="postMoreText" style="display: none;">
+                        {{ actualite.contenu|raw }}
+                    </div>
+                    <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                    {% endif %}
                 </div>
-                <button class="seeMore" aria-hidden="true">En savoir plus</button>
             </div>
-        </div>
-        <div class="postItem shortPost newsItem">
-            <div class="postItemCtn newsItemCtn">
-                <img class="postPhoto newsPhoto" src="{{ asset('medias/img/ev-repas-nouvel-an.jpg') }}" alt="">
-                <h4 class="postTitle newsTitle">Repas du nouvel an</h4>
-                <p class="postSummary newsSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-            </div>
-        </div>
-        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="#">Voir toutes les actualités</a></div>
+
+    {% endfor %}    
+        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{path('actualites')}}">Voir toutes les actualités</a></div>
     </div>
 </section>

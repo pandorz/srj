@@ -25,7 +25,13 @@ class FrontController extends BaseController
     */
     public function indexAction(Request $request)
     {        
-        return $this->render('home.html.twig', []);
+        $evenements = $this->getTopEvenements();
+        $actualites = $this->getTopEvenements();
+        
+        return $this->render('home.html.twig', [
+            'evenements' => $evenements,
+            'actualites' => $actualites
+        ]);
     }
     
     /**
