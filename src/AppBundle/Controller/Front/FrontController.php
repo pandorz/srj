@@ -7,6 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
+use AppBundle\Entity\Evenement;
+use AppBundle\Entity\Actualite;
+use AppBundle\Entity\Atelier;
+use AppBundle\Entity\Sortie;
+
 /**
  * Class FrontController
  * @package AppBundle\Controller\Front
@@ -27,11 +32,65 @@ class FrontController extends BaseController
     {        
         $evenements = $this->getTopEvenements(3);
         $actualites = $this->getTopActualites(4);
+        $dates      = $this->getDatesCalendrier();
         
         return $this->render('home.html.twig', [
             'evenements' => $evenements,
-            'actualites' => $actualites
+            'actualites' => $actualites,
+            'dates'      => $dates
         ]);
+    }
+    
+    private function getDatesCalendrier()
+    {
+        $data       = [];
+        $evenements = $this->getEm()
+                ->getRepository(Evenement::class)
+                ->findAllValidOverOneMonth();
+        
+        foreach ($evenements as $evenement) {
+            $data[] = [
+                'title' => $evenement->getNom(),
+                'start' => $evenement->getDateDebut(),
+                'end'   => $evenement->getDateFin()
+            ];
+        }
+        
+        $actualites= $this->getEm()
+                ->getRepository(Actualite::class)
+                ->findAllValidOverOneMonth();
+        
+        foreach ($actualites as $actualite) {
+            $data[] = [
+                'title' => $actualite->getNom(),
+                'start' => $actualite->getDateDebut(),
+                'end'   => $actualite->getDateFin()
+            ];
+        }
+        
+        $ateliers= $this->getEm()
+                ->getRepository(Atelier::class)
+                ->findAllValidOverOneMonth();
+        
+        foreach ($ateliers as $atelier) {
+            $data[] = [
+                'title' => $atelier->getNom(),
+                'start' => $atelier->getDate()
+            ];
+        }
+        
+        $sorties = $this->getEm()
+                ->getRepository(Sortie::class)
+                ->findAllValidOverOneMonth();
+        
+        foreach ($sorties as $sortie) {
+            $data[] = [
+                'title' => $sortie->getNom(),
+                'start' => $sortie->getDate()
+            ];
+        }
+        
+        return $data;
     }
     
     /**

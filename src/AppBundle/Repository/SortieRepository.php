@@ -14,5 +14,21 @@ namespace AppBundle\Repository;
  */
 class SortieRepository extends \Doctrine\ORM\EntityRepository
 {
-   
+    public function findAllValidOverOneMonth()
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Sortie e '
+                . 'WHERE e.annule = :annule '
+                . 'AND e.affiche = :affiche '
+                . 'AND e.date >= :date '
+                . 'ORDER BY e.date DESC')
+            ->setParameters([
+                'annule'  => false,
+                'affiche' => true,
+                'date'    => date("Y-m-d",strtotime("-1 month"))
+            ])
+            ->getResult();
+    }
 }
