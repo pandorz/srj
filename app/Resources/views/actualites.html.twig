@@ -2,7 +2,11 @@
 {% block body_class %}news{% endblock %}
 {% block html_title %} - Actualités{% endblock %}
 {% block main %}
-    {% include 'bandeau_jap.html.twig' %}
+    
+    {% set hastagTitle = "Actualités" %}
+    {% set hastagList = "#Normandie #Japon" %}
+    {% include 'bandeau_hastag.html.twig' %}
+    
 
     <section class="about section u-fitted">
         <h2 class="sectionTitle">Actualités</h2>

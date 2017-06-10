@@ -2,7 +2,10 @@
 {% block body_class %}lessons{% endblock %}
 {% block html_title %} - Les cours{% endblock %}
 {% block main %}
-    {% include 'bandeau_jap.html.twig' %}
+    {% set hastagTitle = "Nos activités" %}
+    {% set hastagList = "#Cours" %}
+    {% include 'bandeau_hastag.html.twig' %}
+    
 
     <section class="about section u-fitted">
         <h2 class="sectionTitle">Les cours</h2>

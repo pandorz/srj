@@ -2,7 +2,10 @@
 {% block body_class %}events allEvent{% endblock %}
 {% block html_title %} - Evenements{% endblock %}
 {% block main %}
-    {% include 'bandeau_jap.html.twig' %}
+    {% set hastagTitle = "Evenements" %}
+    {% set hastagList = "#Normandie #Japon" %}
+    {% include 'bandeau_hastag.html.twig' %}
+    
 
     <section class="comingEvents section">
         <!-- A afficher lorsqu'il n'y a pas d'événement à venir -->
@@ -22,7 +25,7 @@
         <div class="postsList u-fitted">
             <div class="postItem shortPost">
                 <div class="postItemCtn">
-                    <img class="postPhoto" src="images/ev-surprise.jpg" alt="">
+                    <img class="postPhoto" src="{{ asset('medias/img/ev-surprise.jpg') }}" alt="">
                     <h4 class="postTitle">Surprise...</h4>
                     <time class="postDate" datetime="2016-07-21T08:00">
                         <span class="day">21</span> 
@@ -33,7 +36,7 @@
             </div>
             <div class="postItem shortPost">
                 <div class="postItemCtn">
-                    <img class="postPhoto" src="images/ev-atelier-gyozas.jpg" alt="">
+                    <img class="postPhoto" src="{{ asset('medias/img/ev-atelier-gyozas.jpg') }}" alt="">
                     <h4 class="postTitle">Atelier Gyozas</h4>
                     <time class="postDate" datetime="2016-07-21T08:00">
                         <span class="day">24</span> 
@@ -58,7 +61,7 @@
         <div class="postsList u-fitted">
             <div class="postItem shortPost">
                 <div class="postItemCtn">
-                    <img class="postPhoto" src="images/ev-atelier-gyozas.jpg" alt="">
+                    <img class="postPhoto" src="{{ asset('medias/img/ev-atelier-gyozas.jpg') }}" alt="">
                     <h4 class="postTitle">Atelier Gyozas</h4>
                     <time class="postDate" datetime="2016-07-21T08:00">
                         <span class="day">24</span> 
@@ -69,7 +72,7 @@
             </div>
             <div class="postItem shortPost">
                 <div class="postItemCtn">
-                    <img class="postPhoto" src="images/ev-repas-nouvel-an.jpg" alt="">
+                    <img class="postPhoto" src="{{ asset('medias/img/ev-repas-nouvel-an.jpg') }}" alt="">
                     <h4 class="postTitle">Dernièrement</h4>
                     <time class="postDate" datetime="2016-07-21T08:00">
                         <span class="day">24</span> 

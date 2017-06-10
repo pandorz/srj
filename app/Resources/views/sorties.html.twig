@@ -2,7 +2,10 @@
 {% block body_class %}events outings{% endblock %}
 {% block html_title %} - Les sorties{% endblock %}
 {% block main %}
-    {% include 'bandeau_jap.html.twig' %}
+    
+    {% set hastagTitle = "Nos activités" %}
+    {% set hastagList = "#Sorties" %}
+    {% include 'bandeau_hastag.html.twig' %}
 
     <section class="outingsIntro section u-fitted">
         <div class="grid-2">

@@ -2,7 +2,10 @@
 {% block body_class %}events workshops{% endblock %}
 {% block html_title %} - Les ateliers{% endblock %}
 {% block main %}
-    {% include 'bandeau_jap.html.twig' %}
+    
+    {% set hastagTitle = "Nos activités" %}
+    {% set hastagList = "#Ateliers" %}
+    {% include 'bandeau_hastag.html.twig' %}
 
     <section class="workshopsIntro section u-fitted">
         <div class="grid-2">

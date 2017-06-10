@@ -2,7 +2,10 @@
 {% block body_class %}asso{% endblock %}
 {% block html_title %} - Qui sommes nous ?{% endblock %}
 {% block main %}
-    {% include 'bandeau_jap.html.twig' %}
+    
+    {% set hastagTitle = "L'Association Rouen Japon" %}
+    {% set hastagList = "" %}
+    {% include 'bandeau_hastag.html.twig' %}
 
     <section class="about section u-fitted">
         <h2 class="sectionTitle">À propos de nous</h2>
