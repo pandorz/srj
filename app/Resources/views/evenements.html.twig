@@ -6,92 +6,62 @@
     {% set hastagList = "#Normandie #Japon" %}
     {% include 'bandeau_hastag.html.twig' %}
     
-
-    <section class="comingEvents section">
-        <!-- A afficher lorsqu'il n'y a pas d'événement à venir -->
-        <!-- <div class="noWorkshop u-textCenter">
-            <b class="nothing">Aucun événement n'est encore programmée pour le moment...</b>
-            <p>Ça ne devrait pourtant pas tarder !</p>
-            <form class="newsletterForm">
-                <div class="formItem">
-                    <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
-                    <input class="fld" type="email" placeholder="Mon adresse email">
-                </div>
-                <input class="btn" type="submit" value="Me tenir informé(e) svp !">
-            </form>
-        </div> -->
-        <!-- Le contenu ci-dessous disparaît lorsqu'il n'y a pas d'atelier à venir -->
-        <h2 class="sectionTitle">Prochainement</h2>
-        <div class="postsList u-fitted">
-            <div class="postItem shortPost">
-                <div class="postItemCtn">
-                    <img class="postPhoto" src="{{ asset('medias/img/ev-surprise.jpg') }}" alt="">
-                    <h4 class="postTitle">Surprise...</h4>
-                    <time class="postDate" datetime="2016-07-21T08:00">
-                        <span class="day">21</span> 
-                        <span class="month">jui.</span>
-                    </time>
-                    <p class="postSummary">Restez connectés, nous vous en dirons plus bientôt !</p>
-                </div>
+    {% set coming = 0 %}
+    {% set past = 0 %}
+    
+    {% if evenements is empty %}
+        <section class="comingEvents section">
+            <div class="noWorkshop u-textCenter">
+                <b class="nothing">Aucun événement n'est encore programmée pour le moment...</b>
+                <p>Ça ne devrait pourtant pas tarder !</p>
             </div>
-            <div class="postItem shortPost">
-                <div class="postItemCtn">
-                    <img class="postPhoto" src="{{ asset('medias/img/ev-atelier-gyozas.jpg') }}" alt="">
-                    <h4 class="postTitle">Atelier Gyozas</h4>
-                    <time class="postDate" datetime="2016-07-21T08:00">
-                        <span class="day">24</span> 
-                        <span class="month">avr.</span>
-                    </time>
-                    <p class="postSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
-                    <div class="postMoreText" style="display: none;">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
-                        Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
-                        <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
-                        <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
-                        <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
+        </section>
+    {% else %}        
+        {% for evenement in evenements %}
+            {% if evenement.dateDebut|date('Y-m-d') > 'now'|date('Y-m-d') %}
+                {% if coming == 0 %} 
+                    <section class="comingEvents section">
+                    <h2 class="sectionTitle">Prochainement</h2>
+                    <div class="postsList u-fitted">
+                    {% set coming = 1 %}
+                {% endif %}
+            {% else %}
+                {% if past == 0 %} 
+                    {% if coming == 1 %} 
+                    </section>
+                    {% endif %}
+                    <section class="pastEvents section">
+                    <h2 class="sectionTitle">Dernièrement</h2>
+                    <div class="postsList u-fitted">
+                    {% set past = 1 %}
+                {% endif %}
+            {% endif %}
+                <div class="postItem shortPost">
+                    <div class="postItemCtn">
+                        {% media evenement.image, 'big' with {'class': 'postPhoto'} %}                    
+                        <h4 class="postTitle">{{ evenement.nom }}</h4>
+                        <time class="postDate" datetime="{{evenement.dateDebut|date('Y-m-d')}}">
+                            <span class="day">{{evenement.dateDebut|date('d')}}</span> 
+                            <span class="month">{{evenement.dateDebut|date('F')|slice(0, 3)}}.</span>
+                        </time>
+                        <p class="postSummary">{% if evenement.contenu|length > 99 %}{{ evenement.contenu|raw|slice(0, 100) }}{% else %}{{ evenement.contenu|raw }}{% endif %}</p>
+                        {% if evenement.contenu|length > 99 %}
+                        <div class="postMoreText" style="display: none;">
+                            {{ evenement.contenu|raw }}
+                        </div>
+                        <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                        {% endif %}
                     </div>
-                    <button class="seeMore" aria-hidden="true">En savoir plus</button>   
                 </div>
             </div>
-        </div>
-    </section>
-
-    <section class="pastEvents section">
-        <h2 class="sectionTitle">Prochainement</h2>
-        <div class="postsList u-fitted">
-            <div class="postItem shortPost">
-                <div class="postItemCtn">
-                    <img class="postPhoto" src="{{ asset('medias/img/ev-atelier-gyozas.jpg') }}" alt="">
-                    <h4 class="postTitle">Atelier Gyozas</h4>
-                    <time class="postDate" datetime="2016-07-21T08:00">
-                        <span class="day">24</span> 
-                        <span class="month">avr.</span>
-                    </time>
-                    <p class="postSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
-                </div>
-            </div>
-            <div class="postItem shortPost">
-                <div class="postItemCtn">
-                    <img class="postPhoto" src="{{ asset('medias/img/ev-repas-nouvel-an.jpg') }}" alt="">
-                    <h4 class="postTitle">Dernièrement</h4>
-                    <time class="postDate" datetime="2016-07-21T08:00">
-                        <span class="day">24</span> 
-                        <span class="month">jan.</span>
-                    </time>
-                    <p class="postSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-                    <div class="postMoreText" style="display: none;">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
-                        Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
-                        <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
-                        <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
-                        <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
-                    </div>
-                    <button class="seeMore" aria-hidden="true">En savoir plus</button>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+    {% endif %}
+    {% if past == 1 or (past==0 and coming==1)%} 
         <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="#">Charger plus</a></div>
     </section>
+    {% endif %}
+        
+        
 
     {% include 'follow_us.html.twig' %}
     

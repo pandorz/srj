@@ -42,9 +42,10 @@ class BaseController extends Controller
     }
     
     /**
+     * @param int $limit
      * @return array
      */
-    protected function getTopEvenements()
+    protected function getTopEvenements($limit)
     {
         return $this->getEm()
                 ->getRepository(Evenement::class)
@@ -54,14 +55,15 @@ class BaseController extends Controller
                         'annule' => false
                     ],
                     ['dateDebut' => 'DESC'],
-                    3
+                    $limit
                 );
     }
     
     /**
-     * @return array
+     * @param int $limit
+     * @return type
      */
-    protected function getTopActualites()
+    protected function getTopActualites($limit)
     {
         return $this->getEm()
                 ->getRepository(Actualite::class)
@@ -71,7 +73,7 @@ class BaseController extends Controller
                         'annule' => false
                     ],
                     ['dateDebut' => 'DESC'],
-                    4
+                    $limit
                 );
     }
 }

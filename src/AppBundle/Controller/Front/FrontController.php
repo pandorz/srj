@@ -25,8 +25,8 @@ class FrontController extends BaseController
     */
     public function indexAction(Request $request)
     {        
-        $evenements = $this->getTopEvenements();
-        $actualites = $this->getTopEvenements();
+        $evenements = $this->getTopEvenements(3);
+        $actualites = $this->getTopActualites(4);
         
         return $this->render('home.html.twig', [
             'evenements' => $evenements,
@@ -98,30 +98,47 @@ class FrontController extends BaseController
     * Actualites
     *
     * -------------------- *
-    * @Route("/actualites", name="actualites")
+    * @Route("/actualites/{plus}/", name="actualites", defaults={"plus" = "recent"})
     * @Method("GET")
     * -------------------- *
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function actualitesAction(Request $request)
-    {        
-        return $this->render('actualites.html.twig', []);
+    public function actualitesAction(Request $request, $plus)
+    {   
+        $limit = 4;
+        if (!hash_equals($plus, "recent")) {
+            $limit = null;
+        }
+        $actualites =  $this->getTopActualites($limit);
+        
+        return $this->render(
+                'actualites.html.twig',
+                ['actualites' => $actualites]
+                );
     }
     
     /**
     * Evenements
     *
     * -------------------- *
-    * @Route("/evenements", name="evenements")
+    * @Route("/evenements", name="evenements", defaults={"plus" = "recent"})
     * @Method("GET")
     * -------------------- *
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function evenementsAction(Request $request)
+    public function evenementsAction(Request $request, $plus)
     {        
-        return $this->render('evenements.html.twig', []);
+        $limit = 4;
+        if (!hash_equals($plus, "recent")) {
+            $limit = null;
+        }
+        $evenements = $this->getTopEvenements($limit);
+        return $this->render(
+            'evenements.html.twig',
+            ['evenements' => $evenements]
+        );
     }
     
     /**
