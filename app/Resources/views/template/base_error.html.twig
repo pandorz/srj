@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+
+        <style>
+            {% block style %}
+            body {
+                text-align: center;
+                font-family: Rubik, sans-serif;;
+                margin: 50px auto auto;
+                font-size: 14px;
+            }
+
+            h1, h2 {
+                display: inline-block;
+                margin-top: 50px;
+                font-size: 30px;
+                font-family: 'montserratbold', sans-serif;
+            }
+
+            hr {
+                max-width: 800px;
+                margin: 18px auto;
+                border: 0;
+                border-top: 1px solid #EEE;
+                border-bottom: 1px solid white;
+            }
+
+            .container {
+                position: absolute;
+                top: 50%;
+                left: 0;
+                right: 0;
+                transform: translateY(-50%);
+            }
+            img {
+                max-height: 60px;
+            }
+            {% endblock %}
+        </style>
+
+        {% include 'templates/favicons.html.twig' %}
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                {% block header %}
+                <div class="logo">
+                    <a href="/"><img src="{{ asset('medias/img/' ~ app.request.attributes.get('type_conference') ~ '_color_black@2x.png') }}" alt="Logo"></a>
+                </div>
+                {% endblock %}
+            </header>
+            <main class="main">
+                {% block main %}{% endblock %}
+            </main>
+        </div>
+    </body>
+</html>

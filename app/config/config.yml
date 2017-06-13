@@ -50,6 +50,7 @@ twig:
     form_themes:
         - 'SonataCoreBundle:Form:datepicker.html.twig'
         - 'SonataMediaBundle:Form:media_widgets.html.twig'
+    exception_controller: app.error_controller:showAction
 
 # Doctrine Configuration
 doctrine:
