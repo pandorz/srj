@@ -18,3 +18,10 @@ monolog:
 framework:
     session:
         save_path: "/var/www/sessions/%kernel.environment%"
+
+# Assetic Configuration
+assetic:
+    debug:          false
+    use_controller: false
+    bundles:
+        - AppBundle
