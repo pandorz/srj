@@ -21,7 +21,7 @@ class UtilisateurAdmin extends UserAdmin
         parent::configureListFields($listMapper);
         $listMapper
                 ->add('parent', 'many_to_one', [
-                'label'     => 'utilisateur.liste.parent',
+                'label'     => $this->trans('utilisateur.liste.parent'),
                 'route'     => ['name' => 'show'],
                 'sortable'  => 'name'
             ]);
@@ -38,7 +38,7 @@ class UtilisateurAdmin extends UserAdmin
                 'description'   => $this->trans('utilisateur.with.description')
             ])
             ->add('sousUtilisateurs', 'sonata_type_model_list', [
-                'label'     => 'utilisateur.sousUtilisateurs',
+                'label'     => $this->trans('utilisateur.sousUtilisateurs'),
                 'required'  => false,
             ],[                
                 'edit'          => 'inline',
