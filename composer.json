@@ -25,6 +25,7 @@
         "doctrine/doctrine-cache-bundle": "^1.2",
         "doctrine/doctrine-migrations-bundle": "^1.2",
         "doctrine/orm": "^2.5",
+        "doctrine/phpcr-odm": "^1.4",
         "egeloen/ckeditor-bundle": "^5.0",
         "gedmo/doctrine-extensions": "^2.4",
         "incenteev/composer-parameter-handler": "^2.0",
