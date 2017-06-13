@@ -8,7 +8,7 @@ app.pagesController.defaultAction = {
      */
     
     calendar : function () {
-        
+
         $('#calendar').fullCalendar({
             theme: false,
             locale: 'fr',
@@ -17,7 +17,7 @@ app.pagesController.defaultAction = {
                 center: 'prev,title,next',
                 right: ''
             },
-            defaultDate: '2016-12-12',
+            defaultDate: getDataAttr(new Date()),
             navLinks: false,
             //eventLimit: true, // allow "more" link when too many events
             displayEventTime: false,
@@ -34,15 +34,15 @@ app.pagesController.defaultAction = {
                 var evStartDate = new Date(events[i].start),
                     evTitle = events[i].title,
                     evUrl = events[i].url;
-                //var evFinishDate = new Date(events[i].end);
-                //if (events[i].end) {
-                    //while (evStartDate <= evFinishDate) {
-                        //addClassByDate(evStartDate);
-                        //evStartDate.setDate(evStartDate.getDate() + 1);
-                    //}
-                //} else {
+                // var evFinishDate = new Date(events[i].end);
+                // if (events[i].end) {
+                //     while (evStartDate <= evFinishDate) {
+                //         addClassByDate(evStartDate);
+                //         evStartDate.setDate(evStartDate.getDate() + 1);
+                //     }
+                // } else {
                     addClassByDate(evStartDate, evTitle, evUrl);
-                //}
+                // }
             }
         }
 
