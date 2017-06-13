@@ -64,7 +64,9 @@ app.pagesController.defaultAction = {
         }
 
         function getDataAttr(date) {
-            return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + (date.getDate().toString().length === 2 ? date.getDate() : "0" + date.getDate());
+            var day = date.getDate();
+            var month = date.getMonth() + 1;
+            return date.getFullYear() + "-" + (month.length === 2 ? month : "0" + month) + "-" + (day.toString().length === 2 ? day : "0" + day);
         };
     },
         
@@ -75,7 +77,6 @@ $(document).ready(function(){
     // Home
     if ($('.home #calendar')) {
         app.pagesController.defaultAction.calendar();
-        $(this).fullCalendar('today');
     }
 });
             
