@@ -13,9 +13,9 @@
 {% set _locale =  app.request.locale %}
 
 {% block main %}
-    <h1>{{ 'http_error.name'|trans({ '%status_code%': 403 }, "messages", _locale) }} -&nbsp;</h1><h2>{{ 'http_error_403.description'|trans({}, "messages", _locale) }}</h2>
+    <h1>{{ 'http_error.name'|trans({ '%status_code%': 403 }) }} -&nbsp;</h1><h2>{{ 'http_error_403.description'|trans({}) }}</h2>
     <hr>
     <p>
-        {{ 'http_error_403.suggestion'|trans({ '%url%': path('fmconference_homepage') }, "messages", _locale)|raw }}
+        {{ 'http_error_403.suggestion'|trans({ '%url%': path('fmconference_homepage') })|raw }}
     </p>
 {% endblock %}

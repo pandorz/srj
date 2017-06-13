@@ -11,9 +11,9 @@
 {% extends ':templates:base_error.html.twig' %}
 {% set _locale =  app.request.locale %}
 {% block main %}
-    <h1>{{ 'http_error.name'|trans({ '%status_code%': 503 }, "messages", _locale) }} -&nbsp;</h1><h2>{{ 'http_error_503.description'|trans({}, "messages", _locale) }}</h2>
+    <h1>{{ 'http_error.name'|trans({ '%status_code%': 503 }) }} -&nbsp;</h1><h2>{{ 'http_error_503.description'|trans({}) }}</h2>
     <hr>
     <p>
-        {{ 'http_error_503.suggestion'|trans({}, "messages", _locale) }}
+        {{ 'http_error_503.suggestion'|trans({}) }}
     </p>
 {% endblock %}
