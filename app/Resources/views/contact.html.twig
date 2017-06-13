@@ -6,35 +6,39 @@
 
     <section class="section u-fitted">
         <h2 class="sectionTitle">Laissez-nous un message ! (ne fonctionne pas)</h2>
-        <form class="contactForm">
+        {{ form_start(form, {'attr': {
+                        'class': 'contactForm'
+                    }}) }}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-warning">{{ flashMessage }}</div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('success') %}    
+            <div class="alert alert-success">{{ flashMessage }}</div>    
+        {% endfor %}
+        {{ form_errors(form) }}
             <div class="grid-2">
                 <div>
                     <div class="formItem">
-                        <label for="fld-nom" class="u-hiddenVisually">Nom</label>
-                        <input id="fld-nom" class="fld" type="text" placeholder="*Nom" required>
+                    {{ form_row(form.nom) }}
                     </div>
                     <div class="formItem">
-                        <label for="fld-prenom" class="u-hiddenVisually">Prénom</label>
-                        <input id="fld-prenom" class="fld" type="text" placeholder="*Prénom" required>
+                    {{ form_row(form.prenom) }}
                     </div>
                     <div class="formItem">
-                        <label for="fld-mail" class="u-hiddenVisually">Adresse e-mail</label>
-                        <input id="fld-mail" class="fld" type="email" placeholder="*Mon adresse e-mail" required>
+                    {{ form_row(form.email) }}
                     </div>
                     <div class="formItem">
-                        <label for="fld-objet" class="u-hiddenVisually">Objet</label>
-                        <input id="fld-objet" class="fld" type="text" placeholder="Objet">
+                    {{ form_row(form.objet) }}
                     </div>
                 </div>
                 <div>
                     <div class="formItem">
-                        <label for="fld-message" class="fldLabel">Votre message</label>
-                        <textarea id="fld-message" class="fld" rows="8" placeholder="Bonjour,"></textarea>
+                        {{ form_row(form.message) }}
                     </div>
-                </div>
-                <a class="btn" href="#">Envoyer</a>
+                </div>    
             </div>
-        </form>
+            <button class="btn">Envoyer</button>        
+        {{ form_end(form) }}
     </section>
 
     {#% include 'bandeau_devenir_membre.html.twig' %#}
