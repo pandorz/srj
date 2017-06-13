@@ -1,213 +1,213 @@
 actualite:
-    actif: actualite.actif   # FIXME
+    actif: Active
 
     add_edit:
-        to_string: actualite.add_edit.to_string   # FIXME
+        to_string: Actualité
 
-    annule: actualite.annule   # FIXME
-    contenu: actualite.contenu   # FIXME
-    date_debut: actualite.date_debut   # FIXME
-    date_fin: actualite.date_fin   # FIXME
-    image: actualite.image   # FIXME
+    annule: Annulé
+    contenu: Descriptif
+    date_debut: Date début
+    date_fin: Date fin
+    image: Image
 
     liste:
-        affiche: actualite.liste.affiche   # FIXME
-        annule: actualite.liste.annule   # FIXME
-        dateDebut: actualite.liste.dateDebut   # FIXME
-        dateFin: actualite.liste.dateFin   # FIXME
-        nom: actualite.liste.nom   # FIXME
+        affiche: Affiché
+        annule: Annulé
+        dateDebut: Date début
+        dateFin: Date fin
+        nom: Titre
 
-    nom: actualite.nom   # FIXME
+    nom: Titre
 
     placeholder:
-        actif: actualite.placeholder.actif   # FIXME
-        annule: actualite.placeholder.annule   # FIXME
-        contenu: actualite.placeholder.contenu   # FIXME
-        nom: actualite.placeholder.nom   # FIXME
-        superviseurs: actualite.placeholder.superviseurs   # FIXME
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: Le descriptif de l'actualité
+        nom: Le titre à afficher
+        superviseurs: Superviseur
 
-    superviseurs: actualite.superviseurs   # FIXME
+    superviseurs: Superviseur
 
     with:
-        details: actualite.with.details   # FIXME
-        meta_data: actualite.with.meta_data   # FIXME
+        details: Informations
+        meta_data: Détails
 
 atelier:
-    actif: atelier.actif   # FIXME
+    actif: Actif
 
     add_edit:
-        to_string: atelier.add_edit.to_string   # FIXME
+        to_string: Atelier
 
-    annule: atelier.annule   # FIXME
-    contenu: atelier.contenu   # FIXME
-    date: atelier.date   # FIXME
-    date_limite: atelier.date_limite   # FIXME
-    image: atelier.image   # FIXME
+    annule: Annulé
+    contenu: Descriptif
+    date: Date
+    date_limite: Date limite inscription
+    image: Image
 
     liste:
-        affiche: atelier.liste.affiche   # FIXME
-        annule: atelier.liste.annule   # FIXME
-        date: atelier.liste.date   # FIXME
-        dateLimite: atelier.liste.dateLimite   # FIXME
-        nb_place: atelier.liste.nb_place   # FIXME
-        nom: atelier.liste.nom   # FIXME
+        affiche: Affiché
+        annule: Annulé
+        date: Date
+        dateLimite: Date limite inscription
+        nb_place: Nombre de place
+        nom: Titre
 
-    nb_place: atelier.nb_place   # FIXME
-    nom: atelier.nom   # FIXME
+    nb_place: Nombre de places autorisés
+    nom: Titre
 
     placeholder:
-        actif: atelier.placeholder.actif   # FIXME
-        annule: atelier.placeholder.annule   # FIXME
-        contenu: atelier.placeholder.contenu   # FIXME
-        nb_place: atelier.placeholder.nb_place   # FIXME
-        nom: atelier.placeholder.nom   # FIXME
-        prix: atelier.placeholder.prix   # FIXME
-        reserve_membre: atelier.placeholder.reserve_membre   # FIXME
-        superviseurs: atelier.placeholder.superviseurs   # FIXME
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: Le descriptif de l'atelier
+        nb_place: Nombre de places autorisés
+        nom: Titre de l'atlier
+        prix: Prix de l'atelire
+        reserve_membre: Reservé aux membres
+        superviseurs: Superviseur
 
-    prix: atelier.prix   # FIXME
-    reserve_membre: atelier.reserve_membre   # FIXME
-    superviseurs: atelier.superviseurs   # FIXME
+    prix: Prix
+    reserve_membre: Reservé aux membres
+    superviseurs: Superviseur
 
     with:
-        details: atelier.with.details   # FIXME
-        meta_data: atelier.with.meta_data   # FIXME
+        details: Informations
+        meta_data: Détails
 
 cour:
-    actif: cour.actif   # FIXME
+    actif: Actif
 
     add_edit:
-        to_string: cour.add_edit.to_string   # FIXME
+        to_string: Cours
 
-    annule: cour.annule   # FIXME
-    contenu: cour.contenu   # FIXME
+    annule: Annulé
+    contenu: Descriptif
 
     liste:
-        affiche: cour.liste.affiche   # FIXME
-        annule: cour.liste.annule   # FIXME
-        nom: cour.liste.nom   # FIXME
-        professeur: cour.liste.professeur   # FIXME
+        affiche: Affiché
+        annule: Annulé
+        nom: Titre
+        professeur: Professeur
 
-    nom: cour.nom   # FIXME
+    nom: Titre
 
     placeholder:
-        actif: cour.placeholder.actif   # FIXME
-        annule: cour.placeholder.annule   # FIXME
-        contenu: cour.placeholder.contenu   # FIXME
-        nom: cour.placeholder.nom   # FIXME
-        professeur: cour.placeholder.professeur   # FIXME
-        users: cour.placeholder.users   # FIXME
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: Le descriptif du cours
+        nom: Le titre à afficher
+        professeur: Professeur
+        users: Les inscrits
 
-    professeur: cour.professeur   # FIXME
-    users: cour.users   # FIXME
+    professeur: Professeur
+    users: Inscrits
 
     with:
-        details: cour.with.details   # FIXME
-        meta_data: cour.with.meta_data   # FIXME
+        details: Informations
+        meta_data: Détails
 
 evenement:
-    actif: evenement.actif   # FIXME
+    actif: Actif
 
     add_edit:
-        to_string: evenement.add_edit.to_string   # FIXME
+        to_string: Évenement
 
-    annule: evenement.annule   # FIXME
-    contenu: evenement.contenu   # FIXME
-    date_debut: evenement.date_debut   # FIXME
-    date_fin: evenement.date_fin   # FIXME
-    image: evenement.image   # FIXME
+    annule: Annulé
+    contenu: Descriptif
+    date_debut: Date début
+    date_fin: Date fin
+    image: Image
 
     liste:
-        affiche: evenement.liste.affiche   # FIXME
-        annule: evenement.liste.annule   # FIXME
-        dateDebut: evenement.liste.dateDebut   # FIXME
-        dateFin: evenement.liste.dateFin   # FIXME
-        nom: evenement.liste.nom   # FIXME
+        affiche: Affiché
+        annule: Annulé
+        dateDebut: Date début
+        dateFin: Date fin
+        nom: Titre
 
-    nom: evenement.nom   # FIXME
+    nom: Titre
 
     placeholder:
-        actif: evenement.placeholder.actif   # FIXME
-        annule: evenement.placeholder.annule   # FIXME
-        contenu: evenement.placeholder.contenu   # FIXME
-        nom: evenement.placeholder.nom   # FIXME
-        superviseurs: evenement.placeholder.superviseurs   # FIXME
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: Le descriptif du cours
+        nom: Titre à afficher
+        superviseurs: Superviseurs
 
-    superviseurs: evenement.superviseurs   # FIXME
+    superviseurs: Superviseurs
 
     with:
-        details: evenement.with.details   # FIXME
-        meta_data: evenement.with.meta_data   # FIXME
+        details: Informations
+        meta_data: Détails
 
 http_error:
-    name: http_error.name   # FIXME
+    name: Erreur
 
 http_error_403:
-    description: http_error_403.description   # FIXME
-    suggestion: http_error_403.suggestion   # FIXME
+    description: Vous n'avez pas le droit d'accéder à cette page
+    suggestion: <a href="%url%">Revenir sur la page d'accueil</a>
 
 http_error_404:
-    description: http_error_404.description   # FIXME
-    suggestion: http_error_404.suggestion   # FIXME
+    description: La page à laquelle vous tentez d'accéder n'éxiste pas
+    suggestion: <a href="%url%">Revenir sur la page d'accueil</a>
 
 http_error_500:
-    description: http_error_500.description   # FIXME
-    suggestion: http_error_500.suggestion   # FIXME
+    description: Erreur interne du serveur
+    suggestion: Essayez plus tard
 
 http_error_503:
-    description: http_error_503.description   # FIXME
-    suggestion: http_error_503.suggestion   # FIXME
+    description: Service indisponible
+    suggestion: Essayez plus tard
 
 sortie:
-    actif: sortie.actif   # FIXME
+    actif: Active
 
     add_edit:
-        to_string: sortie.add_edit.to_string   # FIXME
+        to_string: Sortie
 
-    annule: sortie.annule   # FIXME
-    contenu: sortie.contenu   # FIXME
-    date: sortie.date   # FIXME
-    date_limite: sortie.date_limite   # FIXME
-    image: sortie.image   # FIXME
+    annule: Annulé
+    contenu: Descriptif
+    date: Date
+    date_limite: Date limite inscription
+    image: Image
 
     liste:
-        affiche: sortie.liste.affiche   # FIXME
-        annule: sortie.liste.annule   # FIXME
-        date: sortie.liste.date   # FIXME
-        dateLimite: sortie.liste.dateLimite   # FIXME
-        nb_place: sortie.liste.nb_place   # FIXME
-        nom: sortie.liste.nom   # FIXME
+        affiche: Affiché
+        annule: Annulé
+        date: Date
+        dateLimite: Date limite inscription
+        nb_place: Nombre de place
+        nom: Titre
 
-    nb_place: sortie.nb_place   # FIXME
-    nom: sortie.nom   # FIXME
+    nb_place: Nombre de place autorisés
+    nom: Titre
 
     placeholder:
-        actif: sortie.placeholder.actif   # FIXME
-        annule: sortie.placeholder.annule   # FIXME
-        contenu: sortie.placeholder.contenu   # FIXME
-        nb_place: sortie.placeholder.nb_place   # FIXME
-        nom: sortie.placeholder.nom   # FIXME
-        prix: sortie.placeholder.prix   # FIXME
-        reserve_membre: sortie.placeholder.reserve_membre   # FIXME
-        superviseurs: sortie.placeholder.superviseurs   # FIXME
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: Le descriptif de l'actualité
+        nb_place: Nombre de place autorisés
+        nom: Titre à afficher
+        prix: Prix à afficher
+        reserve_membre: Réservé aux membres
+        superviseurs: Superviseurs
 
-    prix: sortie.prix   # FIXME
-    reserve_membre: sortie.reserve_membre   # FIXME
-    superviseurs: sortie.superviseurs   # FIXME
+    prix: Prix
+    reserve_membre: Reservé membres
+    superviseurs: Superviseurs
 
     with:
-        details: sortie.with.details   # FIXME
-        meta_data: sortie.with.meta_data   # FIXME
+        details: Informations
+        meta_data: Détails
 
 utilisateur:
     liste:
-        parent: utilisateur.liste.parent   # FIXME
+        parent: Parent
 
-    sousUtilisateurs: utilisateur.sousUtilisateurs   # FIXME
+    sousUtilisateurs: Enfants
 
     tab:
-        sousUtilisateurs: utilisateur.tab.sousUtilisateurs   # FIXME
+        sousUtilisateurs: Liste des enfants
 
     with:
-        description: utilisateur.with.description   # FIXME
-        sousUtilisateurs: utilisateur.with.sousUtilisateurs   # FIXME
+        description: Informations
+        sousUtilisateurs: Enfants
