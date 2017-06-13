@@ -10,8 +10,6 @@
 
 {% extends ':templates:base_error.html.twig' %}
 
-{% set _locale =  app.request.locale %}
-
 {% block main %}
     <h1>{{ 'http_error.name'|trans({ '%status_code%': 403 }) }} -&nbsp;</h1><h2>{{ 'http_error_403.description'|trans({}) }}</h2>
     <hr>
