@@ -53,6 +53,8 @@ bin/console doctrine:fixtures:load
 ### Create a root user
 ```sh
 bin/console fos:user:create --super-admin
+bin/console sonata:admin:setup-acl
+bin/console sonata:admin:generate-object-acl
 ```
 
 ## Prepare your environement
