@@ -75,6 +75,7 @@ $(document).ready(function(){
     // Home
     if ($('.home #calendar')) {
         app.pagesController.defaultAction.calendar();
+        $(this).fullCalendar('today');
     }
 });
             
