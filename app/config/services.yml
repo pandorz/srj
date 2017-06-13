@@ -9,6 +9,10 @@ services:
         arguments: ["%kernel.root_dir%"]
         tags:
             - { name: twig.extension }
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension
     app.admin.block.stats:
         class: AppBundle\Service\StatBlockService
         arguments: ["app.admin.block.stats", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]

@@ -1,0 +1,213 @@
+actualite:
+    actif: actualite.actif   # FIXME
+
+    add_edit:
+        to_string: actualite.add_edit.to_string   # FIXME
+
+    annule: actualite.annule   # FIXME
+    contenu: actualite.contenu   # FIXME
+    date_debut: actualite.date_debut   # FIXME
+    date_fin: actualite.date_fin   # FIXME
+    image: actualite.image   # FIXME
+
+    liste:
+        affiche: actualite.liste.affiche   # FIXME
+        annule: actualite.liste.annule   # FIXME
+        dateDebut: actualite.liste.dateDebut   # FIXME
+        dateFin: actualite.liste.dateFin   # FIXME
+        nom: actualite.liste.nom   # FIXME
+
+    nom: actualite.nom   # FIXME
+
+    placeholder:
+        actif: actualite.placeholder.actif   # FIXME
+        annule: actualite.placeholder.annule   # FIXME
+        contenu: actualite.placeholder.contenu   # FIXME
+        nom: actualite.placeholder.nom   # FIXME
+        superviseurs: actualite.placeholder.superviseurs   # FIXME
+
+    superviseurs: actualite.superviseurs   # FIXME
+
+    with:
+        details: actualite.with.details   # FIXME
+        meta_data: actualite.with.meta_data   # FIXME
+
+atelier:
+    actif: atelier.actif   # FIXME
+
+    add_edit:
+        to_string: atelier.add_edit.to_string   # FIXME
+
+    annule: atelier.annule   # FIXME
+    contenu: atelier.contenu   # FIXME
+    date: atelier.date   # FIXME
+    date_limite: atelier.date_limite   # FIXME
+    image: atelier.image   # FIXME
+
+    liste:
+        affiche: atelier.liste.affiche   # FIXME
+        annule: atelier.liste.annule   # FIXME
+        date: atelier.liste.date   # FIXME
+        dateLimite: atelier.liste.dateLimite   # FIXME
+        nb_place: atelier.liste.nb_place   # FIXME
+        nom: atelier.liste.nom   # FIXME
+
+    nb_place: atelier.nb_place   # FIXME
+    nom: atelier.nom   # FIXME
+
+    placeholder:
+        actif: atelier.placeholder.actif   # FIXME
+        annule: atelier.placeholder.annule   # FIXME
+        contenu: atelier.placeholder.contenu   # FIXME
+        nb_place: atelier.placeholder.nb_place   # FIXME
+        nom: atelier.placeholder.nom   # FIXME
+        prix: atelier.placeholder.prix   # FIXME
+        reserve_membre: atelier.placeholder.reserve_membre   # FIXME
+        superviseurs: atelier.placeholder.superviseurs   # FIXME
+
+    prix: atelier.prix   # FIXME
+    reserve_membre: atelier.reserve_membre   # FIXME
+    superviseurs: atelier.superviseurs   # FIXME
+
+    with:
+        details: atelier.with.details   # FIXME
+        meta_data: atelier.with.meta_data   # FIXME
+
+cour:
+    actif: cour.actif   # FIXME
+
+    add_edit:
+        to_string: cour.add_edit.to_string   # FIXME
+
+    annule: cour.annule   # FIXME
+    contenu: cour.contenu   # FIXME
+
+    liste:
+        affiche: cour.liste.affiche   # FIXME
+        annule: cour.liste.annule   # FIXME
+        nom: cour.liste.nom   # FIXME
+        professeur: cour.liste.professeur   # FIXME
+
+    nom: cour.nom   # FIXME
+
+    placeholder:
+        actif: cour.placeholder.actif   # FIXME
+        annule: cour.placeholder.annule   # FIXME
+        contenu: cour.placeholder.contenu   # FIXME
+        nom: cour.placeholder.nom   # FIXME
+        professeur: cour.placeholder.professeur   # FIXME
+        users: cour.placeholder.users   # FIXME
+
+    professeur: cour.professeur   # FIXME
+    users: cour.users   # FIXME
+
+    with:
+        details: cour.with.details   # FIXME
+        meta_data: cour.with.meta_data   # FIXME
+
+evenement:
+    actif: evenement.actif   # FIXME
+
+    add_edit:
+        to_string: evenement.add_edit.to_string   # FIXME
+
+    annule: evenement.annule   # FIXME
+    contenu: evenement.contenu   # FIXME
+    date_debut: evenement.date_debut   # FIXME
+    date_fin: evenement.date_fin   # FIXME
+    image: evenement.image   # FIXME
+
+    liste:
+        affiche: evenement.liste.affiche   # FIXME
+        annule: evenement.liste.annule   # FIXME
+        dateDebut: evenement.liste.dateDebut   # FIXME
+        dateFin: evenement.liste.dateFin   # FIXME
+        nom: evenement.liste.nom   # FIXME
+
+    nom: evenement.nom   # FIXME
+
+    placeholder:
+        actif: evenement.placeholder.actif   # FIXME
+        annule: evenement.placeholder.annule   # FIXME
+        contenu: evenement.placeholder.contenu   # FIXME
+        nom: evenement.placeholder.nom   # FIXME
+        superviseurs: evenement.placeholder.superviseurs   # FIXME
+
+    superviseurs: evenement.superviseurs   # FIXME
+
+    with:
+        details: evenement.with.details   # FIXME
+        meta_data: evenement.with.meta_data   # FIXME
+
+http_error:
+    name: http_error.name   # FIXME
+
+http_error_403:
+    description: http_error_403.description   # FIXME
+    suggestion: http_error_403.suggestion   # FIXME
+
+http_error_404:
+    description: http_error_404.description   # FIXME
+    suggestion: http_error_404.suggestion   # FIXME
+
+http_error_500:
+    description: http_error_500.description   # FIXME
+    suggestion: http_error_500.suggestion   # FIXME
+
+http_error_503:
+    description: http_error_503.description   # FIXME
+    suggestion: http_error_503.suggestion   # FIXME
+
+sortie:
+    actif: sortie.actif   # FIXME
+
+    add_edit:
+        to_string: sortie.add_edit.to_string   # FIXME
+
+    annule: sortie.annule   # FIXME
+    contenu: sortie.contenu   # FIXME
+    date: sortie.date   # FIXME
+    date_limite: sortie.date_limite   # FIXME
+    image: sortie.image   # FIXME
+
+    liste:
+        affiche: sortie.liste.affiche   # FIXME
+        annule: sortie.liste.annule   # FIXME
+        date: sortie.liste.date   # FIXME
+        dateLimite: sortie.liste.dateLimite   # FIXME
+        nb_place: sortie.liste.nb_place   # FIXME
+        nom: sortie.liste.nom   # FIXME
+
+    nb_place: sortie.nb_place   # FIXME
+    nom: sortie.nom   # FIXME
+
+    placeholder:
+        actif: sortie.placeholder.actif   # FIXME
+        annule: sortie.placeholder.annule   # FIXME
+        contenu: sortie.placeholder.contenu   # FIXME
+        nb_place: sortie.placeholder.nb_place   # FIXME
+        nom: sortie.placeholder.nom   # FIXME
+        prix: sortie.placeholder.prix   # FIXME
+        reserve_membre: sortie.placeholder.reserve_membre   # FIXME
+        superviseurs: sortie.placeholder.superviseurs   # FIXME
+
+    prix: sortie.prix   # FIXME
+    reserve_membre: sortie.reserve_membre   # FIXME
+    superviseurs: sortie.superviseurs   # FIXME
+
+    with:
+        details: sortie.with.details   # FIXME
+        meta_data: sortie.with.meta_data   # FIXME
+
+utilisateur:
+    liste:
+        parent: utilisateur.liste.parent   # FIXME
+
+    sousUtilisateurs: utilisateur.sousUtilisateurs   # FIXME
+
+    tab:
+        sousUtilisateurs: utilisateur.tab.sousUtilisateurs   # FIXME
+
+    with:
+        description: utilisateur.with.description   # FIXME
+        sousUtilisateurs: utilisateur.with.sousUtilisateurs   # FIXME
