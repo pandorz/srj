@@ -343,11 +343,7 @@ class FrontController extends BaseController
                     ->getSession()
                     ->getFlashBag()
                     ->add('success', 'Votre message a été envoyé');
-            }
-            $request
-                ->getSession()
-                ->getFlashBag()
-                ->add('error', 'Erreur lors de l\'envoi de votre message');
+            }            
         }
         return $this->render('contact.html.twig', ['form' => $form->createView()]);
     }
