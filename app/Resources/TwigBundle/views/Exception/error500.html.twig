@@ -8,7 +8,7 @@
     See http://symfony.com/doc/current/cookbook/controller/error_pages.html
 #}
 
-{% extends ':templates:base_error.html.twig' %}
+{% extends ':template:base_error.html.twig' %}
 
 {% block main %}
     <h1 class="text-danger">{{ 'http_error.name'|trans({ '%status_code%': 500 }) }} -&nbsp;</h1><h2>{{ 'http_error_500.description'|trans({}) }}</h2>
