@@ -6,6 +6,12 @@
         <p class="lead">{{ subtitle }}</p>
     {% endif %}
     <p>
-        {{ 'contact.mail.texte'|trans({})|raw }}
+        {{ 'contact.mail.texte'|trans({
+        '%nom%':data.nom,
+        '%prenom%':data.prenom,
+        '%objet%':data.objet,
+        '%message%':data.message,
+        '%email%':data.email,
+        })|raw }}
     </p>
 {% endblock %}
