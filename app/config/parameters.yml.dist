@@ -17,3 +17,12 @@ parameters:
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
+
+    no-reply_email: ~
+    no-reply_name: ~
+    mailer_admin: ~
+
+    # Google Recaptcha
+    google_recaptcha_secret_token: ~
+    google_recaptcha_public_token: ~
+    google_recaptcha_url: 'https://www.google.com/recaptcha/api/siteverify'

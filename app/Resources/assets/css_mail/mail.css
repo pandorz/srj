@@ -1,0 +1,43 @@
+.header {
+    background: #262626;
+}
+
+.header .logo {
+    width: 250px;
+}
+
+
+.header .columns {
+    padding-bottom: 0;
+}
+
+.header p {
+    color: #fff;
+    margin-bottom: 0;
+}
+
+.header .wrapper-inner {
+    padding: 20px;
+    /*controls the height of the header*/
+}
+
+.header .container {
+    background: #262626;
+}
+
+.wrapper.secondary {
+    background: #f3f3f3;
+}
+
+
+
+th.callout-inner.primary {
+    background: #FAC42B;
+    border: none;
+    color: #ffffff;
+}
+
+.footer-text {
+    color: #999;
+    font-size: 11px;
+}

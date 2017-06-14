@@ -7,7 +7,7 @@
     <section class="section u-fitted">
         <h2 class="sectionTitle">Laissez-nous un message ! (ne fonctionne pas)</h2>
         {{ form_start(form, {'attr': {
-                        'class': 'contactForm'
+                        'class': 'contactForm js-form-grecaptcha'
                     }}) }}
         {% for flashMessage in app.session.flashbag.get('error') %}
             <div class="alert alert-warning">{{ flashMessage }}</div>
@@ -37,7 +37,8 @@
                     </div>
                 </div>    
             </div>
-            <button class="btn">Envoyer</button>        
+            <div class="js-container-grecaptcha"></div>
+            <button class="btn js-button-grecaptcha" data-grecaptcha-key="{{ google_recaptcha_public_token }}">Envoyer</button>
         {{ form_end(form) }}
     </section>
 

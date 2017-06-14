@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
-use AppBundle\Controller\Front\BaseController;
+use Symfony\Component\Form\FormError;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -298,10 +298,47 @@ class FrontController extends BaseController
             ->getForm();
         $form->handleRequest($request);
         if ($form->isSubmitted()) {
-            // TODO : Grecaptcha
+            //-- Check Google Recaptcha
+            try {
+                $this->checkGoogleRecaptcha($request->request->get('g-recaptcha-response'));
+            } catch (\Exception $e) {
+                if ($e->getCode() == self::EXCEPTION_CODE_GOOGLE_RECAPTCHA_FAILED) {
+                    $form->addError(
+                        new FormError(
+                            $this->getTranslator()->trans(
+                                'general.error.grecaptcha.detected_as_robot',
+                                [],
+                                'validators'
+                            )
+                        )
+                    );
+                } else {
+                    $form->addError(
+                        new FormError(
+                            $this->getTranslator()->trans(
+                                'general.error.grecaptcha.error_on_verify',
+                                [],
+                                'validators'
+                            )
+                        )
+                    );
+                };
+            }
+            //--
             if ($form->isValid()) {
                 $data = $form->getData();
                 // TODO : Send mail
+                $this->sendMail(
+                    $this->getTranslator()->trans('contact.mail.sujet'),
+                    'contact',
+                    null,
+                    null,
+                    [
+                        'title'     => $this->getTranslator()->trans('contact.mail.titre'),
+                        'subtitle'  => $this->getTranslator()->trans('contact.mail.soustitre'),
+                        'data'      => $data
+                    ]
+                );
                 $request
                     ->getSession()
                     ->getFlashBag()

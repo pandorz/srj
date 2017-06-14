@@ -1,0 +1,9 @@
+{% extends ':emails:email_tpl.txt.twig' %}
+
+{% block main %}
+    {{ title }}
+    {% if subtitle %}
+        {{ subtitle }}
+    {% endif %}
+    {{ 'contact.mail.texte'|trans({})|raw }}
+{% endblock %}

@@ -64,6 +64,12 @@ app.doStyles = function() {
     pipeline.add([
         config.assetsDir+'/sass/app.scss'
     ], 'app.css');
+
+    pipeline.add([
+        config.assetsDir+'/css_mail/foundation.css',
+        config.assetsDir+'/css_mail/mail.css'
+    ], 'mail.css');
+
     return pipeline.run(app.addStyle);
 };
 
