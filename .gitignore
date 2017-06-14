@@ -16,8 +16,6 @@
 /web/bundles/
 puphpet/config-custom.yaml
 .vagrant
-!/web/medias
-/web/medias/*
 /web/js
 /web/css
 /web/img
@@ -25,7 +23,6 @@ puphpet/config-custom.yaml
 /node_modules
 /web/upload/media/*
 !web/upload/media/.gitkeep
-!web/medias/.gitkeep
 /nbproject/private/
 /app/Resources/assets/rev-manifest.json
 /composer.phar

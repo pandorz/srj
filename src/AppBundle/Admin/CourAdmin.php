@@ -76,13 +76,15 @@ class CourAdmin extends AbstractAdmin
                 'label' => 'cour.actif',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.actif'
-                ]
+                ],
+                'required' => false
             ])
             ->add('annule', 'checkbox', [
                 'label' => 'cour.annule',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.annule'
-                ]
+                ],
+                'required' => false
             ])            
             ->add('contenu', CKEditorType::class, [
                 'label' => 'cour.contenu',
@@ -100,14 +102,16 @@ class CourAdmin extends AbstractAdmin
                 'property'  => 'slug',
                 'label'     => 'cour.professeur',
                 'multiple'  => false,
-                'placeholder' => 'cour.placeholder.professeur'
+                'placeholder' => 'cour.placeholder.professeur',
+                'required' => false
             ])
             ->add('inscrits', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
                 'property'  => 'slug',
                 'label'     => 'cour.users',
                 'multiple'  => true,
-                'placeholder' => 'cour.placeholder.users'
+                'placeholder' => 'cour.placeholder.users',
+                'required' => false
             ])  
             ->end()
         ;

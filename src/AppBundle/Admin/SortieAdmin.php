@@ -85,13 +85,15 @@ class SortieAdmin extends AbstractAdmin
                 'label' => 'sortie.actif',
                 'attr'  => [
                     'placeholder' => 'sortie.placeholder.actif'
-                ]
+                ],
+                'required' => false
             ])
             ->add('annule', 'checkbox', [
                 'label' => 'sortie.annule',
                 'attr'  => [
                     'placeholder' => 'sortie.placeholder.annule'
-                ]
+                ],
+                'required' => false
             ])
             ->add('reserveMembre', 'checkbox', [
                 'label' => 'sortie.reserve_membre',
@@ -105,6 +107,12 @@ class SortieAdmin extends AbstractAdmin
                     'placeholder' => 'sortie.placeholder.nb_place'
                 ]
             ])
+            ->add('prixMembre', 'text', [
+                'label' => 'sortie.prixMembre',                
+                'attr'  => [
+                    'placeholder' => 'sortie.placeholder.prixMembre'
+                ]
+            ])    
             ->add('prix', 'text', [
                 'label' => 'sortie.prix',                
                 'attr'  => [
@@ -127,7 +135,8 @@ class SortieAdmin extends AbstractAdmin
                 'property'  => 'slug',
                 'label'     => 'sortie.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'sortie.placeholder.superviseurs'
+                'placeholder' => 'sortie.placeholder.superviseurs',
+                'required' => false
             ])
             ->add('date', 'sonata_type_datetime_picker', [
                 'label' => 'sortie.date',

@@ -79,13 +79,15 @@ class EvenementAdmin extends AbstractAdmin
                 'label' => 'evenement.actif',
                 'attr'  => [
                     'placeholder' => 'evenement.placeholder.actif'
-                ]
+                ],
+                'required' => false
             ])
             ->add('annule', 'checkbox', [
                 'label' => 'evenement.annule',
                 'attr'  => [
                     'placeholder' => 'evenement.placeholder.annule'
-                ]
+                ],
+                'required' => false
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'evenement.contenu',
@@ -103,7 +105,8 @@ class EvenementAdmin extends AbstractAdmin
                 'property'  => 'slug',
                 'label'     => 'evenement.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'evenement.placeholder.superviseurs'
+                'placeholder' => 'evenement.placeholder.superviseurs',
+                'required' => false
             ])
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_debut',

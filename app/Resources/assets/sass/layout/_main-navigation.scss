@@ -31,7 +31,7 @@
         transition: all .5s ease-out;
     }
     &:before {
-        background-image: url(../images/nav-menu-open.svg);
+        background-image: url(../medias/img/nav-menu-open.svg);
         /**/
         opacity: 1;
     }
@@ -39,7 +39,7 @@
         opacity: 0;
     }
     &:after {
-        background-image: url(../images/nav-menu-close.svg);
+        background-image: url(../medias/img/nav-menu-close.svg);
         /**/
         opacity: 0;
     }
@@ -124,11 +124,11 @@
             @include transition;
         }
         &:before {
-            background-image: url(../images/icon-user-red.svg);
+            background-image: url(../medias/img/icon-user-red.svg);
             opacity: 1;
         }
         &:after {
-            background-image: url(../images/icon-user-black.svg);
+            background-image: url(../medias/img/icon-user-black.svg);
             opacity: 0;
         }
         @include activeLink {

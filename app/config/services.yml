@@ -9,6 +9,10 @@ services:
         arguments: ["%kernel.root_dir%"]
         tags:
             - { name: twig.extension }
+    twig.text_extension:
+        class: Twig_Extensions_Extension_Text
+        tags:
+            - name: twig.extension
     app.admin.block.stats:
         class: AppBundle\Service\StatBlockService
         arguments: ["app.admin.block.stats", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]
@@ -19,6 +23,11 @@ services:
         arguments: [~, AppBundle\Entity\Evenement, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Evenements }
+    app.admin.actualites:
+        class: AppBundle\Admin\ActualiteAdmin
+        arguments: [~, AppBundle\Entity\Actualite, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Actualites }
     app.admin.sorties:
         class: AppBundle\Admin\SortieAdmin
         arguments: [~, AppBundle\Entity\Sortie, SonataAdminBundle:CRUD]
@@ -34,3 +43,8 @@ services:
         arguments: [~, AppBundle\Entity\Cour, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Cours }
+    app.error_controller:
+        class: AppBundle\Controller\Front\ErrorController
+        arguments: ['@twig', '%kernel.debug%']
+    security.acl.permission.map:
+      class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap

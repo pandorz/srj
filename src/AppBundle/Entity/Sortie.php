@@ -108,6 +108,13 @@ class Sortie
     private $prix;
     
     /**
+     * @var double
+     *
+     * @ORM\Column(name="prix_membre", type="float")
+     */
+    private $prixMembre;
+    
+    /**
      * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="sorties")
      */
     private $inscrits;
@@ -486,6 +493,30 @@ class Sortie
     public function getPrix()
     {
         return $this->prix;
+    }
+    
+    /**
+     * Set prixMembre
+     *
+     * @param integer $prixMembre
+     *
+     * @return Atelier
+     */
+    public function setPrixMembre($prixMembre)
+    {
+        $this->prixMembre = $prixMembre;
+
+        return $this;
+    }
+
+    /**
+     * Get prixMembre
+     *
+     * @return integer
+     */
+    public function getPrixMembre()
+    {
+        return $this->prixMembre;
     }
     
     /**

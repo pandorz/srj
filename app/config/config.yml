@@ -14,6 +14,7 @@ imports:
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: fr
+    web_path: "%kernel.root_dir%/../web"
 
 framework:
     #esi: ~
@@ -43,11 +44,17 @@ framework:
 
 # Twig Configuration
 twig:
+    form_themes:
+        - "form_templates/rouenjapon.html.twig"
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
         - 'SonataCoreBundle:Form:datepicker.html.twig'
         - 'SonataMediaBundle:Form:media_widgets.html.twig'
+    exception_controller: app.error_controller:showAction
+    globals:
+        web_path: '%web_path%'
+        google_recaptcha_public_token: '%google_recaptcha_public_token%'
 
 # Doctrine Configuration
 doctrine:
@@ -105,4 +112,3 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
-

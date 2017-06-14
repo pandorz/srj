@@ -1,7 +1,7 @@
 <header class="siteHeader">
     <div class="siteHeaderCtn u-fitted">
         <h1 class="siteTitle">
-            <a class="siteHomeLink" href="#"><img class="siteLogo" src="images/logo-rouen-japon.png" alt="Rouen Japon" width="170" height="55"></a>
+            <a class="siteHomeLink" href="/"><img class="siteLogo" src="{{ asset('medias/img/logo-rouen-japon.png') }}" alt="Rouen Japon" width="170" height="55"></a>
         </h1>
 
         <nav class="mainNav">
@@ -9,7 +9,7 @@
             <div class="mainNavContent">
                 <ul class="mainNavList u-ul-mute">
                     <li class="mainNavItem">
-                        <a class="mainNavLink">L'association</a>
+                        <a class="mainNavLink" href="{{path('association')}}">L'association</a>
                     </li>
                     <li class="mainNavItem has-subMenu">
                         <a class="mainNavLink">Nos activités</a>
@@ -18,26 +18,26 @@
                                 <a class="mainSubNavLink" href="#">Les cours</a>
                                 <ul class="mainSubSubNavList">
                                     <li class="mainSubSubNavItem">
-                                        <a class="mainSubSubNavLink" href="#">Japonais</a>
-                                        <a class="mainSubSubNavLink" href="#">Calligraphie</a>
-                                        <a class="mainSubSubNavLink" href="#">Cérémonie du thé</a>
+                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#langue">Japonais</a>
+                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#calligraphie">Calligraphie</a>
+                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#the">Cérémonie du thé</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="mainSubNavItem"><a class="mainSubNavLink" href="#">Ateliers</a></li>
-                            <li class="mainSubNavItem"><a class="mainSubNavLink" href="#">Sorties</a></li>
+                            <li class="mainSubNavItem"><a class="mainSubNavLink" href="{{path('ateliers')}}">Ateliers</a></li>
+                            <li class="mainSubNavItem"><a class="mainSubNavLink" href="{{path('sorties')}}">Sorties</a></li>
                         </ul>
                     </li>
-                    <li class="mainNavItem"><a class="mainNavLink" href="#">Événements</a></li>
-                    <li class="mainNavItem"><a class="mainNavLink" href="#">Actualités</a></li>
-                    <li class="mainNavItem"><a class="mainNavLink" href="#">Blog</a></li>
-                    <li class="mainNavItem"><a class="mainNavLink" href="#" lang="ja">日本人です</a></li>
-                    <li class="mainNavItem"><a class="mainNavLink" href="#">Contact</a></li>
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('evenements')}}">Événements</a></li>
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('actualites')}}">Actualités</a></li>
+                    <!--li class="mainNavItem"><a class="mainNavLink" href="#">Blog</a></li-->
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a></li>
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('contact')}}">Contact</a></li>
                 </ul>
-                <div class="mainNavMember">
+                <!--div class="mainNavMember">
                     <a class="mainNavMemberLink signup btn btn-blank btn-small" href="#">Devenir membre</a>
                     <a class="mainNavMemberLink login" href="#">Déjà membre ?</a>
-                </div>
+                </div-->
             </div>
         </nav>
     </div>

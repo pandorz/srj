@@ -1,0 +1,45 @@
+<section class="events">
+    {% set coming = 0 %}
+    {% set past = 0 %}
+    {% for evenement in evenements %}
+        {% if evenement.dateDebut|date('Y-m-d') > 'now'|date('Y-m-d') %}
+            {% if coming == 0 %} 
+                <div class="comingEvent">
+                <h3 class="comingTitle">Prochainement</h3>
+                {% set coming = 1 %}
+            {% endif %}
+        {% else %}
+            {% if past == 0 %} 
+                <div class="pastEvents">
+                <h3 class="pastTitle">Dernièrement</h3>
+                {% set past = 1 %}
+            {% endif %}
+        {% endif %}
+            <div class="postItem shortPost eventItem">
+                <div class="postItemCtn eventItemCtn">
+                    {% media evenement.image, 'big' with {'class': 'postPhoto eventPhoto'} %}                    
+                    <h4 class="postTitle eventTitle">{{ evenement.nom }}</h4>
+                    <time class="postDate eventDate" datetime="{{evenement.dateDebut|date('Y-m-d')}}">
+                        <span class="day">{{evenement.dateDebut|date('d')}}</span> 
+                        <span class="month">{{evenement.dateDebut|date('F')|slice(0, 3)}}.</span>
+                    </time>
+                    <p class="postSummary eventSummary">{% if evenement.contenu|length > 99 %}{{ evenement.contenu|raw|slice(0, 100) }}{% else %}{{ evenement.contenu|raw }}{% endif %}</p>
+                    {% if evenement.contenu|length > 99 %}
+                    <div class="postMoreText" style="display: none;">
+                        {{ evenement.contenu|raw }}
+                    </div>
+                    <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+        <div class="postItem shortPost eventItem eventsCalendar">
+            <div class="postItemCtn eventItemCtn">
+                <div class="calendarTitle">Calendar</div>
+                <div id='calendar'></div>
+                <a class="btn btn-blank-secondary" href="{{path('evenements')}}">Voir tous les événements</a>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,6 +1,6 @@
 sonata_admin:
     title: 'Rouen Japon Administration'
-    title_logo: bundles/sonataadmin/logo_title.png # TODO LTS
+    title_logo: medias/favicons/favicon-32x32.png
     options:
         html5_validate: true
         # Auto order groups and admins by label or id
@@ -31,6 +31,12 @@ sonata_admin:
                 icon: '<i class="fa fa-calendar"></i>'
                 items:
                     - app.admin.evenements
+            app.admin.group.principal.actualites:
+                on_top: true
+                label: "Actualites"
+                icon: '<i class="fa fa-newspaper-o"></i>'
+                items:
+                    - app.admin.actualites
             app.admin.group.principal.sorties:
                 on_top: true
                 label: "Sorties"

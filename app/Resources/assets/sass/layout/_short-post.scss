@@ -2,6 +2,7 @@
 .postsList {
 	display: flex;
 	flex-wrap: wrap;
+	justify-content: center;
 }
 .postItem {
 	width: 100%;
@@ -10,12 +11,14 @@
 .postItemCtn {
 	position: relative;
 	width: rem(280);
-	height: 100%;
-	margin: auto;
+	//height: 100%;
+	margin: 0 auto;
+	padding-bottom: rem(30);
 	background-color: $color-white;
 }
 .postPhoto {
 	width: 100%;
+	background-color: $color-black;
 }
 .postTitle {
 	margin: $margin-s $margin-m;
@@ -72,7 +75,7 @@
 	text-decoration: none;
 	/**/
 	@include transition;
-	background-color: rgba(0, 0, 0, 0);
+	//background-color: rgba(0, 0, 0, 0);
 	* {
 		opacity: 0;
 	}
@@ -95,7 +98,8 @@
 }
 .shortPost {
 	.seeMore {
-		position: relative;
+		position: absolute;
+		bottom: 0;
 		display: block;
 		width: 100%;
 		line-height: rem(30);
@@ -144,7 +148,6 @@
 @include media('>phablet', '<=1280px') {
 	.postItemCtn {
 		width: auto;
-		margin: 0 $margin-s;
 	}
 }
 
@@ -161,15 +164,17 @@
 }
 
 @include media('>1280px') {
-	.postItem {
-		margin-bottom: 0;
+	.home {
+		.postItem {
+			margin-bottom: 0;
+		}
 	}
 }
 
 /* Blog */
 .blog {
 	padding: $margin-xl $margin-m;
-	background: url(../images/sayagata.png) left center repeat;
+	background: url(../medias/img/sayagata.png) left center repeat;
 }
 .blogItemCtn {
 	width: auto;
@@ -181,10 +186,10 @@
 		position: absolute;
 		top: 0;
 		left: $margin-m;
-		z-index: 100;
+		z-index: 2;
 		display: block;
 		width: 38px;
 		height: 55px;
-		background: url(../images/blog-sticker.png) no-repeat;
+		background: url(../medias/img/blog-sticker.png) no-repeat;
 	}
 }

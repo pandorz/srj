@@ -1,0 +1,228 @@
+actualite:
+    actif: Active
+
+    add_edit:
+        to_string: Actualité
+
+    annule: Annulé
+    contenu: Descriptif
+    date_debut: 'Date début'
+    date_fin: 'Date fin'
+    image: Image
+
+    liste:
+        affiche: Affiché
+        annule: Annulé
+        dateDebut: 'Date début'
+        dateFin: 'Date fin'
+        nom: Titre
+
+    nom: Titre
+
+    placeholder:
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: 'Le descriptif de l''actualité'
+        nom: 'Le titre à afficher'
+        superviseurs: Superviseur
+
+    superviseurs: Superviseur
+
+    with:
+        details: Informations
+        meta_data: Détails
+
+atelier:
+    actif: Actif
+
+    add_edit:
+        to_string: Atelier
+
+    annule: Annulé
+    contenu: Descriptif
+    date: Date
+    date_limite: 'Date limite inscription'
+    image: Image
+
+    liste:
+        affiche: Affiché
+        annule: Annulé
+        date: Date
+        dateLimite: 'Date limite inscription'
+        nb_place: 'Nombre de place'
+        nom: Titre
+
+    nb_place: 'Nombre de places autorisés'
+    nom: Titre
+
+    placeholder:
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: 'Le descriptif de l''atelier'
+        nb_place: 'Nombre de places autorisés'
+        nom: 'Titre de l''atlier'
+        prix: 'Prix de l''atelier'
+        prixMembre: 'Prix de l''atelier pour les membres'
+        reserve_membre: 'Reservé aux membres'
+        superviseurs: Superviseur
+
+    prix: 'Prix non-membres'
+    prixMembre: 'Prix membres'
+    reserve_membre: 'Reservé aux membres'
+    superviseurs: Superviseur
+
+    with:
+        details: Informations
+        meta_data: Détails
+
+contact:
+    mail:
+        soustitre: contact.mail.soustitre
+        sujet: 'Nouveau mail depuis le site rouen japon'
+        texte: contact.mail.texte
+        titre: contact.mail.titre
+
+cour:
+    actif: Actif
+
+    add_edit:
+        to_string: Cours
+
+    annule: Annulé
+    contenu: Descriptif
+
+    liste:
+        affiche: Affiché
+        annule: Annulé
+        nom: Titre
+        professeur: Professeur
+
+    nom: Titre
+
+    placeholder:
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: 'Le descriptif du cours'
+        nom: 'Le titre à afficher'
+        professeur: Professeur
+        users: 'Les inscrits'
+
+    professeur: Professeur
+    users: Inscrits
+
+    with:
+        details: Informations
+        meta_data: Détails
+
+evenement:
+    actif: Actif
+
+    add_edit:
+        to_string: Évenement
+
+    annule: Annulé
+    contenu: Descriptif
+    date_debut: 'Date début'
+    date_fin: 'Date fin'
+    image: Image
+
+    liste:
+        affiche: Affiché
+        annule: Annulé
+        dateDebut: 'Date début'
+        dateFin: 'Date fin'
+        nom: Titre
+
+    nom: Titre
+
+    placeholder:
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: 'Le descriptif du cours'
+        nom: 'Titre à afficher'
+        superviseurs: Superviseurs
+
+    superviseurs: Superviseurs
+
+    with:
+        details: Informations
+        meta_data: Détails
+
+http_error:
+    name: Erreur
+
+http_error_403:
+    description: 'Vous n''avez pas le droit d''accéder à cette page'
+    suggestion: '<a href="%url%">Revenir sur la page d''accueil</a>'
+
+http_error_404:
+    description: 'La page à laquelle vous tentez d''accéder n''éxiste pas'
+    suggestion: '<a href="%url%">Revenir sur la page d''accueil</a>'
+
+http_error_500:
+    description: 'Erreur interne du serveur'
+    suggestion: 'Essayez plus tard'
+
+http_error_503:
+    description: 'Service indisponible'
+    suggestion: 'Essayez plus tard'
+
+mails:
+    footer:
+        text: '@Association Rouen Japon'
+
+sortie:
+    actif: Active
+
+    add_edit:
+        to_string: Sortie
+
+    annule: Annulé
+    contenu: Descriptif
+    date: Date
+    date_limite: 'Date limite inscription'
+    image: Image
+
+    liste:
+        affiche: Affiché
+        annule: Annulé
+        date: Date
+        dateLimite: 'Date limite inscription'
+        nb_place: 'Nombre de place'
+        nom: Titre
+
+    nb_place: 'Nombre de place autorisés'
+    nom: Titre
+
+    placeholder:
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: 'Le descriptif de l''actualité'
+        nb_place: 'Nombre de place autorisés'
+        nom: 'Titre à afficher'
+        prix: 'Prix de la sortie'
+        prixMembre: 'Prix de la sortie pour les membres'
+        reserve_membre: 'Réservé aux membres'
+        superviseurs: Superviseurs
+
+    prix: 'Prix non-membres'
+    prixMembre: 'Prix membres'
+    reserve_membre: 'Reservé membres'
+    superviseurs: Superviseurs
+
+    with:
+        details: Informations
+        meta_data: Détails
+
+utilisateur:
+    liste:
+        parent: Parent
+
+    sousUtilisateurs: Enfants
+
+    tab:
+        sousUtilisateurs: 'Liste des enfants'
+
+    with:
+        description: Informations
+        sousUtilisateurs: Enfants

@@ -38,7 +38,7 @@ img {
     border-bottom: 5px solid $color-rj;
     text-align: center;
     color: $color-white;
-    background: url(../images/home_bkg.jpg) right 23% center / cover no-repeat;
+    background: url(../medias/img/home_bkg.jpg) right 23% center / cover no-repeat;
     > * {
         max-width: rem(800);
     }
@@ -49,7 +49,7 @@ img {
             width: rem(100);
             height: rem(27);
             margin-bottom: rem(15);
-            background: url(../images/rouen-japon-white.svg) 0 0 / contain no-repeat;
+            background: url(../medias/img/rouen-japon-white.svg) 0 0 / contain no-repeat;
         }
     }
 }
@@ -166,10 +166,10 @@ img {
     margin-bottom: $margin-m;;
 }
 .facebookTitle {
-    background: url(../images/icon-facebook.svg) rem(20) center no-repeat #3f5c9a;
+    background: url(../medias/img/icon-facebook.svg) rem(20) center no-repeat #3f5c9a;
 }
 .twitterTitle {
-    background: url(../images/icon-twitter.svg) rem(20) center no-repeat #55acee;
+    background: url(../medias/img/icon-twitter.svg) rem(20) center no-repeat #55acee;
 }
 .facebookCtn,
 .twitterCtn {
@@ -178,7 +178,7 @@ img {
 }
 .followItem.newsletter {
     padding-top: rem(80);
-    background: url(../images/icon-origami.svg) center top / rem(80) auto no-repeat;
+    background: url(../medias/img/icon-origami.svg) center top / rem(80) auto no-repeat;
 }
 .newsletterTitle {
     display: block;

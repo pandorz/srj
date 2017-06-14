@@ -1,0 +1,28 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+.contact {
+
+	.hero {
+		background: url(../medias/img/contact_bkg.jpg) right 23% center / cover no-repeat;
+	}
+
+	.contactForm {
+		max-width: rem(580);
+		margin: 0 auto;
+		.btn {
+			display: block;
+			width: 100%;
+			text-align: left;
+		}
+	}
+	.assoSubscr {
+		padding-top: rem(30);
+		padding-bottom: rem(40);
+		border-top: 1px solid $color-grey-medium;
+		border-bottom: 1px solid $color-grey-medium;
+		font-size: rem(16);
+	}
+}

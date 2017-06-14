@@ -1,0 +1,32 @@
+fos_group:
+    name:
+        already_used: 'Ce nom est déjà utilisé'
+
+fos_user:
+    email:
+        already_used: 'Cette adresse email est déjà utilisé'
+        blank: 'L''email est vide'
+        invalid: 'Cette adresse email est invalide'
+        long: 'Cette adresse email est trop longue'
+        short: 'Cette adresse email est trop courte'
+
+    group:
+        blank: 'Le nom groupe est vide'
+        long: 'Le nom du groupe est trop long'
+        short: 'Le nom du groupe est trop court'
+
+    password:
+        blank: 'Le mot de passe est vide'
+        short: 'Le mot de passe est trop court'
+
+    username:
+        already_used: 'Cet username est déjà utilisé'
+        blank: 'Le username est vide'
+        long: 'Le username est trop long'
+        short: 'Le username est trop court'
+
+general:
+    error:
+        grecaptcha:
+            detected_as_robot: 'Êtes-vous un robot ?'
+            error_on_verify: 'Erreur lors de la vérification du captcha'

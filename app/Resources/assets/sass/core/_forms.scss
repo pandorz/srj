@@ -3,7 +3,7 @@
     Author     : cecilejeanne <contact@cecile-jeanne.be>
 */
 
-@import "vendor/select2.min.css";
+@import "../vendor/select2.min.css";
 
 
 ::-webkit-input-placeholder {
@@ -55,25 +55,29 @@
 .fldLabel {
     display: inline-block;
     margin-bottom: rem(5);
+    font-style: italic;
+    color: $color-grey-dark;
 }
 .fld,
-.customSelectInner,
-.select2-selection,
-.fldIcon {
+.customSelectInner {
     display: block;
     width: 100%;
     max-width: rem(500);
-}
-.fld,
-.customSelectInner,
-.select2-selection {
     height: $fldHeight-m;
     padding: 0 $margin-m 0 $margin-s;
-    border: 1px solid $color-grey-medium;
+    border: 2px solid transparent;
     border-radius: $btn-radius;
-    .fldIcon > & {
-        padding-right: $margin-l;
+    background-color: $color-grey-light;
+    box-shadow: none !important;
+    @include transition;
+    &:focus {
+        border-color: $color-rj;
+        background-color: $color-white;
     }
+}
+textarea.fld {
+    height: auto;
+    padding: $margin-s;
 }
 .formSelect {
     position: relative;
@@ -81,14 +85,6 @@
     .select2 {
         width: auto !important;
         min-width: rem(150);
-    }
-    .select2 + .select2-container,
-    .select2-dropdown {
-        width: auto !important;
-        min-width: 100%;
-    }
-    .select2-results__option {
-        white-space: nowrap;
     }
 }
 .customSelect,
@@ -203,7 +199,7 @@
         width: rem(18);
         height: rem(14);
         margin: -2px 0 0 1px;
-        background: url(../images/checked.svg) no-repeat 0 0 / contain;
+        background: url(../medias/img/checked.svg) no-repeat 0 0 / contain;
     }
     input[type="checkbox"]:checked + .dummySelected {
         display: block;

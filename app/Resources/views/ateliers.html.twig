@@ -1,0 +1,76 @@
+{% extends "template/base_front.html.twig" %}
+{% block body_class %}events workshops{% endblock %}
+{% block html_title %} - Les ateliers{% endblock %}
+{% block main %}
+    
+    {% set hastagTitle = "Nos activités" %}
+    {% set hastagList = "#Ateliers" %}
+    {% include 'bandeau_hastag.html.twig' %}
+
+    <section class="workshopsIntro section u-fitted">
+        <div class="grid-2">
+            <div><img src="{{ asset('medias/img/ateliers.jpg') }}" alt="" width="580" height="435"></div>
+            <div>
+                <h2 class="sectionTitle">Les ateliers</h2>
+                <div class="sectionChapo">
+                    <p>Tous les ans, Rouen Japon vous propose de participer à divers ateliers, de l'initiation à l'<strong>Ikebana</strong> (art floral), aux <strong>ateliers cuisine</strong> (gyozas, okonomiyaki...), en passant par l'<strong>origami</strong>...</p>
+                </div>
+
+                <div class="sectionText">
+                    <p>Le type et la fréquence de ces ateliers peut varier d'une saison à l'autre, c'est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre ici et là, et pourquoi pas de vous abonner à notre Newsletter.</p>
+                    <p>Pour cette saison 2016-2017 par exemple, Rouen Japon pense reprogrammer les ateliers de la saison précédente auxquels vous avez été nombreux à répondre présent, à savoir : </p>
+                    <ul class="u-ul-colorRJ">
+                        <li>Les Ateliers cuisine (à raison de 2 ou 3 ateliers par trimestre)</li>
+                        <li>Préparer son voyage au Japon (à programmer)</li>
+                    </ul>
+                    <p>Presque chaque atelier est ouvert à tous*, dans la limite des places disponibles et se règle à l'unité. Toutes les conditions figurent dans le détail des ateliers en question.</p>
+                    <p>À bento ! Euh, ahem, à bientôt !</p>
+                    <p class="u-note">*Détails et conditions à consulter pour chaque atelier</p>
+                </div>
+            </div>
+        </div>                
+    </section>
+
+    <section class="comingEvents section">
+        {% if ateliers is empty %}
+        <div class="noWorkshop u-textCenter">
+            <b class="nothing">Aucun atelier n'est encore programmé...</b>
+            <p>Ça ne devrait pourtant pas tarder !</p>            
+        </div>
+        {% else %} 
+        <h2 class="sectionTitle">Sortie&(s) à venir</h2>
+        {% for atelier in ateliers %}
+            <div class="postItem shortPost">
+                <div class="postItemCtn">
+                    {% media atelier.image, 'big' with {'class': 'postPhoto'} %}
+                    <h4 class="postTitle">{{ atelier.nom }}</h4>
+                    <time class="postDate" datetime="{{atelier.dateDebut|date('Y-m-d')}}">
+                        <span class="day">{{atelier.dateDebut|date('d')}}</span> 
+                        <span class="month">{{atelier.dateDebut|date('F')|slice(0, 3)}}.</span>
+                    </time>
+                    <p class="postSummary">{% if atelier.contenu|length > 99 %}{{ atelier.contenu|raw|slice(0, 100) }}{% else %}{{ atelier.contenu|raw }}{% endif %}</p>
+                    {% if atelier.contenu|length > 99 %}
+                    <div class="postMoreText" style="display: none;">
+                        {{ atelier.contenu|raw }}
+                        <p><b class="u-textColorRJ">Conditions :</b> 
+                            {%if atelier.prix>0 %}
+                            {{atelier.prix|replace({'.':','})}} euros pour les personnes non membres. 
+                            {% endif %}
+                            {%if atelier.prixMembre>0 %}
+                            {{atelier.prixMembre|replace({'.':','})}} euros pour les membres. 
+                            {% endif %}
+                            {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                            <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
+                    </div>
+                    <button class="seeMore" aria-hidden="true">En savoir plus</button> 
+                    {% endif %}                       
+                </div>
+            </div>
+        {% endfor %}
+        {% endif %}        
+    </section>       
+    
+    {#% include 'bandeau_devenir_membre.html.twig' %#}
+    {% include 'follow_us.html.twig' %}
+    
+{% endblock %}

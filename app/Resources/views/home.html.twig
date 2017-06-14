@@ -1,14 +1,7 @@
 {% extends "template/base_front.html.twig" %}
 {% block body_class %}home{% endblock %}
 {% block main %}
-    <div class="hero u-fitted">
-        <h2 class="heroTitle">Favoriser les échanges entre les Français et la communauté japonaise de Rouen.</h2>
-        <div class="heroJPbaseline" lang="ja">日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。</div>
-        <div class="userGuide">
-            <a class="btn btn-blank" lang="ja">日本人です</a>
-            <a class="btn">Devenir membre</a>
-        </div>
-    </div>
+    {% include 'bandeau_jap.html.twig' %}
 
     <section class="activities">
         <div class="u-fitted">
@@ -16,175 +9,27 @@
                 <div class="activityItem lessons">
                     <h3 class="activityTitle">Cours</h3>
                     <p class="activityText">Apprendre le japonais, pratiquer la calligraphie, s'initier à l'art de la cérémonie du thé...</p>
-                    <a class="btn btn-blank" href="#">En savoir plus</a>
+                    <a class="btn btn-blank" href="{{path('cours')}}">En savoir plus</a>
                 </div>
                 <div class="activityItem workshops">
                     <h3 class="activityTitle">Ateliers</h3>
                     <p class="activityText">Initiations Ikebana (art floral), ateliers cuisine (gyozas, okonomiyaki, ..), sessions origamis...</p>
-                    <a class="btn btn-blank" href="#">En savoir plus</a>
+                    <a class="btn btn-blank" href="{{path('ateliers')}}">En savoir plus</a>
                 </div>
                 <div class="activityItem outings">
                     <h3 class="activityTitle">Sorties</h3>
                     <p class="activityText">Assister à des conférences, aller au cinéma, voir des expos au musées, mettre en pratique les cours de japonais autour d'un verre...</p>
-                    <a class="btn btn-blank" href="#">En savoir plus</a>
+                    <a class="btn btn-blank" href="{{path('sorties')}}">En savoir plus</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="events">
-        <div class="comingEvent">
-            <h3 class="comingTitle">Prochainement</h3>
-            <div class="postItem shortPost eventItem">
-                <div class="postItemCtn eventItemCtn">
-                    <img class="postPhoto eventPhoto" src="images/ev-surprise.jpg" alt="">
-                    <h4 class="postTitle eventTitle">Surprise...</h4>
-                    <time class="postDate eventDate" datetime="2016-07-21T08:00">
-                        <span class="day">21</span> 
-                        <span class="month">jui.</span>
-                    </time>
-                    <p class="postSummary eventSummary">Restez connectés, nous vous en dirons plus bientôt !</p>
-                </div>
-            </div>
-        </div>
-        <div class="pastEvents">
-            <h3 class="pastTitle">Dernièrement</h3>
-            <div class="postItem shortPost eventItem">
-                <div class="postItemCtn eventItemCtn">
-                    <img class="postPhoto eventPhoto" src="images/ev-atelier-gyozas.jpg" alt="">
-                    <h4 class="postTitle eventTitle">Atelier Gyozas</h4>
-                    <time class="postDate eventDate" datetime="2016-07-21T08:00">
-                        <span class="day">24</span> 
-                        <span class="month">avr.</span>
-                    </time>
-                    <p class="postSummary eventSummary">Nous vous proposons un atelier cuisine le <b>dimanche 24 avril</b> prochain. Au menu : Gyoza, riz et soupe miso !</p>
-                </div>
-            </div>
-            <div class="postItem shortPost eventItem">
-                <div class="postItemCtn eventItemCtn">
-                    <img class="postPhoto eventPhoto" src="images/ev-repas-nouvel-an.jpg" alt="">
-                    <h4 class="postTitle eventTitle">Repas du nouvel an</h4>
-                    <time class="postDate eventDate" datetime="2016-07-21T08:00">
-                        <span class="day">24</span> 
-                        <span class="month">jan.</span>
-                    </time>
-                    <p class="postSummary eventSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-                    <div class="postMoreText" style="display: none;">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
-                        Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
-                        <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
-                        <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
-                        <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
-                    </div>
-                    <button class="seeMore" aria-hidden="true">En savoir plus</button>
-                </div>
-            </div>
-            <div class="postItem shortPost eventItem eventsCalendar">
-                <div class="postItemCtn eventItemCtn">Calendar
-                    <a class="btn btn-blank-secondary" href="#">Voir tous les événements</a>
-                </div>
-            </div>
-        </div>
-    </section>
+    {% include 'top_evenements.html.twig' %}
 
-    <section class="lastNews u-fitted">
-        <h3 class="lastNewsTitle">Actualités</h3>
-        <div class="postsList newsList">
-            <div class="postItem shortPost newsItem">
-                <div class="postItemCtn newsItemCtn">
-                    <img class="postPhoto newsPhoto" src="images/ev-repas-nouvel-an.jpg" alt="">
-                    <h4 class="postTitle newsTitle">Repas du nouvel an</h4>
-                    <p class="postSummary newsSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-                </div>
-            </div>
-            <div class="postItem shortPost newsItem">
-                <div class="postItemCtn newsItemCtn">
-                    <img class="postPhoto newsPhoto" src="images/ev-repas-nouvel-an.jpg" alt="">
-                    <h4 class="postTitle newsTitle">Repas du nouvel an</h4>
-                    <p class="postSummary newsSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-                </div>
-            </div>
-            <div class="postItem shortPost newsItem">
-                <div class="postItemCtn newsItemCtn">
-                    <img class="postPhoto newsPhoto" src="images/ev-repas-nouvel-an.jpg" alt="">
-                    <h4 class="postTitle newsTitle">Repas du nouvel an</h4>
-                    <p class="postSummary newsSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-                    <div class="postMoreText" style="display: none;">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.<br>
-                        Dolor sit amet, consectetur adipisicing elit, sed do eiusmod !</p>
-                        <p><b class="u-textColorRJ">Conditions :</b> 15 euros par personne. Réservé aux membres.<br>
-                        <b class="u-textColorRJ">Clôture des réservations :</b> 14 avril 2016</p>
-                        <p><b>&gt; <a class="u-textBlack" href="#">Je veux participer !</a></b></p>
-                    </div>
-                    <button class="seeMore" aria-hidden="true">En savoir plus</button>
-                </div>
-            </div>
-            <div class="postItem shortPost newsItem">
-                <div class="postItemCtn newsItemCtn">
-                    <img class="postPhoto newsPhoto" src="images/ev-repas-nouvel-an.jpg" alt="">
-                    <h4 class="postTitle newsTitle">Repas du nouvel an</h4>
-                    <p class="postSummary newsSummary">Comme chaque année, l'association organise son repas de Nouvel An, le <b>24 janvier à 12h à la maison St Sever</b>.</p>
-                </div>
-            </div>
-            <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="#">Voir toutes les actualités</a></div>
-        </div>
-    </section>
+    {% include 'top_actualites.html.twig' %}
 
-    <section class="blog">
-        <div class="u-fitted">
-            <div class="postItem shortPost blogItem">
-                <div class="postItemCtn blogItemCtn">
-                    <img class="postPhoto blogPhoto" src="images/ev-repas-nouvel-an.jpg" alt="">
-                    <h4 class="postTitle blogTitle">À la rencontre de Mamoru Hosoda</h4>
-                    <p class="postSummary blogSummary">Vous ne connaissez pas encore Mamoru Hosoda ? Et bien il va falloir rattraper votre retard ! Rouen Japon vous a concocté une petite présentation du monsieur et de son œuvre.</p>
-                    <a class="postHover postLink" href="#" title="Voir l'article : À la rencontre de Mamoru Hosoda"><span class="btn btn-blank" aria-hidden="true">Voir l'article</span></a>
-                </div>
-            </div>
-            <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="#">Voir tous les articles du blog</a></div>
-        </div>
-    </section>
-
-    <section class="followUs u-fitted">
-        <h3 class="followTitle">Suivez-nous...</h3>
-        <div class="grid-3">
-            <div class="followItem facebook">
-                <b class="facebookTitle">...sur Facebook</b>
-                    <!-- Config : https://developers.facebook.com/docs/plugins/page-plugin/ -->
-                <div class="facebookCtn">
-                    <div id="fb-root"></div>
-                    <script>(function(d, s, id) {
-                        var js, fjs = d.getElementsByTagName(s)[0];
-                        if (d.getElementById(id)) return;
-                        js = d.createElement(s); js.id = id;
-                        js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.7";
-                        fjs.parentNode.insertBefore(js, fjs);
-                    }(document, 'script', 'facebook-jssdk'));</script>
-                    <!-- Timeline -->
-                    <div class="fb-page" data-href="https://www.facebook.com/AssoJaponRouen" data-tabs="timeline" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/AssoJaponRouen" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/AssoJaponRouen">Facebook de l'Association franco-japonaise de Rouen</a></blockquote></div>
-                </div>
-                <!-- Like button -->
-                <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
-                <!-- Share button -->
-                <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"></div>
-            </div>
-            <div class="followItem twitter">
-                <b class="twitterTitle">...sur Twitter</b>
-                    <!-- Config : https://publish.twitter.com/ -->
-                <div class="twitterCtn">
-                    <p><a class="twitter-timeline" data-lang="fr" data-height="500" data-dnt="true" href="https://twitter.com/RouenJapon">Tweets de RouenJapon</a></p> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-                </div>
-                <a href="https://twitter.com/rouenjapon" class="twitter-follow-button" data-show-count="false">Suivre @rouenjapon</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-            </div>
-            <div class="followItem newsletter">
-                <form class="newsletterForm">
-                <legend class="newsletterTitle">Et abonnez-vous à notre newsletter <small class="nospam">#nospam</small></legend>
-                <div class="formItem">
-                    <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
-                    <input class="fld" type="email" placeholder="Mon adresse email">
-                </div>
-                <input class="btn" type="submit" value="Je m'abonne !">
-                </form>
-            </div>
-        </div>
-    </section>
+    {#% include 'top_blog.html.twig' %#}
+    {% include 'follow_us.html.twig' %}
+    
 {% endblock %}

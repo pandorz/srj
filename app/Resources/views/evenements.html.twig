@@ -1,0 +1,68 @@
+{% extends "template/base_front.html.twig" %}
+{% block body_class %}events allEvent{% endblock %}
+{% block html_title %} - Evenements{% endblock %}
+{% block main %}
+    {% set hastagTitle = "Evenements" %}
+    {% set hastagList = "#Normandie #Japon" %}
+    {% include 'bandeau_hastag.html.twig' %}
+    
+    {% set coming = 0 %}
+    {% set past = 0 %}
+    
+    {% if evenements is empty %}
+        <section class="comingEvents section">
+            <div class="noWorkshop u-textCenter">
+                <b class="nothing">Aucun événement n'est encore programmée pour le moment...</b>
+                <p>Ça ne devrait pourtant pas tarder !</p>
+            </div>
+        </section>
+    {% else %}        
+        {% for evenement in evenements %}
+            {% if evenement.dateDebut|date('Y-m-d') > 'now'|date('Y-m-d') %}
+                {% if coming == 0 %} 
+                    <section class="comingEvents section">
+                    <h2 class="sectionTitle">Prochainement</h2>
+                    <div class="postsList u-fitted">
+                    {% set coming = 1 %}
+                {% endif %}
+            {% else %}
+                {% if past == 0 %} 
+                    {% if coming == 1 %} 
+                    </section>
+                    {% endif %}
+                    <section class="pastEvents section">
+                    <h2 class="sectionTitle">Dernièrement</h2>
+                    <div class="postsList u-fitted">
+                    {% set past = 1 %}
+                {% endif %}
+            {% endif %}
+                <div class="postItem shortPost">
+                    <div class="postItemCtn">
+                        {% media evenement.image, 'big' with {'class': 'postPhoto'} %}                    
+                        <h4 class="postTitle">{{ evenement.nom }}</h4>
+                        <time class="postDate" datetime="{{evenement.dateDebut|date('Y-m-d')}}">
+                            <span class="day">{{evenement.dateDebut|date('d')}}</span> 
+                            <span class="month">{{evenement.dateDebut|date('F')|slice(0, 3)}}.</span>
+                        </time>
+                        <p class="postSummary">{% if evenement.contenu|length > 99 %}{{ evenement.contenu|raw|slice(0, 100) }}{% else %}{{ evenement.contenu|raw }}{% endif %}</p>
+                        {% if evenement.contenu|length > 99 %}
+                        <div class="postMoreText" style="display: none;">
+                            {{ evenement.contenu|raw }}
+                        </div>
+                        <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if past == 1 or (past==0 and coming==1)%} 
+        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="#">Charger plus</a></div>
+    </section>
+    {% endif %}
+        
+        
+
+    {% include 'follow_us.html.twig' %}
+    
+{% endblock %}

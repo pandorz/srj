@@ -1,0 +1,47 @@
+
+/* 
+    Author     : cecilejeanne <contact@cecile-jeanne.be>
+*/
+
+.blogList,
+.blogDetail {
+	.hero {
+		background: url(../medias/img/blog_bkg.jpg) right 23% center / cover no-repeat;
+	}
+}
+
+.blogList {
+
+	.blogItem {
+		max-width: rem(600);
+	}
+	.blogItemCtn {
+		margin-left: rem(10);
+		margin-right: rem(10);
+	}
+
+	@include media('>phablet') {
+		.blogItem {
+			width: 50%;
+		}
+	}
+}
+
+.blogDetail {
+	.blogPhotoCtn {
+		max-width: rem(800);
+		margin: 0 auto;
+		text-align: center;
+	}
+	.blogPhoto {
+		width: auto;
+	}
+	.blogTextCtn {
+		max-width: rem(800);
+		margin: rem(40) auto;
+		font-size: rem(16);
+		p {
+			margin: rem(20) 0;
+		}
+	}
+}

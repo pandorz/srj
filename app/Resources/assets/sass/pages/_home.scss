@@ -47,17 +47,17 @@
 	}
 	.lessons {
 		&:before {
-			background-image: url(../images/icon-lessons.svg);
+			background-image: url(../medias/img/icon-lessons.svg);
 		}
 	}
 	.workshops {
 		&:before {
-			background-image: url(../images/icon-workshops.svg);
+			background-image: url(../medias/img/icon-workshops.svg);
 		}
 	}
 	.outings {
 		&:before {
-			background-image: url(../images/icon-outings.svg);
+			background-image: url(../medias/img/icon-outings.svg);
 		}
 	}
 	.activityTitle {
@@ -97,20 +97,144 @@
 	.comingEvent {
 		justify-content: flex-end;
 		padding: $margin-m $margin-m $margin-xl;
-		background: url(../images/lanterns_bkg.jpg) right center / cover no-repeat;
+		background: url(../medias/img/lanterns_bkg.jpg) right center / cover no-repeat;
 	}
 	.comingTitle {
 		width: 100%;
 		text-align: center;
 		color: $color-white;
 	}
-	.pastEvents {
-		background: url(../images/asanoha.png) left center repeat;
-	}
 	.pastTitle {
 		width: 100%;
 		text-align: center;
 		color: $color-rj;
+	}
+	.comingEvents {
+		.postItemCtn {
+			margin: 0 auto;
+		}
+	}
+	.eventsCalendar {
+		.postItemCtn {
+			background: transparent;
+		}
+	}
+	.calendarTitle {
+		height: rem(40);
+		line-height: rem(40);
+		padding: 0 rem(20) 0 rem(50);
+		border-radius: $btn-radius $btn-radius 0 0;
+		@include niceText();
+		font-size: rem(24);
+		color: $color-white;
+		background: url(../medias/img/icon-calendar.svg) rem(10) center / rem(30) no-repeat $color-rj;
+	}
+	#calendar {
+		margin-bottom: rem(20);
+		background-color: $color-white;
+		table {
+			margin: 0;
+		}
+		[class*="grid-"] {
+			margin: 0;
+			 > * {
+			    display: initial;
+			    width: auto;
+			    margin: 0;
+			}
+		}
+		.fc-row {
+			position: static;
+		}
+		.fc-center {
+			display: block;
+			> div {
+				display: flex;
+				align-items: center;
+				float: none;
+				height: rem(30);
+			}
+		}
+		.fc-toolbar.fc-header-toolbar {
+			margin: 0;
+		}
+		.fc-toolbar h2 {
+			flex-grow: 2;
+			font-family: $text-fontfamily;
+			font-size: rem(14);
+			font-weight: 700;
+		}
+		.fc-toolbar button {
+			border: none;
+			background: transparent;
+		}
+		.fc-icon-left-single-arrow:after,
+		.fc-icon-right-single-arrow:after {
+			font-size: rem(12);
+			font-weight: 400;
+			color: $color-rj;
+		}
+		.fc-icon-left-single-arrow:after {
+			content: '\25c0';
+		}
+		.fc-icon-right-single-arrow:after {
+			content: '\25b6';
+		}
+		.fc-widget-header th {
+			padding: rem(8) 0 rem(5);
+		}
+		.fc-row .fc-bg,
+		.fc-content-skeleton tbody {
+			display: none;
+		}
+		.fc-scroller {
+			height: auto !important;
+		}
+		.fc-content-skeleton {
+			position: static;
+			padding: 0;
+			table {
+				margin: 0;
+			}
+			td {
+				height: rem(19);
+				padding: rem(8) rem(5) rem(6);
+				border: 1px solid #ccc;
+				text-align: center;
+				&.hasEvent {
+					font-weight: 700;
+					color: $color-white;
+					background-color: $color-rj;
+					&:hover {
+						.my-fc-event-ctn {
+							@include showActive;
+						}
+					}
+				}
+			}
+			.my-fc-event-ctn {
+				position: absolute;
+				left: rem(30);
+				right: rem(30);
+				z-index: 1;
+				margin-top: rem(5);
+				padding: rem(5) rem(10);
+				border: 1px solid $color-grey-light;
+				text-align: left;
+				font-weight: 400;
+				color: $color-text;
+				background-color: $color-white;
+				box-shadow: 2px 2px 2px rgba($color-black, .2);
+				@include hideInactive;
+			}
+		}
+		.fc-basic-view .fc-body .fc-row {
+			min-height: 0;
+			height: auto !important;
+		}
+		.fc-basic-view .fc-day-top .fc-day-number {
+			float: none;
+		}
 	}
 
 	@include media('>phablet') {
@@ -122,7 +246,7 @@
 			align-content: flex-start;
 		}
 		.eventItemCtn {
-			margin: 0;
+			//margin: 0;
 		}
 	}
 
