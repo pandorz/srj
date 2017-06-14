@@ -79,13 +79,15 @@ class ActualiteAdmin extends AbstractAdmin
                 'label' => 'actualite.actif',
                 'attr'  => [
                     'placeholder' => 'actualite.placeholder.actif'
-                ]
+                ],
+                'required' => false
             ])
             ->add('annule', 'checkbox', [
                 'label' => 'actualite.annule',
                 'attr'  => [
                     'placeholder' => 'actualite.placeholder.annule'
-                ]
+                ],
+                'required' => false
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'actualite.contenu',
@@ -103,7 +105,8 @@ class ActualiteAdmin extends AbstractAdmin
                 'property'  => 'slug',
                 'label'     => 'actualite.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'actualite.placeholder.superviseurs'
+                'placeholder' => 'actualite.placeholder.superviseurs',
+                'required' => false
             ])
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'actualite.date_debut',

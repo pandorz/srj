@@ -52,7 +52,14 @@
                     {% if sortie.contenu|length > 99 %}
                     <div class="postMoreText" style="display: none;">
                         {{ sortie.contenu|raw }}
-                        <p><b class="u-textColorRJ">Conditions :</b> {{sortie.prix|replace({'.':','})}} euros par personne. {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                        <p><b class="u-textColorRJ">Conditions :</b> 
+                            {%if sortie.prix>0 %}
+                            {{sortie.prix|replace({'.':','})}} euros pour les personnes non membres. 
+                            {% endif %}
+                            {%if sortie.prixMembre>0 %}
+                            {{sortie.prixMembre|replace({'.':','})}} euros pour les membres. 
+                            {% endif %}
+                            {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
                             <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}</p>
                     </div>
                     <button class="seeMore" aria-hidden="true">En savoir plus</button> 

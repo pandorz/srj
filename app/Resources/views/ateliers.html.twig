@@ -52,7 +52,14 @@
                     {% if atelier.contenu|length > 99 %}
                     <div class="postMoreText" style="display: none;">
                         {{ atelier.contenu|raw }}
-                        <p><b class="u-textColorRJ">Conditions :</b> {{atelier.prix|replace({'.':','})}} euros par personne. {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                        <p><b class="u-textColorRJ">Conditions :</b> 
+                            {%if atelier.prix>0 %}
+                            {{atelier.prix|replace({'.':','})}} euros pour les personnes non membres. 
+                            {% endif %}
+                            {%if atelier.prixMembre>0 %}
+                            {{atelier.prixMembre|replace({'.':','})}} euros pour les membres. 
+                            {% endif %}
+                            {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
                             <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
                     </div>
                     <button class="seeMore" aria-hidden="true">En savoir plus</button> 

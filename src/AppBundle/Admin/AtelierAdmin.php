@@ -85,24 +85,33 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.actif',
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.actif'
-                ]
+                ],
+                'required' => false
             ])
             ->add('annule', 'checkbox', [
                 'label' => 'atelier.annule',
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.annule'
-                ]
+                ],
+                'required' => false
             ])
             ->add('reserveMembre', 'checkbox', [
                 'label' => 'atelier.reserve_membre',
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.reserve_membre'
-                ]
+                ],
+                'required' => false
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'atelier.nb_place',
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.nb_place'
+                ]
+            ])
+            ->add('prixMembre', 'text', [
+                'label' => 'atelier.prixMembre',                
+                'attr'  => [
+                    'placeholder' => 'atelier.placeholder.prixMembre'
                 ]
             ])
             ->add('prix', 'text', [

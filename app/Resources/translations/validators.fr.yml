@@ -1,26 +1,26 @@
 fos_group:
     name:
-        already_used: fos_group.name.already_used   # FIXME
+        already_used: 'Ce nom est déjà utilisé'
 
 fos_user:
     email:
-        already_used: fos_user.email.already_used   # FIXME
-        blank: fos_user.email.blank   # FIXME
-        invalid: fos_user.email.invalid   # FIXME
-        long: fos_user.email.long   # FIXME
-        short: fos_user.email.short   # FIXME
+        already_used: 'Cette adresse email est déjà utilisé'
+        blank: 'L''email est vide'
+        invalid: 'Cette adresse email est invalide'
+        long: 'Cette adresse email est trop longue'
+        short: 'Cette adresse email est trop courte'
 
     group:
-        blank: fos_user.group.blank   # FIXME
-        long: fos_user.group.long   # FIXME
-        short: fos_user.group.short   # FIXME
+        blank: 'Le nom groupe est vide'
+        long: 'Le nom du groupe est trop long'
+        short: 'Le nom du groupe est trop court'
 
     password:
-        blank: fos_user.password.blank   # FIXME
-        short: fos_user.password.short   # FIXME
+        blank: 'Le mot de passe est vide'
+        short: 'Le mot de passe est trop court'
 
     username:
-        already_used: fos_user.username.already_used   # FIXME
-        blank: fos_user.username.blank   # FIXME
-        long: fos_user.username.long   # FIXME
-        short: fos_user.username.short   # FIXME
+        already_used: 'Cet username est déjà utilisé'
+        blank: 'Le username est vide'
+        long: 'Le username est trop long'
+        short: 'Le username est trop court'

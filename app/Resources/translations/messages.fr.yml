@@ -61,11 +61,13 @@ atelier:
         contenu: Le descriptif de l'atelier
         nb_place: Nombre de places autorisés
         nom: Titre de l'atlier
-        prix: Prix de l'atelire
+        prix: Prix de l'atelier
+        prixMembre: Prix de l'atelier pour les membres
         reserve_membre: Reservé aux membres
         superviseurs: Superviseur
 
-    prix: Prix
+    prix: Prix non-membres
+    prixMembre: Prix membres
     reserve_membre: Reservé aux membres
     superviseurs: Superviseur
 
@@ -187,11 +189,13 @@ sortie:
         contenu: Le descriptif de l'actualité
         nb_place: Nombre de place autorisés
         nom: Titre à afficher
-        prix: Prix à afficher
+        prix: Prix de la sortie
+        prixMembre: Prix de la sortie pour les membres
         reserve_membre: Réservé aux membres
         superviseurs: Superviseurs
 
-    prix: Prix
+    prix: Prix non-membres
+    prixMembre: Prix membres
     reserve_membre: Reservé membres
     superviseurs: Superviseurs
 
