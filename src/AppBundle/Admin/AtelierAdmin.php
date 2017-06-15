@@ -133,7 +133,7 @@ class AtelierAdmin extends AbstractAdmin
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
-                'property'  => 'slug',
+                'property'  => 'lastname',
                 'label'     => 'atelier.superviseurs',
                 'multiple'  => true,
                 'placeholder' => 'atelier.placeholder.superviseurs'
@@ -141,13 +141,13 @@ class AtelierAdmin extends AbstractAdmin
             ->add('date', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.date',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('atelier.placeholder.date')
+                    'placeholder' => $this->trans('atelier.placeholder.date')
                 ]
             ])
             ->add('dateLimite', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.date_limite',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('atelier.placeholder.date_limite')
+                    'placeholder' => $this->trans('atelier.placeholder.date_limite')
                 ]
             ])
             ->add('image', 'sonata_media_type', array(

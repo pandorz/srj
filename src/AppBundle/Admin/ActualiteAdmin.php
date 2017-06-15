@@ -102,7 +102,7 @@ class ActualiteAdmin extends AbstractAdmin
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
-                'property'  => 'slug',
+                'property'  => 'lastname',
                 'label'     => 'actualite.superviseurs',
                 'multiple'  => true,
                 'placeholder' => 'actualite.placeholder.superviseurs',
@@ -111,13 +111,13 @@ class ActualiteAdmin extends AbstractAdmin
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'actualite.date_debut',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('actualite.placeholder.date_debut')
+                    'placeholder' => $this->trans('actualite.placeholder.date_debut')
                 ]
             ])
             ->add('dateFin', 'sonata_type_datetime_picker', [
                 'label' => 'actualite.date_fin',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('actualite.placeholder.date_fin')
+                    'placeholder' => $this->trans('actualite.placeholder.date_fin')
                 ]
             ])
             ->add('image', 'sonata_media_type', array(
