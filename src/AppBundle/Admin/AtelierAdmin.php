@@ -142,18 +142,21 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.date',
                 'attr'  => [
                     'placeholder' => $this->trans('atelier.placeholder.date')
-                ]
+                ],
+                'required' => false
             ])
             ->add('dateLimite', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.date_limite',
                 'attr'  => [
                     'placeholder' => $this->trans('atelier.placeholder.date_limite')
-                ]
+                ],
+                'required' => false
             ])
             ->add('image', 'sonata_media_type', array(
                 'label' => 'atelier.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image'
+                'context'  => 'image',
+                'required' => false,
             ))
             ->end()
         ;

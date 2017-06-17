@@ -112,18 +112,21 @@ class ActualiteAdmin extends AbstractAdmin
                 'label' => 'actualite.date_debut',
                 'attr'  => [
                     'placeholder' => $this->trans('actualite.placeholder.date_debut')
-                ]
+                ],
+                'required' => false
             ])
             ->add('dateFin', 'sonata_type_datetime_picker', [
                 'label' => 'actualite.date_fin',
                 'attr'  => [
                     'placeholder' => $this->trans('actualite.placeholder.date_fin')
-                ]
+                ],
+                'required' => false
             ])
             ->add('image', 'sonata_media_type', array(
                 'label' => 'actualite.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image'
+                'context'  => 'image',
+                'required' => false,
             ))
             ->end()
         ;

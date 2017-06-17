@@ -58,14 +58,14 @@ class Sortie
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date", type="date", nullable=true)
+     * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
     
    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_limite", type="date", nullable=true)
+     * @ORM\Column(name="date_limite", type="datetime", nullable=true)
      */
     private $dateLimite;
     

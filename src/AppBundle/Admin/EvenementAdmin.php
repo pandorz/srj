@@ -111,19 +111,22 @@ class EvenementAdmin extends AbstractAdmin
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_debut',
                 'attr'  => [
-                    'placeholder' => $this->trans('evenement.placeholder.date_debut')
-                ]
+                    'placeholder' => 'evenement.placeholder.date_debut'
+                ],
+                'required' => false
             ])
             ->add('dateFin', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_fin',
                 'attr'  => [
-                    'placeholder' => $this->trans('evenement.placeholder.date_fin')
-                ]
+                    'placeholder' => 'evenement.placeholder.date_fin'
+                ],
+                'required' => false
             ])
             ->add('image', 'sonata_media_type', array(
                 'label' => 'evenement.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image'
+                'context'  => 'image',
+                'required' => false,
             ))
             ->end()
         ;
