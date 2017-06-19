@@ -33,7 +33,7 @@ img {
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
-    height: rem(220);
+    min-height: rem(220);
     padding: $margin-s;
     border-bottom: 5px solid $color-rj;
     text-align: center;
@@ -80,7 +80,7 @@ img {
 
 @include media('>laptop') {
     .hero {
-        height: 23vw;
+        min-height: 0;
         max-height: rem(380);
         background-position: center center;
     }
