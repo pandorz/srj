@@ -110,6 +110,8 @@ class EvenementAdmin extends AbstractAdmin
             ])
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_debut',
+                'dp_language'=>'fr',
+                'format'=>'dd MMM yyyy à HH:mm',
                 'attr'  => [
                     'placeholder' => 'evenement.placeholder.date_debut'
                 ],

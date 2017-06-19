@@ -140,6 +140,8 @@ class AtelierAdmin extends AbstractAdmin
             ])
             ->add('date', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.date',
+                'dp_language'=>'fr',
+                'format'=>'dd MMM yyyy à HH:mm',
                 'attr'  => [
                     'placeholder' => $this->trans('atelier.placeholder.date')
                 ],
@@ -147,6 +149,8 @@ class AtelierAdmin extends AbstractAdmin
             ])
             ->add('dateLimite', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.date_limite',
+                'dp_language'=>'fr',
+                'format'=>'dd MMM yyyy à HH:mm',
                 'attr'  => [
                     'placeholder' => $this->trans('atelier.placeholder.date_limite')
                 ],
