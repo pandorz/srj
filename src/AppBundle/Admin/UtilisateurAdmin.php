@@ -56,7 +56,8 @@ class UtilisateurAdmin extends UserAdmin
         $datagridMapper            
             ->add('parent', null, [], 'entity', [
                 'class'         => Utilisateur::class,
-                'choice_label'  => 'nom',
-            ]);
+                'choice_label'  => 'lastname',
+            ])
+            ->add('lastname');
     }
 }

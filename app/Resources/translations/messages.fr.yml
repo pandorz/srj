@@ -23,6 +23,8 @@ actualite:
         actif: Activer/Desactiver
         annule: Annuler
         contenu: 'Le descriptif de l''actualité'
+        date_debut: 'Date début'
+        date_fin: 'Date fin'
         nom: 'Le titre à afficher'
         superviseurs: Superviseur
 
@@ -59,6 +61,8 @@ atelier:
         actif: Activer/Desactiver
         annule: Annuler
         contenu: 'Le descriptif de l''atelier'
+        date: Date
+        date_limite: atelier.placeholder.date_limite   # FIXME
         nb_place: 'Nombre de places autorisés'
         nom: 'Titre de l''atlier'
         prix: 'Prix de l''atelier'
@@ -80,7 +84,7 @@ contact:
         soustitre: 'Quelqu''un a laissé un message sur le site Rouen japon'
         sujet: 'Nouveau mail depuis le site rouen japon'
         texte: '%prenom% %nom% (%email%) à envoyé un message avec l''objet: <b>%objet%</b>.<br><br>Voici le contenu de son message:<br>%message%'
-        titre: Nouveau contact
+        titre: 'Nouveau contact'
 
 cour:
     actif: Actif
@@ -139,6 +143,8 @@ evenement:
         actif: Activer/Desactiver
         annule: Annuler
         contenu: 'Le descriptif du cours'
+        date_debut: 'Date début'
+        date_fin: 'Date fin'
         nom: 'Titre à afficher'
         superviseurs: Superviseurs
 
@@ -198,6 +204,8 @@ sortie:
         actif: Activer/Desactiver
         annule: Annuler
         contenu: 'Le descriptif de l''actualité'
+        date: Date
+        date_limite: sortie.placeholder.date_limite   # FIXME
         nb_place: 'Nombre de place autorisés'
         nom: 'Titre à afficher'
         prix: 'Prix de la sortie'

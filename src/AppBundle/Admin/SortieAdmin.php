@@ -132,7 +132,7 @@ class SortieAdmin extends AbstractAdmin
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
-                'property'  => 'slug',
+                'property'  => 'lastname',
                 'label'     => 'sortie.superviseurs',
                 'multiple'  => true,
                 'placeholder' => 'sortie.placeholder.superviseurs',
@@ -141,19 +141,22 @@ class SortieAdmin extends AbstractAdmin
             ->add('date', 'sonata_type_datetime_picker', [
                 'label' => 'sortie.date',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('sortie.placeholder.date')
-                ]
+                    'placeholder' => $this->trans('sortie.placeholder.date')
+                ],
+                'required' => false
             ])
             ->add('dateLimite', 'sonata_type_datetime_picker', [
                 'label' => 'sortie.date_limite',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('sortie.placeholder.date_limite')
-                ]
+                    'placeholder' => $this->trans('sortie.placeholder.date_limite')
+                ],
+                'required' => false
             ])
             ->add('image', 'sonata_media_type', array(
                 'label' => 'sortie.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image'
+                'context'  => 'image',
+                'required' => false,
             ))
             ->end()
         ;

@@ -102,7 +102,7 @@ class EvenementAdmin extends AbstractAdmin
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
-                'property'  => 'slug',
+                'property'  => 'lastname',
                 'label'     => 'evenement.superviseurs',
                 'multiple'  => true,
                 'placeholder' => 'evenement.placeholder.superviseurs',
@@ -111,19 +111,22 @@ class EvenementAdmin extends AbstractAdmin
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_debut',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_debut')
-                ]
+                    'placeholder' => 'evenement.placeholder.date_debut'
+                ],
+                'required' => false
             ])
             ->add('dateFin', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_fin',
                 'attr'  => [
-                    'placeholder' => $this->getTranslationLabel('evenement.placeholder.date_fin')
-                ]
+                    'placeholder' => 'evenement.placeholder.date_fin'
+                ],
+                'required' => false
             ])
             ->add('image', 'sonata_media_type', array(
                 'label' => 'evenement.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image'
+                'context'  => 'image',
+                'required' => false,
             ))
             ->end()
         ;

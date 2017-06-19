@@ -27,23 +27,9 @@ class Utilisateur extends BaseUser
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;    
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=100, nullable=true)
-     */
-    private $nom;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=100, nullable=true)
-     */
-    private $prenom;
     
     /**
-    * @Gedmo\Slug(fields={"nom","prenom"})
+    * @Gedmo\Slug(fields={"lastname","firstname"})
     * @ORM\Column(length=128, unique=true)
     */
     private $slug;
@@ -625,17 +611,5 @@ class Utilisateur extends BaseUser
     public function getLocked()
     {
         return $this->locked;
-    }
-
-
-    public function __toString()
-    {
-        $sAffichage = $this->getNom().' '.$this->getPrenom();
-        if(empty(trim($sAffichage)) && !empty($this->getUsername())) {
-            $sAffichage = "(Non-configuré) -> ".$this->getUsername();
-        } else {
-            $sAffichage = '';
-        }
-        return $sAffichage;
     }
 }
