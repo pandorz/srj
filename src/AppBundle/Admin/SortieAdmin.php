@@ -140,6 +140,8 @@ class SortieAdmin extends AbstractAdmin
             ])
             ->add('date', 'sonata_type_datetime_picker', [
                 'label' => 'sortie.date',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy HH:mm',
                 'attr'  => [
                     'placeholder' => $this->trans('sortie.placeholder.date')
                 ],
@@ -147,6 +149,8 @@ class SortieAdmin extends AbstractAdmin
             ])
             ->add('dateLimite', 'sonata_type_datetime_picker', [
                 'label' => 'sortie.date_limite',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy HH:mm',
                 'attr'  => [
                     'placeholder' => $this->trans('sortie.placeholder.date_limite')
                 ],

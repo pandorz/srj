@@ -2,14 +2,14 @@
     {% set coming = 0 %}
     {% set past = 0 %}
     {% for evenement in evenements %}
-        {% if evenement.dateDebut|date('Y-m-d') > 'now'|date('Y-m-d') %}
+        {% if evenement.dateFin|date('Y-m-d') > 'now'|date('Y-m-d') %}
             {% if coming == 0 %} 
                 <div class="comingEvent">
                 <h3 class="comingTitle">Prochainement</h3>
                 {% set coming = 1 %}
             {% endif %}
         {% else %}
-            {% if past == 0 %} 
+            {% if past == 0 %}
                 <div class="pastEvents">
                 <h3 class="pastTitle">Dernièrement</h3>
                 {% set past = 1 %}

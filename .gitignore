@@ -26,4 +26,4 @@ puphpet/config-custom.yaml
 /nbproject/private/
 /app/Resources/assets/rev-manifest.json
 /composer.phar
-
+/web/uploads/medias/
