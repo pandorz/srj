@@ -46,6 +46,7 @@ framework:
 twig:
     form_themes:
         - "form_templates/rouenjapon.html.twig"
+        - 'SonataCoreBundle:Form:datepicker.html.twig'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes:
