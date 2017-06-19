@@ -224,7 +224,7 @@ class BaseController extends Controller
                         'affiche' => true, 
                         'annule' => false
                     ],
-                    ['dateDebut' => 'DESC'],
+                    ['dateFin' => 'DESC'],
                     $limit
                 );
     }
@@ -242,7 +242,7 @@ class BaseController extends Controller
                         'affiche' => true, 
                         'annule' => false
                     ],
-                    ['dateDebut' => 'DESC'],
+                    ['dateFin' => 'DESC'],
                     $limit
                 );
     }

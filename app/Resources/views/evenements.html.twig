@@ -18,7 +18,7 @@
         </section>
     {% else %}        
         {% for evenement in evenements %}
-            {% if evenement.dateDebut|date('Y-m-d') > 'now'|date('Y-m-d') %}
+            {% if evenement.dateFin|date('Y-m-d') > 'now'|date('Y-m-d') %}
                 {% if coming == 0 %} 
                     <section class="comingEvents section">
                     <h2 class="sectionTitle">Prochainement</h2>
