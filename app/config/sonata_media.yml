@@ -75,6 +75,7 @@ sonata_media:
             generator:  sonata.media.generator.default
             thumbnail:  sonata.media.thumbnail.format
 
+
     cdn:
         server:
             path: /uploads/medias # http://media.sonata-project.org/

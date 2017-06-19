@@ -111,7 +111,7 @@ class ActualiteAdmin extends AbstractAdmin
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'actualite.date_debut',
                 'dp_language'=>'fr',
-                'format'=>'dd MMM yyyy à HH:mm',
+                'format'=>'dd/MM/yyyy HH:mm',
                 'attr'  => [
                     'placeholder' => $this->trans('actualite.placeholder.date_debut')
                 ],
@@ -120,7 +120,7 @@ class ActualiteAdmin extends AbstractAdmin
             ->add('dateFin', 'sonata_type_datetime_picker', [
                 'label' => 'actualite.date_fin',
                 'dp_language'=>'fr',
-                'format'=>'dd MMM yyyy à HH:mm',
+                'format'=>'dd/MM/yyyy HH:mm',
                 'attr'  => [
                     'placeholder' => $this->trans('actualite.placeholder.date_fin')
                 ],

@@ -47,11 +47,9 @@ twig:
     form_themes:
         - "form_templates/rouenjapon.html.twig"
         - 'SonataCoreBundle:Form:datepicker.html.twig'
+        - 'SonataMediaBundle:Form:media_widgets.html.twig'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
-    form_themes:
-        - 'SonataCoreBundle:Form:datepicker.html.twig'
-        - 'SonataMediaBundle:Form:media_widgets.html.twig'
     exception_controller: app.error_controller:showAction
     globals:
         web_path: '%web_path%'

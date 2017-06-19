@@ -111,7 +111,7 @@ class EvenementAdmin extends AbstractAdmin
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_debut',
                 'dp_language'=>'fr',
-                'format'=>'dd MMM yyyy à HH:mm',
+                'format'=>'dd/MM/yyyy HH:mm',
                 'attr'  => [
                     'placeholder' => 'evenement.placeholder.date_debut'
                 ],
@@ -119,6 +119,8 @@ class EvenementAdmin extends AbstractAdmin
             ])
             ->add('dateFin', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_fin',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy HH:mm',
                 'attr'  => [
                     'placeholder' => 'evenement.placeholder.date_fin'
                 ],
