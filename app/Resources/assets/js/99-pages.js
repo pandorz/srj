@@ -27,40 +27,47 @@ app.pagesController.defaultAction = {
             },
             events: events
         });
-        showEventsonDays();
 
         function showEventsonDays() {
             for (var i = 0; i < events.length; i++) {
                 var evStartDate = new Date(events[i].start),
+                    evEndDate = new Date(events[i].end),
                     evTitle = events[i].title,
                     evUrl = events[i].url;
-                // var evFinishDate = new Date(events[i].end);
-                // if (events[i].end) {
-                //     while (evStartDate <= evFinishDate) {
-                //         addClassByDate(evStartDate);
-                //         evStartDate.setDate(evStartDate.getDate() + 1);
-                //     }
-                // } else {
-                    addClassByDate(evStartDate, evTitle, evUrl);
-                // }
+                addClassByDate(evStartDate, evEndDate, evTitle, evUrl);
             }
         }
 
-        function addClassByDate(date, title, url) {
-            var dataAttr = getDataAttr(date),
-                $dayCell = $("[data-date='" + dataAttr + "']"),
-                eventHtml;
+        function addClassByDate(date, dateEnd, title, url) {
+            var eventDates = [];
+            // if it is a date
+            if (Object.prototype.toString.call(dateEnd) === "[object Date]") {
+                // if date is valid
+                if ( !isNaN( dateEnd.getTime() ) ) {
+                    while (date <= dateEnd) {
+                        eventDates.push(new Date(date));
+                        date.setDate(date.getDate() + 1);
+                    }
+                }
+                else eventDates = [date];
+            }
+            eventDates.forEach(function(d){
+                var dataAttr = getDataAttr(d),
+                    $dayCell = $("[data-date='" + dataAttr + "']"),
+                    eventHtml;
                 if (url != undefined) {
                     eventHtml = '<span class="my-fc-event-title"><a href="'+url+'">'+title+'</a></span>';
                 }
                 else {
                     eventHtml = '<span class="my-fc-event-title">'+title+'</span>';
                 }
-            $dayCell.addClass("hasEvent");
-            if ($dayCell.find('.my-fc-event-ctn').length < 1) {
-                $dayCell.append('<div class="my-fc-event-ctn"></div>');
-            }
-            $dayCell.find('.my-fc-event-ctn').append(eventHtml);
+                $dayCell.addClass("hasEvent");
+                if ($dayCell.find('.my-fc-event-ctn').length < 1) {
+                    $dayCell.append('<div class="my-fc-event-ctn"></div>');
+                }
+                $dayCell.find('.my-fc-event-ctn').append(eventHtml);
+            });
+
         }
 
         function getDataAttr(date) {
