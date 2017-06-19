@@ -5,14 +5,13 @@
     {% set hastagTitle = "Nos activités" %}
     {% set hastagList = "#Cours" %}
     {% include 'bandeau_hastag.html.twig' %}
-    
 
     <section class="about section u-fitted">
         <h2 class="sectionTitle">Les cours</h2>
         <div class="sectionChapo u-textCenter aboutText">
-            <p>Grâce aux cours de Rouen Japon, vous pourrez apprendre le japonais, pratiquer la calligraphie, vous initier à l'art de la cérémonie du thé, et bien d'autres choses...<br>
-                Au début de chaque saison, en fonction du nombre d'adhérents, et d'adhérents intéressés par telle ou telle activité, le planning et le nombre de cours évolue.<br>
-                Ci-dessous les différents cours pour la saison 2016-2017.</p>
+            <p>Grâce aux cours de Rouen Japon, vous pourrez apprendre le japonais, pratiquer la calligraphie ou vous initier à l'art de la cérémonie du thé.<br>
+                Les enfants pourront également découvrir la langue et la culture japonaises tout en s'amusant.<br>
+                Ci-dessous les différents cours pour la saison 2017-2018.</p>
         </div>
     </section>
 
@@ -23,27 +22,28 @@
             <div>
                 <h3 class="sectionSubTitle">Apprendre le japonais</h3>
                 <div class="sectionChapo">
-                    <p>Rouen Japon vous propose depuis plusieurs années d'apprendre le japonais. Selon votre niveau et votre emploi du temps, un ou plusieurs créneaux sont possibles en semaine. Les cours sont dispensés par Akari Fujino à la <strong>maison des associations Saint Sever</strong>.</p>
+                    <p>Rouen Japon vous propose depuis 2010 d'apprendre le japonais. Les cours sont dispensés à la maison des associations Saint Sever (10-12 rue Saint Julien à Rouen) par Akari Fujino, Atsuko Kiefer, Seiko Petiton et Adrien Becam..</p>
                 </div>
 
                 <div class="japaneseText sectionText">
-                    <p>Les cours se répartissent comme suit* :</p>
-                    <ul class="u-ul-colorRJ">
-                        <li><b>Débutants :</b> soit le mercredi à 20H, soit le samedi à 9h</li>
-                        <li><b>2ème année :</b> soit le mardi à 20h, soit le samedi à 10h30</li>
-                        <li><b>3ème année :</b> le samedi à 10h30</li>
-                        <li><b>4ème année et supérieures :</b> le jeudi à 20h</li>
-                    </ul>
-                    <p class="u-note">*la détermination définitive du niveau des élèves revient au professeur</p>
+                    <p>La répartition des cours évolue chaque année. Elle vous sera communiquée avant la rentrée.</p>
+                    {#<ul class="u-ul-colorRJ">#}
+                        {#<li><b>Débutants :</b> soit le mercredi à 20H, soit le samedi à 9h</li>#}
+                        {#<li><b>2ème année :</b> soit le mardi à 20h, soit le samedi à 10h30</li>#}
+                        {#<li><b>3ème année :</b> le samedi à 10h30</li>#}
+                        {#<li><b>4ème année et supérieures :</b> le jeudi à 20h</li>#}
+                    {#</ul>#}
+                    <p class="u-note">*La détermination du niveau des élèves revient au professeur</p>
 
                     <strong class="conditions">Conditions</strong>
-                    <p>Pour suivre les cours de japonais, il vous faut <b><a href="#">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
-                    <p>Le montant des cours pour la saison est fixé à 432€ pour l'année avec proposition de facilités de paiement (encaissement de trois chèques de 144€ en octobre, janvier et avril ou de 9 chèques de 48€ tous les mois).</p>
-                    <p>Si vous avez d'autres questions, vous pouvez nous les poser via notre <a href="#">formulaire de contact.</a></p>
+                    <p>Pour suivre les cours de japonais, il vous faut <b><!--<a href="#">-->adhérer à l'association<!--</a>--></b> et vous acquitter du montant de la cotisation de 20€.</p>
+                    <p>Le montant des cours pour la saison est fixé à 380€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
+                    <p>Si vous avez d'autres questions, vous pouvez nous les poser via notre <a href="{{path('contact')}}">formulaire de contact.</a></p>
                 </div>
             </div>
         </div>                
     </section>
+
 
     <a id="calligraphie"></a>
     <section class="calligraphy section u-fitted">
@@ -52,16 +52,14 @@
             <div>
                 <h3 class="sectionSubTitle">Pratiquer la calligraphie</h3>
                 <div class="calligraphyChapo sectionChapo">
-                    <p>L'association Rouen Japon vous propose désormais des cours de calligraphie. Ils se dérouleront le <strong>lundi de 20h00 à 21h30 à la maison des associations de Saint Sever</strong> et seront animés par Mme Motoko Sekido.</p>
+                    <p>L'association Rouen Japon vous propose des cours de calligraphie depuis 2015. Ils se dérouleront le <strong>lundi de 20h00 à 21h30 à la maison des associations de Saint Sever (10-12 rue Saint Julien à Rouen)</strong> et seront animés par Mme Motoko Sekido.</p>
                 </div>
-
-                <p class="u-warning">// Les cours sont complets ///</p>
+                {#<p class="u-warning">// Les cours sont complets ///</p>#}
 
                 <div class="japaneseText sectionText">
                     <strong class="conditions">Conditions</strong>
-                    <p>Le montant des cours est fixé à 270€ pour l'année avec proposition de facilités de paiement (encaissement de trois chèques de 90€ en octobre, janvier et avril ou de 9 chèques de 30€ tous les mois).</p>
-                    <p>Pour suivre les cours de calligraphie, il faut également <b><a href="#">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
-                    <p>Pour vous inscrire, il vous suffit de remplir le <a href="#">formulaire d'adhésion en ligne</a>.</p>
+                    <p>Le montant des cours est fixé à 272€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
+                    <p>Pour suivre les cours de calligraphie, il faut également <b><!--<a href="#">-->adhérer à l'association<!--</a>--></b> et vous acquitter du montant de la cotisation de 20€.</p>
                 </div>
             </div>
         </div>                
