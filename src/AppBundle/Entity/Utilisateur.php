@@ -88,21 +88,40 @@ class Utilisateur extends BaseUser
     /**
      *
      * @ORM\ManyToMany(targetEntity="Atelier", inversedBy="superviseurs")
-     * @ORM\JoinColumn(nullable=true, name="fk_atelier_supervise", referencedColumnName="id")
+     * @ORM\JoinTable(name="ateliers_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")}
+     * )
      */
     private $atelierSupervise;
+
+    /**
+     *
+     * @ORM\ManyToMany(targetEntity="Actualite", inversedBy="superviseurs")
+     * @ORM\JoinTable(name="actualitess_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="actualite_id", referencedColumnName="id")}
+     * )
+     */
+    private $actualiteSupervise;
     
     /**
      *
      * @ORM\ManyToMany(targetEntity="Evenement", inversedBy="superviseurs")
-     * @ORM\JoinColumn(nullable=true, name="fk_evenement_supervise", referencedColumnName="id")
+     * @ORM\JoinTable(name="evenements_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")}
+     * )
      */
     private $evenementSupervise;
     
     /**
      *
      * @ORM\ManyToMany(targetEntity="Sortie", inversedBy="superviseurs")
-     * @ORM\JoinColumn(nullable=true, name="fk_sortie_supervise", referencedColumnName="id")
+     * @ORM\JoinTable(name="sorties_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="sortie_id", referencedColumnName="id")}
+     * )
      */
     private $sortieSupervise;
 
