@@ -72,7 +72,7 @@ class Atelier
     /**
      * @var int
      *
-     * @ORM\Column(name="nb_place", type="integer")
+     * @ORM\Column(name="nb_place", type="integer", nullable=true)
      */
     private $nbPlace;
     
@@ -89,7 +89,12 @@ class Atelier
     
     
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="atelierSupervise")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="atelierSupervise")
+     * @ORM\JoinTable(name="ateliers_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $superviseurs;
     
@@ -114,8 +119,14 @@ class Atelier
      */
     private $prixMembre;
     
+    
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="ateliers")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="ateliers")
+     * @ORM\JoinTable(name="ateliers_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $inscrits;
     
@@ -243,6 +254,7 @@ class Atelier
     {
         $this->superviseurs     = new ArrayCollection();
         $this->prix             = 0;
+        $this->prixMembre       = 0;
     }
 
 
@@ -253,7 +265,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setDate(\DateTime $date)
+    public function setDate($date)
     {
         $this->date = $date;
 
@@ -325,7 +337,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setDateLimite(\DateTime $dateLimite)
+    public function setDateLimite($dateLimite)
     {
         $this->dateLimite = $dateLimite;
 

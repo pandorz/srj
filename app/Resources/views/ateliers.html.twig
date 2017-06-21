@@ -39,35 +39,35 @@
             <p>Ça ne devrait pourtant pas tarder !</p>            
         </div>
         {% else %} 
-        <h2 class="sectionTitle">Sortie&(s) à venir</h2>
-        {% for atelier in ateliers %}
-            <div class="postItem shortPost">
-                <div class="postItemCtn">
-                    {% media atelier.image, 'big' with {'class': 'postPhoto'} %}
-                    <h4 class="postTitle">{{ atelier.nom }}</h4>
-                    <time class="postDate" datetime="{{atelier.dateDebut|date('Y-m-d')}}">
-                        <span class="day">{{atelier.dateDebut|date('d')}}</span> 
-                        <span class="month">{{atelier.dateDebut|date('F')|slice(0, 3)}}.</span>
-                    </time>
-                    <p class="postSummary">{% if atelier.contenu|length > 99 %}{{ atelier.contenu|raw|slice(0, 100) }}{% else %}{{ atelier.contenu|raw }}{% endif %}</p>
-                    {% if atelier.contenu|length > 99 %}
-                    <div class="postMoreText" style="display: none;">
-                        {{ atelier.contenu|raw }}
-                        <p><b class="u-textColorRJ">Conditions :</b> 
-                            {%if atelier.prix>0 %}
-                            {{atelier.prix|replace({'.':','})}} euros pour les personnes non membres. 
-                            {% endif %}
-                            {%if atelier.prixMembre>0 %}
-                            {{atelier.prixMembre|replace({'.':','})}} euros pour les membres. 
-                            {% endif %}
-                            {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
-                            <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
-                    </div>
-                    <button class="seeMore" aria-hidden="true">En savoir plus</button> 
-                    {% endif %}                       
+        <h2 class="sectionTitle">Ateliers(s) à venir</h2>
+        <div class="postItem shortPost">
+        {% for atelier in ateliers %}            
+            <div class="postItemCtn">
+                {% media atelier.image, 'big' with {'class': 'postPhoto'} %}
+                <h4 class="postTitle">{{ atelier.nom }}</h4>
+                <time class="postDate" datetime="{{atelier.date|date('Y-m-d')}}">
+                    <span class="day">{{atelier.date|date('d')}}</span> 
+                    <span class="month">{{atelier.date|date('F')|slice(0, 3)}}.</span>
+                </time>
+                <p class="postSummary">{{ atelier.contenu|slice(0, 100)|raw }}</p>
+                <div class="postMoreText" style="display: none;">
+                    {{ atelier.contenu|raw }}
+                    <p><b class="u-textColorRJ">Conditions :</b> 
+                        {%if atelier.prix>0 and not atelier.reserveMembre%}
+                        {{atelier.prix|replace({'.':','})}} euros pour les personnes non membres. 
+                        {% endif %}
+                        {%if atelier.prixMembre>0 %}
+                        {{atelier.prixMembre|replace({'.':','})}} euros pour les membres. 
+                        {% else %}
+                            Gratuit pour les membres.
+                        {% endif %}
+                        {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                        <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
                 </div>
-            </div>
+                <button class="seeMore" aria-hidden="true">En savoir plus</button>                      
+            </div>            
         {% endfor %}
+        </div>
         {% endif %}        
     </section>       
     

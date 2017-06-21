@@ -44,7 +44,7 @@ class Utilisateur extends BaseUser
     /**
      * @var boolean
      *
-     * @ORM\Column(name="boolean", type="integer")
+     * @ORM\Column(name="locked", type="integer")
      */
     private $locked;
 	
@@ -56,72 +56,37 @@ class Utilisateur extends BaseUser
     private $est_professeur;    
     
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="Cour", inversedBy="inscrits")
-     * @ORM\JoinTable(name="cours_inscriptions",
-     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Cour", mappedBy="inscrits")
      */
     private $cours;
     
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="Sortie", inversedBy="inscrits")
-     * @ORM\JoinTable(name="sorties_inscriptions",
-     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="sortie_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Sortie", mappedBy="inscrits")
      */
     private $sorties;
     
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="Atelier", inversedBy="inscrits")
-     * @ORM\JoinTable(name="ateliers_inscriptions",
-     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Atelier", mappedBy="inscrits")
      */
     private $ateliers;
     
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="Atelier", inversedBy="superviseurs")
-     * @ORM\JoinTable(name="ateliers_surpervisions",
-     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Atelier", mappedBy="superviseurs")
      */
     private $atelierSupervise;
 
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="Actualite", inversedBy="superviseurs")
-     * @ORM\JoinTable(name="actualitess_surpervisions",
-     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="actualite_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Actualite", mappedBy="superviseurs")
      */
     private $actualiteSupervise;
     
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="Evenement", inversedBy="superviseurs")
-     * @ORM\JoinTable(name="evenements_surpervisions",
-     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="superviseurs")
      */
     private $evenementSupervise;
     
     /**
-     *
-     * @ORM\ManyToMany(targetEntity="Sortie", inversedBy="superviseurs")
-     * @ORM\JoinTable(name="sorties_surpervisions",
-     *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="sortie_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToMany(targetEntity="Sortie", mappedBy="superviseurs")
      */
     private $sortieSupervise;
 
@@ -630,5 +595,12 @@ class Utilisateur extends BaseUser
     public function getLocked()
     {
         return $this->locked;
+    }
+    
+    public function __toString() {
+        if (!empty($this->getFirstname()) && !empty($this->getLastname())) {
+            return $this->getFullname();
+        }
+        return parent::__toString();
     }
 }

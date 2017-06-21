@@ -53,6 +53,7 @@ atelier:
         dateLimite: 'Date limite inscription'
         nb_place: 'Nombre de place'
         nom: Titre
+        reserveMembre: Reservé membres
 
     nb_place: 'Nombre de places autorisés'
     nom: Titre
@@ -196,6 +197,7 @@ sortie:
         dateLimite: 'Date limite inscription'
         nb_place: 'Nombre de place'
         nom: Titre
+        reserveMembre: Reservé membres
 
     nb_place: 'Nombre de place autorisés'
     nom: Titre
