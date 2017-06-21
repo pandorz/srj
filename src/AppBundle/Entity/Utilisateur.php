@@ -631,4 +631,11 @@ class Utilisateur extends BaseUser
     {
         return $this->locked;
     }
+    
+    public function __toString() {
+        if (!empty($this->getFirstname()) && !empty($this->getLastname())) {
+            return $this->getFullname();
+        }
+        return parent::__toString();
+    }
 }

@@ -102,7 +102,7 @@ class EvenementAdmin extends AbstractAdmin
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
-                'property'  => 'lastname',
+                'property'  => ['firstname','lastname'],
                 'label'     => 'evenement.superviseurs',
                 'multiple'  => true,
                 'placeholder' => 'evenement.placeholder.superviseurs',

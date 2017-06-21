@@ -102,7 +102,7 @@ class ActualiteAdmin extends AbstractAdmin
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
-                'property'  => 'lastname',
+                'property'  => ['firstname','lastname'],
                 'label'     => 'actualite.superviseurs',
                 'multiple'  => true,
                 'placeholder' => 'actualite.placeholder.superviseurs',

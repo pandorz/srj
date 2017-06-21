@@ -45,9 +45,9 @@
                 <div class="postItemCtn">
                     {% media atelier.image, 'big' with {'class': 'postPhoto'} %}
                     <h4 class="postTitle">{{ atelier.nom }}</h4>
-                    <time class="postDate" datetime="{{atelier.dateDebut|date('Y-m-d')}}">
-                        <span class="day">{{atelier.dateDebut|date('d')}}</span> 
-                        <span class="month">{{atelier.dateDebut|date('F')|slice(0, 3)}}.</span>
+                    <time class="postDate" datetime="{{atelier.date|date('Y-m-d')}}">
+                        <span class="day">{{atelier.date|date('d')}}</span> 
+                        <span class="month">{{atelier.date|date('F')|slice(0, 3)}}.</span>
                     </time>
                     <p class="postSummary">{% if atelier.contenu|length > 99 %}{{ atelier.contenu|raw|slice(0, 100) }}{% else %}{{ atelier.contenu|raw }}{% endif %}</p>
                     {% if atelier.contenu|length > 99 %}

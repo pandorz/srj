@@ -72,7 +72,7 @@ class Atelier
     /**
      * @var int
      *
-     * @ORM\Column(name="nb_place", type="integer")
+     * @ORM\Column(name="nb_place", type="integer", nullable=true)
      */
     private $nbPlace;
     
@@ -243,6 +243,7 @@ class Atelier
     {
         $this->superviseurs     = new ArrayCollection();
         $this->prix             = 0;
+        $this->prixMembre       = 0;
     }
 
 
@@ -253,7 +254,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setDate(\DateTime $date)
+    public function setDate($date)
     {
         $this->date = $date;
 
@@ -325,7 +326,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setDateLimite(\DateTime $dateLimite)
+    public function setDateLimite($dateLimite)
     {
         $this->dateLimite = $dateLimite;
 

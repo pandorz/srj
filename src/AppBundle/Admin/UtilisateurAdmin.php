@@ -58,6 +58,7 @@ class UtilisateurAdmin extends UserAdmin
                 'class'         => Utilisateur::class,
                 'choice_label'  => 'lastname',
             ])
-            ->add('lastname');
+            ->add('lastname')
+            ->add('firstname');
     }
 }

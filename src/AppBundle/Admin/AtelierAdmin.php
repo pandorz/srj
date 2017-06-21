@@ -40,7 +40,7 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.liste.annule',
             ])
             ->add('reserveMembre', 'boolean', [
-                'label' => 'atelier.liste.annule',
+                'label' => 'atelier.liste.reserveMembre',
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'atelier.liste.nb_place',
@@ -106,19 +106,22 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.nb_place',
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.nb_place'
-                ]
+                ],
+                'required' => false
             ])
             ->add('prixMembre', 'text', [
                 'label' => 'atelier.prixMembre',                
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.prixMembre'
-                ]
+                ],
+                'required' => false
             ])
             ->add('prix', 'text', [
                 'label' => 'atelier.prix',                
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.prix'
-                ]
+                ],
+                'required' => false
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'atelier.contenu',
@@ -133,10 +136,11 @@ class AtelierAdmin extends AbstractAdmin
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
-                'property'  => 'lastname',
+                'property'  => ['firstname','lastname'],
                 'label'     => 'atelier.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'atelier.placeholder.superviseurs'
+                'placeholder' => 'atelier.placeholder.superviseurs',
+                'required' => false
             ])
             ->add('date', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.date',

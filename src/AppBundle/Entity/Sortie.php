@@ -72,7 +72,7 @@ class Sortie
     /**
      * @var int
      *
-     * @ORM\Column(name="nb_place", type="integer")
+     * @ORM\Column(name="nb_place", type="integer", nullable=true)
      */
     private $nbPlace;
     
@@ -162,6 +162,7 @@ class Sortie
     {
         $this->superviseurs     = new ArrayCollection();
         $this->prix             = 0;
+        $this->prixMembre       = 0;
     }
 
 
@@ -304,7 +305,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setDate(\DateTime $date)
+    public function setDate($date)
     {
         $this->date = $date;
 
@@ -328,7 +329,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setDateLimite(\DateTime $dateLimite)
+    public function setDateLimite($dateLimite)
     {
         $this->dateLimite = $dateLimite;
 

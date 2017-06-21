@@ -43,9 +43,9 @@
                 <div class="postItemCtn">
                     {% media sortie.image, 'big' with {'class': 'postPhoto'} %}
                     <h4 class="postTitle">{{ sortie.nom }}</h4>
-                    <time class="postDate" datetime="{{sortie.dateDebut|date('Y-m-d')}}">
-                        <span class="day">{{sortie.dateDebut|date('d')}}</span> 
-                        <span class="month">{{sortie.dateDebut|date('F')|slice(0, 3)}}.</span>
+                    <time class="postDate" datetime="{{sortie.date|date('Y-m-d')}}">
+                        <span class="day">{{sortie.date|date('d')}}</span> 
+                        <span class="month">{{sortie.date|date('F')|slice(0, 3)}}.</span>
                     </time>
                     <p class="postSummary">{% if sortie.contenu|length > 99 %}{{ sortie.contenu|raw|slice(0, 100) }}{% else %}{{ sortie.contenu|raw }}{% endif %}</p>
                     {% if sortie.contenu|length > 99 %}

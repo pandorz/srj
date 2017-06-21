@@ -40,7 +40,7 @@ class SortieAdmin extends AbstractAdmin
                 'label' => 'sortie.liste.annule',
             ])
             ->add('reserveMembre', 'boolean', [
-                'label' => 'sortie.liste.annule',
+                'label' => 'sortie.liste.reserveMembre',
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'sortie.liste.nb_place',
@@ -99,25 +99,29 @@ class SortieAdmin extends AbstractAdmin
                 'label' => 'sortie.reserve_membre',
                 'attr'  => [
                     'placeholder' => 'sortie.placeholder.reserve_membre'
-                ]
+                ],
+                'required' => false
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'sortie.nb_place',
                 'attr'  => [
                     'placeholder' => 'sortie.placeholder.nb_place'
-                ]
+                ],
+                'required' => false
             ])
             ->add('prixMembre', 'text', [
                 'label' => 'sortie.prixMembre',                
                 'attr'  => [
                     'placeholder' => 'sortie.placeholder.prixMembre'
-                ]
+                ],
+                'required' => false
             ])    
             ->add('prix', 'text', [
                 'label' => 'sortie.prix',                
                 'attr'  => [
                     'placeholder' => 'sortie.placeholder.prix'
-                ]
+                ],
+                'required' => false
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'sortie.contenu',
@@ -132,7 +136,7 @@ class SortieAdmin extends AbstractAdmin
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
-                'property'  => 'lastname',
+                'property'  => ['firstname','lastname'],
                 'label'     => 'sortie.superviseurs',
                 'multiple'  => true,
                 'placeholder' => 'sortie.placeholder.superviseurs',
