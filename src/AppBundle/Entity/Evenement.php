@@ -82,7 +82,12 @@ class Evenement
     private $contenu;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="evenementSupervise")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="evenementSupervise")
+     * @ORM\JoinTable(name="evenements_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="evenement_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $superviseurs;    
     

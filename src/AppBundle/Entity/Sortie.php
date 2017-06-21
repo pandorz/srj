@@ -87,9 +87,14 @@ class Sortie
      */
     private $contenu;
 
-
+    
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="sortieSupervise")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="sortieSupervise")
+     * @ORM\JoinTable(name="sorties_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="sortie_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $superviseurs;
     
@@ -114,8 +119,14 @@ class Sortie
      */
     private $prixMembre;
     
+    
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="sorties")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="sorties")
+     * @ORM\JoinTable(name="sorties_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="sortie_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $inscrits;
     

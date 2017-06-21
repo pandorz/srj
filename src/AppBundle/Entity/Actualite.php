@@ -82,7 +82,12 @@ class Actualite
     private $contenu;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="actualiteSupervise")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="actualiteSupervise")
+     * @ORM\JoinTable(name="actualitess_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="actualite_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $superviseurs;    
     

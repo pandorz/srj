@@ -55,7 +55,12 @@ class Cour
     private $affiche;
 	
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="cours")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="cours")
+     * @ORM\JoinTable(name="cours_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $inscrits;
 	

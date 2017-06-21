@@ -89,7 +89,12 @@ class Atelier
     
     
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="atelierSupervise")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="atelierSupervise")
+     * @ORM\JoinTable(name="ateliers_surpervisions",
+     *     joinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $superviseurs;
     
@@ -114,8 +119,14 @@ class Atelier
      */
     private $prixMembre;
     
+    
     /**
-     * @ORM\ManyToMany(targetEntity="Utilisateur", mappedBy="ateliers")
+     *
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="ateliers")
+     * @ORM\JoinTable(name="ateliers_inscriptions",
+     *     joinColumns={@ORM\JoinColumn(name="atelier_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
     private $inscrits;
     
