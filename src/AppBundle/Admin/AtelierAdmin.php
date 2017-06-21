@@ -109,14 +109,14 @@ class AtelierAdmin extends AbstractAdmin
                 ],
                 'required' => false
             ])
-            ->add('prixMembre', 'text', [
+            ->add('prixMembre', 'number', [
                 'label' => 'atelier.prixMembre',                
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.prixMembre'
                 ],
                 'required' => false
             ])
-            ->add('prix', 'text', [
+            ->add('prix', 'number', [
                 'label' => 'atelier.prix',                
                 'attr'  => [
                     'placeholder' => 'atelier.placeholder.prix'

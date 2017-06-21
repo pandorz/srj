@@ -145,8 +145,7 @@ class CourAdmin extends AbstractAdmin
             ->add('affiche')
             ->add('annule')
             ->add('professeur', null, [], 'entity', [
-                'class'         => Utilisateur::class,
-                'choice_label'  => 'nom',
+                'class'         => Utilisateur::class
             ])
         ;
     }

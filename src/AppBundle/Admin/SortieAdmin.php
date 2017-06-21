@@ -109,14 +109,14 @@ class SortieAdmin extends AbstractAdmin
                 ],
                 'required' => false
             ])
-            ->add('prixMembre', 'text', [
+            ->add('prixMembre', 'number', [
                 'label' => 'sortie.prixMembre',                
                 'attr'  => [
                     'placeholder' => 'sortie.placeholder.prixMembre'
                 ],
                 'required' => false
             ])    
-            ->add('prix', 'text', [
+            ->add('prix', 'number', [
                 'label' => 'sortie.prix',                
                 'attr'  => [
                     'placeholder' => 'sortie.placeholder.prix'

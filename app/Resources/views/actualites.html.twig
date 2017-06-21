@@ -22,7 +22,7 @@
                     <div class="postItemCtn newsItemCtn">
                         {% media actualite.image, 'big' with {'class': 'postPhoto newsPhoto'} %}                    
                         <h4 class="postTitle newsTitle">{{ actualite.nom }}</h4>                    
-                        <p class="postSummary newsSummary">{% if actualite.contenu|length > 99 %}{{ actualite.contenu|raw|slice(0, 100) }}{% else %}{{ actualite.contenu|raw }}{% endif %}</p>
+                        <p class="postSummary newsSummary">{% if actualite.contenu|length > 99 %}{{ actualite.contenu|slice(0, 100)|raw }}{% else %}{{ actualite.contenu|raw }}{% endif %}</p>
                         {% if actualite.contenu|length > 99 %}
                         <div class="postMoreText" style="display: none;">
                             {{ actualite.contenu|raw }}

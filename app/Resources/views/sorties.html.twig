@@ -37,36 +37,36 @@
             <p>Ça ne devrait pourtant pas tarder !</p>            
         </div>
         {% else %} 
-        <h2 class="sectionTitle">Sortie&(s) à venir</h2>
-        {% for sortie in sorties %}
-            <div class="postItem shortPost">
-                <div class="postItemCtn">
-                    {% media sortie.image, 'big' with {'class': 'postPhoto'} %}
-                    <h4 class="postTitle">{{ sortie.nom }}</h4>
-                    <time class="postDate" datetime="{{sortie.date|date('Y-m-d')}}">
-                        <span class="day">{{sortie.date|date('d')}}</span> 
-                        <span class="month">{{sortie.date|date('F')|slice(0, 3)}}.</span>
-                    </time>
-                    <p class="postSummary">{% if sortie.contenu|length > 99 %}{{ sortie.contenu|raw|slice(0, 100) }}{% else %}{{ sortie.contenu|raw }}{% endif %}</p>
-                    {% if sortie.contenu|length > 99 %}
-                    <div class="postMoreText" style="display: none;">
-                        {{ sortie.contenu|raw }}
-                        <p><b class="u-textColorRJ">Conditions :</b> 
-                            {%if sortie.prix>0 %}
-                            {{sortie.prix|replace({'.':','})}} euros pour les personnes non membres. 
-                            {% endif %}
-                            {%if sortie.prixMembre>0 %}
+        <h2 class="sectionTitle">Sortie(s) à venir</h2>
+        <div class="postItem shortPost">
+        {% for sortie in sorties %}            
+            <div class="postItemCtn">
+                {% media sortie.image, 'big' with {'class': 'postPhoto'} %}
+                <h4 class="postTitle">{{ sortie.nom }}</h4>
+                <time class="postDate" datetime="{{sortie.date|date('Y-m-d')}}">
+                    <span class="day">{{sortie.date|date('d')}}</span> 
+                    <span class="month">{{sortie.date|date('F')|slice(0, 3)}}.</span>
+                </time>
+                <p class="postSummary">{{ sortie.contenu|slice(0, 100)|raw }}</p>
+                <div class="postMoreText" style="display: none;">
+                    {{ sortie.contenu|raw }}
+                    <p><b class="u-textColorRJ">Conditions :</b> 
+                        {%if sortie.prix>0 and not sortie.reserveMembre %}
+                        {{sortie.prix|replace({'.':','})}} euros pour les personnes non membres. 
+                        {% endif %}
+                        {%if sortie.prixMembre>0 %}
                             {{sortie.prixMembre|replace({'.':','})}} euros pour les membres. 
-                            {% endif %}
-                            {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
-                            <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}</p>
-                    </div>
-                    <button class="seeMore" aria-hidden="true">En savoir plus</button> 
-                    {% endif %}                       
+                        {% else %}
+                            Gratuit pour les membres.
+                        {% endif %}
+                        {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                        <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}</p>
                 </div>
-            </div>
+                <button class="seeMore" aria-hidden="true">En savoir plus</button>                       
+            </div>             
         {% endfor %}
-        {% endif %}        
+        </div>
+        {% endif %}  
     </section>
 
     {#% include 'bandeau_devenir_membre.html.twig' %#}

@@ -44,7 +44,7 @@ class Utilisateur extends BaseUser
     /**
      * @var boolean
      *
-     * @ORM\Column(name="boolean", type="integer")
+     * @ORM\Column(name="locked", type="integer")
      */
     private $locked;
 	
