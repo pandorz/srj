@@ -105,7 +105,7 @@ class EvenementAdmin extends AbstractAdmin
                 'property'  => ['firstname','lastname'],
                 'label'     => 'evenement.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'evenement.placeholder.superviseurs',
+                'placeholder' => $this->trans('evenement.placeholder.superviseurs'),
                 'required' => false
             ])
             ->add('dateDebut', 'sonata_type_datetime_picker', [

@@ -21,7 +21,7 @@ class UtilisateurAdmin extends UserAdmin
         parent::configureListFields($listMapper);
         $listMapper
                 ->add('parent', 'many_to_one', [
-                'label'     => $this->trans('utilisateur.liste.parent'),
+                'label'     => $this->trans('utilisateur.liste.parent', [], 'messages'),
                 'route'     => ['name' => 'show'],
                 'sortable'  => 'name'
             ]);
@@ -32,13 +32,13 @@ class UtilisateurAdmin extends UserAdmin
         parent::configureFormFields($formMapper);
 
         $formMapper
-            ->tab($this->trans('utilisateur.tab.sousUtilisateurs'))
+            ->tab($this->trans('utilisateur.tab.sousUtilisateurs', [], 'messages'))
             ->with('content_sousUtilisateur', [
-                'name'          => $this->trans('utilisateur.with.sousUtilisateurs'),
-                'description'   => $this->trans('utilisateur.with.description')
+                'name'          => $this->trans('utilisateur.with.sousUtilisateurs', [], 'messages'),
+                'description'   => $this->trans('utilisateur.with.description', [], 'messages')
             ])
             ->add('sousUtilisateurs', 'sonata_type_model_list', [
-                'label'     => $this->trans('utilisateur.sousUtilisateurs'),
+                'label'     => $this->trans('utilisateur.sousUtilisateurs', [], 'messages'),
                 'required'  => false,
             ],[                
                 'edit'          => 'inline',
