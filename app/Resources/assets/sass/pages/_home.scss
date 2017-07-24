@@ -139,7 +139,7 @@
 			margin: 0;
 			 > * {
 			    display: initial;
-			    width: auto;
+			    width: 100%;
 			    margin: 0;
 			}
 		}
@@ -165,6 +165,7 @@
 			font-weight: 700;
 		}
 		.fc-toolbar button {
+			width: calc(100% / 7);
 			border: none;
 			background: transparent;
 		}
@@ -174,11 +175,24 @@
 			font-weight: 400;
 			color: $color-rj;
 		}
+		.fc-icon-left-single-arrow:after,
+		.fc-icon-right-single-arrow:after {
+			content: '';
+			top: 0;
+			display: block;
+			width: 0;
+			height: 0;
+			overflow: hidden;
+		}
 		.fc-icon-left-single-arrow:after {
-			content: '\25c0';
+			border-style: solid solid solid none;
+			border-width: rem(5) rem(8) rem(5) 0;
+			border-color: transparent $color-rj transparent;
 		}
 		.fc-icon-right-single-arrow:after {
-			content: '\25b6';
+			border-style: solid none solid solid;
+			border-width: rem(5) 0 rem(5) rem(8);
+			border-color: transparent transparent transparent $color-rj;
 		}
 		.fc-widget-header th {
 			padding: rem(8) 0 rem(5);
