@@ -63,7 +63,9 @@
                                 {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
                                 <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}</p>
                         </div>
+                        {% if sortie.contenu|length > 1 %}
                         <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                        {% endif %}
                     </div>
                 </div>
             {% endfor %}
