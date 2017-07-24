@@ -1,0 +1,11 @@
+{# src/Acme/AdminBundle/Resources/views/CrUD/edit.html.twig #}
+{% extends 'SonataAdminBundle:CRUD:edit.html.twig' %}
+
+{% block title %}
+    {% if admin.id(object) is not null %}
+        {{ "title_edit"|trans({'%name%': admin.toString(object)|truncate(35) }, 'SonataAdminBundle') }}
+    {% else %}
+        {{ "title_create"|trans({}, 'SonataAdminBundle') }}
+    {% endif %}
+{% endblock %}
+

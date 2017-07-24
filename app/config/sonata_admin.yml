@@ -23,6 +23,8 @@ sonata_admin:
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
+        layout: :AdminCustom:/template/standard_layout.html.twig
+        edit:   :AdminCustom:/template/edit.html.twig
     dashboard:
         groups:
             app.admin.group.principal.evenements:
