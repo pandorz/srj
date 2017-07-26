@@ -26,7 +26,10 @@
                     <p class="postSummary eventSummary">{% if evenement.contenu|length > 99 %}{{ evenement.contenu|slice(0, 100)|raw }}{% else %}{{ evenement.contenu|raw }}{% endif %}</p>
                     {% if evenement.contenu|length > 99 %}
                     <div class="postMoreText" style="display: none;">
-                        {{ evenement.contenu|raw }}
+                        {{ evenement.contenu|raw }}<br>
+                        {% if evenement.dateDebut != evenement.dateFin %}
+                        <b class="u-textColorRJ">Du {{evenement.dateDebut|date('d/m/Y')}} au {{evenement.dateFin|date('d/m/Y')}}</b>
+                        {% endif %}
                     </div>
                     {% if evenement.contenu|length > 1 %}
                         <button class="seeMore" aria-hidden="true">En savoir plus</button>
