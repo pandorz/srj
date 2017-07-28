@@ -1,6 +1,6 @@
 
-app.pagesController = app.pagesController || {};
-app.pagesController.defaultAction = {
+app.grecaptchaController = app.grecaptchaController || {};
+app.grecaptchaController.defaultAction = {
 
     /**
      * Initialisation de la fonction
@@ -38,5 +38,7 @@ app.pagesController.defaultAction = {
 };
 
 $(document).ready(function(){
-    app.pagesController.defaultAction.initGrecaptcha();
+    if ('.js-form-grecaptcha') {
+        app.grecaptchaController.defaultAction.initGrecaptcha();
+    }
 });
