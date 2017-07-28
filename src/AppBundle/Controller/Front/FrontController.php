@@ -22,6 +22,8 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
  */
 class FrontController extends BaseController
 {
+    const FORMAT_DATE = 'Y-m-d';
+
     /**
     * Accueil
     *
@@ -37,7 +39,7 @@ class FrontController extends BaseController
         $evenements = $this->getTopEvenements(3);
         $actualites = $this->getTopActualites(4);
         $dates      = $this->getDatesCalendrier();
-        
+
         return $this->render('home.html.twig', [
             'evenements' => $evenements,
             'actualites' => $actualites,
@@ -51,12 +53,23 @@ class FrontController extends BaseController
         $evenements = $this->getEm()
                 ->getRepository(Evenement::class)
                 ->findAllValidOverOneMonth();
-        
+
         foreach ($evenements as $evenement) {
+            $start = $evenement->getDateDebut();
+            $end   = $evenement->getDateFin();
+            
+            if (!is_null($start)) {
+                $start = $start->format(self::FORMAT_DATE);
+            }
+            
+            if (!is_null($end)) {
+                $end = $end->format(self::FORMAT_DATE);
+            }
+            
             $data[] = [
                 'title' => $evenement->getNom(),
-                'start' => $evenement->getDateDebut(),
-                'end'   => $evenement->getDateFin()
+                'start' => $start,
+                'end'   => $end
             ];
         }
         
@@ -65,10 +78,21 @@ class FrontController extends BaseController
                 ->findAllValidOverOneMonth();
         
         foreach ($actualites as $actualite) {
+            $start = $actualite->getDateDebut();
+            $end   = $actualite->getDateFin();
+            
+            if (!is_null($start)) {
+                $start = $start->format(self::FORMAT_DATE);
+            }
+            
+            if (!is_null($end)) {
+                $end = $end->format(self::FORMAT_DATE);
+            }
+            
             $data[] = [
                 'title' => $actualite->getNom(),
-                'start' => $actualite->getDateDebut(),
-                'end'   => $actualite->getDateFin()
+                'start' => $start,
+                'end'   => $end
             ];
         }
         
@@ -77,9 +101,15 @@ class FrontController extends BaseController
                 ->findAllValidOverOneMonth();
         
         foreach ($ateliers as $atelier) {
+            $start = $atelier->getDate();
+            
+            if (!is_null($start)) {
+                $start = $start->format(self::FORMAT_DATE);
+            }
+            
             $data[] = [
                 'title' => $atelier->getNom(),
-                'start' => $atelier->getDate()
+                'start' => $start
             ];
         }
         
@@ -87,10 +117,15 @@ class FrontController extends BaseController
                 ->getRepository(Sortie::class)
                 ->findAllValidOverOneMonth();
         
-        foreach ($sorties as $sortie) {
+        foreach ($sorties as $sortie) {           
+            $start = $sortie->getDate();
+            
+            if (!is_null($start)) {
+                $start = $start->format(self::FORMAT_DATE);
+            }
             $data[] = [
                 'title' => $sortie->getNom(),
-                'start' => $sortie->getDate()
+                'start' => $start
             ];
         }
         

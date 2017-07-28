@@ -42,7 +42,7 @@
         <script src="{{ asset('fullcalendar/locale/fr.js') }}"></script>
         
         <script>
-            var events = {{ (dates is defined) ? dates|json_encode|raw : '' }};                
+            var events = {{ (dates is defined) ? dates|json_encode|raw : '' }};
         </script>
         {% endblock %}
     </body>
