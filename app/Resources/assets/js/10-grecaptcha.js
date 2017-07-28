@@ -40,5 +40,6 @@ app.grecaptchaController.defaultAction = {
 $(document).ready(function(){
     if ('.js-form-grecaptcha') {
         app.grecaptchaController.defaultAction.initGrecaptcha();
+        $('.js-container-grecaptcha').hide();
     }
 });
