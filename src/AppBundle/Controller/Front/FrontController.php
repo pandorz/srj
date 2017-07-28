@@ -363,7 +363,7 @@ class FrontController extends BaseController
             if ($form->isValid()) {
                 $data = $form->getData();
                 // TODO : Send mail
-                $this->sendMail(
+                $retour_mail = $this->sendMail(
                     $this->getTranslator()->trans('contact.mail.sujet'),
                     'contact',
                     null,
@@ -374,10 +374,17 @@ class FrontController extends BaseController
                         'data'      => $data
                     ]
                 );
-                $request
-                    ->getSession()
-                    ->getFlashBag()
-                    ->add('success', 'Votre message a été envoyé');
+                if ($retour_mail) {
+                    $request
+                        ->getSession()
+                        ->getFlashBag()
+                        ->add('success', 'Votre message a été envoyé');
+                } else {
+                     $request
+                        ->getSession()
+                        ->getFlashBag()
+                        ->add('error', 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument');
+                }
             }            
         }
         return $this->render('contact.html.twig', ['form' => $form->createView()]);
