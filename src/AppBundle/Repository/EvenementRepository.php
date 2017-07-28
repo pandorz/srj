@@ -31,4 +31,42 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
             ])
             ->getResult();
     }
+    
+    public function findProchain()
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Evenement e '
+                . 'WHERE e.annule = :annule '
+                . 'AND e.affiche = :affiche '
+                . 'AND e.dateDebut > :dateDebut '
+                . 'ORDER BY e.dateDebut DESC ')
+            ->setParameters([
+                'annule'  => false,
+                'affiche' => true,
+                'dateDebut' => date("Y-m-d")
+            ])
+            ->setMaxResults(1)
+            ->getResult();
+    }
+    
+    public function findDernier($limit)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Evenement e '
+                . 'WHERE e.annule = :annule '
+                . 'AND e.affiche = :affiche '
+                . 'AND e.dateDebut <= :dateDebut '
+                . 'ORDER BY e.dateFin DESC ')
+            ->setParameters([
+                'annule'  => false,
+                'affiche' => true,
+                'dateDebut' => date("Y-m-d")
+            ])
+            ->setMaxResults($limit)
+            ->getResult();
+    }
 }
