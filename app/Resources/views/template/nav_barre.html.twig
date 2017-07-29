@@ -36,7 +36,9 @@
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('contact')}}">Contact</a></li>
                 </ul>
                 <div class="mainNavMember">
-                    <a class="mainNavMemberLink signup btn btn-blank btn-small" href="https://www.assoconnect.com/association-rouen-japon/billetterie/offre/63980-z-adhesion-saison-2017-2018" target="_blank">Devenir membre</a>
+                    {% if lien_adhesion() is not empty %}
+                    <a class="mainNavMemberLink signup btn btn-blank btn-small" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
+                    {% endif %}
                 <!--<a class="mainNavMemberLink login" href="#">Déjà membre ?</a-->
             </div>
             </div>

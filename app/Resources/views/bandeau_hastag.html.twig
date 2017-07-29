@@ -2,6 +2,8 @@
     <h1 class="heroTitle">{{ hastagTitle }} <span class="u-textColorRJ">{{ hastagList}}</span></h1>
     <div class="userGuide">
         <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a>
-        <a class="btn" href="https://www.assoconnect.com/association-rouen-japon/billetterie/offre/63980-z-adhesion-saison-2017-2018" target="_blank">Devenir membre</a>
+        {% if lien_adhesion() is not empty %}
+        <a class="btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
+        {% endif %}
     </div>
 </div>
