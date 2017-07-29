@@ -2,37 +2,44 @@
     {% set coming = 0 %}
     {% set past = 0 %}
     {% for evenement in evenements %}
-        {% if evenement.dateFin|date('Y-m-d') > 'now'|date('Y-m-d') %}
-            {% if coming == 0 %} 
-                <div class="comingEvent">
-                <h3 class="comingTitle">Prochainement</h3>
-                {% set coming = 1 %}
+        {% if evenement is not empty %}
+            {% if evenement.dateFin|date('Y-m-d') > 'now'|date('Y-m-d') %}
+                {% if coming == 0 %} 
+                    <div class="comingEvent">
+                    <h3 class="comingTitle">Prochainement</h3>
+                    {% set coming = 1 %}
+                {% endif %}
+            {% else %}
+                {% if past == 0 %}
+                    <div class="pastEvents">
+                    <h3 class="pastTitle">Dernièrement</h3>
+                    {% set past = 1 %}
+                {% endif %}
             {% endif %}
-        {% else %}
-            {% if past == 0 %}
-                <div class="pastEvents">
-                <h3 class="pastTitle">Dernièrement</h3>
-                {% set past = 1 %}
-            {% endif %}
-        {% endif %}
-            <div class="postItem shortPost eventItem">
-                <div class="postItemCtn eventItemCtn">
-                    {% media evenement.image, 'big' with {'class': 'postPhoto eventPhoto'} %}                    
-                    <h4 class="postTitle eventTitle">{{ evenement.nom }}</h4>
-                    <time class="postDate eventDate" datetime="{{evenement.dateDebut|date('Y-m-d')}}">
-                        <span class="day">{{evenement.dateDebut|date('d')}}</span> 
-                        <span class="month">{{evenement.dateDebut|date('F')|slice(0, 3)}}.</span>
-                    </time>
-                    <p class="postSummary eventSummary">{% if evenement.contenu|length > 99 %}{{ evenement.contenu|slice(0, 100)|raw }}{% else %}{{ evenement.contenu|raw }}{% endif %}</p>
-                    {% if evenement.contenu|length > 99 %}
-                    <div class="postMoreText" style="display: none;">
-                        {{ evenement.contenu|raw }}
+                <div class="postItem shortPost eventItem">
+                    <div class="postItemCtn eventItemCtn">
+                        {% media evenement.image, 'big' with {'class': 'postPhoto eventPhoto'} %}                    
+                        <h4 class="postTitle eventTitle">{{ evenement.nom }}</h4>
+                        <time class="postDate eventDate" datetime="{{evenement.dateDebut|date('Y-m-d')}}">
+                            <span class="day">{{evenement.dateDebut|date('d')}}</span> 
+                            <span class="month">{{evenement.dateDebut|date('F')|slice(0, 3)}}.</span>
+                        </time>
+                        <p class="postSummary eventSummary">{% if evenement.contenu|length > 99 %}{{ evenement.contenu|slice(0, 100)|raw }}{% else %}{{ evenement.contenu|raw }}{% endif %}</p>
+                        {% if evenement.contenu|length > 99 %}
+                        <div class="postMoreText" style="display: none;">
+                            {{ evenement.contenu|raw }}<br>
+                            {% if evenement.dateDebut != evenement.dateFin %}
+                            <b class="u-textColorRJ">Du {{evenement.dateDebut|date('d/m/Y')}} au {{evenement.dateFin|date('d/m/Y')}}</b>
+                            {% endif %}
+                        </div>
+                        {% if evenement.contenu|length > 1 %}
+                            <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                        {% endif %}
+                        {% endif %}
                     </div>
-                    <button class="seeMore" aria-hidden="true">En savoir plus</button>
-                    {% endif %}
                 </div>
             </div>
-        </div>
+        {% endif %}
     {% endfor %}
         <div class="postItem shortPost eventItem eventsCalendar">
             <div class="postItemCtn eventItemCtn">

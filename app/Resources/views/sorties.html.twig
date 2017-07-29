@@ -38,38 +38,42 @@
         </div>
         {% else %} 
         <h2 class="sectionTitle">Sortie(s) à venir</h2>
-        <div class="postItem shortPost">
-        {% for sortie in sorties %}            
-            <div class="postItemCtn">
-                {% media sortie.image, 'big' with {'class': 'postPhoto'} %}
-                <h4 class="postTitle">{{ sortie.nom }}</h4>
-                <time class="postDate" datetime="{{sortie.date|date('Y-m-d')}}">
-                    <span class="day">{{sortie.date|date('d')}}</span> 
-                    <span class="month">{{sortie.date|date('F')|slice(0, 3)}}.</span>
-                </time>
-                <p class="postSummary">{{ sortie.contenu|slice(0, 100)|raw }}</p>
-                <div class="postMoreText" style="display: none;">
-                    {{ sortie.contenu|raw }}
-                    <p><b class="u-textColorRJ">Conditions :</b> 
-                        {%if sortie.prix>0 and not sortie.reserveMembre %}
-                        {{sortie.prix|replace({'.':','})}} euros pour les personnes non membres. 
+        <div class="postsList u-fitted">
+            {% for sortie in sorties %}
+                <div class="postItem shortPost">
+                    <div class="postItemCtn">
+                        {% media sortie.image, 'big' with {'class': 'postPhoto'} %}
+                        <h4 class="postTitle">{{ sortie.nom }}</h4>
+                        <time class="postDate" datetime="{{sortie.date|date('Y-m-d')}}">
+                            <span class="day">{{sortie.date|date('d')}}</span>
+                            <span class="month">{{sortie.date|date('F')|slice(0, 3)}}.</span>
+                        </time>
+                        <p class="postSummary">{{ sortie.contenu|slice(0, 100)|raw }}</p>
+                        <div class="postMoreText" style="display: none;">
+                            {{ sortie.contenu|raw }}
+                            <p><b class="u-textColorRJ">Conditions :</b>
+                                {%if sortie.prix>0 and not sortie.reserveMembre %}
+                                {{sortie.prix|replace({'.':','})}} euros pour les personnes non membres.
+                                {% endif %}
+                                {%if sortie.prixMembre>0 %}
+                                    {{sortie.prixMembre|replace({'.':','})}} euros pour les membres.
+                                {% else %}
+                                    Gratuit pour les membres.
+                                {% endif %}
+                                {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                                <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}</p>
+                        </div>
+                        {% if sortie.contenu|length > 1 %}
+                        <button class="seeMore" aria-hidden="true">En savoir plus</button>
                         {% endif %}
-                        {%if sortie.prixMembre>0 %}
-                            {{sortie.prixMembre|replace({'.':','})}} euros pour les membres. 
-                        {% else %}
-                            Gratuit pour les membres.
-                        {% endif %}
-                        {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
-                        <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}</p>
+                    </div>
                 </div>
-                <button class="seeMore" aria-hidden="true">En savoir plus</button>                       
-            </div>             
-        {% endfor %}
+            {% endfor %}
         </div>
         {% endif %}  
     </section>
 
-    {#% include 'bandeau_devenir_membre.html.twig' %#}
+    {% include 'bandeau_devenir_membre.html.twig' %}
     {% include 'follow_us.html.twig' %}
     
 {% endblock %}

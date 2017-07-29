@@ -217,16 +217,38 @@ class BaseController extends Controller
      */
     protected function getTopEvenements($limit)
     {
-        return $this->getEm()
+        $evenements = [];
+        //-- Prochainement
+        $prochainEvenement = $this->getEm()
                 ->getRepository(Evenement::class)
-                ->findBy(
-                    [
-                        'affiche' => true, 
-                        'annule' => false
-                    ],
-                    ['dateFin' => 'DESC'],
-                    $limit
-                );
+                ->findProchain();
+        if (!is_null($prochainEvenement)) {
+            if (is_array($prochainEvenement) && count($prochainEvenement)>0) {
+                $prochainEvenement = $prochainEvenement[0];
+            }
+            $evenements = [$prochainEvenement];
+            $limit--;
+        }
+        
+        //--
+        
+        //-- Dernierement
+        $dernierement = $this->getEm()
+                ->getRepository(Evenement::class)
+                ->findDernier($limit);
+        
+        if (!is_null($dernierement)) {
+            if (!is_array($dernierement)) {
+                $evenements[] = $dernierement;
+            } else {
+                foreach ($dernierement as $evenement) {
+                    $evenements[] = $evenement;
+                }
+            }
+        }
+        //--
+        
+        return $evenements;
     }
     
     /**

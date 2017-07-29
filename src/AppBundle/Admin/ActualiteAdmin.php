@@ -105,7 +105,7 @@ class ActualiteAdmin extends AbstractAdmin
                 'property'  => ['firstname','lastname'],
                 'label'     => 'actualite.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'actualite.placeholder.superviseurs',
+                'placeholder' => $this->trans('actualite.placeholder.superviseurs'),
                 'required' => false
             ])
             ->add('dateDebut', 'sonata_type_datetime_picker', [

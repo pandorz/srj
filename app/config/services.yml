@@ -4,6 +4,8 @@ parameters:
     #parameter_name: value
 
 services:
+    security.acl.permission.map:
+        class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
     twig_asset_version_extension:
         class: AppBundle\Twig\AssetVersionExtension
         arguments: ["%kernel.root_dir%"]

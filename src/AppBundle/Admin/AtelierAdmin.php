@@ -139,7 +139,7 @@ class AtelierAdmin extends AbstractAdmin
                 'property'  => ['firstname','lastname'],
                 'label'     => 'atelier.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'atelier.placeholder.superviseurs',
+                'placeholder' => $this->trans('atelier.placeholder.superviseurs'),
                 'required' => false
             ])
             ->add('date', 'sonata_type_datetime_picker', [

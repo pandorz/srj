@@ -18,6 +18,8 @@
 }
 .postPhoto {
 	width: 100%;
+	height: rem(210);
+	@include object-fit(cover);
 	background-color: $color-black;
 }
 .postTitle {

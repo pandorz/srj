@@ -23,36 +23,43 @@ sonata_admin:
         object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
     templates:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
+        layout: :AdminCustom:/template/standard_layout.html.twig
+        edit:   :AdminCustom:/template/edit.html.twig
     dashboard:
         groups:
             app.admin.group.principal.evenements:
                 on_top: true
                 label: "Evenements"
                 icon: '<i class="fa fa-calendar"></i>'
+                roles: [ROLE_APP_ADMIN_EVENEMENTS_ADMIN]
                 items:
                     - app.admin.evenements
             app.admin.group.principal.actualites:
                 on_top: true
                 label: "Actualites"
                 icon: '<i class="fa fa-newspaper-o"></i>'
+                roles: [ROLE_APP_ADMIN_ACTUALITES_ADMIN]
                 items:
                     - app.admin.actualites
             app.admin.group.principal.sorties:
                 on_top: true
                 label: "Sorties"
                 icon: '<i class="fa fa-random"></i>'
+                roles: [ROLE_APP_ADMIN_SORTIES_ADMIN]
                 items:
                     - app.admin.sorties
             app.admin.group.principal.ateliers:
                 on_top: true
                 label: "Ateliers"
                 icon: '<i class="fa fa-pencil"></i>'
+                roles: [ROLE_APP_ADMIN_ATELIERS_ADMIN]
                 items:
                     - app.admin.ateliers
             app.admin.group.principal.cours:
                 on_top: true
                 label: "Cours"
                 icon: '<i class="fa fa-book"></i>'
+                roles: [ROLE_APP_ADMIN_COURS_ADMIN]
                 items:
                     - app.admin.cours
             app.admin.group.principal.users:
@@ -61,8 +68,12 @@ sonata_admin:
                 label_catalogue: AppBundle
                 icon: '<i class="fa fa-users"></i>'
                 items:
-                    - sonata.user.admin.user
-                    - sonata.user.admin.group
+                    - route: admin_utilisateur_list
+                      roles: [ROLE_SONATA_USER_ADMIN_USER_ADMIN]
+                      label: "Utilisateurs"
+                    - route: admin_utilisateur_droits_list
+                      roles: [ROLE_SONATA_USER_ADMIN_GROUP_ADMIN]
+                      label: "Groupes"
         blocks:
             -
                 class: col-lg-3 col-xs-6

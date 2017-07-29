@@ -27,7 +27,9 @@
                         <div class="postMoreText" style="display: none;">
                             {{ actualite.contenu|raw }}
                         </div>
+                        {% if actualite.contenu|length > 1 %}
                         <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                        {% endif %}
                         {% endif %}
                     </div>
                 </div>

@@ -139,7 +139,7 @@ class SortieAdmin extends AbstractAdmin
                 'property'  => ['firstname','lastname'],
                 'label'     => 'sortie.superviseurs',
                 'multiple'  => true,
-                'placeholder' => 'sortie.placeholder.superviseurs',
+                'placeholder' => $this->trans('sortie.placeholder.superviseurs'),
                 'required' => false
             ])
             ->add('date', 'sonata_type_datetime_picker', [

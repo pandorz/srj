@@ -102,7 +102,7 @@ class CourAdmin extends AbstractAdmin
                 'property'  => ['firstname','lastname'],
                 'label'     => 'cour.professeur',
                 'multiple'  => false,
-                'placeholder' => 'cour.placeholder.professeur',
+                'placeholder' => $this->trans('cour.placeholder.professeur'),
                 'required' => false
             ])
             ->add('inscrits', 'sonata_type_model_autocomplete', [
@@ -110,7 +110,7 @@ class CourAdmin extends AbstractAdmin
                 'property'  => ['firstname','lastname'],
                 'label'     => 'cour.users',
                 'multiple'  => true,
-                'placeholder' => 'cour.placeholder.users',
+                'placeholder' => $this->trans('cour.placeholder.users'),
                 'required' => false
             ])  
             ->end()
