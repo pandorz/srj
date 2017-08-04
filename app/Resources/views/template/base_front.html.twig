@@ -45,5 +45,6 @@
             var events = {{ (dates is defined) ? dates|json_encode|raw : '' }};                
         </script>
         {% endblock %}
+        {% include 'template/google_analytics.html.twig' %}
     </body>
 </html>
