@@ -40,6 +40,11 @@ services:
         arguments: [~, AppBundle\Entity\Atelier, SonataAdminBundle:CRUD]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Ateliers }
+    app.admin.parametres:
+        class: AppBundle\Admin\ParametreAdmin
+        arguments: [~, AppBundle\Entity\Parametre, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Parametres }
     app.admin.cours:
         class: AppBundle\Admin\CourAdmin
         arguments: [~, AppBundle\Entity\Cour, SonataAdminBundle:CRUD]
@@ -50,3 +55,8 @@ services:
         arguments: ['@twig', '%kernel.debug%']
     security.acl.permission.map:
       class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
+    app.twig_helper:
+        class: AppBundle\Twig\TwigHelpers
+        arguments: ["@doctrine.orm.entity_manager"]
+        tags:
+            - { name: twig.extension }

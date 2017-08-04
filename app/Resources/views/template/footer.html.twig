@@ -10,7 +10,9 @@
                     <li>Apprendre le japonais...</li>
                 </ul>
             </div>
-            <a class="assoMemberBtn btn" href="https://www.assoconnect.com/association-rouen-japon/billetterie/offre/63980-z-adhesion-saison-2017-2018" target="_blank">Devenir membre</a><br>
+            {% if lien_adhesion() is not empty %}
+            <a class="assoMemberBtn btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a><br>
+            {% endif %}
             <a class="seeMore" href="{{path('association')}}">En savoir plus sur l'association</a>
         </div>
         <div class="footerItem footerQuickLinks">

@@ -62,6 +62,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_COURS_ADMIN]
                 items:
                     - app.admin.cours
+            app.admin.group.principal.parametres:
+                on_top: true
+                label: "Parametres"
+                icon: '<i class="fa fa-cogs"></i>'
+                roles: [ROLE_APP_ADMIN_PARAMETRES_ADMIN]
+                items:
+                    - app.admin.parametres
             app.admin.group.principal.users:
                 keep_open: false
                 label: "Utilisateurs"
@@ -85,4 +92,37 @@ sonata_admin:
                     text:  Utilisateurs
                     color: bg-green
                     entity: AppBundle\Entity\Utilisateur
+                    filters:
+            -
+                class: col-lg-3 col-xs-6
+                position: top
+                type: app.admin.block.stats
+                settings:
+                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    icon:  fa-calendar
+                    text:  Evenements
+                    color: bg-aqua
+                    entity: AppBundle\Entity\Evenement
+                    filters:
+            -
+                class: col-lg-3 col-xs-6
+                position: top
+                type: app.admin.block.stats
+                settings:
+                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    icon:  fa-car
+                    text:  Sorties
+                    color: bg-yellow
+                    entity: AppBundle\Entity\Sortie
+                    filters:
+            -
+                class: col-lg-3 col-xs-6
+                position: top
+                type: app.admin.block.stats
+                settings:
+                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    icon:  fa-graduation-cap
+                    text:  Ateliers
+                    color: bg-maroon
+                    entity: AppBundle\Entity\Atelier
                     filters:

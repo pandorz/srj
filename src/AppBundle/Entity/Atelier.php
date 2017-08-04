@@ -35,7 +35,7 @@ class Atelier
      */
     private $nom;
 	
-	/**
+    /**
     * @Gedmo\Slug(fields={"nom"})
     * @ORM\Column(length=128, unique=true)
     */
@@ -403,7 +403,7 @@ class Atelier
      *
      * @param string $contenu
      *
-     * @return Musee
+     * @return Atelier
      */
     public function setContenu($contenu)
     {
@@ -549,7 +549,7 @@ class Atelier
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Musee
+     * @return Atelier
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -573,7 +573,7 @@ class Atelier
      *
      * @param \DateTime $timestampModification
      *
-     * @return Musee
+     * @return Atelier
      */
     public function setTimestampModification($timestampModification)
     {

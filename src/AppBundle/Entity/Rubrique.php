@@ -377,7 +377,7 @@ class Rubrique
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Musee
+     * @return Cour
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -401,7 +401,7 @@ class Rubrique
      *
      * @param \DateTime $timestampModification
      *
-     * @return Musee
+     * @return Cour
      */
     public function setTimestampModification($timestampModification)
     {

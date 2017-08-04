@@ -3,6 +3,13 @@ Atelier List: 'Ateliers'
 Cour List: 'Cours'
 Evenement List: 'Événements'
 Sortie List: 'Sorties'
+Actualite Create: 'Créer'
+Atelier Create: 'Créer'
+Cour Create: 'Créer'
+Evenement Create: 'Créer'
+Sortie Create: 'Créer'
+Parametre List: 'Paramètres'
+Parametre Create: 'Créer'
 
 ROLE_APP_ADMIN_EVENEMENTS_GUEST: 'Invité - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_STAFF: 'Staff - Événements'
@@ -24,6 +31,10 @@ ROLE_APP_ADMIN_COURS_GUEST: 'Invité - Cours'
 ROLE_APP_ADMIN_COURS_STAFF: 'Staff - Cours'
 ROLE_APP_ADMIN_COURS_EDITOR: 'Editeur - Cours'
 ROLE_APP_ADMIN_COURS_ADMIN: 'Administrateur - Cours'
+ROLE_APP_ADMIN_PARAMETRES_GUEST: 'Invité - Paramètres'
+ROLE_APP_ADMIN_PARAMETRES_STAFF: 'Staff - Paramètres'
+ROLE_APP_ADMIN_PARAMETRESS_EDITOR: 'Editeur - Paramètres'
+ROLE_APP_ADMIN_PARAMETRES_ADMIN: 'Administrateur - Paramètres'
 ROLE_SONATA_MEDIA_ADMIN_MEDIA_GUEST: 'Invité - Medias'
 ROLE_SONATA_MEDIA_ADMIN_MEDIA_STAFF: 'Staff - Medias'
 ROLE_SONATA_MEDIA_ADMIN_MEDIA_EDITOR: 'Editeur - Medias'
@@ -47,6 +58,20 @@ ROLE_SONATA_USER_ADMIN_GROUP_ADMIN: 'Administateur des groupes admin'
 ROLE_USER: 'Utilisateur'
 ROLE_SONATA_ADMIN: 'Administateur'
 ROLE_ALLOWED_TO_SWITCH: 'Peut changer'
+
+parametre:
+    with:
+        details: Données
+    liste:
+        nom: Nom
+        value: Valeur
+    placeholder:
+        nom: 'Nom du paramètre'
+        value: 'Valeur du paramètre'
+    add_edit:
+        to_string: 'Paramètre'
+    nom: Nom
+    value: Valeur
 
 actualite:
     actif: Active

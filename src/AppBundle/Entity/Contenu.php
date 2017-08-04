@@ -308,7 +308,7 @@ class Contenu
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Musee
+     * @return Contenu
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -332,7 +332,7 @@ class Contenu
      *
      * @param \DateTime $timestampModification
      *
-     * @return Musee
+     * @return Contenu
      */
     public function setTimestampModification($timestampModification)
     {
