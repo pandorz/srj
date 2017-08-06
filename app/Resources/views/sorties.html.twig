@@ -1,6 +1,6 @@
 {% extends "template/base_front.html.twig" %}
 {% block body_class %}events outings{% endblock %}
-{% block html_title %} - Les sorties{% endblock %}
+{% block html_title %}– Les sorties sur le thème de la culture japonaise{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "Nos activités" %}
@@ -37,7 +37,7 @@
             <p>Ça ne devrait pourtant pas tarder !</p>            
         </div>
         {% else %} 
-        <h2 class="sectionTitle">Sortie(s) à venir</h2>
+        <h2 class="sectionTitle">Nos Sorties</h2>
         <div class="postsList u-fitted">
             {% for sortie in sorties %}
                 <div class="postItem shortPost">

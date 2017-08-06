@@ -54,6 +54,7 @@ twig:
     globals:
         web_path: '%web_path%'
         google_recaptcha_public_token: '%google_recaptcha_public_token%'
+        google_analytics_ua: '%google_analytics_ua%'
 
 # Doctrine Configuration
 doctrine:

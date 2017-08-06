@@ -224,7 +224,7 @@ class Evenement
      *
      * @param \DateTime $dateDebut
      *
-     * @return ObjetMuseeMouvement
+     * @return Evenement
      */
     public function setDateDebut($dateDebut)
     {
@@ -248,7 +248,7 @@ class Evenement
      *
      * @param \DateTime $dateFin
      *
-     * @return ObjetMuseeMouvement
+     * @return Evenement
      */
     public function setDateFin($dateFin)
     {
@@ -340,7 +340,7 @@ class Evenement
      *
      * @param string $contenu
      *
-     * @return Musee
+     * @return Evenement
      */
     public function setContenu($contenu)
     {
@@ -415,7 +415,7 @@ class Evenement
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Musee
+     * @return Evenement
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -439,7 +439,7 @@ class Evenement
      *
      * @param \DateTime $timestampModification
      *
-     * @return Musee
+     * @return Evenement
      */
     public function setTimestampModification($timestampModification)
     {

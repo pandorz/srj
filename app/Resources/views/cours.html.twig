@@ -1,6 +1,6 @@
 {% extends "template/base_front.html.twig" %}
 {% block body_class %}lessons{% endblock %}
-{% block html_title %} - Les cours{% endblock %}
+{% block html_title %}– Les cours de japonais et de culture japonaise : calligraphie, art de la cérémonie du thé{% endblock %}
 {% block main %}
     {% set hastagTitle = "Nos activités" %}
     {% set hastagList = "#Cours" %}
@@ -26,19 +26,28 @@
                 </div>
 
                 <div class="japaneseText sectionText">
-                    <p>La répartition des cours évolue chaque année. Elle vous sera communiquée avant la rentrée.</p>
-                    {#<ul class="u-ul-colorRJ">#}
-                        {#<li><b>Débutants :</b> soit le mercredi à 20H, soit le samedi à 9h</li>#}
-                        {#<li><b>2ème année :</b> soit le mardi à 20h, soit le samedi à 10h30</li>#}
-                        {#<li><b>3ème année :</b> le samedi à 10h30</li>#}
-                        {#<li><b>4ème année et supérieures :</b> le jeudi à 20h</li>#}
-                    {#</ul>#}
+                    <p>Vous pourrez venir vous inscrire sur notre stand au forum des associations le 09 septembre de 10h à 18h, rue Pasteur à Rouen ou lors de notre réunion de rentrée le 17 septembre à 14h à la maison Saint-Sever.</p>
+                    <ul class="u-ul-colorRJ">
+                        <li><b>Niveau 1 :</b> soit le mardi de 20h à 21h30, soit le jeudi de 20h à 21h30</li>
+                        <li><b>Niveau 2 :</b> le samedi de 9h à 10h30</li>
+                        <li><b>Niveau 3 :</b> le mercredi de 20h à 21h30</li>
+                        <li><b>Niveau 4 :</b> le samedi de 10h30 à 12h</li>
+                        <li><b>Niveau 5 et supérieurs :</b> le jeudi de 20h à 21h30</li>
+                    </ul>                    
                     <p class="u-note">*La détermination du niveau des élèves revient au professeur</p>
 
                     <strong class="conditions">Conditions</strong>
-                    <p>Pour suivre les cours de japonais, il vous faut <b><a href="https://www.assoconnect.com/association-rouen-japon/billetterie/offre/63980-z-adhesion-saison-2017-2018" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
+                    <p>Pour suivre les cours de japonais, il vous faut <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
                     <p>Le montant des cours pour la saison est fixé à 380€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
                     <p>Si vous avez d'autres questions, vous pouvez nous les poser via notre <a href="{{path('contact')}}">formulaire de contact.</a></p>
+                    <p>
+                        {% if lien_calendrier_cours_japonais() is not empty %}
+                        <a class="btn" href="{{ lien_calendrier_cours_japonais() }}" target="_blank">Voir le calendrier</a>
+                        {% endif %}
+                        {% if lien_cours_japonais() is not empty %}
+                        <a class="btn" href="{{ lien_cours_japonais() }}" target="_blank">S'incrire</a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>                
@@ -59,8 +68,16 @@
                 <div class="japaneseText sectionText">
                     <strong class="conditions">Conditions</strong>
                     <p>Le montant des cours est fixé à 272€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Pour suivre les cours de calligraphie, il faut également <b><a href="https://www.assoconnect.com/association-rouen-japon/billetterie/offre/63980-z-adhesion-saison-2017-2018" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
-                </div>
+                    <p>Pour suivre les cours de calligraphie, il faut également <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
+                    <p>
+                        {% if lien_calendrier_cours_calligraphie() is not empty %}
+                        <a class="btn" href="{{ lien_calendrier_cours_calligraphie() }}" target="_blank">Voir le calendrier</a>
+                        {% endif %}
+                        {% if lien_cours_calligraphie() is not empty %}
+                        <a class="btn" href="{{ lien_cours_calligraphie() }}" target="_blank">S'incrire</a>
+                        {% endif %}
+                    </p>
+                </div>                
             </div>
         </div>                
     </section>
@@ -79,15 +96,18 @@
                 {#<p class="u-warning">// Plus que quelques places disponibles ! ///</p>#}
 
                 <div class="japaneseText sectionText">
-                    <p>Calendrier prévisionnel* :</p>
-                    <ul class="u-ul-colorRJ">
-                        <li><b>à venir</b></li>
-                    </ul>
-                    <p class="u-note">*en cas de modification, vous serez avertis par mail</p>
 
                     <strong class="conditions">Conditions</strong>
                     <p>Le montant des cours est fixé à 136€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Pour suivre les cours de cérémonie du thé, il faut également <b><a href="https://www.assoconnect.com/association-rouen-japon/billetterie/offre/63980-z-adhesion-saison-2017-2018" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
+                    <p>Pour suivre les cours de cérémonie du thé, il faut également <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
+                    <p>
+                        {% if lien_calendrier_cours_the() is not empty %}
+                        <a class="btn" href="{{ lien_calendrier_cours_the() }}" target="_blank">Voir le calendrier</a>
+                        {% endif %}
+                        {% if lien_cours_the() is not empty %}
+                        <a class="btn" href="{{ lien_cours_the() }}" target="_blank">S'incrire</a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>                
@@ -105,15 +125,18 @@
                 </div>
 
                 <div class="japaneseText sectionText">
-                    <p>Calendrier prévisionnel* :</p>
-                    <ul class="u-ul-colorRJ">
-                        <li><b>à venir</b></li>
-                    </ul>
-                    <p class="u-note">*en cas de modification, vous serez avertis par mail</p>
 
                     <strong class="conditions">Conditions</strong>
                     <p>Le montant des cours est fixé à 232€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Pour inscrire votre enfant aux cours de japonais, il faut qu'il <b><a href="https://www.assoconnect.com/association-rouen-japon/billetterie/offre/63980-z-adhesion-saison-2017-2018" target="_blank">adhérer à l'association</a></b> et que vous vous acquittiez du montant de la cotisation de 20€ (10€ si vous êtes vous-mêmes adhérent).</p>
+                    <p>Pour inscrire votre enfant aux cours de japonais, il faut qu'il <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et que vous vous acquittiez du montant de la cotisation de 20€ (10€ si vous êtes vous-mêmes adhérent).</p>
+                    <p>
+                        {% if lien_calendrier_cours_japonais_enfant() is not empty %}
+                        <a class="btn" href="{{ lien_calendrier_cours_japonais_enfant() }}" target="_blank">Voir le calendrier</a>
+                        {% endif %}
+                        {% if lien_cours_japonais_enfant() is not empty %}
+                        <a class="btn" href="{{ lien_cours_japonais_enfant() }}" target="_blank">S'incrire</a>
+                        {% endif %}
+                    </p>
                 </div>
             </div>
         </div>

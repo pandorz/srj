@@ -386,7 +386,7 @@ class Sortie
      *
      * @param string $contenu
      *
-     * @return Musee
+     * @return Cour
      */
     public function setContenu($contenu)
     {
@@ -552,7 +552,7 @@ class Sortie
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Musee
+     * @return Cour
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -576,7 +576,7 @@ class Sortie
      *
      * @param \DateTime $timestampModification
      *
-     * @return Musee
+     * @return Cour
      */
     public function setTimestampModification($timestampModification)
     {

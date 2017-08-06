@@ -1,8 +1,10 @@
 <div class="hero">
-    <h2 class="heroTitle">Favoriser les échanges entre les Français et la communauté japonaise de Rouen.</h2>
+    <h1 class="heroTitle">Favoriser les échanges entre les Français et la communauté japonaise de Rouen.</h1>
     <div class="heroJPbaseline" lang="ja">日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。</div>
     <div class="userGuide">
         <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a>
-        <a class="btn" href="https://www.assoconnect.com/association-rouen-japon/billetterie/offre/63980-z-adhesion-saison-2017-2018" target="_blank">Devenir membre</a>
+        {% if lien_adhesion() is not empty %}
+        <a class="btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
+        {% endif %}
     </div>
 </div>

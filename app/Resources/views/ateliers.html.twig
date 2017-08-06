@@ -1,6 +1,6 @@
 {% extends "template/base_front.html.twig" %}
 {% block body_class %}events workshops{% endblock %}
-{% block html_title %} - Les ateliers{% endblock %}
+{% block html_title %}– Les ateliers sur la culture japonaise : ikebana, origami, cuisine nippone{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "Nos activités" %}
@@ -39,7 +39,7 @@
             <p>Ça ne devrait pourtant pas tarder !</p>            
         </div>
         {% else %} 
-        <h2 class="sectionTitle">Ateliers(s) à venir</h2>
+        <h2 class="sectionTitle">Nos Ateliers</h2>
         <div class="postItem shortPost">
         {% for atelier in ateliers %}            
             <div class="postItemCtn">

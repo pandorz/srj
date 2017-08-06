@@ -41,7 +41,7 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
                 . 'WHERE e.annule = :annule '
                 . 'AND e.affiche = :affiche '
                 . 'AND e.dateDebut > :dateDebut '
-                . 'ORDER BY e.dateDebut DESC ')
+                . 'ORDER BY e.dateDebut ASC ')
             ->setParameters([
                 'annule'  => false,
                 'affiche' => true,

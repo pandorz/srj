@@ -28,7 +28,7 @@
                         {% if evenement.contenu|length > 99 %}
                         <div class="postMoreText" style="display: none;">
                             {{ evenement.contenu|raw }}<br>
-                            {% if evenement.dateDebut != evenement.dateFin %}
+                            {% if evenement.dateDebut|date('d/m/Y') != evenement.dateFin|date('d/m/Y') %}
                             <b class="u-textColorRJ">Du {{evenement.dateDebut|date('d/m/Y')}} au {{evenement.dateFin|date('d/m/Y')}}</b>
                             {% endif %}
                         </div>
