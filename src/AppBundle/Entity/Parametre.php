@@ -236,7 +236,7 @@ class Parametre
     /**
      * @param string $utilisateurCreation
      */
-    public function setUtilisateurCreation(string $utilisateurCreation)
+    public function setUtilisateurCreation($utilisateurCreation)
     {
         $this->utilisateurCreation = $utilisateurCreation;
     }
@@ -252,7 +252,7 @@ class Parametre
     /**
      * @param string $utilisateurModification
      */
-    public function setUtilisateurModification(string $utilisateurModification)
+    public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
     }

@@ -133,54 +133,6 @@ class Utilisateur extends BaseUser
     }
 
     /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Utilisateur
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
-    }
-
-    /**
-     * Set prenom
-     *
-     * @param string $prenom
-     *
-     * @return Utilisateur
-     */
-    public function setPrenom($prenom)
-    {
-        $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    /**
-     * Get prenom
-     *
-     * @return string
-     */
-    public function getPrenom()
-    {
-        return $this->prenom;
-    }
-
-    /**
      * Set email
      *
      * @param string $email
@@ -272,7 +224,7 @@ class Utilisateur extends BaseUser
      */
     public function addAtelier(Atelier $atelier)
     {
-        $this->atelier[] = $atelier;
+        $this->ateliers[] = $atelier;
 
         return $this;
     }
@@ -306,7 +258,7 @@ class Utilisateur extends BaseUser
      */
     public function addSortie(Sortie $sortie)
     {
-        $this->sortie[] = $sortie;
+        $this->sorties[] = $sortie;
 
         return $this;
     }
@@ -451,7 +403,7 @@ class Utilisateur extends BaseUser
 
     /**
      * Set parent
-     *
+     * @param Utilisateur $parent
      * @return Utilisateur
      */
     public function setParent(Utilisateur $parent)
@@ -527,6 +479,40 @@ class Utilisateur extends BaseUser
     public function removeEvenementSupervise(Evenement $evenementSupervise)
     {
         $this->evenementSupervise->removeElement($evenementSupervise);
+    }
+
+    /**
+     * Get evenementSupervise
+     *
+     * @return ArrayCollection
+     */
+    public function getActualiteSupervise()
+    {
+        return $this->actualiteSupervise;
+    }
+
+    /**
+     * Add evenementSupervise
+     *
+     * @param Actualite $actualiteSupervise
+     *
+     * @return Utilisateur
+     */
+    public function addActualiteSupervise(Actualite $actualiteSupervise)
+    {
+        $this->actualiteSupervise[] = $actualiteSupervise;
+
+        return $this;
+    }
+
+    /**
+     * Remove evenementSupervise
+     *
+     * @param Actualite $actualiteSupervise
+     */
+    public function removeActualiteSupervise(Actualite $actualiteSupervise)
+    {
+        $this->actualiteSupervise->removeElement($actualiteSupervise);
     }
 
     /**

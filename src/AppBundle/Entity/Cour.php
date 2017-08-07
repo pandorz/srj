@@ -53,6 +53,13 @@ class Cour
      * @ORM\Column(name="affiche", type="boolean")
      */
     private $affiche;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_publication", type="datetime", nullable=true)
+     */
+    private $datePublication;
 	
     /**
      *
@@ -405,7 +412,7 @@ class Cour
     /**
      * @param string $utilisateurCreation
      */
-    public function setUtilisateurCreation(string $utilisateurCreation)
+    public function setUtilisateurCreation($utilisateurCreation)
     {
         $this->utilisateurCreation = $utilisateurCreation;
     }
@@ -421,8 +428,24 @@ class Cour
     /**
      * @param string $utilisateurModification
      */
-    public function setUtilisateurModification(string $utilisateurModification)
+    public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * @param \DateTime $datePublication
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
     }
 }

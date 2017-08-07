@@ -377,7 +377,7 @@ class Rubrique
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Cour
+     * @return Rubrique
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -401,7 +401,7 @@ class Rubrique
      *
      * @param \DateTime $timestampModification
      *
-     * @return Cour
+     * @return Rubrique
      */
     public function setTimestampModification($timestampModification)
     {
@@ -431,7 +431,7 @@ class Rubrique
     /**
      * @param string $utilisateurCreation
      */
-    public function setUtilisateurCreation(string $utilisateurCreation)
+    public function setUtilisateurCreation($utilisateurCreation)
     {
         $this->utilisateurCreation = $utilisateurCreation;
     }
@@ -447,7 +447,7 @@ class Rubrique
     /**
      * @param string $utilisateurModification
      */
-    public function setUtilisateurModification(string $utilisateurModification)
+    public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
     }

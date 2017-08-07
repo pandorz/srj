@@ -69,6 +69,14 @@ class Evenement
      * @ORM\Column(name="date_fin", type="datetime", nullable=true)
      */
     private $dateFin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_publication", type="datetime", nullable=true)
+     */
+    private $datePublication;
+
     
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
@@ -76,7 +84,7 @@ class Evenement
      */
     private $image;
    
-   /**
+    /**
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
@@ -469,7 +477,7 @@ class Evenement
     /**
      * @param string $utilisateurCreation
      */
-    public function setUtilisateurCreation(string $utilisateurCreation)
+    public function setUtilisateurCreation($utilisateurCreation)
     {
         $this->utilisateurCreation = $utilisateurCreation;
     }
@@ -485,42 +493,24 @@ class Evenement
     /**
      * @param string $utilisateurModification
      */
-    public function setUtilisateurModification(string $utilisateurModification)
+    public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
     }
-    
-    /**
-     * Add inscrit
-     *
-     * @param Utilisateur $inscrits
-     *
-     * @return Cour
-     */
-    public function addInscrit(Utilisateur $inscrits)
-    {
-        $this->inscrits[] = $inscrits;
 
-        return $this;
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
     }
 
     /**
-     * Remove inscrit
-     *
-     * @param Utilisateur $inscrits
+     * @param \DateTime $datePublication
      */
-    public function removeInscrit(Utilisateur $inscrits)
+    public function setDatePublication($datePublication)
     {
-        $this->inscrits->removeElement($inscrits);
-    }
-
-    /**
-     * Get inscrits
-     *
-     * @return ArrayCollection
-     */
-    public function getInscrits()
-    {
-        return $this->inscrits;
+        $this->datePublication = $datePublication;
     }
 }

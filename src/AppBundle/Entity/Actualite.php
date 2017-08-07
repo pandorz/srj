@@ -69,6 +69,13 @@ class Actualite
      * @ORM\Column(name="date_fin", type="datetime", nullable=true)
      */
     private $dateFin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_publication", type="datetime", nullable=true)
+     */
+    private $datePublication;
     
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
@@ -77,9 +84,9 @@ class Actualite
     private $image;
    
    /**
-     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
-     */
-    private $contenu;
+    * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
+    */
+   private $contenu;
 
     /**
      *
@@ -224,7 +231,7 @@ class Actualite
      *
      * @param \DateTime $dateDebut
      *
-     * @return ObjetMuseeMouvement
+     * @return Actualite
      */
     public function setDateDebut($dateDebut)
     {
@@ -248,7 +255,7 @@ class Actualite
      *
      * @param \DateTime $dateFin
      *
-     * @return ObjetMuseeMouvement
+     * @return Actualite
      */
     public function setDateFin($dateFin)
     {
@@ -340,7 +347,7 @@ class Actualite
      *
      * @param string $contenu
      *
-     * @return Musee
+     * @return Actualite
      */
     public function setContenu($contenu)
     {
@@ -415,7 +422,7 @@ class Actualite
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Musee
+     * @return Actualite
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -439,7 +446,7 @@ class Actualite
      *
      * @param \DateTime $timestampModification
      *
-     * @return Musee
+     * @return Actualite
      */
     public function setTimestampModification($timestampModification)
     {
@@ -469,7 +476,7 @@ class Actualite
     /**
      * @param string $utilisateurCreation
      */
-    public function setUtilisateurCreation(string $utilisateurCreation)
+    public function setUtilisateurCreation($utilisateurCreation)
     {
         $this->utilisateurCreation = $utilisateurCreation;
     }
@@ -485,42 +492,24 @@ class Actualite
     /**
      * @param string $utilisateurModification
      */
-    public function setUtilisateurModification(string $utilisateurModification)
+    public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
     }
-    
-    /**
-     * Add inscrit
-     *
-     * @param Utilisateur $inscrits
-     *
-     * @return Cour
-     */
-    public function addInscrit(Utilisateur $inscrits)
-    {
-        $this->inscrits[] = $inscrits;
 
-        return $this;
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
     }
 
     /**
-     * Remove inscrit
-     *
-     * @param Utilisateur $inscrits
+     * @param \DateTime $datePublication
      */
-    public function removeInscrit(Utilisateur $inscrits)
+    public function setDatePublication($datePublication)
     {
-        $this->inscrits->removeElement($inscrits);
-    }
-
-    /**
-     * Get inscrits
-     *
-     * @return ArrayCollection
-     */
-    public function getInscrits()
-    {
-        return $this->inscrits;
+        $this->datePublication = $datePublication;
     }
 }
