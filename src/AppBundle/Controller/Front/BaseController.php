@@ -259,14 +259,7 @@ class BaseController extends Controller
     {
         return $this->getEm()
                 ->getRepository(Actualite::class)
-                ->findBy(
-                    [
-                        'affiche' => true, 
-                        'annule' => false
-                    ],
-                    ['dateFin' => 'DESC'],
-                    $limit
-                );
+                ->getTop($limit);
     }
     
     /**
@@ -277,14 +270,7 @@ class BaseController extends Controller
     {
         return $this->getEm()
                 ->getRepository(Atelier::class)
-                ->findBy(
-                    [
-                        'affiche' => true, 
-                        'annule' => false
-                    ],
-                    ['date' => 'DESC'],
-                    $limit
-                );
+                ->getTop($limit);
     }
     
     /**
@@ -295,14 +281,7 @@ class BaseController extends Controller
     {
         return $this->getEm()
                 ->getRepository(Sortie::class)
-                ->findBy(
-                    [
-                        'affiche' => true, 
-                        'annule' => false
-                    ],
-                    ['date' => 'DESC'],
-                    $limit
-                );
+                ->getTop($limit);
     }
     
      /**

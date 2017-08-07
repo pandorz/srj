@@ -68,6 +68,20 @@ class Sortie
      * @ORM\Column(name="date_limite", type="datetime", nullable=true)
      */
     private $dateLimite;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_publication", type="datetime", nullable=true)
+     */
+    private $datePublication;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_inscription", type="string", length=255)
+     */
+    private $urlInscription;
     
     /**
      * @var int
@@ -386,7 +400,7 @@ class Sortie
      *
      * @param string $contenu
      *
-     * @return Cour
+     * @return Sortie
      */
     public function setContenu($contenu)
     {
@@ -512,7 +526,7 @@ class Sortie
      *
      * @param integer $prixMembre
      *
-     * @return Atelier
+     * @return Sortie
      */
     public function setPrixMembre($prixMembre)
     {
@@ -552,7 +566,7 @@ class Sortie
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Cour
+     * @return Sortie
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -576,7 +590,7 @@ class Sortie
      *
      * @param \DateTime $timestampModification
      *
-     * @return Cour
+     * @return Sortie
      */
     public function setTimestampModification($timestampModification)
     {
@@ -606,7 +620,7 @@ class Sortie
     /**
      * @param string $utilisateurCreation
      */
-    public function setUtilisateurCreation(string $utilisateurCreation)
+    public function setUtilisateurCreation($utilisateurCreation)
     {
         $this->utilisateurCreation = $utilisateurCreation;
     }
@@ -622,7 +636,7 @@ class Sortie
     /**
      * @param string $utilisateurModification
      */
-    public function setUtilisateurModification(string $utilisateurModification)
+    public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
     }
@@ -659,5 +673,37 @@ class Sortie
     public function getInscrits()
     {
         return $this->inscrits;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * @param \DateTime $datePublication
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrlInscription()
+    {
+        return $this->urlInscription;
+    }
+
+    /**
+     * @param string $urlInscription
+     */
+    public function setUrlInscription($urlInscription)
+    {
+        $this->urlInscription = $urlInscription;
     }
 }

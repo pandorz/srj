@@ -6,6 +6,7 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
@@ -36,6 +37,10 @@ class AtelierAdmin extends AbstractAdmin
             ->add('affiche', 'boolean', [
                 'label' => 'atelier.liste.affiche',
             ])
+            ->add('datePublication', 'date', [
+                'label' => 'atelier.liste.datePublication',
+                'sortable'  => 'name'
+            ])
             ->add('annule', 'boolean', [
                 'label' => 'atelier.liste.annule',
             ])
@@ -43,7 +48,7 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.liste.reserveMembre',
             ])
             ->add('nbPlace', 'integer', [
-                'label' => 'atelier.liste.nb_place',
+                'label' => 'atelier.liste.nbPlace',
             ])
             ->add('date', 'date', [
                 'label' => 'atelier.liste.date',
@@ -55,7 +60,6 @@ class AtelierAdmin extends AbstractAdmin
             ])
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -88,6 +92,15 @@ class AtelierAdmin extends AbstractAdmin
                 ],
                 'required' => false
             ])
+            ->add('datePublication', 'sonata_type_datetime_picker', [
+                'label' => 'atelier.datePublication',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy HH:mm',
+                'attr'  => [
+                    'placeholder' => $this->trans('atelier.placeholder.datePublication')
+                ],
+                'required' => false
+            ])
             ->add('annule', 'checkbox', [
                 'label' => 'atelier.annule',
                 'attr'  => [
@@ -103,9 +116,9 @@ class AtelierAdmin extends AbstractAdmin
                 'required' => false
             ])
             ->add('nbPlace', 'integer', [
-                'label' => 'atelier.nb_place',
+                'label' => 'atelier.nbPlace',
                 'attr'  => [
-                    'placeholder' => 'atelier.placeholder.nb_place'
+                    'placeholder' => 'atelier.placeholder.nbPlace'
                 ],
                 'required' => false
             ])
@@ -133,6 +146,13 @@ class AtelierAdmin extends AbstractAdmin
             ->with('Meta data', [
                 'name'      => $this->trans('atelier.with.meta_data'),
                 'class'     => 'col-md-5'
+            ])
+            ->add('urlInscription', 'url', [
+                'label' => 'atelier.urlInscription',
+                'attr'  => [
+                    'placeholder' => 'atelier.placeholder.urlInscription'
+                ],
+                'required' => false
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
@@ -199,14 +219,36 @@ class AtelierAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
-            ->add('affiche')
-            ->add('annule')
-            ->add('nbPlace')
-            ->add('reserveMembre')
-            ->add('prix')
-            ->add('date')
-            ->add('dateLimite')
+            ->add('nom', null, [
+                'label' => 'atelier.liste.nom'
+            ])
+            ->add('affiche', null, [
+                'label' => 'atelier.liste.affiche'
+            ])
+            ->add('annule', null, [
+                'label' => 'atelier.liste.annule'
+            ])
+            ->add('nbPlace', null, [
+                'label' => 'atelier.liste.nbPlace'
+            ])
+            ->add('reserveMembre', null, [
+                'label' => 'atelier.liste.reserveMembre'
+            ])
+            ->add('prix', null, [
+                'label' => 'atelier.liste.prix'
+            ])
+            ->add('prixMembre', null, [
+                'label' => 'atelier.liste.prixMembre'
+            ])
+            ->add('date', null, [
+                'label' => 'atelier.liste.date'
+            ])
+            ->add('dateLimite', null, [
+                'label' => 'atelier.liste.dateLimite'
+            ])
+            ->add('datePublication', null, [
+                'label' => 'atelier.liste.datePublication'
+            ])
         ;
     }
 
@@ -238,5 +280,10 @@ class AtelierAdmin extends AbstractAdmin
         return $object instanceof Atelier
             ? $object->getNom()
             : $this->trans('atelier.add_edit.to_string');
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('show');
     }
 }

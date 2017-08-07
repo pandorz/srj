@@ -6,6 +6,7 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
@@ -36,6 +37,10 @@ class SortieAdmin extends AbstractAdmin
             ->add('affiche', 'boolean', [
                 'label' => 'sortie.liste.affiche',
             ])
+            ->add('datePublication', 'date', [
+                'label' => 'sortie.liste.datePublication',
+                'sortable'  => 'name'
+            ])
             ->add('annule', 'boolean', [
                 'label' => 'sortie.liste.annule',
             ])
@@ -43,7 +48,7 @@ class SortieAdmin extends AbstractAdmin
                 'label' => 'sortie.liste.reserveMembre',
             ])
             ->add('nbPlace', 'integer', [
-                'label' => 'sortie.liste.nb_place',
+                'label' => 'sortie.liste.nbPlace',
             ])
             ->add('date', 'date', [
                 'label' => 'sortie.liste.date',
@@ -55,7 +60,6 @@ class SortieAdmin extends AbstractAdmin
             ])
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -88,6 +92,15 @@ class SortieAdmin extends AbstractAdmin
                 ],
                 'required' => false
             ])
+            ->add('datePublication', 'sonata_type_datetime_picker', [
+                'label' => 'sortie.datePublication',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy HH:mm',
+                'attr'  => [
+                    'placeholder' => $this->trans('sortie.placeholder.datePublication')
+                ],
+                'required' => false
+            ])
             ->add('annule', 'checkbox', [
                 'label' => 'sortie.annule',
                 'attr'  => [
@@ -103,9 +116,9 @@ class SortieAdmin extends AbstractAdmin
                 'required' => false
             ])
             ->add('nbPlace', 'integer', [
-                'label' => 'sortie.nb_place',
+                'label' => 'sortie.nbPlace',
                 'attr'  => [
-                    'placeholder' => 'sortie.placeholder.nb_place'
+                    'placeholder' => 'sortie.placeholder.nbPlace'
                 ],
                 'required' => false
             ])
@@ -133,6 +146,13 @@ class SortieAdmin extends AbstractAdmin
             ->with('Meta data', [
                 'name'      => $this->trans('sortie.with.meta_data'),
                 'class'     => 'col-md-5'
+            ])
+            ->add('urlInscription', 'url', [
+                'label' => 'sortie.urlInscription',
+                'attr'  => [
+                    'placeholder' => 'sortie.placeholder.urlInscription'
+                ],
+                'required' => false
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
@@ -199,14 +219,36 @@ class SortieAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
-            ->add('affiche')
-            ->add('annule')
-            ->add('nbPlace')
-            ->add('reserveMembre')
-            ->add('prix')
-            ->add('date')
-            ->add('dateLimite')
+            ->add('nom', null, [
+                'label' => 'sortie.liste.nom'
+            ])
+            ->add('affiche', null, [
+                'label' => 'sortie.liste.affiche'
+            ])
+            ->add('annule', null, [
+                'label' => 'sortie.liste.annule'
+            ])
+            ->add('nbPlace', null, [
+                'label' => 'sortie.liste.nbPlace'
+            ])
+            ->add('reserveMembre', null, [
+                'label' => 'sortie.liste.reserveMembre'
+            ])
+            ->add('prix', null, [
+                'label' => 'sortie.liste.prix'
+            ])
+            ->add('prixMembre', null, [
+                'label' => 'sortie.liste.prixMembre'
+            ])
+            ->add('date', null, [
+                'label' => 'sortie.liste.date'
+            ])
+            ->add('dateLimite', null, [
+                'label' => 'sortie.liste.dateLimite'
+            ])
+            ->add('datePublication', null, [
+                'label' => 'sortie.liste.datePublication'
+            ])
         ;
     }
 
@@ -238,5 +280,10 @@ class SortieAdmin extends AbstractAdmin
         return $object instanceof Sortie
             ? $object->getNom()
             : $this->trans('sortie.add_edit.to_string');
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('show');
     }
 }
