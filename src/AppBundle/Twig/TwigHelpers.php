@@ -32,7 +32,11 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_cours_japonais', array($this, 'getLienCoursJaponais')),
             new \Twig_SimpleFunction('lien_cours_japonais_enfant', array($this, 'getLienCoursJaponaisEnfant')),
             new \Twig_SimpleFunction('lien_cours_calligraphie', array($this, 'getLienCoursCalligraphie')),
-            new \Twig_SimpleFunction('lien_cours_the', array($this, 'getLienCoursThe'))
+            new \Twig_SimpleFunction('lien_cours_the', array($this, 'getLienCoursThe')),
+            new \Twig_SimpleFunction('lien_calendrier_cours_japonais', array($this, 'getLienCalendrierCoursJaponais')),
+            new \Twig_SimpleFunction('lien_calendrier_cours_japonais_enfant', array($this, 'getLienCalendrierCoursJaponaisEnfant')),
+            new \Twig_SimpleFunction('lien_calendrier_cours_calligraphie', array($this, 'getLienCalendrierCoursCalligraphie')),
+            new \Twig_SimpleFunction('lien_calendrier_cours_the', array($this, 'getLienCalendrierCoursThe'))
         );
     }
     
@@ -90,6 +94,38 @@ class TwigHelpers extends \Twig_Extension
         $parametre = $this->entityManager
                 ->getRepository(Parametre::class)
                 ->findOneBy(['slug' => 'lien-inscription-cours-ceremonie-du-the']);
+        return $this->returnParametreValue($parametre);
+    }
+    
+    public function getLienCalendrierCoursJaponais()
+    {
+        $parametre = $this->entityManager
+                ->getRepository(Parametre::class)
+                ->findOneBy(['slug' => 'lien-pdf-calendrier-cours-japonais']);
+        return $this->returnParametreValue($parametre);
+    }
+    
+    public function getLienCalendrierCoursJaponaisEnfant()
+    {
+        $parametre = $this->entityManager
+                ->getRepository(Parametre::class)
+                ->findOneBy(['slug' => 'lien-pdf-calendrier-cours-enfants']);
+        return $this->returnParametreValue($parametre);
+    }
+    
+    public function getLienCalendrierCoursCalligraphie()
+    {
+        $parametre = $this->entityManager
+                ->getRepository(Parametre::class)
+                ->findOneBy(['slug' => 'lien-pdf-calendrier-cours-calligraphie']);
+        return $this->returnParametreValue($parametre);
+    }
+    
+    public function getLienCalendrierCoursThe()
+    {
+        $parametre = $this->entityManager
+                ->getRepository(Parametre::class)
+                ->findOneBy(['slug' => 'lien-pdf-calendrier-ceremonie-du-the']);
         return $this->returnParametreValue($parametre);
     }
 }

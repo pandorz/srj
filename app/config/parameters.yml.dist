@@ -27,4 +27,4 @@ parameters:
     google_recaptcha_secret_token: ~
     google_recaptcha_public_token: ~
     google_recaptcha_url: 'https://www.google.com/recaptcha/api/siteverify'
-    google_analytics_ua:
+    google_analytics_ua: ~
