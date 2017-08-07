@@ -23,12 +23,33 @@ class ActualiteRepository extends \Doctrine\ORM\EntityRepository
                 . 'WHERE e.annule = :annule '
                 . 'AND e.affiche = :affiche '
                 . 'AND e.dateFin >= :dateFin '
+                . 'AND e.datePublication <= :datePublication '
                 . 'ORDER BY e.dateDebut DESC')
             ->setParameters([
                 'annule'  => false,
                 'affiche' => true,
-                'dateFin' => date("Y-m-d",strtotime("-1 month"))
+                'dateFin' => date("Y-m-d",strtotime("-1 month")),
+                'datePublication' => date("Y-m-d")
             ])
+            ->getResult();
+    }
+
+    public function getTop($limit)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Actualite e '
+                . 'WHERE e.annule = :annule '
+                . 'AND e.affiche = :affiche '
+                . 'AND e.datePublication <= :datePublication '
+                . 'ORDER BY e.dateDebut DESC')
+            ->setParameters([
+                'annule'  => false,
+                'affiche' => true,
+                'datePublication' => date("Y-m-d")
+            ])
+            ->setMaxResults($limit)
             ->getResult();
     }
 }

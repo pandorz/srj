@@ -7,6 +7,7 @@ use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 
@@ -36,6 +37,10 @@ class EvenementAdmin extends AbstractAdmin
             ->add('affiche', 'boolean', [
                 'label' => 'evenement.liste.affiche',
             ])
+            ->add('datePublication', 'date', [
+                'label' => 'evenement.liste.datePublication',
+                'sortable'  => 'name'
+            ])
             ->add('annule', 'boolean', [
                 'label' => 'evenement.liste.annule',
             ])
@@ -49,7 +54,6 @@ class EvenementAdmin extends AbstractAdmin
             ])
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -79,6 +83,15 @@ class EvenementAdmin extends AbstractAdmin
                 'label' => 'evenement.actif',
                 'attr'  => [
                     'placeholder' => 'evenement.placeholder.actif'
+                ],
+                'required' => false
+            ])
+            ->add('datePublication', 'sonata_type_datetime_picker', [
+                'label' => 'evenement.datePublication',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy HH:mm',
+                'attr'  => [
+                    'placeholder' => $this->trans('evenement.placeholder.datePublication')
                 ],
                 'required' => false
             ])
@@ -162,11 +175,24 @@ class EvenementAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
-            ->add('affiche')
-            ->add('annule')
-            ->add('dateDebut')
-            ->add('dateFin')
+            ->add('nom', null, [
+                'label' => 'evenement.liste.nom'
+            ])
+            ->add('affiche', null, [
+                'label' => 'evenement.liste.nom'
+            ])
+            ->add('annule', null, [
+                'label' => 'evenement.liste.nom'
+            ])
+            ->add('dateDebut', null, [
+                'label' => 'evenement.liste.nom'
+            ])
+            ->add('dateFin', null, [
+                'label' => 'evenement.liste.nom'
+            ])
+            ->add('datePublication', null, [
+                'label' => 'evenement.liste.datePublication'
+            ])
         ;
     }
 
@@ -198,5 +224,10 @@ class EvenementAdmin extends AbstractAdmin
         return $object instanceof Evenement
             ? $object->getNom()
             : $this->trans('evenement.add_edit.to_string');
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('show');
     }
 }

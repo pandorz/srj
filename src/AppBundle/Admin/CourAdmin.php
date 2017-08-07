@@ -6,6 +6,7 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
@@ -36,6 +37,10 @@ class CourAdmin extends AbstractAdmin
             ->add('affiche', 'boolean', [
                 'label' => 'cour.liste.affiche',
             ])
+            ->add('datePublication', 'date', [
+                'label' => 'cour.liste.datePublication',
+                'sortable'  => 'name'
+            ])
             ->add('annule', 'boolean', [
                 'label' => 'cour.liste.annule',
             ])
@@ -46,7 +51,6 @@ class CourAdmin extends AbstractAdmin
             ])
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -76,6 +80,15 @@ class CourAdmin extends AbstractAdmin
                 'label' => 'cour.actif',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.actif'
+                ],
+                'required' => false
+            ])
+            ->add('datePublication', 'sonata_type_datetime_picker', [
+                'label' => 'cour.datePublication',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy HH:mm',
+                'attr'  => [
+                    'placeholder' => $this->trans('cour.placeholder.datePublication')
                 ],
                 'required' => false
             ])
@@ -178,5 +191,10 @@ class CourAdmin extends AbstractAdmin
         return $object instanceof Cour
             ? $object->getNom()
             : $this->trans('cour.add_edit.to_string');
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('show');
     }
 }

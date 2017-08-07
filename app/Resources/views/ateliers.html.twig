@@ -49,9 +49,9 @@
                     <span class="day">{{atelier.date|date('d')}}</span> 
                     <span class="month">{{atelier.date|date('F')|slice(0, 3)}}.</span>
                 </time>
-                <p class="postSummary">{{ atelier.contenu|slice(0, 100)|raw }}</p>
+                <p class="postSummary">{{ crop_entete_texte(atelier.contenu)|raw }}</p>
                 <div class="postMoreText" style="display: none;">
-                    {{ atelier.contenu|raw }}
+                    {{ get_corps_texte(atelier.contenu)|raw }}
                     <p><b class="u-textColorRJ">Conditions :</b> 
                         {%if atelier.prix>0 and not atelier.reserveMembre%}
                         {{atelier.prix|replace({'.':','})}} euros pour les personnes non membres. 
@@ -63,6 +63,9 @@
                         {% endif %}
                         {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
                         <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
+                        {% if atelier.urlInscription is not empty %}
+                            <p><b>&gt; <a class="u-textBlack" href="{{ atelier.urlInscription }}" target="_blank">Je veux participer !</a></b></p>
+                        {% endif %}
                 </div>
                 {% if atelier.contenu|length > 1 %}
                 <button class="seeMore" aria-hidden="true">En savoir plus</button>
