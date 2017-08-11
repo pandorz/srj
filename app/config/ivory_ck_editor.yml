@@ -2,4 +2,12 @@ ivory_ck_editor:
     configs:
         my_config:
             language: fr
-            toolbar: "basic"
+            toolbar: "essentiels"
+    toolbars:
+        configs:
+            essentiels: [ "@source", "-", "@basicstyles", "-", "@links" , "-", "@paragraph" ,]
+        items:
+            basicstyles: [ "Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "-", "RemoveFormat" ]
+            paragraph:   [ "NumberedList", "BulletedList", "-", "Outdent", "Indent", "-", "Blockquote" ]
+            links:       [ "Link", "Unlink" ]
+            source:      [ "Source" ]
