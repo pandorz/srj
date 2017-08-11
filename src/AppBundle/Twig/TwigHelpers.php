@@ -45,7 +45,7 @@ class TwigHelpers extends \Twig_Extension
     public function cropEnteteTexte($chaine)
     {
         if (strlen($chaine)>99) {
-            return substr($chaine,0, strpos($chaine, '. ')+1);
+            return substr($chaine,0, strpos($chaine, "</p>"));
         }
 
         return $chaine;
