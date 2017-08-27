@@ -40,34 +40,39 @@
         </div>
         {% else %} 
         <h2 class="sectionTitle">Nos Ateliers</h2>
-        <div class="postItem shortPost">
-        {% for atelier in ateliers %}            
-            <div class="postItemCtn">
-                {% media atelier.image, 'big' with {'class': 'postPhoto'} %}
-                <h4 class="postTitle">{{ atelier.nom }}</h4>
-                <time class="postDate" datetime="{{atelier.date|date('Y-m-d')}}">
-                    <span class="day">{{atelier.date|date('d')}}</span> 
-                    <span class="month">{{atelier.date|date('F')|slice(0, 3)}}.</span>
-                </time>
-                <p class="postSummary">{{ atelier.contenu|slice(0, 100)|raw }}</p>
-                <div class="postMoreText" style="display: none;">
-                    {{ atelier.contenu|raw }}
-                    <p><b class="u-textColorRJ">Conditions :</b> 
-                        {%if atelier.prix>0 and not atelier.reserveMembre%}
-                        {{atelier.prix|replace({'.':','})}} euros pour les personnes non membres. 
-                        {% endif %}
-                        {%if atelier.prixMembre>0 %}
-                        {{atelier.prixMembre|replace({'.':','})}} euros pour les membres. 
-                        {% else %}
-                            Gratuit pour les membres.
-                        {% endif %}
-                        {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
-                        <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
-                </div>
-                {% if atelier.contenu|length > 1 %}
-                <button class="seeMore" aria-hidden="true">En savoir plus</button>
-                {% endif %}
-            </div>            
+        <div class="postsList u-fitted">        
+        {% for atelier in ateliers %}  
+            <div class="postItem shortPost">
+                <div class="postItemCtn">
+                    {% media atelier.image, 'big' with {'class': 'postPhoto'} %}
+                    <h4 class="postTitle">{{ atelier.nom }}</h4>
+                    <time class="postDate" datetime="{{atelier.date|date('Y-m-d')}}">
+                        <span class="day">{{atelier.date|date('d')}}</span> 
+                        <span class="month">{{atelier.date|date('F')|slice(0, 3)}}.</span>
+                    </time>
+                    <p class="postSummary">{{ crop_entete_texte(atelier.contenu)|raw }}</p>
+                    <div class="postMoreText" style="display: none;">
+                        {{ get_corps_texte(atelier.contenu)|raw }}
+                        <p><b class="u-textColorRJ">Conditions :</b> 
+                            {%if atelier.prix>0 and not atelier.reserveMembre%}
+                            {{atelier.prix|replace({'.':','})}} euros pour les personnes non membres. 
+                            {% endif %}
+                            {%if atelier.prixMembre>0 %}
+                            {{atelier.prixMembre|replace({'.':','})}} euros pour les membres. 
+                            {% else %}
+                                Gratuit pour les membres.
+                            {% endif %}
+                            {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                            <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
+                            {% if atelier.urlInscription is not empty %}
+                                <p><b>&gt; <a class="u-textBlack" href="{{ atelier.urlInscription }}" target="_blank">Je veux participer !</a></b></p>
+                            {% endif %}
+                    </div>
+                    {% if atelier.contenu|length > 1 %}
+                    <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                    {% endif %}
+                </div>      
+            </div>     
         {% endfor %}
         </div>
         {% endif %}        

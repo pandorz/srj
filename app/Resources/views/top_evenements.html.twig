@@ -24,10 +24,10 @@
                             <span class="day">{{evenement.dateDebut|date('d')}}</span> 
                             <span class="month">{{evenement.dateDebut|date('F')|slice(0, 3)}}.</span>
                         </time>
-                        <p class="postSummary eventSummary">{% if evenement.contenu|length > 99 %}{{ evenement.contenu|slice(0, 100)|raw }}{% else %}{{ evenement.contenu|raw }}{% endif %}</p>
+                        <p class="postSummary eventSummary">{% if evenement.contenu|length > 99 %}{{ crop_entete_texte(evenement.contenu)|raw }}{% else %}{{ evenement.contenu|raw }}{% endif %}</p>
                         {% if evenement.contenu|length > 99 %}
                         <div class="postMoreText" style="display: none;">
-                            {{ evenement.contenu|raw }}<br>
+                            {{ get_corps_texte(evenement.contenu)|raw }}<br>
                             {% if evenement.dateDebut|date('d/m/Y') != evenement.dateFin|date('d/m/Y') %}
                             <b class="u-textColorRJ">Du {{evenement.dateDebut|date('d/m/Y')}} au {{evenement.dateFin|date('d/m/Y')}}</b>
                             {% endif %}

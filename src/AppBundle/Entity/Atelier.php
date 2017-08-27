@@ -68,6 +68,20 @@ class Atelier
      * @ORM\Column(name="date_limite", type="datetime", nullable=true)
      */
     private $dateLimite;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_publication", type="datetime", nullable=true)
+     */
+    private $datePublication;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url_inscription", type="string", length=255, nullable=true)
+     */
+    private $urlInscription;
     
     /**
      * @var int
@@ -358,8 +372,7 @@ class Atelier
      * Set image
      *
      * @param MediaInterface $image
-     *
-     * 
+     * @return Atelier
      */
     public function setImage(MediaInterface $image = null)
     {
@@ -603,7 +616,7 @@ class Atelier
     /**
      * @param string $utilisateurCreation
      */
-    public function setUtilisateurCreation(string $utilisateurCreation)
+    public function setUtilisateurCreation($utilisateurCreation)
     {
         $this->utilisateurCreation = $utilisateurCreation;
     }
@@ -619,7 +632,7 @@ class Atelier
     /**
      * @param string $utilisateurModification
      */
-    public function setUtilisateurModification(string $utilisateurModification)
+    public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
     }
@@ -656,5 +669,37 @@ class Atelier
     public function getInscrits()
     {
         return $this->inscrits;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDatePublication()
+    {
+        return $this->datePublication;
+    }
+
+    /**
+     * @param \DateTime $datePublication
+     */
+    public function setDatePublication($datePublication)
+    {
+        $this->datePublication = $datePublication;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrlInscription()
+    {
+        return $this->urlInscription;
+    }
+
+    /**
+     * @param string $urlInscription
+     */
+    public function setUrlInscription($urlInscription)
+    {
+        $this->urlInscription = $urlInscription;
     }
 }

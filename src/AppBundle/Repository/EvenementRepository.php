@@ -23,11 +23,13 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
                 . 'WHERE e.annule = :annule '
                 . 'AND e.affiche = :affiche '
                 . 'AND e.dateFin >= :dateFin '
+                . 'AND e.datePublication <= :datePublication '
                 . 'ORDER BY e.dateDebut DESC')
             ->setParameters([
                 'annule'  => false,
                 'affiche' => true,
-                'dateFin' => date("Y-m-d",strtotime("-1 month"))
+                'dateFin' => date("Y-m-d",strtotime("-1 month")),
+                'datePublication' => date("Y-m-d")
             ])
             ->getResult();
     }
@@ -41,11 +43,13 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
                 . 'WHERE e.annule = :annule '
                 . 'AND e.affiche = :affiche '
                 . 'AND e.dateDebut > :dateDebut '
+                . 'AND e.datePublication <= :datePublication '
                 . 'ORDER BY e.dateDebut ASC ')
             ->setParameters([
                 'annule'  => false,
                 'affiche' => true,
-                'dateDebut' => date("Y-m-d")
+                'dateDebut' => date("Y-m-d"),
+                'datePublication' => date("Y-m-d")
             ])
             ->setMaxResults(1)
             ->getResult();
@@ -60,11 +64,13 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
                 . 'WHERE e.annule = :annule '
                 . 'AND e.affiche = :affiche '
                 . 'AND e.dateDebut <= :dateDebut '
+                . 'AND e.datePublication <= :datePublication '
                 . 'ORDER BY e.dateFin DESC ')
             ->setParameters([
                 'annule'  => false,
                 'affiche' => true,
-                'dateDebut' => date("Y-m-d")
+                'dateDebut' => date("Y-m-d"),
+                'datePublication' => date("Y-m-d")
             ])
             ->setMaxResults($limit)
             ->getResult();

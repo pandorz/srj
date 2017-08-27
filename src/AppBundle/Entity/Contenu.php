@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Contenu
  *
  * @ORM\Table(name="contenu")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ContenuRepository")
+ * @ORM\Entity()
  */
 class Contenu
 {
@@ -362,7 +362,7 @@ class Contenu
     /**
      * @param string $utilisateurCreation
      */
-    public function setUtilisateurCreation(string $utilisateurCreation)
+    public function setUtilisateurCreation($utilisateurCreation)
     {
         $this->utilisateurCreation = $utilisateurCreation;
     }
@@ -378,7 +378,7 @@ class Contenu
     /**
      * @param string $utilisateurModification
      */
-    public function setUtilisateurModification(string $utilisateurModification)
+    public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
     }

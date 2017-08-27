@@ -6,6 +6,7 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
@@ -36,6 +37,10 @@ class ActualiteAdmin extends AbstractAdmin
             ->add('affiche', 'boolean', [
                 'label' => 'actualite.liste.affiche',
             ])
+            ->add('datePublication', 'date', [
+                'label' => 'actualite.liste.datePublication',
+                'sortable'  => 'name'
+            ])
             ->add('annule', 'boolean', [
                 'label' => 'actualite.liste.annule',
             ])
@@ -49,7 +54,6 @@ class ActualiteAdmin extends AbstractAdmin
             ])
             ->add('_action', null, array(
                 'actions' => array(
-                    'show' => array(),
                     'edit' => array(),
                     'delete' => array(),
                 )
@@ -79,6 +83,15 @@ class ActualiteAdmin extends AbstractAdmin
                 'label' => 'actualite.actif',
                 'attr'  => [
                     'placeholder' => 'actualite.placeholder.actif'
+                ],
+                'required' => false
+            ])
+            ->add('datePublication', 'sonata_type_datetime_picker', [
+                'label' => 'actualite.datePublication',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy HH:mm',
+                'attr'  => [
+                    'placeholder' => $this->trans('actualite.placeholder.datePublication')
                 ],
                 'required' => false
             ])
@@ -162,11 +175,24 @@ class ActualiteAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
-            ->add('affiche')
-            ->add('annule')
-            ->add('dateDebut')
-            ->add('dateFin')
+            ->add('nom', null, [
+                'label' => 'actualite.liste.nom'
+            ])
+            ->add('affiche', null, [
+                'label' => 'actualite.liste.nom'
+            ])
+            ->add('annule', null, [
+                'label' => 'actualite.liste.nom'
+            ])
+            ->add('dateDebut', null, [
+                'label' => 'actualite.liste.nom'
+            ])
+            ->add('dateFin', null, [
+                'label' => 'actualite.liste.nom'
+            ])
+            ->add('datePublication', null, [
+                'label' => 'actualite.liste.datePublication'
+            ])
         ;
     }
 
@@ -198,5 +224,10 @@ class ActualiteAdmin extends AbstractAdmin
         return $object instanceof Actualite
             ? $object->getNom()
             : $this->trans('actualite.add_edit.to_string');
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('show');
     }
 }

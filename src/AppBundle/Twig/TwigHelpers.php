@@ -36,8 +36,28 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_calendrier_cours_japonais', array($this, 'getLienCalendrierCoursJaponais')),
             new \Twig_SimpleFunction('lien_calendrier_cours_japonais_enfant', array($this, 'getLienCalendrierCoursJaponaisEnfant')),
             new \Twig_SimpleFunction('lien_calendrier_cours_calligraphie', array($this, 'getLienCalendrierCoursCalligraphie')),
-            new \Twig_SimpleFunction('lien_calendrier_cours_the', array($this, 'getLienCalendrierCoursThe'))
+            new \Twig_SimpleFunction('lien_calendrier_cours_the', array($this, 'getLienCalendrierCoursThe')),
+            new \Twig_SimpleFunction('crop_entete_texte', array($this, 'cropEnteteTexte')),
+            new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte'))
         );
+    }
+
+    public function cropEnteteTexte($chaine)
+    {
+        if (strlen($chaine)>99) {
+            return substr($chaine,0, strpos($chaine, "</p>"));
+        }
+
+        return $chaine;
+    }
+
+    public function getCorpsTexte($chaine)
+    {
+        if (strlen($chaine)<=99) {
+            return '';
+        }
+
+        return str_replace($this->cropEnteteTexte($chaine), '', $chaine);
     }
     
     private function returnParametreValue($parametre)

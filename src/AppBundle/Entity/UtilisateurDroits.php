@@ -64,11 +64,11 @@ class UtilisateurDroits extends BaseGroup
     /**
      * Set fkUtilisateur
      *
-     * @param \AppBundle\Entity\Utilisateur $fkUtilisateur
+     * @param Utilisateur $fkUtilisateur
      *
      * @return UtilisateurDroits
      */
-    public function setFkUtilisateur(\AppBundle\Entity\Utilisateur $fkUtilisateur = null)
+    public function setFkUtilisateur(Utilisateur $fkUtilisateur = null)
     {
         $this->fkUtilisateur = $fkUtilisateur;
 
