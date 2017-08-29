@@ -105,7 +105,7 @@ class TwigHelpers extends \Twig_Extension
     {
         $parametre = $this->entityManager
                 ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-inscription-cours-calligrahie']);
+                ->findOneBy(['slug' => 'lien-inscription-cours-calligraphie']);
         return $this->returnParametreValue($parametre);
     }
     
