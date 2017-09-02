@@ -14,6 +14,6 @@
     <h1>{{ 'http_error.name'|trans({ '%status_code%': 403 }) }} -&nbsp;</h1><h2>{{ 'http_error_403.description'|trans({}) }}</h2>
     <hr>
     <p>
-        {{ 'http_error_403.suggestion'|trans({ '%url%': path('fmconference_home') })|raw }}
+        {{ 'http_error_403.suggestion'|trans({ '%url%': path('home') })|raw }}
     </p>
 {% endblock %}
