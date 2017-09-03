@@ -6,6 +6,7 @@ imports:
     - { resource: sonata_media.yml }
     - { resource: sonata_block.yml }
     - { resource: sonata_user.yml }
+    - { resource: sonata_intl.yml }
     - { resource: fos_user.yml }
     - { resource: knp_snappy.yml }
     - { resource: ivory_ck_editor.yml }

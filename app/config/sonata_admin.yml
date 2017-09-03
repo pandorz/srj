@@ -126,3 +126,12 @@ sonata_admin:
                     color: bg-maroon
                     entity: AppBundle\Entity\Atelier
                     filters:
+            -
+                class: col-lg-12 col-xs-12
+                position: top
+                type: app.admin.block.timeline
+                settings:
+                    template: :AdminCustom/dashboard:block/timeline.html.twig
+                    icon:  fa-clock-o
+                    color: bg-white
+                    filters:

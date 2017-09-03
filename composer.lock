@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "069ff7eae19476cd2edc2c9d0e35d2fe",
+    "content-hash": "cb69ebbcf3d7da6bdc043d1630ef24b3",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -508,7 +508,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2017-05-28 02:49:26"
+            "time": "2017-05-28T02:49:26+00:00"
         },
         {
             "name": "doctrine/dbal",
@@ -1212,7 +1212,7 @@
                 "persistence",
                 "phpcr"
             ],
-            "time": "2017-01-31 10:13:35"
+            "time": "2017-01-31T10:13:35+00:00"
         },
         {
             "name": "doctrine/phpcr-odm",
@@ -4204,6 +4204,80 @@
             "time": "2017-04-19T14:00:07+00:00"
         },
         {
+            "name": "sonata-project/intl-bundle",
+            "version": "2.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sonata-project/SonataIntlBundle.git",
+                "reference": "d01e85fbc740452b7590d6e465bbcf852def00cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sonata-project/SonataIntlBundle/zipball/d01e85fbc740452b7590d6e465bbcf852def00cc",
+                "reference": "d01e85fbc740452b7590d6e465bbcf852def00cc",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.3 || ^7.0",
+                "symfony/dependency-injection": "^2.2 || ^3.0",
+                "symfony/http-kernel": "^2.2 || ^3.0",
+                "symfony/intl": "^2.3.21 || ^3.0",
+                "symfony/templating": "^2.2 || ^3.0",
+                "twig/twig": "^1.12 || ^2.0"
+            },
+            "conflict": {
+                "sonata-project/user-bundle": "<2.0 || >=4.0"
+            },
+            "require-dev": {
+                "matthiasnoback/symfony-dependency-injection-test": "^0.7.6 || ^1.0",
+                "sllh/php-cs-fixer-styleci-bridge": "^2.0",
+                "symfony/phpunit-bridge": "^2.7 || ^3.0",
+                "symfony/security": "^2.2 || ^3.0",
+                "symfony/security-acl": "^2.2 || ^3.0"
+            },
+            "suggest": {
+                "sonata-project/user-bundle": "For user timezone detection"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Sonata\\IntlBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sonata Community",
+                    "homepage": "https://github.com/sonata-project/SonataIntlBundle/contributors"
+                },
+                {
+                    "name": "Thomas Rabaix",
+                    "email": "thomas.rabaix@sonata-project.org"
+                }
+            ],
+            "description": "Symfony SonataIntlBundle",
+            "homepage": "https://sonata-project.org/bundles/intl",
+            "keywords": [
+                "date",
+                "intl",
+                "number",
+                "sonata",
+                "time"
+            ],
+            "time": "2017-06-27T15:35:25+00:00"
+        },
+        {
             "name": "sonata-project/media-bundle",
             "version": "3.5.1",
             "source": {
@@ -4498,7 +4572,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2017-04-01 22:15:36"
+            "time": "2017-04-01T22:15:36+00:00"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -5394,57 +5468,6 @@
             "time": "2016-09-20T12:50:39+00:00"
         },
         {
-            "name": "tilleuls/acl-sonata-admin-extension-bundle",
-            "version": "2.0.0",
-            "target-dir": "CoopTilleuls/Bundle/AclSonataAdminExtensionBundle",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/coopTilleuls/CoopTilleulsAclSonataAdminExtensionBundle.git",
-                "reference": "a3759ad4f8661f046ddf7eda7c70278aa29c72ae"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/coopTilleuls/CoopTilleulsAclSonataAdminExtensionBundle/zipball/a3759ad4f8661f046ddf7eda7c70278aa29c72ae",
-                "reference": "a3759ad4f8661f046ddf7eda7c70278aa29c72ae",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/dbal": "^2.2",
-                "sonata-project/admin-bundle": "^2.2.2 || ^3.0",
-                "symfony/dependency-injection": "^2.2 || ^3.0"
-            },
-            "type": "symfony-bundle",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "CoopTilleuls\\Bundle\\AclSonataAdminExtensionBundle": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Kévin Dunglas",
-                    "email": "kevin@les-tilleuls.coop",
-                    "homepage": "http://dunglas.fr"
-                }
-            ],
-            "description": "ACL list filtering for SonataAdmin",
-            "homepage": "http://les-tilleuls.coop",
-            "keywords": [
-                "acl",
-                "admin",
-                "sonata"
-            ],
-            "time": "2017-03-28T13:50:11+00:00"
-        },
-        {
             "name": "twig/extensions",
             "version": "v1.5.1",
             "source": {
@@ -5793,7 +5816,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2017-05-23 11:55:00"
+            "time": "2017-05-23T11:55:00+00:00"
         },
         {
             "name": "sensio/generator-bundle",
@@ -5910,6 +5933,57 @@
             "description": "Symfony PHPUnit Bridge",
             "homepage": "https://symfony.com",
             "time": "2017-06-01T14:45:22+00:00"
+        },
+        {
+            "name": "tilleuls/acl-sonata-admin-extension-bundle",
+            "version": "2.0.0",
+            "target-dir": "CoopTilleuls/Bundle/AclSonataAdminExtensionBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/coopTilleuls/CoopTilleulsAclSonataAdminExtensionBundle.git",
+                "reference": "a3759ad4f8661f046ddf7eda7c70278aa29c72ae"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/coopTilleuls/CoopTilleulsAclSonataAdminExtensionBundle/zipball/a3759ad4f8661f046ddf7eda7c70278aa29c72ae",
+                "reference": "a3759ad4f8661f046ddf7eda7c70278aa29c72ae",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/dbal": "^2.2",
+                "sonata-project/admin-bundle": "^2.2.2 || ^3.0",
+                "symfony/dependency-injection": "^2.2 || ^3.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "CoopTilleuls\\Bundle\\AclSonataAdminExtensionBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kévin Dunglas",
+                    "email": "kevin@les-tilleuls.coop",
+                    "homepage": "http://dunglas.fr"
+                }
+            ],
+            "description": "ACL list filtering for SonataAdmin",
+            "homepage": "http://les-tilleuls.coop",
+            "keywords": [
+                "acl",
+                "admin",
+                "sonata"
+            ],
+            "time": "2017-03-28T13:50:11+00:00"
         }
     ],
     "aliases": [],

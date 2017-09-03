@@ -12,3 +12,4 @@ sonata_block:
         app.admin.block.stats:
         app.admin.block.objet_musee_mouvement.stats:
         app.admin.block.import_objet_musee.stats:
+        app.admin.block.timeline:
