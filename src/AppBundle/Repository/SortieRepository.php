@@ -14,9 +14,22 @@ namespace AppBundle\Repository;
  */
 class SortieRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllValidOverOneMonth()
+    public function findAllValidOverOneMonth($admin = false)
     {
-        return $this
+        if ($admin) {
+            $query = $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Sortie e '
+                . 'WHERE e.annule = :annule '
+                . 'AND e.date >= :date '
+                . 'ORDER BY e.date DESC')
+            ->setParameters([
+                'annule'  => false,
+                'date'    => date("Y-m-d",strtotime("-1 month")),
+            ]);
+        } else {
+            $query = $this
             ->getEntityManager()
             ->createQuery('SELECT e '
                 . 'FROM AppBundle:Sortie e '
@@ -30,8 +43,9 @@ class SortieRepository extends \Doctrine\ORM\EntityRepository
                 'affiche' => true,
                 'date'    => date("Y-m-d",strtotime("-1 month")),
                 'datePublication' => date("Y-m-d")
-            ])
-            ->getResult();
+            ]);
+        }
+        return $query->getResult();
     }
 
     public function getTop($limit)

@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
             new AppBundle\AppBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
         ];

@@ -14,9 +14,22 @@ namespace AppBundle\Repository;
  */
 class ActualiteRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findAllValidOverOneMonth()
+    public function findAllValidOverOneMonth($admin = false)
     {
-        return $this
+        if ($admin) {
+            $query = $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Actualite e '
+                . 'WHERE e.annule = :annule '
+                . 'AND e.dateFin >= :dateFin '
+                . 'ORDER BY e.dateDebut DESC')
+            ->setParameters([
+                'annule'  => false,
+                'dateFin' => date("Y-m-d",strtotime("-1 month")),
+            ]);
+        } else {
+            $query = $this
             ->getEntityManager()
             ->createQuery('SELECT e '
                 . 'FROM AppBundle:Actualite e '
@@ -30,8 +43,9 @@ class ActualiteRepository extends \Doctrine\ORM\EntityRepository
                 'affiche' => true,
                 'dateFin' => date("Y-m-d",strtotime("-1 month")),
                 'datePublication' => date("Y-m-d")
-            ])
-            ->getResult();
+            ]);
+        }
+        return $query->getResult();
     }
 
     public function getTop($limit)
