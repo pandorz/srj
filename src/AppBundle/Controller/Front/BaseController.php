@@ -226,23 +226,27 @@ class BaseController extends Controller
             if (is_array($prochainEvenement) && count($prochainEvenement)>0) {
                 $prochainEvenement = $prochainEvenement[0];
             }
-            $evenements = [$prochainEvenement];
-            $limit--;
+            if (!empty($prochainEvenement)) {
+                $evenements = [$prochainEvenement];
+                $limit--;
+            }
         }
         
         //--
-        
+
         //-- Dernierement
         $dernierement = $this->getEm()
                 ->getRepository(Evenement::class)
                 ->findDernier($limit);
         
         if (!is_null($dernierement)) {
-            if (!is_array($dernierement)) {
+            if (!is_array($dernierement) && !empty($dernierement)) {
                 $evenements[] = $dernierement;
             } else {
                 foreach ($dernierement as $evenement) {
-                    $evenements[] = $evenement;
+                    if (!empty($dernierement)) {
+                        $evenements[] = $evenement;
+                    }
                 }
             }
         }
