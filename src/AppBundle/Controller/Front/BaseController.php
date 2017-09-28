@@ -124,7 +124,7 @@ class BaseController extends Controller
      *
      * @return bool
      */
-    public function sendMail($subject, $template, $to = null, $bcc = null, $data = [], $attachments = [])
+    public function sendMail($subject, $template, $to = null, $from = null, $bcc = null, $data = [], $attachments = [])
     {
         try {
 
@@ -134,7 +134,9 @@ class BaseController extends Controller
 
             $noReplyEmailTitle  = $this->getParameter('no-reply_name');
 
-            $from = ([$noReplyEmail => $noReplyEmailTitle]);
+            if (is_null($from)) {
+                $from = ([$noReplyEmail => $noReplyEmailTitle]);
+            }
 
             $mailDefault = $this->getParameter('mailer_admin');
 

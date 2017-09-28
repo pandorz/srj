@@ -367,6 +367,7 @@ class FrontController extends BaseController
                     $this->getTranslator()->trans('contact.mail.sujet'),
                     'contact',
                     null,
+                    $data['email'],    
                     null,
                     [
                         'title'     => $this->getTranslator()->trans('contact.mail.titre'),
