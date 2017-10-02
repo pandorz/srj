@@ -348,3 +348,5 @@ utilisateur:
     with:
         description: Informations
         sousUtilisateurs: Enfants
+button:
+    clone: 'Dupliquer'

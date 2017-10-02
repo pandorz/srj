@@ -22,22 +22,22 @@ services:
             - { name: sonata.block }
     app.admin.evenements:
         class: AppBundle\Admin\EvenementAdmin
-        arguments: [~, AppBundle\Entity\Evenement, SonataAdminBundle:CRUD]
+        arguments: [~, AppBundle\Entity\Evenement, AppBundle:Evenement]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Evenements }
     app.admin.actualites:
         class: AppBundle\Admin\ActualiteAdmin
-        arguments: [~, AppBundle\Entity\Actualite, SonataAdminBundle:CRUD]
+        arguments: [~, AppBundle\Entity\Actualite, AppBundle:Actualite]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Actualites }
     app.admin.sorties:
         class: AppBundle\Admin\SortieAdmin
-        arguments: [~, AppBundle\Entity\Sortie, SonataAdminBundle:CRUD]
+        arguments: [~, AppBundle\Entity\Sortie, AppBundle:Sortie]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Sorties }
     app.admin.ateliers:
         class: AppBundle\Admin\AtelierAdmin
-        arguments: [~, AppBundle\Entity\Atelier, SonataAdminBundle:CRUD]
+        arguments: [~, AppBundle\Entity\Atelier, AppBundle:Atelier]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Ateliers }
     app.admin.parametres:

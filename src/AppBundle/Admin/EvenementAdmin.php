@@ -55,6 +55,10 @@ class EvenementAdmin extends AbstractAdmin
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
+                    'clone' => array(
+                        'template' => ':AdminCustom/button:clone.html.twig',
+                        'data'     => '1',
+                    ),
                     'delete' => array(),
                 )
             ))
@@ -229,5 +233,6 @@ class EvenementAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
+        $collection->add('clone', $this->getRouterIdParameter().'/clone');
     }
 }
