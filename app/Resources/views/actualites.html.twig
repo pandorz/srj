@@ -22,14 +22,12 @@
                     <div class="postItemCtn newsItemCtn">
                         {% media actualite.image, 'big' with {'class': 'postPhoto newsPhoto'} %}                    
                         <h4 class="postTitle newsTitle">{{ actualite.nom }}</h4>                    
-                        <p class="postSummary newsSummary">{% if actualite.contenu|length > 99 %}{{ actualite.contenu|slice(0, 100)|raw }}{% else %}{{ actualite.contenu|raw }}{% endif %}</p>
-                        {% if actualite.contenu|length > 99 %}
+                        <p class="postSummary newsSummary"> {{ crop_entete_texte(actualite.contenu)|raw }}</p>
                         <div class="postMoreText" style="display: none;">
-                            {{ actualite.contenu|raw }}
+                            {{ get_corps_texte(actualite.contenu)|raw }}
                         </div>
                         {% if actualite.contenu|length > 1 %}
                         <button class="seeMore" aria-hidden="true">En savoir plus</button>
-                        {% endif %}
                         {% endif %}
                     </div>
                 </div>

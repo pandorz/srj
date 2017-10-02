@@ -60,3 +60,8 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
         tags:
             - { name: twig.extension }
+    app.admin.block.timeline:
+        class: AppBundle\Service\TimeLineBlockService
+        arguments: ["app.admin.block.timeline", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]
+        tags:
+            - { name: sonata.block }

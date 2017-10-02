@@ -124,7 +124,7 @@ class BaseController extends Controller
      *
      * @return bool
      */
-    public function sendMail($subject, $template, $to = null, $bcc = null, $data = [], $attachments = [])
+    public function sendMail($subject, $template, $to = null, $from = null, $bcc = null, $data = [], $attachments = [])
     {
         try {
 
@@ -134,7 +134,9 @@ class BaseController extends Controller
 
             $noReplyEmailTitle  = $this->getParameter('no-reply_name');
 
-            $from = ([$noReplyEmail => $noReplyEmailTitle]);
+            if (is_null($from)) {
+                $from = ([$noReplyEmail => $noReplyEmailTitle]);
+            }
 
             $mailDefault = $this->getParameter('mailer_admin');
 
@@ -226,23 +228,27 @@ class BaseController extends Controller
             if (is_array($prochainEvenement) && count($prochainEvenement)>0) {
                 $prochainEvenement = $prochainEvenement[0];
             }
-            $evenements = [$prochainEvenement];
-            $limit--;
+            if (!empty($prochainEvenement)) {
+                $evenements = [$prochainEvenement];
+                $limit--;
+            }
         }
         
         //--
-        
+
         //-- Dernierement
         $dernierement = $this->getEm()
                 ->getRepository(Evenement::class)
                 ->findDernier($limit);
         
         if (!is_null($dernierement)) {
-            if (!is_array($dernierement)) {
+            if (!is_array($dernierement) && !empty($dernierement)) {
                 $evenements[] = $dernierement;
             } else {
                 foreach ($dernierement as $evenement) {
-                    $evenements[] = $evenement;
+                    if (!empty($dernierement)) {
+                        $evenements[] = $evenement;
+                    }
                 }
             }
         }

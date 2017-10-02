@@ -1,0 +1,39 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <!-- small box -->
+    <div class="box box-success">
+        <div class="box-header">
+            <i class="fa fa-clock-o"></i>
+            <h3 class="box-title">{{ 'timeline.title'|trans({}, 'SonataAdminBundle') }}</h3>
+        </div>
+        <div class="box-body">
+            <ul class="timeline">
+                {% for key, data in liste_dates %}                    
+                <li class="time-label">
+                    <span class="bg-teal">
+                        {{ key | format_date }}
+                    </span>
+                </li>
+                    {% for item in data %}
+                        <li>
+                            <i class="fa {{ item.icon }} {{ item.bg }}" title="{{ item.trans|trans}}"></i>
+
+                            <div class="timeline-item">
+                              <h3 class="timeline-header">{{ item.objet.nom }}</h3>
+
+                              <div class="timeline-body">
+                                {{ item.objet.contenu|raw }}
+                              </div>
+                            </div>
+                          </li>
+                    {% endfor %}
+                {% endfor %}
+                <li>
+                    <i class="fa fa-clock-o bg-gray"></i>
+                </li>
+            </ul>
+        </div>
+        <div class="box-footer clearfix"></div>
+    </div>
+{% endblock %}

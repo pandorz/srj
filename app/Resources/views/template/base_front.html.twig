@@ -20,6 +20,10 @@
         <link rel="stylesheet" href="{{ asset('fullcalendar/lib/cupertino/jquery-ui.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('fullcalendar/fullcalendar.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('fullcalendar/fullcalendar.print.min.css') }}" media="print" />
+        
+        {#JS Grecaptcha#}
+        <script src='https://www.google.com/recaptcha/api.js?hl=fr&render=explicit' async defer></script>
+        {#END JS Grecaptcha#}
     </head>
     <body class="{% block body_class %}{% endblock %}">
         <!--[if lt IE 10]>
@@ -42,12 +46,9 @@
         <script src="{{ asset('fullcalendar/locale/fr.js') }}"></script>
         
         <script>
-            var events = {{ (dates is defined) ? dates|json_encode|raw : '' }};
-        </script>
+            var events = {{ (dates is defined) ? dates|json_encode|raw : '""' }};
+        </script>        
         
-        {#JS Grecaptcha#}
-        <script src='https://www.google.com/recaptcha/api.js?hl=fr&render=explicit' async defer></script>
-        {#END JS Grecaptcha#}
 
         {% endblock %}
         {% include 'template/google_analytics.html.twig' %}

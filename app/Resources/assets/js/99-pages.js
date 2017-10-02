@@ -9,24 +9,26 @@ app.pagesController.defaultAction = {
     
     calendar : function () {
 
-        $('#calendar').fullCalendar({
-            theme: false,
-            locale: 'fr',
-            header: {
-                left: '',
-                center: 'prev,title,next',
-                right: ''
-            },
-            defaultDate: getDataAttr(new Date()),
-            navLinks: false,
-            //eventLimit: true, // allow "more" link when too many events
-            displayEventTime: false,
-            dayNamesShort: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
-            viewRender: function(view, element) {
-                showEventsonDays();
-            },
-            events: events
-        });
+        if (typeof events !== "undefined") {
+            $('#calendar').fullCalendar({
+                theme: false,
+                locale: 'fr',
+                header: {
+                    left: '',
+                    center: 'prev,title,next',
+                    right: ''
+                },
+                defaultDate: getDataAttr(new Date()),
+                navLinks: false,
+                //eventLimit: true, // allow "more" link when too many events
+                displayEventTime: false,
+                dayNamesShort: ['D', 'L', 'M', 'M', 'J', 'V', 'S'],
+                viewRender: function(view, element) {
+                    showEventsonDays();
+                },
+                events: events
+            });
+        }
 
         function showEventsonDays() {
             for (var i = 0; i < events.length; i++) {
@@ -73,7 +75,7 @@ app.pagesController.defaultAction = {
         function getDataAttr(date) {
             var day = date.getDate();
             var month = date.getMonth() + 1;
-            return date.getFullYear() + "-" + (month.length === 2 ? month : "0" + month) + "-" + (day.toString().length === 2 ? day : "0" + day);
+            return date.getFullYear() + "-" + (month.toString().length === 2 ? month : "0" + month) + "-" + (day.toString().length === 2 ? day : "0" + day);
         };
     },
         
