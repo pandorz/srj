@@ -56,6 +56,8 @@ twig:
         web_path: '%web_path%'
         google_recaptcha_public_token: '%google_recaptcha_public_token%'
         google_analytics_ua: '%google_analytics_ua%'
+        trello_link: '%trello_link%'
+        num_version: '%num_version%'
 
 # Doctrine Configuration
 doctrine:

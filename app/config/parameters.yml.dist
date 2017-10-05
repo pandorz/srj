@@ -28,3 +28,6 @@ parameters:
     google_recaptcha_public_token: ~
     google_recaptcha_url: 'https://www.google.com/recaptcha/api/siteverify'
     google_analytics_ua: ~
+
+    trello_link: ~
+    num_version: 1.0.0
