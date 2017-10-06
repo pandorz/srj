@@ -15,12 +15,16 @@ Email: Email
 Nom: Nom
 'Parametre Create': Créer
 'Parametre List': Paramètres
-Prenom: 'Prénom'
+Prenom: Prénom
 ROLE_ALLOWED_TO_SWITCH: 'Peut changer'
 ROLE_APP_ADMIN_ACTUALITES_ADMIN: 'Administrateur - Actualités'
 ROLE_APP_ADMIN_ACTUALITES_EDITOR: 'Editeur - Actualités'
 ROLE_APP_ADMIN_ACTUALITES_GUEST: 'Invité - Actualités'
 ROLE_APP_ADMIN_ACTUALITES_STAFF: 'Staff - Actualités'
+ROLE_APP_ADMIN_BLOG_ADMIN: 'Administrateur - Blog'
+ROLE_APP_ADMIN_BLOG_EDITOR: 'Editeur - Blog'
+ROLE_APP_ADMIN_BLOG_GUEST: 'Invité - Blog'
+ROLE_APP_ADMIN_BLOG_STAFF: 'Staff - Blog'
 ROLE_APP_ADMIN_ATELIERS_ADMIN: 'Administrateur - Ateliers'
 ROLE_APP_ADMIN_ATELIERS_EDITOR: 'Editeur - Ateliers'
 ROLE_APP_ADMIN_ATELIERS_GUEST: 'Invité - Ateliers'
@@ -33,8 +37,8 @@ ROLE_APP_ADMIN_EVENEMENTS_ADMIN: 'Administrateur - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_EDITOR: 'Editeur - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_GUEST: 'Invité - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_STAFF: 'Staff - Événements'
-ROLE_APP_ADMIN_PARAMETRES_EDITOR: 'Editeur - Paramètres'
 ROLE_APP_ADMIN_PARAMETRES_ADMIN: 'Administrateur - Paramètres'
+ROLE_APP_ADMIN_PARAMETRES_EDITOR: 'Editeur - Paramètres'
 ROLE_APP_ADMIN_PARAMETRES_GUEST: 'Invité - Paramètres'
 ROLE_APP_ADMIN_PARAMETRES_STAFF: 'Staff - Paramètres'
 ROLE_APP_ADMIN_SORTIES_ADMIN: 'Administrateur - Sorties'
@@ -129,7 +133,7 @@ atelier:
         nbPlace: 'Nombre de place'
         nom: Titre
         prix: Prix
-        prixMembre: Prix membre
+        prixMembre: 'Prix membre'
         reserveMembre: 'Reservé membres'
 
     nbPlace: 'Nombre de places autorisés'
@@ -143,7 +147,7 @@ atelier:
         datePublication: 'Date de publication'
         date_limite: 'Date limite'
         nbPlace: 'Nombre de places autorisés'
-        nom: 'Titre de l''atlier'
+        nom: 'Titre de l''atelier'
         prix: 'Prix de l''atelier'
         prixMembre: 'Prix de l''atelier pour les membres'
         reserve_membre: 'Reservé aux membres'
@@ -159,6 +163,38 @@ atelier:
     with:
         details: Informations
         meta_data: Détails
+
+blog:
+    actif: Actif
+
+    add_edit:
+        to_string: 'Article de blog'
+
+    contenu: Texte
+    datePublication: 'Date de publication'
+    descriptionCourte: 'Description courte'
+    image: 'Image principale'
+
+    liste:
+        affiche: Affiché
+        datePublication: 'Date de publication'
+        nom: Titre
+
+    nom: Titre
+
+    placeholder:
+        actif: Activer/Desactiver
+        contenu: 'Texte de l''article de blog'
+        datePublication: 'Date de publication'
+        descriptionCourte: 'Description courte de l''article de blog'
+        nom: 'Titre de l''article de blog'
+
+    with:
+        details: Informations
+        meta_data: Détails
+
+button:
+    clone: Dupliquer
 
 contact:
     mail:
@@ -305,7 +341,7 @@ sortie:
         nbPlace: 'Nombre de place'
         nom: Titre
         prix: Prix
-        prixMembre: Prix membre
+        prixMembre: 'Prix membre'
         reserveMembre: 'Reservé membres'
 
     nbPlace: 'Nombre de place autorisés'
@@ -348,5 +384,3 @@ utilisateur:
     with:
         description: Informations
         sousUtilisateurs: Enfants
-button:
-    clone: 'Dupliquer'

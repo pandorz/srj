@@ -1,6 +1,7 @@
+timeline:
+    title: 'A venir par date de publication'
+
 title_create: Créer
 title_edit: Editer
-timeline:
-    title: A venir par date de publication
 url_site_link: 'Voir le site'
 url_trello_link: 'Voir le trello'
