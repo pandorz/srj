@@ -21,7 +21,10 @@ class ActualiteAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
-
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
     /**
      * Fields to be shown on lists
@@ -39,7 +42,7 @@ class ActualiteAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label' => 'actualite.liste.datePublication',
+                'label'     => 'actualite.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
@@ -47,11 +50,11 @@ class ActualiteAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('dateDebut', 'date', [
-                'label' => 'actualite.liste.dateDebut',
+                'label'     => 'actualite.liste.dateDebut',
                 'sortable'  => 'name'
             ])
             ->add('dateFin', 'date', [
-                'label' => 'actualite.liste.dateFin',
+                'label'     => 'actualite.liste.dateFin',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(

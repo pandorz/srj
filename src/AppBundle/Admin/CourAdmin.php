@@ -21,6 +21,10 @@ class CourAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
 
     /**
@@ -39,7 +43,7 @@ class CourAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label' => 'cour.liste.datePublication',
+                'label'     => 'cour.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [

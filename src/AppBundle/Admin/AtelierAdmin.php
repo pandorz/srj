@@ -21,7 +21,10 @@ class AtelierAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
-
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
     /**
      * Fields to be shown on lists
@@ -39,7 +42,7 @@ class AtelierAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label' => 'atelier.liste.datePublication',
+                'label'     => 'atelier.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
@@ -53,11 +56,11 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.liste.nbPlace',
             ])
             ->add('date', 'date', [
-                'label' => 'atelier.liste.date',
+                'label'     => 'atelier.liste.date',
                 'sortable'  => 'name'
             ])
             ->add('dateLimite', 'date', [
-                'label' => 'atelier.liste.dateLimite',
+                'label'     => 'atelier.liste.dateLimite',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(

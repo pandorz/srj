@@ -21,6 +21,10 @@ class EvenementAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
 
     /**
@@ -39,7 +43,7 @@ class EvenementAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label' => 'evenement.liste.datePublication',
+                'label'     => 'evenement.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
@@ -47,11 +51,11 @@ class EvenementAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('dateDebut', 'date', [
-                'label' => 'evenement.liste.dateDebut',
+                'label'     => 'evenement.liste.dateDebut',
                 'sortable'  => 'name'
             ])
             ->add('dateFin', 'date', [
-                'label' => 'evenement.liste.dateFin',
+                'label'     => 'evenement.liste.dateFin',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(

@@ -21,7 +21,10 @@ class SortieAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
-
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
     /**
      * Fields to be shown on lists
@@ -39,7 +42,7 @@ class SortieAdmin extends AbstractAdmin
                 'editable'  => true
             ]) 
             ->add('datePublication', 'date', [
-                'label' => 'sortie.liste.datePublication',
+                'label'     => 'sortie.liste.datePublication',
                 'sortable'  => 'name'
             ])   
             ->add('annule', 'boolean', [
@@ -53,11 +56,11 @@ class SortieAdmin extends AbstractAdmin
                 'label' => 'sortie.liste.nbPlace',
             ])
             ->add('date', 'date', [
-                'label' => 'sortie.liste.date',
+                'label'     => 'sortie.liste.date',
                 'sortable'  => 'name'
             ])
             ->add('dateLimite', 'date', [
-                'label' => 'sortie.liste.dateLimite',
+                'label'     => 'sortie.liste.dateLimite',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(
