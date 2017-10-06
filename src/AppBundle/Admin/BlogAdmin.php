@@ -12,7 +12,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 
 use AppBundle\Entity\Actualite;
-use AppBundle\Entity\Utilisateur;
+
 
 class BlogAdmin extends AbstractAdmin
 {
