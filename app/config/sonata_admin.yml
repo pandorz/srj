@@ -62,6 +62,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_COURS_ADMIN]
                 items:
                     - app.admin.cours
+            app.admin.group.principal.blog:
+                on_top: true
+                label: "Blog"
+                icon: '<i class="fa fa-rss"></i>'
+                roles: [ROLE_APP_ADMIN_BLOG_ADMIN]
+                items:
+                    - app.admin.blog
             app.admin.group.principal.parametres:
                 on_top: true
                 label: "Parametres"

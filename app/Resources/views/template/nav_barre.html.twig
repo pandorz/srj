@@ -40,6 +40,9 @@
                     <a class="mainNavMemberLink signup btn btn-blank btn-small" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
                     {% endif %}
                 <!--<a class="mainNavMemberLink login" href="#">Déjà membre ?</a-->
+                    {% if app.user %}
+                        <a href="{{ path('sonata_admin_dashboard') }}" target="_blank"><i class="fa fa-user"></i></a>
+                    {% endif %}
             </div>
             </div>
         </nav>

@@ -5,7 +5,7 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Atelier;
 
 /**
- * Class MuseeController
+ * Class AtelierController
  * @package AppBundle\Controller
  */
 class AtelierController extends BaseController

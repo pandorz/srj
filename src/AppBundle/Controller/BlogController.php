@@ -5,10 +5,10 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Actualite;
 
 /**
- * Class ActualiteController
+ * Class BlogController
  * @package AppBundle\Controller
  */
-class ActualiteController extends BaseController
+class BlogController extends BaseController
 {
 
 }
