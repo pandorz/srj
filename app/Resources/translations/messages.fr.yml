@@ -218,6 +218,13 @@ contact:
         texte: '%prenom% %nom% (%email%) à envoyé un message avec l''objet: <b>%objet%</b>.<br><br>Voici le contenu de son message:<br>%message%'
         titre: 'Nouveau contact'
 
+newsletter:
+    mail:
+        soustitre: 'Nouvelle demande d''ajout à une liste de diffusion'
+        sujet: 'Nouvelle demande d''ajout à une liste de diffusion'
+        texte: '%email% souhaite être ajouter à une liste de diffusion'
+        titre: 'Demande newsletter'
+
 cour:
     actif: Actif
 

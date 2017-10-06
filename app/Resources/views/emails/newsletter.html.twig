@@ -1,0 +1,13 @@
+{% extends ':emails:email_tpl.html.twig' %}
+
+{% block main %}
+    <h1>{{ title }}</h1>
+    {% if subtitle %}
+        <p class="lead">{{ subtitle }}</p>
+    {% endif %}
+    <p>
+        {{ 'newsletter.mail.texte'|trans({
+        '%email%':data.email,
+        })|raw }}
+    </p>
+{% endblock %}

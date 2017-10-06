@@ -43,6 +43,89 @@ class FrontController extends BaseController
             'blog'       => $blog
         ]);
     }
+
+    /**
+     * Newsletter
+     *
+     * -------------------- *
+     * @Route("/add-newsletter", name="add_newsletter")
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newsletterAction(Request $request)
+    {
+        $captcha = true;
+        //-- Check Google Recaptcha
+        if (hash_equals($this->getEnvironment(), 'prod')) {
+            try {
+                $this->checkGoogleRecaptcha($request->request->get('g-recaptcha-response'));
+            } catch (\Exception $e) {
+                if ($e->getCode() == self::EXCEPTION_CODE_GOOGLE_RECAPTCHA_FAILED) {
+                    $request
+                        ->getSession()
+                        ->getFlashBag()
+                        ->add('error',
+                            $this->getTranslator()->trans(
+                                'general.error.grecaptcha.detected_as_robot',
+                                [],
+                                'validators'
+                            )
+                        );
+                    $captcha = false;
+                } else {
+                    $request
+                        ->getSession()
+                        ->getFlashBag()
+                        ->add('error',
+                            $this->getTranslator()->trans(
+                                'general.error.grecaptcha.error_on_verify',
+                                [],
+                                'validators'
+                            )
+                        );
+                    $captcha = false;
+                }
+            }
+        }
+        //--
+        $email = '';
+        if (!empty($email) && $captcha) {
+            $data = ['email' => $email];
+
+            $retour_mail = $this->sendMail(
+                $this->getTranslator()->trans('newsletter.mail.sujet'),
+                'newsletter',
+                null,
+                $data['email'],
+                null,
+                [
+                    'title'     => $this->getTranslator()->trans('newsletter.mail.titre'),
+                    'subtitle'  => $this->getTranslator()->trans('newsletter.mail.soustitre'),
+                    'data'      => $data
+                ]
+            );
+
+            if ($retour_mail) {
+                $request
+                    ->getSession()
+                    ->getFlashBag()
+                    ->add('success', 'Nous avone enregistré votre demande');
+            } else {
+                $request
+                    ->getSession()
+                    ->getFlashBag()
+                    ->add('error', 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument');
+            }
+
+        } else {
+            $request
+                ->getSession()
+                ->getFlashBag()
+                ->add('error', 'Votre email ne peut pas être vide');
+        }
+    }
     
     private function getDatesCalendrier()
     {

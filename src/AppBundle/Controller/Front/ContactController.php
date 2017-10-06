@@ -124,7 +124,7 @@ class ContactController extends BaseController
                                 )
                             )
                         );
-                    };
+                    }
                 }
             }
             //--
