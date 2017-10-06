@@ -31,7 +31,9 @@
                     </li>
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('evenements')}}">Événements</a></li>
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('actualites')}}">Actualités</a></li>
-                    <!--li class="mainNavItem"><a class="mainNavLink" href="#">Blog</a></li-->
+                    {% if is_actif_blog() %}
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('blog')}}">Blog</a></li>
+                    {% endif %}
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a></li>
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('contact')}}">Contact</a></li>
                 </ul>
