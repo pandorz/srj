@@ -1,11 +1,11 @@
 "use strict";
 (function(window) {
-    window.adminComponent = function() {
+    window.AdminComponent = function() {
         this.$searchEmplacementContainer = $('.js-search-emplacement-container');
         this.initAdminForm();
     };
 
-    $.extend(window.adminComponent.prototype, {
+    $.extend(window.AdminComponent.prototype, {
         initAdminForm: function () {
             var $emplacementContainer = $('.js-emplacement-container');
             var self = this;
@@ -37,5 +37,5 @@
 })(window);
 
 $(document).ready(function() {
-    var adminComponent         = new adminComponent();
+    var adminComponent = new AdminComponent();
 });

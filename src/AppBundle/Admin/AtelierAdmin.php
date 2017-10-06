@@ -156,7 +156,7 @@ class AtelierAdmin extends AbstractAdmin
             ->end()
             ->with('Meta data', [
                 'name'      => $this->trans('atelier.with.meta_data'),
-                'class'     => 'col-md-5'
+                'class'     => 'col-md-5 js-emplacement-container'
             ])
             ->add('urlInscription', 'url', [
                 'label' => 'atelier.urlInscription',
@@ -232,6 +232,7 @@ class AtelierAdmin extends AbstractAdmin
                 'attr'  => [
                     'class' => 'js-search-emplacement-container'
                 ],
+				'required' => false
             ])
             ->end()
         ;
