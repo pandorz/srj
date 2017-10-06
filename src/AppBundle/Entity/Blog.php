@@ -38,7 +38,7 @@ class Blog
      *
      * @ORM\Column(name="description_courte", type="string", length=255)
      */
-    private $description_courte;
+    private $descriptionCourte;
 
     /**
      * @Gedmo\Slug(fields={"nom"})
@@ -147,17 +147,17 @@ class Blog
      */
     public function getDescriptionCourte()
     {
-        return $this->description_courte;
+        return $this->descriptionCourte;
     }
 
     /**
-     * @param string $description_courte
+     * @param string $descriptionCourte
      *
      *  @return Blog
      */
-    public function setDescriptionCourte($description_courte)
+    public function setDescriptionCourte($descriptionCourte)
     {
-        $this->description_courte = $description_courte;
+        $this->descriptionCourte = $descriptionCourte;
 
         return $this;
     }
