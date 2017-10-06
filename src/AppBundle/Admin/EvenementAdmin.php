@@ -35,14 +35,16 @@ class EvenementAdmin extends AbstractAdmin
                 'label' => 'evenement.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'evenement.liste.affiche',
+                'label'     => 'evenement.liste.affiche',
+                'editable'  => true
             ])
             ->add('datePublication', 'date', [
                 'label' => 'evenement.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
-                'label' => 'evenement.liste.annule',
+                'label'     => 'evenement.liste.annule',
+                'editable'  => true
             ])
             ->add('dateDebut', 'date', [
                 'label' => 'evenement.liste.dateDebut',

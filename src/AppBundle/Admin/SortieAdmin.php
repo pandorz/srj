@@ -35,14 +35,16 @@ class SortieAdmin extends AbstractAdmin
                 'label' => 'sortie.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'sortie.liste.affiche'
+                'label'     => 'sortie.liste.affiche',
+                'editable'  => true
             ]) 
             ->add('datePublication', 'date', [
                 'label' => 'sortie.liste.datePublication',
                 'sortable'  => 'name'
             ])   
             ->add('annule', 'boolean', [
-                'label'     => 'sortie.liste.annule'
+                'label'     => 'sortie.liste.annule',
+                'editable'  => true
             ])
             ->add('reserveMembre', 'boolean', [
                 'label' => 'sortie.liste.reserveMembre'

@@ -35,14 +35,16 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'atelier.liste.affiche',
+                'label'     => 'atelier.liste.affiche',
+                'editable'  => true
             ])
             ->add('datePublication', 'date', [
                 'label' => 'atelier.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
-                'label' => 'atelier.liste.annule',
+                'label'     => 'atelier.liste.annule',
+                'editable'  => true
             ])
             ->add('reserveMembre', 'boolean', [
                 'label' => 'atelier.liste.reserveMembre',
