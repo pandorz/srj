@@ -51,7 +51,8 @@ class AtelierAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('reserveMembre', 'boolean', [
-                'label' => 'atelier.liste.reserveMembre',
+                'label'     => 'atelier.liste.reserveMembre',
+                'editable'  => true
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'atelier.liste.nbPlace',

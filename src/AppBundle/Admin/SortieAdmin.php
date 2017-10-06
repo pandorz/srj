@@ -50,7 +50,8 @@ class SortieAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('reserveMembre', 'boolean', [
-                'label' => 'sortie.liste.reserveMembre'
+                'label'     => 'sortie.liste.reserveMembre',
+                'editable'  => true
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'sortie.liste.nbPlace',
