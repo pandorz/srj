@@ -37,6 +37,7 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_calendrier_cours_japonais_enfant', array($this, 'getLienCalendrierCoursJaponaisEnfant')),
             new \Twig_SimpleFunction('lien_calendrier_cours_calligraphie', array($this, 'getLienCalendrierCoursCalligraphie')),
             new \Twig_SimpleFunction('lien_calendrier_cours_the', array($this, 'getLienCalendrierCoursThe')),
+            new \Twig_SimpleFunction('is_actif_blog', array($this, 'isActifBlog')),
             new \Twig_SimpleFunction('crop_entete_texte', array($this, 'cropEnteteTexte')),
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte'))
         );
@@ -147,5 +148,18 @@ class TwigHelpers extends \Twig_Extension
                 ->getRepository(Parametre::class)
                 ->findOneBy(['slug' => 'lien-pdf-calendrier-ceremonie-du-the']);
         return $this->returnParametreValue($parametre);
+    }
+
+    public function isActifBlog()
+    {
+        $parametre = $this->entityManager
+            ->getRepository(Parametre::class)
+            ->findOneBy(['slug' => 'affichage-blog-public']);
+
+        if (!empty($parametre) && $parametre == "1") {
+            return true;
+        }
+
+        return false;
     }
 }
