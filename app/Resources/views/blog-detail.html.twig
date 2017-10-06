@@ -1,0 +1,24 @@
+{% extends "template/base_front.html.twig" %}
+{% block body_class %}blogDetail{% endblock %}
+{% block html_title %} - {{ blog.nom }}{% endblock %}
+{% block meta_description %}{{ blog.descriptionCourte }}{% endblock %}
+{% block main %}
+
+    {% set hastagTitle = "Nos articles" %}
+    {% set hastagList = "#Blog" %}
+    {% include 'bandeau_hastag.html.twig' %}
+
+    <section class="section u-fitted">
+        <h2 class="sectionTitle">{{ blog.nom }}</h2>
+        <div class="blogPhotoCtn">
+            {% media blog.image, 'big' with {'class': 'postPhoto blogPhoto', 'width' : '580', 'height' : '435'} %}
+        </div>
+        <div class="blogTextCtn">
+            {{ blog.contenu|raw }}
+        </div>
+    </section>
+
+    {% include 'bandeau_devenir_membre.html.twig' %}
+    {% include 'follow_us.html.twig' %}
+    
+{% endblock %}
