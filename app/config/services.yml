@@ -58,8 +58,6 @@ services:
     app.error_controller:
         class: AppBundle\Controller\Front\ErrorController
         arguments: ['@twig', '%kernel.debug%']
-    security.acl.permission.map:
-      class: Sonata\AdminBundle\Security\Acl\Permission\AdminPermissionMap
     app.twig_helper:
         class: AppBundle\Twig\TwigHelpers
         arguments: ["@doctrine.orm.entity_manager"]
