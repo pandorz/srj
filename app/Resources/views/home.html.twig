@@ -30,7 +30,9 @@
 
     {% include 'top_actualites.html.twig' %}
 
-    {#% include 'top_blog.html.twig' %#}
+    {% if is_actif_blog() %}
+        {% include 'top_blog.html.twig' %}
+    {% endif %}
     {% include 'follow_us.html.twig' %}
     
 {% endblock %}

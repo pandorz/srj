@@ -34,11 +34,13 @@ class FrontController extends BaseController
         $evenements = $this->getTopEvenements(3);
         $actualites = $this->getTopActualites(4);
         $dates      = $this->getDatesCalendrier();
+        $blog       = $this->getTopBlogs(1);
 
         return $this->render('home.html.twig', [
             'evenements' => $evenements,
             'actualites' => $actualites,
-            'dates'      => $dates
+            'dates'      => $dates,
+            'blog'       => $blog
         ]);
     }
     
