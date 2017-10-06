@@ -156,10 +156,7 @@ class TwigHelpers extends \Twig_Extension
             ->getRepository(Parametre::class)
             ->findOneBy(['slug' => 'affichage-blog-public']);
 
-        if (!empty($parametre) && $parametre == "1") {
-            return true;
-        }
+        return (!empty($parametre) && $parametre == "1");
 
-        return false;
     }
 }

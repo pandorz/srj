@@ -1,0 +1,15 @@
+{% extends "template/base_front.html.twig" %}
+{% block body_class %}blog{% endblock %}
+{% block html_title %} - Nos articles de blog{% endblock %}
+{% block main %}
+
+    {% set hastagTitle = "Nos articles" %}
+    {% set hastagList = "#Blog" %}
+    {% include 'bandeau_hastag.html.twig' %}
+
+  
+
+    {% include 'bandeau_devenir_membre.html.twig' %}
+    {% include 'follow_us.html.twig' %}
+    
+{% endblock %}

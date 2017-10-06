@@ -41,4 +41,21 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
         }
         return $query->getResult();
     }
+
+    public function getTop($limit)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Blog e '
+                . 'WHERE e.affiche = :affiche '
+                . 'AND e.datePublication <= :datePublication '
+                . 'ORDER BY e.timestampCreation DESC')
+            ->setParameters([
+                'affiche' => true,
+                'datePublication' => date("Y-m-d")
+            ])
+            ->setMaxResults($limit)
+            ->getResult();
+    }
 }
