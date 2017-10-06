@@ -77,6 +77,6 @@ class BlogController extends BaseController
             ->getRepository(Parametre::class)
             ->findOneBy(['slug' => 'affichage-blog-public']);
 
-        return (!empty($parametre) && $parametre == "1");
+        return (!empty($parametre) && $parametre->getValue() == "1");
     }
 }
