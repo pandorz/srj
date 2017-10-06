@@ -2,6 +2,7 @@
 
 namespace AppBundle\Twig;
 
+use AppBundle\Entity\Blog;
 use AppBundle\Entity\Parametre;
 use Doctrine\ORM\EntityManager;
 
@@ -39,7 +40,8 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_calendrier_cours_the', array($this, 'getLienCalendrierCoursThe')),
             new \Twig_SimpleFunction('is_actif_blog', array($this, 'isActifBlog')),
             new \Twig_SimpleFunction('crop_entete_texte', array($this, 'cropEnteteTexte')),
-            new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte'))
+            new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
+            new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog'))
         );
     }
 
@@ -158,5 +160,14 @@ class TwigHelpers extends \Twig_Extension
 
         return $this->returnParametreValue($parametre) == "1";
 
+    }
+
+    public function getFooterBlog()
+    {
+        $blogs = $this->entityManager
+            ->getRepository(Blog::class)
+            ->getTop(4);
+
+        return $blogs;
     }
 }

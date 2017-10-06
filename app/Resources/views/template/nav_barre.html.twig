@@ -41,7 +41,7 @@
                     {% if lien_adhesion() is not empty %}
                     <a class="mainNavMemberLink signup btn btn-blank btn-small" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
                     {% endif %}
-                {#<a class="mainNavMemberLink login" href="#">Déjà membre ?</a>#}
+                    {#<a class="mainNavMemberLink login" href="#">Déjà membre ?</a>#}
                     {% if app.user %}
                         <a class="mainNavMemberLink admin" href="{{ path('sonata_admin_dashboard') }}" target="_blank">Administration</a>
                     {% endif %}
