@@ -30,6 +30,12 @@
             <a href="https://twitter.com/rouenjapon" class="twitter-follow-button" data-show-count="false">Suivre @rouenjapon</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
         <div class="followItem newsletter">
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-warning">{{ flashMessage }}</div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">{{ flashMessage }}</div>
+        {% endfor %}
             <form class="newsletterForm js-form-grecaptcha" action="{{ path('add_newsletter') }}">
                 <legend class="newsletterTitle">Et abonnez-vous à notre newsletter <small class="nospam">#nospam</small></legend>
                 <div class="formItem">

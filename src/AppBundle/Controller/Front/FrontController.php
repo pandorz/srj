@@ -111,7 +111,7 @@ class FrontController extends BaseController
                 $request
                     ->getSession()
                     ->getFlashBag()
-                    ->add('success', 'Nous avone enregistré votre demande');
+                    ->add('success', 'Nous avons enregistré votre demande');
             } else {
                 $request
                     ->getSession()
@@ -125,6 +125,8 @@ class FrontController extends BaseController
                 ->getFlashBag()
                 ->add('error', 'Votre email ne peut pas être vide');
         }
+
+        return $this->redirectToRoute('home');
     }
     
     private function getDatesCalendrier()
