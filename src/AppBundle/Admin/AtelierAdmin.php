@@ -3,6 +3,7 @@
 namespace AppBundle\Admin;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Oh\GoogleMapFormTypeBundle\Form\Type\GoogleMapType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -195,6 +196,42 @@ class AtelierAdmin extends AbstractAdmin
                 'context'  => 'image',
                 'required' => false,
             ))
+            ->add('adresse', 'text', [
+                'label' => 'atelier.adresse',
+                'attr'  => [
+                    'placeholder'   => 'atelier.placeholder.adresse',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('codePostal', 'text', [
+                'label' => 'atelier.cp',
+                'attr'  => [
+                    'placeholder'   => 'atelier.placeholder.cp',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('ville', 'text', [
+                'label' => 'atelier.ville',
+                'attr'  => [
+                    'placeholder'   => 'atelier.placeholder.ville',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('latlng', GoogleMapType::class, [
+                'label' => 'atelier.position',
+                'lat_options' => [
+                    'label' => 'atelier.latitude'
+                ],
+                'lng_options' => [
+                    'label' => 'atelier.longitude'
+                ],
+                'attr'  => [
+                    'class' => 'js-search-emplacement-container'
+                ],
+            ])
             ->end()
         ;
     }

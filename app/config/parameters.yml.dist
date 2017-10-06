@@ -31,3 +31,4 @@ parameters:
 
     trello_link: ~
     num_version: 1.0.0
+    gmaps_apikey: ~

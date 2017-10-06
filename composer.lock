@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb69ebbcf3d7da6bdc043d1630ef24b3",
+    "content-hash": "f700d8a2808c8bdf5109cd01761648d1",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -508,7 +508,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2017-05-28T02:49:26+00:00"
+            "time": "2017-05-28 02:49:26"
         },
         {
             "name": "doctrine/dbal",
@@ -1212,7 +1212,7 @@
                 "persistence",
                 "phpcr"
             ],
-            "time": "2017-01-31T10:13:35+00:00"
+            "time": "2017-01-31 10:13:35"
         },
         {
             "name": "doctrine/phpcr-odm",
@@ -2917,6 +2917,54 @@
             "time": "2016-11-04T15:53:15+00:00"
         },
         {
+            "name": "oh/google-map-form-type-bundle",
+            "version": "dev-master",
+            "target-dir": "Oh/GoogleMapFormTypeBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ollieLtd/OhGoogleMapFormTypeBundle.git",
+                "reference": "59a569a7f90964eb308bc71668b71305e8879879"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ollieLtd/OhGoogleMapFormTypeBundle/zipball/59a569a7f90964eb308bc71668b71305e8879879",
+                "reference": "59a569a7f90964eb308bc71668b71305e8879879",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": "^2.1 || ^3.0"
+            },
+            "type": "symfony-bundle",
+            "autoload": {
+                "psr-0": {
+                    "Oh\\GoogleMapFormTypeBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ollie Harridge",
+                    "email": "code@oll.ie"
+                },
+                {
+                    "name": "Webber",
+                    "email": "webber.nl@gmail.com"
+                }
+            ],
+            "description": "Set latitude, longitude and address values on a form using Google Maps",
+            "homepage": "https://github.com/ollieLtd/OhGoogleMapFormTypeBundle",
+            "keywords": [
+                "form",
+                "google maps",
+                "symfony"
+            ],
+            "time": "2017-04-03 13:59:10"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v2.0.10",
             "source": {
@@ -4572,7 +4620,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2017-04-01T22:15:36+00:00"
+            "time": "2017-04-01 22:15:36"
         },
         {
             "name": "stof/doctrine-extensions-bundle",
@@ -5816,7 +5864,7 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2017-05-23T11:55:00+00:00"
+            "time": "2017-05-23 11:55:00"
         },
         {
             "name": "sensio/generator-bundle",
@@ -5990,6 +6038,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "doctrine/phpcr-bundle": 20,
+        "oh/google-map-form-type-bundle": 20,
         "sonata-project/user-bundle": 20,
         "doctrine/data-fixtures": 20,
         "doctrine/doctrine-fixtures-bundle": 20

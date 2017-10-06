@@ -125,6 +125,16 @@ atelier:
     datePublication: 'Date de publication'
     date_limite: 'Date limite inscription'
     image: Image
+    adresse: Adresse
+    cp: 'Code postal'
+    ville: Ville
+    longitude: Longitude
+    latitude: Latitude
+    position: Emplacement
+
+    positon:
+        current_position: 'Ma position actuelle'
+        search: Rechercher
 
     liste:
         affiche: Affiché
@@ -155,6 +165,9 @@ atelier:
         reserve_membre: 'Reservé aux membres'
         superviseurs: Superviseur
         urlInscription: 'Lien vers assoConnect'
+        adresse: 'Adresse de l''atelier'
+        cp: 'Code postal de l''atelier'
+        ville: 'Ville de l''atelier'
 
     prix: 'Prix non-membres'
     prixMembre: 'Prix membres'

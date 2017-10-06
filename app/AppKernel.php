@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Sonata\AdminBundle\SonataAdminBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),            
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),

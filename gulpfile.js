@@ -89,6 +89,7 @@ app.doScripts = function() {
         config.assetsDir+'/js/08-accordion.js',
         config.assetsDir+'/js/09-modal.js',
         config.assetsDir+'/js/10-grecaptcha.js',
+        config.assetsDir+'/js/admin.js',
         config.assetsDir+'/js/99-pages.js',
         config.assetsDir+'/js/vendor/_jquery-ui.min.js',        
         config.assetsDir+'/js/vendor/bootstrap-slider.min.js',
