@@ -79,7 +79,10 @@
                             {% if atelier.reserveMembre %}Réservé aux membres.{% endif %}<br>
                             <b class="u-textColorRJ">Clôture des réservations :</b> {{atelier.dateLimite|date('d/m/Y')}}</p>
                             {% if atelier.coordGeoLatitude is not empty and atelier.coordGeoLongitude is not empty %}
-                                <p><b>&gt; <a class="u-textBlack" href="https://maps.google.fr/maps?q={{ atelier.coordGeoLatitude }},{{ atelier.coordGeoLongitude }}" target="_blank">Voir sur une carte</a></b></p>
+                                <p>
+                                    <b class="u-textColorRJ">Lieu :</b>
+                                    <a class="u-textBlack" href="https://maps.google.fr/maps?q={{ atelier.coordGeoLatitude }},{{ atelier.coordGeoLongitude }}" target="_blank">{{ atelier.adresse is not null ? atelier.adresse~', ' : '' }}{{ atelier.codePostal is not null ? atelier.codePostal~' ' : '' }}{{ atelier.ville is not null ? atelier.ville : '' }}</a>
+                                </p>
                             {% endif %}
                             {% if atelier.urlInscription is not empty %}
                                 <p><b>&gt; <a class="u-textBlack" href="{{ atelier.urlInscription }}" target="_blank">Je veux participer !</a></b></p>

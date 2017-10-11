@@ -90,7 +90,7 @@ class FrontController extends BaseController
             }
         }
         //--
-        $email = '';
+        $email = $request->get('newsletter_email');
         if (!empty($email) && $captcha) {
             $data = ['email' => $email];
 
