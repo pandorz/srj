@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\Blog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -33,7 +34,12 @@ class FrontController extends BaseController
         $evenements = $this->getTopEvenements(3);
         $actualites = $this->getTopActualites(4);
         $dates      = $this->getDatesCalendrier();
-        $blog       = $this->getTopBlogs(1);
+        $blogs      = $this->getTopBlogs(1);
+        $blog       = null;
+
+        if(!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
+            $blog = $blogs[0];
+        }
 
         return $this->render('home.html.twig', [
             'evenements' => $evenements,

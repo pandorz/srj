@@ -63,7 +63,7 @@ class BlogController extends BaseController
             return $this->redirectToRoute('home');
         }
 
-        $blog = $this->getEm()->getRepository(Blog::class)->findBySlug($slug);
+        $blog = $this->getEm()->getRepository(Blog::class)->findOneBySlug($slug);
         if (empty($blog)) {
             return $this->redirectToRoute('blog');
         }
