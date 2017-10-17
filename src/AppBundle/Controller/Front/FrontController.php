@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Entity\Evenement;
-use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Atelier;
 use AppBundle\Entity\Sortie;
 
@@ -150,29 +149,6 @@ class FrontController extends BaseController
             
             $data[] = [
                 'title' => $evenement->getNom(),
-                'start' => $start,
-                'end'   => $end
-            ];
-        }
-        
-        $actualites= $this->getEm()
-                ->getRepository(Actualite::class)
-                ->findAllValidOverOneMonth();
-        
-        foreach ($actualites as $actualite) {
-            $start = $actualite->getDateDebut();
-            $end   = $actualite->getDateFin();
-            
-            if (!is_null($start)) {
-                $start = $start->format(self::FORMAT_DATE);
-            }
-            
-            if (!is_null($end)) {
-                $end = $end->format(self::FORMAT_DATE);
-            }
-            
-            $data[] = [
-                'title' => $actualite->getNom(),
                 'start' => $start,
                 'end'   => $end
             ];
