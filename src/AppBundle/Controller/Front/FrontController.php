@@ -124,7 +124,7 @@ class FrontController extends BaseController
                     ->add('error', 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument');
             }
 
-        } else {
+        } elseif(empty($email)) {
             $request
                 ->getSession()
                 ->getFlashBag()
