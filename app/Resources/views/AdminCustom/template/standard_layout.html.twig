@@ -8,6 +8,11 @@
             <a rel="noreferrer" target="_blank" style="margin-left: 5px;" href="{{ trello_link }}"><i class="fa fa-trello"></i> {{ 'url_trello_link'|trans({}, 'SonataAdminBundle') }}</a>
         {% endif %}
     </p>
+    {% if planneur_link is not empty %}
+        <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px">
+            <a rel="noreferrer" target="_blank" style="margin-left: 5px;" href="{{ planneur_link }}"><i class="fa fa-columns"></i> {{ 'url_planneur_link'|trans({}, 'SonataAdminBundle') }}</a>
+        </p>
+    {% endif %}
     {% if num_version is not empty %}
         <p class="text-center small" style="border-top: 1px solid #444444; padding-top: 10px">
             <a rel="noreferrer" href="#">V.{{ num_version }}</a>

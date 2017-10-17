@@ -30,5 +30,6 @@ parameters:
     google_analytics_ua: ~
 
     trello_link: ~
+    planneur_link: ~
     num_version: 1.0.0
     gmaps_apikey: ~
