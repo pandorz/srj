@@ -31,6 +31,7 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_adhesion', array($this, 'getLienAdhesion')),
             new \Twig_SimpleFunction('lien_adhesion_japonais', array($this, 'getLienAdhesionJaponais')),
             new \Twig_SimpleFunction('lien_cours_japonais', array($this, 'getLienCoursJaponais')),
+            new \Twig_SimpleFunction('lien_cours_yoga', array($this, 'getLienCoursYoga')),
             new \Twig_SimpleFunction('lien_cours_japonais_enfant', array($this, 'getLienCoursJaponaisEnfant')),
             new \Twig_SimpleFunction('lien_cours_calligraphie', array($this, 'getLienCoursCalligraphie')),
             new \Twig_SimpleFunction('lien_cours_the', array($this, 'getLienCoursThe')),
@@ -38,6 +39,7 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_calendrier_cours_japonais_enfant', array($this, 'getLienCalendrierCoursJaponaisEnfant')),
             new \Twig_SimpleFunction('lien_calendrier_cours_calligraphie', array($this, 'getLienCalendrierCoursCalligraphie')),
             new \Twig_SimpleFunction('lien_calendrier_cours_the', array($this, 'getLienCalendrierCoursThe')),
+            new \Twig_SimpleFunction('lien_calendrier_cours_yoga', array($this, 'getLienCalendrierCoursYoga')),
             new \Twig_SimpleFunction('is_actif_blog', array($this, 'isActifBlog')),
             new \Twig_SimpleFunction('crop_entete_texte', array($this, 'cropEnteteTexte')),
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
@@ -74,89 +76,79 @@ class TwigHelpers extends \Twig_Extension
 
     public function getLienAdhesion()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-adhesion-membre']);
+        $parametre = $this->getParamBySlug('lien-adhesion-membre');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienAdhesionJaponais()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-adhesion-membre-japonais']);
+        $parametre =$this->getParamBySlug('lien-adhesion-membre-japonais');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienCoursJaponais()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-inscription-cours-japonais']);
+        $parametre = $this->getParamBySlug('lien-inscription-cours-japonais');
+        return $this->returnParametreValue($parametre);
+    }
+    
+    public function getLienCoursYoga()
+    {
+        $parametre =$this->getParamBySlug('lien-inscription-cours-yoga');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienCoursJaponaisEnfant()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-inscription-cours-enfant']);
+        $parametre = $this->getParamBySlug('lien-inscription-cours-enfant');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienCoursCalligraphie()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-inscription-cours-calligraphie']);
+        $parametre = $this->getParamBySlug('lien-inscription-cours-calligraphie');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienCoursThe()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-inscription-cours-ceremonie-du-the']);
+        $parametre = $this->getParamBySlug('lien-inscription-cours-ceremonie-du-the');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienCalendrierCoursJaponais()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-pdf-calendrier-cours-japonais']);
+        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-japonais');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienCalendrierCoursJaponaisEnfant()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-pdf-calendrier-cours-enfants']);
+        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-enfants');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienCalendrierCoursCalligraphie()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-pdf-calendrier-cours-calligraphie']);
+        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-calligraphie');
         return $this->returnParametreValue($parametre);
     }
     
     public function getLienCalendrierCoursThe()
     {
-        $parametre = $this->entityManager
-                ->getRepository(Parametre::class)
-                ->findOneBy(['slug' => 'lien-pdf-calendrier-ceremonie-du-the']);
+        $parametre = $this->getParamBySlug('lien-pdf-calendrier-ceremonie-du-the');
+        return $this->returnParametreValue($parametre);
+    }
+    
+    public function getLienCalendrierCoursYoga()
+    {
+        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-yoga');
         return $this->returnParametreValue($parametre);
     }
 
     public function isActifBlog()
     {
-        $parametre = $this->entityManager
-            ->getRepository(Parametre::class)
-            ->findOneBy(['slug' => 'affichage-blog-public']);
+        $parametre = $this->getParamBySlug('affichage-blog-public');
 
         return $this->returnParametreValue($parametre) == "1";
 
@@ -169,5 +161,16 @@ class TwigHelpers extends \Twig_Extension
             ->getTop(4);
 
         return $blogs;
+    }
+    
+    /**
+     * @param string $slug
+     * return Parametre
+     */
+    private function getParamBySlug($slug)
+    {
+        return $this->entityManager
+            ->getRepository(Parametre::class)
+            ->findOneBy(['slug' => $slug]);
     }
 }
