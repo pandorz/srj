@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\Blog;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Evenement;
 use AppBundle\Entity\Actualite;
@@ -124,7 +125,7 @@ class BaseController extends Controller
      *
      * @return bool
      */
-    public function sendMail($subject, $template, $to = null, $bcc = null, $data = [], $attachments = [])
+    public function sendMail($subject, $template, $to = null, $from = null, $bcc = null, $data = [], $attachments = [])
     {
         try {
 
@@ -134,7 +135,9 @@ class BaseController extends Controller
 
             $noReplyEmailTitle  = $this->getParameter('no-reply_name');
 
-            $from = ([$noReplyEmail => $noReplyEmailTitle]);
+            if (is_null($from)) {
+                $from = ([$noReplyEmail => $noReplyEmailTitle]);
+            }
 
             $mailDefault = $this->getParameter('mailer_admin');
 
@@ -286,6 +289,17 @@ class BaseController extends Controller
         return $this->getEm()
                 ->getRepository(Sortie::class)
                 ->getTop($limit);
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+    protected function getTopBlogs($limit)
+    {
+        return $this->getEm()
+            ->getRepository(Blog::class)
+            ->getTop($limit);
     }
     
      /**

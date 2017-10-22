@@ -21,7 +21,10 @@ class ActualiteAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
-
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
     /**
      * Fields to be shown on lists
@@ -35,26 +38,32 @@ class ActualiteAdmin extends AbstractAdmin
                 'label' => 'actualite.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'actualite.liste.affiche',
+                'label'     => 'actualite.liste.affiche',
+                'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label' => 'actualite.liste.datePublication',
+                'label'     => 'actualite.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
-                'label' => 'actualite.liste.annule',
+                'label'     => 'actualite.liste.annule',
+                'editable'  => true
             ])
             ->add('dateDebut', 'date', [
-                'label' => 'actualite.liste.dateDebut',
+                'label'     => 'actualite.liste.dateDebut',
                 'sortable'  => 'name'
             ])
             ->add('dateFin', 'date', [
-                'label' => 'actualite.liste.dateFin',
+                'label'     => 'actualite.liste.dateFin',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
+                    'clone' => array(
+                        'template' => ':AdminCustom/button:clone.html.twig',
+                        'data'     => '1',
+                    ),
                     'delete' => array(),
                 )
             ))
@@ -229,5 +238,6 @@ class ActualiteAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
+        $collection->add('clone', $this->getRouterIdParameter().'/clone');
     }
 }

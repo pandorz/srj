@@ -3,6 +3,7 @@
 namespace AppBundle\Admin;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Oh\GoogleMapFormTypeBundle\Form\Type\GoogleMapType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -21,7 +22,10 @@ class AtelierAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
-
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
     /**
      * Fields to be shown on lists
@@ -35,32 +39,39 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'atelier.liste.affiche',
+                'label'     => 'atelier.liste.affiche',
+                'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label' => 'atelier.liste.datePublication',
+                'label'     => 'atelier.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
-                'label' => 'atelier.liste.annule',
+                'label'     => 'atelier.liste.annule',
+                'editable'  => true
             ])
             ->add('reserveMembre', 'boolean', [
-                'label' => 'atelier.liste.reserveMembre',
+                'label'     => 'atelier.liste.reserveMembre',
+                'editable'  => true
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'atelier.liste.nbPlace',
             ])
             ->add('date', 'date', [
-                'label' => 'atelier.liste.date',
+                'label'     => 'atelier.liste.date',
                 'sortable'  => 'name'
             ])
             ->add('dateLimite', 'date', [
-                'label' => 'atelier.liste.dateLimite',
+                'label'     => 'atelier.liste.dateLimite',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
+                    'clone' => array(
+                        'template' => ':AdminCustom/button:clone.html.twig',
+                        'data'     => '1',
+                    ),
                     'delete' => array(),
                 )
             ))
@@ -145,7 +156,7 @@ class AtelierAdmin extends AbstractAdmin
             ->end()
             ->with('Meta data', [
                 'name'      => $this->trans('atelier.with.meta_data'),
-                'class'     => 'col-md-5'
+                'class'     => 'col-md-5 js-emplacement-container'
             ])
             ->add('urlInscription', 'url', [
                 'label' => 'atelier.urlInscription',
@@ -186,6 +197,43 @@ class AtelierAdmin extends AbstractAdmin
                 'context'  => 'image',
                 'required' => false,
             ))
+            ->add('adresse', 'text', [
+                'label' => 'atelier.adresse',
+                'attr'  => [
+                    'placeholder'   => 'atelier.placeholder.adresse',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('codePostal', 'text', [
+                'label' => 'atelier.cp',
+                'attr'  => [
+                    'placeholder'   => 'atelier.placeholder.cp',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('ville', 'text', [
+                'label' => 'atelier.ville',
+                'attr'  => [
+                    'placeholder'   => 'atelier.placeholder.ville',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('latlng', GoogleMapType::class, [
+                'label' => 'atelier.position',
+                'lat_options' => [
+                    'label' => 'atelier.latitude'
+                ],
+                'lng_options' => [
+                    'label' => 'atelier.longitude'
+                ],
+                'attr'  => [
+                    'class' => 'js-search-emplacement-container'
+                ],
+				'required' => false
+            ])
             ->end()
         ;
     }
@@ -285,5 +333,6 @@ class AtelierAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
+        $collection->add('clone', $this->getRouterIdParameter().'/clone');
     }
 }

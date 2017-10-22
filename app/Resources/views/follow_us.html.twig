@@ -29,15 +29,6 @@
             </div>
             <a href="https://twitter.com/rouenjapon" class="twitter-follow-button" data-show-count="false">Suivre @rouenjapon</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
         </div>
-        <!--div class="followItem newsletter">
-            <form class="newsletterForm">
-                <legend class="newsletterTitle">Et abonnez-vous à notre newsletter <small class="nospam">#nospam</small></legend>
-                <div class="formItem">
-                    <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
-                    <input class="fld" type="email" placeholder="Mon adresse email">
-                </div>
-                <input class="btn" type="submit" value="Je m'abonne !">
-            </form>
-        </div-->
+        {% include 'newsletter_form.html.twig' %}
     </div>
 </section>

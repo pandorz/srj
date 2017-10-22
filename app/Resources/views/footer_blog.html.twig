@@ -1,30 +1,14 @@
 <div class="footerItem footerBlog">
     <b class="footerTitle h3">Blog</b>
     <div class="blogLinksList">
+        {% for footer_blog in get_footer_blog() %}
         <article class="blogLinkItem">
-            <a class="blogLinkLink" href="#">
-                <h4 class="blogPostTitle">Manger à la japonaise</h4>
-                <p class="blogPostText">Lorem ipsum dolor sit amet (...)</p>
+            <a class="blogLinkLink" href="{{ path('blog_detail', {'slug': footer_blog.slug}) }}">
+                <h4 class="blogPostTitle">{{ footer_blog.nom }}</h4>
+                <p class="blogPostText">{{ footer_blog.descriptionCourte|slice(0, 20) }}(...)</p>
             </a>
         </article>
-        <article class="blogLinkItem">
-            <a class="blogLinkLink" href="#">
-                <h4 class="blogPostTitle">Rencontre avec Kenta et Akira</h4> 
-                <p class="blogPostText">Lorem ipsum dolor sit amet (...)</p>
-            </a>
-        </article>
-        <article class="blogLinkItem">
-            <a class="blogLinkLink" href="#">
-                <h4 class="blogPostTitle">Qui es-tu Akari ?</h4>
-                <p class="blogPostText">Lorem ipsum dolor sit amet (...)</p>
-            </a>
-        </article>
-        <article class="blogLinkItem">
-            <a class="blogLinkLink" href="#">
-                <h4 class="blogPostTitle">La sélection manga du moment</h4>
-                <p class="blogPostText">Lorem ipsum dolor sit amet (...)</p>
-            </a>
-        </article>
+        {% endfor %}
     </div>
-    <div class="allBlogPosts"><a href="#" class="seeMore">Tous les articles</a></div>
+    <div class="allBlogPosts"><a href="{{ path('blog') }}" class="seeMore">Tous les articles</a></div>
 </div>

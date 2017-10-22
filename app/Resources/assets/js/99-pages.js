@@ -75,7 +75,7 @@ app.pagesController.defaultAction = {
         function getDataAttr(date) {
             var day = date.getDate();
             var month = date.getMonth() + 1;
-            return date.getFullYear() + "-" + (month.length === 2 ? month : "0" + month) + "-" + (day.toString().length === 2 ? day : "0" + day);
+            return date.getFullYear() + "-" + (month.toString().length === 2 ? month : "0" + month) + "-" + (day.toString().length === 2 ? day : "0" + day);
         };
     },
         

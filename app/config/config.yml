@@ -49,6 +49,7 @@ twig:
         - "form_templates/rouenjapon.html.twig"
         - 'SonataCoreBundle:Form:datepicker.html.twig'
         - 'SonataMediaBundle:Form:media_widgets.html.twig'
+        - ':OhGoogleMapFormTypeBundle/Form:fields.html.twig'
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     exception_controller: app.error_controller:showAction
@@ -56,6 +57,10 @@ twig:
         web_path: '%web_path%'
         google_recaptcha_public_token: '%google_recaptcha_public_token%'
         google_analytics_ua: '%google_analytics_ua%'
+        trello_link: '%trello_link%'
+        planneur_link: '%planneur_link%'
+        num_version: '%num_version%'
+        gmaps_apikey: '%gmaps_apikey%'
 
 # Doctrine Configuration
 doctrine:
@@ -106,6 +111,7 @@ swiftmailer:
     port: '%mailer_port%'
     username: '%mailer_user%'
     password: '%mailer_password%'
+    encryption: '%mailer_encryption%'
     spool: { type: memory }
 
 # Assetic Configuration

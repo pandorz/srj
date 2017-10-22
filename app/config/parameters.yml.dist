@@ -15,6 +15,7 @@ parameters:
     mailer_user: ~
     mailer_port: ~
     mailer_password: ~
+    mailer_encryption: ~
 
     # A secret key that's used to generate certain security-related tokens
     secret: ThisTokenIsNotSoSecretChangeIt
@@ -28,3 +29,8 @@ parameters:
     google_recaptcha_public_token: ~
     google_recaptcha_url: 'https://www.google.com/recaptcha/api/siteverify'
     google_analytics_ua: ~
+
+    trello_link: ~
+    planneur_link: ~
+    num_version: 1.0.0
+    gmaps_apikey: ~

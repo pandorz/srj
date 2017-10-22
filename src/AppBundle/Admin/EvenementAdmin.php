@@ -21,6 +21,10 @@ class EvenementAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
 
     /**
@@ -35,26 +39,32 @@ class EvenementAdmin extends AbstractAdmin
                 'label' => 'evenement.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'evenement.liste.affiche',
+                'label'     => 'evenement.liste.affiche',
+                'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label' => 'evenement.liste.datePublication',
+                'label'     => 'evenement.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
-                'label' => 'evenement.liste.annule',
+                'label'     => 'evenement.liste.annule',
+                'editable'  => true
             ])
             ->add('dateDebut', 'date', [
-                'label' => 'evenement.liste.dateDebut',
+                'label'     => 'evenement.liste.dateDebut',
                 'sortable'  => 'name'
             ])
             ->add('dateFin', 'date', [
-                'label' => 'evenement.liste.dateFin',
+                'label'     => 'evenement.liste.dateFin',
                 'sortable'  => 'name'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
+                    'clone' => array(
+                        'template' => ':AdminCustom/button:clone.html.twig',
+                        'data'     => '1',
+                    ),
                     'delete' => array(),
                 )
             ))
@@ -229,5 +239,6 @@ class EvenementAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
+        $collection->add('clone', $this->getRouterIdParameter().'/clone');
     }
 }
