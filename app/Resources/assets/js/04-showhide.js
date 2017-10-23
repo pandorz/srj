@@ -20,8 +20,7 @@ app.showhideController.defaultAction = {
                 });
             });
         }
-    },
-        
+    }
 };
 
 $(document).ready(function(){

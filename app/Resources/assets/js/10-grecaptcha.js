@@ -34,7 +34,6 @@ app.grecaptchaController.defaultAction = {
         e.preventDefault();
         grecaptcha.execute($(e.currentTarget).attr('data-grecaptcha-id'));
     }
-
 };
 
 $(document).ready(function(){

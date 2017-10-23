@@ -15,8 +15,7 @@ app.accordionController.defaultAction = {
             });
             $('.accordion .dropdown').on('click', function(e){ e.stopPropagation(); });
         }
-    },
-        
+    }
 };
 
 $(document).ready(function(){

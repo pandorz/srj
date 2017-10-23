@@ -69,8 +69,7 @@ app.mapsController.defaultAction = {
                 mymap.on('click', onMapClick);*/
             });
         }
-    },
-
+    }
 };
 
 $(document).ready(function(){
