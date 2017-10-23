@@ -65,6 +65,5 @@ app.headerController.defaultAction = {
             });
             
         }
-    },
-
+    }
 };

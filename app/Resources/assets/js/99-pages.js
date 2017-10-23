@@ -57,7 +57,7 @@ app.pagesController.defaultAction = {
                 var dataAttr = getDataAttr(d),
                     $dayCell = $("[data-date='" + dataAttr + "']"),
                     eventHtml;
-                if (url != undefined) {
+                if (typeof url !== undefined) {
                     eventHtml = '<span class="my-fc-event-title"><a href="'+url+'">'+title+'</a></span>';
                 }
                 else {
@@ -77,8 +77,7 @@ app.pagesController.defaultAction = {
             var month = date.getMonth() + 1;
             return date.getFullYear() + "-" + (month.toString().length === 2 ? month : "0" + month) + "-" + (day.toString().length === 2 ? day : "0" + day);
         };
-    },
-        
+    }
 };
 
 $(document).ready(function(){

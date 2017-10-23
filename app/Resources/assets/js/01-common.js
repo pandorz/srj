@@ -22,7 +22,7 @@ app.commonController.defaultAction = {
         });
 
         // Object-fit polyfill
-        $(function () { objectFitImages() });
+        //$(function () { objectFitImages() });
 
         // Back to top link
         this.backToTop();
@@ -48,8 +48,7 @@ app.commonController.defaultAction = {
                 }
             });
         }
-    },
-        
+    }
 };
 
 $(document).ready(function(){

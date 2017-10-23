@@ -203,8 +203,7 @@ app.modalController.defaultAction = {
 
         } // end if
 
-    }, // end init
-        
+    } // end init
 };
 
 $(document).ready(function(){
