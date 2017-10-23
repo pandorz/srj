@@ -2,19 +2,14 @@
 
 namespace AppBundle\Controller\Front;
 
-use Symfony\Component\Form\FormError;
+use AppBundle\Entity\Blog;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Entity\Evenement;
-use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Atelier;
 use AppBundle\Entity\Sortie;
-
-use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\EmailType;
 
 /**
  * Class FrontController
@@ -39,12 +34,92 @@ class FrontController extends BaseController
         $evenements = $this->getTopEvenements(3);
         $actualites = $this->getTopActualites(4);
         $dates      = $this->getDatesCalendrier();
+        $blogs      = $this->getTopBlogs(1);
+        $blog       = null;
+
+        if(!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
+            $blog = $blogs[0];
+        }
 
         return $this->render('home.html.twig', [
             'evenements' => $evenements,
             'actualites' => $actualites,
-            'dates'      => $dates
+            'dates'      => $dates,
+            'blog'       => $blog
         ]);
+    }
+
+    /**
+     * Newsletter
+     *
+     * -------------------- *
+     * @Route("/add-newsletter", name="add_newsletter")
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newsletterAction(Request $request)
+    {
+        $captcha = true;
+        //-- Check Google Recaptcha
+        if (hash_equals($this->getEnvironment(), 'prod')) {
+            try {
+                $this->checkGoogleRecaptcha($request->request->get('g-recaptcha-response'));
+            } catch (\Exception $e) {
+                if ($e->getCode() == self::EXCEPTION_CODE_GOOGLE_RECAPTCHA_FAILED) {
+                    $request
+                        ->getSession()
+                        ->getFlashBag()
+                        ->add('error',
+                            $this->getTranslator()->trans(
+                                'general.error.grecaptcha.detected_as_robot',
+                                [],
+                                'validators'
+                            )
+                        );
+                    $captcha = false;
+                }
+            }
+        }
+        //--
+        $email = $request->get('newsletter_email');
+        if (!empty($email) && $captcha) {
+            $data = ['email' => $email];
+
+            $retour_mail = $this->sendMail(
+                $this->getTranslator()->trans('newsletter.mail.sujet'),
+                'newsletter',
+                null,
+                $data['email'],
+                null,
+                [
+                    'title'     => $this->getTranslator()->trans('newsletter.mail.titre'),
+                    'subtitle'  => $this->getTranslator()->trans('newsletter.mail.soustitre'),
+                    'data'      => $data
+                ]
+            );
+
+            if ($retour_mail) {
+                $request
+                    ->getSession()
+                    ->getFlashBag()
+                    ->add('success', 'Nous avons enregistré votre demande');
+            } else {
+                $request
+                    ->getSession()
+                    ->getFlashBag()
+                    ->add('error', 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument');
+            }
+
+        } elseif(empty($email)) {
+            $request
+                ->getSession()
+                ->getFlashBag()
+                ->add('error', 'Votre email ne peut pas être vide');
+        }
+
+        return $this->redirectToRoute('home');
     }
     
     private function getDatesCalendrier()
@@ -68,29 +143,6 @@ class FrontController extends BaseController
             
             $data[] = [
                 'title' => $evenement->getNom(),
-                'start' => $start,
-                'end'   => $end
-            ];
-        }
-        
-        $actualites= $this->getEm()
-                ->getRepository(Actualite::class)
-                ->findAllValidOverOneMonth();
-        
-        foreach ($actualites as $actualite) {
-            $start = $actualite->getDateDebut();
-            $end   = $actualite->getDateFin();
-            
-            if (!is_null($start)) {
-                $start = $start->format(self::FORMAT_DATE);
-            }
-            
-            if (!is_null($end)) {
-                $end = $end->format(self::FORMAT_DATE);
-            }
-            
-            $data[] = [
-                'title' => $actualite->getNom(),
                 'start' => $start,
                 'end'   => $end
             ];
@@ -254,140 +306,5 @@ class FrontController extends BaseController
     public function presJapAction(Request $request)
     {        
         return $this->render('presentation_japonaise.html.twig', []);
-    }
-    
-    /**
-    * Contact
-    *
-    * -------------------- *
-    * @Route("/contact", name="contact")
-    * @Method({"GET", "POST"})
-    * -------------------- *
-    *
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
-    public function contactAction(Request $request)
-    {
-        $defaultContact = [];
-        $form = $this->createFormBuilder($defaultContact)
-            ->add(
-                    'nom', 
-                    TextType::class, 
-                    [
-                        'required' => true, 
-                        'label_attr' => [ 'class' => 'u-hiddenVisually'],
-                        'attr' => ['class' => 'fld', 'placeholder' => '*Nom'],
-                        'label' => 'Nom'
-                    ]
-                )
-            ->add(
-                    'prenom',
-                    TextType::class,
-                    [
-                        'required' => true,
-                        'label_attr' => [ 'class' => 'u-hiddenVisually'],
-                        'attr' => ['class' => 'fld', 'placeholder' => '*Prenom'],
-                        'label' => 'Prenom'
-                    ]
-                )
-            ->add(
-                    'objet', 
-                    TextType::class, 
-                    [
-                        'required' => true,
-                        'label_attr' => [ 'class' => 'u-hiddenVisually'],
-                        'attr' => [
-                            'class' => 'fld', 
-                            'placeholder' => '*Objet de votre demande'
-                        ],
-                        'label' => 'Sujet'
-                    ]
-                )
-            ->add(
-                    'email',
-                    EmailType::class, 
-                    [
-                        'required' => true,
-                        'label_attr' => [ 'class' => 'u-hiddenVisually'],
-                        'attr' => [
-                            'class' => 'fld',
-                            'placeholder' => '*Votre email'
-                        ],
-                        'label' => 'Email'
-                    ]
-                )    
-            ->add(
-                    'message', 
-                    TextareaType::class, 
-                    [
-                        'required' => true,
-                        'label_attr' => [ 'class' => 'fldLabel'],
-                        'attr' => [
-                            'class' => 'fld',
-                            'placeholder' => 'Bonjour,',
-                            'rows' => 8
-                        ],
-                        'label' => 'Votre message'
-                    ]
-                )    
-            ->getForm();
-        $form->handleRequest($request);
-        if ($form->isSubmitted()) {
-            //-- Check Google Recaptcha
-            try {
-                $this->checkGoogleRecaptcha($request->request->get('g-recaptcha-response'));
-            } catch (\Exception $e) {
-                if ($e->getCode() == self::EXCEPTION_CODE_GOOGLE_RECAPTCHA_FAILED) {
-                    $form->addError(
-                        new FormError(
-                            $this->getTranslator()->trans(
-                                'general.error.grecaptcha.detected_as_robot',
-                                [],
-                                'validators'
-                            )
-                        )
-                    );
-                } else {
-                    $form->addError(
-                        new FormError(
-                            $this->getTranslator()->trans(
-                                'general.error.grecaptcha.error_on_verify',
-                                [],
-                                'validators'
-                            )
-                        )
-                    );
-                };
-            }
-            //--
-            if ($form->isValid()) {
-                $data = $form->getData();
-                // TODO : Send mail
-                $retour_mail = $this->sendMail(
-                    $this->getTranslator()->trans('contact.mail.sujet'),
-                    'contact',
-                    null,
-                    $data['email'],    
-                    null,
-                    [
-                        'title'     => $this->getTranslator()->trans('contact.mail.titre'),
-                        'subtitle'  => $this->getTranslator()->trans('contact.mail.soustitre'),
-                        'data'      => $data
-                    ]
-                );
-                if ($retour_mail) {
-                    $request
-                        ->getSession()
-                        ->getFlashBag()
-                        ->add('success', 'Votre message a été envoyé');
-                } else {
-                     $request
-                        ->getSession()
-                        ->getFlashBag()
-                        ->add('error', 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument');
-                }
-            }            
-        }
-        return $this->render('contact.html.twig', ['form' => $form->createView()]);
     }
 }

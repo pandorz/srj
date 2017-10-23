@@ -99,8 +99,7 @@ app.formsController.defaultAction = {
 
 
         });
-    },
-        
+    }
 };
 
 $(document).ready(function(){

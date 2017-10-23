@@ -21,6 +21,10 @@ class CourAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
 
     /**
@@ -35,14 +39,16 @@ class CourAdmin extends AbstractAdmin
                 'label' => 'cour.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label' => 'cour.liste.affiche',
+                'label'     => 'cour.liste.affiche',
+                'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label' => 'cour.liste.datePublication',
+                'label'     => 'cour.liste.datePublication',
                 'sortable'  => 'name'
             ])
             ->add('annule', 'boolean', [
-                'label' => 'cour.liste.annule',
+                'label'     => 'cour.liste.annule',
+                'editable'  => true
             ])
             ->add('professeur', 'many_to_one', [
                 'label'     => 'cour.liste.professeur',

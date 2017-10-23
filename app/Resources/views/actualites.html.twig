@@ -13,6 +13,7 @@
         <div class="noWorkshop u-textCenter">
             <b class="nothing">Aucune actualités n'est encore écrite pour le moment...</b>
             <p>Ça ne devrait pourtant pas tarder !</p>
+            {% include 'newsletter_form_light.html.twig' %}
         </div>
         {% else %}
         <h2 class="sectionTitle">Actualités</h2>
@@ -32,7 +33,7 @@
                     </div>
                 </div>
             {% endfor %} 
-            <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{path('actualites', {'plus':'voir-tout'})}}">Charger plus</a></div>
+            <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{ path('actualites', {'plus':'voir-tout'}) }}">Charger plus</a></div>
         </div>
         {% endif %}
     </section>

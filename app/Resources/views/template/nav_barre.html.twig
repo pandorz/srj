@@ -22,6 +22,7 @@
                                         <a class="mainSubSubNavLink" href="{{path('cours')}}#calligraphie">Calligraphie</a>
                                         <a class="mainSubSubNavLink" href="{{path('cours')}}#the">Cérémonie du thé</a>
                                         <a class="mainSubSubNavLink" href="{{path('cours')}}#enfants">Cours enfants</a>
+                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#yoga">Yoga</a>
                                     </li>
                                 </ul>
                             </li>
@@ -31,7 +32,9 @@
                     </li>
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('evenements')}}">Événements</a></li>
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('actualites')}}">Actualités</a></li>
-                    <!--li class="mainNavItem"><a class="mainNavLink" href="#">Blog</a></li-->
+                    {% if is_actif_blog() %}
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('blog')}}">Blog</a></li>
+                    {% endif %}
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a></li>
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('contact')}}">Contact</a></li>
                 </ul>
@@ -39,7 +42,10 @@
                     {% if lien_adhesion() is not empty %}
                     <a class="mainNavMemberLink signup btn btn-blank btn-small" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
                     {% endif %}
-                <!--<a class="mainNavMemberLink login" href="#">Déjà membre ?</a-->
+                    {#<a class="mainNavMemberLink login" href="#">Déjà membre ?</a>#}
+                    {% if app.user %}
+                        <a class="mainNavMemberLink admin" href="{{ path('sonata_admin_dashboard') }}" target="_blank">Administration</a>
+                    {% endif %}
             </div>
             </div>
         </nav>

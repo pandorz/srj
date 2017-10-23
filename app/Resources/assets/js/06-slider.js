@@ -21,8 +21,7 @@ app.sliderController.defaultAction = {
                 nextArrow: '<button type="button" class="slick-next icon-arrow-right">Suivant</button>'
             });
         }
-    },
-        
+    }
 };
 
 $(document).ready(function(){

@@ -378,7 +378,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setImage(MediaInterface $image)
+    public function setImage(MediaInterface $image = null)
     {
         $this->image = $image;
 

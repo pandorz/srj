@@ -102,6 +102,14 @@ app.doScripts = function() {
         config.assetsDir+'/js/vendor/wNumb.js'
     ], 'app.js');
 
+    pipeline.add([
+        config.assetsDir+'/js/admin.js'
+    ], 'admin.js');
+
+    pipeline.add([
+        'vendor/oh/google-map-form-type-bundle/Oh/GoogleMapFormTypeBundle/Resources/public/js/jquery.ohgooglemaps.js'
+    ], 'jquery.ohgooglemaps.js');
+
     return pipeline.run(app.addScript);
 };
 

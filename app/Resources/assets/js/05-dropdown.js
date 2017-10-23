@@ -74,8 +74,7 @@ app.dropdownController.defaultAction = {
             $('body').removeClass('active-overlay-mobile');
             app.dropdownController.defaultAction.hideDropdown($('.dropdown.is-active'));
         }
-    },
-        
+    }
 };
 
 $(document).ready(function(){

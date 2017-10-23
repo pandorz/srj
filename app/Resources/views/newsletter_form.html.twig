@@ -1,0 +1,18 @@
+<div class="followItem newsletter">
+{% for flashMessage in app.session.flashbag.get('error') %}
+    <div class="alert alert-warning">{{ flashMessage }}</div>
+{% endfor %}
+{% for flashMessage in app.session.flashbag.get('success') %}
+    <div class="alert alert-success">{{ flashMessage }}</div>
+{% endfor %}
+    <form class="newsletterForm js-form-grecaptcha" action="{{ path('add_newsletter') }}">
+        <legend class="newsletterTitle">Et abonnez-vous à notre newsletter <small class="nospam">#nospam</small></legend>
+        <div class="formItem">
+            <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
+            <input class="fld" type="email" name="newsletter_email" placeholder="Mon adresse email">
+        </div>
+        <div class="js-container-grecaptcha"></div>
+        <button class="btn js-button-grecaptcha" data-grecaptcha-key="{{ google_recaptcha_public_token }}">Je m'abonne !</button>
+    </form>
+</div>
+
