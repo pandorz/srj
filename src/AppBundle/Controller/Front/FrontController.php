@@ -79,18 +79,6 @@ class FrontController extends BaseController
                             )
                         );
                     $captcha = false;
-                } else {
-                    $request
-                        ->getSession()
-                        ->getFlashBag()
-                        ->add('error',
-                            $this->getTranslator()->trans(
-                                'general.error.grecaptcha.error_on_verify',
-                                [],
-                                'validators'
-                            )
-                        );
-                    $captcha = false;
                 }
             }
         }
