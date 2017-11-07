@@ -32,6 +32,7 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_adhesion_japonais', array($this, 'getLienAdhesionJaponais')),
             new \Twig_SimpleFunction('lien_cours_japonais', array($this, 'getLienCoursJaponais')),
             new \Twig_SimpleFunction('lien_cours_yoga', array($this, 'getLienCoursYoga')),
+            new \Twig_SimpleFunction('lien_cours_jlpt', array($this, 'getLienCoursJLPT')),
             new \Twig_SimpleFunction('lien_cours_japonais_enfant', array($this, 'getLienCoursJaponaisEnfant')),
             new \Twig_SimpleFunction('lien_cours_calligraphie', array($this, 'getLienCoursCalligraphie')),
             new \Twig_SimpleFunction('lien_cours_the', array($this, 'getLienCoursThe')),
@@ -40,6 +41,7 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_calendrier_cours_calligraphie', array($this, 'getLienCalendrierCoursCalligraphie')),
             new \Twig_SimpleFunction('lien_calendrier_cours_the', array($this, 'getLienCalendrierCoursThe')),
             new \Twig_SimpleFunction('lien_calendrier_cours_yoga', array($this, 'getLienCalendrierCoursYoga')),
+            new \Twig_SimpleFunction('lien_calendrier_cours_jlpt', array($this, 'getLienCalendrierCoursJLPT')),
             new \Twig_SimpleFunction('is_actif_blog', array($this, 'isActifBlog')),
             new \Twig_SimpleFunction('crop_entete_texte', array($this, 'cropEnteteTexte')),
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
@@ -97,6 +99,12 @@ class TwigHelpers extends \Twig_Extension
         $parametre =$this->getParamBySlug('lien-inscription-cours-yoga');
         return $this->returnParametreValue($parametre);
     }
+
+    public function getLienCoursJLPT()
+    {
+        $parametre =$this->getParamBySlug('lien-inscription-cours-jlpt');
+        return $this->returnParametreValue($parametre);
+    }
     
     public function getLienCoursJaponaisEnfant()
     {
@@ -146,6 +154,12 @@ class TwigHelpers extends \Twig_Extension
         return $this->returnParametreValue($parametre);
     }
 
+    public function getLienCalendrierCoursJLPT()
+    {
+        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-jlpt');
+        return $this->returnParametreValue($parametre);
+    }
+
     public function isActifBlog()
     {
         $parametre = $this->getParamBySlug('affichage-blog-public');
@@ -165,7 +179,7 @@ class TwigHelpers extends \Twig_Extension
     
     /**
      * @param string $slug
-     * return Parametre
+     * @return Parametre
      */
     private function getParamBySlug($slug)
     {
