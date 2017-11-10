@@ -298,5 +298,6 @@ class CourAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
+        $collection->add('clone', $this->getRouterIdParameter().'/clone');
     }
 }
