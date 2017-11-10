@@ -5,12 +5,14 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * Cour
  *
  * @ORM\Table(name="cour", indexes={
- *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="ancre", columns={"ancre"}),
  *     @ORM\Index(name="affiche", columns={"affiche"}),
  *     @ORM\Index(name="annule", columns={"annule"})
  * })
@@ -26,16 +28,11 @@ class Cour
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255)
-     */
-    private $nom;
 	
-	/**
-    * @Gedmo\Slug(fields={"nom"})
+   /**
+    * @var string
+    *
+    * @Gedmo\Slug(fields={"titre"})
     * @ORM\Column(length=128, unique=true)
     */
     private $slug;
@@ -46,6 +43,20 @@ class Cour
      * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="complet", type="boolean")
+     */
+    private $complet;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="bientot_complet", type="boolean")
+     */
+    private $bientotComplet;
 
     /**
      * @var boolean
@@ -62,7 +73,7 @@ class Cour
     private $datePublication;
 	
     /**
-     *
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="cours")
      * @ORM\JoinTable(name="cours_inscriptions",
      *     joinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")},
@@ -70,13 +81,76 @@ class Cour
      * )
      */
     private $inscrits;
-	
+
     /**
-     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
+     * @var Parametre
+     *
+     * @ORM\OneToOne(targetEntity="Parametre", cascade={"persist", "refresh"})
      */
-    private $contenu;
+    private $parametreLienInscription;
+
+    /**
+     * @var Parametre
+     *
+     * @ORM\OneToOne(targetEntity="Parametre", cascade={"persist", "refresh"})
+     */
+    private $parametreLienPdf;
+
+    /**
+     * @var string
+     *
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     message="Seulement un mot, sans accents"
+     * )
+     * @ORM\Column(name="ancre", type="string", length=45)
+     */
+    private $ancre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @var double
+     *
+     * @ORM\Column(name="prix", type="float")
+     */
+    private $prix;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="amorce", type="text", length=65535, nullable=true)
+     */
+    private $amorce;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="crenau", type="string", length=255)
+     */
+    private $crenau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condition_particuliere", type="string", length=255, nullable=true)
+     */
+    private $conditionParticuliere;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="note", type="string", length=255, nullable=true)
+     */
+    private $note;
 	
     /**
+     * @var Utilisateur
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="professeurDe")
      * @ORM\JoinColumn(nullable=false, name="fk_professeur", referencedColumnName="id")
@@ -119,6 +193,22 @@ class Cour
      */
     protected $version;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\CourDetail", inversedBy="cours")
+     * @ORM\JoinTable(name="cours_details_items",
+     *     joinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="cour_detail_id", referencedColumnName="id")}
+     * )
+     */
+    private $details;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
+     */
+    private $image;
+
 
     /**
      * Get id
@@ -128,30 +218,6 @@ class Cour
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Cour
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
     }
 
     /**
@@ -221,15 +287,6 @@ class Cour
     {
         return $this->affiche;
     }
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-        $this->dates = new ArrayCollection();
-    }
 
     /**
      * Add inscrit
@@ -263,30 +320,6 @@ class Cour
     public function getInscrits()
     {
         return $this->inscrits;
-    }
-
-    /**
-     * Set contenu
-     *
-     * @param string $contenu
-     *
-     * @return Cour
-     */
-    public function setContenu($contenu)
-    {
-        $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    /**
-     * Get contenu
-     *
-     * @return string
-     */
-    public function getContenu()
-    {
-        return $this->contenu;
     }
 
     /**
@@ -448,4 +481,221 @@ class Cour
     {
         $this->datePublication = $datePublication;
     }
+
+    /**
+     * @return bool
+     */
+    public function isComplet()
+    {
+        return $this->complet;
+    }
+
+    /**
+     * @param bool $complet
+     */
+    public function setComplet($complet)
+    {
+        $this->complet = $complet;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBientotComplet()
+    {
+        return $this->bientotComplet;
+    }
+
+    /**
+     * @param bool $bientotComplet
+     */
+    public function setBientotComplet($bientotComplet)
+    {
+        $this->bientotComplet = $bientotComplet;
+    }
+
+    /**
+     * @return Parametre
+     */
+    public function getParametreLienInscription()
+    {
+        return $this->parametreLienInscription;
+    }
+
+    /**
+     * @param Parametre $parametreLienInscription
+     */
+    public function setParametreLienInscription($parametreLienInscription)
+    {
+        $this->parametreLienInscription = $parametreLienInscription;
+    }
+
+    /**
+     * @return Parametre
+     */
+    public function getParametreLienPdf()
+    {
+        return $this->parametreLienPdf;
+    }
+
+    /**
+     * @param Parametre $parametreLienPdf
+     */
+    public function setParametreLienPdf($parametreLienPdf)
+    {
+        $this->parametreLienPdf = $parametreLienPdf;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAncre()
+    {
+        return $this->ancre;
+    }
+
+    /**
+     * @param string $ancre
+     */
+    public function setAncre($ancre)
+    {
+        $this->ancre = $ancre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param string $titre
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * @param float $prix
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAmorce()
+    {
+        return $this->amorce;
+    }
+
+    /**
+     * @param string $amorce
+     */
+    public function setAmorce($amorce)
+    {
+        $this->amorce = $amorce;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCrenau()
+    {
+        return $this->crenau;
+    }
+
+    /**
+     * @param string $crenau
+     */
+    public function setCrenau($crenau)
+    {
+        $this->crenau = $crenau;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConditionParticuliere()
+    {
+        return $this->conditionParticuliere;
+    }
+
+    /**
+     * @param string $conditionParticuliere
+     */
+    public function setConditionParticuliere($conditionParticuliere)
+    {
+        $this->conditionParticuliere = $conditionParticuliere;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param string $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param ArrayCollection $details
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+    }
+
+    /**
+     * Set image
+     *
+     * @param MediaInterface $image
+     *
+     * @return Cour
+     */
+    public function setImage(MediaInterface $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return MediaInterface
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
 }

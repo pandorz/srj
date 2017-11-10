@@ -36,6 +36,8 @@ class Actualite
     private $nom;
 	
 	/**
+    * @var  string
+    *
     * @Gedmo\Slug(fields={"nom"})
     * @ORM\Column(length=128, unique=true)
     */

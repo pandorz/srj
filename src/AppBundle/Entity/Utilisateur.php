@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 
 /**
@@ -28,7 +29,9 @@ class Utilisateur extends BaseUser
      */
     protected $id;    
     
-    /**
+   /**
+    * @var string
+    *
     * @Gedmo\Slug(fields={"lastname","firstname"})
     * @ORM\Column(length=128, unique=true)
     */
@@ -51,52 +54,63 @@ class Utilisateur extends BaseUser
     /**
     * @var boolean
     *
-    * @ORM\Column(name="est_professeur", type="boolean")
+    * @ORM\Column(name="estProfesseur", type="boolean")
     */
-    private $est_professeur;    
+    private $estProfesseur;    
     
     /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Cour", mappedBy="inscrits")
      */
     private $cours;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Sortie", mappedBy="inscrits")
      */
     private $sorties;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Atelier", mappedBy="inscrits")
      */
     private $ateliers;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Atelier", mappedBy="superviseurs")
      */
     private $atelierSupervise;
 
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Actualite", mappedBy="superviseurs")
      */
     private $actualiteSupervise;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="superviseurs")
      */
     private $evenementSupervise;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Sortie", mappedBy="superviseurs")
      */
     private $sortieSupervise;
-
 	
     /**
+     * @var ArrayCollection
+     *
      * @ORM\OneToMany(targetEntity="Cour", mappedBy="professeur")
      */
     private $professeurDe;
         
     /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToOne(targetEntity="Utilisateur",  inversedBy="parent")
      * @ORM\JoinTable(name="Utilisateur_relations",
      *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
@@ -106,10 +120,17 @@ class Utilisateur extends BaseUser
     private $sousUtilisateurs;
     
     /**
+     * @var Utilisateur
+     *
      * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="sousUtilisateurs")
      */
     private $parent;
 
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
+     */
+    private $image;
 
     /**
     * Constructor
@@ -352,7 +373,7 @@ class Utilisateur extends BaseUser
     {
         //si pas sous utilisateur
         if(is_null($this->getParent()))
-            $this->est_professeur = $estProfesseur;
+            $this->estProfesseur = $estProfesseur;
 
         return $this;
     }
@@ -364,7 +385,7 @@ class Utilisateur extends BaseUser
      */
     public function getEstProfesseur()
     {
-        return $this->est_professeur;
+        return $this->estProfesseur;
     }
 
     /**
@@ -588,5 +609,29 @@ class Utilisateur extends BaseUser
             return $this->getFullname();
         }
         return parent::__toString();
+    }
+
+    /**
+     * Set image
+     *
+     * @param MediaInterface $image
+     *
+     * @return Utilisateur
+     */
+    public function setImage(MediaInterface $image  = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return MediaInterface
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }

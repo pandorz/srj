@@ -24,6 +24,10 @@ class UtilisateurAdmin extends UserAdmin
                 'label'     => $this->trans('utilisateur.liste.parent', [], 'messages'),
                 'route'     => ['name' => 'show'],
                 'sortable'  => 'name'
+            ])
+            ->add('estProfesseur', 'boolean', [
+                'label'     => 'utilisateur.liste.estProfesseur',
+                'editable'  => true
             ]);
     }
     
@@ -45,6 +49,24 @@ class UtilisateurAdmin extends UserAdmin
                 'inline'        => 'table',
                 'sortable'      => 'position'           
             ])
+            ->end()
+            ->tab($this->trans('utilisateur.tab.profil', [], 'messages'))
+            ->with('Profil', [
+                'name'          => $this->trans('utilisateur.with.meta_data', [], 'messages')
+            ])
+            ->add('estProfesseur', 'checkbox', [
+                'label' => 'utilisateur.estProfesseur',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.estProfesseur'
+                ],
+                'required' => false
+            ])
+            ->add('image', 'sonata_media_type', array(
+                'label' => 'utilisateur.image',
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'image',
+                'required' => false,
+            ))
             ->end()
             ->end();        
     }

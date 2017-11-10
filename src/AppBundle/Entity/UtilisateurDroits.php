@@ -25,9 +25,9 @@ class UtilisateurDroits extends BaseGroup
      */
     protected $id;
     /**
-     * @var \AppBundle\Entity\Utilisateur
+     * @var Utilisateur
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur")
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="fk_id_utilisateur", referencedColumnName="id")
      * })

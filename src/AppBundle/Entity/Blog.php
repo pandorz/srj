@@ -41,6 +41,8 @@ class Blog
     private $descriptionCourte;
 
     /**
+     * @var string
+     *
      * @Gedmo\Slug(fields={"nom"})
      * @ORM\Column(length=128, unique=true)
      */
@@ -67,6 +69,8 @@ class Blog
     private $image;
 
     /**
+     * @var string
+     *
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;

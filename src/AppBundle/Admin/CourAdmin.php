@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Parametre;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -35,8 +36,8 @@ class CourAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('nom', 'text', [
-                'label' => 'cour.liste.nom'
+            ->addIdentifier('titre', 'text', [
+                'label' => 'cour.liste.titre'
             ])
             ->add('affiche', 'boolean', [
                 'label'     => 'cour.liste.affiche',
@@ -48,6 +49,14 @@ class CourAdmin extends AbstractAdmin
             ])
             ->add('annule', 'boolean', [
                 'label'     => 'cour.liste.annule',
+                'editable'  => true
+            ])
+            ->add('complet', 'boolean', [
+                'label'     => 'cour.liste.complet',
+                'editable'  => true
+            ])
+            ->add('bientotComplet', 'boolean', [
+                'label'     => 'cour.liste.bientotComplet',
                 'editable'  => true
             ])
             ->add('professeur', 'many_to_one', [
@@ -76,10 +85,10 @@ class CourAdmin extends AbstractAdmin
                 'name'          => $this->trans('cour.with.details'),
                 'class'         => 'col-md-7'
             ])
-            ->add('nom', 'text', [
-                'label' => 'cour.nom',
+            ->add('titre', 'text', [
+                'label' => 'cour.titre',
                 'attr'  => [
-                    'placeholder' => 'cour.placeholder.nom'
+                    'placeholder' => 'cour.placeholder.titre'
                 ]
             ])
             ->add('affiche', 'checkbox', [
@@ -104,17 +113,63 @@ class CourAdmin extends AbstractAdmin
                     'placeholder' => 'cour.placeholder.annule'
                 ],
                 'required' => false
-            ])            
-            ->add('contenu', CKEditorType::class, [
-                'label' => 'cour.contenu',
+            ])
+            ->add('complet', 'checkbox', [
+                'label' => 'cour.complet',
                 'attr'  => [
-                    'placeholder' => 'cour.placeholder.contenu'
+                    'placeholder' => 'cour.placeholder.complet'
+                ],
+                'required' => false
+            ])
+            ->add('bientotComplet', 'checkbox', [
+                'label' => 'cour.bientotComplet',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.bientotComplet'
+                ],
+                'required' => false
+            ])
+            ->add('crenau', 'text', [
+                'label' => 'cour.crenau',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.crenau'
                 ]
-            ])            
+            ])
+            ->add('amorce', CKEditorType::class, [
+                'label' => 'cour.amorce',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.amorce'
+                ]
+            ])
+            ->add('details', 'sonata_type_model_list',
+                [],
+                [
+                    'label' => 'cour.details',
+                    'attr'  => [
+                        'placeholder' => 'cour.placeholder.details'
+                ]
+            ])
             ->end() 
             ->with('Meta data', [
                 'name'      => $this->trans('cour.with.meta_data'),
                  'class'     => 'col-md-5'
+            ])
+            ->add('ancre', 'text', [
+                'label' => 'cour.ancre',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.ancre'
+                ]
+            ])
+            ->add('conditionParticuliere', 'text', [
+                'label' => 'cour.conditionParticuliere',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.conditionParticuliere'
+                ]
+            ])
+            ->add('note', 'text', [
+                'label' => 'cour.note',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.note'
+                ]
             ])
             ->add('professeur', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
@@ -131,7 +186,29 @@ class CourAdmin extends AbstractAdmin
                 'multiple'  => true,
                 'placeholder' => $this->trans('cour.placeholder.users'),
                 'required' => false
-            ])  
+            ])
+            ->add('parametreLienInscription', 'sonata_type_model_autocomplete', [
+                'class'     => Parametre::class,
+                'property'  => ['nom'],
+                'label'     => 'cour.parametreLienInscription',
+                'multiple'  => false,
+                'placeholder' => $this->trans('cour.placeholder.parametreLienInscription'),
+                'required' => false
+            ])
+            ->add('parametreLienPdf', 'sonata_type_model_autocomplete', [
+                'class'     => Parametre::class,
+                'property'  => ['nom'],
+                'label'     => 'cour.parametreLienPdf',
+                'multiple'  => false,
+                'placeholder' => $this->trans('cour.placeholder.parametreLienPdf'),
+                'required' => false
+            ])
+            ->add('image', 'sonata_media_type', array(
+                'label' => 'cour.image',
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'image',
+                'required' => false,
+            ))
             ->end()
         ;
     }
@@ -144,9 +221,11 @@ class CourAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('nom')
+            ->add('titre')
             ->add('affiche')
-            ->add('annule')   
+            ->add('annule')
+            ->add('complet')
+            ->add('bientotComplet')
             ->add('utilisateurCreation')
             ->add('utilisateurModification')
         ;
@@ -160,9 +239,11 @@ class CourAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
+            ->add('titre')
             ->add('affiche')
             ->add('annule')
+            ->add('complet')
+            ->add('bientotComplet')
             ->add('professeur', null, [], 'entity', [
                 'class'         => Utilisateur::class
             ])

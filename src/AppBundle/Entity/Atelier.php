@@ -37,7 +37,9 @@ class Atelier
      */
     private $nom;
 	
-    /**
+   /**
+    * @var string
+    *
     * @Gedmo\Slug(fields={"nom"})
     * @ORM\Column(length=128, unique=true)
     */
@@ -99,12 +101,15 @@ class Atelier
     private $image;
    
     /**
+     * @var string
+     *
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
     
     
     /**
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="atelierSupervise")
      * @ORM\JoinTable(name="ateliers_surpervisions",
@@ -137,6 +142,7 @@ class Atelier
     
     
     /**
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="ateliers")
      * @ORM\JoinTable(name="ateliers_inscriptions",

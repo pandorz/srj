@@ -3,16 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
- * Parametre
+ * Cour
  *
- * @ORM\Table(name="parametre")
- * * @ORM\Table(name="parametre")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ParametreRepository")
+ * @ORM\Table(name="cour_detail")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CourDetailRepository")
  */
-class Parametre
+class CourDetail
 {
     /**
      * @var int
@@ -22,29 +20,28 @@ class Parametre
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @var string
      *
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-    
-   /**
-    * @var string
-    *
-    * @Gedmo\Slug(fields={"nom"})
-    * @ORM\Column(length=128, unique=true)
-    */
-    private $slug;
-    
+
     /**
      * @var string
      *
-     * @ORM\Column(name="value", type="string", length=255, nullable=true)
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
-    private $value;
-    
+    private $contenu;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="complet", type="boolean")
+     */
+    private $complet;
+
     /**
      * @var \DateTime
      *
@@ -74,15 +71,20 @@ class Parametre
     private $utilisateurModification;
 
     /**
-     * Parametre constructor.
+     * For Sonata Admin Doctrine lock
+     * @var int
+     * @ORM\Column(type="integer")
+     * @ORM\Version
      */
-    public function __construct()
-    {
-    }
+    protected $version;
 
     /**
-     * Get id
-     *
+     * @var Cour
+     * @ORM\ManyToMany(targetEntity="Cour", mappedBy="details")
+     */
+    private $cours;
+
+    /**
      * @return int
      */
     public function getId()
@@ -91,142 +93,93 @@ class Parametre
     }
 
     /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Parametre
+     * @param int $id
      */
-    public function setSlug($slug)
+    public function setId($id)
     {
-        $this->slug = $slug;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
-
-    
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Parametre
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
      * @return string
      */
     public function getNom()
     {
         return $this->nom;
     }
-    
-    /**
-     * Set value
-     *
-     * @param string $value
-     *
-     * @return Parametre
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
 
-        return $this;
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
     }
 
     /**
-     * Get nom
-     *
      * @return string
      */
-    public function getValue()
+    public function getContenu()
     {
-        return $this->value;
-    }
-    
-    /**
-     * @ORM\PrePersist
-     */
-    public function prePersist()
-    {
-        $this->setTimestampCreation(new \DateTime('now'));
+        return $this->contenu;
     }
 
     /**
-     * @ORM\PreUpdate
+     * @param string $contenu
      */
-    public function preUpdate()
+    public function setContenu($contenu)
     {
-        $this->setTimestampModification(new \DateTime('now'));
-    }
-    
-    /**
-     * Set timestampCreation
-     *
-     * @param \DateTime $timestampCreation
-     *
-     * @return Parametre
-     */
-    public function setTimestampCreation($timestampCreation)
-    {
-        $this->timestampCreation = $timestampCreation;
-
-        return $this;
+        $this->contenu = $contenu;
     }
 
     /**
-     * Get timestampCreation
-     *
+     * @return bool
+     */
+    public function isComplet()
+    {
+        return $this->complet;
+    }
+
+    /**
+     * @param bool $complet
+     */
+    public function setComplet($complet)
+    {
+        $this->complet = $complet;
+    }
+
+    /**
      * @return \DateTime
      */
     public function getTimestampCreation()
     {
         return $this->timestampCreation;
     }
-    
-    /**
-     * Set timestampModification
-     *
-     * @param \DateTime $timestampModification
-     *
-     * @return Parametre
-     */
-    public function setTimestampModification($timestampModification)
-    {
-        $this->timestampModification = $timestampModification;
 
-        return $this;
+    /**
+     * @param \DateTime $timestampCreation
+     */
+    public function setTimestampCreation($timestampCreation)
+    {
+        $this->timestampCreation = $timestampCreation;
     }
 
     /**
-     * Get timestampModification
-     *
      * @return \DateTime
      */
     public function getTimestampModification()
     {
         return $this->timestampModification;
     }
-    
+
+    /**
+     * @param \DateTime $timestampModification
+     */
+    public function setTimestampModification($timestampModification)
+    {
+        $this->timestampModification = $timestampModification;
+    }
+
     /**
      * @return string
      */
@@ -257,5 +210,53 @@ class Parametre
     public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
+    }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        $this->setTimestampCreation(new \DateTime('now'));
+    }
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        $this->setTimestampModification(new \DateTime('now'));
+    }
+
+    /**
+     * @return int
+     */
+    public function getVersion()
+    {
+        return $this->version;
+    }
+
+    /**
+     * @param int $version
+     */
+    public function setVersion($version)
+    {
+        $this->version = $version;
+    }
+
+    /**
+     * @return Cour
+     */
+    public function getCours()
+    {
+        return $this->cours;
+    }
+
+    /**
+     * @param Cour $cours
+     */
+    public function setCours(Cour $cours)
+    {
+        $this->cours = $cours;
     }
 }
