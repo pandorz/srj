@@ -25,6 +25,7 @@ sonata_admin:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
         layout: :AdminCustom:/template/standard_layout.html.twig
         edit:   :AdminCustom:/template/edit.html.twig
+        user_block: :AdminCustom:/template/user_block.html.twig
     dashboard:
         groups:
             app.admin.group.principal.evenements:
