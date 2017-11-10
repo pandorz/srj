@@ -61,6 +61,7 @@ security:
                 path:           /gyosei/logout
                 target:         /gyosei/login
             anonymous:          true
+            switch_user: true
 
         main:
             pattern:             .*
