@@ -31,7 +31,7 @@ class CourDetail
     /**
      * @var string
      *
-     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
+     * @ORM\Column(name="contenu", type="string", length=255, nullable=true)
      */
     private $contenu;
 
@@ -80,7 +80,8 @@ class CourDetail
 
     /**
      * @var Cour
-     * @ORM\ManyToMany(targetEntity="Cour", mappedBy="details")
+     * @ORM\ManyToOne(targetEntity="Cour", inversedBy="details")
+     * @ORM\JoinColumn(name="fk_cour", referencedColumnName="id", nullable=true)
      */
     private $cours;
 
@@ -258,5 +259,10 @@ class CourDetail
     public function setCours(Cour $cours)
     {
         $this->cours = $cours;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

@@ -5,20 +5,24 @@ namespace AppBundle\Admin;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
+use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 
-use AppBundle\Entity\Parametre;
+use AppBundle\Entity\CourDetail;
 
-class ParametreAdmin extends AbstractAdmin
+class CourDetailAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_parametre';
-    protected $baseRoutePattern = 'parametre';
+    protected $baseRouteName    = 'admin_cour_detail';
+    protected $baseRoutePattern = 'cour_detail';
 
     public $supportsPreviewMode = false;
 
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
 
 
     /**
@@ -29,12 +33,17 @@ class ParametreAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->add('nom', 'text', [
-                'label' => 'parametre.liste.nom'
-            ])   
+            ->addIdentifier('nom', 'text', [
+                'label' => 'cour_detail.liste.titre'
+            ])
+            ->add('complet', 'boolean', [
+                'label'     => 'cour_detail.liste.complet',
+                'editable'  => true
+            ])
             ->add('_action', null, array(
                 'actions' => array(
-                    'edit' => array()
+                    'edit' => array(),
+                    'delete' => array(),
                 )
             ))
         ;
@@ -49,26 +58,29 @@ class ParametreAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('parametre.with.details'),
-                'class'         => 'col-md-12'
-            ]);
-        $parametre = $this->getSubject();
-        if (!($parametre instanceof Parametre) || empty($parametre->getNom())) {
-            $formMapper->add('nom', 'text', [
-                    'label' => 'parametre.nom',
-                    'attr'  => [
-                        'placeholder' => 'parametre.placeholder.nom'
-                    ]
-                ]);
-        }
-        $formMapper->add('value', 'text', [
-                'label' => 'parametre.value',
+                'name'          => $this->trans('cour_detail.with.details')
+            ])
+            ->add('nom', 'text', [
+                'label' => 'cour_detail.nom',
                 'attr'  => [
-                    'placeholder' => 'parametre.placeholder.value'
+                    'placeholder' => 'cour_detail.placeholder.nom'
+                ]
+            ])
+            ->add('complet', 'checkbox', [
+                'label' => 'cour_detail.complet',
+                'attr'  => [
+                    'placeholder' => 'cour_detail.placeholder.complet'
                 ],
                 'required' => false
-            ])            
-            ->end();
+            ])
+            ->add('contenu', 'text', [
+                'label' => 'cour_detail.contenu',
+                'attr'  => [
+                    'placeholder' => 'cour_detail.placeholder.contenu'
+                ]
+            ])
+            ->end()
+        ;
     }
 
     /**
@@ -80,8 +92,10 @@ class ParametreAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('nom')
+            ->add('complet')
             ->add('utilisateurCreation')
-            ->add('utilisateurModification');
+            ->add('utilisateurModification')
+        ;
     }
 
     /**
@@ -92,15 +106,9 @@ class ParametreAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom', null, [
-                'label' => 'parametre.liste.nom'
-            ]);
-    }
-
-    protected function configureRoutes(RouteCollection $collection)
-    {
-//        $collection->clearExcept(array('list', 'edit', 'add'));
-        $collection->remove('delete');
+            ->add('nom')
+            ->add('complet')
+        ;
     }
 
     /**
@@ -110,7 +118,6 @@ class ParametreAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
-        $page->setTimestampCreation(new \DateTime('now'));
     }
 
     /**
@@ -120,7 +127,6 @@ class ParametreAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
-        $page->setTimestampModification(new \DateTime('now'));
     }
 
     /**
@@ -130,8 +136,13 @@ class ParametreAdmin extends AbstractAdmin
      */
     public function toString($object)
     {
-        return $object instanceof Parametre
+        return $object instanceof CourDetail
             ? $object->getNom()
-            : $this->trans('parametre.add_edit.to_string');
+            : $this->trans('cour_detail.add_edit.to_string');
+    }
+
+    protected function configureRoutes(RouteCollection $collection)
+    {
+        $collection->remove('show');
     }
 }

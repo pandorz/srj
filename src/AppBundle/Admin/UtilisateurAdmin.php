@@ -28,6 +28,10 @@ class UtilisateurAdmin extends UserAdmin
             ->add('estProfesseur', 'boolean', [
                 'label'     => 'utilisateur.liste.estProfesseur',
                 'editable'  => true
+            ])
+            ->add('accesSite', 'boolean', [
+                'label'     => 'utilisateur.liste.accesSite',
+                'editable'  => true
             ]);
     }
     
@@ -36,23 +40,9 @@ class UtilisateurAdmin extends UserAdmin
         parent::configureFormFields($formMapper);
 
         $formMapper
-            ->tab($this->trans('utilisateur.tab.sousUtilisateurs', [], 'messages'))
-            ->with('content_sousUtilisateur', [
-                'name'          => $this->trans('utilisateur.with.sousUtilisateurs', [], 'messages'),
-                'description'   => $this->trans('utilisateur.with.description', [], 'messages')
-            ])
-            ->add('sousUtilisateurs', 'sonata_type_model_list', [
-                'label'     => $this->trans('utilisateur.sousUtilisateurs', [], 'messages'),
-                'required'  => false,
-            ],[                
-                'edit'          => 'inline',
-                'inline'        => 'table',
-                'sortable'      => 'position'           
-            ])
-            ->end()
             ->tab($this->trans('utilisateur.tab.profil', [], 'messages'))
-            ->with('Profil', [
-                'name'          => $this->trans('utilisateur.with.meta_data', [], 'messages')
+            ->with('Détails', [
+                'name'          => $this->trans('utilisateur.with.meta_data', [], 'messages'),
             ])
             ->add('estProfesseur', 'checkbox', [
                 'label' => 'utilisateur.estProfesseur',
@@ -60,6 +50,32 @@ class UtilisateurAdmin extends UserAdmin
                     'placeholder' => 'utilisateur.placeholder.estProfesseur'
                 ],
                 'required' => false
+            ])
+            ->add('accesSite', 'checkbox', [
+                'label' => 'utilisateur.accesSite',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.accesSite'
+                ],
+                'required' => false
+            ])
+            ->end()
+            ->with('content_sousUtilisateur', [
+                'name'          => $this->trans('utilisateur.with.sousUtilisateurs', [], 'messages'),
+                'description'   => $this->trans('utilisateur.with.description', [], 'messages'),
+                'class'         => 'col-md-4'
+            ])
+            ->add('sousUtilisateurs', 'sonata_type_model_list', [
+                'label'     => $this->trans('utilisateur.sousUtilisateurs', [], 'messages'),
+                'required'  => false,
+            ],[
+                'edit'          => 'inline',
+                'inline'        => 'table',
+                'sortable'      => 'position'
+            ])
+            ->end()
+            ->with('Meta data', [
+                'name'          => $this->trans('utilisateur.with.meta_data', [], 'messages'),
+                'class'         => 'col-md-8'
             ])
             ->add('image', 'sonata_media_type', array(
                 'label' => 'utilisateur.image',

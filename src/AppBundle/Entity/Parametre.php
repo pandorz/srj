@@ -258,4 +258,9 @@ class Parametre
     {
         $this->utilisateurModification = $utilisateurModification;
     }
+
+    public function __toString()
+    {
+        return $this->nom;
+    }
 }

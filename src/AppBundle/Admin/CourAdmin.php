@@ -132,21 +132,22 @@ class CourAdmin extends AbstractAdmin
                 'label' => 'cour.crenau',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.crenau'
-                ]
+                ],
+                'required' => false
             ])
             ->add('amorce', CKEditorType::class, [
                 'label' => 'cour.amorce',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.amorce'
-                ]
+                ],
+                'required' => false
             ])
-            ->add('details', 'sonata_type_model_list',
-                [],
-                [
-                    'label' => 'cour.details',
-                    'attr'  => [
-                        'placeholder' => 'cour.placeholder.details'
-                ]
+            ->add('prix', 'number', [
+                'label' => 'cour.prix',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.prix'
+                ],
+                'required' => false
             ])
             ->end() 
             ->with('Meta data', [
@@ -163,13 +164,15 @@ class CourAdmin extends AbstractAdmin
                 'label' => 'cour.conditionParticuliere',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.conditionParticuliere'
-                ]
+                ],
+                'required' => false
             ])
             ->add('note', 'text', [
                 'label' => 'cour.note',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.note'
-                ]
+                ],
+                'required' => false
             ])
             ->add('professeur', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
@@ -209,6 +212,18 @@ class CourAdmin extends AbstractAdmin
                 'context'  => 'image',
                 'required' => false,
             ))
+            ->end()
+            ->with('Détails', [
+                'name'      => $this->trans('cour.with.detail')
+            ])
+            ->add('details', 'sonata_type_collection', [
+                'label'     => $this->trans('cour.details', [], 'messages'),
+                'required'  => false,
+            ],[
+                'edit'          => 'inline',
+                'inline'        => 'table',
+                'sortable'      => 'position'
+            ])
             ->end()
         ;
     }
@@ -276,7 +291,7 @@ class CourAdmin extends AbstractAdmin
     public function toString($object)
     {
         return $object instanceof Cour
-            ? $object->getNom()
+            ? $object->getTitre()
             : $this->trans('cour.add_edit.to_string');
     }
 

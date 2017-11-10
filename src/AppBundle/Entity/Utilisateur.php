@@ -42,7 +42,7 @@ class Utilisateur extends BaseUser
     *
     * @ORM\Column(name="acces_site", type="boolean")
     */
-    private $acces_site;
+    private $accesSite;
 
     /**
      * @var boolean
@@ -54,7 +54,7 @@ class Utilisateur extends BaseUser
     /**
     * @var boolean
     *
-    * @ORM\Column(name="estProfesseur", type="boolean")
+    * @ORM\Column(name="est_professeur", type="boolean")
     */
     private $estProfesseur;    
     
@@ -187,7 +187,7 @@ class Utilisateur extends BaseUser
      */
     public function setAccesSite($accesSite)
     {
-        $this->acces_site = $accesSite;
+        $this->accesSite = $accesSite;
 
         return $this;
     }
@@ -199,7 +199,7 @@ class Utilisateur extends BaseUser
      */
     public function getAccesSite()
     {
-        return $this->acces_site;
+        return $this->accesSite;
     }
 
     /**

@@ -117,7 +117,7 @@ class Cour
     /**
      * @var double
      *
-     * @ORM\Column(name="prix", type="float")
+     * @ORM\Column(name="prix", type="float", nullable=true)
      */
     private $prix;
 
@@ -131,7 +131,7 @@ class Cour
     /**
      * @var string
      *
-     * @ORM\Column(name="crenau", type="string", length=255)
+     * @ORM\Column(name="crenau", type="string", length=255, nullable=true)
      */
     private $crenau;
 
@@ -153,7 +153,7 @@ class Cour
      * @var Utilisateur
      *
      * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="professeurDe")
-     * @ORM\JoinColumn(nullable=false, name="fk_professeur", referencedColumnName="id")
+     * @ORM\JoinColumn(name="fk_professeur", referencedColumnName="id", nullable=true)
      */
     private $professeur;
     
@@ -194,12 +194,8 @@ class Cour
     protected $version;
 
     /**
-     * @var ArrayCollection
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\CourDetail", inversedBy="cours")
-     * @ORM\JoinTable(name="cours_details_items",
-     *     joinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")},
-     *     inverseJoinColumns={@ORM\JoinColumn(name="cour_detail_id", referencedColumnName="id")}
-     * )
+     * @var CourDetail
+     * @ORM\OneToMany(targetEntity="CourDetail", mappedBy="cours")
      */
     private $details;
 
@@ -659,7 +655,7 @@ class Cour
     }
 
     /**
-     * @return ArrayCollection
+     * @return CourDetail
      */
     public function getDetails()
     {
@@ -667,7 +663,7 @@ class Cour
     }
 
     /**
-     * @param ArrayCollection $details
+     * @param CourDetail $details
      */
     public function setDetails($details)
     {
