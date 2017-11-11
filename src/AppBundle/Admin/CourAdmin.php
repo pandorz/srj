@@ -299,9 +299,12 @@ class CourAdmin extends AbstractAdmin
      */
     private function setDetails(Cour &$cours)
     {
-        foreach ($cours->getDetails() as $detail) {
-            if ($detail instanceof CourDetail && empty($detail->getCours())) {
-                $detail->setCours($cours);
+        $details = $cours->getDetails();
+        if (!empty($details)) {
+            foreach ($details as $detail) {
+                if ($detail instanceof CourDetail && empty($detail->getCours())) {
+                    $detail->setCours($cours);
+                }
             }
         }
     }
