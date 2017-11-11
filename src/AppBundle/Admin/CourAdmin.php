@@ -123,10 +123,10 @@ class CourAdmin extends AbstractAdmin
                 ],
                 'required' => false
             ])
-            ->add('crenau', 'text', [
-                'label' => 'cour.crenau',
+            ->add('creneau', 'text', [
+                'label' => 'cour.creneau',
                 'attr'  => [
-                    'placeholder' => 'cour.placeholder.crenau'
+                    'placeholder' => 'cour.placeholder.creneau'
                 ],
                 'required' => false
             ])
@@ -148,6 +148,12 @@ class CourAdmin extends AbstractAdmin
             ->with('Meta data', [
                 'name'      => $this->trans('cour.with.meta_data'),
                  'class'     => 'col-md-5'
+            ])
+            ->add('titreNav', 'text', [
+                'label' => 'cour.titreNav',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.titreNav'
+                ]
             ])
             ->add('ancre', 'text', [
                 'label' => 'cour.ancre',

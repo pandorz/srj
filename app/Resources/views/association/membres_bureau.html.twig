@@ -4,7 +4,7 @@
     <div class="membersList">
         {% for membre in bureau %}
             <div class="memberItem">
-                <img class="membrePhoto" src="{% if membre.image is null %}{{ asset(sonata_user.defaultAvatar) }}{% else %}{% path membre.image, 'small' %}{% endif %}" alt="{{ membre.slug }}" width="140" height="140">
+                <img class="membrePhoto" src="{% if membre.image is null %}{{ asset(sonata_user.defaultAvatar) }}{% else %}{% path membre.image, 'big' %}{% endif %}" alt="{{ membre.slug }}" width="140" height="140">
                 <strong class="membreName">{{ membre }}</strong>
                 {% if membre.membreTitre is not empty %}
                 <span class="membreJob">{{ membre.membreTitre }}</span>

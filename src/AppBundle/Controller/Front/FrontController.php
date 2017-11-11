@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
+use AppBundle\Entity\Cour;
 use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -212,8 +213,9 @@ class FrontController extends BaseController
     * @return \Symfony\Component\HttpFoundation\Response
     */
     public function coursAction(Request $request)
-    {        
-        return $this->render('cours.html.twig', []);
+    {
+        $cours = $this->getEm()->getRepository(Cour::class)->getAffichable();
+        return $this->render('cours.html.twig', ['cours' => $cours]);
     }
     
     /**

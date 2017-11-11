@@ -122,6 +122,13 @@ class Cour
     private $titre;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="titre_nav", type="string", length=255)
+     */
+    private $titreNav;
+
+    /**
      * @var double
      *
      * @ORM\Column(name="prix", type="float", nullable=true)
@@ -138,9 +145,9 @@ class Cour
     /**
      * @var string
      *
-     * @ORM\Column(name="crenau", type="string", length=255, nullable=true)
+     * @ORM\Column(name="creneau", type="string", length=255, nullable=true)
      */
-    private $crenau;
+    private $creneau;
 
     /**
      * @var string
@@ -587,6 +594,22 @@ class Cour
     }
 
     /**
+     * @param string $titreNav
+     */
+    public function setTitreNav($titreNav)
+    {
+        $this->titreNav = $titreNav;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitreNav()
+    {
+        return $this->titreNav;
+    }
+
+    /**
      * @param string $titre
      */
     public function setTitre($titre)
@@ -629,17 +652,17 @@ class Cour
     /**
      * @return string
      */
-    public function getCrenau()
+    public function getCreneau()
     {
-        return $this->crenau;
+        return $this->creneau;
     }
 
     /**
-     * @param string $crenau
+     * @param string $creneau
      */
-    public function setCrenau($crenau)
+    public function setCreneau($creneau)
     {
-        $this->crenau = $crenau;
+        $this->creneau = $creneau;
     }
 
     /**

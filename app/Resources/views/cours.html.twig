@@ -15,195 +15,79 @@
         </div>
     </section>
 
-    <a id="langue"></a>
-    <section class="japanese section u-fitted">
-        <div class="grid-2">
-            <div><img src="{{ asset('medias/img/cours-japonais.jpg') }}" alt="" width="580" height="435"></div>
-            <div>
-                <h3 class="sectionSubTitle">Apprendre le japonais</h3>
-                <div class="sectionChapo">
-                    <p>Rouen Japon vous propose depuis 2010 d'apprendre le japonais. Les cours sont dispensés à la <strong>maison des associations Saint Sever (10-12 rue Saint Julien à Rouen)</strong> par Akari Fujino et Seiko Petiton.</p>
+    {% if cours is not empty %}
+        {% for cour in cours %}
+            <a id="{{ cour.ancre }}"></a>
+            <section class="section u-fitted">
+                <div class="grid-2">
+                    <div><img src="{% path cour.image, 'big' %}" alt="" width="580" height="435"></div>
+                    <div>
+                        <h3 class="sectionSubTitle">{{ cour.titre }}</h3>
+                        <div class="sectionChapo">
+                            {% if cour.annule %}
+                                {% if cour.messageAnnulation is not empty %}
+                                    <p>{{ cour.messageAnnulation }}</p>
+                                {% endif %}
+                            {% else %}
+                                {% set stringProf = '' %}
+                                {% if cour.professeurs is not empty %}
+                                    {% set stringProf = ' par ' %}
+                                    {% for prof in cour.professeurs %}
+                                        {% if loop.first %}
+                                            {% set stringProf = stringProf~' '~prof %}
+                                        {% elseif loop.last %}
+                                            {% set stringProf = stringProf~' et '~prof %}
+                                        {% else %}
+                                            {% set stringProf = stringProf~', '~prof %}
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                                {{ cour.amorce is empty ? '' : cour.amorce|raw }}
+                                <p>
+                                    Les cours sont dispensés{{ cour.creneau is empty ? '' : ' '~cour.creneau }} à la <strong>maison des associations Saint Sever (10-12 rue Saint Julien à Rouen)</strong>{{ stringProf }}.
+                                </p>
+                                {% if cour.bientotComplet %}
+                                    <p class="u-warning">// Plus que quelques places disponibles ! ///</p>
+                                {% endif %}
+
+                                {% if cour.complet %}
+                                    <p class="u-warning">// Les cours sont complets ///</p>
+                                {% endif %}
+                            {% endif %}
+                        </div>
+                        <div class="japaneseText sectionText">
+                            {% if cour.details is not empty %}
+                                <ul class="u-ul-colorRJ">
+                                    {% for detail in cour.details %}
+                                        <li><b>{{ detail.nom }} :</b> {{ detail.contenu }}{% if detail.complet %} - <b class="u-warning">COMPLET</b>{% endif %}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}
+
+                            {% if cour.note is not empty %}
+                                <p class="u-note">*{{ cour.note }}</p>
+                            {% endif %}
+                            <strong class="conditions">Conditions</strong>
+                            <p>Pour suivre les cours de japonais, il vous faut <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
+                            <p>Le montant des cours pour la saison est fixé à {{ cour.prix }}€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
+                            {% if cour.conditionParticuliere is not empty %}
+                                <p>{{ cour.conditionParticuliere }}</p>
+                            {% endif %}
+                            <p>Si vous avez d'autres questions, vous pouvez nous les poser via notre <a href="{{path('contact')}}">formulaire de contact.</a></p>
+                            <p>
+                                {% if cour.lienPdf is not empty %}
+                                    <a class="btn" href="{{ cour.lienPdf }}" target="_blank">Voir le calendrier</a>
+                                {% endif %}
+                                {% if cour.lienInscription is not empty %}
+                                    <a class="btn" href="{{ cour.lienInscription }}" target="_blank">S'incrire</a>
+                                {% endif %}
+                            </p>
+                        </div>
+                    </div>
                 </div>
-
-                <div class="japaneseText sectionText">
-                    <p>Vous pourrez venir vous inscrire sur notre stand au forum des associations le 09 septembre de 10h à 18h, rue Pasteur à Rouen ou lors de notre réunion de rentrée le 17 septembre à 14h à la maison Saint-Sever.</p>
-                    <ul class="u-ul-colorRJ">
-                        <li><b>Niveau 1 :</b> soit le mardi de 20h à 21h30, soit le jeudi de 20h à 21h30 - <b class="u-warning">COMPLET</b></li>
-                        <li><b>Niveau 2 :</b> le samedi de 9h à 10h30</li>
-                        <li><b>Niveau 3 :</b> le mercredi de 20h à 21h30 - <b class="u-warning">COMPLET</b></li>
-                        <li><b>Niveau 4 :</b> le samedi de 10h30 à 12h</li>
-                        <li><b>Niveau 5 et supérieurs :</b> le jeudi de 20h à 21h30</li>
-                    </ul>                    
-                    <p class="u-note">*La détermination du niveau des élèves revient au professeur</p>
-
-                    <strong class="conditions">Conditions</strong>
-                    <p>Pour suivre les cours de japonais, il vous faut <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
-                    <p>Le montant des cours pour la saison est fixé à 380€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Si vous avez d'autres questions, vous pouvez nous les poser via notre <a href="{{path('contact')}}">formulaire de contact.</a></p>
-                    <p>
-                        {% if lien_calendrier_cours_japonais() is not empty %}
-                        <a class="btn" href="{{ lien_calendrier_cours_japonais() }}" target="_blank">Voir le calendrier</a>
-                        {% endif %}
-                        {% if lien_cours_japonais() is not empty %}
-                        <a class="btn" href="{{ lien_cours_japonais() }}" target="_blank">S'incrire</a>
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>                
-    </section>
-
-
-    <a id="calligraphie"></a>
-    <section class="calligraphy section u-fitted">
-        <div class="grid-2">
-            <div><img src="{{ asset('medias/img/cours-calligraphie.jpg') }}" alt="" width="580" height="435"></div>
-            <div>
-                <h3 class="sectionSubTitle">Pratiquer la calligraphie</h3>
-                <div class="calligraphyChapo sectionChapo">
-                    <p>Les cours ne sont pas dispensés cette année. Rendez-vous à la rentrée 2018-2019.</p>
-                </div>
-
-
-                <div class="japaneseText sectionText">
-                    <strong class="conditions">Conditions</strong>
-                    <p>Le montant des cours est fixé à 272€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Pour suivre les cours de calligraphie, il faut également <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
-                    <p>
-                        {% if lien_calendrier_cours_calligraphie() is not empty %}
-                        <a class="btn" href="{{ lien_calendrier_cours_calligraphie() }}" target="_blank">Voir le calendrier</a>
-                        {% endif %}
-                        {% if lien_cours_calligraphie() is not empty %}
-                        <a class="btn" href="{{ lien_cours_calligraphie() }}" target="_blank">S'incrire</a>
-                        {% endif %}
-                    </p>
-                </div>                
-            </div>
-        </div>                
-    </section>
-
-
-    <a id="the"></a>
-    <section class="teaCeremony section u-fitted">
-        <div class="grid-2">
-            <div><img src="{{ asset('medias/img/cours-ceremonie-du-the.jpg') }}" alt="" width="580" height="435"></div>
-            <div>
-                <h3 class="sectionSubTitle">S'initier à la cérémonie du thé</h3>
-                <div class="sectionChapo">
-                    <p>Les cours de cérémonie du thé se déroulent un <strong>dimanche par mois de 14h30 à 15h30 ou de 15h30 à 17h à la maison des associations de Saint Sever (10-12 rue Saint Julien à Rouen)</strong> et sont animés par Mme Kazuyo Coineau, maitresse de cérémonie du thé.</p>
-                </div>
-
-                {#<p class="u-warning">// Plus que quelques places disponibles ! ///</p>#}
-
-                <div class="japaneseText sectionText">
-
-                    <strong class="conditions">Conditions</strong>
-                    <p>Le montant des cours est fixé à 136€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Pour suivre les cours de cérémonie du thé, il faut également <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
-                    <p>
-                        {% if lien_calendrier_cours_the() is not empty %}
-                        <a class="btn" href="{{ lien_calendrier_cours_the() }}" target="_blank">Voir le calendrier</a>
-                        {% endif %}
-                        {% if lien_cours_the() is not empty %}
-                        <a class="btn" href="{{ lien_cours_the() }}" target="_blank">S'incrire</a>
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>                
-    </section>
-
-
-    <a id="enfants"></a>
-    <section class="enfants section u-fitted">
-        <div class="grid-2">
-            <div><img src="{{ asset('medias/img/cours-enfant.jpg') }}" alt="" width="580" height="435"></div>
-            <div>
-                <h3 class="sectionSubTitle">Le japonais pour les enfants</h3>
-                <div class="sectionChapo">
-                    <p>Les cours sont ouverts aux enfants de 6 à 12 ans. Ils se déroulent un <strong>mercredi sur deux de 13h à 14h à la maison des associations de Saint Sever (10-12 rue Saint Julien à Rouen)</strong>. Ils sont animés par Atsuko Kiefer.</p>
-                </div>
-
-                <div class="japaneseText sectionText">
-
-                    <strong class="conditions">Conditions</strong>
-                    <p>Le montant des cours est fixé à 232€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Pour inscrire votre enfant aux cours de japonais, il faut qu'il <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et que vous vous acquittiez du montant de la cotisation de 20€ (10€ si vous êtes vous-mêmes adhérent).</p>
-                    <p>
-                        {% if lien_calendrier_cours_japonais_enfant() is not empty %}
-                        <a class="btn" href="{{ lien_calendrier_cours_japonais_enfant() }}" target="_blank">Voir le calendrier</a>
-                        {% endif %}
-                        {% if lien_cours_japonais_enfant() is not empty %}
-                        <a class="btn" href="{{ lien_cours_japonais_enfant() }}" target="_blank">S'incrire</a>
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-                    
-    <a id="yoga"></a>
-    <section class="yoga section u-fitted">
-        <div class="grid-2">
-            <div><img src="{{ asset('medias/img/cours-yoga.png') }}" alt="" width="580" height="435"></div>
-            <div>
-                <h3 class="sectionSubTitle">Se détendre en pratiquant le yoga</h3>
-                <div class="sectionChapo">
-                    <p><strong>Nouveauté !</strong> L’association vous propose des cours de yoga.
-                        Très populaire en occident, le Ashtanga Vinyasa est un yoga moderne, dynamique, fluide et créatif qui se fonde sur l’harmonie du souffle et du mouvement. Dérivée d'une méthode indienne traditionnelle et rigoureuse, chaque séance de Ashtanga Vinyasa commence par un échauffement, des postures debout puis assises avant de se terminer par de la relaxation.
-                        Chaque semaine, on aborde la pratique des asana (postures) via un thème différent : ouvrir la cage thoracique, les hanches, libérer les épaules, trouver l’équilibre dans le mouvement, etc. Toutes ces séquences permettent de créer de l’espace dans le corps pour l’assouplir, de renforcer le corps, de travailler son endurance et son alignement tout en apaisant son esprit.
-                        Ils ont lieu chaque <strong>samedi de 13h30 à 14h45 à la maison des associations de Saint Sever (10-12 rue Saint Julien à Rouen)</strong> et sont animés par <a href="https://www.dwija-yoga.com">Marie DIAS ALVES</a>.</p>
-                </div>
-
-                <div class="japaneseText sectionText">
-
-                    <strong class="conditions">Conditions</strong>
-                    <p>Le montant des cours est fixé à 270€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Pour suivre les cours de yoga, il faut également <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
-                    <p>
-                        {% if lien_calendrier_cours_yoga() is not empty %}
-                        <a class="btn" href="{{ lien_calendrier_cours_yoga() }}" target="_blank">Voir le calendrier</a>
-                        {% endif %}
-                        {% if lien_cours_yoga() is not empty %}
-                        <a class="btn" href="{{ lien_cours_yoga() }}" target="_blank">S'incrire</a>
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <a id="jlpt"></a>
-    <section class="jplt section u-fitted">
-        <div class="grid-2">
-            <div><img src="{{ asset('medias/img/cours_jlpt.jpg') }}" alt="" width="580" height="435"></div>
-            <div>
-                <h3 class="sectionSubTitle">Cours de préparation au JLPT</h3>
-                <div class="sectionChapo">
-                    <p><strong>Nouveauté !</strong>  Rouen Japon vous propose des cours de préparation au JLPT N5.
-                        Le Test d’Aptitude en Japonais (JLPT) est organisé par la Fondation du Japon, en coopération avec l'association Japan Educational Exchanges and Services (JEES) depuis 1984. Il permet d’évaluer et de certifier les compétences linguistiques des personnes dont le japonais n’est pas la langue maternelle. Le test à Paris est géré par l'Inalco.
-
-                        Ils ont lieu le <strong>lundi à raison de deux cours (d'une heure et demie) par mois en moyenne, à la maison des associations de Saint Sever (10-12 rue Saint Julien à Rouen)</strong> et sont animés par Adrien BECAM. Le premier cours aura lieu le 27 novembre à 20h.</p>
-                </div>
-
-                <div class="japaneseText sectionText">
-
-                    <strong class="conditions">Conditions</strong>
-                    <p>Le montant des cours est fixé à 198€ pour l'année (paiement au comptant ou prélèvement automatique mensuel).</p>
-                    <p>Si vous suivez déjà des cours de japonais à l'association, le montant des cours est de 25€ pour l'année.</p>
-                    <p>Pour suivre les cours de JLPT, il faut également <b><a href="{{ lien_adhesion() }}" target="_blank">adhérer à l'association</a></b> et vous acquitter du montant de la cotisation de 20€.</p>
-                    <p>
-                        {% if lien_calendrier_cours_jlpt() is not empty %}
-                            <a class="btn" href="{{ lien_calendrier_cours_jlpt() }}" target="_blank">Voir le calendrier</a>
-                        {% endif %}
-                        {% if lien_cours_jlpt() is not empty %}
-                            <a class="btn" href="{{ lien_cours_jlpt() }}" target="_blank">S'incrire</a>
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
+            </section>
+        {% endfor %}
+    {% endif %}
 
     {% include 'bandeau_devenir_membre.html.twig' %}
     {% include 'follow_us.html.twig' %}
