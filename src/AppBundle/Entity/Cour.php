@@ -202,7 +202,7 @@ class Cour
 
     /**
      * @var CourDetail
-     * @ORM\OneToMany(targetEntity="CourDetail", mappedBy="cours")
+     * @ORM\OneToMany(targetEntity="CourDetail", mappedBy="cours", cascade={"persist"})
      */
     private $details;
 

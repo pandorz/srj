@@ -66,18 +66,18 @@ class CourDetailAdmin extends AbstractAdmin
                     'placeholder' => 'cour_detail.placeholder.nom'
                 ]
             ])
+            ->add('contenu', 'text', [
+                'label' => 'cour_detail.contenu',
+                'attr'  => [
+                    'placeholder' => 'cour_detail.placeholder.contenu'
+                ]
+            ])
             ->add('complet', 'checkbox', [
                 'label' => 'cour_detail.complet',
                 'attr'  => [
                     'placeholder' => 'cour_detail.placeholder.complet'
                 ],
                 'required' => false
-            ])
-            ->add('contenu', 'text', [
-                'label' => 'cour_detail.contenu',
-                'attr'  => [
-                    'placeholder' => 'cour_detail.placeholder.contenu'
-                ]
             ])
             ->end()
         ;

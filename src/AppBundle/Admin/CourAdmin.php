@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\CourDetail;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -221,6 +222,7 @@ class CourAdmin extends AbstractAdmin
                 'name'      => $this->trans('cour.with.detail')
             ])
             ->add('details', 'sonata_type_collection', [
+                'by_reference' => true,
                 'label'     => $this->trans('cour.details', [], 'messages'),
                 'required'  => false,
             ],[
@@ -276,6 +278,7 @@ class CourAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
+        $this->setDetails($page);
     }
 
     /**
@@ -285,6 +288,21 @@ class CourAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
+        $this->setDetails($page);
+    }
+
+    /**
+     * Lie les details au cours
+     * 
+     * @param Cour $cours
+     */
+    private function setDetails(Cour &$cours)
+    {
+        foreach ($cours->getDetails() as $detail) {
+            if ($detail instanceof CourDetail && empty($detail->getCours())) {
+                $detail->setCours($cours);
+            }
+        }
     }
 
     /**
