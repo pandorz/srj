@@ -716,4 +716,28 @@ class Cour
     {
         $this->messageAnnulation = $messageAnnulation;
     }
+
+    /**
+     * Add detail
+     *
+     * @param CourDetail $detail
+     *
+     * @return Cour
+     */
+    public function addDetail(CourDetail $detail)
+    {
+        $this->details[] = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Remove superviseur
+     *
+     * @param CourDetail $detail
+     */
+    public function removeDetail(CourDetail $detail)
+    {
+        $this->details->removeElement($detail);
+    }
 }
