@@ -35,6 +35,13 @@ class UtilisateurDroits extends BaseGroup
     private $fkUtilisateur;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="est_membre_bureau", type="boolean")
+     */
+    private $estMembreBureau;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
@@ -48,6 +55,11 @@ class UtilisateurDroits extends BaseGroup
      */
     private $timestampModification;
 
+    public function __construct($name, array $roles = array())
+    {
+        parent::__construct($name, $roles);
+        $this->estMembreBureau = false;
+    }
 
 
     /**
@@ -147,5 +159,21 @@ class UtilisateurDroits extends BaseGroup
     public function preUpdate()
     {
         $this->setTimestampModification(new \DateTime('now'));
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEstMembreBureau()
+    {
+        return $this->estMembreBureau;
+    }
+
+    /**
+     * @param bool $estMembreBureau
+     */
+    public function setEstMembreBureau(bool $estMembreBureau)
+    {
+        $this->estMembreBureau = $estMembreBureau;
     }
 }

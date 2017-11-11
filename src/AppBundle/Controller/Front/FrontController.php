@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
+use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -242,8 +243,9 @@ class FrontController extends BaseController
     * @return \Symfony\Component\HttpFoundation\Response
     */
     public function associationAction(Request $request)
-    {        
-        return $this->render('association.html.twig', []);
+    {
+        $bureau = $this->getEm()->getRepository(Utilisateur::class)->findAllBureau();
+        return $this->render('association.html.twig', ['bureau' => $bureau]);
     }
     
     /**

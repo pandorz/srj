@@ -1,6 +1,8 @@
 <?php
 
 namespace AppBundle\Repository;
+use AppBundle\Entity\Utilisateur;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
  * UtilisateurRepository
@@ -10,5 +12,35 @@ namespace AppBundle\Repository;
  */
 class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
 {
-   
+   public function findAllBureau()
+   {
+       $table = $this->getClassMetadata()->table["name"];
+
+       $sql =  "SELECT u.* "
+           . "FROM ".$table." AS u "
+           . "INNER JOIN fos_user_user_group f ON f.user_id=u.id "
+           . "INNER JOIN utilisateur_droits d ON f.group_id=d.id "
+           . "WHERE d.est_membre_bureau = :estMembreBureau "
+           . "AND u.enabled = :enabled "
+           . "AND u.locked = :locked "
+           . "ORDER BY u.slug DESC";
+
+
+       $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+       $rsm->addEntityResult(Utilisateur::class, "u");
+
+       foreach ($this->getClassMetadata()->fieldMappings as $obj) {
+           $rsm->addFieldResult("u", $obj["columnName"], $obj["fieldName"]);
+       }
+
+       $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+
+       $stmt->setParameter(":estMembreBureau", true);
+       $stmt->setParameter(":enabled", true);
+       $stmt->setParameter(":locked", false);
+
+       $stmt->execute();
+
+       return $stmt->getResult();
+   }
 }

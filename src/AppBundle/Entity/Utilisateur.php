@@ -133,6 +133,13 @@ class Utilisateur extends BaseUser
     private $image;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="membre_titre", type="string", length=60, nullable=true)
+     */
+    private $membreTitre;
+
+    /**
     * Constructor
     */
     public function __construct() 
@@ -634,4 +641,22 @@ class Utilisateur extends BaseUser
     {
         return $this->image;
     }
+
+    /**
+     * @return string
+     */
+    public function getMembreTitre()
+    {
+        return $this->membreTitre;
+    }
+
+    /**
+     * @param string $membreTitre
+     */
+    public function setMembreTitre($membreTitre)
+    {
+        $this->membreTitre = $membreTitre;
+    }
+
+
 }

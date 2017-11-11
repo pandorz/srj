@@ -58,6 +58,13 @@ class UtilisateurAdmin extends UserAdmin
                 ],
                 'required' => false
             ])
+            ->add('membreTitre', 'text', [
+                'label' => 'utilisateur.membreTitre',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.membreTitre'
+                ],
+                'required' => false
+            ])
             ->end()
             ->with('content_sousUtilisateur', [
                 'name'          => $this->trans('utilisateur.with.sousUtilisateurs', [], 'messages'),
