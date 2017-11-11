@@ -536,7 +536,7 @@ class Cour
     /**
      * @return string
      */
-    public function getParametreLienPdf()
+    public function getLienPdf()
     {
         return $this->lienPdf;
     }
@@ -544,7 +544,7 @@ class Cour
     /**
      * @param string $lienPdf
      */
-    public function setParametreLienPdf($lienPdf)
+    public function setLienPdf($lienPdf)
     {
         $this->lienPdf = $lienPdf;
     }
