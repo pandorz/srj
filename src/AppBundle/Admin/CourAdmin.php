@@ -159,6 +159,13 @@ class CourAdmin extends AbstractAdmin
                     'placeholder' => 'cour.placeholder.ancre'
                 ]
             ])
+            ->add('messageAnnulation', 'text', [
+                'label' => 'cour.messageAnnulation',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.messageAnnulation'
+                ],
+                'required' => false
+            ])
             ->add('conditionParticuliere', 'text', [
                 'label' => 'cour.conditionParticuliere',
                 'attr'  => [

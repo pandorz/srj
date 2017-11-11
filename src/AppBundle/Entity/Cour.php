@@ -45,6 +45,13 @@ class Cour
     private $annule;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="message_annulation", type="string", length=255, nullable=true)
+     */
+    private $messageAnnulation;
+
+    /**
      * @var boolean
      *
      * @ORM\Column(name="complet", type="boolean")
@@ -94,7 +101,7 @@ class Cour
      *
      * @ORM\Column(name="lien_pdf", type="string", length=255, nullable=true)
      */
-    private $lLienPdf;
+    private $lienPdf;
 
     /**
      * @var string
@@ -694,4 +701,19 @@ class Cour
         return $this->image;
     }
 
+    /**
+     * @return string
+     */
+    public function getMessageAnnulation()
+    {
+        return $this->messageAnnulation;
+    }
+
+    /**
+     * @param string $messageAnnulation
+     */
+    public function setMessageAnnulation(string $messageAnnulation)
+    {
+        $this->messageAnnulation = $messageAnnulation;
+    }
 }
