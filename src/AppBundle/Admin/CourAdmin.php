@@ -2,7 +2,6 @@
 
 namespace AppBundle\Admin;
 
-use AppBundle\Entity\Parametre;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -190,20 +189,18 @@ class CourAdmin extends AbstractAdmin
                 'placeholder' => $this->trans('cour.placeholder.users'),
                 'required' => false
             ])
-            ->add('parametreLienInscription', 'sonata_type_model_autocomplete', [
-                'class'     => Parametre::class,
-                'property'  => ['nom'],
-                'label'     => 'cour.parametreLienInscription',
-                'multiple'  => false,
-                'placeholder' => $this->trans('cour.placeholder.parametreLienInscription'),
+            ->add('lienInscription', 'text', [
+                'label' => 'cour.lienInscription',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.lienInscription'
+                ],
                 'required' => false
             ])
-            ->add('parametreLienPdf', 'sonata_type_model_autocomplete', [
-                'class'     => Parametre::class,
-                'property'  => ['nom'],
-                'label'     => 'cour.parametreLienPdf',
-                'multiple'  => false,
-                'placeholder' => $this->trans('cour.placeholder.parametreLienPdf'),
+            ->add('lienPdf', 'text', [
+                'label' => 'cour.lienPdf',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.lienPdf'
+                ],
                 'required' => false
             ])
             ->add('image', 'sonata_media_type', array(

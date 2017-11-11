@@ -85,16 +85,16 @@ class Cour
     /**
      * @var Parametre
      *
-     * @ORM\OneToOne(targetEntity="Parametre", cascade={"persist", "refresh"})
+     * @ORM\Column(name="lien_inscription", type="string", length=255, nullable=true)
      */
-    private $parametreLienInscription;
+    private $lienInscription;
 
     /**
      * @var Parametre
      *
-     * @ORM\OneToOne(targetEntity="Parametre", cascade={"persist", "refresh"})
+     * @ORM\Column(name="lien_pdf", type="string", length=255, nullable=true)
      */
-    private $parametreLienPdf;
+    private $lLienPdf;
 
     /**
      * @var string
@@ -511,35 +511,35 @@ class Cour
     }
 
     /**
-     * @return Parametre
+     * @return string
      */
-    public function getParametreLienInscription()
+    public function getLienInscription()
     {
-        return $this->parametreLienInscription;
+        return $this->lienInscription;
     }
 
     /**
-     * @param Parametre $parametreLienInscription
+     * @param string $lienInscription
      */
-    public function setParametreLienInscription($parametreLienInscription)
+    public function setLienInscription($lienInscription)
     {
-        $this->parametreLienInscription = $parametreLienInscription;
+        $this->lienInscription = $lienInscription;
     }
 
     /**
-     * @return Parametre
+     * @return string
      */
     public function getParametreLienPdf()
     {
-        return $this->parametreLienPdf;
+        return $this->lienPdf;
     }
 
     /**
-     * @param Parametre $parametreLienPdf
+     * @param string $lienPdf
      */
-    public function setParametreLienPdf($parametreLienPdf)
+    public function setParametreLienPdf($lienPdf)
     {
-        $this->parametreLienPdf = $parametreLienPdf;
+        $this->lienPdf = $lienPdf;
     }
 
     /**

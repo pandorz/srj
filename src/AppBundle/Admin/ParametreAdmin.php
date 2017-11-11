@@ -99,8 +99,7 @@ class ParametreAdmin extends AbstractAdmin
 
     protected function configureRoutes(RouteCollection $collection)
     {
-//        $collection->clearExcept(array('list', 'edit', 'add'));
-        $collection->remove('delete');
+        $collection->clearExcept(array('list', 'edit'));
     }
 
     /**
