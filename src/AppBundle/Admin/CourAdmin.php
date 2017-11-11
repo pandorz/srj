@@ -187,7 +187,16 @@ class CourAdmin extends AbstractAdmin
                 'label'     => 'cour.professeur',
                 'multiple'  => true,
                 'placeholder' => $this->trans('cour.placeholder.professeur'),
-                'required' => false
+                'required' => false,
+                'callback' => function ($admin, $property, $value) {
+                    $datagrid       = $admin->getDatagrid();
+                    $queryBuilder   = $datagrid->getQuery();
+                    $queryBuilder
+                        ->andWhere($queryBuilder->getRootAlias() . '.estProfesseur=:estProfesseur')
+                        ->setParameter('estProfesseur', true)
+                    ;
+                    $datagrid->setValue('slug', null, $value);
+                },
             ])
             ->add('inscrits', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
