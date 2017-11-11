@@ -59,11 +59,6 @@ class CourAdmin extends AbstractAdmin
                 'label'     => 'cour.liste.bientotComplet',
                 'editable'  => true
             ])
-            ->add('professeur', 'many_to_one', [
-                'label'     => 'cour.liste.professeur',
-                'route'     => ['name' => 'show'],
-                'sortable'  => 'name'
-            ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -274,9 +269,6 @@ class CourAdmin extends AbstractAdmin
             ->add('annule')
             ->add('complet')
             ->add('bientotComplet')
-            ->add('professeur', null, [], 'entity', [
-                'class'         => Utilisateur::class
-            ])
         ;
     }
 
