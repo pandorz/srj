@@ -104,7 +104,7 @@ class Utilisateur extends BaseUser
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Cour", mappedBy="professeur")
+     * @ORM\ManyToMany(targetEntity="Cour", mappedBy="professeur")
      */
     private $professeurDe;
         

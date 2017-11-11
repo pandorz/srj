@@ -181,11 +181,11 @@ class CourAdmin extends AbstractAdmin
                 ],
                 'required' => false
             ])
-            ->add('professeur', 'sonata_type_model_autocomplete', [
+            ->add('professeurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
                 'property'  => ['firstname','lastname'],
                 'label'     => 'cour.professeur',
-                'multiple'  => false,
+                'multiple'  => true,
                 'placeholder' => $this->trans('cour.placeholder.professeur'),
                 'required' => false
             ])
@@ -293,7 +293,7 @@ class CourAdmin extends AbstractAdmin
 
     /**
      * Lie les details au cours
-     * 
+     *
      * @param Cour $cours
      */
     private function setDetails(Cour &$cours)

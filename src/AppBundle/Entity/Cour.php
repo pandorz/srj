@@ -155,14 +155,16 @@ class Cour
      * @ORM\Column(name="note", type="string", length=255, nullable=true)
      */
     private $note;
-	
+
     /**
-     * @var Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="professeurDe")
-     * @ORM\JoinColumn(name="fk_professeur", referencedColumnName="id", nullable=true)
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="professeurDe")
+     * @ORM\JoinTable(name="cours_professeurs",
+     *     joinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
      */
-    private $professeur;
+    private $professeurs;
     
     /**
      * @var \DateTime
@@ -326,28 +328,39 @@ class Cour
     }
 
     /**
-     * Set professeur
+     * Add professeur
      *
      * @param Utilisateur $professeur
      *
      * @return Cour
      */
-    public function setProfesseur(Utilisateur $professeur)
+    public function addProfesseur(Utilisateur $professeur)
     {
-        $this->professeur = $professeur;
+        $this->professeurs[] = $professeur;
 
         return $this;
     }
 
     /**
-     * Get professeur
+     * Remove professeur
      *
-     * @return Utilisateur
+     * @param Utilisateur $professeur
      */
-    public function getProfesseur()
+    public function removeProfesseur(Utilisateur $professeur)
     {
-        return $this->professeur;
+        $this->professeurs->removeElement($professeur);
     }
+
+    /**
+     * Get professeurs
+     *
+     * @return ArrayCollection
+     */
+    public function getProfesseurs()
+    {
+        return $this->professeurs;
+    }
+
 
     /**
      * Set slug
