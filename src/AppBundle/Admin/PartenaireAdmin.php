@@ -67,7 +67,7 @@ class PartenaireAdmin extends AbstractAdmin
                 ],
                 'required' => true
             ])
-            ->add('description', CKEditorType::class, [
+            ->add('description', 'text', [
                 'label' => 'partenaire.description',
                 'attr'  => [
                     'placeholder' => 'partenaire.placeholder.description'

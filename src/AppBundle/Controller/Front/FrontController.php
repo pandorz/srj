@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
+use AppBundle\Entity\Partenaire;
 use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -246,8 +247,9 @@ class FrontController extends BaseController
     */
     public function associationAction(Request $request)
     {
-        $bureau = $this->getEm()->getRepository(Utilisateur::class)->findAllBureau();
-        return $this->render('association.html.twig', ['bureau' => $bureau]);
+        $bureau         = $this->getEm()->getRepository(Utilisateur::class)->findAllBureau();
+        $partenaires    = $this->getEm()->getRepository(Partenaire::class)->findBy([], ['slug' => 'ASC']);
+        return $this->render('association.html.twig', ['bureau' => $bureau, 'partenaires' => $partenaires]);
     }
     
     /**
