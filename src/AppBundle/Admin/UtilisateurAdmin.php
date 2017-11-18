@@ -66,7 +66,7 @@ class UtilisateurAdmin extends UserAdmin
                 'required' => false
             ])
             ->end()
-            ->with('content_sousUtilisateur', [
+            ->with('Sous utilisateur', [
                 'name'          => $this->trans('utilisateur.with.sousUtilisateurs', [], 'messages'),
                 'description'   => $this->trans('utilisateur.with.description', [], 'messages'),
                 'class'         => 'col-md-4'

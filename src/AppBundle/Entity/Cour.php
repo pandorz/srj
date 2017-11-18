@@ -109,7 +109,7 @@ class Cour
      *
      * @Assert\Regex(
      *     pattern     = "/^[a-z]+$/i",
-     *     message="Seulement un mot, sans accents"
+     *     message="basic_word"
      * )
      * @ORM\Column(name="ancre", type="string", length=45)
      */

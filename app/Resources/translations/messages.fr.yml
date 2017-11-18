@@ -6,31 +6,33 @@
 'Actualite List': Actualités
 'Atelier Create': Créer
 'Atelier List': Ateliers
+'Blog Create': Créer
+'Blog List': Blog
 'Bonjour,': 'Bonjour,'
 'Cour Create': Créer
 'Cour List': Cours
-'Blog Create': Créer
-'Blog List': Blog
 Email: Email
 'Evenement Create': Créer
 'Evenement List': Événements
 Nom: Nom
 'Parametre Create': Créer
 'Parametre List': Paramètres
+'Partenaire Create': Créer
+'Partenaire List': Partenaires
 Prenom: Prénom
 ROLE_ALLOWED_TO_SWITCH: 'Peut changer'
 ROLE_APP_ADMIN_ACTUALITES_ADMIN: 'Administrateur - Actualités'
 ROLE_APP_ADMIN_ACTUALITES_EDITOR: 'Editeur - Actualités'
 ROLE_APP_ADMIN_ACTUALITES_GUEST: 'Invité - Actualités'
 ROLE_APP_ADMIN_ACTUALITES_STAFF: 'Staff - Actualités'
-ROLE_APP_ADMIN_BLOG_ADMIN: 'Administrateur - Blog'
-ROLE_APP_ADMIN_BLOG_EDITOR: 'Editeur - Blog'
-ROLE_APP_ADMIN_BLOG_GUEST: 'Invité - Blog'
-ROLE_APP_ADMIN_BLOG_STAFF: 'Staff - Blog'
 ROLE_APP_ADMIN_ATELIERS_ADMIN: 'Administrateur - Ateliers'
 ROLE_APP_ADMIN_ATELIERS_EDITOR: 'Editeur - Ateliers'
 ROLE_APP_ADMIN_ATELIERS_GUEST: 'Invité - Ateliers'
 ROLE_APP_ADMIN_ATELIERS_STAFF: 'Staff - Ateliers'
+ROLE_APP_ADMIN_BLOG_ADMIN: 'Administrateur - Blog'
+ROLE_APP_ADMIN_BLOG_EDITOR: 'Editeur - Blog'
+ROLE_APP_ADMIN_BLOG_GUEST: 'Invité - Blog'
+ROLE_APP_ADMIN_BLOG_STAFF: 'Staff - Blog'
 ROLE_APP_ADMIN_COURS_ADMIN: 'Administrateur - Cours'
 ROLE_APP_ADMIN_COURS_EDITOR: 'Editeur - Cours'
 ROLE_APP_ADMIN_COURS_GUEST: 'Invité - Cours'
@@ -43,6 +45,10 @@ ROLE_APP_ADMIN_PARAMETRES_ADMIN: 'Administrateur - Paramètres'
 ROLE_APP_ADMIN_PARAMETRES_EDITOR: 'Editeur - Paramètres'
 ROLE_APP_ADMIN_PARAMETRES_GUEST: 'Invité - Paramètres'
 ROLE_APP_ADMIN_PARAMETRES_STAFF: 'Staff - Paramètres'
+ROLE_APP_ADMIN_PARTENAIRES_ADMIN: 'Administrateur - Partenaires'
+ROLE_APP_ADMIN_PARTENAIRES_EDITOR: 'Editeur - Partenaires'
+ROLE_APP_ADMIN_PARTENAIRES_GUEST: 'Invité - Partenaires'
+ROLE_APP_ADMIN_PARTENAIRES_STAFF: 'Staff - Partenaires'
 ROLE_APP_ADMIN_SORTIES_ADMIN: 'Administrateur - Sorties'
 ROLE_APP_ADMIN_SORTIES_EDITOR: 'Editeur- Sorties'
 ROLE_APP_ADMIN_SORTIES_GUEST: 'Invité- Sorties'
@@ -119,22 +125,15 @@ atelier:
     add_edit:
         to_string: Atelier
 
+    adresse: Adresse
     annule: Annulé
     contenu: Descriptif
+    cp: 'Code postal'
     date: Date
     datePublication: 'Date de publication'
     date_limite: 'Date limite inscription'
     image: Image
-    adresse: Adresse
-    cp: 'Code postal'
-    ville: Ville
-    longitude: Longitude
     latitude: Latitude
-    position: Emplacement
-
-    positon:
-        current_position: 'Ma position actuelle'
-        search: Rechercher
 
     liste:
         affiche: Affiché
@@ -148,13 +147,16 @@ atelier:
         prixMembre: 'Prix membre'
         reserveMembre: 'Reservé membres'
 
+    longitude: Longitude
     nbPlace: 'Nombre de places autorisés'
     nom: Titre
 
     placeholder:
         actif: Activer/Desactiver
+        adresse: 'Adresse de l''atelier'
         annule: Annuler
         contenu: 'Le descriptif de l''atelier'
+        cp: 'Code postal de l''atelier'
         date: Date
         datePublication: 'Date de publication'
         date_limite: 'Date limite'
@@ -165,15 +167,20 @@ atelier:
         reserve_membre: 'Reservé aux membres'
         superviseurs: Superviseur
         urlInscription: 'Lien vers assoConnect'
-        adresse: 'Adresse de l''atelier'
-        cp: 'Code postal de l''atelier'
         ville: 'Ville de l''atelier'
+
+    position: Emplacement
+
+    positon:
+        current_position: 'Ma position actuelle'
+        search: Rechercher
 
     prix: 'Prix non-membres'
     prixMembre: 'Prix membres'
     reserve_membre: 'Reservé aux membres'
     superviseurs: Superviseur
     urlInscription: 'Lien inscription'
+    ville: Ville
 
     with:
         details: Informations
@@ -218,47 +225,91 @@ contact:
         texte: '%prenom% %nom% (%email%) à envoyé un message avec l''objet: <b>%objet%</b>.<br><br>Voici le contenu de son message:<br>%message%'
         titre: 'Nouveau contact'
 
-newsletter:
-    mail:
-        soustitre: 'Nouvelle demande d''ajout à une liste de diffusion'
-        sujet: 'Nouvelle demande d''ajout à une liste de diffusion'
-        texte: '%email% souhaite être ajouter à une liste de diffusion'
-        titre: 'Demande newsletter'
-
 cour:
     actif: Actif
 
     add_edit:
         to_string: Cours
 
+    amorce: 'Phrase d''amorce'
+    ancre: 'Nom de l''ancre web'
     annule: Annulé
+    bientotComplet: 'Bientôt complet'
+    complet: Complet
+    conditionParticuliere: 'Condition particulière'
     contenu: Descriptif
+    creneau: Creneau
     datePublication: 'Date de publication'
+    details: Détails
+    image: Image
+    lienInscription: 'Lien pour l''inscription'
+    lienPdf: 'Lien pour le calendrier'
 
     liste:
         affiche: Affiché
         annule: Annulé
+        bientotComplet: 'Bientôt complet'
+        complet: Complet
         datePublication: 'Date de publication'
-        nom: Titre
-        professeur: Professeur
+        titre: Titre
 
+    messageAnnulation: 'Message d''annulation'
     nom: Titre
+    note: Note
 
     placeholder:
         actif: Activer/Desactiver
+        amorce: 'Phrase de présentation supplémentaire'
+        ancre: 'Ancre web, utilisée dans l''url'
         annule: Annuler
+        bientotComplet: 'Bientôt complet'
+        complet: Complet
+        conditionParticuliere: 'Condition particulière à ajouter'
         contenu: 'Le descriptif du cours'
+        creneau: 'Creneau(x) du cours'
         datePublication: 'Date de publication'
+        lienInscription: 'Lien pour l''inscription'
+        lienPdf: 'Lien pour le calendrier'
+        messageAnnulation: 'Message en cas d''annulation'
         nom: 'Le titre à afficher'
+        note: 'Information supplémentaire'
+        prix: Prix
         professeur: Professeur
+        titre: 'Titre du cours'
+        titreNav: 'Ce titre sera afficher dans la barre de navigation'
         users: 'Les inscrits'
 
+    prix: Prix
     professeur: Professeur
+    titre: Titre
+    titreNav: 'Titre pour la navigation'
     users: Inscrits
 
     with:
-        details: Informations
-        meta_data: Détails
+        content: Informations
+        details: 'Détails supplémentaires'
+        meta_data: Paramètres
+
+cour_detail:
+    add_edit:
+        to_string: 'Cours - détail'
+
+    complet: Complet
+    contenu: Contenu
+
+    liste:
+        complet: Complet
+        titre: Titre
+
+    nom: Nom
+
+    placeholder:
+        complet: Complet
+        contenu: 'Contenu du détail'
+        nom: Nom
+
+    with:
+        details: 'Cours - Details'
 
 evenement:
     actif: Actif
@@ -322,6 +373,13 @@ mails:
     footer:
         text: '@Association Rouen Japon'
 
+newsletter:
+    mail:
+        soustitre: 'Nouvelle demande d''ajout à une liste de diffusion'
+        sujet: 'Nouvelle demande d''ajout à une liste de diffusion'
+        texte: '%email% souhaite être ajouter à une liste de diffusion'
+        titre: 'Demande newsletter'
+
 parametre:
     add_edit:
         to_string: Paramètre
@@ -340,6 +398,26 @@ parametre:
 
     with:
         details: Données
+
+partenaire:
+    add_edit:
+        to_string: Partenaire
+
+    description: Description
+    lien: Lien
+
+    liste:
+        nom: Nom
+
+    nom: Nom
+
+    placeholder:
+        description: 'Courte description du partenaire'
+        lien: 'Lien vers le partenaire'
+        nom: 'Nom du partenaire'
+
+    with:
+        details: Détails
 
 sortie:
     actif: Active
@@ -395,14 +473,44 @@ sortie:
         meta_data: Détails
 
 utilisateur:
+    accesSite: 'Peut acceder au site'
+    estProfesseur: 'Est professeur'
+    image: 'Image de profil'
+
     liste:
+        accesSite: 'Acces site'
+        estProfesseur: Professeur
         parent: Parent
+
+    membreTitre: 'Titre du membre'
+
+    placeholder:
+        accesSite: 'Peut acceder au site'
+        estProfesseur: 'Est professeur'
+        membreTitre: 'Titre du membre à afficher'
 
     sousUtilisateurs: Enfants
 
     tab:
+        profil: 'Autres informations'
         sousUtilisateurs: 'Liste des enfants'
 
     with:
         description: Informations
+        meta_data: 'Autres données'
         sousUtilisateurs: Enfants
+
+utilisateur_droit:
+    estMembreBureau: 'Est membre du bureau'
+
+    liste:
+        estMembreBureau: 'Membre du bureau'
+
+    placeholder:
+        estMembreBureau: 'Est membre du bureau'
+
+    tab:
+        detail: Détails
+
+    with:
+        parametre: Paramètres

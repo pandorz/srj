@@ -81,7 +81,7 @@ class CourAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('cour.with.details'),
+                'name'          => $this->trans('cour.with.content'),
                 'class'         => 'col-md-7'
             ])
             ->add('titre', 'text', [
@@ -233,7 +233,7 @@ class CourAdmin extends AbstractAdmin
             ))
             ->end()
             ->with('Détails', [
-                'name'      => $this->trans('cour.with.detail')
+                'name'      => $this->trans('cour.with.details')
             ])
             ->add('details', 'sonata_type_collection', [
                 'by_reference' => true,
