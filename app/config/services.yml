@@ -35,6 +35,11 @@ services:
         arguments: [~, AppBundle\Entity\Blog, AppBundle:Blog]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Blog }
+    app.admin.partenaires:
+        class: AppBundle\Admin\PartenaireAdmin
+        arguments: [~, AppBundle\Entity\Partenaire, AppBundle:Partenaire]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Partenaire }
     app.admin.sorties:
         class: AppBundle\Admin\SortieAdmin
         arguments: [~, AppBundle\Entity\Sortie, AppBundle:Sortie]

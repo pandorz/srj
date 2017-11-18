@@ -129,7 +129,7 @@ class TimeLineBlockService extends AbstractBlockService
         
         foreach ($sorties as $sortie) { 
             $temp = [
-                'icon'  => 'fa-random',
+                'icon'  => 'fa-car',
                 'objet' => $sortie,
                 'bg'    => 'bg-yellow',
                 'trans' => 'sortie.add_edit.to_string'

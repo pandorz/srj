@@ -2,11 +2,12 @@
 
 namespace AppBundle\Controller;
 
+
 /**
- * Class AtelierController
+ * Class PartenaireController
  * @package AppBundle\Controller
  */
-class AtelierController extends BaseController
+class PartenaireController extends BaseController
 {
 
 }

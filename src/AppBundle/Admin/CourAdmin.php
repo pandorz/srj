@@ -62,6 +62,10 @@ class CourAdmin extends AbstractAdmin
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
+                    'clone' => array(
+                        'template' => ':AdminCustom/button:clone.html.twig',
+                        'data'     => '1',
+                    ),
                     'delete' => array(),
                 )
             ))
@@ -207,14 +211,14 @@ class CourAdmin extends AbstractAdmin
                 'placeholder' => $this->trans('cour.placeholder.users'),
                 'required' => false
             ])
-            ->add('lienInscription', 'text', [
+            ->add('lienInscription', 'url', [
                 'label' => 'cour.lienInscription',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.lienInscription'
                 ],
                 'required' => false
             ])
-            ->add('lienPdf', 'text', [
+            ->add('lienPdf', 'url', [
                 'label' => 'cour.lienPdf',
                 'attr'  => [
                     'placeholder' => 'cour.placeholder.lienPdf'

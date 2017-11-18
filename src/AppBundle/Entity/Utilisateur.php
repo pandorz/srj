@@ -13,7 +13,8 @@ use Sonata\MediaBundle\Model\MediaInterface;
  * Utilisateur
  *
  * @ORM\Table(name="utilisateur", indexes={
- *     @ORM\Index(name="email", columns={"email"})
+ *     @ORM\Index(name="email", columns={"email"}),
+ *     @ORM\Index(name="slug", columns={"slug"})
  * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository")
  * @ORM\HasLifecycleCallbacks

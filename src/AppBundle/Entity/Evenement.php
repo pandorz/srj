@@ -12,6 +12,7 @@ use Sonata\MediaBundle\Model\MediaInterface;
  *
  * @ORM\Table(name="evenement", indexes={
  *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="slug", columns={"slug"}),
  *     @ORM\Index(name="affiche", columns={"affiche"}),
  *     @ORM\Index(name="annule", columns={"annule"})
  * })

@@ -13,6 +13,7 @@ use Sonata\MediaBundle\Model\MediaInterface;
  *
  * @ORM\Table(name="cour", indexes={
  *     @ORM\Index(name="ancre", columns={"ancre"}),
+ *     @ORM\Index(name="slug", columns={"slug"}),
  *     @ORM\Index(name="affiche", columns={"affiche"}),
  *     @ORM\Index(name="annule", columns={"annule"})
  * })
@@ -90,14 +91,14 @@ class Cour
     private $inscrits;
 
     /**
-     * @var Parametre
+     * @var string
      *
      * @ORM\Column(name="lien_inscription", type="string", length=255, nullable=true)
      */
     private $lienInscription;
 
     /**
-     * @var Parametre
+     * @var string
      *
      * @ORM\Column(name="lien_pdf", type="string", length=255, nullable=true)
      */

@@ -7,9 +7,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Parametre
- *
- * @ORM\Table(name="parametre")
- * * @ORM\Table(name="parametre")
+ * @ORM\Table(name="parametre", indexes={
+ *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="slug", columns={"slug"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ParametreRepository")
  */
 class Parametre

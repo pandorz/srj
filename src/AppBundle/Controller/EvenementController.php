@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Evenement;
 
 /**
  * Class EvenementController

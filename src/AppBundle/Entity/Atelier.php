@@ -14,6 +14,7 @@ use Oh\GoogleMapFormTypeBundle\Validator\Constraints as OhAssert;
  *
  * @ORM\Table(name="atelier", indexes={
  *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="slug", columns={"slug"}),
  *     @ORM\Index(name="affiche", columns={"affiche"}),
  *     @ORM\Index(name="annule", columns={"annule"})
  * })

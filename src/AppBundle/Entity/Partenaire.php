@@ -4,19 +4,17 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
- * Blog
+ * Partenaire
  *
- * @ORM\Table(name="blog", indexes={
+ * @ORM\Table(name="partenaire", indexes={
  *     @ORM\Index(name="nom", columns={"nom"}),
- *     @ORM\Index(name="slug", columns={"slug"}),
- *     @ORM\Index(name="affiche", columns={"affiche"})
+ *     @ORM\Index(name="slug", columns={"slug"})
  * })
- * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\PartenaireRepository")
  */
-class Blog
+class Partenaire
 {
     /**
      * @var int
@@ -26,6 +24,14 @@ class Blog
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+	
+   /**
+    * @var string
+    *
+    * @Gedmo\Slug(fields={"nom"})
+    * @ORM\Column(length=128, unique=true)
+    */
+    private $slug;
 
     /**
      * @var string
@@ -37,45 +43,16 @@ class Blog
     /**
      * @var string
      *
-     * @ORM\Column(name="description_courte", type="string", length=255)
+     * @ORM\Column(name="lien", type="string", length=255, nullable=true)
      */
-    private $descriptionCourte;
+    private $lien;
 
     /**
      * @var string
      *
-     * @Gedmo\Slug(fields={"nom"})
-     * @ORM\Column(length=128, unique=true)
+     * @ORM\Column(name="description", type="text", length=65535, nullable=true)
      */
-    private $slug;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="affiche", type="boolean")
-     */
-    private $affiche;        
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="date_publication", type="datetime", nullable=true)
-     */
-    private $datePublication;
-
-    /**
-     * @var \Application\Sonata\MediaBundle\Entity\Media
-     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
-     */
-    private $image;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
-     */
-    private $contenu;
-    
+    private $description;
 
     /**
      * @var \DateTime
@@ -90,7 +67,7 @@ class Blog
      * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
      */
     private $timestampModification;
-
+    
     /**
      * @var string
      *
@@ -104,7 +81,7 @@ class Blog
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
-
+    
     /**
      * For Sonata Admin Doctrine lock
      * @var int
@@ -112,6 +89,7 @@ class Blog
      * @ORM\Version
      */
     protected $version;
+
 
     /**
      * Get id
@@ -122,89 +100,34 @@ class Blog
     {
         return $this->id;
     }
-
+    
     /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Blog
+     * @param int $version
+     * 
+     * @return Partenaire
      */
-    public function setNom($nom)
+    public function setVersion($version)
     {
-        $this->nom = $nom;
-
+        $this->version = $version;
+        
         return $this;
     }
-
+    
     /**
-     * Get nom
-     *
-     * @return string
+     * @return int
      */
-    public function getNom()
+    public function getVersion()
     {
-        return $this->nom;
+        return $this->version;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getDescriptionCourte()
-    {
-        return $this->descriptionCourte;
-    }
-
-    /**
-     * @param string $descriptionCourte
-     *
-     *  @return Blog
-     */
-    public function setDescriptionCourte($descriptionCourte)
-    {
-        $this->descriptionCourte = $descriptionCourte;
-
-        return $this;
-    }
-
-    /**
-     * Set affiche
-     *
-     * @param boolean $affiche
-     *
-     * @return Blog
-     */
-    public function setAffiche($affiche)
-    {
-        $this->affiche = $affiche;
-
-        return $this;
-    }
-
-    /**
-     * Get affiche
-     *
-     * @return boolean
-     */
-    public function getAffiche()
-    {
-        return $this->affiche;
-    }
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->affiche      = true;
-    }
 
     /**
      * Set slug
      *
      * @param string $slug
      *
-     * @return Blog
+     * @return Partenaire
      */
     public function setSlug($slug)
     {
@@ -222,76 +145,7 @@ class Blog
     {
         return $this->slug;
     }
-
-    /**
-     * @return int
-     */
-    public function getVersion()
-    {
-        return $this->version;
-    }
-
-    /**
-     * @param int $version
-     *
-     * @return Blog
-     */
-    public function setVersion($version)
-    {
-        $this->version = $version;
-
-        return $this;
-    }
-
-    /**
-     * Set image
-     *
-     * @param MediaInterface $image
-     *
-     * @return Blog
-     */
-    public function setImage(MediaInterface $image = null)
-    {
-        $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * Get image
-     *
-     * @return MediaInterface
-     */
-    public function getImage()
-    {
-        return $this->image;
-    }
-
-    /**
-     * Set contenu
-     *
-     * @param string $contenu
-     *
-     * @return Blog
-     */
-    public function setContenu($contenu)
-    {
-        $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    /**
-     * Get contenu
-     *
-     * @return string
-     */
-    public function getContenu()
-    {
-        return $this->contenu;
-    }
-
-
+    
     /**
      * @ORM\PrePersist
      */
@@ -307,13 +161,13 @@ class Blog
     {
         $this->setTimestampModification(new \DateTime('now'));
     }
-
+    
     /**
      * Set timestampCreation
      *
      * @param \DateTime $timestampCreation
      *
-     * @return Blog
+     * @return Partenaire
      */
     public function setTimestampCreation($timestampCreation)
     {
@@ -331,13 +185,13 @@ class Blog
     {
         return $this->timestampCreation;
     }
-
+    
     /**
      * Set timestampModification
      *
      * @param \DateTime $timestampModification
      *
-     * @return Blog
+     * @return Partenaire
      */
     public function setTimestampModification($timestampModification)
     {
@@ -355,7 +209,7 @@ class Blog
     {
         return $this->timestampModification;
     }
-
+    
     /**
      * @return string
      */
@@ -389,19 +243,50 @@ class Blog
     }
 
     /**
-     * @return \DateTime
+     * @return string
      */
-    public function getDatePublication()
+    public function getNom()
     {
-        return $this->datePublication;
+        return $this->nom;
     }
 
     /**
-     * @param \DateTime $datePublication
+     * @param string $nom
      */
-    public function setDatePublication($datePublication)
+    public function setNom($nom)
     {
-        $this->datePublication = $datePublication;
+        $this->nom = $nom;
     }
 
+    /**
+     * @return string
+     */
+    public function getLien()
+    {
+        return $this->lien;
+    }
+
+    /**
+     * @param string $lien
+     */
+    public function setLien($lien)
+    {
+        $this->lien = $lien;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * @param string $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
 }
