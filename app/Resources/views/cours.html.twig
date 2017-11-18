@@ -33,18 +33,22 @@
                                 {% if cour.professeurs is not empty %}
                                     {% set stringProf = ' par ' %}
                                     {% for prof in cour.professeurs %}
+                                        {% set prof_toString = prof %}
+                                        {% if prof.website is not empty %}
+                                            {% set prof_toString = '<a href="'~prof.website~'" target="_blank">'~prof~'</a>' %}
+                                        {% endif %}
                                         {% if loop.first %}
-                                            {% set stringProf = stringProf~' '~prof %}
+                                            {% set stringProf = stringProf~' '~prof_toString %}
                                         {% elseif loop.last %}
-                                            {% set stringProf = stringProf~' et '~prof %}
+                                            {% set stringProf = stringProf~' et '~prof_toString %}
                                         {% else %}
-                                            {% set stringProf = stringProf~', '~prof %}
+                                            {% set stringProf = stringProf~', '~prof_toString %}
                                         {% endif %}
                                     {% endfor %}
                                 {% endif %}
                                 {{ cour.amorce is empty ? '' : cour.amorce|raw }}
                                 <p>
-                                    Les cours sont dispensés{{ cour.creneau is empty ? '' : ' '~cour.creneau }} à la <strong>maison des associations Saint Sever (10-12 rue Saint Julien à Rouen)</strong>{{ stringProf }}.
+                                    Les cours sont dispensés{{ cour.creneau is empty ? '' : ' '~cour.creneau }} à la <strong>maison des associations Saint Sever (10-12 rue Saint Julien à Rouen)</strong>{{ stringProf|raw }}.
                                 </p>
                                 {% if cour.bientotComplet %}
                                     <p class="u-warning">// Plus que quelques places disponibles ! ///</p>
