@@ -191,15 +191,19 @@ class FrontController extends BaseController
     * Sorties
     *
     * -------------------- *
-    * @Route("/sorties", name="sorties")
+    * @Route("/sorties/{plus}/", name="sorties", defaults={"plus" = "recent"})
     * @Method("GET")
     * -------------------- *
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function sortiesAction(Request $request)
-    {        
-        $sorties = $this->getTopSorties(6);
+    public function sortiesAction(Request $request, $plus)
+    {
+        $limit = 6;
+        if (!hash_equals($plus, "recent")) {
+            $limit = null;
+        }
+        $sorties = $this->getTopSorties($limit);
         return $this->render('sorties.html.twig', ['sorties' => $sorties]);
     }
     
@@ -223,15 +227,19 @@ class FrontController extends BaseController
     * Ateliers
     *
     * -------------------- *
-    * @Route("/ateliers", name="ateliers")
+    * @Route("/ateliers/{plus}/", name="ateliers", defaults={"plus" = "recent"})
     * @Method("GET")
     * -------------------- *
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function ateliersAction(Request $request)
-    {        
-        $ateliers = $this->getTopAteliers(6);
+    public function ateliersAction(Request $request, $plus)
+    {
+        $limit = 6;
+        if (!hash_equals($plus, "recent")) {
+            $limit = null;
+        }
+        $ateliers = $this->getTopAteliers($limit);
         return $this->render('ateliers.html.twig', ['ateliers' => $ateliers]);
     }
     
