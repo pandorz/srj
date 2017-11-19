@@ -379,10 +379,7 @@ class Utilisateur extends BaseUser
      */
     public function setEstProfesseur($estProfesseur)
     {
-        //si pas sous utilisateur
-        if(is_null($this->getParent()))
-            $this->estProfesseur = $estProfesseur;
-
+        $this->estProfesseur = $estProfesseur;
         return $this;
     }
 
@@ -617,6 +614,13 @@ class Utilisateur extends BaseUser
             return $this->getFullname();
         }
         return parent::__toString();
+    }
+
+    public function getStringMembre() {
+        if (!empty($this->getFirstname())) {
+            return $this->getFirstname();
+        }
+        return $this->__toString();
     }
 
     /**
