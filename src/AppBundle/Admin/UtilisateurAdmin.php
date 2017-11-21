@@ -18,7 +18,17 @@ class UtilisateurAdmin extends UserAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        parent::configureListFields($listMapper);
+        $listMapper
+            ->addIdentifier('username')
+            ->add('email')
+            ->add('groups')
+            ->add('enabled', null, array('editable' => true))
+            ->add('createdAt');
+
+        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
+            $listMapper
+                ->add('impersonating', 'string', array('template' => 'AdminCustom/template/impersonating.html.twig'));
+        }
         $listMapper
                 ->add('parent', 'many_to_one', [
                 'label'     => $this->trans('utilisateur.liste.parent', [], 'messages'),
