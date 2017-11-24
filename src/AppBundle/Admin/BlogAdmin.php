@@ -162,6 +162,7 @@ class BlogAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
+        $page->setTimestampCreation(new \DateTime('now'));
     }
 
     /**
@@ -171,6 +172,7 @@ class BlogAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
+        $page->setTimestampModification(new \DateTime('now'));
     }
 
     /**

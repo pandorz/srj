@@ -199,7 +199,7 @@ class FrontController extends BaseController
     */
     public function sortiesAction(Request $request, $plus)
     {
-        $limit = 6;
+        $limit = 4;
         if (!hash_equals($plus, "recent")) {
             $limit = null;
         }
@@ -235,7 +235,7 @@ class FrontController extends BaseController
     */
     public function ateliersAction(Request $request, $plus)
     {
-        $limit = 6;
+        $limit = 4;
         if (!hash_equals($plus, "recent")) {
             $limit = null;
         }

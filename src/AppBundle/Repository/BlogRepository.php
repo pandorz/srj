@@ -16,7 +16,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
                 ->createQuery('SELECT e '
                     . 'FROM AppBundle:Blog e '
                     . 'WHERE e.timestampCreation >= :dateFin '
-                    . 'ORDER BY e.timestampCreation DESC')
+                    . 'ORDER BY e.datePublication DESC')
                 ->setParameter('dateFin', date("Y-m-d",strtotime("-1 month")));
         } else {
             $query = $this
@@ -26,7 +26,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
                     . 'WHERE e.affiche = :affiche '
                     . 'AND e.datePublication <= :datePublication '
                     . 'AND e.timestampCreation >= :dateFin '
-                    . 'ORDER BY e.timestampCreation DESC')
+                    . 'ORDER BY e.datePublication DESC')
                 ->setParameters([
                     'affiche' => true,
                     'datePublication' => date("Y-m-d"),

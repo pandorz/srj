@@ -290,6 +290,7 @@ class CourAdmin extends AbstractAdmin
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
         $this->setDetails($page);
+        $page->setTimestampCreation(new \DateTime('now'));
     }
 
     /**
@@ -300,6 +301,7 @@ class CourAdmin extends AbstractAdmin
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
         $this->setDetails($page);
+        $page->setTimestampModification(new \DateTime('now'));
     }
 
     /**
