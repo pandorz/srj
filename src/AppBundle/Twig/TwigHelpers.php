@@ -5,7 +5,10 @@ namespace AppBundle\Twig;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
 use AppBundle\Entity\Parametre;
+use AppBundle\Entity\Utilisateur;
+use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\EntityManager;
+use Sonata\MediaBundle\Provider\ImageProvider;
 
 class TwigHelpers extends \Twig_Extension
 {
@@ -15,11 +18,17 @@ class TwigHelpers extends \Twig_Extension
     private $entityManager;
 
     /**
+     * @var ImageProvider
+     */
+    private $providerImage;
+
+    /**
      * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, ImageProvider $providerImage)
     {
         $this->entityManager = $entityManager;
+        $this->providerImage = $providerImage;
     }
 
     
@@ -35,7 +44,8 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('is_actif_blog', array($this, 'isActifBlog')),
             new \Twig_SimpleFunction('crop_entete_texte', array($this, 'cropEnteteTexte')),
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
-            new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog'))
+            new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog')),
+            new \Twig_SimpleFunction('get_image_profil', array($this, 'getImageProfil'))
         );
     }
 
@@ -121,5 +131,18 @@ class TwigHelpers extends \Twig_Extension
         }
 
         return $data;
+    }
+
+    public function getImageProfil(int $idUtilisateur)
+    {
+        $result = $this->entityManager->getRepository(Utilisateur::class)->findMedia($idUtilisateur);
+        if (!empty($result) && isset($result[0])) {
+            /** @var Media $media */
+            $media = $result[0];
+            $media->setContext('image');
+            $format = $this->providerImage->getFormatName($media, 'big');
+            return str_replace('.jpg','.jpeg', $this->providerImage->generatePublicUrl($media, $format));
+        }
+        return null;
     }
 }

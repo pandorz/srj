@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 use AppBundle\Entity\Utilisateur;
+use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
 
 /**
@@ -38,6 +39,30 @@ class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
        $stmt->setParameter(":estMembreBureau", true);
        $stmt->setParameter(":enabled", true);
        $stmt->setParameter(":locked", false);
+
+       $stmt->execute();
+
+       return $stmt->getResult();
+   }
+
+   public function findMedia($idUtilisateur)
+   {
+       $sql =  "SELECT m.* "
+           . "FROM media__media AS m "
+           . "INNER JOIN utilisateur u ON u.image_id=m.id "
+           . "WHERE u.id=:idUtilisateur";
+
+
+       $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+       $rsm->addEntityResult(Media::class, "m");
+
+       foreach ($this->getClassMetadata()->fieldMappings as $obj) {
+           $rsm->addFieldResult("m", $obj["columnName"], $obj["fieldName"]);
+       }
+
+       $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+
+       $stmt->setParameter(":idUtilisateur", $idUtilisateur);
 
        $stmt->execute();
 

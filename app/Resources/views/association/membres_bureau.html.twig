@@ -5,7 +5,11 @@
     <div class="membersList">
         {% for membre in bureau %}
             <div class="memberItem">
-                <img class="membrePhoto" src="{% if membre.image is null %}{{ asset(sonata_user.defaultAvatar) }}{% else %}{% path membre.image, 'big' %}{% endif %}" alt="{{ membre.slug }}" width="140" height="140">
+                {% set media_path = get_image_profil(membre.id) %}
+                {% if media_path is null %}
+                    {% set media_path = asset(sonata_user.defaultAvatar) %}
+                {% endif %}
+                <img class="membrePhoto" src="{{ media_path }}" alt="{{ membre.slug }}" width="140" height="140">
                 <strong class="membreName">{{ membre.getStringMembre }}</strong>
                 {% if membre.membreTitre is not empty %}
                 <span class="membreJob">{{ membre.membreTitre }}</span>

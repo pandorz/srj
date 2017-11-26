@@ -70,7 +70,7 @@ services:
         arguments: ['@twig', '%kernel.debug%']
     app.twig_helper:
         class: AppBundle\Twig\TwigHelpers
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image"]
         tags:
             - { name: twig.extension }
     app.admin.block.timeline:
