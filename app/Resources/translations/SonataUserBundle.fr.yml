@@ -1,0 +1,42 @@
+utilisateur:
+    accesSite: 'Peut acceder au site'
+    estProfesseur: 'Est professeur'
+    image: 'Image de profil'
+
+    liste:
+        accesSite: 'Acces site'
+        estProfesseur: Professeur
+        parent: Parent
+
+    membreTitre: 'Titre du membre'
+
+    placeholder:
+        accesSite: 'Peut acceder au site'
+        estProfesseur: 'Est professeur'
+        membreTitre: 'Titre du membre à afficher'
+
+    sousUtilisateurs: Enfants
+
+    tab:
+        profil: 'Autres informations'
+        sousUtilisateurs: 'Liste des enfants'
+
+    with:
+        description: Informations
+        meta_data: 'Autres données'
+        sousUtilisateurs: Enfants
+
+utilisateur_droit:
+    estMembreBureau: 'Est membre du bureau'
+
+    liste:
+        estMembreBureau: 'Membre du bureau'
+
+    placeholder:
+        estMembreBureau: 'Est membre du bureau'
+
+    tab:
+        detail: Détails
+
+    with:
+        parametre: Paramètres

@@ -12,6 +12,7 @@ use Sonata\MediaBundle\Model\MediaInterface;
  *
  * @ORM\Table(name="actualite", indexes={
  *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="slug", columns={"slug"}),
  *     @ORM\Index(name="affiche", columns={"affiche"}),
  *     @ORM\Index(name="annule", columns={"annule"})
  * })
@@ -36,6 +37,8 @@ class Actualite
     private $nom;
 	
 	/**
+    * @var  string
+    *
     * @Gedmo\Slug(fields={"nom"})
     * @ORM\Column(length=128, unique=true)
     */

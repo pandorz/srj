@@ -18,11 +18,9 @@
                                 <a class="mainSubNavLink" href="#">Les cours</a>
                                 <ul class="mainSubSubNavList">
                                     <li class="mainSubSubNavItem">
-                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#langue">Japonais</a>
-                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#calligraphie">Calligraphie</a>
-                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#the">Cérémonie du thé</a>
-                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#enfants">Cours enfants</a>
-                                        <a class="mainSubSubNavLink" href="{{path('cours')}}#yoga">Yoga</a>
+                                        {% for item_cours in liste_cours_nav() %}
+                                            <a class="mainSubSubNavLink" href="{{path('cours')}}#{{ item_cours.ancre }}">{{ item_cours.titre }}</a>
+                                        {% endfor %}
                                     </li>
                                 </ul>
                             </li>

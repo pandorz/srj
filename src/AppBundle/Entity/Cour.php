@@ -5,12 +5,15 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * Cour
  *
  * @ORM\Table(name="cour", indexes={
- *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="ancre", columns={"ancre"}),
+ *     @ORM\Index(name="slug", columns={"slug"}),
  *     @ORM\Index(name="affiche", columns={"affiche"}),
  *     @ORM\Index(name="annule", columns={"annule"})
  * })
@@ -26,16 +29,11 @@ class Cour
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=255)
-     */
-    private $nom;
 	
-	/**
-    * @Gedmo\Slug(fields={"nom"})
+   /**
+    * @var string
+    *
+    * @Gedmo\Slug(fields={"titre"})
     * @ORM\Column(length=128, unique=true)
     */
     private $slug;
@@ -46,6 +44,27 @@ class Cour
      * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message_annulation", type="string", length=255, nullable=true)
+     */
+    private $messageAnnulation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="complet", type="boolean")
+     */
+    private $complet;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="bientot_complet", type="boolean")
+     */
+    private $bientotComplet;
 
     /**
      * @var boolean
@@ -62,7 +81,7 @@ class Cour
     private $datePublication;
 	
     /**
-     *
+     * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="cours")
      * @ORM\JoinTable(name="cours_inscriptions",
      *     joinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")},
@@ -70,18 +89,90 @@ class Cour
      * )
      */
     private $inscrits;
-	
+
     /**
-     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
-     */
-    private $contenu;
-	
-    /**
+     * @var string
      *
-     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="professeurDe")
-     * @ORM\JoinColumn(nullable=false, name="fk_professeur", referencedColumnName="id")
+     * @ORM\Column(name="lien_inscription", type="string", length=255, nullable=true)
      */
-    private $professeur;
+    private $lienInscription;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lien_pdf", type="string", length=255, nullable=true)
+     */
+    private $lienPdf;
+
+    /**
+     * @var string
+     *
+     * @Assert\Regex(
+     *     pattern     = "/^[a-z]+$/i",
+     *     message="basic_word"
+     * )
+     * @ORM\Column(name="ancre", type="string", length=45)
+     */
+    private $ancre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre", type="string", length=255)
+     */
+    private $titre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre_nav", type="string", length=255)
+     */
+    private $titreNav;
+
+    /**
+     * @var double
+     *
+     * @ORM\Column(name="prix", type="float", nullable=true)
+     */
+    private $prix;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="amorce", type="text", length=65535, nullable=true)
+     */
+    private $amorce;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="creneau", type="string", length=255, nullable=true)
+     */
+    private $creneau;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condition_particuliere", type="string", length=255, nullable=true)
+     */
+    private $conditionParticuliere;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="note", type="string", length=255, nullable=true)
+     */
+    private $note;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="professeurDe")
+     * @ORM\JoinTable(name="cours_professeurs",
+     *     joinColumns={@ORM\JoinColumn(name="cour_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
+     */
+    private $professeurs;
     
     /**
      * @var \DateTime
@@ -119,6 +210,18 @@ class Cour
      */
     protected $version;
 
+    /**
+     * @var CourDetail
+     * @ORM\OneToMany(targetEntity="CourDetail", mappedBy="cours", cascade={"persist"})
+     */
+    private $details;
+
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
+     */
+    private $image;
+
 
     /**
      * Get id
@@ -128,30 +231,6 @@ class Cour
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set nom
-     *
-     * @param string $nom
-     *
-     * @return Cour
-     */
-    public function setNom($nom)
-    {
-        $this->nom = $nom;
-
-        return $this;
-    }
-
-    /**
-     * Get nom
-     *
-     * @return string
-     */
-    public function getNom()
-    {
-        return $this->nom;
     }
 
     /**
@@ -221,15 +300,6 @@ class Cour
     {
         return $this->affiche;
     }
-    
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->users = new ArrayCollection();
-        $this->dates = new ArrayCollection();
-    }
 
     /**
      * Add inscrit
@@ -266,52 +336,39 @@ class Cour
     }
 
     /**
-     * Set contenu
-     *
-     * @param string $contenu
-     *
-     * @return Cour
-     */
-    public function setContenu($contenu)
-    {
-        $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    /**
-     * Get contenu
-     *
-     * @return string
-     */
-    public function getContenu()
-    {
-        return $this->contenu;
-    }
-
-    /**
-     * Set professeur
+     * Add professeur
      *
      * @param Utilisateur $professeur
      *
      * @return Cour
      */
-    public function setProfesseur(Utilisateur $professeur)
+    public function addProfesseur(Utilisateur $professeur)
     {
-        $this->professeur = $professeur;
+        $this->professeurs[] = $professeur;
 
         return $this;
     }
 
     /**
-     * Get professeur
+     * Remove professeur
      *
-     * @return Utilisateur
+     * @param Utilisateur $professeur
      */
-    public function getProfesseur()
+    public function removeProfesseur(Utilisateur $professeur)
     {
-        return $this->professeur;
+        $this->professeurs->removeElement($professeur);
     }
+
+    /**
+     * Get professeurs
+     *
+     * @return ArrayCollection
+     */
+    public function getProfesseurs()
+    {
+        return $this->professeurs;
+    }
+
 
     /**
      * Set slug
@@ -447,5 +504,277 @@ class Cour
     public function setDatePublication($datePublication)
     {
         $this->datePublication = $datePublication;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isComplet()
+    {
+        return $this->complet;
+    }
+
+    /**
+     * @param bool $complet
+     */
+    public function setComplet($complet)
+    {
+        $this->complet = $complet;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isBientotComplet()
+    {
+        return $this->bientotComplet;
+    }
+
+    /**
+     * @param bool $bientotComplet
+     */
+    public function setBientotComplet($bientotComplet)
+    {
+        $this->bientotComplet = $bientotComplet;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLienInscription()
+    {
+        return $this->lienInscription;
+    }
+
+    /**
+     * @param string $lienInscription
+     */
+    public function setLienInscription($lienInscription)
+    {
+        $this->lienInscription = $lienInscription;
+    }
+
+    /**
+     * @return string
+     */
+    public function getLienPdf()
+    {
+        return $this->lienPdf;
+    }
+
+    /**
+     * @param string $lienPdf
+     */
+    public function setLienPdf($lienPdf)
+    {
+        $this->lienPdf = $lienPdf;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAncre()
+    {
+        return $this->ancre;
+    }
+
+    /**
+     * @param string $ancre
+     */
+    public function setAncre($ancre)
+    {
+        $this->ancre = $ancre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * @param string $titreNav
+     */
+    public function setTitreNav($titreNav)
+    {
+        $this->titreNav = $titreNav;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitreNav()
+    {
+        return $this->titreNav;
+    }
+
+    /**
+     * @param string $titre
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+    }
+
+    /**
+     * @return float
+     */
+    public function getPrix()
+    {
+        return $this->prix;
+    }
+
+    /**
+     * @param float $prix
+     */
+    public function setPrix($prix)
+    {
+        $this->prix = $prix;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAmorce()
+    {
+        return $this->amorce;
+    }
+
+    /**
+     * @param string $amorce
+     */
+    public function setAmorce($amorce)
+    {
+        $this->amorce = $amorce;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreneau()
+    {
+        return $this->creneau;
+    }
+
+    /**
+     * @param string $creneau
+     */
+    public function setCreneau($creneau)
+    {
+        $this->creneau = $creneau;
+    }
+
+    /**
+     * @return string
+     */
+    public function getConditionParticuliere()
+    {
+        return $this->conditionParticuliere;
+    }
+
+    /**
+     * @param string $conditionParticuliere
+     */
+    public function setConditionParticuliere($conditionParticuliere)
+    {
+        $this->conditionParticuliere = $conditionParticuliere;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNote()
+    {
+        return $this->note;
+    }
+
+    /**
+     * @param string $note
+     */
+    public function setNote($note)
+    {
+        $this->note = $note;
+    }
+
+    /**
+     * @return CourDetail
+     */
+    public function getDetails()
+    {
+        return $this->details;
+    }
+
+    /**
+     * @param CourDetail $details
+     */
+    public function setDetails($details)
+    {
+        $this->details = $details;
+    }
+
+    /**
+     * Set image
+     *
+     * @param MediaInterface $image
+     *
+     * @return Cour
+     */
+    public function setImage(MediaInterface $image = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return MediaInterface
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMessageAnnulation()
+    {
+        return $this->messageAnnulation;
+    }
+
+    /**
+     * @param string $messageAnnulation
+     */
+    public function setMessageAnnulation(string $messageAnnulation)
+    {
+        $this->messageAnnulation = $messageAnnulation;
+    }
+
+    /**
+     * Add detail
+     *
+     * @param CourDetail $detail
+     *
+     * @return Cour
+     */
+    public function addDetail(CourDetail $detail)
+    {
+        $this->details[] = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Remove superviseur
+     *
+     * @param CourDetail $detail
+     */
+    public function removeDetail(CourDetail $detail)
+    {
+        $this->details->removeElement($detail);
     }
 }

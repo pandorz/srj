@@ -1,0 +1,16 @@
+{% if partenaires is not empty %}
+<a id="partenaires"></a>
+<section class="partners section u-fitted">
+    <h2 class="sectionTitle">Les partenaires de l'association</h2>
+    <ul class="partnersList u-ul-mute">
+        {% for partenaire in partenaires %}
+            <li class="partnerItem">
+                <strong class="partnerName"><a href="{{ partenaire.lien is not empty ? partenaire.lien : '#' }}" target="_blank">{{ partenaire.nom }}</a></strong>
+                {% if partenaire.description is not empty %}
+                <span class="partnerDescr">{{ partenaire.description }}</span>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</section>
+{% endif %}

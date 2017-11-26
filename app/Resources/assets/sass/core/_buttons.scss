@@ -48,6 +48,17 @@
     }
 }
 
+.btn-blank-third {
+    border-color: $color-white;
+    color: $color-white;
+    background-color: transparent;
+    @include activeLink {
+        border-color: $color-grey-dark;
+        color: $color-grey-dark;
+        background-color: transparent;
+    }
+}
+
 
 .btn.is-disabled {
     border-color: $color-grey-medium;

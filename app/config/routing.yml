@@ -19,6 +19,10 @@ sonata_user_admin_resetting:
     resource: '@SonataUserBundle/Resources/config/routing/admin_resetting.xml'
     prefix: /gyosei/resetting
 
+sonata_user_impersonating:
+    path:  /gyosei/dashboard
+    defaults: { _controller: SonataPageBundle:Page:catchAll }
+
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
     

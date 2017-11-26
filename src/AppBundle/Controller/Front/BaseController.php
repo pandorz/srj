@@ -125,7 +125,7 @@ class BaseController extends Controller
      *
      * @return bool
      */
-    public function sendMail($subject, $template, $to = null, $from = null, $bcc = null, $data = [], $attachments = [])
+    public function sendMail($subject, $template, $to = null, $replyTo = null, $bcc = null, $data = [], $attachments = [])
     {
         try {
 
@@ -135,9 +135,8 @@ class BaseController extends Controller
 
             $noReplyEmailTitle  = $this->getParameter('no-reply_name');
 
-            if (is_null($from)) {
-                $from = ([$noReplyEmail => $noReplyEmailTitle]);
-            }
+
+            $from = ([$noReplyEmail => $noReplyEmailTitle]);
 
             $mailDefault = $this->getParameter('mailer_admin');
 
@@ -174,6 +173,10 @@ class BaseController extends Controller
                     $htmlMail,
                     'text/html'
                 );
+
+            if (!is_null($replyTo)) {
+                $message->setReplyTo($replyTo);
+            }
 
             if (!is_null($bcc) && !empty($bcc)) {
                 $message->setBcc($bcc);

@@ -7,9 +7,10 @@ use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Parametre
- *
- * @ORM\Table(name="parametre")
- * * @ORM\Table(name="parametre")
+ * @ORM\Table(name="parametre", indexes={
+ *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="slug", columns={"slug"})
+ * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ParametreRepository")
  */
 class Parametre
@@ -30,7 +31,9 @@ class Parametre
      */
     private $nom;
     
-    /**
+   /**
+    * @var string
+    *
     * @Gedmo\Slug(fields={"nom"})
     * @ORM\Column(length=128, unique=true)
     */
@@ -255,5 +258,10 @@ class Parametre
     public function setUtilisateurModification($utilisateurModification)
     {
         $this->utilisateurModification = $utilisateurModification;
+    }
+
+    public function __toString()
+    {
+        return $this->nom;
     }
 }

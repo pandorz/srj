@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\CourDetail;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -35,8 +36,8 @@ class CourAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('nom', 'text', [
-                'label' => 'cour.liste.nom'
+            ->addIdentifier('titre', 'text', [
+                'label' => 'cour.liste.titre'
             ])
             ->add('affiche', 'boolean', [
                 'label'     => 'cour.liste.affiche',
@@ -50,14 +51,21 @@ class CourAdmin extends AbstractAdmin
                 'label'     => 'cour.liste.annule',
                 'editable'  => true
             ])
-            ->add('professeur', 'many_to_one', [
-                'label'     => 'cour.liste.professeur',
-                'route'     => ['name' => 'show'],
-                'sortable'  => 'name'
+            ->add('complet', 'boolean', [
+                'label'     => 'cour.liste.complet',
+                'editable'  => true
+            ])
+            ->add('bientotComplet', 'boolean', [
+                'label'     => 'cour.liste.bientotComplet',
+                'editable'  => true
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
+                    'clone' => array(
+                        'template' => ':AdminCustom/button:clone.html.twig',
+                        'data'     => '1',
+                    ),
                     'delete' => array(),
                 )
             ))
@@ -73,13 +81,13 @@ class CourAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('cour.with.details'),
+                'name'          => $this->trans('cour.with.content'),
                 'class'         => 'col-md-7'
             ])
-            ->add('nom', 'text', [
-                'label' => 'cour.nom',
+            ->add('titre', 'text', [
+                'label' => 'cour.titre',
                 'attr'  => [
-                    'placeholder' => 'cour.placeholder.nom'
+                    'placeholder' => 'cour.placeholder.titre'
                 ]
             ])
             ->add('affiche', 'checkbox', [
@@ -104,25 +112,96 @@ class CourAdmin extends AbstractAdmin
                     'placeholder' => 'cour.placeholder.annule'
                 ],
                 'required' => false
-            ])            
-            ->add('contenu', CKEditorType::class, [
-                'label' => 'cour.contenu',
+            ])
+            ->add('complet', 'checkbox', [
+                'label' => 'cour.complet',
                 'attr'  => [
-                    'placeholder' => 'cour.placeholder.contenu'
-                ]
-            ])            
+                    'placeholder' => 'cour.placeholder.complet'
+                ],
+                'required' => false
+            ])
+            ->add('bientotComplet', 'checkbox', [
+                'label' => 'cour.bientotComplet',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.bientotComplet'
+                ],
+                'required' => false
+            ])
+            ->add('creneau', 'text', [
+                'label' => 'cour.creneau',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.creneau'
+                ],
+                'required' => false
+            ])
+            ->add('amorce', CKEditorType::class, [
+                'label' => 'cour.amorce',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.amorce'
+                ],
+                'required' => false
+            ])
+            ->add('prix', 'number', [
+                'label' => 'cour.prix',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.prix'
+                ],
+                'required' => false
+            ])
             ->end() 
             ->with('Meta data', [
                 'name'      => $this->trans('cour.with.meta_data'),
                  'class'     => 'col-md-5'
             ])
-            ->add('professeur', 'sonata_type_model_autocomplete', [
+            ->add('titreNav', 'text', [
+                'label' => 'cour.titreNav',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.titreNav'
+                ]
+            ])
+            ->add('ancre', 'text', [
+                'label' => 'cour.ancre',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.ancre'
+                ]
+            ])
+            ->add('messageAnnulation', 'text', [
+                'label' => 'cour.messageAnnulation',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.messageAnnulation'
+                ],
+                'required' => false
+            ])
+            ->add('conditionParticuliere', 'text', [
+                'label' => 'cour.conditionParticuliere',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.conditionParticuliere'
+                ],
+                'required' => false
+            ])
+            ->add('note', 'text', [
+                'label' => 'cour.note',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.note'
+                ],
+                'required' => false
+            ])
+            ->add('professeurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
                 'property'  => ['firstname','lastname'],
                 'label'     => 'cour.professeur',
-                'multiple'  => false,
+                'multiple'  => true,
                 'placeholder' => $this->trans('cour.placeholder.professeur'),
-                'required' => false
+                'required' => false,
+                'callback' => function ($admin, $property, $value) {
+                    $datagrid       = $admin->getDatagrid();
+                    $queryBuilder   = $datagrid->getQuery();
+                    $queryBuilder
+                        ->andWhere($queryBuilder->getRootAlias() . '.estProfesseur=:estProfesseur')
+                        ->setParameter('estProfesseur', true)
+                    ;
+                    $datagrid->setValue('slug', null, $value);
+                },
             ])
             ->add('inscrits', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
@@ -131,7 +210,40 @@ class CourAdmin extends AbstractAdmin
                 'multiple'  => true,
                 'placeholder' => $this->trans('cour.placeholder.users'),
                 'required' => false
-            ])  
+            ])
+            ->add('lienInscription', 'url', [
+                'label' => 'cour.lienInscription',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.lienInscription'
+                ],
+                'required' => false
+            ])
+            ->add('lienPdf', 'url', [
+                'label' => 'cour.lienPdf',
+                'attr'  => [
+                    'placeholder' => 'cour.placeholder.lienPdf'
+                ],
+                'required' => false
+            ])
+            ->add('image', 'sonata_media_type', array(
+                'label' => 'cour.image',
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'image',
+                'required' => false,
+            ))
+            ->end()
+            ->with('Détails', [
+                'name'      => $this->trans('cour.with.details')
+            ])
+            ->add('details', 'sonata_type_collection', [
+                'by_reference' => true,
+                'label'     => $this->trans('cour.details', [], 'messages'),
+                'required'  => false,
+            ],[
+                'edit'          => 'inline',
+                'inline'        => 'table',
+                'sortable'      => 'position'
+            ])
             ->end()
         ;
     }
@@ -144,9 +256,11 @@ class CourAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('nom')
+            ->add('titre')
             ->add('affiche')
-            ->add('annule')   
+            ->add('annule')
+            ->add('complet')
+            ->add('bientotComplet')
             ->add('utilisateurCreation')
             ->add('utilisateurModification')
         ;
@@ -160,12 +274,11 @@ class CourAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
+            ->add('titre')
             ->add('affiche')
             ->add('annule')
-            ->add('professeur', null, [], 'entity', [
-                'class'         => Utilisateur::class
-            ])
+            ->add('complet')
+            ->add('bientotComplet')
         ;
     }
 
@@ -176,6 +289,8 @@ class CourAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
+        $this->setDetails($page);
+        $page->setTimestampCreation(new \DateTime('now'));
     }
 
     /**
@@ -185,6 +300,25 @@ class CourAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
+        $this->setDetails($page);
+        $page->setTimestampModification(new \DateTime('now'));
+    }
+
+    /**
+     * Lie les details au cours
+     *
+     * @param Cour $cours
+     */
+    private function setDetails(Cour &$cours)
+    {
+        $details = $cours->getDetails();
+        if (!empty($details)) {
+            foreach ($details as $detail) {
+                if ($detail instanceof CourDetail && empty($detail->getCours())) {
+                    $detail->setCours($cours);
+                }
+            }
+        }
     }
 
     /**
@@ -195,12 +329,13 @@ class CourAdmin extends AbstractAdmin
     public function toString($object)
     {
         return $object instanceof Cour
-            ? $object->getNom()
+            ? $object->getTitre()
             : $this->trans('cour.add_edit.to_string');
     }
 
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
+        $collection->add('clone', $this->getRouterIdParameter().'/clone');
     }
 }
