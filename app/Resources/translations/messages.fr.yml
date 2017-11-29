@@ -19,6 +19,8 @@ Nom: Nom
 'Parametre List': Paramètres
 'Partenaire Create': Créer
 'Partenaire List': Partenaires
+'Demande Newsletter Create': Créer
+'Demande Newsletter List': 'Demandes Newsletter'
 Prenom: Prénom
 ROLE_ALLOWED_TO_SWITCH: 'Peut changer'
 ROLE_APP_ADMIN_ACTUALITES_ADMIN: 'Administrateur - Actualités'
@@ -34,9 +36,17 @@ ROLE_APP_ADMIN_BLOG_EDITOR: 'Editeur - Blog'
 ROLE_APP_ADMIN_BLOG_GUEST: 'Invité - Blog'
 ROLE_APP_ADMIN_BLOG_STAFF: 'Staff - Blog'
 ROLE_APP_ADMIN_COURS_ADMIN: 'Administrateur - Cours'
+ROLE_APP_ADMIN_COURS_DETAILS_ADMIN: 'Administrateur - Cours détails'
+ROLE_APP_ADMIN_COURS_DETAILS_EDITOR: 'Editeur - Cours détails'
+ROLE_APP_ADMIN_COURS_DETAILS_GUEST: 'Invité - Cours détails'
+ROLE_APP_ADMIN_COURS_DETAILS_STAFF: 'Staff - Cours détails'
 ROLE_APP_ADMIN_COURS_EDITOR: 'Editeur - Cours'
 ROLE_APP_ADMIN_COURS_GUEST: 'Invité - Cours'
 ROLE_APP_ADMIN_COURS_STAFF: 'Staff - Cours'
+ROLE_APP_ADMIN_DEMANDENEWSLETTER_ADMIN: 'Administrateur - Demande Newsletter'
+ROLE_APP_ADMIN_DEMANDENEWSLETTER_EDITOR: 'Editeur - Demande Newsletter'
+ROLE_APP_ADMIN_DEMANDENEWSLETTER_GUEST: 'Invité - Demande Newsletter'
+ROLE_APP_ADMIN_DEMANDENEWSLETTER_STAFF: 'Staff - Demande Newsletter'
 ROLE_APP_ADMIN_EVENEMENTS_ADMIN: 'Administrateur - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_EDITOR: 'Editeur - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_GUEST: 'Invité - Événements'
@@ -311,6 +321,11 @@ cour_detail:
     with:
         details: 'Cours - Details'
 
+demande_newsletter:
+    liste:
+        email: 'Adresse email'
+        timestampCreation: 'Date de la demande'
+
 evenement:
     actif: Actif
 
@@ -482,13 +497,14 @@ utilisateur:
         estProfesseur: Professeur
         parent: Parent
 
-    membreTitre: 'Titre du membre'
+    membreNumero: utilisateur.membreNumero   # FIXME
+    membreNuméro: 'Numéro du membre'
     membreTitre: 'Titre du membre'
 
     placeholder:
         accesSite: 'Peut acceder au site'
         estProfesseur: 'Est professeur'
-       membreTitre: 'Titre du membre à afficher'
+        membreNumero: 'Numéro d''adhésion du membre'
         membreTitre: 'Titre du membre à afficher'
 
     sousUtilisateurs: Enfants
