@@ -81,7 +81,7 @@ sonata_admin:
                 on_top: true
                 label: "Demande Newsletter"
                 icon: '<i class="fa fa-envelope-o"></i>'
-                roles: [ROLE_APP_ADMIN_DEMANDENEWSLETTER_ADMIN]
+                roles: [ROLE_APP_ADMIN_NEWSLETTER_ADMIN]
                 items:
                     - app.admin.newsletter
             app.admin.group.principal.parametres:
