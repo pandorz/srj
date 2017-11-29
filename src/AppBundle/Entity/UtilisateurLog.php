@@ -51,7 +51,7 @@ class UtilisateurLog
     /**
      * @var string
      *
-     * @ORM\Column(name="entity_name", type="string", length=255)
+     * @ORM\Column(name="event_type", type="string", length=255)
      */
     private $eventType;
 
