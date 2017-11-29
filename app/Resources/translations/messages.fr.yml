@@ -483,10 +483,12 @@ utilisateur:
         parent: Parent
 
     membreTitre: 'Titre du membre'
+    membreTitre: 'Titre du membre'
 
     placeholder:
         accesSite: 'Peut acceder au site'
         estProfesseur: 'Est professeur'
+       membreTitre: 'Titre du membre à afficher'
         membreTitre: 'Titre du membre à afficher'
 
     sousUtilisateurs: Enfants

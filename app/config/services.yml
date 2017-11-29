@@ -78,3 +78,11 @@ services:
         arguments: ["app.admin.block.timeline", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]
         tags:
             - { name: sonata.block }
+
+    app.event_listener.user_entity:
+        class: AppBundle\EventListener\EntityListener
+        arguments: ["@security.token_storage"]
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }
