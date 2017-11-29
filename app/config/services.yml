@@ -40,6 +40,11 @@ services:
         arguments: [~, AppBundle\Entity\Partenaire, AppBundle:Partenaire]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Partenaire }
+    app.admin.newsletter:
+        class: AppBundle\Admin\DemandeNewsletterAdmin
+        arguments: [~, AppBundle\Entity\DemandeNewsletter, AppBundle:DemandeNewsletter]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: DemandeNewsletter }
     app.admin.sorties:
         class: AppBundle\Admin\SortieAdmin
         arguments: [~, AppBundle\Entity\Sortie, AppBundle:Sortie]
@@ -78,3 +83,11 @@ services:
         arguments: ["app.admin.block.timeline", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]
         tags:
             - { name: sonata.block }
+
+    app.event_listener.user_entity:
+        class: AppBundle\EventListener\EntityListener
+        arguments: ["@security.token_storage"]
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }

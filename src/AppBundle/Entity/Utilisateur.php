@@ -141,6 +141,13 @@ class Utilisateur extends BaseUser
     private $membreTitre;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="membre_numero", type="string", length=60, nullable=true)
+     */
+    private $membreNumero;
+
+    /**
     * Constructor
     */
     public function __construct() 
@@ -663,5 +670,19 @@ class Utilisateur extends BaseUser
         $this->membreTitre = $membreTitre;
     }
 
+    /**
+     * @return string
+     */
+    public function getMembreNumero()
+    {
+        return $this->membreNumero;
+    }
 
+    /**
+     * @param string $membreNumero
+     */
+    public function setMembreNumero($membreNumero)
+    {
+        $this->membreNumero = $membreNumero;
+    }
 }

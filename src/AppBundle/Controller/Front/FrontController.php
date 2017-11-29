@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
+use AppBundle\Entity\DemandeNewsletter;
 use AppBundle\Entity\Partenaire;
 use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
@@ -86,29 +87,20 @@ class FrontController extends BaseController
             }
         }
         //--
+
         $email = $request->get('newsletter_email');
         if (!empty($email) && $captcha) {
-            $data = ['email' => $email];
-
-            $retour_mail = $this->sendMail(
-                $this->getTranslator()->trans('newsletter.mail.sujet'),
-                'newsletter',
-                null,
-                $data['email'],
-                null,
-                [
-                    'title'     => $this->getTranslator()->trans('newsletter.mail.titre'),
-                    'subtitle'  => $this->getTranslator()->trans('newsletter.mail.soustitre'),
-                    'data'      => $data
-                ]
-            );
-
-            if ($retour_mail) {
+            try {
+                $demandeNewsletter = new DemandeNewsletter();
+                $demandeNewsletter->setEmail($email);
+                $em = $this->getEm();
+                $em->persist($demandeNewsletter);
+                $em->flush();
                 $request
                     ->getSession()
                     ->getFlashBag()
                     ->add('success', 'Nous avons enregistré votre demande');
-            } else {
+            } catch (\Exception $exception) {
                 $request
                     ->getSession()
                     ->getFlashBag()

@@ -8,11 +8,13 @@ utilisateur:
         estProfesseur: Professeur
         parent: Parent
 
+    membreNumero: 'Numéro du membre'
     membreTitre: 'Titre du membre'
 
     placeholder:
         accesSite: 'Peut acceder au site'
         estProfesseur: 'Est professeur'
+        membreNumero: 'Numéro d''adhésion du membre'
         membreTitre: 'Titre du membre à afficher'
 
     sousUtilisateurs: Enfants
