@@ -154,10 +154,15 @@ class FrontController extends BaseController
                 $start = $start->format(self::FORMAT_DATE);
             }
             
-            $data[] = [
+            $data_temp = [
                 'title' => $atelier->getNom(),
                 'start' => $start
             ];
+
+            if (!empty($atelier->getUrlInscription())) {
+                $data_temp['url'] = $atelier->getUrlInscription();
+            }
+            $data[] = $data_temp;
         }
         
         $sorties = $this->getEm()
@@ -170,10 +175,16 @@ class FrontController extends BaseController
             if (!is_null($start)) {
                 $start = $start->format(self::FORMAT_DATE);
             }
-            $data[] = [
+
+            $data_temp = [
                 'title' => $sortie->getNom(),
                 'start' => $start
             ];
+
+            if (!empty($sortie->getUrlInscription())) {
+                $data_temp['url'] = $sortie->getUrlInscription();
+            }
+            $data[] = $data_temp;
         }
         
         return $data;

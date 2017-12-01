@@ -42,8 +42,7 @@ class BlogAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label'     => 'blog.liste.datePublication',
-                'sortable'  => 'name'
+                'label'     => 'blog.liste.datePublication'
             ])            
             ->add('_action', null, array(
                 'actions' => array(

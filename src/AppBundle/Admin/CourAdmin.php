@@ -44,8 +44,7 @@ class CourAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label'     => 'cour.liste.datePublication',
-                'sortable'  => 'name'
+                'label'     => 'cour.liste.datePublication'
             ])
             ->add('annule', 'boolean', [
                 'label'     => 'cour.liste.annule',

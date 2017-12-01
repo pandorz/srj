@@ -15,6 +15,11 @@ class DemandeNewsletterAdmin extends AbstractAdmin
 
     public $supportsPreviewMode = false;
 
+    protected $datagridValues = [
+        '_sort_order'   => 'DESC',
+        '_sort_by'      => 'timestampCreation',
+    ];
+
     /**
      * Fields to be shown on lists
      *
@@ -28,8 +33,7 @@ class DemandeNewsletterAdmin extends AbstractAdmin
                 'sortable'  => 'name'
             ])
             ->add('timestampCreation', 'date', [
-                'label'     => 'demande_newsletter.liste.timestampCreation',
-                'sortable'  => 'name'
+                'label'     => 'demande_newsletter.liste.timestampCreation'
             ])
             ->add('_action', null, array(
                 'actions' => array(

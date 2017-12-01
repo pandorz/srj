@@ -57,7 +57,7 @@ app.pagesController.defaultAction = {
                 var dataAttr = getDataAttr(d),
                     $dayCell = $("[data-date='" + dataAttr + "']"),
                     eventHtml;
-                if (typeof url !== undefined) {
+                if (typeof url !== "undefined") {
                     eventHtml = '<span class="my-fc-event-title"><a href="'+url+'">'+title+'</a></span>';
                 }
                 else {
