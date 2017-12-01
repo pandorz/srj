@@ -42,20 +42,17 @@ class ActualiteAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label'     => 'actualite.liste.datePublication',
-                'sortable'  => 'name'
+                'label'     => 'actualite.liste.datePublication'
             ])
             ->add('annule', 'boolean', [
                 'label'     => 'actualite.liste.annule',
                 'editable'  => true
             ])
             ->add('dateDebut', 'date', [
-                'label'     => 'actualite.liste.dateDebut',
-                'sortable'  => 'name'
+                'label'     => 'actualite.liste.dateDebut'
             ])
             ->add('dateFin', 'date', [
-                'label'     => 'actualite.liste.dateFin',
-                'sortable'  => 'name'
+                'label'     => 'actualite.liste.dateFin'
             ])
             ->add('_action', null, array(
                 'actions' => array(
