@@ -14,6 +14,7 @@ use Oh\GoogleMapFormTypeBundle\Validator\Constraints as OhAssert;
  *
  * @ORM\Table(name="atelier", indexes={
  *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="slug", columns={"slug"}),
  *     @ORM\Index(name="affiche", columns={"affiche"}),
  *     @ORM\Index(name="annule", columns={"annule"})
  * })
@@ -37,7 +38,9 @@ class Atelier
      */
     private $nom;
 	
-    /**
+   /**
+    * @var string
+    *
     * @Gedmo\Slug(fields={"nom"})
     * @ORM\Column(length=128, unique=true)
     */
@@ -99,12 +102,15 @@ class Atelier
     private $image;
    
     /**
+     * @var string
+     *
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
     
     
     /**
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="atelierSupervise")
      * @ORM\JoinTable(name="ateliers_surpervisions",
@@ -137,6 +143,7 @@ class Atelier
     
     
     /**
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="ateliers")
      * @ORM\JoinTable(name="ateliers_inscriptions",

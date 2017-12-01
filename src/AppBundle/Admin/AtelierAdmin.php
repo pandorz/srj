@@ -43,8 +43,7 @@ class AtelierAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label'     => 'atelier.liste.datePublication',
-                'sortable'  => 'name'
+                'label'     => 'atelier.liste.datePublication'
             ])
             ->add('annule', 'boolean', [
                 'label'     => 'atelier.liste.annule',
@@ -58,12 +57,10 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.liste.nbPlace',
             ])
             ->add('date', 'date', [
-                'label'     => 'atelier.liste.date',
-                'sortable'  => 'name'
+                'label'     => 'atelier.liste.date'
             ])
             ->add('dateLimite', 'date', [
-                'label'     => 'atelier.liste.dateLimite',
-                'sortable'  => 'name'
+                'label'     => 'atelier.liste.dateLimite'
             ])
             ->add('_action', null, array(
                 'actions' => array(
@@ -307,6 +304,7 @@ class AtelierAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
+        $page->setTimestampCreation(new \DateTime('now'));
     }
 
     /**
@@ -316,6 +314,7 @@ class AtelierAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
+        $page->setTimestampModification(new \DateTime('now'));
     }
 
     /**

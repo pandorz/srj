@@ -18,12 +18,30 @@ class UtilisateurAdmin extends UserAdmin
 
     protected function configureListFields(ListMapper $listMapper)
     {
-        parent::configureListFields($listMapper);
+        $listMapper
+            ->addIdentifier('username')
+            ->add('email')
+            ->add('groups')
+            ->add('enabled', null, array('editable' => true))
+            ->add('createdAt');
+
+        if ($this->isGranted('ROLE_ALLOWED_TO_SWITCH')) {
+            $listMapper
+                ->add('impersonating', 'string', array('template' => 'AdminCustom/template/impersonating.html.twig'));
+        }
         $listMapper
                 ->add('parent', 'many_to_one', [
                 'label'     => $this->trans('utilisateur.liste.parent', [], 'messages'),
                 'route'     => ['name' => 'show'],
                 'sortable'  => 'name'
+            ])
+            ->add('estProfesseur', 'boolean', [
+                'label'     => 'utilisateur.liste.estProfesseur',
+                'editable'  => true
+            ])
+            ->add('accesSite', 'boolean', [
+                'label'     => 'utilisateur.liste.accesSite',
+                'editable'  => true
             ]);
     }
     
@@ -32,19 +50,63 @@ class UtilisateurAdmin extends UserAdmin
         parent::configureFormFields($formMapper);
 
         $formMapper
-            ->tab($this->trans('utilisateur.tab.sousUtilisateurs', [], 'messages'))
-            ->with('content_sousUtilisateur', [
+            ->tab($this->trans('utilisateur.tab.profil', [], 'messages'))
+            ->with('Détails', [
+                'name'          => $this->trans('utilisateur.with.meta_data', [], 'messages'),
+            ])
+            ->add('estProfesseur', 'checkbox', [
+                'label' => 'utilisateur.estProfesseur',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.estProfesseur'
+                ],
+                'required' => false
+            ])
+            ->add('accesSite', 'checkbox', [
+                'label' => 'utilisateur.accesSite',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.accesSite'
+                ],
+                'required' => false
+            ])
+            ->add('membreTitre', 'text', [
+                'label' => 'utilisateur.membreTitre',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.membreTitre'
+                ],
+                'required' => false
+            ])
+            ->add('membreNumero', 'text', [
+                'label' => 'utilisateur.membreNumero',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.membreNumero'
+                ],
+                'required' => false
+            ])
+            ->end()
+            ->with('Sous utilisateur', [
                 'name'          => $this->trans('utilisateur.with.sousUtilisateurs', [], 'messages'),
-                'description'   => $this->trans('utilisateur.with.description', [], 'messages')
+                'description'   => $this->trans('utilisateur.with.description', [], 'messages'),
+                'class'         => 'col-md-4'
             ])
             ->add('sousUtilisateurs', 'sonata_type_model_list', [
                 'label'     => $this->trans('utilisateur.sousUtilisateurs', [], 'messages'),
                 'required'  => false,
-            ],[                
+            ],[
                 'edit'          => 'inline',
                 'inline'        => 'table',
-                'sortable'      => 'position'           
+                'sortable'      => 'position'
             ])
+            ->end()
+            ->with('Meta data', [
+                'name'          => $this->trans('utilisateur.with.meta_data', [], 'messages'),
+                'class'         => 'col-md-8'
+            ])
+            ->add('image', 'sonata_media_type', array(
+                'label' => 'utilisateur.image',
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'image',
+                'required' => false,
+            ))
             ->end()
             ->end();        
     }

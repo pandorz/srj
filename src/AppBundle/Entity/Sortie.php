@@ -12,6 +12,7 @@ use Sonata\MediaBundle\Model\MediaInterface;
  *
  * @ORM\Table(name="sortie", indexes={
  *     @ORM\Index(name="nom", columns={"nom"}),
+ *     @ORM\Index(name="slug", columns={"slug"}),
  *     @ORM\Index(name="affiche", columns={"affiche"}),
  *     @ORM\Index(name="annule", columns={"annule"})
  * })
@@ -35,7 +36,9 @@ class Sortie
      */
     private $nom;
 	
-	/**
+   /**
+    * @var string
+    *
     * @Gedmo\Slug(fields={"nom"})
     * @ORM\Column(length=128, unique=true)
     */
@@ -97,12 +100,15 @@ class Sortie
     private $image;
    
    /**
-     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
-     */
+    * @var string
+    *
+    * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
+    */
     private $contenu;
 
     
     /**
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="sortieSupervise")
      * @ORM\JoinTable(name="sorties_surpervisions",
@@ -135,6 +141,7 @@ class Sortie
     
     
     /**
+     * @var ArrayCollection
      *
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="sorties")
      * @ORM\JoinTable(name="sorties_inscriptions",

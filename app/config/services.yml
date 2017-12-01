@@ -35,6 +35,16 @@ services:
         arguments: [~, AppBundle\Entity\Blog, AppBundle:Blog]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Blog }
+    app.admin.partenaires:
+        class: AppBundle\Admin\PartenaireAdmin
+        arguments: [~, AppBundle\Entity\Partenaire, AppBundle:Partenaire]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Partenaire }
+    app.admin.newsletter:
+        class: AppBundle\Admin\DemandeNewsletterAdmin
+        arguments: [~, AppBundle\Entity\DemandeNewsletter, AppBundle:DemandeNewsletter]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: DemandeNewsletter }
     app.admin.sorties:
         class: AppBundle\Admin\SortieAdmin
         arguments: [~, AppBundle\Entity\Sortie, AppBundle:Sortie]
@@ -52,15 +62,20 @@ services:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Parametres }
     app.admin.cours:
         class: AppBundle\Admin\CourAdmin
-        arguments: [~, AppBundle\Entity\Cour, SonataAdminBundle:CRUD]
+        arguments: [~, AppBundle\Entity\Cour, AppBundle:Cour]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Cours }
+    app.admin.cours_details:
+            class: AppBundle\Admin\CourDetailAdmin
+            arguments: [~, AppBundle\Entity\CourDetail, SonataAdminBundle:CRUD]
+            tags:
+                - { name: sonata.admin, manager_type: orm, group: admin, label: CoursDetail }
     app.error_controller:
         class: AppBundle\Controller\Front\ErrorController
         arguments: ['@twig', '%kernel.debug%']
     app.twig_helper:
         class: AppBundle\Twig\TwigHelpers
-        arguments: ["@doctrine.orm.entity_manager"]
+        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image"]
         tags:
             - { name: twig.extension }
     app.admin.block.timeline:
@@ -68,3 +83,11 @@ services:
         arguments: ["app.admin.block.timeline", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]
         tags:
             - { name: sonata.block }
+
+    app.event_listener.user_entity:
+        class: AppBundle\EventListener\EntityListener
+        arguments: ["@security.token_storage"]
+        tags:
+            - { name: doctrine.event_listener, event: preRemove }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }

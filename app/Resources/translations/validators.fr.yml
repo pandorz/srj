@@ -1,3 +1,5 @@
+basic_word: 'Seulement un mot, sans accents'
+
 fos_group:
     name:
         already_used: 'Ce nom est déjà utilisé'

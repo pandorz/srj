@@ -43,20 +43,17 @@ class EvenementAdmin extends AbstractAdmin
                 'editable'  => true
             ])
             ->add('datePublication', 'date', [
-                'label'     => 'evenement.liste.datePublication',
-                'sortable'  => 'name'
+                'label'     => 'evenement.liste.datePublication'
             ])
             ->add('annule', 'boolean', [
                 'label'     => 'evenement.liste.annule',
                 'editable'  => true
             ])
             ->add('dateDebut', 'date', [
-                'label'     => 'evenement.liste.dateDebut',
-                'sortable'  => 'name'
+                'label'     => 'evenement.liste.dateDebut'
             ])
             ->add('dateFin', 'date', [
-                'label'     => 'evenement.liste.dateFin',
-                'sortable'  => 'name'
+                'label'     => 'evenement.liste.dateFin'
             ])
             ->add('_action', null, array(
                 'actions' => array(
@@ -213,6 +210,7 @@ class EvenementAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
+        $page->setTimestampCreation(new \DateTime('now'));
     }
 
     /**
@@ -222,6 +220,7 @@ class EvenementAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
+        $page->setTimestampModification(new \DateTime('now'));
     }
 
     /**

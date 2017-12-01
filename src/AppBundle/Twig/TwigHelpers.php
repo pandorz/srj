@@ -3,8 +3,12 @@
 namespace AppBundle\Twig;
 
 use AppBundle\Entity\Blog;
+use AppBundle\Entity\Cour;
 use AppBundle\Entity\Parametre;
+use AppBundle\Entity\Utilisateur;
+use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\EntityManager;
+use Sonata\MediaBundle\Provider\ImageProvider;
 
 class TwigHelpers extends \Twig_Extension
 {
@@ -14,11 +18,17 @@ class TwigHelpers extends \Twig_Extension
     private $entityManager;
 
     /**
+     * @var ImageProvider
+     */
+    private $providerImage;
+
+    /**
      * @param EntityManager $entityManager
      */
-    public function __construct(EntityManager $entityManager)
+    public function __construct(EntityManager $entityManager, ImageProvider $providerImage)
     {
         $this->entityManager = $entityManager;
+        $this->providerImage = $providerImage;
     }
 
     
@@ -30,22 +40,12 @@ class TwigHelpers extends \Twig_Extension
         return array(
             new \Twig_SimpleFunction('lien_adhesion', array($this, 'getLienAdhesion')),
             new \Twig_SimpleFunction('lien_adhesion_japonais', array($this, 'getLienAdhesionJaponais')),
-            new \Twig_SimpleFunction('lien_cours_japonais', array($this, 'getLienCoursJaponais')),
-            new \Twig_SimpleFunction('lien_cours_yoga', array($this, 'getLienCoursYoga')),
-            new \Twig_SimpleFunction('lien_cours_jlpt', array($this, 'getLienCoursJLPT')),
-            new \Twig_SimpleFunction('lien_cours_japonais_enfant', array($this, 'getLienCoursJaponaisEnfant')),
-            new \Twig_SimpleFunction('lien_cours_calligraphie', array($this, 'getLienCoursCalligraphie')),
-            new \Twig_SimpleFunction('lien_cours_the', array($this, 'getLienCoursThe')),
-            new \Twig_SimpleFunction('lien_calendrier_cours_japonais', array($this, 'getLienCalendrierCoursJaponais')),
-            new \Twig_SimpleFunction('lien_calendrier_cours_japonais_enfant', array($this, 'getLienCalendrierCoursJaponaisEnfant')),
-            new \Twig_SimpleFunction('lien_calendrier_cours_calligraphie', array($this, 'getLienCalendrierCoursCalligraphie')),
-            new \Twig_SimpleFunction('lien_calendrier_cours_the', array($this, 'getLienCalendrierCoursThe')),
-            new \Twig_SimpleFunction('lien_calendrier_cours_yoga', array($this, 'getLienCalendrierCoursYoga')),
-            new \Twig_SimpleFunction('lien_calendrier_cours_jlpt', array($this, 'getLienCalendrierCoursJLPT')),
+            new \Twig_SimpleFunction('liste_cours_nav', array($this, 'getNavLinks')),
             new \Twig_SimpleFunction('is_actif_blog', array($this, 'isActifBlog')),
             new \Twig_SimpleFunction('crop_entete_texte', array($this, 'cropEnteteTexte')),
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
-            new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog'))
+            new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog')),
+            new \Twig_SimpleFunction('get_image_profil', array($this, 'getImageProfil'))
         );
     }
 
@@ -87,78 +87,6 @@ class TwigHelpers extends \Twig_Extension
         $parametre =$this->getParamBySlug('lien-adhesion-membre-japonais');
         return $this->returnParametreValue($parametre);
     }
-    
-    public function getLienCoursJaponais()
-    {
-        $parametre = $this->getParamBySlug('lien-inscription-cours-japonais');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCoursYoga()
-    {
-        $parametre =$this->getParamBySlug('lien-inscription-cours-yoga');
-        return $this->returnParametreValue($parametre);
-    }
-
-    public function getLienCoursJLPT()
-    {
-        $parametre =$this->getParamBySlug('lien-inscription-cours-jlpt');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCoursJaponaisEnfant()
-    {
-        $parametre = $this->getParamBySlug('lien-inscription-cours-enfant');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCoursCalligraphie()
-    {
-        $parametre = $this->getParamBySlug('lien-inscription-cours-calligraphie');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCoursThe()
-    {
-        $parametre = $this->getParamBySlug('lien-inscription-cours-ceremonie-du-the');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCalendrierCoursJaponais()
-    {
-        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-japonais');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCalendrierCoursJaponaisEnfant()
-    {
-        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-enfants');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCalendrierCoursCalligraphie()
-    {
-        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-calligraphie');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCalendrierCoursThe()
-    {
-        $parametre = $this->getParamBySlug('lien-pdf-calendrier-ceremonie-du-the');
-        return $this->returnParametreValue($parametre);
-    }
-    
-    public function getLienCalendrierCoursYoga()
-    {
-        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-yoga');
-        return $this->returnParametreValue($parametre);
-    }
-
-    public function getLienCalendrierCoursJLPT()
-    {
-        $parametre = $this->getParamBySlug('lien-pdf-calendrier-cours-jlpt');
-        return $this->returnParametreValue($parametre);
-    }
 
     public function isActifBlog()
     {
@@ -186,5 +114,35 @@ class TwigHelpers extends \Twig_Extension
         return $this->entityManager
             ->getRepository(Parametre::class)
             ->findOneBy(['slug' => $slug]);
+    }
+
+    /**
+     * @return array
+     */
+    public function getNavLinks()
+    {
+        $data = [];
+        $cours = $this->entityManager->getRepository(Cour::class)->getAffichable();
+
+        if (!empty($cours)) {
+            foreach ($cours as $cour) {
+                $data[]= ['titre' => $cour->getTitreNav(), 'ancre' => $cour->getAncre()];
+            }
+        }
+
+        return $data;
+    }
+
+    public function getImageProfil(int $idUtilisateur)
+    {
+        $result = $this->entityManager->getRepository(Utilisateur::class)->findMedia($idUtilisateur);
+        if (!empty($result) && isset($result[0])) {
+            /** @var Media $media */
+            $media = $result[0];
+            $media->setContext('image');
+            $format = $this->providerImage->getFormatName($media, 'big');
+            return str_replace('.jpg','.jpeg', $this->providerImage->generatePublicUrl($media, $format));
+        }
+        return null;
     }
 }

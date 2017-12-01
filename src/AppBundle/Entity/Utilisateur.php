@@ -6,13 +6,15 @@ use Doctrine\ORM\Mapping as ORM;
 use Sonata\UserBundle\Entity\BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 
 /**
  * Utilisateur
  *
  * @ORM\Table(name="utilisateur", indexes={
- *     @ORM\Index(name="email", columns={"email"})
+ *     @ORM\Index(name="email", columns={"email"}),
+ *     @ORM\Index(name="slug", columns={"slug"})
  * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UtilisateurRepository")
  * @ORM\HasLifecycleCallbacks
@@ -28,7 +30,9 @@ class Utilisateur extends BaseUser
      */
     protected $id;    
     
-    /**
+   /**
+    * @var string
+    *
     * @Gedmo\Slug(fields={"lastname","firstname"})
     * @ORM\Column(length=128, unique=true)
     */
@@ -39,7 +43,7 @@ class Utilisateur extends BaseUser
     *
     * @ORM\Column(name="acces_site", type="boolean")
     */
-    private $acces_site;
+    private $accesSite;
 
     /**
      * @var boolean
@@ -53,50 +57,61 @@ class Utilisateur extends BaseUser
     *
     * @ORM\Column(name="est_professeur", type="boolean")
     */
-    private $est_professeur;    
+    private $estProfesseur;    
     
     /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Cour", mappedBy="inscrits")
      */
     private $cours;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Sortie", mappedBy="inscrits")
      */
     private $sorties;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Atelier", mappedBy="inscrits")
      */
     private $ateliers;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Atelier", mappedBy="superviseurs")
      */
     private $atelierSupervise;
 
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Actualite", mappedBy="superviseurs")
      */
     private $actualiteSupervise;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Evenement", mappedBy="superviseurs")
      */
     private $evenementSupervise;
     
-    /**
+    /** @var ArrayCollection
+     *
      * @ORM\ManyToMany(targetEntity="Sortie", mappedBy="superviseurs")
      */
     private $sortieSupervise;
-
 	
     /**
-     * @ORM\OneToMany(targetEntity="Cour", mappedBy="professeur")
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Cour", mappedBy="professeurs")
      */
     private $professeurDe;
         
     /**
+     * @var ArrayCollection
+     *
      * @ORM\ManyToOne(targetEntity="Utilisateur",  inversedBy="parent")
      * @ORM\JoinTable(name="Utilisateur_relations",
      *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
@@ -106,10 +121,31 @@ class Utilisateur extends BaseUser
     private $sousUtilisateurs;
     
     /**
+     * @var Utilisateur
+     *
      * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="sousUtilisateurs")
      */
     private $parent;
 
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
+     */
+    private $image;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="membre_titre", type="string", length=60, nullable=true)
+     */
+    private $membreTitre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="membre_numero", type="string", length=60, nullable=true)
+     */
+    private $membreNumero;
 
     /**
     * Constructor
@@ -166,7 +202,7 @@ class Utilisateur extends BaseUser
      */
     public function setAccesSite($accesSite)
     {
-        $this->acces_site = $accesSite;
+        $this->accesSite = $accesSite;
 
         return $this;
     }
@@ -178,7 +214,7 @@ class Utilisateur extends BaseUser
      */
     public function getAccesSite()
     {
-        return $this->acces_site;
+        return $this->accesSite;
     }
 
     /**
@@ -350,10 +386,7 @@ class Utilisateur extends BaseUser
      */
     public function setEstProfesseur($estProfesseur)
     {
-        //si pas sous utilisateur
-        if(is_null($this->getParent()))
-            $this->est_professeur = $estProfesseur;
-
+        $this->estProfesseur = $estProfesseur;
         return $this;
     }
 
@@ -364,7 +397,7 @@ class Utilisateur extends BaseUser
      */
     public function getEstProfesseur()
     {
-        return $this->est_professeur;
+        return $this->estProfesseur;
     }
 
     /**
@@ -588,5 +621,68 @@ class Utilisateur extends BaseUser
             return $this->getFullname();
         }
         return parent::__toString();
+    }
+
+    public function getStringMembre() {
+        if (!empty($this->getFirstname())) {
+            return $this->getFirstname();
+        }
+        return $this->__toString();
+    }
+
+    /**
+     * Set image
+     *
+     * @param MediaInterface $image
+     *
+     * @return Utilisateur
+     */
+    public function setImage(MediaInterface $image  = null)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return MediaInterface
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMembreTitre()
+    {
+        return $this->membreTitre;
+    }
+
+    /**
+     * @param string $membreTitre
+     */
+    public function setMembreTitre($membreTitre)
+    {
+        $this->membreTitre = $membreTitre;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMembreNumero()
+    {
+        return $this->membreNumero;
+    }
+
+    /**
+     * @param string $membreNumero
+     */
+    public function setMembreNumero($membreNumero)
+    {
+        $this->membreNumero = $membreNumero;
     }
 }

@@ -11,8 +11,11 @@ security:
             - ROLE_APP_ADMIN_BLOG_EDITOR
             - ROLE_APP_ADMIN_SORTIES_EDITOR
             - ROLE_APP_ADMIN_COURS_EDITOR
+            - ROLE_APP_ADMIN_COURS_DETAILS_EDITOR
             - ROLE_APP_ADMIN_EVENEMENTS_EDITOR
             - ROLE_APP_ADMIN_PARAMETRES_EDITOR
+            - ROLE_APP_ADMIN_PARTENAIRES_EDITOR
+            - ROLE_APP_ADMIN_NEWSLETTER_EDITOR
             - ROLE_SONATA_MEDIA_ADMIN_MEDIA_EDITOR
             - ROLE_SONATA_MEDIA_ADMIN_GALLERY_EDITOR
             - ROLE_SONATA_MEDIA_ADMIN_GALLERY_HAS_MEDIA_EDITOR
@@ -28,8 +31,11 @@ security:
             - ROLE_APP_ADMIN_ATELIERS_ADMIN
             - ROLE_APP_ADMIN_SORTIES_ADMIN
             - ROLE_APP_ADMIN_COURS_ADMIN
+            - ROLE_APP_ADMIN_COURS_DETAILS_ADMIN
             - ROLE_APP_ADMIN_EVENEMENTS_ADMIN
             - ROLE_APP_ADMIN_PARAMETRES_ADMIN
+            - ROLE_APP_ADMIN_PARTENAIRES_ADMIN
+            - ROLE_APP_ADMIN_NEWSLETTER_ADMIN
             - ROLE_SONATA_ADMIN
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]        
 
@@ -61,6 +67,7 @@ security:
                 path:           /gyosei/logout
                 target:         /gyosei/login
             anonymous:          true
+            switch_user: true
 
         main:
             pattern:             .*

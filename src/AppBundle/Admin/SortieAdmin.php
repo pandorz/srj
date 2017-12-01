@@ -42,8 +42,7 @@ class SortieAdmin extends AbstractAdmin
                 'editable'  => true
             ]) 
             ->add('datePublication', 'date', [
-                'label'     => 'sortie.liste.datePublication',
-                'sortable'  => 'name'
+                'label'     => 'sortie.liste.datePublication'
             ])   
             ->add('annule', 'boolean', [
                 'label'     => 'sortie.liste.annule',
@@ -57,12 +56,10 @@ class SortieAdmin extends AbstractAdmin
                 'label' => 'sortie.liste.nbPlace',
             ])
             ->add('date', 'date', [
-                'label'     => 'sortie.liste.date',
-                'sortable'  => 'name'
+                'label'     => 'sortie.liste.date'
             ])
             ->add('dateLimite', 'date', [
-                'label'     => 'sortie.liste.dateLimite',
-                'sortable'  => 'name'
+                'label'     => 'sortie.liste.dateLimite'
             ])
             ->add('_action', null, array(
                 'actions' => array(
@@ -269,6 +266,7 @@ class SortieAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
+        $page->setTimestampCreation(new \DateTime('now'));
     }
 
     /**
@@ -278,6 +276,7 @@ class SortieAdmin extends AbstractAdmin
     {
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
+        $page->setTimestampModification(new \DateTime('now'));
     }
 
     /**

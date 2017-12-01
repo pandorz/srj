@@ -25,6 +25,7 @@ sonata_admin:
         dashboard: SonataAdminBundle:Core:dashboard.html.twig
         layout: :AdminCustom:/template/standard_layout.html.twig
         edit:   :AdminCustom:/template/edit.html.twig
+        user_block: :AdminCustom:/template/user_block.html.twig
     dashboard:
         groups:
             app.admin.group.principal.evenements:
@@ -44,7 +45,7 @@ sonata_admin:
             app.admin.group.principal.sorties:
                 on_top: true
                 label: "Sorties"
-                icon: '<i class="fa fa-random"></i>'
+                icon: '<i class="fa fa-car"></i>'
                 roles: [ROLE_APP_ADMIN_SORTIES_ADMIN]
                 items:
                     - app.admin.sorties
@@ -62,6 +63,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_COURS_ADMIN]
                 items:
                     - app.admin.cours
+            app.admin.group.principal.partenaires:
+                on_top: true
+                label: "Partenaires"
+                icon: '<i class="fa fa-user-secret"></i>'
+                roles: [ROLE_APP_ADMIN_PARTENAIRES_ADMIN]
+                items:
+                    - app.admin.partenaires
             app.admin.group.principal.blog:
                 on_top: true
                 label: "Blog"
@@ -69,6 +77,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_BLOG_ADMIN]
                 items:
                     - app.admin.blog
+            app.admin.group.principal.demandenewsletter:
+                on_top: true
+                label: "Demande Newsletter"
+                icon: '<i class="fa fa-envelope-o"></i>'
+                roles: [ROLE_APP_ADMIN_NEWSLETTER_ADMIN]
+                items:
+                    - app.admin.newsletter
             app.admin.group.principal.parametres:
                 on_top: true
                 label: "Parametres"
@@ -95,32 +110,43 @@ sonata_admin:
                 type: app.admin.block.stats
                 settings:
                     template: SonataAdminBundle:Block:block_stats.html.twig
-                    icon:  fa-users
-                    text:  Utilisateurs
+                    icon: fa-users
+                    text: Utilisateurs
                     color: bg-green
                     entity: AppBundle\Entity\Utilisateur
                     filters:
             -
-                class: col-lg-3 col-xs-6
+                class: col-lg-2 col-xs-6
                 position: top
                 type: app.admin.block.stats
                 settings:
                     template: SonataAdminBundle:Block:block_stats.html.twig
-                    icon:  fa-calendar
-                    text:  Evenements
+                    icon: fa-calendar
+                    text: Evenements
                     color: bg-aqua
                     entity: AppBundle\Entity\Evenement
                     filters:
             -
-                class: col-lg-3 col-xs-6
+                class: col-lg-2 col-xs-6
                 position: top
                 type: app.admin.block.stats
                 settings:
                     template: SonataAdminBundle:Block:block_stats.html.twig
-                    icon:  fa-car
-                    text:  Sorties
+                    icon: fa-car
+                    text: Sorties
                     color: bg-yellow
                     entity: AppBundle\Entity\Sortie
+                    filters:
+            -
+                class: col-lg-2 col-xs-6
+                position: top
+                type: app.admin.block.stats
+                settings:
+                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    icon: fa-pencil
+                    text: Ateliers
+                    color: bg-maroon
+                    entity: AppBundle\Entity\Atelier
                     filters:
             -
                 class: col-lg-3 col-xs-6
@@ -128,10 +154,10 @@ sonata_admin:
                 type: app.admin.block.stats
                 settings:
                     template: SonataAdminBundle:Block:block_stats.html.twig
-                    icon:  fa-graduation-cap
-                    text:  Ateliers
-                    color: bg-maroon
-                    entity: AppBundle\Entity\Atelier
+                    icon: fa-user-secret
+                    text: Partenaires
+                    color: bg-teal
+                    entity: AppBundle\Entity\Partenaire
                     filters:
             -
                 class: col-lg-12 col-xs-12
