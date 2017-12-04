@@ -260,8 +260,6 @@ class CourAdmin extends AbstractAdmin
             ->add('annule')
             ->add('complet')
             ->add('bientotComplet')
-            ->add('utilisateurCreation')
-            ->add('utilisateurModification')
         ;
     }
 

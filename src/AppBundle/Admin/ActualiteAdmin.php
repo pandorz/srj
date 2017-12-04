@@ -167,9 +167,7 @@ class ActualiteAdmin extends AbstractAdmin
             ->add('affiche')
             ->add('annule')
             ->add('dateDebut')
-            ->add('dateFin')    
-            ->add('utilisateurCreation')
-            ->add('utilisateurModification')
+            ->add('dateFin')
         ;
     }
 
@@ -191,10 +189,10 @@ class ActualiteAdmin extends AbstractAdmin
                 'label' => 'actualite.liste.nom'
             ])
             ->add('dateDebut', null, [
-                'label' => 'actualite.liste.nom'
+                'label' => 'actualite.liste.dateDebut'
             ])
             ->add('dateFin', null, [
-                'label' => 'actualite.liste.nom'
+                'label' => 'actualite.liste.dateFin'
             ])
             ->add('datePublication', null, [
                 'label' => 'actualite.liste.datePublication'
