@@ -92,9 +92,7 @@ class PartenaireAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('nom')
-            ->add('utilisateurCreation')
-            ->add('utilisateurModification');
+            ->add('nom');
     }
 
     /**

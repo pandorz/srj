@@ -250,9 +250,7 @@ class AtelierAdmin extends AbstractAdmin
             ->add('reserveMembre')
             ->add('prix')    
             ->add('date')
-            ->add('dateLimite')    
-            ->add('utilisateurCreation')
-            ->add('utilisateurModification')
+            ->add('dateLimite')
         ;
     }
 

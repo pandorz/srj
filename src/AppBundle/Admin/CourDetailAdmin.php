@@ -93,8 +93,6 @@ class CourDetailAdmin extends AbstractAdmin
         $showMapper
             ->add('nom')
             ->add('complet')
-            ->add('utilisateurCreation')
-            ->add('utilisateurModification')
         ;
     }
 

@@ -168,9 +168,7 @@ class EvenementAdmin extends AbstractAdmin
             ->add('affiche')
             ->add('annule')
             ->add('dateDebut')
-            ->add('dateFin')    
-            ->add('utilisateurCreation')
-            ->add('utilisateurModification')
+            ->add('dateFin')
         ;
     }
 
@@ -186,16 +184,16 @@ class EvenementAdmin extends AbstractAdmin
                 'label' => 'evenement.liste.nom'
             ])
             ->add('affiche', null, [
-                'label' => 'evenement.liste.nom'
+                'label' => 'evenement.liste.affiche'
             ])
             ->add('annule', null, [
-                'label' => 'evenement.liste.nom'
+                'label' => 'evenement.liste.annule'
             ])
             ->add('dateDebut', null, [
-                'label' => 'evenement.liste.nom'
+                'label' => 'evenement.liste.dateDebut'
             ])
             ->add('dateFin', null, [
-                'label' => 'evenement.liste.nom'
+                'label' => 'evenement.liste.dateFin'
             ])
             ->add('datePublication', null, [
                 'label' => 'evenement.liste.datePublication'

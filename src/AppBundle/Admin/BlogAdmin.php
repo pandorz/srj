@@ -129,8 +129,6 @@ class BlogAdmin extends AbstractAdmin
             ->add('nom')
             ->add('affiche')
             ->add('datePublication')
-            ->add('utilisateurCreation')
-            ->add('utilisateurModification')
         ;
     }
 
@@ -146,7 +144,7 @@ class BlogAdmin extends AbstractAdmin
                 'label' => 'blog.liste.nom'
             ])
             ->add('affiche', null, [
-                'label' => 'blog.liste.nom'
+                'label' => 'blog.liste.affiche'
             ])
             ->add('datePublication', null, [
                 'label' => 'blog.liste.datePublication'
