@@ -1,6 +1,9 @@
 timeline:
     title: 'A venir par date de publication'
 
+statistique:
+    title: 'Nombre de demande de newsletter par mois cette année'
+
 title_create: Créer
 title_edit: Editer
 url_planneur_link: 'Voir le planner'

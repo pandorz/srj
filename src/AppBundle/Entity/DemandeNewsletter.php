@@ -21,7 +21,7 @@ class DemandeNewsletter
     private $id;
 
     /**
-     * @var int
+     * @var string
      *
      * @ORM\Column(name="email", type="string", length=255)
      */
@@ -31,7 +31,7 @@ class DemandeNewsletter
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="timestamp_creation", type="datetime", nullable=true)
+     * @ORM\Column(name="timestamp_creation", type="datetime")
      */
     private $timestampCreation;
 
@@ -58,7 +58,7 @@ class DemandeNewsletter
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getEmail()
     {
@@ -66,7 +66,7 @@ class DemandeNewsletter
     }
 
     /**
-     * @param int $email
+     * @param string $email
      */
     public function setEmail($email)
     {

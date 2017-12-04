@@ -107,6 +107,10 @@ app.doScripts = function() {
     ], 'admin.js');
 
     pipeline.add([
+        config.assetsDir+'/js/Chart.js'
+    ], 'Chart.js');
+
+    pipeline.add([
         'vendor/oh/google-map-form-type-bundle/Oh/GoogleMapFormTypeBundle/Resources/public/js/jquery.ohgooglemaps.js'
     ], 'jquery.ohgooglemaps.js');
 

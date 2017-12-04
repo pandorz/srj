@@ -84,6 +84,12 @@ services:
         tags:
             - { name: sonata.block }
 
+    app.admin.block.statistique:
+            class: AppBundle\Service\StatistiqueBlockService
+            arguments: ["app.admin.block.statistique", "@templating", "@doctrine.orm.entity_manager", "@sonata.admin.pool"]
+            tags:
+                - { name: sonata.block }
+
     app.event_listener.user_entity:
         class: AppBundle\EventListener\EntityListener
         arguments: ["@security.token_storage"]

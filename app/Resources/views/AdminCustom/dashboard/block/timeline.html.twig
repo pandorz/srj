@@ -23,7 +23,8 @@
                               <h3 class="timeline-header">{{ item.objet.nom }}</h3>
 
                               <div class="timeline-body">
-                                {{ item.objet.contenu|raw }}
+                                  {% set contenu = item.objet.descriptionCourte is defined ? item.objet.descriptionCourte : item.objet.contenu %}
+                                  {{ contenu|raw }}
                               </div>
                             </div>
                           </li>

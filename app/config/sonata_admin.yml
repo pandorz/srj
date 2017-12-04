@@ -162,6 +162,15 @@ sonata_admin:
             -
                 class: col-lg-12 col-xs-12
                 position: top
+                type: app.admin.block.statistique
+                settings:
+                    template: :AdminCustom/dashboard:block/statistique.html.twig
+                    icon:  fa-clock-o
+                    color: bg-white
+                    filters:
+            -
+                class: col-lg-12 col-xs-12
+                position: top
                 type: app.admin.block.timeline
                 settings:
                     template: :AdminCustom/dashboard:block/timeline.html.twig

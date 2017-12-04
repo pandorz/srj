@@ -9,10 +9,10 @@
                 {% if media_path is null %}
                     {% set media_path = asset(sonata_user.defaultAvatar) %}
                 {% endif %}
-                <img class="membrePhoto" src="{{ media_path }}" alt="{{ membre.slug }}" width="140" height="140">
-                <strong class="membreName">{{ membre.getStringMembre }}</strong>
+                <img class="memberPhoto" src="{{ media_path }}" alt="{{ membre.slug }}" width="140" height="140">
+                <strong class="memberName">{{ membre.getStringMembre }}</strong>
                 {% if membre.membreTitre is not empty %}
-                <span class="membreJob">{{ membre.membreTitre }}</span>
+                <span class="memberJob">{{ membre.membreTitre }}</span>
                 {% endif %}
             </div>
         {% endfor %}

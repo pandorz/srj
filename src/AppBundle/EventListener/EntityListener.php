@@ -1,6 +1,8 @@
 <?php
 namespace AppBundle\EventListener;
 
+use AppBundle\Entity\DemandeNewsletter;
+use AppBundle\Entity\Statistique;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Entity\UtilisateurLog;
 use Doctrine\ORM\Event\LifecycleEventArgs;
@@ -37,6 +39,7 @@ class EntityListener
     public function postPersist(LifecycleEventArgs $args)
     {
         $this->setLog($args, __FUNCTION__);
+        $this->setStatistique($args);
     }
 
     /**
@@ -85,5 +88,28 @@ class EntityListener
             return $utilisateurLog;
         }
         return null;
+    }
+
+    /**
+     * @param LifecycleEventArgs $args
+     */
+    private function setStatistique(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+        if ($entity instanceof DemandeNewsletter) {
+            $em = $args->getEntityManager();
+            $statitisque = $em->getRepository(Statistique::class)->findOneByTimestampCreation((new \DateTime()));
+
+            if ($statitisque instanceof Statistique) {
+                $statitisque->setOccurence(($statitisque->getOccurence() + 1));
+            } else {
+                $statitisque = new Statistique();
+                $statitisque->setEntityName(get_class($entity));
+                $statitisque->setOccurence(1);
+            }
+
+            $em->persist($statitisque);
+            $em->flush();
+        }
     }
 }

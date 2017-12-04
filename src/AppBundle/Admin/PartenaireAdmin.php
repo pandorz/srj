@@ -16,7 +16,7 @@ use AppBundle\Entity\Partenaire;
 class PartenaireAdmin extends AbstractAdmin
 {
     protected $baseRouteName    = 'admin_partenaire';
-    protected $baseRoutePattern = 'Partenaire';
+    protected $baseRoutePattern = 'partenaire';
 
     public $supportsPreviewMode = false;
 
