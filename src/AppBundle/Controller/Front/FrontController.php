@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\Kouryukai;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
 use AppBundle\Entity\DemandeNewsletter;
@@ -161,6 +162,28 @@ class FrontController extends BaseController
 
             if (!empty($atelier->getUrlInscription())) {
                 $data_temp['url'] = $atelier->getUrlInscription();
+            }
+            $data[] = $data_temp;
+        }
+
+        $kouryukai= $this->getEm()
+            ->getRepository(Kouryukai::class)
+            ->findAllValidOverOneMonth();
+
+        foreach ($kouryukai as $k) {
+            $start = $k->getDate();
+
+            if (!is_null($start)) {
+                $start = $start->format(self::FORMAT_DATE);
+            }
+
+            $data_temp = [
+                'title' => $k->getNom(),
+                'start' => $start
+            ];
+
+            if (!empty($k->getUrlInscription())) {
+                $data_temp['url'] = $k->getUrlInscription();
             }
             $data[] = $data_temp;
         }
