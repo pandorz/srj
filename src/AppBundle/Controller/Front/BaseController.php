@@ -348,7 +348,7 @@ class BaseController extends Controller
                 }
             }
         }
-        
+
         return $tabElements;
     }
     
