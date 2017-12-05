@@ -52,7 +52,8 @@
                         <p class="postSummary">{{ crop_entete_texte(sortie.contenu)|raw }}</p>
                         <div class="postMoreText" style="display: none;">
                             {{ get_corps_texte(sortie.contenu)|raw }}
-                            <p><b class="u-textColorRJ">Conditions :</b>
+                            <p>
+                                <b class="u-textColorRJ">Conditions :</b>
                                 {%if sortie.prix>0 and not sortie.reserveMembre %}
                                 {{sortie.prix|replace({'.':','})}} euros pour les personnes non membres.
                                 {% endif %}
@@ -62,10 +63,11 @@
                                     Gratuit pour les membres.
                                 {% endif %}
                                 {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
-                                <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}</p>
-                                {% if sortie.urlInscription is not empty %}
-                                    <p><b>&gt; <a class="u-textBlack" href="{{ sortie.urlInscription }}" target="_blank">Je veux participer !</a></b></p>
-                                {% endif %}
+                                <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}
+                            </p>
+                            {% if sortie.urlInscription is not empty %}
+                                <p><b>&gt; <a class="u-textBlack" href="{{ sortie.urlInscription }}" target="_blank">Je veux participer !</a></b></p>
+                            {% endif %}
                         </div>
                         {% if sortie.contenu|length > 1 %}
                         <button class="seeMore" aria-hidden="true">En savoir plus</button>

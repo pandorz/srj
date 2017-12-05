@@ -498,7 +498,7 @@ kouryukai:
     actif: Active
 
     add_edit:
-        to_string: Sortie
+        to_string: Kouryukai
 
     annule: Annulé
     contenu: Descriptif
@@ -523,7 +523,7 @@ kouryukai:
     placeholder:
         actif: Activer/Desactiver
         annule: Annuler
-        contenu: 'Le descriptif de l''actualité'
+        contenu: 'Le descriptif du kouryukai'
         date: Date
         datePublication: 'Date de publication'
         date_limite: 'Date limite'
@@ -532,6 +532,9 @@ kouryukai:
         reserve_membre: 'Réservé aux membres'
         superviseurs: Superviseurs
         urlInscription: 'Lien vers assoConect'
+        adresse: 'Adresse du kouryukai'
+        cp: 'Code postal du kouryukai'
+        ville: 'Ville du kouryukai'
 
     reserve_membre: 'Reservé membres'
     superviseurs: Superviseurs
@@ -540,6 +543,14 @@ kouryukai:
     with:
         details: Informations
         meta_data: Détails
+
+    latitude: Latitude
+    longitude: Longitude
+    position: Emplacement
+    positon:
+        current_position: 'Ma position actuelle'
+        search: Rechercher
+    ville: Ville
 
 utilisateur:
     accesSite: 'Peut acceder au site'

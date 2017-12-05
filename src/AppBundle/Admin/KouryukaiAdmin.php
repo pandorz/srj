@@ -3,6 +3,7 @@
 namespace AppBundle\Admin;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Oh\GoogleMapFormTypeBundle\Form\Type\GoogleMapType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -179,6 +180,43 @@ class KouryukaiAdmin extends AbstractAdmin
                 'context'  => 'image',
                 'required' => false,
             ))
+            ->add('adresse', 'text', [
+                'label' => 'kouryukai.adresse',
+                'attr'  => [
+                    'placeholder'   => 'kouryukai.placeholder.adresse',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('codePostal', 'text', [
+                'label' => 'kouryukai.cp',
+                'attr'  => [
+                    'placeholder'   => 'kouryukai.placeholder.cp',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('ville', 'text', [
+                'label' => 'kouryukai.ville',
+                'attr'  => [
+                    'placeholder'   => 'kouryukai.placeholder.ville',
+                    'class'         => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('latlng', GoogleMapType::class, [
+                'label' => 'kouryukai.position',
+                'lat_options' => [
+                    'label' => 'kouryukai.latitude'
+                ],
+                'lng_options' => [
+                    'label' => 'kouryukai.longitude'
+                ],
+                'attr'  => [
+                    'class' => 'js-search-emplacement-container'
+                ],
+                'required' => false
+            ])
             ->end()
         ;
     }

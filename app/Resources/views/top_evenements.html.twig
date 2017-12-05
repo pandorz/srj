@@ -1,9 +1,10 @@
 <section class="events">
     {% set coming = 0 %}
     {% set past = 0 %}
-    {% for evenement in evenements %}
-        {% if evenement is not empty %}
-            {% if evenement.dateFin|date('Y-m-d') > 'now'|date('Y-m-d') %}
+    {% for evenementOuKouryukai in evenements %}
+        {% if evenementOuKouryukai is not empty %}
+            {% set date_to_compare = evenementOuKouryukai.dateFin is defined ? evenementOuKouryukai.dateFin : evenementOuKouryukai.date %}
+            {% if date_to_compare|date('Y-m-d') > 'now'|date('Y-m-d') %}
                 {% if coming == 0 %} 
                     <div class="comingEvent">
                         <h3 class="comingTitle">Prochainement</h3>

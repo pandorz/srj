@@ -36,21 +36,21 @@ class FrontController extends BaseController
     */
     public function indexAction(Request $request)
     {        
-        $evenements = $this->getTopEvenements(3);
-        $actualites = $this->getTopActualites(4);
-        $dates      = $this->getDatesCalendrier();
-        $blogs      = $this->getTopBlogs(1);
-        $blog       = null;
+        $evenementsOuKouryukai  = $this->getTopEvenementsOuKouruykai(3);
+        $actualites             = $this->getTopActualites(4);
+        $dates                  = $this->getDatesCalendrier();
+        $blogs                  = $this->getTopBlogs(1);
+        $blog                   = null;
 
         if(!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
             $blog = $blogs[0];
         }
 
         return $this->render('home.html.twig', [
-            'evenements' => $evenements,
-            'actualites' => $actualites,
-            'dates'      => $dates,
-            'blog'       => $blog
+            'evenementsOuKouryukai' => $evenementsOuKouryukai,
+            'actualites'            => $actualites,
+            'dates'                 => $dates,
+            'blog'                  => $blog
         ]);
     }
 
@@ -326,10 +326,10 @@ class FrontController extends BaseController
         if (!hash_equals($plus, "recent")) {
             $limit = null;
         }
-        $evenements = $this->getTopEvenements($limit);
+        $evenementsOuKouryukai = $this->getTopEvenementsOuKouruykai($limit);
         return $this->render(
             'evenements.html.twig',
-            ['evenements' => $evenements]
+            ['evenementsOuKouryukai' => $evenementsOuKouryukai]
         );
     }
     

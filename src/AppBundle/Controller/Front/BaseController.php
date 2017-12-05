@@ -3,6 +3,7 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
+use AppBundle\Entity\Kouryukai;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Evenement;
 use AppBundle\Entity\Actualite;
@@ -259,6 +260,75 @@ class BaseController extends Controller
         //--
         
         return $evenements;
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+    protected function getTopKouryukai($limit)
+    {
+        $kouryukai = [];
+        //-- Prochainement
+        $prochainKouryukai = $this->getEm()
+            ->getRepository(Kouryukai::class)
+            ->findProchain();
+        if (!is_null($prochainKouryukai)) {
+            if (is_array($prochainKouryukai) && count($prochainKouryukai)>0) {
+                $prochainKouryukai = $prochainKouryukai[0];
+            }
+            if (!empty($prochainKouryukai)) {
+                $kouryukai = [$prochainKouryukai];
+                $limit--;
+            }
+        }
+
+        //--
+
+        //-- Dernierement
+        $dernierement = $this->getEm()
+            ->getRepository(Kouryukai::class)
+            ->findDernier($limit);
+
+        if (!is_null($dernierement)) {
+            if (!is_array($dernierement) && !empty($dernierement)) {
+                $kouryukai[] = $dernierement;
+            } else {
+                foreach ($dernierement as $k) {
+                    if (!empty($dernierement)) {
+                        $kouryukai[] = $k;
+                    }
+                }
+            }
+        }
+        //--
+
+        return $kouryukai;
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     */
+    protected function getTopEvenementsOuKouruykai($limit)
+    {
+        $evenements = $this->getTopEvenements($limit);
+        $kouryukai  = $this->getTopKouryukai($limit);
+
+        $tabTimestamp = [];
+
+        /** @var Evenement $evenement */
+        foreach ($evenements as $evenement) {
+            $tabTimestamp[$evenement->getDateDebut()->getTimestamp()] = $evenement;
+        }
+
+        /** @var Kouryukai $k */
+        foreach ($kouryukai as $k) {
+            $tabTimestamp[$k->getDate()->getTimestamp()] = $k;
+        }
+
+        sort($tabTimestamp);
+        return $tabTimestamp;
     }
     
     /**

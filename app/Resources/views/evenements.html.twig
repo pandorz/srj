@@ -18,8 +18,9 @@
             </div>
         </section>
     {% else %}        
-        {% for evenement in evenements %}
-            {% if evenement.dateFin|date('Y-m-d') > 'now'|date('Y-m-d') %}
+        {% for evenementOuKouryukai in evenementsOuKouryukai %}
+            {% set date_to_compare = evenementOuKouryukai.dateFin is defined ? evenementOuKouryukai.dateFin : evenementOuKouryukai.date %}
+            {% if date_to_compare|date('Y-m-d') > 'now'|date('Y-m-d') %}
                 {% if coming == 0 %} 
                     <section class="comingEvents section">
                     <h2 class="sectionTitle">Prochainement</h2>
