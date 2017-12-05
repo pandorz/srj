@@ -495,7 +495,7 @@ sortie:
         meta_data: Détails
 
 kouryukai:
-    actif: Active
+    actif: Actif
 
     add_edit:
         to_string: Kouryukai
