@@ -327,8 +327,25 @@ class BaseController extends Controller
             $tabTimestamp[$k->getDate()->getTimestamp()] = $k;
         }
 
-        sort($tabTimestamp);
-        return $tabTimestamp;
+        krsort($tabTimestamp);
+
+        $tabElements = [];
+        // Ne garder qu'un seul element dans le futur
+        // N'avoir qu'un tableau de la taille "limit" max
+        $cpt = 0;
+        $now = new \DateTime();
+        foreach ($tabTimestamp as $element) {
+            if ($cpt<$limit) {
+                $dateElement = ($element instanceof Kouryukai ? $element->getDate():$element->getDateDebut());
+                if ($dateElement>$now && isset($tabElements[0])) {
+                    $tabElements[0] = $element;
+                } else {
+                    $tabElements[] = $element;
+                    $cpt++;
+                }
+            }
+        }
+        return $tabElements;
     }
     
     /**
