@@ -2,6 +2,7 @@
 namespace AppBundle\Service;
 
 use AppBundle\Entity\Blog;
+use AppBundle\Entity\Kouryukai;
 use Doctrine\ORM\EntityManager;
 
 use AppBundle\Entity\Actualite;
@@ -82,14 +83,17 @@ class TimeLineBlockService extends AbstractBlockService
         $repoEvenement  = $this->em->getRepository(Evenement::class);
         $evenements     = $repoEvenement->findAllValidOverOneMonth(true);
         
-        $repoAtelier  = $this->em->getRepository(Atelier::class);
-        $ateliers     = $repoAtelier->findAllValidOverOneMonth(true);
+        $repoAtelier    = $this->em->getRepository(Atelier::class);
+        $ateliers       = $repoAtelier->findAllValidOverOneMonth(true);
         
-        $repoSortie  = $this->em->getRepository(Sortie::class);
-        $sorties     = $repoSortie->findAllValidOverOneMonth(true);
+        $repoSortie     = $this->em->getRepository(Sortie::class);
+        $sorties        = $repoSortie->findAllValidOverOneMonth(true);
 
-        $repoBlog  = $this->em->getRepository(Blog::class);
-        $blogs     = $repoBlog->findAllValidOverOneMonth(true);
+        $repoKouryukai  = $this->em->getRepository(Kouryukai::class);
+        $kouryukai      = $repoAtelier->findAllValidOverOneMonth(true);
+
+        $repoBlog       = $this->em->getRepository(Blog::class);
+        $blogs          = $repoBlog->findAllValidOverOneMonth(true);
         
         $tab = array();
 
@@ -135,6 +139,17 @@ class TimeLineBlockService extends AbstractBlockService
                 'trans' => 'sortie.add_edit.to_string'
             ];           
             
+            $tab[$sortie->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+        }
+
+        foreach ($kouryukai as $k) {
+            $temp = [
+                'icon'  => 'fa-clock-o',
+                'objet' => $k,
+                'bg'    => 'bg-olive',
+                'trans' => 'kouryukai.add_edit.to_string'
+            ];
+
             $tab[$sortie->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
         }
 

@@ -112,7 +112,7 @@ sonata_admin:
                       label: "Groupes"
         blocks:
             -
-                class: col-lg-3 col-xs-6
+                class: col-lg-2 col-xs-6
                 position: top
                 type: app.admin.block.stats
                 settings:
@@ -139,6 +139,17 @@ sonata_admin:
                 type: app.admin.block.stats
                 settings:
                     template: SonataAdminBundle:Block:block_stats.html.twig
+                    icon: fa-clock-o
+                    text: Kouryukai
+                    color: bg-olive
+                    entity: AppBundle\Entity\Kouryukai
+                    filters:
+            -
+                class: col-lg-2 col-xs-6
+                position: top
+                type: app.admin.block.stats
+                settings:
+                    template: SonataAdminBundle:Block:block_stats.html.twig
                     icon: fa-car
                     text: Sorties
                     color: bg-yellow
@@ -156,7 +167,7 @@ sonata_admin:
                     entity: AppBundle\Entity\Atelier
                     filters:
             -
-                class: col-lg-3 col-xs-6
+                class: col-lg-2 col-xs-6
                 position: top
                 type: app.admin.block.stats
                 settings:
