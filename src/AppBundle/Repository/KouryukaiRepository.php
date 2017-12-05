@@ -60,4 +60,46 @@ class KouryukaiRepository extends \Doctrine\ORM\EntityRepository
             ->setMaxResults($limit)
             ->getResult();
     }
+
+    public function findProchain()
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Kouryukai e '
+                . 'WHERE e.annule = :annule '
+                . 'AND e.affiche = :affiche '
+                . 'AND e.date > :dateDebut '
+                . 'AND e.datePublication <= :datePublication '
+                . 'ORDER BY e.date ASC ')
+            ->setParameters([
+                'annule'  => false,
+                'affiche' => true,
+                'dateDebut' => date("Y-m-d"),
+                'datePublication' => date("Y-m-d")
+            ])
+            ->setMaxResults(1)
+            ->getResult();
+    }
+
+    public function findDernier($limit)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Kouryukai e '
+                . 'WHERE e.annule = :annule '
+                . 'AND e.affiche = :affiche '
+                . 'AND e.date <= :dateDebut '
+                . 'AND e.datePublication <= :datePublication '
+                . 'ORDER BY e.date DESC ')
+            ->setParameters([
+                'annule'  => false,
+                'affiche' => true,
+                'dateDebut' => date("Y-m-d"),
+                'datePublication' => date("Y-m-d")
+            ])
+            ->setMaxResults($limit)
+            ->getResult();
+    }
 }
