@@ -1,7 +1,7 @@
 <section class="events">
     {% set coming = 0 %}
     {% set past = 0 %}
-    {% for evenementOuKouryukai in evenements %}
+    {% for evenementOuKouryukai in evenementsOuKouryukai %}
         {% if evenementOuKouryukai is not empty %}
             {% set date_to_compare = evenementOuKouryukai.dateFin is defined ? evenementOuKouryukai.dateFin : evenementOuKouryukai.date %}
             {% if date_to_compare|date('Y-m-d') > 'now'|date('Y-m-d') %}
