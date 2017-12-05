@@ -550,6 +550,8 @@ kouryukai:
     positon:
         current_position: 'Ma position actuelle'
         search: Rechercher
+    adresse: Adresse
+    cp: 'Code postal'
     ville: Ville
 
 utilisateur:
