@@ -60,6 +60,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Sorties }
 
+    app.admin.kouryukai:
+        class: AppBundle\Admin\KouryukaiAdmin
+        arguments: [~, AppBundle\Entity\Kouryukai, AppBundle:Kouryukai]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Kouryukai }
+
     app.admin.ateliers:
         class: AppBundle\Admin\AtelierAdmin
         arguments: [~, AppBundle\Entity\Atelier, AppBundle:Atelier]
@@ -87,6 +93,7 @@ services:
     app.error_controller:
         class: AppBundle\Controller\Front\ErrorController
         arguments: ['@twig', '%kernel.debug%']
+
     app.twig_helper:
         class: AppBundle\Twig\TwigHelpers
         arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image"]

@@ -71,6 +71,12 @@ class Utilisateur extends BaseUser
      * @ORM\ManyToMany(targetEntity="Sortie", mappedBy="inscrits")
      */
     private $sorties;
+
+    /** @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Kouryukai", mappedBy="inscrits")
+     */
+    private $kouryukai;
     
     /** @var ArrayCollection
      *
@@ -101,6 +107,12 @@ class Utilisateur extends BaseUser
      * @ORM\ManyToMany(targetEntity="Sortie", mappedBy="superviseurs")
      */
     private $sortieSupervise;
+
+    /** @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Kouryukai", mappedBy="superviseurs")
+     */
+    private $kouryukaiSupervise;
 	
     /**
      * @var ArrayCollection
@@ -284,6 +296,46 @@ class Utilisateur extends BaseUser
     {
         return $this->ateliers;
     }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getKouryukai()
+    {
+        return $this->kouryukai;
+    }
+
+    /**
+     * @param ArrayCollection $kouryukai
+     */
+    public function setKouryukai($kouryukai)
+    {
+        $this->kouryukai = $kouryukai;
+    }
+
+    /**
+     * Add kouryukai
+     *
+     * @param Kouryukai $kouryukai
+     *
+     * @return Utilisateur
+     */
+    public function addKouryukai(Kouryukai $kouryukai)
+    {
+        $this->kouryukai[] = $kouryukai;
+
+        return $this;
+    }
+
+    /**
+     * Remove kouryukai
+     *
+     * @param Kouryukai $kouryukai
+     */
+    public function removeKouryukai(Kouryukai $kouryukai)
+    {
+        $this->kouryukai->removeElement($kouryukai);
+    }
     
     /**
      * Add sortie
@@ -300,7 +352,7 @@ class Utilisateur extends BaseUser
     }
 
     /**
-     * Remove atelier
+     * Remove sortie
      *
      * @param Sortie $sortie
      */
@@ -310,7 +362,7 @@ class Utilisateur extends BaseUser
     }
 
     /**
-     * Get atelier
+     * Get sortie
      *
      * @return ArrayCollection
      */
@@ -556,6 +608,46 @@ class Utilisateur extends BaseUser
     public function getEvenementSupervise()
     {
         return $this->evenementSupervise;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getKouryukaiSupervise()
+    {
+        return $this->kouryukaiSupervise;
+    }
+
+    /**
+     * @param ArrayCollection $kouryukaiSupervise
+     */
+    public function setKouryukaiSupervise($kouryukaiSupervise)
+    {
+        $this->kouryukaiSupervise = $kouryukaiSupervise;
+    }
+
+    /**
+     * Add kouryukaiSupervise
+     *
+     * @param Kouryukai $kouryukaiSupervise
+     *
+     * @return Utilisateur
+     */
+    public function addKouryukaiSupervise(Kouryukai $kouryukaiSupervise)
+    {
+        $this->kouryukaiSupervise[] = $kouryukaiSupervise;
+
+        return $this;
+    }
+
+    /**
+     * Remove kouryukaiSupervise
+     *
+     * @param Kouryukai $kouryukaiSupervise
+     */
+    public function removeKouryukaiSupervise(Kouryukai $kouryukaiSupervise)
+    {
+        $this->kouryukaiSupervise->removeElement($kouryukaiSupervise);
     }
 
     /**

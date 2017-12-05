@@ -42,6 +42,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_ACTUALITES_ADMIN]
                 items:
                     - app.admin.actualites
+            app.admin.group.principal.kouryukai:
+                on_top: true
+                label: "Kouryukai"
+                icon: '<i class="fa fa-clock-o"></i>'
+                roles: [ROLE_APP_ADMIN_KOURYUKAI_ADMIN]
+                items:
+                    - app.admin.kouryukai
             app.admin.group.principal.sorties:
                 on_top: true
                 label: "Sorties"

@@ -63,6 +63,10 @@ ROLE_APP_ADMIN_SORTIES_ADMIN: 'Administrateur - Sorties'
 ROLE_APP_ADMIN_SORTIES_EDITOR: 'Editeur- Sorties'
 ROLE_APP_ADMIN_SORTIES_GUEST: 'Invité- Sorties'
 ROLE_APP_ADMIN_SORTIES_STAFF: 'Staff- Sorties'
+ROLE_APP_ADMIN_KOURYUKAI_ADMIN: 'Administrateur - Kouryukai'
+ROLE_APP_ADMIN_KOURYUKAI_EDITOR: 'Editeur- Kouryukai'
+ROLE_APP_ADMIN_KOURYUKAI_GUEST: 'Invité- Kouryukai'
+ROLE_APP_ADMIN_KOURYUKAI_STAFF: 'Staff- Kouryukai'
 ROLE_SONATA_ADMIN: 'Peut accéder à l''administration'
 ROLE_SONATA_MEDIA_ADMIN_GALLERY_ADMIN: 'Administateur - Galeries'
 ROLE_SONATA_MEDIA_ADMIN_GALLERY_EDITOR: 'Editeur - Galeries'
@@ -490,6 +494,53 @@ sortie:
         details: Informations
         meta_data: Détails
 
+kouryukai:
+    actif: Active
+
+    add_edit:
+        to_string: Sortie
+
+    annule: Annulé
+    contenu: Descriptif
+    date: Date
+    datePublication: 'Date de publication'
+    date_limite: 'Date limite inscription'
+    image: Image
+
+    liste:
+        affiche: Affiché
+        annule: Annulé
+        date: Date
+        dateLimite: 'Date limite inscription'
+        datePublication: 'Date de publication'
+        nbPlace: 'Nombre de place'
+        nom: Titre
+        reserveMembre: 'Reservé membres'
+
+    nbPlace: 'Nombre de place autorisés'
+    nom: Titre
+
+    placeholder:
+        actif: Activer/Desactiver
+        annule: Annuler
+        contenu: 'Le descriptif de l''actualité'
+        date: Date
+        datePublication: 'Date de publication'
+        date_limite: 'Date limite'
+        nbPlace: 'Nombre de place autorisés'
+        nom: 'Titre à afficher'
+        reserve_membre: 'Réservé aux membres'
+        superviseurs: Superviseurs
+        urlInscription: 'Lien vers assoConect'
+
+    reserve_membre: 'Reservé membres'
+    superviseurs: Superviseurs
+    urlInscription: 'Lien inscription'
+
+    with:
+        details: Informations
+        meta_data: Détails
+
 utilisateur:
     accesSite: 'Peut acceder au site'
     estProfesseur: 'Est professeur'
@@ -500,8 +551,7 @@ utilisateur:
         estProfesseur: Professeur
         parent: Parent
 
-    membreNumero: utilisateur.membreNumero   # FIXME
-    membreNuméro: 'Numéro du membre'
+    membreNumero: 'Numéro du membre'
     membreTitre: 'Titre du membre'
 
     placeholder:
