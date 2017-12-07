@@ -32,70 +32,70 @@ sonata_admin:
                 on_top: true
                 label: "Evenements"
                 icon: '<i class="fa fa-calendar"></i>'
-                roles: [ROLE_APP_ADMIN_EVENEMENTS_ADMIN]
+                roles: [ROLE_APP_ADMIN_EVENEMENTS_GUEST, ROLE_APP_ADMIN_EVENEMENTS_STAFF, ROLE_APP_ADMIN_EVENEMENTS_EDITOR, ROLE_APP_ADMIN_EVENEMENTS_ADMIN]
                 items:
                     - app.admin.evenements
             app.admin.group.principal.actualites:
                 on_top: true
                 label: "Actualites"
                 icon: '<i class="fa fa-newspaper-o"></i>'
-                roles: [ROLE_APP_ADMIN_ACTUALITES_ADMIN]
+                roles: [ROLE_APP_ADMIN_ACTUALITES_GUEST, ROLE_APP_ADMIN_ACTUALITES_STAFF, ROLE_APP_ADMIN_ACTUALITES_EDITOR, ROLE_APP_ADMIN_ACTUALITES_ADMIN]
                 items:
                     - app.admin.actualites
             app.admin.group.principal.kouryukai:
                 on_top: true
                 label: "Kouryukai"
                 icon: '<i class="fa fa-clock-o"></i>'
-                roles: [ROLE_APP_ADMIN_KOURYUKAI_ADMIN]
+                roles: [ROLE_APP_ADMIN_KOURYUKAI_GUEST, ROLE_APP_ADMIN_KOURYUKAI_STAFF, ROLE_APP_ADMIN_KOURYUKAI_EDITOR, ROLE_APP_ADMIN_KOURYUKAI_ADMIN]
                 items:
                     - app.admin.kouryukai
             app.admin.group.principal.sorties:
                 on_top: true
                 label: "Sorties"
                 icon: '<i class="fa fa-car"></i>'
-                roles: [ROLE_APP_ADMIN_SORTIES_ADMIN]
+                roles: [ROLE_APP_ADMIN_SORTIES_GUEST, ROLE_APP_ADMIN_SORTIES_STAFF, ROLE_APP_ADMIN_SORTIES_EDITOR, ROLE_APP_ADMIN_SORTIES_ADMIN]
                 items:
                     - app.admin.sorties
             app.admin.group.principal.ateliers:
                 on_top: true
                 label: "Ateliers"
                 icon: '<i class="fa fa-pencil"></i>'
-                roles: [ROLE_APP_ADMIN_ATELIERS_ADMIN]
+                roles: [ROLE_APP_ADMIN_ATELIERS_GUEST, ROLE_APP_ADMIN_ATELIERS_STAFF, ROLE_APP_ADMIN_ATELIERS_EDITOR, ROLE_APP_ADMIN_ATELIERS_ADMIN]
                 items:
                     - app.admin.ateliers
             app.admin.group.principal.cours:
                 on_top: true
                 label: "Cours"
                 icon: '<i class="fa fa-book"></i>'
-                roles: [ROLE_APP_ADMIN_COURS_ADMIN]
+                roles: [ROLE_APP_ADMIN_COURS_GUEST, ROLE_APP_ADMIN_COURS_STAFF, ROLE_APP_ADMIN_COURS_EDITOR, ROLE_APP_ADMIN_COURS_ADMIN]
                 items:
                     - app.admin.cours
             app.admin.group.principal.partenaires:
                 on_top: true
                 label: "Partenaires"
                 icon: '<i class="fa fa-user-secret"></i>'
-                roles: [ROLE_APP_ADMIN_PARTENAIRES_ADMIN]
+                roles: [ROLE_APP_ADMIN_PARTENAIRES_GUEST, ROLE_APP_ADMIN_PARTENAIRES_STAFF, ROLE_APP_ADMIN_PARTENAIRES_EDITOR, ROLE_APP_ADMIN_PARTENAIRES_ADMIN]
                 items:
                     - app.admin.partenaires
             app.admin.group.principal.blog:
                 on_top: true
                 label: "Blog"
                 icon: '<i class="fa fa-rss"></i>'
-                roles: [ROLE_APP_ADMIN_BLOG_ADMIN]
+                roles: [ROLE_APP_ADMIN_BLOG_GUEST, ROLE_APP_ADMIN_BLOG_STAFF, ROLE_APP_ADMIN_BLOG_EDITOR, ROLE_APP_ADMIN_BLOG_ADMIN]
                 items:
                     - app.admin.blog
             app.admin.group.principal.demandenewsletter:
                 on_top: true
                 label: "Demande Newsletter"
                 icon: '<i class="fa fa-envelope-o"></i>'
-                roles: [ROLE_APP_ADMIN_NEWSLETTER_ADMIN]
+                roles: [ROLE_APP_ADMIN_NEWSLETTER_GUEST, ROLE_APP_ADMIN_NEWSLETTER_STAFF, ROLE_APP_ADMIN_NEWSLETTER_EDITOR, ROLE_APP_ADMIN_NEWSLETTER_ADMIN]
                 items:
                     - app.admin.newsletter
             app.admin.group.principal.parametres:
                 on_top: true
                 label: "Parametres"
                 icon: '<i class="fa fa-cogs"></i>'
-                roles: [ROLE_APP_ADMIN_PARAMETRES_ADMIN]
+                roles: [ROLE_APP_ADMIN_PARAMETRES_GUEST, ROLE_APP_ADMIN_PARAMETRES_STAFF, ROLE_APP_ADMIN_PARAMETRES_EDITOR, ROLE_APP_ADMIN_PARAMETRES_ADMIN]
                 items:
                     - app.admin.parametres
             app.admin.group.principal.users:
@@ -105,10 +105,10 @@ sonata_admin:
                 icon: '<i class="fa fa-users"></i>'
                 items:
                     - route: admin_utilisateur_list
-                      roles: [ROLE_SONATA_USER_ADMIN_USER_ADMIN]
+                      roles: [ROLE_SONATA_USER_ADMIN_USER_EDITOR, ROLE_SONATA_USER_ADMIN_USER_STAFF, ROLE_SONATA_USER_ADMIN_USER_GUEST, ROLE_SONATA_USER_ADMIN_USER_ADMIN]
                       label: "Utilisateurs"
                     - route: admin_utilisateur_droits_list
-                      roles: [ROLE_SONATA_USER_ADMIN_GROUP_ADMIN]
+                      roles: [ROLE_SONATA_USER_ADMIN_GROUP_EDITOR, ROLE_SONATA_USER_ADMIN_GROUP_STAFF, ROLE_SONATA_USER_ADMIN_GROUP_GUEST, ROLE_SONATA_USER_ADMIN_GROUP_ADMIN]
                       label: "Groupes"
         blocks:
             -
@@ -116,7 +116,7 @@ sonata_admin:
                 position: top
                 type: app.admin.block.stats
                 settings:
-                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    template: :AdminCustom/dashboard:block/block_stats.html.twig
                     icon: fa-users
                     text: Utilisateurs
                     color: bg-green
@@ -127,7 +127,7 @@ sonata_admin:
                 position: top
                 type: app.admin.block.stats
                 settings:
-                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    template: :AdminCustom/dashboard:block/block_stats.html.twig
                     icon: fa-calendar
                     text: Evenements
                     color: bg-aqua
@@ -138,7 +138,7 @@ sonata_admin:
                 position: top
                 type: app.admin.block.stats
                 settings:
-                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    template: :AdminCustom/dashboard:block/block_stats.html.twig
                     icon: fa-clock-o
                     text: Kouryukai
                     color: bg-olive
@@ -149,7 +149,7 @@ sonata_admin:
                 position: top
                 type: app.admin.block.stats
                 settings:
-                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    template: :AdminCustom/dashboard:block/block_stats.html.twig
                     icon: fa-car
                     text: Sorties
                     color: bg-yellow
@@ -160,7 +160,7 @@ sonata_admin:
                 position: top
                 type: app.admin.block.stats
                 settings:
-                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    template: :AdminCustom/dashboard:block/block_stats.html.twig
                     icon: fa-pencil
                     text: Ateliers
                     color: bg-maroon
@@ -171,7 +171,7 @@ sonata_admin:
                 position: top
                 type: app.admin.block.stats
                 settings:
-                    template: SonataAdminBundle:Block:block_stats.html.twig
+                    template: :AdminCustom/dashboard:block/block_stats.html.twig
                     icon: fa-user-secret
                     text: Partenaires
                     color: bg-teal
