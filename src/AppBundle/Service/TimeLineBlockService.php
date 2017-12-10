@@ -91,9 +91,9 @@ class TimeLineBlockService extends AbstractBlockService
 
         $repoKouryukai  = $this->em->getRepository(Kouryukai::class);
         $kouryukai      = $repoAtelier->findAllValidOverOneMonth(true);
-
-        $repoBlog       = $this->em->getRepository(Blog::class);
-        $blogs          = $repoBlog->findAllValidOverOneMonth(true);
+// TODO
+//        $repoBlog       = $this->em->getRepository(Blog::class);
+//        $blogs          = $repoBlog->findAllValidOverOneMonth(true);
         
         $tab = array();
 
@@ -152,17 +152,17 @@ class TimeLineBlockService extends AbstractBlockService
 
             $tab[$sortie->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
         }
-
-        foreach ($blogs as $blog) {
-            $temp = [
-                'icon'  => 'fa-rss',
-                'objet' => $blog,
-                'bg'    => 'bg-fuchsia',
-                'trans' => 'blog.add_edit.to_string'
-            ];
-
-            $tab[$blog->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
-        }
+// TODO
+//        foreach ($blogs as $blog) {
+//            $temp = [
+//                'icon'  => 'fa-rss',
+//                'objet' => $blog,
+//                'bg'    => 'bg-fuchsia',
+//                'trans' => 'blog.add_edit.to_string'
+//            ];
+//
+//            $tab[$blog->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+//        }
         krsort($tab);
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),

@@ -8,6 +8,7 @@ namespace AppBundle\Repository;
  */
 class BlogRepository extends \Doctrine\ORM\EntityRepository
 {
+    // TODO
     public function findAllValidOverOneMonth($admin = false)
     {
         if ($admin) {

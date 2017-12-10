@@ -26,6 +26,12 @@ sonata_admin:
         layout: :AdminCustom:/template/standard_layout.html.twig
         edit:   :AdminCustom:/template/edit.html.twig
         user_block: :AdminCustom:/template/user_block.html.twig
+    assets:
+        javascripts:
+            - assetic/sonata_admin_js.js
+            - assetic/sonata_jqueryui_js.js
+            - assetic/sonata_formatter_js.js
+            - bundles/sonataformatter/vendor/ckeditor/ckeditor.js
     dashboard:
         groups:
             app.admin.group.principal.evenements:
@@ -77,13 +83,17 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_PARTENAIRES_GUEST, ROLE_APP_ADMIN_PARTENAIRES_STAFF, ROLE_APP_ADMIN_PARTENAIRES_EDITOR, ROLE_APP_ADMIN_PARTENAIRES_ADMIN]
                 items:
                     - app.admin.partenaires
-            app.admin.group.principal.blog:
-                on_top: true
+            sonata.admin.group.content:
                 label: "Blog"
+                label_catalogue: SonataDemoBundle
+                keep_open: false
                 icon: '<i class="fa fa-rss"></i>'
-                roles: [ROLE_APP_ADMIN_BLOG_GUEST, ROLE_APP_ADMIN_BLOG_STAFF, ROLE_APP_ADMIN_BLOG_EDITOR, ROLE_APP_ADMIN_BLOG_ADMIN]
                 items:
-                    - app.admin.blog
+                    - sonata.news.admin.post
+                    - sonata.news.admin.comment
+                    - sonata.classification.admin.category
+                    - sonata.classification.admin.tag
+                    - sonata.classification.admin.collection
             app.admin.group.principal.demandenewsletter:
                 on_top: true
                 label: "Demande Newsletter"
