@@ -90,7 +90,7 @@ class TimeLineBlockService extends AbstractBlockService
         $sorties        = $repoSortie->findAllValidOverOneMonth(true);
 
         $repoKouryukai  = $this->em->getRepository(Kouryukai::class);
-        $kouryukai      = $repoAtelier->findAllValidOverOneMonth(true);
+        $kouryukai      = $repoKouryukai->findAllValidOverOneMonth(true);
 
         $repoBlog       = $this->em->getRepository(Blog::class);
         $blogs          = $repoBlog->findAllValidOverOneMonth(true);
@@ -150,7 +150,7 @@ class TimeLineBlockService extends AbstractBlockService
                 'trans' => 'kouryukai.add_edit.to_string'
             ];
 
-            $tab[$sortie->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            $tab[$k->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
         }
 
         foreach ($blogs as $blog) {
