@@ -7,10 +7,10 @@
             <span class="day">{{date_to_show|date('d')}}</span>
             <span class="month">{{date_to_show|date('F')|slice(0, 3)}}.</span>
         </time>
-        <p class="postSummary">{% if evenementOuKouryukai.contenu|length > 99 %}{{ evenementOuKouryukai.contenu|slice(0, 100)|raw }}{% else %}{{ evenementOuKouryukai.contenu|raw }}{% endif %}</p>
+        <p class="postSummary">{% if evenementOuKouryukai.contenu|length > 99 %}{{ crop_entete_texte(evenementOuKouryukai.contenu)|raw }}{% else %}{{ evenementOuKouryukai.contenu|raw }}{% endif %}</p>
         {% if evenementOuKouryukai.contenu|length > 99 %}
         <div class="postMoreText" style="display: none;">
-            {{ evenementOuKouryukai.contenu|raw }}<br>
+            {{ get_corps_texte(evenementOuKouryukai.contenu)|raw }}<br>
             {% if date_to_show|date('d/m/Y') != date_to_compare|date('d/m/Y') %}
                 <b class="u-textColorRJ">Du {{date_to_show|date('d/m/Y')}} au {{date_to_compare|date('d/m/Y')}}</b>
             {% endif %}
