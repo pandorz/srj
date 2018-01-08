@@ -1,8 +1,8 @@
-timeline:
-    title: 'A venir par date de publication'
-
 statistique:
     title: 'Nombre de demande de newsletter par mois cette année'
+
+timeline:
+    title: 'A venir par date de publication'
 
 title_create: Créer
 title_edit: Editer

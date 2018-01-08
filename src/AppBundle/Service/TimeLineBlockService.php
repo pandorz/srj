@@ -1,8 +1,8 @@
 <?php
 namespace AppBundle\Service;
 
-use AppBundle\Entity\Blog;
 use AppBundle\Entity\Kouryukai;
+use Application\Sonata\NewsBundle\Entity\Post;
 use Doctrine\ORM\EntityManager;
 
 use AppBundle\Entity\Actualite;
@@ -90,15 +90,16 @@ class TimeLineBlockService extends AbstractBlockService
         $sorties        = $repoSortie->findAllValidOverOneMonth(true);
 
         $repoKouryukai  = $this->em->getRepository(Kouryukai::class);
-        $kouryukai      = $repoAtelier->findAllValidOverOneMonth(true);
-// TODO
-//        $repoBlog       = $this->em->getRepository(Blog::class);
-//        $blogs          = $repoBlog->findAllValidOverOneMonth(true);
+        $kouryukai      = $repoKouryukai->findAllValidOverOneMonth(true);
+
+        $repoBlog       = $this->em->getRepository(Post::class);
+        $blogs          = $repoBlog->findAllValidOverOneMonth(true);
+
         
         $tab = array();
 
 
-        foreach ($evenements as $evenement) { 
+        foreach ($evenements as $evenement) {
             $temp = [
                 'icon'  => 'fa-calendar',
                 'objet' => $evenement,
@@ -150,19 +151,19 @@ class TimeLineBlockService extends AbstractBlockService
                 'trans' => 'kouryukai.add_edit.to_string'
             ];
 
-            $tab[$sortie->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            $tab[$k->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
         }
-// TODO
-//        foreach ($blogs as $blog) {
-//            $temp = [
-//                'icon'  => 'fa-rss',
-//                'objet' => $blog,
-//                'bg'    => 'bg-fuchsia',
-//                'trans' => 'blog.add_edit.to_string'
-//            ];
-//
-//            $tab[$blog->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
-//        }
+
+        foreach ($blogs as $blog) {
+            $temp = [
+                'icon'  => 'fa-rss',
+                'objet' => $blog,
+                'bg'    => 'bg-fuchsia',
+                'trans' => 'blog.add_edit.to_string'
+            ];
+
+            $tab[$blog->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+        }
         krsort($tab);
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),

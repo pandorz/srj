@@ -139,7 +139,7 @@ class KouryukaiAdmin extends AbstractAdmin
             ->end()
             ->with('Meta data', [
                 'name'      => $this->trans('kouryukai.with.meta_data'),
-                'class'     => 'col-md-5'
+                'class'     => 'col-md-5 js-emplacement-container'
             ])
             ->add('urlInscription', 'url', [
                 'label' => 'kouryukai.urlInscription',

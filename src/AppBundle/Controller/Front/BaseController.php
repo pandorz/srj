@@ -2,8 +2,8 @@
 
 namespace AppBundle\Controller\Front;
 
-use AppBundle\Entity\Blog;
 use AppBundle\Entity\Kouryukai;
+use Application\Sonata\NewsBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use AppBundle\Entity\Evenement;
 use AppBundle\Entity\Actualite;
@@ -388,9 +388,8 @@ class BaseController extends Controller
      */
     protected function getTopBlogs($limit)
     {
-        // TODO
         return $this->getEm()
-            ->getRepository(Blog::class)
+            ->getRepository(Post::class)
             ->getTop($limit);
     }
     

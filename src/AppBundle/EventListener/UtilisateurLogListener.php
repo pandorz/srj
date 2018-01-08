@@ -78,7 +78,7 @@ class UtilisateurLogListener
 
         if ($utilisateur instanceof Utilisateur) {
             $utilisateurLog = new UtilisateurLog();
-            if ($entity->getId() !== "default") {
+            if (is_int($entity->getId())) {
                 $utilisateurLog->setEntityId($entity->getId());
             }
             $utilisateurLog->setUtilisateurId($utilisateur->getId());

@@ -16,4 +16,48 @@ use Sonata\NewsBundle\Entity\BasePostRepository;
  */
 class PostRepository extends BasePostRepository
 {
+    public function findAllValidOverOneMonth($admin = false)
+    {
+        if ($admin) {
+            $query = $this
+                ->getEntityManager()
+                ->createQuery('SELECT e '
+                    . 'FROM ApplicationSonataNewsBundle:Post e '
+                    . 'WHERE e.createdAt >= :dateFin '
+                    . 'ORDER BY e.publicationDateStart DESC')
+                ->setParameter('dateFin', date("Y-m-d",strtotime("-1 month")));
+        } else {
+            $query = $this
+                ->getEntityManager()
+                ->createQuery('SELECT e '
+                    . 'FROM ApplicationSonataNewsBundle:Post e '
+                    . 'WHERE e.enabled = :affiche '
+                    . 'AND e.publicationDateStart <= :datePublication '
+                    . 'AND e.createdAt >= :dateFin '
+                    . 'ORDER BY e.publicationDateStart DESC')
+                ->setParameters([
+                    'affiche' => true,
+                    'datePublication' => date("Y-m-d"),
+                    'dateFin' => date("Y-m-d",strtotime("-1 month"))
+                ]);
+        }
+        return $query->getResult();
+    }
+
+    public function getTop($limit)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM ApplicationSonataNewsBundle:Post e '
+                . 'WHERE e.enabled = :affiche '
+                . 'AND e.publicationDateStart <= :datePublication '
+                . 'ORDER BY e.createdAt DESC')
+            ->setParameters([
+                'affiche' => true,
+                'datePublication' => date("Y-m-d")
+            ])
+            ->setMaxResults($limit)
+            ->getResult();
+    }
 }

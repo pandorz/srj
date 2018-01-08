@@ -28,4 +28,19 @@ class Post extends BasePost
     {
         return $this->id;
     }
+
+    public function getNom()
+    {
+        return $this->getTitle();
+    }
+
+    public function getDescriptionCourte()
+    {
+        return $this->getAbstract();
+    }
+
+    public function getContenu()
+    {
+        return $this->getRawContent();
+    }
 }
