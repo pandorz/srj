@@ -239,7 +239,7 @@ class Tag
 
     public function __toString()
     {
-        return $this->nom;
+        return (!is_null($this->nom)?$this->nom:"");
     }
 
     /**

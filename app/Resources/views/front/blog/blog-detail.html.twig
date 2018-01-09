@@ -8,6 +8,24 @@
     {% set hastagList = "#Blog" %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
+    {% set stringProf = '' %}
+    {% if blog.auteurs is not empty %}
+        {% set stringAuteurs = 'Ecrit par ' %}
+        {% for auteur in blog.auteurs %}
+            {% set auteur_toString = auteur %}
+            {% if auteur.website is not empty %}
+                {% set auteur_toString = '<a href="'~auteur.website~'" target="_blank">'~auteur~'</a>' %}
+            {% endif %}
+            {% if loop.first %}
+                {% set stringAuteurs = stringAuteurs~' '~auteur_toString %}
+            {% elseif loop.last %}
+                {% set stringAuteurs = stringAuteurs~' et '~auteur_toString %}
+            {% else %}
+                {% set stringAuteurs = stringAuteurs~', '~auteur_toString %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
     <section class="section u-fitted">
         <h2 class="sectionTitle">{{ blog.nom }}</h2>
         <div class="blogPhotoCtn">
@@ -15,6 +33,9 @@
         </div>
         <div class="blogTextCtn">
             {{ blog.contenu|raw }}
+        </div>
+        <div class="u-note">
+            {{ stringAuteurs|raw }}
         </div>
     </section>
 
