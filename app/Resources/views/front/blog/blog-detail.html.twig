@@ -34,8 +34,15 @@
         <div class="blogTextCtn">
             {{ blog.contenu|raw }}
         </div>
-        <div class="u-note">
-            {{ stringAuteurs|raw }}
+        <div class="blogFooter">
+            <p class="u-note">{{ stringAuteurs|raw }}</p>
+            <div class="tags">
+            {% if blog.tags is not empty %}
+                {% for tag in blog.tags %}
+                    <span class="tag">{{ tag }}</span>
+                {% endfor %}
+            {% endif %}
+            </div>
         </div>
     </section>
 

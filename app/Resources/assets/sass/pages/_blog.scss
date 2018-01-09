@@ -44,4 +44,17 @@
 			margin: rem(20) 0;
 		}
 	}
+	.blogFooter {
+		.tags {
+			text-align: right;
+			.tag {
+				border: 1px solid $color-rj-dark;
+				color: $color-rj-dark;
+				border-radius: 4px;
+				display: inline-block;
+				padding: 4px 8px 4px 8px;
+				text-align: center;
+			}
+		}
+	}
 }

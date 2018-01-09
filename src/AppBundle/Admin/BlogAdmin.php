@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Tag;
 use AppBundle\Entity\Utilisateur;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -125,7 +126,7 @@ class BlogAdmin extends AbstractAdmin
                 'required' => false
             ])
             ->add('tags', 'sonata_type_model_autocomplete', [
-                'class'     => Utilisateur::class,
+                'class'     => Tag::class,
                 'property'  => ['nom'],
                 'label'     => 'blog.tag',
                 'multiple'  => true,
