@@ -92,7 +92,8 @@ class BlogAdmin extends AbstractAdmin
                 'label' => 'blog.contenu',
                 'attr'  => [
                     'placeholder' => 'blog.placeholder.contenu'
-                ]
+                ],
+                'config_name' => 'news'
             ])
             ->end()
             ->with('Meta data', [
