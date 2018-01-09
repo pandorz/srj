@@ -29,11 +29,11 @@
         <!--[if lt IE 10]>
             <p class="browserupgrade">Vous utilisez un navigateur <strong>déprécié</strong>. Veuillez faire une <a href="http://browsehappy.com/">mise à jour de votre navigateur</a> pour visualiser correctement notre site.</p>
         <![endif]-->
-        {% include 'template/nav_barre.html.twig' %}
+        {% include 'front/template/nav_barre.html.twig' %}
         <main class="siteBody">
         {% block main %}{% endblock %}
         </main>
-        {% include 'template/footer.html.twig' %}
+        {% include 'front/template/footer.html.twig' %}
         {% block javascript %}
         <script src="{{ asset('js/app.js'|asset_version) }}"></script>
         <script>
@@ -51,6 +51,6 @@
         
 
         {% endblock %}
-        {% include 'template/google_analytics.html.twig' %}
+        {% include 'front/template/google_analytics.html.twig' %}
     </body>
 </html>

@@ -1,8 +1,8 @@
-{% extends "template/base_front.html.twig" %}
+{% extends "front/template/base_front.html.twig" %}
 {% block html_title %}| Association franco-japonaise pour apprendre le japonais et faire des échanges{% endblock %}
 {% block body_class %}home{% endblock %}
 {% block main %}
-    {% include 'bandeau_jap.html.twig' %}
+    {% include 'front/bandeau/bandeau_jap.html.twig' %}
 
     <section class="activities">
         <div class="u-fitted">
@@ -26,13 +26,13 @@
         </div>
     </section>
 
-    {% include 'top_evenements.html.twig' %}
+    {% include 'front/evenement/top_evenements.html.twig' %}
 
-    {% include 'top_actualites.html.twig' %}
+    {% include 'front/actualite/top_actualites.html.twig' %}
 
     {% if is_actif_blog() %}
-        {% include 'top_blog.html.twig' %}
+        {% include 'front/blog/top_blog.html.twig' %}
     {% endif %}
-    {% include 'follow_us.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}

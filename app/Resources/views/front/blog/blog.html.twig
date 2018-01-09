@@ -1,11 +1,11 @@
-{% extends "template/base_front.html.twig" %}
+{% extends "front/template/base_front.html.twig" %}
 {% block body_class %}blogList{% endblock %}
 {% block html_title %} - Nos articles de blog{% endblock %}
 {% block main %}
 
     {% set hastagTitle = "Nos articles" %}
     {% set hastagList = "#Blog" %}
-    {% include 'bandeau_hastag.html.twig' %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="blog">
         <h2 class="sectionTitle">Derniers articles</h2>
@@ -25,7 +25,7 @@
         </div>
     </section>
 
-    {% include 'bandeau_devenir_membre.html.twig' %}
-    {% include 'follow_us.html.twig' %}
+    {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}

@@ -1,11 +1,11 @@
-{% extends "template/base_front.html.twig" %}
+{% extends "front/template/base_front.html.twig" %}
 {% block body_class %}events workshops{% endblock %}
 {% block html_title %}– Les ateliers sur la culture japonaise : ikebana, origami, cuisine nippone{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "Nos activités" %}
     {% set hastagList = "#Ateliers" %}
-    {% include 'bandeau_hastag.html.twig' %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="workshopsIntro section u-fitted">
         <div class="grid-2">
@@ -37,7 +37,7 @@
         <div class="noWorkshop u-textCenter">
             <b class="nothing">Aucun atelier n'est encore programmé...</b>
             <p>Ça ne devrait pourtant pas tarder !</p>
-            {% include 'newsletter_form_light.html.twig' %}
+            {% include 'front/newsletter/newsletter_form_light.html.twig' %}
         </div>
         {% else %} 
         <h2 class="sectionTitle">Nos Ateliers</h2>
@@ -88,7 +88,7 @@
         {% endif %}        
     </section>       
     
-    {% include 'bandeau_devenir_membre.html.twig' %}
-    {% include 'follow_us.html.twig' %}
+    {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}

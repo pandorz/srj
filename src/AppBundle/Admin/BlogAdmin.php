@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Utilisateur;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -115,6 +116,22 @@ class BlogAdmin extends AbstractAdmin
                 'context'  => 'image',
                 'required' => false,
             ))
+            ->add('auteurs', 'sonata_type_model_autocomplete', [
+                'class'     => Utilisateur::class,
+                'property'  => ['firstname','lastname'],
+                'label'     => 'blog.auteur',
+                'multiple'  => true,
+                'placeholder' => $this->trans('blog.placeholder.auteur'),
+                'required' => false
+            ])
+            ->add('tags', 'sonata_type_model_autocomplete', [
+                'class'     => Utilisateur::class,
+                'property'  => ['nom'],
+                'label'     => 'blog.tag',
+                'multiple'  => true,
+                'placeholder' => $this->trans('blog.placeholder.tag'),
+                'required' => false
+            ])
             ->end()
         ;
     }

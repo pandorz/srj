@@ -1,10 +1,10 @@
-{% extends "template/base_front.html.twig" %}
+{% extends "front/template/base_front.html.twig" %}
 {% block body_class %}events allEvent{% endblock %}
 {% block html_title %}– Les événements de l’association, venez nous rencontrer !{% endblock %}
 {% block main %}
     {% set hastagTitle = "Evenements" %}
     {% set hastagList = "#Normandie #Japon" %}
-    {% include 'bandeau_hastag.html.twig' %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
     
     {% set coming = 0 %}
     {% set past = 0 %}
@@ -14,7 +14,7 @@
             <div class="noWorkshop u-textCenter">
                 <b class="nothing">Aucun événement n'est encore programmée pour le moment...</b>
                 <p>Ça ne devrait pourtant pas tarder !</p>
-                {% include 'newsletter_form_light.html.twig' %}
+                {% include 'front/newsletter/newsletter_form_light.html.twig' %}
             </div>
         </section>
     {% else %}        
@@ -54,6 +54,6 @@
         
         
 
-    {% include 'follow_us.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}

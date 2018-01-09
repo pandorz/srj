@@ -120,6 +120,13 @@ class Utilisateur extends BaseUser
      * @ORM\ManyToMany(targetEntity="Cour", mappedBy="professeurs")
      */
     private $professeurDe;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Blog", mappedBy="auteurs")
+     */
+    private $auteurDe;
         
     /**
      * @var ArrayCollection
@@ -403,6 +410,40 @@ class Utilisateur extends BaseUser
     public function getProfesseurDe()
     {
         return $this->professeurDe;
+    }
+
+    /**
+     * Add auteurDe
+     *
+     * @param Cour $auteurDe
+     *
+     * @return Utilisateur
+     */
+    public function addAuteurDe(Cour $auteurDe)
+    {
+        $this->auteurDe[] = $auteurDe;
+
+        return $this;
+    }
+
+    /**
+     * Remove auteurDe
+     *
+     * @param Cour $auteurDe
+     */
+    public function removeAuteurDe(Cour $auteurDe)
+    {
+        $this->auteurDe->removeElement($auteurDe);
+    }
+
+    /**
+     * Get auteurDe
+     *
+     * @return ArrayCollection
+     */
+    public function getAuteurDe()
+    {
+        return $this->auteurDe;
     }
 
     /**

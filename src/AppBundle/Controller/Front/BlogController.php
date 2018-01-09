@@ -44,7 +44,7 @@ class BlogController extends BaseController
         }
 
         $blogs = $this->getTopBlogs($limit);
-        return $this->render('blog.html.twig', ['blogs' => $blogs]);
+        return $this->render('front/blog/blog.html.twig', ['blogs' => $blogs]);
     }
 
     /**
@@ -68,7 +68,7 @@ class BlogController extends BaseController
             return $this->redirectToRoute('blog');
         }
 
-        return $this->render('blog-detail.html.twig', ['blog' => $blog]);
+        return $this->render('front/blog/blog-detail.html.twig', ['blog' => $blog]);
     }
 
     private function isActifParamBlog()

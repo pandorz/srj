@@ -90,6 +90,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_BLOG_GUEST, ROLE_APP_ADMIN_BLOG_STAFF, ROLE_APP_ADMIN_BLOG_EDITOR, ROLE_APP_ADMIN_BLOG_ADMIN]
                 items:
                     - app.admin.blog
+            app.admin.group.principal.tags:
+                on_top: true
+                label: "Tags"
+                icon: '<i class="fa fa-tags"></i>'
+                roles: [ROLE_APP_ADMIN_TAGS_GUEST, ROLE_APP_ADMIN_TAGS_STAFF, ROLE_APP_ADMIN_TAGS_EDITOR, ROLE_APP_ADMIN_TAGS_ADMIN]
+                items:
+                    - app.admin.parametres
             app.admin.group.principal.demandenewsletter:
                 on_top: true
                 label: "Demande Newsletter"

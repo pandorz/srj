@@ -1,11 +1,11 @@
-{% extends "template/base_front.html.twig" %}
+{% extends "front/template/base_front.html.twig" %}
 {% block body_class %}asso{% endblock %}
 {% block html_title %} - ルーアン日仏協会のプレゼンテーション{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "ルーアン日本協会" %}
     {% set hastagList = "" %}
-    {% include 'bandeau_hastag.html.twig' %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="about section u-fitted">
         <h2 class="sectionTitle">私たちについて</h2>
@@ -35,6 +35,6 @@
         </div>
     </section>
    
-    {% include 'follow_us.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}
