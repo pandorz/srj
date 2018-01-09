@@ -1,8 +1,8 @@
 <?php
 namespace AppBundle\Service;
 
+use AppBundle\Entity\Blog;
 use AppBundle\Entity\Kouryukai;
-use Application\Sonata\NewsBundle\Entity\Post;
 use Doctrine\ORM\EntityManager;
 
 use AppBundle\Entity\Actualite;
@@ -92,7 +92,7 @@ class TimeLineBlockService extends AbstractBlockService
         $repoKouryukai  = $this->em->getRepository(Kouryukai::class);
         $kouryukai      = $repoKouryukai->findAllValidOverOneMonth(true);
 
-        $repoBlog       = $this->em->getRepository(Post::class);
+        $repoBlog       = $this->em->getRepository(Blog::class);
         $blogs          = $repoBlog->findAllValidOverOneMonth(true);
 
         

@@ -83,17 +83,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_PARTENAIRES_GUEST, ROLE_APP_ADMIN_PARTENAIRES_STAFF, ROLE_APP_ADMIN_PARTENAIRES_EDITOR, ROLE_APP_ADMIN_PARTENAIRES_ADMIN]
                 items:
                     - app.admin.partenaires
-            sonata.admin.group.content:
+            app.admin.group.principal.blog:
+                on_top: true
                 label: "Blog"
-                label_catalogue: SonataDemoBundle
-                keep_open: false
                 icon: '<i class="fa fa-rss"></i>'
+                roles: [ROLE_APP_ADMIN_BLOG_GUEST, ROLE_APP_ADMIN_BLOG_STAFF, ROLE_APP_ADMIN_BLOG_EDITOR, ROLE_APP_ADMIN_BLOG_ADMIN]
                 items:
-                    - sonata.news.admin.post
-                    - sonata.news.admin.comment
-                    - sonata.classification.admin.category
-                    - sonata.classification.admin.tag
-                    - sonata.classification.admin.collection
+                    - app.admin.blog
             app.admin.group.principal.demandenewsletter:
                 on_top: true
                 label: "Demande Newsletter"

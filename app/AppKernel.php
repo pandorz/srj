@@ -19,7 +19,6 @@ class AppKernel extends Kernel
             new Sonata\CoreBundle\SonataCoreBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
             new Knp\Bundle\MenuBundle\KnpMenuBundle(),
-            new Knp\Bundle\MarkdownBundle\KnpMarkdownBundle(),
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
@@ -30,18 +29,13 @@ class AppKernel extends Kernel
             new Sonata\UserBundle\SonataUserBundle(),
             new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
-            new Sonata\NewsBundle\SonataNewsBundle(),
-            new Sonata\FormatterBundle\SonataFormatterBundle(),
-            new Sonata\ClassificationBundle\SonataClassificationBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),            
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new Liuggio\ExcelBundle\LiuggioExcelBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
             new AppBundle\AppBundle(),
-            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
-            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

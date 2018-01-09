@@ -7,9 +7,6 @@ imports:
     - { resource: sonata_block.yml }
     - { resource: sonata_user.yml }
     - { resource: sonata_intl.yml }
-    - { resource: sonata_classification.yml }
-    - { resource: sonata_news.yml }
-    - { resource: sonata_formatter.yml }
     - { resource: fos_user.yml }
     - { resource: knp_snappy.yml }
     - { resource: ivory_ck_editor.yml }
@@ -92,9 +89,7 @@ doctrine:
                     SonataUserBundle: ~
                     FOSUserBundle: ~
                     ApplicationSonataMediaBundle: ~
-                    ApplicationSonataNewsBundle: ~
                     SonataMediaBundle: ~
-                    SonataNewsBundle: ~
 
 
 stof_doctrine_extensions:

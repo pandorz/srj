@@ -36,6 +36,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Actualites }
 
+    app.admin.blog:
+        class: AppBundle\Admin\BlogAdmin
+        arguments: [~, AppBundle\Entity\Blog, AppBundle:Blog]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Blog }
+
     app.admin.partenaires:
         class: AppBundle\Admin\PartenaireAdmin
         arguments: [~, AppBundle\Entity\Partenaire, AppBundle:Partenaire]
@@ -118,15 +124,3 @@ services:
         arguments: ["@security.token_storage"]
         tags:
             - { name: doctrine.event_listener, event: postPersist }
-
-    sonata.news.admin.post:
-        class: Application\Sonata\NewsBundle\Admin\PostAdmin
-        tags:
-            - { name: sonata.admin, manager_type: orm, group: sonata_blog, label: posts, label_catalogue: '%sonata.news.admin.post.translation_domain%', label_translator_strategy: sonata.admin.label.strategy.underscore }
-        arguments: ['', '%sonata.news.admin.post.entity%', '%sonata.news.admin.post.controller%']
-        calls:
-            - [setUserManager, ['@fos_user.user_manager']]
-            - [setPoolFormatter, ['@sonata.formatter.pool']]
-            - [addChild, ['@sonata.news.admin.comment']]
-            - [setTranslationDomain, ['%sonata.news.admin.post.translation_domain%']]
-            - [setPermalinkGenerator, ['@sonata.news.permalink.generator']]

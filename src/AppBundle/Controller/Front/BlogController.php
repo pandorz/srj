@@ -3,8 +3,8 @@
 namespace AppBundle\Controller\Front;
 
 
+use AppBundle\Entity\Blog;
 use AppBundle\Entity\Parametre;
-use Application\Sonata\NewsBundle\Entity\Post;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -63,7 +63,7 @@ class BlogController extends BaseController
             return $this->redirectToRoute('home');
         }
 
-        $blog = $this->getEm()->getRepository(Post::class)->findOneBySlug($slug);
+        $blog = $this->getEm()->getRepository(Blog::class)->findOneBySlug($slug);
         if (empty($blog)) {
             return $this->redirectToRoute('blog');
         }

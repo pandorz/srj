@@ -20,8 +20,6 @@ security:
             - ROLE_SONATA_MEDIA_ADMIN_MEDIA_EDITOR
             - ROLE_SONATA_MEDIA_ADMIN_GALLERY_EDITOR
             - ROLE_SONATA_MEDIA_ADMIN_GALLERY_HAS_MEDIA_EDITOR
-            - ROLE_SONATA_NEWS_ADMIN_COMMENT_EDITOR
-            - ROLE_SONATA_NEWS_ADMIN_POST_EDITOR
         ROLE_ADMIN:
             - ROLE_USER
             - ROLE_SONATA_USER_ADMIN_USER_ADMIN
@@ -41,8 +39,6 @@ security:
             - ROLE_APP_ADMIN_PARTENAIRES_ADMIN
             - ROLE_APP_ADMIN_NEWSLETTER_ADMIN
             - ROLE_SONATA_ADMIN
-            - ROLE_SONATA_NEWS_ADMIN_COMMENT_ADMIN
-            - ROLE_SONATA_NEWS_ADMIN_POST_ADMIN
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]        
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
