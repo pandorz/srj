@@ -68,18 +68,23 @@ class StatistiqueBlockService extends AbstractBlockService
     {
         $settings = $blockContext->getSettings();
 
-        $this->admin      = $this->pool->getAdminByClass(Statistique::class);
-        $repoStatistique  = $this->em->getRepository(Statistique::class);
-        $tabMois          = [];
+        $this->admin            = $this->pool->getAdminByClass(Statistique::class);
+        $repoStatistique        = $this->em->getRepository(Statistique::class);
+        $tabMois                = [];
+        $tabMoisAnneeDerniere   = [];
         for ($i=1; $i<=12; $i++) {
             $sum = $repoStatistique->sumByMonth($i);
             $tabMois[] = (is_null($sum)?0:$sum);
+
+            $sum = $repoStatistique->sumByMonth($i, false);
+            $tabMoisAnneeDerniere[] = (is_null($sum)?0:$sum);
         }
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'settings'      => $settings,
             'tab_mois'      => $tabMois,
+            'tab_mois_annee_derniere' => $tabMoisAnneeDerniere,
             'admin'         => $this->admin
         ), $response);
     }

@@ -10,9 +10,13 @@ namespace AppBundle\Repository;
  */
 class StatistiqueRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function sumByMonth($monthNumber)
+    public function sumByMonth($monthNumber, $thisYear = true)
     {
-        $date = (new \DateTime())->format('Y').'-'.($monthNumber<10?'0'.$monthNumber:$monthNumber);
+        $year = (int)(new \DateTime())->format('Y');
+        if (!$thisYear) {
+            $year--;
+        }
+        $date = $year.'-'.($monthNumber<10?'0'.$monthNumber:$monthNumber);
         $startDate = $date.'-01';
         $endDate   = $date.'-31';
 
