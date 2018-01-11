@@ -36,3 +36,13 @@
     {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script src="{{ asset('fullcalendar/lib/moment.min.js') }}"></script>
+    <script src="{{ asset('fullcalendar/fullcalendar.min.js') }}"></script>
+    <script src="{{ asset('fullcalendar/locale/fr.js') }}"></script>
+    <script>
+        var events = {{ (dates is defined) ? dates|json_encode|raw : '""' }};
+    </script>
+{% endblock %}

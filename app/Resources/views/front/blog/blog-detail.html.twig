@@ -25,7 +25,7 @@
             {% endif %}
         {% endfor %}
     {% endif %}
-
+    {% set url = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
     <section class="section u-fitted">
         <h2 class="sectionTitle">{{ blog.nom }}</h2>
         <div class="blogPhotoCtn">
@@ -36,6 +36,10 @@
         </div>
         <div class="blogFooter">
             <p class="u-note">{{ stringAuteurs|raw }}</p>
+            <div class="blogShare">
+                <div class="fb-like" data-href="{{ url }}" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+                <div class="fb-save" data-uri="{{ url }}" data-size="large"></div>
+            </div>
             <div class="tags">
             {% if blog.tags is not empty %}
                 {% for tag in blog.tags %}
@@ -44,9 +48,12 @@
             {% endif %}
             </div>
         </div>
+        <div class="blogComments">
+            <div class="fb-comments" data-href="{{ url }}" data-numposts="5" data-width="800px"></div>
+        </div>
     </section>
 
     {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}
+    {#FB id call in follow_us#}
     {% include 'front/bandeau/follow_us.html.twig' %}
-    
 {% endblock %}

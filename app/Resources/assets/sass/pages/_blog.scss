@@ -61,5 +61,13 @@
                 }
 			}
 		}
+		.blogShare {
+			text-align: right;
+			margin-bottom: 5px;
+		}
+	}
+	.blogComments {
+		max-width: rem(800);
+		margin: rem(40) auto;
 	}
 }
