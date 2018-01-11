@@ -3,6 +3,7 @@
 {% block html_title %} - {{ blog.nom }}{% endblock %}
 {% block meta_description %}{{ blog.descriptionCourte }}{% endblock %}
 {% block og_meta %}
+        <meta property="og:type"               content="article" />
         <meta property="og:title"              content="{{ blog.nom }}" />
         <meta property="og:description"        content="{{ blog.descriptionCourte }}" />
         <meta property="og:image"              content="{{ url('home')|trim('/', 'right') }}{% path blog.image, 'big' %}" />
