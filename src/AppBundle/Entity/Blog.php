@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
@@ -112,6 +113,26 @@ class Blog
      * @ORM\Version
      */
     protected $version;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="auteurDe")
+     * @ORM\JoinTable(name="blog_auteurs",
+     *     joinColumns={@ORM\JoinColumn(name="blog_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
+     * )
+     */
+    private $auteurs;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="blogs")
+     * @ORM\JoinTable(name="blog_tags",
+     *     joinColumns={@ORM\JoinColumn(name="blog_id", referencedColumnName="id")},
+     *     inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     * )
+     */
+    private $tags;
 
     /**
      * Get id
@@ -404,4 +425,71 @@ class Blog
         $this->datePublication = $datePublication;
     }
 
+    /**
+     * Add auteur
+     *
+     * @param Utilisateur $auteur
+     *
+     * @return Blog
+     */
+    public function addAuteur(Utilisateur $auteur)
+    {
+        $this->auteurs[] = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Remove auteur
+     *
+     * @param Utilisateur $auteur
+     */
+    public function removeAuteur(Utilisateur $auteur)
+    {
+        $this->auteurs->removeElement($auteur);
+    }
+
+    /**
+     * Get auteurs
+     *
+     * @return ArrayCollection
+     */
+    public function getAuteurs()
+    {
+        return $this->auteurs;
+    }
+
+    /**
+     * Add tag
+     *
+     * @param Tag $tag
+     *
+     * @return Blog
+     */
+    public function addTag(Tag $tag)
+    {
+        $this->tags[] = $tag;
+
+        return $this;
+    }
+
+    /**
+     * Remove tag
+     *
+     * @param (Tag $tag
+     */
+    public function removeTag(Tag $tag)
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    /**
+     * Get tags
+     *
+     * @return ArrayCollection
+     */
+    public function getTags()
+    {
+        return $this->tags;
+    }
 }

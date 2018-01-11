@@ -9,7 +9,7 @@ ivory_ck_editor:
     toolbars:
         configs:
             essentiels: [ "@source", "-", "@basicstyles", "-", "@links" , "-", "@paragraph" ,]
-            full: [[ "Preview" ], "@copy", [ "@find" ], [ "@source" ], "/", [ "@fullstyles" ], [ "@indent" ], [ "@links" ], [ "@media" ], "/", [ "@format" ], [ "@color" ], [ "RemoveFormat" ], [ "Maximize" ]]
+            full: [[ "Preview" ], "@copy", "@find", [ "@source" ], "/",  "@fullstyles" ,  "@indent" ,  "@links",  "@media", "/",  "@format" ,  "@color",  "RemoveFormat" ,  "Maximize"]
         items:
             basicstyles: [ "Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "-", "RemoveFormat" ]
             fullstyles:  [ "Bold","Italic","Underline","Strike", "Blockquote","Subscript","Superscript","-","RemoveFormat" ]

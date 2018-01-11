@@ -1,10 +1,10 @@
-{% extends "template/base_front.html.twig" %}
+{% extends "front/template/base_front.html.twig" %}
 {% block body_class %}lessons{% endblock %}
 {% block html_title %}– Les cours de japonais et de culture japonaise : calligraphie, art de la cérémonie du thé, yoga, préparation au JLPT{% endblock %}
 {% block main %}
     {% set hastagTitle = "Nos activités" %}
     {% set hastagList = "#Cours" %}
-    {% include 'bandeau_hastag.html.twig' %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="about section u-fitted">
         <h2 class="sectionTitle">Les cours</h2>
@@ -93,7 +93,7 @@
         {% endfor %}
     {% endif %}
 
-    {% include 'bandeau_devenir_membre.html.twig' %}
-    {% include 'follow_us.html.twig' %}
+    {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}

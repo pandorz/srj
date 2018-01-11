@@ -42,12 +42,20 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Blog }
 
+    app.admin.tags:
+        class: AppBundle\Admin\TagAdmin
+        arguments: [~, AppBundle\Entity\Tag, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Tags }
+
+
     app.admin.partenaires:
         class: AppBundle\Admin\PartenaireAdmin
         arguments: [~, AppBundle\Entity\Partenaire, AppBundle:Partenaire]
         tags:
 
             - { name: sonata.admin, manager_type: orm, group: admin, label: Partenaire }
+
     app.admin.newsletter:
         class: AppBundle\Admin\DemandeNewsletterAdmin
         arguments: [~, AppBundle\Entity\DemandeNewsletter, AppBundle:DemandeNewsletter]

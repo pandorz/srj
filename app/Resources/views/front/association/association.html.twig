@@ -1,11 +1,11 @@
-{% extends "template/base_front.html.twig" %}
+{% extends "front/template/base_front.html.twig" %}
 {% block body_class %}asso{% endblock %}
 {% block html_title %}– Découvrir l’association franco-japonaise de Rouen{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "L'Association Rouen Japon" %}
     {% set hastagList = "" %}
-    {% include 'bandeau_hastag.html.twig' %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="about section u-fitted">
         <h2 class="sectionTitle">À propos de nous</h2>
@@ -35,9 +35,9 @@
         </div>
     </section>
 
-    {% include 'association/membres_bureau.html.twig' %}
+    {% include 'front/association/membres_bureau.html.twig' %}
 
-    {% include 'association/partenaires.html.twig' %}
+    {% include 'front/association/partenaires.html.twig' %}
 
     <section class="u-fitted">
         <div class="join section">
@@ -55,6 +55,6 @@
         </div>
     </section>
 
-    {% include 'follow_us.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}

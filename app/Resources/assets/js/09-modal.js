@@ -104,7 +104,6 @@ app.modalController.defaultAction = {
                       $js_modal_overlay = $('.overlay-classic');
 
                   var delay = $js_modal.css( "animation-duration" );
-                  //alert(delay);
                   if ( delay != '0s' ){
                       var timeout = parseFloat(delay.replace('s','')) * 1000;
                       timeout++;

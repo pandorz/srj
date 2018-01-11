@@ -1,8 +1,8 @@
-{% extends "template/base_front.html.twig" %}
+{% extends "front/template/base_front.html.twig" %}
 {% block body_class %}contact{% endblock %}
 {% block html_title %}– Nous contacter{% endblock %}
 {% block main %}
-    {% include 'bandeau_jap.html.twig' %}
+    {% include 'front/bandeau/bandeau_jap.html.twig' %}
 
     <section class="section u-fitted">
         <h2 class="sectionTitle">Laissez-nous un message !</h2>
@@ -42,7 +42,7 @@
         {{ form_end(form) }}
     </section>
 
-    {% include 'bandeau_devenir_membre.html.twig' %}
-    {% include 'follow_us.html.twig' %}
+    {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
     
 {% endblock %}

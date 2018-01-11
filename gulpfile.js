@@ -85,7 +85,6 @@ app.doScripts = function() {
         config.assetsDir+'/js/04-showhide.js',
         config.assetsDir+'/js/05-dropdown.js',
         config.assetsDir+'/js/06-slider.js',
-        config.assetsDir+'/js/07-maps.js',
         config.assetsDir+'/js/08-accordion.js',
         config.assetsDir+'/js/09-modal.js',
         config.assetsDir+'/js/10-grecaptcha.js',
@@ -103,6 +102,13 @@ app.doScripts = function() {
     ], 'app.js');
 
     pipeline.add([
+        config.assetsDir+'/js/vendor/jquery-3.0.0.min.js',
+        config.assetsDir+'/js/vendor/_jquery-ui.min.js',
+        config.assetsDir+'/js/vendor/jquery.customSelect.min.js',
+        config.assetsDir+'/js/vendor/jquery.knob.min.js',
+        config.assetsDir+'/js/vendor/jquery-ui.min.js',
+        config.assetsDir+'/js/vendor/select2.min.js',
+        config.assetsDir+'/js/vendor/moment.min.js',
         config.assetsDir+'/js/admin.js'
     ], 'admin.js');
 

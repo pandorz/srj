@@ -1,0 +1,65 @@
+{% extends "front/template/base_front.html.twig" %}
+{% block body_class %}blogDetail{% endblock %}
+{% block html_title %} - {{ blog.nom }}{% endblock %}
+{% block meta_description %}{{ blog.descriptionCourte }}{% endblock %}
+{% block og_meta %}
+        <meta property="og:type"               content="article" />
+        <meta property="og:title"              content="{{ blog.nom }}" />
+        <meta property="og:description"        content="{{ blog.descriptionCourte }}" />
+        <meta property="og:image"              content="{{ url('home')|trim('/', 'right') }}{% path blog.image, 'big' %}" />
+{% endblock %}
+{% block main %}
+
+    {% set hastagTitle = "Nos articles" %}
+    {% set hastagList = "#Blog" %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
+
+    {% set stringProf = '' %}
+    {% if blog.auteurs is not empty %}
+        {% set stringAuteurs = 'Ecrit par ' %}
+        {% for auteur in blog.auteurs %}
+            {% set auteur_toString = auteur %}
+            {% if auteur.website is not empty %}
+                {% set auteur_toString = '<a href="'~auteur.website~'" target="_blank">'~auteur~'</a>' %}
+            {% endif %}
+            {% if loop.first %}
+                {% set stringAuteurs = stringAuteurs~' '~auteur_toString %}
+            {% elseif loop.last %}
+                {% set stringAuteurs = stringAuteurs~' et '~auteur_toString %}
+            {% else %}
+                {% set stringAuteurs = stringAuteurs~', '~auteur_toString %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+    {% set url = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
+    <section class="section u-fitted">
+        <h2 class="sectionTitle">{{ blog.nom }}</h2>
+        <div class="blogPhotoCtn">
+            {% media blog.image, 'big' with {'class': 'postPhoto blogPhoto', 'width' : '580', 'height' : '435'} %}
+        </div>
+        <div class="blogTextCtn">
+            {{ blog.contenu|raw }}
+        </div>
+        <div class="blogFooter">
+            <p class="u-note">{{ stringAuteurs|raw }}</p>
+            <div class="blogShare">
+                <div class="fb-like" data-href="{{ url }}" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+                <div class="fb-save" data-uri="{{ url }}" data-size="large"></div>
+            </div>
+            <div class="tags">
+            {% if blog.tags is not empty %}
+                {% for tag in blog.tags %}
+                    <a href="{{ path('blog_tag', {'slug': tag.slug}) }}"><span class="tag">{{ tag }}</span></a>
+                {% endfor %}
+            {% endif %}
+            </div>
+        </div>
+        <div class="blogComments">
+            <div class="fb-comments" data-href="{{ url }}" data-numposts="5" data-width="800px"></div>
+        </div>
+    </section>
+
+    {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}
+    {#FB id call in follow_us#}
+    {% include 'front/bandeau/follow_us.html.twig' %}
+{% endblock %}

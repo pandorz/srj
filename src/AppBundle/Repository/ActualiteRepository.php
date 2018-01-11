@@ -37,7 +37,7 @@ class ActualiteRepository extends \Doctrine\ORM\EntityRepository
                 'annule'  => false,
                 'affiche' => true,
                 'dateFin' => date("Y-m-d",strtotime("-1 month")),
-                'datePublication' => date("Y-m-d")
+                'datePublication' => date("Y-m-d H:i:s")
             ]);
         }
         return $query->getResult();
@@ -56,7 +56,7 @@ class ActualiteRepository extends \Doctrine\ORM\EntityRepository
             ->setParameters([
                 'annule'  => false,
                 'affiche' => true,
-                'datePublication' => date("Y-m-d")
+                'datePublication' => date("Y-m-d H:i:s")
             ])
             ->setMaxResults($limit)
             ->getResult();

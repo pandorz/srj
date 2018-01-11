@@ -240,6 +240,9 @@
 				background-color: $color-white;
 				box-shadow: 2px 2px 2px rgba($color-black, .2);
 				@include hideInactive;
+				.my-fc-event-title {
+					display: block;
+				}
 			}
 		}
 		.fc-basic-view .fc-body .fc-row {
