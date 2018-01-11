@@ -2,16 +2,13 @@
 <html class="no-js" lang="fr-FR">
     <head>
         <title>Rouen Japon {% block html_title %}{% endblock %}</title>
-
         {% set defaut_description = "Favoriser les échanges entre les Français et la communauté japonaise de Rouen. 日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。" %}
         {% set defaut_image = asset('medias/favicons/favicon-32x32.png') %}
-        {% set defaut_url = url('home') %}
-        {% set defaut_title = "Rouen Japon" %}
+        {% set defaut_url = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
         {% set defaut_type = "website" %}
         {% set defaut_locale = "fr_FR" %}
-
         {% include 'front/template/balises_meta.html.twig' %}
-
+        {% block og_meta %}{% endblock %}
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('medias/favicons/apple-touch-icon.png') }}">
         <link rel="icon" type="image/png" href="{{ asset('medias/favicons/favicon-32x32.png') }}" sizes="32x32">
         <link rel="icon" type="image/png" href="{{ asset('medias/favicons/favicon-16x16.png') }}" sizes="16x16">
