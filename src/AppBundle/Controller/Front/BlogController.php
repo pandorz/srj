@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Parametre;
+use AppBundle\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
@@ -69,6 +70,42 @@ class BlogController extends BaseController
         }
 
         return $this->render('front/blog/blog-detail.html.twig', ['blog' => $blog]);
+    }
+
+    /**
+     * Possedent le tag
+     *
+     * -------------------- *
+     * @Route("/tag/{slug}/{plus}/", name="blog_tag", defaults={"plus" = "recent"})
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function tagAction(Request $request, $slug, $plus)
+    {
+        if (!$this->isActifParamBlog()) {
+            return $this->redirectToRoute('home');
+        }
+
+        $limit = 6;
+        if (!hash_equals($plus, "recent")) {
+            $limit = null;
+        }
+
+        $tag = $this->getEm()
+            ->getRepository(Tag::class)
+            ->findOneBySlug($slug);
+        $tagName = '';
+        if ($tag instanceof Tag) {
+            $tagName = ucfirst($tag->getNom());
+        }
+
+
+        $blogs = $this->getEm()
+            ->getRepository(Blog::class)
+            ->findByTag($slug, $limit);
+        return $this->render('front/blog/blog.html.twig', ['blogs' => $blogs, 'tagName' => $tagName]);
     }
 
     private function isActifParamBlog()

@@ -75,7 +75,7 @@
                     </div>
                 </div>
             {% endfor %}
-            <div class="seeAllPosts"><a class="btn btn-blank-third" href="{{ path('sorties', {'plus':'voir-tout'}) }}">Charger plus</a></div>
+            {% include 'front/template/button_voir_plus_moins.html.twig' %}
         </div>
         {% endif %}  
     </section>

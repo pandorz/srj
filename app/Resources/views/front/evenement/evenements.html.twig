@@ -47,8 +47,8 @@
         </div>
     {% endif %}
     {% endif %}
-    {% if past == 1 or (past==0 and coming==1)%} 
-        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{ path('evenements', {'plus':'voir-tout'}) }}">Charger plus</a></div>
+    {% if past == 1 or (past==0 and coming==1)%}
+        {% include 'front/template/button_voir_plus_moins.html.twig' %}
     </section>
     {% endif %}
         
