@@ -10,7 +10,6 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
  */
 class BlogRepository extends \Doctrine\ORM\EntityRepository
 {
-    // TODO
     public function findAllValidOverOneMonth($admin = false)
     {
         if ($admin) {
@@ -32,7 +31,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
                     . 'ORDER BY e.datePublication DESC')
                 ->setParameters([
                     'affiche' => true,
-                    'datePublication' => date("Y-m-d"),
+                    'datePublication' => date("Y-m-d H:i:s"),
                     'dateFin' => date("Y-m-d",strtotime("-1 month"))
                 ]);
         }
@@ -50,7 +49,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
                 . 'ORDER BY e.timestampCreation DESC')
             ->setParameters([
                 'affiche' => true,
-                'datePublication' => date("Y-m-d")
+                'datePublication' => date("Y-m-d H:i:s")
             ])
             ->setMaxResults($limit)
             ->getResult();
@@ -82,7 +81,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
 
         $stmt->setParameter(":affiche", true);
         $stmt->setParameter(":slug", $slugTag);
-        $stmt->setParameter(":datePublication",  date("Y-m-d"));
+        $stmt->setParameter(":datePublication",  date("Y-m-d H:i:s"));
         if (!is_null($limit)) {
             $stmt->setParameter(":limit", $limit);
         }
