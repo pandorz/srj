@@ -102,13 +102,6 @@ app.doScripts = function() {
     ], 'app.js');
 
     pipeline.add([
-        config.assetsDir+'/js/vendor/jquery-3.0.0.min.js',
-        config.assetsDir+'/js/vendor/_jquery-ui.min.js',
-        config.assetsDir+'/js/vendor/jquery.customSelect.min.js',
-        config.assetsDir+'/js/vendor/jquery.knob.min.js',
-        config.assetsDir+'/js/vendor/jquery-ui.min.js',
-        config.assetsDir+'/js/vendor/select2.min.js',
-        config.assetsDir+'/js/vendor/moment.min.js',
         config.assetsDir+'/js/admin.js'
     ], 'admin.js');
 
