@@ -8,13 +8,14 @@
         <meta property="og:description"        content="{{ blog.descriptionCourte }}" />
         <meta property="og:image"              content="{{ url('home')|trim('/', 'right') }}{% path blog.image, 'big' %}" />
 {% endblock %}
+{% block meta_image_src %}{{ url('home')|trim('/', 'right') }}{% path blog.image, 'big' %}{% endblock %}
 {% block main %}
 
     {% set hastagTitle = "Nos articles" %}
     {% set hastagList = "#Blog" %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
-    {% set stringProf = '' %}
+    {% set stringAuteurs = '' %}
     {% if blog.auteurs is not empty %}
         {% set stringAuteurs = 'Ecrit par ' %}
         {% for auteur in blog.auteurs %}
