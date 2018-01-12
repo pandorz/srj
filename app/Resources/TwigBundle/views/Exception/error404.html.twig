@@ -8,7 +8,7 @@
     See http://symfony.com/doc/current/cookbook/controller/error_pages.html
 #}
 
-{% extends 'template/base_front.html.twig' %}
+{% extends 'front/template/base_front.html.twig' %}
 
 {% block main %}
     <h1 class="ui header">{{ 'http_error.name'|trans({ '%status_code%': 404 }) }}</h1>
