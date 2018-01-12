@@ -27,7 +27,12 @@ class BaseController extends Controller
 
         $clonedObject->setNom($object->getNom().' (Clone)');
         $clonedObject->setSlug($clonedObject->getSlug().'-clone');
-        $clonedObject->setImage(null);
+        if (method_exists($clonedObject, 'setImage')) {
+            $clonedObject->setImage(null);
+        }
+        if (method_exists($clonedObject, 'setAffiche')) {
+            $clonedObject->setAffiche(false);
+        }
 
         $this->admin->create($clonedObject);
 
