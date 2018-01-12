@@ -61,7 +61,6 @@ twig:
         planneur_link: '%planneur_link%'
         num_version: '%num_version%'
         gmaps_apikey: '%gmaps_apikey%'
-        facebook_id: '%facebook_id%'
 
 # Doctrine Configuration
 doctrine:

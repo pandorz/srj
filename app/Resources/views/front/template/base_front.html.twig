@@ -7,6 +7,7 @@
         {% set defaut_url = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}
         {% set defaut_type = "website" %}
         {% set defaut_locale = "fr_FR" %}
+        {% set facebook_id = get_facebook_id() %}
         {% include 'front/template/balises_meta.html.twig' %}
         {% block og_meta %}{% endblock %}
         <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('medias/favicons/apple-touch-icon.png') }}">

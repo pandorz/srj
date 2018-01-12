@@ -35,4 +35,3 @@ parameters:
     planneur_link: ~
     num_version: 1.0.0
     gmaps_apikey: ~
-    facebook_id: ~

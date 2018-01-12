@@ -45,7 +45,8 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('crop_entete_texte', array($this, 'cropEnteteTexte')),
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
             new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog')),
-            new \Twig_SimpleFunction('get_image_profil', array($this, 'getImageProfil'))
+            new \Twig_SimpleFunction('get_image_profil', array($this, 'getImageProfil')),
+            new \Twig_SimpleFunction('get_facebook_id', array($this, 'getFacebookId'))
         );
     }
 
@@ -75,6 +76,11 @@ class TwigHelpers extends \Twig_Extension
         return '';
     }
 
+    public function getFacebookId()
+    {
+        $parametre = $this->getParamBySlug('facebook-app-id');
+        return $this->returnParametreValue($parametre);
+    }
 
     public function getLienAdhesion()
     {
