@@ -2,11 +2,8 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\UserBundle\Admin\Entity\GroupAdmin;
-use Sonata\UserBundle\Admin\Entity\UserAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 
 class UtilisateurDroitsAdmin extends GroupAdmin
@@ -16,7 +13,7 @@ class UtilisateurDroitsAdmin extends GroupAdmin
 
     protected $classnameLabel   = 'group';
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         parent::configureListFields($listMapper);
         $listMapper
@@ -26,7 +23,7 @@ class UtilisateurDroitsAdmin extends GroupAdmin
             ]);
     }
 
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         parent::configureFormFields($formMapper);
 

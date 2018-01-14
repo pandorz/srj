@@ -18,7 +18,7 @@ class CourRepository extends \Doctrine\ORM\EntityRepository
                 . 'AND e.datePublication <= :datePublication ')
             ->setParameters([
                 'affiche' => true,
-                'datePublication' => date("Y-m-d")
+                'datePublication' => date("Y-m-d H:i:s")
             ])
             ->getResult();
     }

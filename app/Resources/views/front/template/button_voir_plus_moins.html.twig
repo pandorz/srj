@@ -1,0 +1,10 @@
+{% set route_attribut = app.request.attributes.get('_route_params') %}
+{% if route_attribut['plus']=='voir-tout' %}
+    {% set text_button = 'Charger moins' %}
+    {% set route_attribut= route_attribut|merge({'plus':'recent'}) %}
+{% else %}
+    {% set text_button = 'Charger plus' %}
+    {% set route_attribut= route_attribut|merge({'plus':'voir-tout'}) %}
+{% endif %}
+{% set href = path(app.request.attributes.get('_route'), route_attribut) %}
+<div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{ href }}">{{ text_button }}</a></div>

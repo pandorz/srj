@@ -26,7 +26,7 @@ class AppKernel extends Kernel
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new Sonata\AdminBundle\SonataAdminBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
+            new Sonata\UserBundle\SonataUserBundle(),
             new Oh\GoogleMapFormTypeBundle\OhGoogleMapFormTypeBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),            
@@ -35,7 +35,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
             new AppBundle\AppBundle(),
-            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle()
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

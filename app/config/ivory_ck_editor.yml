@@ -3,11 +3,22 @@ ivory_ck_editor:
         my_config:
             language: fr
             toolbar: "essentiels"
+        news:
+            language: fr
+            toolbar: "full"
     toolbars:
         configs:
             essentiels: [ "@source", "-", "@basicstyles", "-", "@links" , "-", "@paragraph" ,]
+            full: [[ "Preview" ], "@copy", "@find", [ "@source" ], "/",  "@fullstyles" ,  "@indent" ,  "@links",  "@media", "/",  "@format" ,  "@color",  "RemoveFormat" ,  "Maximize"]
         items:
             basicstyles: [ "Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "-", "RemoveFormat" ]
+            fullstyles:  [ "Bold","Italic","Underline","Strike", "Blockquote","Subscript","Superscript","-","RemoveFormat" ]
             paragraph:   [ "NumberedList", "BulletedList", "-", "Outdent", "Indent", "-", "Blockquote" ]
-            links:       [ "Link", "Unlink" ]
+            links:       [ "Link", "Unlink", "Anchor" ]
             source:      [ "Source" ]
+            copy:        [ "Cut","Copy","Paste","PasteText","PasteFromWord","-","Undo","Redo" ]
+            find:        [ "Find","Replace","-","SelectAll","-","SpellChecker", "Scayt" ]
+            indent:      [ "NumberedList","BulletedList","-","Outdent","Indent","-","-","JustifyLeft","JustifyCenter","JustifyRight","JustifyBlock" ]
+            format:      [ "Styles", "Format","Font","FontSize" ]
+            color:       [ "TextColor","BGColor" ]
+            media:       [ "pbckcode", "Image", "Video", "Table","SpecialChar","Iframe" ]

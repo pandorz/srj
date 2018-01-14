@@ -44,4 +44,33 @@
 			margin: rem(20) 0;
 		}
 	}
+	.blogFooter {
+		.tags {
+			text-align: right;
+			.tag {
+				border: 1px solid $color-rj-dark;
+				color: $color-rj-dark;
+				border-radius: 4px;
+				display: inline-block;
+				padding: 4px 8px 4px 8px;
+				text-align: center;
+                text-decoration: none;
+                &:hover {
+                  border-color: $color-grey-darker;
+                  color: $color-grey-darker;
+                }
+			}
+		}
+		.blogShare {
+			text-align: right;
+			margin-bottom: 5px;
+		}
+	}
+	.blogComments {
+		max-width: rem(800);
+		margin: rem(40) auto;
+		.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
+			width: 100% !important;
+		}
+	}
 }

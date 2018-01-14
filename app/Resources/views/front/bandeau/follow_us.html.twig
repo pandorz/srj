@@ -1,0 +1,27 @@
+<section class="followUs u-fitted">
+    <h3 class="followTitle">Suivez-nous...</h3>
+    <div class="grid-3">
+        <div class="followItem facebook">
+            <b class="facebookTitle">...sur Facebook</b>
+            <div class="facebookCtn">
+                <!-- Timeline -->
+                <div class="fb-page" data-href="https://www.facebook.com/AssoJaponRouen" data-tabs="timeline" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/AssoJaponRouen" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/AssoJaponRouen">Facebook de l'Association franco-japonaise de Rouen</a></blockquote></div>
+            </div>
+            <!-- Like button -->
+            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
+            <!-- Share button -->
+            <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"></div>
+        </div>
+        <div class="followItem twitter">
+            <b class="twitterTitle">...sur Twitter</b>
+                <!-- Config : https://publish.twitter.com/ -->
+            <div class="twitterCtn">
+                <p><a class="twitter-timeline" data-lang="fr" data-height="500" data-dnt="true" href="https://twitter.com/RouenJapon">Tweets de RouenJapon</a></p> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+            <a href="https://twitter.com/rouenjapon" class="twitter-follow-button" data-show-count="false">Suivre @rouenjapon</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+        {% include 'front/newsletter/newsletter_form.html.twig' %}
+    </div>
+</section>
+
+{% include 'front/template/facebook_javascript.html.twig' %}

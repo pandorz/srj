@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Entity\Kouryukai;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
 use AppBundle\Entity\DemandeNewsletter;
@@ -35,21 +36,21 @@ class FrontController extends BaseController
     */
     public function indexAction(Request $request)
     {        
-        $evenements = $this->getTopEvenements(3);
-        $actualites = $this->getTopActualites(4);
-        $dates      = $this->getDatesCalendrier();
-        $blogs      = $this->getTopBlogs(1);
-        $blog       = null;
+        $evenementsOuKouryukai  = $this->getTopEvenementsOuKouruykai(3);
+        $actualites             = $this->getTopActualites(4);
+        $dates                  = $this->getDatesCalendrier();
+        $blogs                  = $this->getTopBlogs(1);
+        $blog                   = null;
 
         if(!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
             $blog = $blogs[0];
         }
 
-        return $this->render('home.html.twig', [
-            'evenements' => $evenements,
-            'actualites' => $actualites,
-            'dates'      => $dates,
-            'blog'       => $blog
+        return $this->render('front/home.html.twig', [
+            'evenementsOuKouryukai' => $evenementsOuKouryukai,
+            'actualites'            => $actualites,
+            'dates'                 => $dates,
+            'blog'                  => $blog
         ]);
     }
 
@@ -164,6 +165,28 @@ class FrontController extends BaseController
             }
             $data[] = $data_temp;
         }
+
+        $kouryukai= $this->getEm()
+            ->getRepository(Kouryukai::class)
+            ->findAllValidOverOneMonth();
+
+        foreach ($kouryukai as $k) {
+            $start = $k->getDate();
+
+            if (!is_null($start)) {
+                $start = $start->format(self::FORMAT_DATE);
+            }
+
+            $data_temp = [
+                'title' => $k->getNom(),
+                'start' => $start
+            ];
+
+            if (!empty($k->getUrlInscription())) {
+                $data_temp['url'] = $k->getUrlInscription();
+            }
+            $data[] = $data_temp;
+        }
         
         $sorties = $this->getEm()
                 ->getRepository(Sortie::class)
@@ -207,7 +230,7 @@ class FrontController extends BaseController
             $limit = null;
         }
         $sorties = $this->getTopSorties($limit);
-        return $this->render('sorties.html.twig', ['sorties' => $sorties]);
+        return $this->render('front/sortie/sorties.html.twig', ['sorties' => $sorties]);
     }
     
     /**
@@ -223,7 +246,7 @@ class FrontController extends BaseController
     public function coursAction(Request $request)
     {
         $cours = $this->getEm()->getRepository(Cour::class)->getAffichable();
-        return $this->render('cours.html.twig', ['cours' => $cours]);
+        return $this->render('front/cours/cours.html.twig', ['cours' => $cours]);
     }
     
     /**
@@ -243,7 +266,7 @@ class FrontController extends BaseController
             $limit = null;
         }
         $ateliers = $this->getTopAteliers($limit);
-        return $this->render('ateliers.html.twig', ['ateliers' => $ateliers]);
+        return $this->render('front/atelier/ateliers.html.twig', ['ateliers' => $ateliers]);
     }
     
     /**
@@ -260,7 +283,7 @@ class FrontController extends BaseController
     {
         $bureau         = $this->getEm()->getRepository(Utilisateur::class)->findAllBureau();
         $partenaires    = $this->getEm()->getRepository(Partenaire::class)->findBy([], ['slug' => 'ASC']);
-        return $this->render('association.html.twig', ['bureau' => $bureau, 'partenaires' => $partenaires]);
+        return $this->render('front/association/association.html.twig', ['bureau' => $bureau, 'partenaires' => $partenaires]);
     }
     
     /**
@@ -280,10 +303,17 @@ class FrontController extends BaseController
             $limit = null;
         }
         $actualites =  $this->getTopActualites($limit);
+
+        $blogs                  = $this->getTopBlogs(1);
+        $blog                   = null;
+
+        if(!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
+            $blog = $blogs[0];
+        }
         
         return $this->render(
-                'actualites.html.twig',
-                ['actualites' => $actualites]
+                'front/actualite/actualites.html.twig',
+                ['actualites' => $actualites, 'blog' => $blog]
                 );
     }
     
@@ -303,10 +333,10 @@ class FrontController extends BaseController
         if (!hash_equals($plus, "recent")) {
             $limit = null;
         }
-        $evenements = $this->getTopEvenements($limit);
+        $evenementsOuKouryukai = $this->getTopEvenementsOuKouruykai($limit);
         return $this->render(
-            'evenements.html.twig',
-            ['evenements' => $evenements]
+            'front/evenement/evenements.html.twig',
+            ['evenementsOuKouryukai' => $evenementsOuKouryukai]
         );
     }
     
@@ -322,6 +352,6 @@ class FrontController extends BaseController
     */
     public function presJapAction(Request $request)
     {        
-        return $this->render('presentation_japonaise.html.twig', []);
+        return $this->render('front/association/presentation_japonaise.html.twig', []);
     }
 }

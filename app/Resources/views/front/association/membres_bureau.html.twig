@@ -1,0 +1,21 @@
+{% if bureau is not empty %}
+<a id="bureau"></a>
+<section class="members section u-fitted">
+    <h2 class="sectionTitle">Les membres du bureau</h2>
+    <div class="membersList">
+        {% for membre in bureau %}
+            <div class="memberItem">
+                {% set media_path = get_image_profil(membre.id) %}
+                {% if media_path is null %}
+                    {% set media_path = asset(sonata_user.defaultAvatar) %}
+                {% endif %}
+                <img class="memberPhoto" src="{{ media_path }}" alt="{{ membre.slug }}" width="140" height="140">
+                <strong class="memberName">{{ membre.getStringMembre }}</strong>
+                {% if membre.membreTitre is not empty %}
+                <span class="memberJob">{{ membre.membreTitre }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}

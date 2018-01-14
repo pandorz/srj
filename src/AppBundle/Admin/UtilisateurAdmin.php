@@ -2,7 +2,6 @@
 
 namespace AppBundle\Admin;
 
-use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\UserBundle\Admin\Entity\UserAdmin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -16,7 +15,7 @@ class UtilisateurAdmin extends UserAdmin
     protected $baseRoutePattern = 'utilisateur';
     protected $classnameLabel   = 'user';
 
-    protected function configureListFields(ListMapper $listMapper)
+    protected function configureListFields(ListMapper $listMapper): void
     {
         $listMapper
             ->addIdentifier('username')
@@ -45,7 +44,7 @@ class UtilisateurAdmin extends UserAdmin
             ]);
     }
     
-    protected function configureFormFields(FormMapper $formMapper)
+    protected function configureFormFields(FormMapper $formMapper): void
     {
         parent::configureFormFields($formMapper);
 
@@ -111,7 +110,7 @@ class UtilisateurAdmin extends UserAdmin
             ->end();        
     }
 
-    protected function configureDatagridFilters(DatagridMapper $datagridMapper)
+    protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         parent::configureDatagridFilters($datagridMapper);
     

@@ -121,3 +121,7 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
+    bundles: [ 'OhGoogleMapFormTypeBundle' ]
+
+oh_google_map_form_type:
+    api_key: "%gmaps_apikey%"

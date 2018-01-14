@@ -1,0 +1,14 @@
+<div class="footerItem footerBlog">
+    <b class="footerTitle h3">Blog</b>
+    <div class="blogLinksList">
+        {% for footer_blog in get_footer_blog() %}
+        <article class="blogLinkItem">
+            <a class="blogLinkLink" href="{{ path('blog_detail', {'slug': footer_blog.slug}) }}">
+                <h4 class="blogPostTitle">{{ footer_blog.nom }}</h4>
+                <p class="blogPostText">{{ footer_blog.descriptionCourte|slice(0, 100) }}(...)</p>
+            </a>
+        </article>
+        {% endfor %}
+    </div>
+    <div class="allBlogPosts"><a href="{{ path('blog') }}" class="seeMore">Tous les articles</a></div>
+</div>

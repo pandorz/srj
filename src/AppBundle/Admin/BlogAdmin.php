@@ -2,6 +2,8 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Tag;
+use AppBundle\Entity\Utilisateur;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -43,7 +45,7 @@ class BlogAdmin extends AbstractAdmin
             ])
             ->add('datePublication', 'date', [
                 'label'     => 'blog.liste.datePublication'
-            ])            
+            ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -92,8 +94,9 @@ class BlogAdmin extends AbstractAdmin
                 'label' => 'blog.contenu',
                 'attr'  => [
                     'placeholder' => 'blog.placeholder.contenu'
-                ]
-            ])            
+                ],
+                'config_name' => 'news'
+            ])
             ->end()
             ->with('Meta data', [
                 'name'      => $this->trans('blog.with.meta_data'),
@@ -114,6 +117,22 @@ class BlogAdmin extends AbstractAdmin
                 'context'  => 'image',
                 'required' => false,
             ))
+            ->add('auteurs', 'sonata_type_model_autocomplete', [
+                'class'     => Utilisateur::class,
+                'property'  => ['firstname','lastname'],
+                'label'     => 'blog.auteur',
+                'multiple'  => true,
+                'placeholder' => $this->trans('blog.placeholder.auteur'),
+                'required' => false
+            ])
+            ->add('tags', 'sonata_type_model_autocomplete', [
+                'class'     => Tag::class,
+                'property'  => ['nom'],
+                'label'     => 'blog.tag',
+                'multiple'  => true,
+                'placeholder' => $this->trans('blog.placeholder.tag'),
+                'required' => false
+            ])
             ->end()
         ;
     }

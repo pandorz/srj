@@ -1,0 +1,48 @@
+{% extends "front/template/base_front.html.twig" %}
+{% block body_class %}contact{% endblock %}
+{% block html_title %}– Nous contacter{% endblock %}
+{% block main %}
+    {% include 'front/bandeau/bandeau_jap.html.twig' %}
+
+    <section class="section u-fitted">
+        <h2 class="sectionTitle">Laissez-nous un message !</h2>
+        {{ form_start(form, {'attr': {
+                        'class': 'contactForm js-form-grecaptcha'
+                    }}) }}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-warning">{{ flashMessage }}</div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('success') %}    
+            <div class="alert alert-success">{{ flashMessage }}</div>    
+        {% endfor %}
+        {{ form_errors(form) }}
+            <div class="grid-2">
+                <div>
+                    <div class="formItem">
+                    {{ form_row(form.nom) }}
+                    </div>
+                    <div class="formItem">
+                    {{ form_row(form.prenom) }}
+                    </div>
+                    <div class="formItem">
+                    {{ form_row(form.email) }}
+                    </div>
+                    <div class="formItem">
+                    {{ form_row(form.objet) }}
+                    </div>
+                </div>
+                <div>
+                    <div class="formItem">
+                        {{ form_row(form.message) }}
+                    </div>
+                </div>    
+            </div>
+            <div class="js-container-grecaptcha"></div>
+            <button class="btn js-button-grecaptcha" type="submit" data-grecaptcha-key="{{ google_recaptcha_public_token }}">Envoyer</button>
+        {{ form_end(form) }}
+    </section>
+
+    {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
+    
+{% endblock %}

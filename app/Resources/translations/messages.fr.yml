@@ -2,6 +2,9 @@
 '*Objet de votre demande': '*Objet de votre demande'
 '*Prenom': '*Prenom'
 '*Votre email': '*Votre email'
+0: Invalide
+1: Valide
+2: Modérer
 'Actualite Create': Créer
 'Actualite List': Actualités
 'Atelier Create': Créer
@@ -11,6 +14,8 @@
 'Bonjour,': 'Bonjour,'
 'Cour Create': Créer
 'Cour List': Cours
+'Demande Newsletter Create': Créer
+'Demande Newsletter List': 'Demandes Newsletter'
 Email: Email
 'Evenement Create': Créer
 'Evenement List': Événements
@@ -19,75 +24,7 @@ Nom: Nom
 'Parametre List': Paramètres
 'Partenaire Create': Créer
 'Partenaire List': Partenaires
-'Demande Newsletter Create': Créer
-'Demande Newsletter List': 'Demandes Newsletter'
 Prenom: Prénom
-ROLE_ALLOWED_TO_SWITCH: 'Peut changer'
-ROLE_APP_ADMIN_ACTUALITES_ADMIN: 'Administrateur - Actualités'
-ROLE_APP_ADMIN_ACTUALITES_EDITOR: 'Editeur - Actualités'
-ROLE_APP_ADMIN_ACTUALITES_GUEST: 'Invité - Actualités'
-ROLE_APP_ADMIN_ACTUALITES_STAFF: 'Staff - Actualités'
-ROLE_APP_ADMIN_ATELIERS_ADMIN: 'Administrateur - Ateliers'
-ROLE_APP_ADMIN_ATELIERS_EDITOR: 'Editeur - Ateliers'
-ROLE_APP_ADMIN_ATELIERS_GUEST: 'Invité - Ateliers'
-ROLE_APP_ADMIN_ATELIERS_STAFF: 'Staff - Ateliers'
-ROLE_APP_ADMIN_BLOG_ADMIN: 'Administrateur - Blog'
-ROLE_APP_ADMIN_BLOG_EDITOR: 'Editeur - Blog'
-ROLE_APP_ADMIN_BLOG_GUEST: 'Invité - Blog'
-ROLE_APP_ADMIN_BLOG_STAFF: 'Staff - Blog'
-ROLE_APP_ADMIN_COURS_ADMIN: 'Administrateur - Cours'
-ROLE_APP_ADMIN_COURS_DETAILS_ADMIN: 'Administrateur - Cours détails'
-ROLE_APP_ADMIN_COURS_DETAILS_EDITOR: 'Editeur - Cours détails'
-ROLE_APP_ADMIN_COURS_DETAILS_GUEST: 'Invité - Cours détails'
-ROLE_APP_ADMIN_COURS_DETAILS_STAFF: 'Staff - Cours détails'
-ROLE_APP_ADMIN_COURS_EDITOR: 'Editeur - Cours'
-ROLE_APP_ADMIN_COURS_GUEST: 'Invité - Cours'
-ROLE_APP_ADMIN_COURS_STAFF: 'Staff - Cours'
-ROLE_APP_ADMIN_NEWSLETTER_ADMIN: 'Administrateur - Demande Newsletter'
-ROLE_APP_ADMIN_NEWSLETTER_EDITOR: 'Editeur - Demande Newsletter'
-ROLE_APP_ADMIN_NEWSLETTER_GUEST: 'Invité - Demande Newsletter'
-ROLE_APP_ADMIN_NEWSLETTER_STAFF: 'Staff - Demande Newsletter'
-ROLE_APP_ADMIN_EVENEMENTS_ADMIN: 'Administrateur - Événements'
-ROLE_APP_ADMIN_EVENEMENTS_EDITOR: 'Editeur - Événements'
-ROLE_APP_ADMIN_EVENEMENTS_GUEST: 'Invité - Événements'
-ROLE_APP_ADMIN_EVENEMENTS_STAFF: 'Staff - Événements'
-ROLE_APP_ADMIN_PARAMETRES_ADMIN: 'Administrateur - Paramètres'
-ROLE_APP_ADMIN_PARAMETRES_EDITOR: 'Editeur - Paramètres'
-ROLE_APP_ADMIN_PARAMETRES_GUEST: 'Invité - Paramètres'
-ROLE_APP_ADMIN_PARAMETRES_STAFF: 'Staff - Paramètres'
-ROLE_APP_ADMIN_PARTENAIRES_ADMIN: 'Administrateur - Partenaires'
-ROLE_APP_ADMIN_PARTENAIRES_EDITOR: 'Editeur - Partenaires'
-ROLE_APP_ADMIN_PARTENAIRES_GUEST: 'Invité - Partenaires'
-ROLE_APP_ADMIN_PARTENAIRES_STAFF: 'Staff - Partenaires'
-ROLE_APP_ADMIN_SORTIES_ADMIN: 'Administrateur - Sorties'
-ROLE_APP_ADMIN_SORTIES_EDITOR: 'Editeur- Sorties'
-ROLE_APP_ADMIN_SORTIES_GUEST: 'Invité- Sorties'
-ROLE_APP_ADMIN_SORTIES_STAFF: 'Staff- Sorties'
-ROLE_SONATA_ADMIN: 'Peut accéder à l''administration'
-ROLE_SONATA_MEDIA_ADMIN_GALLERY_ADMIN: 'Administateur - Galeries'
-ROLE_SONATA_MEDIA_ADMIN_GALLERY_EDITOR: 'Editeur - Galeries'
-ROLE_SONATA_MEDIA_ADMIN_GALLERY_GUEST: 'Invité - Galeries'
-ROLE_SONATA_MEDIA_ADMIN_GALLERY_HAS_MEDIA_ADMIN: 'Administateur - Galeries'
-ROLE_SONATA_MEDIA_ADMIN_GALLERY_HAS_MEDIA_EDITOR: 'Editeur - Galeries'
-ROLE_SONATA_MEDIA_ADMIN_GALLERY_HAS_MEDIA_GUEST: 'Invité - Galeries'
-ROLE_SONATA_MEDIA_ADMIN_GALLERY_HAS_MEDIA_STAFF: 'Staff - Galeries'
-ROLE_SONATA_MEDIA_ADMIN_GALLERY_STAFF: 'Staff - Galeries'
-ROLE_SONATA_MEDIA_ADMIN_MEDIA_ADMIN: 'Administateur - Medias'
-ROLE_SONATA_MEDIA_ADMIN_MEDIA_EDITOR: 'Editeur - Medias'
-ROLE_SONATA_MEDIA_ADMIN_MEDIA_GUEST: 'Invité - Medias'
-ROLE_SONATA_MEDIA_ADMIN_MEDIA_STAFF: 'Staff - Medias'
-ROLE_SONATA_USER_ADMIN_GROUP_ADMIN: 'Administateur des groupes admin'
-ROLE_SONATA_USER_ADMIN_GROUP_EDITOR: 'Administateur des groupes editeur'
-ROLE_SONATA_USER_ADMIN_GROUP_GUEST: 'Administateur des groupes invité'
-ROLE_SONATA_USER_ADMIN_GROUP_STAFF: 'Administateur des groupes staff'
-ROLE_SONATA_USER_ADMIN_USER_ADMIN: 'Administateur - Utilisateur'
-ROLE_SONATA_USER_ADMIN_USER_EDITOR: 'Administateur - Editeur'
-ROLE_SONATA_USER_ADMIN_USER_GUEST: 'Administateur - Invité'
-ROLE_SONATA_USER_ADMIN_USER_STAFF: 'Administateur - Staff'
-'ROLE_SUPER_ADMIN: ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH': 'Super Administrateur'
-'ROLE_EDITOR: ROLE_APP_ADMIN_ACTUALITES_EDITOR, ROLE_APP_ADMIN_ATELIERS_EDITOR, ROLE_APP_ADMIN_BLOG_EDITOR, ROLE_APP_ADMIN_SORTIES_EDITOR, ROLE_APP_ADMIN_COURS_EDITOR, ROLE_APP_ADMIN_COURS_DETAILS_EDITOR, ROLE_APP_ADMIN_EVENEMENTS_EDITOR, ROLE_APP_ADMIN_PARAMETRES_EDITOR, ROLE_APP_ADMIN_PARTENAIRES_EDITOR, ROLE_APP_ADMIN_NEWSLETTER_EDITOR, ROLE_SONATA_MEDIA_ADMIN_MEDIA_EDITOR, ROLE_SONATA_MEDIA_ADMIN_GALLERY_EDITOR, ROLE_SONATA_MEDIA_ADMIN_GALLERY_HAS_MEDIA_EDITOR': 'Peut tout editer'
-'ROLE_ADMIN: ROLE_USER, ROLE_SONATA_USER_ADMIN_USER_ADMIN, ROLE_SONATA_USER_ADMIN_GROUP_ADMIN, ROLE_SONATA_MEDIA_ADMIN_MEDIA_ADMIN, ROLE_SONATA_MEDIA_ADMIN_GALLERY_ADMIN, ROLE_SONATA_MEDIA_ADMIN_GALLERY_HAS_MEDIA_ADMIN, ROLE_APP_ADMIN_ACTUALITES_ADMIN, ROLE_APP_ADMIN_BLOG_ADMIN, ROLE_APP_ADMIN_ATELIERS_ADMIN, ROLE_APP_ADMIN_SORTIES_ADMIN, ROLE_APP_ADMIN_COURS_ADMIN, ROLE_APP_ADMIN_COURS_DETAILS_ADMIN, ROLE_APP_ADMIN_EVENEMENTS_ADMIN, ROLE_APP_ADMIN_PARAMETRES_ADMIN, ROLE_APP_ADMIN_PARTENAIRES_ADMIN, ROLE_APP_ADMIN_NEWSLETTER_ADMIN, ROLE_SONATA_ADMIN': 'Peut tout administrer'
-ROLE_USER: Utilisateur
 'Sortie Create': Créer
 'Sortie List': Sorties
 Sujet: Sujet
@@ -205,6 +142,7 @@ blog:
     add_edit:
         to_string: 'Article de blog'
 
+    auteur: Auteur(s)
     contenu: Texte
     datePublication: 'Date de publication'
     descriptionCourte: 'Description courte'
@@ -219,10 +157,14 @@ blog:
 
     placeholder:
         actif: Activer/Desactiver
+        auteur: Auteur(s)
         contenu: 'Texte de l''article de blog'
         datePublication: 'Date de publication'
         descriptionCourte: 'Description courte de l''article de blog'
         nom: 'Titre de l''article de blog'
+        tag: Tag(s)
+
+    tag: Tag(s)
 
     with:
         details: Informations
@@ -387,6 +329,67 @@ http_error_503:
     description: 'Service indisponible'
     suggestion: 'Essayez plus tard'
 
+kouryukai:
+    actif: Actif
+
+    add_edit:
+        to_string: Kouryukai
+
+    adresse: Adresse
+    annule: Annulé
+    contenu: Descriptif
+    cp: 'Code postal'
+    date: Date
+    datePublication: 'Date de publication'
+    date_limite: 'Date limite inscription'
+    image: Image
+    latitude: Latitude
+
+    liste:
+        affiche: Affiché
+        annule: Annulé
+        date: Date
+        dateLimite: 'Date limite inscription'
+        datePublication: 'Date de publication'
+        nbPlace: 'Nombre de place'
+        nom: Titre
+        reserveMembre: 'Reservé membres'
+
+    longitude: Longitude
+    nbPlace: 'Nombre de place autorisés'
+    nom: Titre
+
+    placeholder:
+        actif: Activer/Desactiver
+        adresse: 'Adresse du kouryukai'
+        annule: Annuler
+        contenu: 'Le descriptif du kouryukai'
+        cp: 'Code postal du kouryukai'
+        date: Date
+        datePublication: 'Date de publication'
+        date_limite: 'Date limite'
+        nbPlace: 'Nombre de place autorisés'
+        nom: 'Titre à afficher'
+        reserve_membre: 'Réservé aux membres'
+        superviseurs: Superviseurs
+        urlInscription: 'Lien vers assoConect'
+        ville: 'Ville du kouryukai'
+
+    position: Emplacement
+
+    positon:
+        current_position: 'Ma position actuelle'
+        search: Rechercher
+
+    reserve_membre: 'Reservé membres'
+    superviseurs: Superviseurs
+    urlInscription: 'Lien inscription'
+    ville: Ville
+
+    with:
+        details: Informations
+        meta_data: Détails
+
 mails:
     footer:
         text: '@Association Rouen Japon'
@@ -490,6 +493,21 @@ sortie:
         details: Informations
         meta_data: Détails
 
+tag:
+    add_edit:
+        to_string: Tag
+
+    liste:
+        nom: Nom
+
+    nom: Nom
+
+    placeholder:
+        nom: Nom du tag
+
+    with:
+        details: 'Détails'
+
 utilisateur:
     accesSite: 'Peut acceder au site'
     estProfesseur: 'Est professeur'
@@ -500,8 +518,7 @@ utilisateur:
         estProfesseur: Professeur
         parent: Parent
 
-    membreNumero: utilisateur.membreNumero   # FIXME
-    membreNuméro: 'Numéro du membre'
+    membreNumero: 'Numéro du membre'
     membreTitre: 'Titre du membre'
 
     placeholder:

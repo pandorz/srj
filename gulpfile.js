@@ -85,7 +85,6 @@ app.doScripts = function() {
         config.assetsDir+'/js/04-showhide.js',
         config.assetsDir+'/js/05-dropdown.js',
         config.assetsDir+'/js/06-slider.js',
-        config.assetsDir+'/js/07-maps.js',
         config.assetsDir+'/js/08-accordion.js',
         config.assetsDir+'/js/09-modal.js',
         config.assetsDir+'/js/10-grecaptcha.js',
@@ -105,6 +104,10 @@ app.doScripts = function() {
     pipeline.add([
         config.assetsDir+'/js/admin.js'
     ], 'admin.js');
+
+    pipeline.add([
+        config.assetsDir+'/js/Chart.js'
+    ], 'Chart.js');
 
     pipeline.add([
         'vendor/oh/google-map-form-type-bundle/Oh/GoogleMapFormTypeBundle/Resources/public/js/jquery.ohgooglemaps.js'

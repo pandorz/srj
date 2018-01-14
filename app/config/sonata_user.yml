@@ -2,11 +2,6 @@
 sonata_user:
     security_acl: true
     manager_type: orm
-    #table:
-        #user_group: "prosc_utilisateur_droits"
-#    impersonating:
-#        route: page_slug
-#        parameters: { path: / }
     impersonating_route: sonata_user_impersonating
     profile:
         default_avatar: 'bundles/sonatauser/default_avatar.png' # Default avatar displayed if user doesn't have one

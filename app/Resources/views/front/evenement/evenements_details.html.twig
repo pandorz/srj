@@ -1,0 +1,39 @@
+<div class="postItem shortPost">
+    <div class="postItemCtn">
+        {% media evenementOuKouryukai.image, 'big' with {'class': 'postPhoto'} %}
+        <h4 class="postTitle">{{ evenementOuKouryukai.nom }}</h4>
+        {% set date_to_show = evenementOuKouryukai.dateDebut is defined ? evenementOuKouryukai.dateDebut : evenementOuKouryukai.date %}
+        <time class="postDate" datetime="{{date_to_show|date('Y-m-d')}}">
+            <span class="day">{{date_to_show|date('d')}}</span>
+            <span class="month">{{date_to_show|date('F')|slice(0, 3)}}.</span>
+        </time>
+        <p class="postSummary">{% if evenementOuKouryukai.contenu|length > 99 %}{{ crop_entete_texte(evenementOuKouryukai.contenu)|raw }}{% else %}{{ evenementOuKouryukai.contenu|raw }}{% endif %}</p>
+        {% if evenementOuKouryukai.contenu|length > 99 %}
+        <div class="postMoreText" style="display: none;">
+            {{ get_corps_texte(evenementOuKouryukai.contenu)|raw }}<br>
+            {% if date_to_show|date('d/m/Y') != date_to_compare|date('d/m/Y') %}
+                <b class="u-textColorRJ">Du {{date_to_show|date('d/m/Y')}} au {{date_to_compare|date('d/m/Y')}}</b>
+            {% endif %}
+            {% if evenementOuKouryukai.dateLimite is defined %}
+                <p>
+                    <b class="u-textColorRJ">Conditions :</b>
+                    {% if evenementOuKouryukai.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                    <b class="u-textColorRJ">Clôture des réservations :</b> {{evenementOuKouryukai.dateLimite|date('d/m/Y')}}
+                </p>
+                {% if evenementOuKouryukai.coordGeoLatitude is not empty and evenementOuKouryukai.coordGeoLongitude is not empty %}
+                    <p>
+                        <b class="u-textColorRJ">Lieu :</b>
+                        <a class="u-textBlack" href="https://maps.google.fr/maps?q={{ evenementOuKouryukai.coordGeoLatitude }},{{ evenementOuKouryukai.coordGeoLongitude }}" target="_blank">{{ evenementOuKouryukai.adresse is not null ? evenementOuKouryukai.adresse~', ' : '' }}{{ evenementOuKouryukai.codePostal is not null ? evenementOuKouryukai.codePostal~' ' : '' }}{{ evenementOuKouryukai.ville is not null ? evenementOuKouryukai.ville : '' }}</a>
+                    </p>
+                {% endif %}
+                {% if evenementOuKouryukai.urlInscription is not empty %}
+                    <p><b>&gt; <a class="u-textBlack" href="{{ evenementOuKouryukai.urlInscription }}" target="_blank">Je veux participer !</a></b></p>
+                {% endif %}
+            {% endif %}
+        </div>
+            {% if evenementOuKouryukai.contenu|length >1 %}
+            <button class="seeMore" aria-hidden="true">En savoir plus</button>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>            

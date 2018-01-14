@@ -156,6 +156,6 @@ class ContactController extends BaseController
                 }
             }            
         }
-        return $this->render('contact.html.twig', ['form' => $form->createView()]);
+        return $this->render('front/contact/contact.html.twig', ['form' => $form->createView()]);
     }
 }

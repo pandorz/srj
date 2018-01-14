@@ -1,0 +1,31 @@
+{% extends "front/template/base_front.html.twig" %}
+{% block body_class %}blogList{% endblock %}
+{% block html_title %} - Nos articles de blog{% endblock %}
+{% block main %}
+
+    {% set hastagTitle = "Nos articles" %}
+    {% set hastagList = "#Blog" %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
+
+    <section class="blog">
+        <h2 class="sectionTitle">Derniers articles{{ tagName is defined ? ' pour le tag '~tagName : '' }}</h2>
+        <div class="postsList u-fitted">
+            {% for blog in blogs %}
+                <div class="postItem shortPost blogItem">
+                    <div class="postItemCtn blogItemCtn">
+                        {% media blog.image, 'big' with {'class': 'postPhoto blogPhoto'} %}
+                        <h4 class="postTitle blogTitle">{{ blog.nom }}</h4>
+                        <div class="postSummary blogSummary">{{ blog.descriptionCourte }}</div>
+                        <a class="postHover postLink" href="{{ path('blog_detail', {'slug': blog.slug}) }}" title="Voir l'article : {{ blog.nom }}"><span class="btn btn-blank" aria-hidden="true">Voir l'article</span></a>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% include 'front/template/button_voir_plus_moins.html.twig' %}
+        </div>
+    </section>
+
+    {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}
+    {% include 'front/bandeau/follow_us.html.twig' %}
+    
+{% endblock %}
