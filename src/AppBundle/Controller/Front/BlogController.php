@@ -101,10 +101,20 @@ class BlogController extends BaseController
             $tagName = ucfirst($tag->getNom());
         }
 
-
-        $blogs = $this->getEm()
-            ->getRepository(Blog::class)
-            ->findByTag($slug, $limit);
+        if (is_null($limit)) {
+            $blogs = $tag->getBlogs();
+        } else {
+            $cpt = 0;
+            foreach ($tag->getBlogs() as $blog) {
+                if ($cpt < $limit) {
+                    $blogs[] = $blog;
+                    $cpt++;
+                } else {
+                    break;
+                }
+            }
+        }
+        
         return $this->render('front/blog/blog.html.twig', ['blogs' => $blogs, 'tagName' => $tagName]);
     }
 

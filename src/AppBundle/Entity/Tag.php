@@ -257,6 +257,14 @@ class Tag
     }
 
     /**
+     * @return ArrayCollection
+     */
+    public function getBlogs()
+    {
+        return $this->blogs;
+    }
+
+    /**
      * Remove blog
      *
      * @param Blog $blog
