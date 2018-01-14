@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Tag
- * @ORM\Table(name="Tag", indexes={
+ * @ORM\Table(name="tag", indexes={
  *     @ORM\Index(name="nom", columns={"nom"}),
  *     @ORM\Index(name="slug", columns={"slug"})
  * })
