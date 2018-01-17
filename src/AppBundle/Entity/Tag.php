@@ -28,7 +28,7 @@ class Tag
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", unique=true, length=100)
      */
     private $nom;
     
@@ -126,7 +126,7 @@ class Tag
      */
     public function setNom($nom)
     {
-        $this->nom = $nom;
+        $this->nom = mb_strtolower($nom);
 
         return $this;
     }
