@@ -15,6 +15,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 
 use AppBundle\Entity\Actualite;
+use Sonata\CoreBundle\Validator\ErrorElement;
 
 
 class BlogAdmin extends AbstractAdmin
@@ -121,6 +122,7 @@ class BlogAdmin extends AbstractAdmin
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'image',
                 'required' => false,
+                'help' => $this->trans('blog.helper.image')
             ))
             ->add('auteurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
