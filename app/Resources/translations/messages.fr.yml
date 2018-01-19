@@ -27,6 +27,8 @@ Nom: Nom
 Prenom: Prénom
 'Sortie Create': Créer
 'Sortie List': Sorties
+'Tag Create': Créer
+'Tag List': Tags
 Sujet: Sujet
 'Votre message': 'Votre message'
 
@@ -148,6 +150,9 @@ blog:
     descriptionCourte: 'Description courte'
     image: 'Image principale'
 
+    helper:
+        image: 'Pour optimiser le référencement la taille de l''image doit être plus grande ou égale à 200x200px'
+
     liste:
         affiche: Affiché
         datePublication: 'Date de publication'
@@ -172,6 +177,7 @@ blog:
 
 button:
     clone: Dupliquer
+    view: 'Voir sur le site'
 
 contact:
     mail:

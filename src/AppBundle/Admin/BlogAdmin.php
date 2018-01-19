@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Blog;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\Utilisateur;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
@@ -51,6 +52,10 @@ class BlogAdmin extends AbstractAdmin
                     'edit' => array(),
                     'clone' => array(
                         'template' => ':AdminCustom/button:clone.html.twig',
+                        'data'     => '1',
+                    ),
+                    'view' => array(
+                        'template' => ':AdminCustom/button:view.html.twig',
                         'data'     => '1',
                     ),
                     'delete' => array(),
@@ -116,6 +121,7 @@ class BlogAdmin extends AbstractAdmin
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'image',
                 'required' => false,
+                'help' => $this->trans('blog.helper.image')
             ))
             ->add('auteurs', 'sonata_type_model_autocomplete', [
                 'class'     => Utilisateur::class,
@@ -203,9 +209,33 @@ class BlogAdmin extends AbstractAdmin
             : $this->trans('blog.add_edit.to_string');
     }
 
+    /**
+     * @param      $action
+     * @param null $object
+     *
+     * @return array
+     */
+    public function configureActionButtons($action, $object = null)
+    {
+        $list = parent::configureActionButtons($action, $object);
+
+        $blog  = $this->getSubject();
+
+        // Edit case
+        if ($blog instanceof Blog && !empty($blog->getId())) {
+            $list['view'] = array(
+                'template' => ':AdminCustom/button:view_list.html.twig',
+            );
+        }
+
+        return $list;
+    }
+
+
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
         $collection->add('clone', $this->getRouterIdParameter().'/clone');
+        $collection->add('view', '/blog/article/{slug}/');
     }
 }

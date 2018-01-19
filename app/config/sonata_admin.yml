@@ -92,6 +92,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_TAGS_GUEST, ROLE_APP_ADMIN_TAGS_STAFF, ROLE_APP_ADMIN_TAGS_EDITOR, ROLE_APP_ADMIN_TAGS_ADMIN]
                 items:
                     - app.admin.tags
+            app.admin.group.principal.medias:
+                on_top: true
+                label: "Medias"
+                icon: '<i class="fa fa-th"></i>'
+                roles: [ROLE_SONATA_MEDIA_ADMIN_MEDIA_EDITOR, ROLE_SONATA_MEDIA_ADMIN_MEDIA_STAFF, ROLE_SONATA_MEDIA_ADMIN_MEDIA_GUEST, ROLE_SONATA_MEDIA_ADMIN_MEDIA_ADMIN]
+                items:
+                    - sonata.media.admin.media
             app.admin.group.principal.demandenewsletter:
                 on_top: true
                 label: "Demande Newsletter"
