@@ -15,7 +15,6 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 
 use AppBundle\Entity\Actualite;
-use Sonata\CoreBundle\Validator\ErrorElement;
 
 
 class BlogAdmin extends AbstractAdmin
