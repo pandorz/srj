@@ -25,10 +25,12 @@
         <link rel="stylesheet" href="{{ asset('fullcalendar/lib/cupertino/jquery-ui.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('fullcalendar/fullcalendar.min.css') }}" />
         <link rel="stylesheet" href="{{ asset('fullcalendar/fullcalendar.print.min.css') }}" media="print" />
-        
+
+        {% if app.environment == 'prod' %}
         {#JS Grecaptcha#}
         <script src='https://www.google.com/recaptcha/api.js?hl=fr&render=explicit' async defer></script>
         {#END JS Grecaptcha#}
+        {% endif %}
     </head>
     <body class="{% block body_class %}{% endblock %}">
         <!--[if lt IE 10]>
