@@ -1,8 +1,6 @@
-{% if object.affiche and date(object.datePublication) <= date()  %}
 <a href="{{ path('blog_detail', {'slug':object.slug}) }}" class="btn btn-sm btn-default" title="{{ 'button.view'|trans({}) }}">
     <i class="fa fa-eye" aria-hidden="true"></i>
     {{ 'button.view'|trans({}) }}
 </a>
-{% endif %}
 
 
