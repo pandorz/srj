@@ -6,9 +6,12 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Parametre;
 use AppBundle\Entity\Tag;
+use Eko\FeedBundle\Field\Item\GroupItemField;
+use Eko\FeedBundle\Field\Item\ItemField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -125,5 +128,20 @@ class BlogController extends BaseController
             ->findOneBy(['slug' => 'affichage-blog-public']);
 
         return (!empty($parametre) && $parametre->getValue() == "1");
+    }
+
+    /**
+     * Generate the article feed
+     *
+     * @return Response XML Feed
+     */
+    public function feedAction()
+    {
+        $articles = $this->getTopBlogs(null);
+
+        $feed = $this->get('eko_feed.feed.manager')->get('article');
+        $feed->addFromArray($articles);
+
+        return new Response($feed->render('rss'));
     }
 }

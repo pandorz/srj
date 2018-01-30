@@ -1,0 +1,8 @@
+eko_feed:
+    feeds:
+        article:
+            title:       'Tous les articles de Rouen Japon - l''association franco-japonaise de Rouen'
+            description: 'Favoriser les échanges entre les Français et la communauté japonaise de Rouen. 日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。'
+            link:        'https://www.rouenjapon.fr/'
+            encoding:    'utf-8'
+            author:      'Lucie Guilbert'
