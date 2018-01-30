@@ -321,7 +321,7 @@ class FrontController extends BaseController
     * Evenements
     *
     * -------------------- *
-    * @Route("/evenements", name="evenements", defaults={"plus" = "recent"})
+    * @Route("/evenements/{plus}/", name="evenements", defaults={"plus" = "recent"})
     * @Method("GET")
     * -------------------- *
     *

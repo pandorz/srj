@@ -238,14 +238,14 @@ class BaseController extends Controller
                 $limit--;
             }
         }
-        
+
         //--
 
         //-- Dernierement
         $dernierement = $this->getEm()
                 ->getRepository(Evenement::class)
                 ->findDernier($limit);
-        
+
         if (!is_null($dernierement)) {
             if (!is_array($dernierement) && !empty($dernierement)) {
                 $evenements[] = $dernierement;
@@ -319,12 +319,20 @@ class BaseController extends Controller
 
         /** @var Evenement $evenement */
         foreach ($evenements as $evenement) {
-            $tabTimestamp[$evenement->getDateDebut()->getTimestamp()] = $evenement;
+            $timestamp = $evenement->getDateDebut()->getTimestamp();
+            while (isset($tabTimestamp[$timestamp])) {
+                $timestamp++;
+            }
+            $tabTimestamp[$timestamp] = $evenement;
         }
 
         /** @var Kouryukai $k */
         foreach ($kouryukai as $k) {
-            $tabTimestamp[$k->getDate()->getTimestamp()] = $k;
+            $timestamp = $k->getDate()->getTimestamp();
+            while (isset($tabTimestamp[$timestamp])) {
+                $timestamp++;
+            }
+            $tabTimestamp[$timestamp] = $k;
         }
 
         krsort($tabTimestamp);

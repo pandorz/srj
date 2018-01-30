@@ -6,9 +6,9 @@
         <meta property="og:type"               content="article" />
         <meta property="og:title"              content="{{ blog.nom }}" />
         <meta property="og:description"        content="{{ blog.descriptionCourte }}" />
-        <meta property="og:image"              content="{{ url('home')|trim('/', 'right') }}{% path blog.image, 'big' %}" />
+        <meta property="og:image"              content="{{ url('home')|trim('/', 'right') }}{% path blog.image, 'reference' %}" />
 {% endblock %}
-{% block meta_image_src %}{{ url('home')|trim('/', 'right') }}{% path blog.image, 'big' %}{% endblock %}
+{% block meta_image_src %}{{ url('home')|trim('/', 'right') }}{% path blog.image, 'reference' %}{% endblock %}
 {% block main %}
 
     {% set hastagTitle = "Nos articles" %}
@@ -36,7 +36,7 @@
     <section class="section u-fitted">
         <h2 class="sectionTitle">{{ blog.nom }}</h2>
         <div class="blogPhotoCtn">
-            {% media blog.image, 'big' with {'class': 'postPhoto'} %}
+            {% media blog.image, 'reference' with {'class': 'postPhoto'} %}
         </div>
         <div class="blogTextCtn">
             {{ blog.contenu|raw }}

@@ -1,6 +1,6 @@
 <div class="postItem shortPost eventItem">
     <div class="postItemCtn eventItemCtn">
-        {% media evenementOuKouryukai.image, 'big' with {'class': 'postPhoto eventPhoto'} %}
+        {% media evenementOuKouryukai.image, 'reference' with {'class': 'postPhoto eventPhoto'} %}
         <h4 class="postTitle eventTitle">{{ evenementOuKouryukai.nom }}</h4>
         {% set date_to_show = evenementOuKouryukai.dateDebut is defined ? evenementOuKouryukai.dateDebut : evenementOuKouryukai.date %}
         <time class="postDate eventDate" datetime="{{date_to_show|date('Y-m-d')}}">
@@ -18,7 +18,9 @@
                 <p>
                     <b class="u-textColorRJ">Conditions :</b>
                     {% if evenementOuKouryukai.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                    {% if evenementOuKouryukai.dateLimite is not empty %}
                     <b class="u-textColorRJ">Clôture des réservations :</b> {{evenementOuKouryukai.dateLimite|date('d/m/Y')}}
+                    {% endif %}
                 </p>
                 {% if evenementOuKouryukai.coordGeoLatitude is not empty and evenementOuKouryukai.coordGeoLongitude is not empty %}
                     <p>
