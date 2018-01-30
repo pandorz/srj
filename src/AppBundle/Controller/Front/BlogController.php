@@ -67,9 +67,16 @@ class BlogController extends BaseController
             return $this->redirectToRoute('home');
         }
 
+        /** @var Blog $blog */
         $blog = $this->getEm()->getRepository(Blog::class)->findOneBySlug($slug);
         if (empty($blog)) {
             return $this->redirectToRoute('blog');
+        }
+
+        if (!$this->peutVoirArticleSansCondition()) {
+            if (!$blog->getAffiche() || $blog->getDatePublication() > (new \DateTime())) {
+                return $this->redirectToRoute('blog');
+            }
         }
 
         return $this->render('front/blog/blog-detail.html.twig', ['blog' => $blog]);
@@ -121,6 +128,9 @@ class BlogController extends BaseController
         return $this->render('front/blog/blog.html.twig', ['blogs' => $blogs, 'tagName' => $tagName]);
     }
 
+    /**
+     * @return bool
+     */
     private function isActifParamBlog()
     {
         $parametre = $this->getEm()
@@ -143,5 +153,14 @@ class BlogController extends BaseController
         $feed->addFromArray($articles);
 
         return new Response($feed->render('rss'));
+    }
+
+    /**
+     * @return bool
+     */
+    private function peutVoirArticleSansCondition()
+    {
+        return $this->isGranted('ROLE_APP_ADMIN_BLOG_ADMIN') ||
+             $this->isGranted('ROLE_APP_ADMIN_BLOG_EDITOR') || $this->isGranted('ROLE_SUPER_ADMIN');
     }
 }

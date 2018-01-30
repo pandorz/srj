@@ -36,7 +36,7 @@
     <section class="section u-fitted">
         <h2 class="sectionTitle">{{ blog.nom }}</h2>
         <div class="blogPhotoCtn">
-            {% media blog.image, 'big' with {'class': 'postPhoto blogPhoto', 'width' : '580', 'height' : '435'} %}
+            {% media blog.image, 'big' with {'class': 'postPhoto'} %}
         </div>
         <div class="blogTextCtn">
             {{ blog.contenu|raw }}
