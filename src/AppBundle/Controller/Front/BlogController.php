@@ -6,12 +6,8 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Parametre;
 use AppBundle\Entity\Tag;
-use Eko\FeedBundle\Field\Item\GroupItemField;
-use Eko\FeedBundle\Field\Item\ItemField;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -36,7 +32,7 @@ class BlogController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function indexAction(Request $request, $plus)
+    public function indexAction($plus)
     {
         if (!$this->isActifParamBlog()) {
             return $this->redirectToRoute('home');
@@ -61,7 +57,7 @@ class BlogController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function detailAction(Request $request, $slug)
+    public function detailAction($slug)
     {
         if (!$this->isActifParamBlog()) {
             return $this->redirectToRoute('home');
@@ -92,7 +88,7 @@ class BlogController extends BaseController
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function tagAction(Request $request, $slug, $plus)
+    public function tagAction($slug, $plus)
     {
         if (!$this->isActifParamBlog()) {
             return $this->redirectToRoute('home');
@@ -138,21 +134,6 @@ class BlogController extends BaseController
             ->findOneBy(['slug' => 'affichage-blog-public']);
 
         return (!empty($parametre) && $parametre->getValue() == "1");
-    }
-
-    /**
-     * Generate the article feed
-     *
-     * @return Response XML Feed
-     */
-    public function feedAction()
-    {
-        $articles = $this->getTopBlogs(null);
-
-        $feed = $this->get('eko_feed.feed.manager')->get('article');
-        $feed->addFromArray($articles);
-
-        return new Response($feed->render('rss'));
     }
 
     /**

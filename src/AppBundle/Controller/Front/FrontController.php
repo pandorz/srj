@@ -10,7 +10,6 @@ use AppBundle\Entity\Partenaire;
 use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 use AppBundle\Entity\Evenement;
@@ -369,22 +368,16 @@ class FrontController extends BaseController
      * @Method("GET")
      * -------------------- *
      *
-     * @return BinaryFileResponse
+     * @return Response
      * @throws \Exception
      */
     public function fluxRssAction()
     {
-        $filepath = $this->getWebDir().'/../apprss.xml';
-        /**
-         * Check if file exists
-         */
-        if (!file_exists($filepath)) {
-            throw new \Exception(
-                'Rss not found',
-                Response::HTTP_INTERNAL_SERVER_ERROR
-            );
-        }
+        $articles = $this->getTopBlogs(null);
 
-        return new BinaryFileResponse($filepath);
+        $feed = $this->get('eko_feed.feed.manager')->get('article');
+        $feed->addFromArray($articles);
+
+        return new Response($feed->render('rss'));
     }
 }
