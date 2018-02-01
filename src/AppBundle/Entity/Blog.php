@@ -57,7 +57,7 @@ class Blog implements RoutedItemInterface
      *
      * @ORM\Column(name="affiche", type="boolean")
      */
-    private $affiche;        
+    private $affiche;
 
     /**
      * @var \DateTime
@@ -499,7 +499,7 @@ class Blog implements RoutedItemInterface
     // Flux rss
     public function getFeedItemTitle()
     {
-       return $this->getNom();
+        return $this->getNom();
     }
 
     public function getFeedItemDescription()
@@ -522,7 +522,8 @@ class Blog implements RoutedItemInterface
         return $this->getDatePublication();
     }
 
-    public function getFeedItemUrlAnchor(){
+    public function getFeedItemUrlAnchor()
+    {
         return;
     }
 }
