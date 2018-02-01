@@ -15,6 +15,7 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Evenement;
 use AppBundle\Entity\Atelier;
 use AppBundle\Entity\Sortie;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class FrontController
@@ -34,15 +35,15 @@ class FrontController extends BaseController
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function indexAction(Request $request)
-    {        
+    public function indexAction()
+    {
         $evenementsOuKouryukai  = $this->getTopEvenementsOuKouruykai(3);
         $actualites             = $this->getTopActualites(4);
         $dates                  = $this->getDatesCalendrier();
         $blogs                  = $this->getTopBlogs(1);
         $blog                   = null;
 
-        if(!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
+        if (!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
             $blog = $blogs[0];
         }
 
@@ -62,6 +63,7 @@ class FrontController extends BaseController
      * @Method("GET")
      * -------------------- *
      *
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newsletterAction(Request $request)
@@ -76,7 +78,8 @@ class FrontController extends BaseController
                     $request
                         ->getSession()
                         ->getFlashBag()
-                        ->add('error',
+                        ->add(
+                            'error',
                             $this->getTranslator()->trans(
                                 'general.error.grecaptcha.detected_as_robot',
                                 [],
@@ -108,7 +111,7 @@ class FrontController extends BaseController
                     ->add('error', 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument');
             }
 
-        } elseif(empty($email)) {
+        } elseif (empty($email)) {
             $request
                 ->getSession()
                 ->getFlashBag()
@@ -117,7 +120,10 @@ class FrontController extends BaseController
 
         return $this->redirectToRoute('home');
     }
-    
+
+    /**
+     * @return array
+     */
     private function getDatesCalendrier()
     {
         $data       = [];
@@ -192,7 +198,7 @@ class FrontController extends BaseController
                 ->getRepository(Sortie::class)
                 ->findAllValidOverOneMonth();
         
-        foreach ($sorties as $sortie) {           
+        foreach ($sorties as $sortie) {
             $start = $sortie->getDate();
             
             if (!is_null($start)) {
@@ -223,7 +229,7 @@ class FrontController extends BaseController
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function sortiesAction(Request $request, $plus)
+    public function sortiesAction($plus)
     {
         $limit = 4;
         if (!hash_equals($plus, "recent")) {
@@ -243,7 +249,7 @@ class FrontController extends BaseController
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function coursAction(Request $request)
+    public function coursAction()
     {
         $cours = $this->getEm()->getRepository(Cour::class)->getAffichable();
         return $this->render('front/cours/cours.html.twig', ['cours' => $cours]);
@@ -259,7 +265,7 @@ class FrontController extends BaseController
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function ateliersAction(Request $request, $plus)
+    public function ateliersAction($plus)
     {
         $limit = 4;
         if (!hash_equals($plus, "recent")) {
@@ -279,7 +285,7 @@ class FrontController extends BaseController
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function associationAction(Request $request)
+    public function associationAction()
     {
         $bureau         = $this->getEm()->getRepository(Utilisateur::class)->findAllBureau();
         $partenaires    = $this->getEm()->getRepository(Partenaire::class)->findBy([], ['slug' => 'ASC']);
@@ -296,8 +302,8 @@ class FrontController extends BaseController
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function actualitesAction(Request $request, $plus)
-    {   
+    public function actualitesAction($plus)
+    {
         $limit = 4;
         if (!hash_equals($plus, "recent")) {
             $limit = null;
@@ -307,28 +313,28 @@ class FrontController extends BaseController
         $blogs                  = $this->getTopBlogs(1);
         $blog                   = null;
 
-        if(!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
+        if (!empty($blogs) && is_array($blogs) && isset($blogs[0]) && $blogs[0] instanceof Blog) {
             $blog = $blogs[0];
         }
         
         return $this->render(
-                'front/actualite/actualites.html.twig',
-                ['actualites' => $actualites, 'blog' => $blog]
-                );
+            'front/actualite/actualites.html.twig',
+            ['actualites' => $actualites, 'blog' => $blog]
+        );
     }
     
     /**
     * Evenements
     *
     * -------------------- *
-    * @Route("/evenements", name="evenements", defaults={"plus" = "recent"})
+    * @Route("/evenements/{plus}/", name="evenements", defaults={"plus" = "recent"})
     * @Method("GET")
     * -------------------- *
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function evenementsAction(Request $request, $plus)
-    {        
+    public function evenementsAction($plus)
+    {
         $limit = 4;
         if (!hash_equals($plus, "recent")) {
             $limit = null;
@@ -350,8 +356,28 @@ class FrontController extends BaseController
     *
     * @return \Symfony\Component\HttpFoundation\Response
     */
-    public function presJapAction(Request $request)
-    {        
+    public function presJapAction()
+    {
         return $this->render('front/association/presentation_japonaise.html.twig', []);
+    }
+
+    /**
+     * FLux rss
+     * -------------------- *
+     * @Route("/rss", name="flux_rss")
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @return Response
+     * @throws \Exception
+     */
+    public function fluxRssAction()
+    {
+        $articles = $this->getTopBlogs(null);
+
+        $feed = $this->get('eko_feed.feed.manager')->get('article');
+        $feed->addFromArray($articles);
+
+        return new Response($feed->render('rss'));
     }
 }

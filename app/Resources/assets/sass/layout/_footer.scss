@@ -110,7 +110,8 @@
     color: $color-rj;
 }
 .contactFacebook,
-.contactTwitter {
+.contactTwitter,
+.contactRss {
     position: relative;
     display: inline-block;
     vertical-align: middle;
@@ -161,6 +162,14 @@
     }
     &:after {
         background-image: url(../medias/img/icon-twitter.svg);
+    }
+}
+.contactRss {
+    &:before {
+        background-image: url(../medias/img/icon-rss-red.svg);
+    }
+    &:after {
+        background-image: url(../medias/img/icon-rss.svg);
     }
 }
 .siteCredits {

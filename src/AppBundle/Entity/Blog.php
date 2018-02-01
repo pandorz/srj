@@ -6,6 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
 use Sonata\MediaBundle\Model\MediaInterface;
+use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
+use Sonata\MediaBundle\Provider\ImageProvider;
 
 /**
  * Blog
@@ -17,7 +19,7 @@ use Sonata\MediaBundle\Model\MediaInterface;
  * })
  * @ORM\Entity(repositoryClass="AppBundle\Repository\BlogRepository")
  */
-class Blog
+class Blog implements RoutedItemInterface
 {
     /**
      * @var int
@@ -55,7 +57,7 @@ class Blog
      *
      * @ORM\Column(name="affiche", type="boolean")
      */
-    private $affiche;        
+    private $affiche;
 
     /**
      * @var \DateTime
@@ -492,5 +494,36 @@ class Blog
     public function getTags()
     {
         return $this->tags;
+    }
+
+    // Flux rss
+    public function getFeedItemTitle()
+    {
+        return $this->getNom();
+    }
+
+    public function getFeedItemDescription()
+    {
+        $this->getDescriptionCourte();
+    }
+
+    public function getFeedItemRouteName()
+    {
+        return 'blog_detail';
+    }
+
+    public function getFeedItemRouteParameters()
+    {
+        return ['slug' => $this->getSlug()];
+    }
+
+    public function getFeedItemPubDate()
+    {
+        return $this->getDatePublication();
+    }
+
+    public function getFeedItemUrlAnchor()
+    {
+        return;
     }
 }

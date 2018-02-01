@@ -30,3 +30,4 @@ puphpet/config-custom.yaml
 /composer.phar
 /web/uploads/medias/
 .idea
+/apprss.xml

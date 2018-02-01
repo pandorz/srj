@@ -1,4 +1,5 @@
 {% set route_attribut = app.request.attributes.get('_route_params') %}
+
 {% if route_attribut['plus']=='voir-tout' %}
     {% set text_button = 'Charger moins' %}
     {% set route_attribut= route_attribut|merge({'plus':'recent'}) %}

@@ -43,7 +43,7 @@
             {% for sortie in sorties %}
                 <div class="postItem shortPost">
                     <div class="postItemCtn">
-                        {% media sortie.image, 'big' with {'class': 'postPhoto'} %}
+                        {% media sortie.image, 'reference' with {'class': 'postPhoto'} %}
                         <h4 class="postTitle">{{ sortie.nom }}</h4>
                         <time class="postDate" datetime="{{sortie.date|date('Y-m-d')}}">
                             <span class="day">{{sortie.date|date('d')}}</span>

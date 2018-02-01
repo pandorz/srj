@@ -13,7 +13,7 @@
             {% for blog in blogs %}
                 <div class="postItem shortPost blogItem">
                     <div class="postItemCtn blogItemCtn">
-                        {% media blog.image, 'big' with {'class': 'postPhoto blogPhoto'} %}
+                        {% media blog.image, 'reference' with {'class': 'postPhoto blogPhoto'} %}
                         <h4 class="postTitle blogTitle">{{ blog.nom }}</h4>
                         <div class="postSummary blogSummary">{{ blog.descriptionCourte }}</div>
                         <a class="postHover postLink" href="{{ path('blog_detail', {'slug': blog.slug}) }}" title="Voir l'article : {{ blog.nom }}"><span class="btn btn-blank" aria-hidden="true">Voir l'article</span></a>

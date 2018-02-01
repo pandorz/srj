@@ -45,7 +45,7 @@
         {% for atelier in ateliers %}  
             <div class="postItem shortPost">
                 <div class="postItemCtn">
-                    {% media atelier.image, 'big' with {'class': 'postPhoto'} %}
+                    {% media atelier.image, 'reference' with {'class': 'postPhoto'} %}
                     <h4 class="postTitle">{{ atelier.nom }}</h4>
                     <time class="postDate" datetime="{{atelier.date|date('Y-m-d')}}">
                         <span class="day">{{atelier.date|date('d')}}</span> 

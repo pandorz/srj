@@ -10,4 +10,5 @@
         <meta property="og:locale"             content="{% block meta_og_locale %}{{ defaut_locale }}{% endblock %}" />
         {% if facebook_id is not empty %}
         <meta property="og:app_id"             content="{{ facebook_id }}" />
+        <meta property="fb:app_id"             content="{{ facebook_id }}" />
         {% endif %}
