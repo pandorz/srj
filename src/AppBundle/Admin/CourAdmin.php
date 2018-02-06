@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\CourDate;
 use AppBundle\Entity\CourDetail;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
@@ -147,7 +148,7 @@ class CourAdmin extends AbstractAdmin
                 ],
                 'required' => false
             ])
-            ->end() 
+            ->end()
             ->with('Meta data', [
                 'name'      => $this->trans('cour.with.meta_data'),
                  'class'     => 'col-md-5'
@@ -238,13 +239,25 @@ class CourAdmin extends AbstractAdmin
                 'by_reference' => true,
                 'label'     => $this->trans('cour.details', [], 'messages'),
                 'required'  => false,
-            ],[
+            ], [
                 'edit'          => 'inline',
                 'inline'        => 'table',
                 'sortable'      => 'position'
             ])
             ->end()
-        ;
+            ->with('Dates', [
+                'name'      => $this->trans('cour.with.dates')
+            ])
+            ->add('dates', 'sonata_type_collection', [
+                'by_reference' => true,
+                'label'     => $this->trans('cour.dates', [], 'messages'),
+                'required'  => false,
+            ], [
+                'edit'          => 'inline',
+                'inline'        => 'table',
+                'sortable'      => 'position'
+            ])
+            ->end();
     }
 
     /**
@@ -287,6 +300,7 @@ class CourAdmin extends AbstractAdmin
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
         $this->setDetails($page);
+        $this->setDates($page);
         $page->setTimestampCreation(new \DateTime('now'));
     }
 
@@ -298,6 +312,7 @@ class CourAdmin extends AbstractAdmin
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
         $this->setDetails($page);
+        $this->setDates($page);
         $page->setTimestampModification(new \DateTime('now'));
     }
 
@@ -313,6 +328,23 @@ class CourAdmin extends AbstractAdmin
             foreach ($details as $detail) {
                 if ($detail instanceof CourDetail && empty($detail->getCours())) {
                     $detail->setCours($cours);
+                }
+            }
+        }
+    }
+
+    /**
+     * Lie les dates au cours
+     *
+     * @param Cour $cours
+     */
+    private function setDates(Cour &$cours)
+    {
+        $dates = $cours->getDates();
+        if (!empty($dates)) {
+            foreach ($dates as $date) {
+                if ($date instanceof CourDate && empty($date->getCours())) {
+                    $date->setCours($cours);
                 }
             }
         }

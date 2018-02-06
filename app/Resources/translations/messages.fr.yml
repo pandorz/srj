@@ -19,6 +19,8 @@
 Email: Email
 'Evenement Create': Créer
 'Evenement List': Événements
+'Kouryukai Create': Créer
+'Kouryukai List': Kouryukai
 Nom: Nom
 'Parametre Create': Créer
 'Parametre List': Paramètres
@@ -27,11 +29,9 @@ Nom: Nom
 Prenom: Prénom
 'Sortie Create': Créer
 'Sortie List': Sorties
+Sujet: Sujet
 'Tag Create': Créer
 'Tag List': Tags
-'Kouryukai Create': Créer
-'Kouryukai List': Kouryukai
-Sujet: Sujet
 'Votre message': 'Votre message'
 
 actualite:
@@ -150,10 +150,11 @@ blog:
     contenu: Texte
     datePublication: 'Date de publication'
     descriptionCourte: 'Description courte'
-    image: 'Image principale'
 
     helper:
         image: 'Pour optimiser le référencement la taille de l''image doit être plus grande ou égale à 200x200px'
+
+    image: 'Image principale'
 
     liste:
         affiche: Affiché
@@ -203,6 +204,7 @@ cour:
     contenu: Descriptif
     creneau: Creneau
     datePublication: 'Date de publication'
+    dates: Dates
     details: Détails
     image: Image
     lienInscription: 'Lien pour l''inscription'
@@ -250,8 +252,46 @@ cour:
 
     with:
         content: Informations
+        dates: Dates
         details: 'Détails supplémentaires'
         meta_data: Paramètres
+
+cour_date:
+    add_edit:
+        to_string: 'Cours - date'
+
+    heureDebut: 'Heure début'
+    heureFin: 'Heure fin'
+    heure_debut: 'Heure début'
+    heure_fin: 'Heure fin'
+    jour: Jour
+    jour.dimanche: Dimanche
+    jour.jeudi: Jeudi
+    jour.lundi: Lundi
+    jour.mardi: Mardi
+    jour.mercredi: Mercredi
+    jour.samedi: Samedi
+    jour.vendredi: Vendredi
+
+    liste:
+        heureDebut: 'Heure début'
+        heureFin: 'Heure fin'
+        jour: Jour
+        titre: 'Nom'
+
+    nom: Nom
+
+    placeholder:
+        heureDebut: 'Heure début'
+        heureFin: 'Heure fin'
+        heure_debut: 'Heure début'
+        heure_fin:  'Heure fin'
+        jour: Jour
+        nom: Nom
+
+    with:
+        dates: 'Cours - Dates'
+        details: 'Cours - Dates'
 
 cour_detail:
     add_edit:
@@ -511,10 +551,10 @@ tag:
     nom: Nom
 
     placeholder:
-        nom: Nom du tag
+        nom: 'Nom du tag'
 
     with:
-        details: 'Détails'
+        details: Détails
 
 utilisateur:
     accesSite: 'Peut acceder au site'

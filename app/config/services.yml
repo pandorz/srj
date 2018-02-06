@@ -98,6 +98,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: CoursDetail }
 
+    app.admin.cours_dates:
+        class: AppBundle\Admin\CourDateAdmin
+        arguments: [~, AppBundle\Entity\CourDate, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: CoursDate }
+
     app.error_controller:
         class: AppBundle\Controller\Front\ErrorController
         arguments: ['@twig', '%kernel.debug%']
