@@ -10,12 +10,12 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 
-use AppBundle\Entity\CourDetail;
+use AppBundle\Entity\CourReport;
 
-class CourDetailAdmin extends AbstractAdmin
+class CourReportAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_cour_detail';
-    protected $baseRoutePattern = 'cour_detail';
+    protected $baseRouteName    = 'admin_cour_report';
+    protected $baseRoutePattern = 'cour_report';
 
     public $supportsPreviewMode = false;
 
@@ -33,12 +33,19 @@ class CourDetailAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('nom', 'text', [
-                'label' => 'cour_detail.liste.titre'
+            ->add('dateAnnule', 'date', [
+                'label'     => 'cour_report.liste.dateAnnule'
             ])
-            ->add('complet', 'boolean', [
-                'label'     => 'cour_detail.liste.complet',
-                'editable'  => true
+            ->add('dateReport', 'date', [
+                'label'     => 'cour_report.liste.dateReport'
+            ])
+            ->add('heureDebut', 'date', [
+                'label'     => 'cour_report.liste.heureDebut',
+                'format'=>'HH:mm',
+            ])
+            ->add('heureFin', 'date', [
+                'label'     => 'cour_report.liste.heureFin',
+                'format'=>'HH:mm',
             ])
             ->add('_action', null, array(
                 'actions' => array(
@@ -58,30 +65,41 @@ class CourDetailAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('cour_detail.with.details')
+                'name'          => $this->trans('cour_report.with.reports')
             ])
-            ->add('nom', 'text', [
-                'label' => 'cour_detail.nom',
+            ->add('dateAnnule', 'sonata_type_date_picker', [
+                'label' => 'cour_report.dateAnnule',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy',
                 'attr'  => [
-                    'placeholder' => 'cour_detail.placeholder.nom'
-                ],
-                'required' => true
-            ])
-            ->add('contenu', 'text', [
-                'label' => 'cour_detail.contenu',
-                'attr'  => [
-                    'placeholder' => 'cour_detail.placeholder.contenu'
-                ]
-            ])
-            ->add('complet', 'checkbox', [
-                'label' => 'cour_detail.complet',
-                'attr'  => [
-                    'placeholder' => 'cour_detail.placeholder.complet'
+                    'placeholder' => $this->trans('cour_report.placeholder.dateAnnule')
                 ],
                 'required' => false
             ])
-            ->end()
-        ;
+            ->add('dateReport', 'sonata_type_date_picker', [
+                'label' => 'cour_report.dateReport',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy',
+                'attr'  => [
+                    'placeholder' => $this->trans('cour_report.placeholder.dateReport')
+                ],
+                'required' => false
+            ])
+            ->add('heureDebut', 'time', [
+                'label' => 'cour_report.heure_debut',
+                'attr'  => [
+                    'placeholder' => $this->trans('cour_report.placeholder.heure_debut')
+                ],
+                'required' => false
+            ])
+            ->add('heureFin', 'time', [
+                'label' => 'cour_report.heure_fin',
+                'attr'  => [
+                    'placeholder' => $this->trans('cour_report.placeholder.heure_fin')
+                ],
+                'required' => false
+            ])
+            ->end();
     }
 
     /**
@@ -92,8 +110,8 @@ class CourDetailAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('nom')
-            ->add('complet')
+            ->add('heureDebut')
+            ->add('heureFin')
         ;
     }
 
@@ -105,8 +123,8 @@ class CourDetailAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
-            ->add('complet')
+            ->add('heureDebut')
+            ->add('heureFin')
         ;
     }
 
@@ -137,9 +155,9 @@ class CourDetailAdmin extends AbstractAdmin
      */
     public function toString($object)
     {
-        return $object instanceof CourDetail
+        return $object instanceof CourReport
             ? $object->getNom()
-            : $this->trans('cour_detail.add_edit.to_string');
+            : $this->trans('cour_report.add_edit.to_string');
     }
 
     protected function configureRoutes(RouteCollection $collection)

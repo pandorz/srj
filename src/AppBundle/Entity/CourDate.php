@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CourDetail
+ * CourDate
  *
- * @ORM\Table(name="cour_detail")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CourDetailRepository")
+ * @ORM\Table(name="cour_date")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CourDateRepository")
  */
-class CourDetail
+class CourDate
 {
     /**
      * @var int
@@ -29,18 +29,25 @@ class CourDetail
     private $nom;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="contenu", type="string", length=255, nullable=true)
+     * @ORM\Column(name="jour", type="integer", nullable=false)
      */
-    private $contenu;
+    private $jour;
 
     /**
-     * @var boolean
+     * @var \DateTime
      *
-     * @ORM\Column(name="complet", type="boolean")
+     * @ORM\Column(name="heure_debut", type="time", nullable=false)
      */
-    private $complet;
+    private $heureDebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure_fin", type="time", nullable=false)
+     */
+    private $heureFin;
 
     /**
      * @var \DateTime
@@ -80,10 +87,21 @@ class CourDetail
 
     /**
      * @var Cour
-     * @ORM\ManyToOne(targetEntity="Cour", inversedBy="details")
+     * @ORM\ManyToOne(targetEntity="Cour", inversedBy="dates")
      * @ORM\JoinColumn(name="fk_cour", referencedColumnName="id", nullable=true)
      */
     private $cours;
+
+    /**
+     * CourDate constructor.
+     */
+    public function __construct()
+    {
+        $this->jour = 0;
+        $this->heureDebut = new \DateTime();
+        $this->heureFin = new \DateTime();
+    }
+
 
     /**
      * @return int
@@ -118,35 +136,51 @@ class CourDetail
     }
 
     /**
-     * @return string
+     * @return int
      */
-    public function getContenu()
+    public function getJour(): int
     {
-        return $this->contenu;
+        return $this->jour;
     }
 
     /**
-     * @param string $contenu
+     * @param int $jour
      */
-    public function setContenu($contenu)
+    public function setJour(int $jour)
     {
-        $this->contenu = $contenu;
+        $this->jour = $jour;
     }
 
     /**
-     * @return bool
+     * @return \DateTime
      */
-    public function isComplet()
+    public function getHeureDebut(): \DateTime
     {
-        return $this->complet;
+        return $this->heureDebut;
     }
 
     /**
-     * @param bool $complet
+     * @param \DateTime $heureDebut
      */
-    public function setComplet($complet)
+    public function setHeureDebut(\DateTime $heureDebut)
     {
-        $this->complet = $complet;
+        $this->heureDebut = $heureDebut;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getHeureFin(): \DateTime
+    {
+        return $this->heureFin;
+    }
+
+    /**
+     * @param \DateTime $heureFin
+     */
+    public function setHeureFin(\DateTime $heureFin)
+    {
+        $this->heureFin = $heureFin;
     }
 
     /**
@@ -264,5 +298,32 @@ class CourDetail
     public function __toString()
     {
         return $this->nom;
+    }
+
+    public function getJourFr()
+    {
+        switch ($this->jour) {
+            case 0:
+                return 'Dimanche';
+                break;
+            case 1:
+                return 'Lundi';
+                break;
+            case 2:
+                return 'Mardi';
+                break;
+            case 3:
+                return 'Mercredi';
+                break;
+            case 4:
+                return 'Jeudi';
+                break;
+            case 5:
+                return 'Vendredi';
+                break;
+            case 6:
+                return 'Samedi';
+                break;
+        }
     }
 }

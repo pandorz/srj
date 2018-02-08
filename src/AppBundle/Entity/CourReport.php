@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * CourDetail
+ * CourReport
  *
- * @ORM\Table(name="cour_detail")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\CourDetailRepository")
+ * @ORM\Table(name="cour_report")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CourReportRepository")
  */
-class CourDetail
+class CourReport
 {
     /**
      * @var int
@@ -22,25 +22,32 @@ class CourDetail
     private $id;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="date_annule", type="date", nullable=true)
      */
-    private $nom;
+    private $dateAnnule;
 
     /**
-     * @var string
+     * @var \DateTime
      *
-     * @ORM\Column(name="contenu", type="string", length=255, nullable=true)
+     * @ORM\Column(name="date_report", type="date", nullable=true)
      */
-    private $contenu;
+    private $dateReport;
 
     /**
-     * @var boolean
+     * @var \DateTime
      *
-     * @ORM\Column(name="complet", type="boolean")
+     * @ORM\Column(name="heure_debut", type="time", nullable=true)
      */
-    private $complet;
+    private $heureDebut;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="heure_fin", type="time", nullable=true)
+     */
+    private $heureFin;
 
     /**
      * @var \DateTime
@@ -80,10 +87,20 @@ class CourDetail
 
     /**
      * @var Cour
-     * @ORM\ManyToOne(targetEntity="Cour", inversedBy="details")
+     * @ORM\ManyToOne(targetEntity="Cour", inversedBy="reports")
      * @ORM\JoinColumn(name="fk_cour", referencedColumnName="id", nullable=true)
      */
     private $cours;
+
+    /**
+     * CourDate constructor.
+     */
+    public function __construct()
+    {
+        $this->heureDebut = new \DateTime();
+        $this->heureFin = new \DateTime();
+    }
+
 
     /**
      * @return int
@@ -102,51 +119,67 @@ class CourDetail
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getNom()
+    public function getDateAnnule()
     {
-        return $this->nom;
+        return $this->dateAnnule;
     }
 
     /**
-     * @param string $nom
+     * @param \DateTime $dateAnnule
      */
-    public function setNom($nom)
+    public function setDateAnnule(\DateTime $dateAnnule)
     {
-        $this->nom = $nom;
+        $this->dateAnnule = $dateAnnule;
     }
 
     /**
-     * @return string
+     * @return \DateTime
      */
-    public function getContenu()
+    public function getDateReport()
     {
-        return $this->contenu;
+        return $this->dateReport;
     }
 
     /**
-     * @param string $contenu
+     * @param \DateTime $dateReport
      */
-    public function setContenu($contenu)
+    public function setDateReport(\DateTime $dateReport)
     {
-        $this->contenu = $contenu;
+        $this->dateReport = $dateReport;
     }
 
     /**
-     * @return bool
+     * @return \DateTime
      */
-    public function isComplet()
+    public function getHeureDebut(): \DateTime
     {
-        return $this->complet;
+        return $this->heureDebut;
     }
 
     /**
-     * @param bool $complet
+     * @param \DateTime $heureDebut
      */
-    public function setComplet($complet)
+    public function setHeureDebut(\DateTime $heureDebut)
     {
-        $this->complet = $complet;
+        $this->heureDebut = $heureDebut;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getHeureFin(): \DateTime
+    {
+        return $this->heureFin;
+    }
+
+    /**
+     * @param \DateTime $heureFin
+     */
+    public function setHeureFin(\DateTime $heureFin)
+    {
+        $this->heureFin = $heureFin;
     }
 
     /**
@@ -263,6 +296,18 @@ class CourDetail
 
     public function __toString()
     {
-        return $this->nom;
+        $string = "";
+        if (!is_null($this->dateAnnule)) {
+            $string = 'Cours annulé le '.$this->dateAnnule->format("d/m/Y");
+        }
+
+        if (!is_null($this->dateReport)) {
+            if (empty($string)) {
+                $string = 'Report le ' .$this->dateReport->format("d/m/Y");
+            } else {
+                $string.= ' reporté au '.$this->dateReport->format("d/m/Y");
+            }
+        }
+        return $string;
     }
 }

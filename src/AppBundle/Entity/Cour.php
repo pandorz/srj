@@ -5,8 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
-use Symfony\Component\Validator\Constraints as Assert;
 use Sonata\MediaBundle\Model\MediaInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Cour
@@ -29,13 +29,13 @@ class Cour
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	
-   /**
-    * @var string
-    *
-    * @Gedmo\Slug(fields={"titre"})
-    * @ORM\Column(length=128, unique=true)
-    */
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"titre"})
+     * @ORM\Column(length=128, unique=true)
+     */
     private $slug;
 
     /**
@@ -79,7 +79,7 @@ class Cour
      * @ORM\Column(name="date_publication", type="datetime", nullable=true)
      */
     private $datePublication;
-	
+
     /**
      * @var ArrayCollection
      * @ORM\ManyToMany(targetEntity="Utilisateur", inversedBy="cours")
@@ -173,7 +173,7 @@ class Cour
      * )
      */
     private $professeurs;
-    
+
     /**
      * @var \DateTime
      *
@@ -187,7 +187,7 @@ class Cour
      * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
      */
     private $timestampModification;
-    
+
     /**
      * @var string
      *
@@ -201,7 +201,7 @@ class Cour
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
-    
+
     /**
      * For Sonata Admin Doctrine lock
      * @var int
@@ -215,6 +215,18 @@ class Cour
      * @ORM\OneToMany(targetEntity="CourDetail", mappedBy="cours", cascade={"persist"})
      */
     private $details;
+
+    /**
+     * @var CourDate
+     * @ORM\OneToMany(targetEntity="CourDate", mappedBy="cours", cascade={"persist"})
+     */
+    private $dates;
+
+    /**
+     * @var CourReport
+     * @ORM\OneToMany(targetEntity="CourReport", mappedBy="cours", cascade={"persist"})
+     */
+    private $reports;
 
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
@@ -257,19 +269,19 @@ class Cour
     {
         return $this->annule;
     }
-    
+
     /**
      * @param int $version
-     * 
+     *
      * @return Cour
      */
     public function setVersion($version)
     {
         $this->version = $version;
-        
+
         return $this;
     }
-    
+
     /**
      * @return int
      */
@@ -394,7 +406,7 @@ class Cour
     {
         return $this->slug;
     }
-    
+
     /**
      * @ORM\PrePersist
      */
@@ -410,7 +422,7 @@ class Cour
     {
         $this->setTimestampModification(new \DateTime('now'));
     }
-    
+
     /**
      * Set timestampCreation
      *
@@ -434,7 +446,7 @@ class Cour
     {
         return $this->timestampCreation;
     }
-    
+
     /**
      * Set timestampModification
      *
@@ -458,7 +470,7 @@ class Cour
     {
         return $this->timestampModification;
     }
-    
+
     /**
      * @return string
      */
@@ -770,12 +782,92 @@ class Cour
     }
 
     /**
-     * Remove superviseur
+     * Remove detail
      *
      * @param CourDetail $detail
      */
     public function removeDetail(CourDetail $detail)
     {
         $this->details->removeElement($detail);
+    }
+
+    /**
+     * @return CourDate
+     */
+    public function getDates()
+    {
+        return $this->dates;
+    }
+
+    /**
+     * @param CourDate $dates
+     */
+    public function setDates(CourDate $dates)
+    {
+        $this->dates = $dates;
+    }
+
+    /**
+     * Add date
+     *
+     * @param CourDate $date
+     *
+     * @return Cour
+     */
+    public function addDate(CourDate $date)
+    {
+        $this->dates[] = $date;
+
+        return $this;
+    }
+
+    /**
+     * Remove date
+     *
+     * @param CourDate $date
+     */
+    public function removeDate(CourDate $date)
+    {
+        $this->dates->removeElement($date);
+    }
+
+    /**
+     * @return CourReport
+     */
+    public function getReports()
+    {
+        return $this->reports;
+    }
+
+    /**
+     * @param CourReport $reports
+     */
+    public function setReports(CourReport $reports)
+    {
+        $this->reports = $reports;
+    }
+
+    /**
+     * Add report
+     *
+     * @param CourReport $report
+     *
+     * @return Cour
+     */
+    public function addReport(CourReport $report)
+    {
+        $this->reports[] = $report;
+
+        return $this;
+    }
+
+    /**
+     * Remove report
+     *
+     * @param CourReport $report
+     */
+    public function removeReport(CourReport $report)
+    {
+        $this->reports->removeElement($report);
     }
 }
