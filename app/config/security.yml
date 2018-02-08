@@ -11,6 +11,7 @@ security:
             - ROLE_APP_ADMIN_BLOG_EDITOR
             - ROLE_APP_ADMIN_SORTIES_EDITOR
             - ROLE_APP_ADMIN_KOURYUKAI_EDITOR
+            - ROLE_APP_ADMIN_CONGES_EDITOR
             - ROLE_APP_ADMIN_COURS_EDITOR
             - ROLE_APP_ADMIN_COURS_DETAILS_EDITOR
             - ROLE_APP_ADMIN_COURS_DATES_EDITOR
@@ -36,6 +37,7 @@ security:
             - ROLE_APP_ADMIN_SORTIES_ADMIN
             - ROLE_APP_ADMIN_KOURYUKAI_ADMIN
             - ROLE_APP_ADMIN_COURS_ADMIN
+            - ROLE_APP_ADMIN_CONGES_ADMIN
             - ROLE_APP_ADMIN_COURS_DETAILS_ADMIN
             - ROLE_APP_ADMIN_COURS_DATES_ADMIN
             - ROLE_APP_ADMIN_COURS_REPORTS_ADMIN
@@ -69,7 +71,7 @@ security:
                 login_path:     /gyosei/login
                 use_forward:    false
                 check_path:     /gyosei/login_check
-                failure_path:   null
+                failure_path:   /gyosei/login
                 default_target_path: /gyosei/dashboard
             logout:
                 path:           /gyosei/logout

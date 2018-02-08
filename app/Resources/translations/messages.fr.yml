@@ -182,6 +182,28 @@ button:
     clone: Dupliquer
     view: 'Voir sur le site'
 
+conge:
+    add_edit:
+        to_string: 'Vacances ou jour férié'
+
+    dateDebut: 'Date début'
+    dateFin: 'Date fin'
+
+    liste:
+        dateDebut: 'Date début'
+        dateFin: 'Date fin'
+        nom: 'Nom'
+
+    nom: 'Nom'
+
+    placeholder:
+        dateDebut: 'Date début'
+        dateFin: 'Date fin'
+        nom: 'Nom de la période de vacances ou du jour férié'
+
+    with:
+        details: 'Détails'
+
 contact:
     mail:
         soustitre: 'Quelqu''un a laissé un message sur le site Rouen japon'
