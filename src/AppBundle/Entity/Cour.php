@@ -223,6 +223,12 @@ class Cour
     private $dates;
 
     /**
+     * @var CourReport
+     * @ORM\OneToMany(targetEntity="CourReport", mappedBy="cours", cascade={"persist"})
+     */
+    private $reports;
+
+    /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
      * @ORM\joinColumn(onDelete="SET NULL")
@@ -776,7 +782,7 @@ class Cour
     }
 
     /**
-     * Remove superviseur
+     * Remove detail
      *
      * @param CourDetail $detail
      */
@@ -816,12 +822,52 @@ class Cour
     }
 
     /**
-     * Remove superviseur
+     * Remove date
      *
      * @param CourDate $date
      */
     public function removeDate(CourDate $date)
     {
         $this->dates->removeElement($date);
+    }
+
+    /**
+     * @return CourReport
+     */
+    public function getReports()
+    {
+        return $this->reports;
+    }
+
+    /**
+     * @param CourReport $reports
+     */
+    public function setReports(CourReport $reports)
+    {
+        $this->reports = $reports;
+    }
+
+    /**
+     * Add report
+     *
+     * @param CourReport $report
+     *
+     * @return Cour
+     */
+    public function addReport(CourReport $report)
+    {
+        $this->reports[] = $report;
+
+        return $this;
+    }
+
+    /**
+     * Remove report
+     *
+     * @param CourReport $report
+     */
+    public function removeReport(CourReport $report)
+    {
+        $this->reports->removeElement($report);
     }
 }

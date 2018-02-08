@@ -246,6 +246,7 @@ cour:
 
     prix: Prix
     professeur: Professeur
+    reports: 'Annulation et report'
     titre: Titre
     titreNav: 'Titre pour la navigation'
     users: Inscrits
@@ -255,6 +256,7 @@ cour:
         dates: Dates
         details: 'Détails supplémentaires'
         meta_data: Paramètres
+        reports: 'Annulations et reports'
 
 cour_date:
     add_edit:
@@ -277,7 +279,7 @@ cour_date:
         heureDebut: 'Heure début'
         heureFin: 'Heure fin'
         jour: Jour
-        titre: 'Nom'
+        titre: Nom
 
     nom: Nom
 
@@ -285,7 +287,7 @@ cour_date:
         heureDebut: 'Heure début'
         heureFin: 'Heure fin'
         heure_debut: 'Heure début'
-        heure_fin:  'Heure fin'
+        heure_fin: 'Heure fin'
         jour: Jour
         nom: Nom
 
@@ -313,6 +315,30 @@ cour_detail:
 
     with:
         details: 'Cours - Details'
+
+cour_report:
+    add_edit:
+        to_string: 'Annulation et/ou report'
+
+    dateAnnule: 'Date annulé'
+    dateReport: 'Date choisi pour le report'
+    heure_debut: 'Heure début'
+    heure_fin: 'Heure fin'
+
+    liste:
+        dateAnnule: 'Date annulé'
+        dateReport: 'Date choisi pour le report'
+        heureDebut: 'Heure début'
+        heureFin: 'Heure fin'
+
+    placeholder:
+        dateAnnule: 'Date annulé'
+        dateReport: 'Date choisi pour le report'
+        heure_debut: 'Heure début'
+        heure_fin: 'Heure fin'
+
+    with:
+        reports: 'Annulation et report'
 
 demande_newsletter:
     liste:

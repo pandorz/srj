@@ -10,12 +10,12 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 
-use AppBundle\Entity\CourDate;
+use AppBundle\Entity\CourReport;
 
-class CourDateAdmin extends AbstractAdmin
+class CourReportAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_cour_date';
-    protected $baseRoutePattern = 'cour_date';
+    protected $baseRouteName    = 'admin_cour_report';
+    protected $baseRoutePattern = 'cour_report';
 
     public $supportsPreviewMode = false;
 
@@ -33,18 +33,18 @@ class CourDateAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $listMapper)
     {
         $listMapper
-            ->addIdentifier('nom', 'text', [
-                'label' => 'cour_date.liste.titre'
+            ->add('dateAnnule', 'date', [
+                'label'     => 'cour_report.liste.dateAnnule'
             ])
-            ->add('jourFr', 'html', [
-                'label' => 'cour_date.liste.jour',
+            ->add('dateReport', 'date', [
+                'label'     => 'cour_report.liste.dateReport'
             ])
             ->add('heureDebut', 'date', [
-                'label'     => 'cour_date.liste.heureDebut',
+                'label'     => 'cour_report.liste.heureDebut',
                 'format'=>'HH:mm',
             ])
             ->add('heureFin', 'date', [
-                'label'     => 'cour_date.liste.heureFin',
+                'label'     => 'cour_report.liste.heureFin',
                 'format'=>'HH:mm',
             ])
             ->add('_action', null, array(
@@ -65,45 +65,39 @@ class CourDateAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('cour_date.with.dates')
+                'name'          => $this->trans('cour_report.with.reports')
             ])
-            ->add('nom', 'text', [
-                'label' => 'cour_date.nom',
+            ->add('dateAnnule', 'sonata_type_date_picker', [
+                'label' => 'cour_report.dateAnnule',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy',
                 'attr'  => [
-                    'placeholder' => 'cour_date.placeholder.nom'
+                    'placeholder' => $this->trans('cour_report.placeholder.dateAnnule')
                 ],
-                'required' => true
+                'required' => false
             ])
-            ->add('jour', 'choice', [
-                'choices' => [
-                    $this->trans('cour_date.jour.dimanche') => 0,
-                    $this->trans('cour_date.jour.lundi')    => 1,
-                    $this->trans('cour_date.jour.mardi')    => 2,
-                    $this->trans('cour_date.jour.mercredi') => 3,
-                    $this->trans('cour_date.jour.jeudi')    => 4,
-                    $this->trans('cour_date.jour.vendredi') => 5,
-                    $this->trans('cour_date.jour.samedi')   => 6,
+            ->add('dateReport', 'sonata_type_date_picker', [
+                'label' => 'cour_report.dateReport',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy',
+                'attr'  => [
+                    'placeholder' => $this->trans('cour_report.placeholder.dateReport')
                 ],
-                'label' => 'cour_date.jour',
-                'attr' => [
-                    'placeholder' => $this->trans('cour_date.placeholder.jour')
-                ],
-                'expanded' => true,
-                'multiple' => false,
+                'required' => false
             ])
             ->add('heureDebut', 'time', [
-                'label' => 'cour_date.heure_debut',
+                'label' => 'cour_report.heure_debut',
                 'attr'  => [
-                    'placeholder' => $this->trans('cour_date.placeholder.heure_debut')
+                    'placeholder' => $this->trans('cour_report.placeholder.heure_debut')
                 ],
-                'required' => true
+                'required' => false
             ])
             ->add('heureFin', 'time', [
-                'label' => 'cour_date.heure_fin',
+                'label' => 'cour_report.heure_fin',
                 'attr'  => [
-                    'placeholder' => $this->trans('cour_date.placeholder.heure_fin')
+                    'placeholder' => $this->trans('cour_report.placeholder.heure_fin')
                 ],
-                'required' => true
+                'required' => false
             ])
             ->end();
     }
@@ -116,7 +110,6 @@ class CourDateAdmin extends AbstractAdmin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('nom')
             ->add('heureDebut')
             ->add('heureFin')
         ;
@@ -130,7 +123,6 @@ class CourDateAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-            ->add('nom')
             ->add('heureDebut')
             ->add('heureFin')
         ;
@@ -163,9 +155,9 @@ class CourDateAdmin extends AbstractAdmin
      */
     public function toString($object)
     {
-        return $object instanceof CourDate
+        return $object instanceof CourReport
             ? $object->getNom()
-            : $this->trans('cour_date.add_edit.to_string');
+            : $this->trans('cour_report.add_edit.to_string');
     }
 
     protected function configureRoutes(RouteCollection $collection)

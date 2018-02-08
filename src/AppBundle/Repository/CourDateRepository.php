@@ -3,7 +3,7 @@
 namespace AppBundle\Repository;
 
 /**
- * Class CreneauRepository
+ * Class CourDateRepository
  * @package AppBundle\Repository
  */
 class CourDateRepository extends \Doctrine\ORM\EntityRepository
