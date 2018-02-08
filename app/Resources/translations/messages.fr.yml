@@ -14,6 +14,8 @@
 'Bonjour,': 'Bonjour,'
 'Cour Create': Créer
 'Cour List': Cours
+'Conge Create': Créer
+'Conge List': 'Vacances et jours fériés'
 'Demande Newsletter Create': Créer
 'Demande Newsletter List': 'Demandes Newsletter'
 Email: Email
@@ -181,6 +183,28 @@ blog:
 button:
     clone: Dupliquer
     view: 'Voir sur le site'
+
+conge:
+    add_edit:
+        to_string: 'Vacances ou jour férié'
+
+    dateDebut: 'Date début'
+    dateFin: 'Date fin'
+
+    liste:
+        dateDebut: 'Date début'
+        dateFin: 'Date fin'
+        nom: 'Nom'
+
+    nom: 'Nom'
+
+    placeholder:
+        dateDebut: 'Date début'
+        dateFin: 'Date fin'
+        nom: 'Nom de la période de vacances ou du jour férié'
+
+    with:
+        details: 'Détails'
 
 contact:
     mail:
