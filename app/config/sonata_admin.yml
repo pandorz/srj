@@ -106,20 +106,18 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_NEWSLETTER_GUEST, ROLE_APP_ADMIN_NEWSLETTER_STAFF, ROLE_APP_ADMIN_NEWSLETTER_EDITOR, ROLE_APP_ADMIN_NEWSLETTER_ADMIN]
                 items:
                     - app.admin.newsletter
-            app.admin.group.principal.conges:
-                on_top: true
-                label: "Vacances/Férié"
-                icon: '<i class="fa fa-calendar-times-o"></i>'
-                roles: [ROLE_APP_ADMIN_CONGES_GUEST, ROLE_APP_ADMIN_CONGES_STAFF, ROLE_APP_ADMIN_CONGES_EDITOR, ROLE_APP_ADMIN_CONGES_ADMIN]
-                items:
-                    - app.admin.conges
             app.admin.group.principal.parametres:
-                on_top: true
-                label: "Parametres"
+                keep_open: false
+                label: "Outils"
                 icon: '<i class="fa fa-cogs"></i>'
-                roles: [ROLE_APP_ADMIN_PARAMETRES_GUEST, ROLE_APP_ADMIN_PARAMETRES_STAFF, ROLE_APP_ADMIN_PARAMETRES_EDITOR, ROLE_APP_ADMIN_PARAMETRES_ADMIN]
+                label_catalogue: AppBundle
                 items:
-                    - app.admin.parametres
+                    - route: admin_parametre_list
+                      roles: [ROLE_APP_ADMIN_PARAMETRES_GUEST, ROLE_APP_ADMIN_PARAMETRES_STAFF, ROLE_APP_ADMIN_PARAMETRES_EDITOR, ROLE_APP_ADMIN_PARAMETRES_ADMIN]
+                      label: "Parametres du site"
+                    - route: admin_conge_list
+                      roles: [ROLE_APP_ADMIN_CONGES_GUEST, ROLE_APP_ADMIN_CONGES_STAFF, ROLE_APP_ADMIN_CONGES_EDITOR, ROLE_APP_ADMIN_CONGES_ADMIN]
+                      label: "Vacances et jours fériés"
             app.admin.group.principal.users:
                 keep_open: false
                 label: "Utilisateurs"

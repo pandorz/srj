@@ -67,7 +67,6 @@ class CongeAdmin extends AbstractAdmin
         $formMapper
             ->with('Content', [
                 'name'          => $this->trans('conge.with.details'),
-                'class'         => 'col-md-7'
             ])
             ->add('nom', 'text', [
                 'label' => 'conge.nom',
