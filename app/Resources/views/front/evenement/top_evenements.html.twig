@@ -4,7 +4,7 @@
     {% for evenementOuKouryukai in evenementsOuKouryukai %}
         {% if evenementOuKouryukai is not empty %}
             {% set date_to_compare = evenementOuKouryukai.dateFin is defined ? evenementOuKouryukai.dateFin : evenementOuKouryukai.date %}
-            {% if date_to_compare|date('Y-m-d') > 'now'|date('Y-m-d') %}
+            {% if date_to_compare|date('Y-m-d H:i:s') > 'now'|date('Y-m-d H:i:s') %}
                 {% if coming == 0 %} 
                     <div class="comingEvent">
                         <h3 class="comingTitle">Prochainement</h3>

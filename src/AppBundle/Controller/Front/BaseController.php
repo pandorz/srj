@@ -345,7 +345,7 @@ class BaseController extends Controller
         foreach ($tabTimestamp as $element) {
             if (is_null($limit) || $cpt < $limit) {
                 $dateElement = ($element instanceof Kouryukai ? $element->getDate() : $element->getDateDebut());
-                if ($dateElement > $now && isset($tabElements[0])) {
+                if ($dateElement >= $now && isset($tabElements[0])) {
                     $tabElements[0] = $element;
                 } else {
                     $tabElements[] = $element;
