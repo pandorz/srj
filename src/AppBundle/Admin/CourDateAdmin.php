@@ -88,7 +88,7 @@ class CourDateAdmin extends AbstractAdmin
                 'attr' => [
                     'placeholder' => $this->trans('cour_date.placeholder.jour')
                 ],
-                'expanded' => true,
+                'expanded' => false,
                 'multiple' => false,
             ])
             ->add('heureDebut', 'time', [
