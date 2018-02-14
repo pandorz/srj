@@ -7,6 +7,7 @@
         <meta property="og:title"              content="{{ blog.nom }}" />
         <meta property="og:description"        content="{{ blog.descriptionCourte }}" />
         <meta property="og:image"              content="{{ url('home')|trim('/', 'right') }}{% path blog.image, 'reference' %}" />
+        <meta property="og:url"                content="{{ url('blog_detail', {'slug': blog.slug}) }}" />
 {% endblock %}
 {% block meta_image_src %}{{ url('home')|trim('/', 'right') }}{% path blog.image, 'reference' %}{% endblock %}
 {% block main %}
