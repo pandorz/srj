@@ -45,8 +45,8 @@ sonata_media:
             cdn:        sonata.media.cdn.server
             generator:  sonata.media.generator.default
             thumbnail:  sonata.media.thumbnail.format
-            allowed_extensions: ['xls', 'xlsx','csv']
-            allowed_mime_types: ['application/rtf', 'text/html', 'text/rtf', 'text/plain']
+            allowed_extensions: ['xls', 'xlsx','csv', 'pdf']
+            allowed_mime_types: ['application/rtf', 'text/html', 'text/rtf', 'text/plain', 'application/pdf']
 
         image:
             service:    sonata.media.provider.image
