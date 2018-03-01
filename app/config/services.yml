@@ -150,3 +150,11 @@ services:
         arguments: ["@security.token_storage"]
         tags:
             - { name: doctrine.event_listener, event: postPersist }
+
+    app.google_calendar:
+        class: AppBundle\Service\GoogleCalendar
+        arguments: ["%google_calendar_application_name%","%google_calendar_api_key%", "@monolog.logger"]
+
+    app.generate_calendar:
+        class: AppBundle\Service\GenerateCalendar
+        arguments: ["@doctrine.orm.entity_manager", "@app.google_calendar"]
