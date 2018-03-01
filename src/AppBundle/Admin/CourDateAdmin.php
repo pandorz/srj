@@ -47,6 +47,12 @@ class CourDateAdmin extends AbstractAdmin
                 'label'     => 'cour_date.liste.heureFin',
                 'format'=>'HH:mm',
             ])
+            ->add('date', 'date', [
+                'label'     => 'cour_date.liste.date'
+            ])
+            ->add('repetitionFr', 'html', [
+                'label' => 'cour_date.liste.repetion',
+            ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -90,6 +96,7 @@ class CourDateAdmin extends AbstractAdmin
                 ],
                 'expanded' => false,
                 'multiple' => false,
+                'required' => true
             ])
             ->add('heureDebut', 'time', [
                 'label' => 'cour_date.heure_debut',
@@ -103,6 +110,29 @@ class CourDateAdmin extends AbstractAdmin
                 'attr'  => [
                     'placeholder' => $this->trans('cour_date.placeholder.heure_fin')
                 ],
+                'required' => true
+            ])
+            ->add('date', 'sonata_type_date_picker', [
+                'label' => 'cour_date.date',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy',
+                'attr'  => [
+                    'placeholder' => $this->trans('cour_date.placeholder.date')
+                ],
+                'required' => true
+            ])
+            ->add('repetition', 'choice', [
+                'choices' => [
+                    $this->trans('cour_date.repetition.aucune')    => 0,
+                    $this->trans('cour_date.repetition.hebdo')     => 1,
+                    $this->trans('cour_date.repetition.bihebdo')   => 2
+                ],
+                'label' => 'cour_date.repetition',
+                'attr' => [
+                    'placeholder' => $this->trans('cour_date.placeholder.repetition')
+                ],
+                'expanded' => false,
+                'multiple' => false,
                 'required' => true
             ])
             ->end();

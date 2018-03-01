@@ -24,7 +24,7 @@ class CourDate
     /**
      * @var string
      *
-     * @ORM\Column(name="nom", type="string", length=255)
+     * @ORM\Column(name="nom", type="string", length=255, nullable=true))
      */
     private $nom;
 
@@ -48,6 +48,20 @@ class CourDate
      * @ORM\Column(name="heure_fin", type="time", nullable=false)
      */
     private $heureFin;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=false)
+     */
+    private $date;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="repetition", type="integer", nullable=false)
+     */
+    private $repetition;
 
     /**
      * @var \DateTime
@@ -100,6 +114,8 @@ class CourDate
         $this->jour = 0;
         $this->heureDebut = new \DateTime();
         $this->heureFin = new \DateTime();
+        $this->date = new \DateTime();
+        $this->repetition = 1;
     }
 
 
@@ -295,12 +311,18 @@ class CourDate
         $this->cours = $cours;
     }
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString(): string
     {
         return $this->nom;
     }
 
-    public function getJourFr()
+    /**
+     * @return string
+     */
+    public function getJourFr(): string
     {
         switch ($this->jour) {
             case 0:
@@ -325,5 +347,55 @@ class CourDate
                 return 'Samedi';
                 break;
         }
+    }
+
+    /**
+     * @return string
+     */
+    public function getRepetitionFr(): string
+    {
+        switch ($this->repetition) {
+            case 0:
+                return 'Aucune répétition';
+                break;
+            case 1:
+                return 'Toutes les semaines';
+                break;
+            case 2:
+                return 'Toutes les deux semaines';
+                break;
+        }
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDate(): \DateTime
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param \DateTime $date
+     */
+    public function setDate(\DateTime $date)
+    {
+        $this->date = $date;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRepetition(): int
+    {
+        return $this->repetition;
+    }
+
+    /**
+     * @param int $repetition
+     */
+    public function setRepetition(int $repetition)
+    {
+        $this->repetition = $repetition;
     }
 }

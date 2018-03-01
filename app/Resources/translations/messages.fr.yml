@@ -12,10 +12,10 @@
 'Blog Create': Créer
 'Blog List': Blog
 'Bonjour,': 'Bonjour,'
-'Cour Create': Créer
-'Cour List': Cours
 'Conge Create': Créer
 'Conge List': 'Vacances et jours fériés'
+'Cour Create': Créer
+'Cour List': Cours
 'Demande Newsletter Create': Créer
 'Demande Newsletter List': 'Demandes Newsletter'
 Email: Email
@@ -194,9 +194,9 @@ conge:
     liste:
         dateDebut: 'Date début'
         dateFin: 'Date fin'
-        nom: 'Nom'
+        nom: Nom
 
-    nom: 'Nom'
+    nom: Nom
 
     placeholder:
         dateDebut: 'Date début'
@@ -204,7 +204,7 @@ conge:
         nom: 'Nom de la période de vacances ou du jour férié'
 
     with:
-        details: 'Détails'
+        details: Détails
 
 contact:
     mail:
@@ -286,6 +286,7 @@ cour_date:
     add_edit:
         to_string: 'Cours - date'
 
+    date: 'Date du cours ou date début'
     heureDebut: 'Heure début'
     heureFin: 'Heure fin'
     heure_debut: 'Heure début'
@@ -300,20 +301,29 @@ cour_date:
     jour.vendredi: Vendredi
 
     liste:
+        date: 'Date du cours ou date début'
         heureDebut: 'Heure début'
         heureFin: 'Heure fin'
         jour: Jour
+        repetition: 'Répétition'
         titre: Nom
 
     nom: Nom
 
     placeholder:
+        date: 'Date du cours ou date début'
         heureDebut: 'Heure début'
         heureFin: 'Heure fin'
         heure_debut: 'Heure début'
         heure_fin: 'Heure fin'
         jour: Jour
         nom: Nom
+        repetition: 'Répétition'
+
+    repetition: 'Répétition'
+    repetition.aucune: 'Aucune'
+    repetition.bihebdo: 'Toutes les deux semaines'
+    repetition.hebdo: 'Toutes les semaines'
 
     with:
         dates: 'Cours - Dates'
