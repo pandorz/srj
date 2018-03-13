@@ -183,6 +183,7 @@ blog:
 button:
     clone: Dupliquer
     view: 'Voir sur le site'
+    generateGoogleCalendar: 'Générer le calendrier sur le compte Google'
 
 conge:
     add_edit:
