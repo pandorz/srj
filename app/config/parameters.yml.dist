@@ -39,5 +39,6 @@ parameters:
     gmaps_apikey: ~
 
     # Google Calendar
-    google_calendar_api_key:~
     google_calendar_application_name:~
+    google_calend~aer_client_secret:~
+    google_calendar_credential_path:~

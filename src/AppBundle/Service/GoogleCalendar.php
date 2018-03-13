@@ -11,11 +11,6 @@ class GoogleCalendar
     private $applicationName;
 
     /**
-     * @var string
-     */
-    private $apiKey;
-
-    /**
      * @var \Google_Client
      */
     private $client;
@@ -31,6 +26,16 @@ class GoogleCalendar
     private $logger;
 
     /**
+     * @var string
+     */
+    private $clientSecretPath;
+
+    /**
+     * @var string
+     */
+    private $credentialPath;
+
+    /**
      * @var array
      */
     private $scopes;
@@ -39,12 +44,13 @@ class GoogleCalendar
 
     const TDATEFORMAT   = 'YmdTHis';
 
-    public function __construct($applicationName, $apiKey, Logger $logger)
+    public function __construct($applicationName, $clientSecretPath, $credentialPath, Logger $logger)
     {
         $this->applicationName  = $applicationName;
-        $this->apiKey           = $apiKey;
         $this->logger           = $logger;
-        $this->scopes           = ['https://www.googleapis.com/auth/calendar'];
+        $this->clientSecretPath = $clientSecretPath;
+        $this->credentialPath   = $credentialPath;
+        $this->scopes           = [\Google_Service_Calendar::CALENDAR];
         $this->setClient();
         $this->setService();
     }
@@ -53,16 +59,46 @@ class GoogleCalendar
     {
         $client         = new \Google_Client();
         $client->setApplicationName($this->applicationName);
-        $client->setDeveloperKey($this->apiKey);
+        $client->setAuthConfig($this->clientSecretPath);
         $scopes         = $client->getScopes();
 
         if (!empty($this->scopes)) {
-            foreach ($scopes as $scope) {
+            foreach ($this->scopes as $scope) {
                 $scopes[] = $scope;
             }
         }
 
         $client->setScopes($scopes);
+
+        if (file_exists($this->credentialPath)) {
+            $accessToken = json_decode(file_get_contents($this->credentialPath), true);
+        } else {
+            // Request authorization from the user.
+            $authUrl = $client->createAuthUrl();
+            printf("Open the following link in your browser:\n%s\n", $authUrl);
+            print 'Enter verification code: ';
+            $authCode = trim(fgets(STDIN));
+
+            // Exchange authorization code for an access token.
+            $accessToken = $client->fetchAccessTokenWithAuthCode($authCode);
+
+            // Store the credentials to disk.
+            if (!file_exists(dirname($this->credentialPath))) {
+                mkdir(dirname($this->credentialPath), 0700, true);
+            }
+            file_put_contents($this->credentialPath, json_encode($accessToken));
+
+            $this->logger->info("Credentials saved to ".$this->credentialPath);
+        }
+
+        $client->setAccessToken($accessToken);
+
+        if ($client->isAccessTokenExpired()) {
+            $client->fetchAccessTokenWithRefreshToken($client->getRefreshToken());
+            file_put_contents($this->credentialPath, json_encode($client->getAccessToken()));
+        }
+
+
         $this->client   = $client;
     }
 

@@ -32,3 +32,5 @@ puphpet/config-custom.yaml
 .idea
 /apprss.xml
 apptest.xml
+/client_secret.json
+/calendar-php-quickstart.json

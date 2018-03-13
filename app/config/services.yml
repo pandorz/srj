@@ -153,7 +153,7 @@ services:
 
     app.google_calendar:
         class: AppBundle\Service\GoogleCalendar
-        arguments: ["%google_calendar_application_name%","%google_calendar_api_key%", "@monolog.logger"]
+        arguments: ["%google_calendar_application_name%", "%kernel.root_dir%/../%google_calendar_client_secret%", "%kernel.root_dir%/../%google_calendar_credential_path%", "@monolog.logger"]
 
     app.generate_calendar:
         class: AppBundle\Service\GenerateCalendar
