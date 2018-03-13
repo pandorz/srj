@@ -48,12 +48,19 @@ class GenerateCalendar
                     $calendarId = $calendar->getId();
                 }
 
-                $this->googleCalendar->clearCalendar($calendarId);
+                if (!$this->googleCalendar->clearCalendar($calendarId)) {
+                    $this->googleCalendar->clearManuallyCalendar($calendarId);
+                }
 
                 /** @var CourDate $courDate */
                 foreach ($cour->getDates() as $courDate) {
-                    $startDate = $courDate->getDate();
-                    $endDate = (is_null($courDate->getDateFin()) ? $courDate->getDate() : $courDate->getDateFin());
+                    $startDate = clone $courDate->getDate();
+                    $startDate->modify("+".$courDate->getHeureDebut()->format('i')." minutes");
+                    $startDate->modify("+".$courDate->getHeureDebut()->format('H')." hours");
+
+                    $endDate = (is_null($courDate->getDateFin()) ? clone $courDate->getDate(): $courDate->getDateFin());
+                    $endDate->modify("+".$courDate->getHeureFin()->format('i')." minutes");
+                    $endDate->modify("+".$courDate->getHeureFin()->format('H')." hours");
 
                     $reccurence = $this->makeReccurence(
                         $cour,
@@ -108,7 +115,8 @@ class GenerateCalendar
         }
 
         $tabReccurence['recurrence'][] =  "RRULE:FREQ=WEEKLY;INTERVAL=".$repetition.
-            ";UNTIL=".$endDate->format(self::GOOGLE_DATE_FORMAT).";BYDAY=".$this->getCodeDayByW($day);
+            ";UNTIL=".$this->getUntilDate().";".
+            ($repetition !=1 ? "BYDAY=".$this->getCodeDayByW($day) : '');
 
         return $tabReccurence;
     }
@@ -229,5 +237,17 @@ class GenerateCalendar
         }
 
         return $string;
+    }
+
+    private function getUntilDate()
+    {
+        $july = strtotime("1st July");
+        $now  = time();
+
+        if ($now > $july) {
+            echo date(self::GOOGLE_DATE_FORMAT, strtotime('+1 year', $july));
+        } else {
+            echo date(self::GOOGLE_DATE_FORMAT, $july);
+        }
     }
 }

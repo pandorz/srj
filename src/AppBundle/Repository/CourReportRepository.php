@@ -23,8 +23,8 @@ class CourReportRepository extends \Doctrine\ORM\EntityRepository
         ->createQuery('SELECT e '
             . 'FROM AppBundle:CourReport e '
             . 'WHERE e.dateAnnule <= :endDate '
-            . 'AND e.dateAnnule >= :startDate'
-            . 'AND e.cours = :cour')
+            . 'AND e.dateAnnule >= :startDate '
+            . 'AND e.cours = :cours')
         ->setParameters([
             'startDate' => $startDate->format("Y-m-d"),
             'endDate'   => $endDate->format("Y-m-d"),

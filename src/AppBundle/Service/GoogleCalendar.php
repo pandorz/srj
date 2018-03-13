@@ -42,7 +42,7 @@ class GoogleCalendar
 
     const TIMEZONE      = 'Europe/Paris';
 
-    const TDATEFORMAT   = 'YmdTHis';
+    const TDATEFORMAT   = 'Y-m-d\TH:i:s.uP';
 
     public function __construct($applicationName, $clientSecretPath, $credentialPath, Logger $logger)
     {
@@ -165,6 +165,37 @@ class GoogleCalendar
             if (!empty($response)) {
                 $this->logger->error($response);
                 return false;
+            }
+            return true;
+        } catch (\Exception $e) {
+            $this->logger->error($e->getMessage());
+            return false;
+        }
+    }
+
+    /**
+     * @param $calendarId
+     * @return bool
+     */
+    public function clearManuallyCalendar($calendarId)
+    {
+        try {
+            $events = $this->getService()->events->listEvents($calendarId);
+
+            while (true) {
+                /** @var \Google_Service_Calendar_Event $event */
+                foreach ($events->getItems() as $event) {
+                    $this->getService()->events->delete($calendarId, $event->getId());
+                }
+
+                $pageToken = $events->getNextPageToken();
+
+                if ($pageToken) {
+                    $optParams = array('pageToken' => $pageToken);
+                    $events = $this->getService()->events->listEvents('primary', $optParams);
+                } else {
+                    break;
+                }
             }
             return true;
         } catch (\Exception $e) {
