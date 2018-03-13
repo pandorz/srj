@@ -13,7 +13,6 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Sonata\AdminBundle\Admin\Pool;
 
-
 /**
  * Class StatBlockService
  * @package AppBundle\Service

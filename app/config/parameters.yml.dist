@@ -25,13 +25,20 @@ parameters:
     no-reply_name: ~
     mailer_admin: ~
 
+    trello_link: ~
+    planneur_link: ~
+    num_version: 1.0.0
+
     # Google Recaptcha
     google_recaptcha_secret_token: ~
     google_recaptcha_public_token: ~
     google_recaptcha_url: 'https://www.google.com/recaptcha/api/siteverify'
     google_analytics_ua: ~
 
-    trello_link: ~
-    planneur_link: ~
-    num_version: 1.0.0
+    # Google Maps
     gmaps_apikey: ~
+
+    # Google Calendar
+    google_calendar_application_name:~
+    google_calend~aer_client_secret:~
+    google_calendar_credential_path:~

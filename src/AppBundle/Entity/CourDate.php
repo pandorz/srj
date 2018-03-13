@@ -57,6 +57,13 @@ class CourDate
     private $date;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_fin", type="date", nullable=true)
+     */
+    private $dateFin;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="repetition", type="integer", nullable=false)
@@ -397,5 +404,21 @@ class CourDate
     public function setRepetition(int $repetition)
     {
         $this->repetition = $repetition;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getDateFin():? \DateTime
+    {
+        return $this->dateFin;
+    }
+
+    /**
+     * @param \DateTime $dateFin
+     */
+    public function setDateFin(\DateTime $dateFin)
+    {
+        $this->dateFin = $dateFin;
     }
 }

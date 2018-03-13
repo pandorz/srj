@@ -399,9 +399,32 @@ class CourAdmin extends AbstractAdmin
             : $this->trans('cour.add_edit.to_string');
     }
 
+    /**
+     * @param      $action
+     * @param null $object
+     *
+     * @return array
+     */
+    public function configureActionButtons($action, $object = null)
+    {
+        $list = parent::configureActionButtons($action, $object);
+
+        $cour  = $this->getSubject();
+
+        // Edit case
+        if ($cour instanceof Cour && !empty($cour->getId())) {
+            $list['generateGoogleCalendar'] = array(
+                'template' => ':AdminCustom/button:generateGoogleCalendar_list.html.twig',
+            );
+        }
+
+        return $list;
+    }
+
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
         $collection->add('clone', $this->getRouterIdParameter().'/clone');
+        $collection->add('generateGoogleCalendar', $this->getRouterIdParameter().'/generateGoogleCalendar');
     }
 }
