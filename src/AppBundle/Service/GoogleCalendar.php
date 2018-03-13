@@ -60,6 +60,8 @@ class GoogleCalendar
         $client         = new \Google_Client();
         $client->setApplicationName($this->applicationName);
         $client->setAuthConfig($this->clientSecretPath);
+        $client->setAccessType('offline');
+        $client->setApprovalPrompt('force');
         $scopes         = $client->getScopes();
 
         if (!empty($this->scopes)) {
