@@ -43,14 +43,14 @@ class GenerateCalendar
     }
 
     /**
-     * @param int $idCour
+     * @param Cour $cour
      * @param int $repetition
      * @param int $day
      * @param \DateTime $startDate
      * @param \DateTime $endDate
      * @return mixed
      */
-    private function makeReccurence(int $idCour, int $repetition, int $day, \DateTime $startDate, \DateTime $endDate)
+    private function makeReccurence(Cour $cour, int $repetition, int $day, \DateTime $startDate, \DateTime $endDate)
     {
         $tabReccurence['recurrence'] = [];
 
@@ -63,7 +63,7 @@ class GenerateCalendar
             $tabReccurence['recurrence'][] = $holydaysDates;
         }
 
-        $reportsDates  = $this->generateReportDate($idCour, $startDate, $endDate);
+        $reportsDates  = $this->generateReportDate($cour, $startDate, $endDate);
         if (!empty($reportsDates)) {
             $tabReccurence['recurrence'][] = $reportsDates;
         }
@@ -111,16 +111,16 @@ class GenerateCalendar
     }
 
     /**
-     * @param int $idCour
+     * @param Cour $cour
      * @param \DateTime $startDate
      * @param \DateTime $endDate
      * @return string
      */
-    private function generateReportDate(int $idCour, \DateTime $startDate, \DateTime $endDate)
+    private function generateReportDate(Cour $cour, \DateTime $startDate, \DateTime $endDate)
     {
         $reports = $this->em
             ->getRepository(CourReport::class)
-            ->findBetweenByCour($idCour, $startDate, $endDate);
+            ->findBetweenByCour($cour, $startDate, $endDate);
 
         if (!empty($reports)) {
             $stringReportDates = "";

@@ -10,8 +10,26 @@ use AppBundle\Entity\Cour;
  */
 class CourReportRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findBetweenByCour(int $idCour, \DateTime $startDate, \DateTime $endDate)
+    /**
+     * @param Cour $cour
+     * @param \DateTime $startDate
+     * @param \DateTime $endDate
+     * @return mixed
+     */
+    public function findBetweenByCour(Cour $cour, \DateTime $startDate, \DateTime $endDate)
     {
-        // TODO
+        return $this
+        ->getEntityManager()
+        ->createQuery('SELECT e '
+            . 'FROM AppBundle:CourReport e '
+            . 'WHERE e.dateAnnule <= :endDate '
+            . 'AND e.dateAnnule >= :startDate'
+            . 'AND e.cours = :cour')
+        ->setParameters([
+            'startDate' => $startDate->format("Y-m-d"),
+            'endDate'   => $endDate->format("Y-m-d"),
+            'cours'     => $cour
+        ])
+        ->getResult();
     }
 }
