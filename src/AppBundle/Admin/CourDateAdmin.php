@@ -53,6 +53,9 @@ class CourDateAdmin extends AbstractAdmin
             ->add('repetitionFr', 'html', [
                 'label' => 'cour_date.liste.repetion',
             ])
+            ->add('dateFin', 'date', [
+                'label'     => 'cour_date.liste.dateFin'
+            ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -134,6 +137,15 @@ class CourDateAdmin extends AbstractAdmin
                 'expanded' => false,
                 'multiple' => false,
                 'required' => true
+            ])
+            ->add('dateFin', 'sonata_type_date_picker', [
+                'label' => 'cour_date.dateFin',
+                'dp_language'=>'fr',
+                'format'=>'dd/MM/yyyy',
+                'attr'  => [
+                    'placeholder' => $this->trans('cour_date.placeholder.dateFin')
+                ],
+                'required' => false
             ])
             ->end();
     }
