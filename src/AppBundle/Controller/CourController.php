@@ -28,6 +28,6 @@ class CourController extends BaseController
             'Un nouveau calendrier a été créé dans le compte Google de l\'association'
         );
 
-        return new RedirectResponse($this->admin->generateUrl('list'));
+        return new RedirectResponse($this->admin->generateUrl('edit', ['id' => $id]));
     }
 }
