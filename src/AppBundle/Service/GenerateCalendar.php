@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use AppBundle\Entity\Conge;
 use AppBundle\Entity\Cour;
+use AppBundle\Entity\CourDate;
 use AppBundle\Entity\CourReport;
 use Doctrine\ORM\EntityManager;
 
@@ -32,14 +33,52 @@ class GenerateCalendar
         $this->googleCalendar   = $googleCalendar;
     }
 
+    /**
+     * @param Cour $cour
+     * @return bool
+     */
     public function newCalendar(Cour $cour)
     {
-        // TODO
-        /**
-         * clear calendar if exists
-         * generate entries par courDate
-         * save calendar
-         */
+        if (!empty($cour->getDates())) {
+            try {
+                $calendarId = $this->googleCalendar->getCalendarIdBySummary($cour->getSlug());
+
+                if (empty($calendarId)) {
+                    $calendar = $this->googleCalendar->createCalendar($cour->getSlug());
+                    $calendarId = $calendar->getId();
+                }
+
+                $this->googleCalendar->clearCalendar($calendarId);
+
+                /** @var CourDate $courDate */
+                foreach ($cour->getDates() as $courDate) {
+                    $startDate = $courDate->getDate();
+                    $endDate = (is_null($courDate->getDateFin()) ? $courDate->getDate() : $courDate->getDateFin());
+
+                    $reccurence = $this->makeReccurence(
+                        $cour,
+                        $courDate->getRepetition(),
+                        $courDate->getJour(),
+                        $startDate,
+                        $endDate
+                    );
+
+                    $event = $this->googleCalendar->newEvent(
+                        $courDate->getNom(),
+                        $startDate,
+                        $endDate,
+                        $cour->getTitre(),
+                        $reccurence
+                    );
+
+                    $this->googleCalendar->createEvent($calendarId, $event);
+                }
+
+                return true;
+            } catch (\Exception $e) {
+                return false;
+            }
+        }
     }
 
     /**
