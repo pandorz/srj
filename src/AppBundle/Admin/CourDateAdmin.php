@@ -51,7 +51,7 @@ class CourDateAdmin extends AbstractAdmin
                 'label'     => 'cour_date.liste.date'
             ])
             ->add('repetitionFr', 'html', [
-                'label' => 'cour_date.liste.repetion',
+                'label' => 'cour_date.liste.repetition',
             ])
             ->add('dateFin', 'date', [
                 'label'     => 'cour_date.liste.dateFin'

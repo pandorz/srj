@@ -182,8 +182,8 @@ blog:
 
 button:
     clone: Dupliquer
-    view: 'Voir sur le site'
     generateGoogleCalendar: 'Générer le calendrier sur le compte Google'
+    view: 'Voir sur le site'
 
 conge:
     add_edit:
@@ -308,7 +308,7 @@ cour_date:
         heureDebut: 'Heure début'
         heureFin: 'Heure fin'
         jour: Jour
-        repetition: 'Répétition'
+        repetition: Répétition
         titre: Nom
 
     nom: Nom
@@ -322,10 +322,10 @@ cour_date:
         heure_fin: 'Heure fin'
         jour: Jour
         nom: Nom
-        repetition: 'Répétition'
+        repetition: Répétition
 
-    repetition: 'Répétition'
-    repetition.aucune: 'Aucune'
+    repetition: Répétition
+    repetition.aucune: Aucune
     repetition.bihebdo: 'Toutes les deux semaines'
     repetition.hebdo: 'Toutes les semaines'
 
@@ -631,14 +631,19 @@ utilisateur:
         parent: Parent
 
     membreNumero: 'Numéro du membre'
+    membreNumero_empty: 'Cet utilisateur n''a pas de numéro de membre'
     membreTitre: 'Titre du membre'
+    nomJaponais: 'Nom en Japonais'
 
     placeholder:
         accesSite: 'Peut acceder au site'
         estProfesseur: 'Est professeur'
         membreNumero: 'Numéro d''adhésion du membre'
         membreTitre: 'Titre du membre à afficher'
+        nomJaponais: 'Nom en Japonais'
+        prenomJaponais: 'Prénom en Japonais'
 
+    prenomJaponais: 'Prénom en Japonais'
     sousUtilisateurs: Enfants
 
     tab:

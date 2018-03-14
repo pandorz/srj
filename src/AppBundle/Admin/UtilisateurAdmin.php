@@ -33,19 +33,29 @@ class UtilisateurAdmin extends UserAdmin
                 'label'     => $this->trans('utilisateur.liste.parent', [], 'messages'),
                 'route'     => ['name' => 'show'],
                 'sortable'  => 'name'
-            ])
-            ->add('estProfesseur', 'boolean', [
-                'label'     => 'utilisateur.liste.estProfesseur',
-                'editable'  => true
-            ])
-            ->add('accesSite', 'boolean', [
-                'label'     => 'utilisateur.liste.accesSite',
-                'editable'  => true
-            ]);
+                ])
+                ->add('estProfesseur', 'boolean', [
+                    'label'     => 'utilisateur.liste.estProfesseur',
+                    'editable'  => true
+                ])
+                ->add('accesSite', 'boolean', [
+                    'label'     => 'utilisateur.liste.accesSite',
+                    'editable'  => true
+                ]);
     }
     
     protected function configureFormFields(FormMapper $formMapper): void
     {
+        $user = $this->getSubject();
+        if ($user instanceof Utilisateur && !empty($user->getId()) && empty($user->getMembreNumero())) {
+            $this
+                ->getConfigurationPool()
+                ->getContainer()
+                ->get('session')
+                ->getFlashBag()
+                ->set('warning', $this->trans('utilisateur.membreNumero_empty'));
+        }
+
         parent::configureFormFields($formMapper);
 
         $formMapper
@@ -81,6 +91,20 @@ class UtilisateurAdmin extends UserAdmin
                 ],
                 'required' => false
             ])
+            ->add('prenomJaponais', 'text', [
+                'label' => 'utilisateur.prenomJaponais',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.prenomJaponais'
+                ],
+                'required' => false
+            ])
+            ->add('nomJaponais', 'text', [
+                'label' => 'utilisateur.nomJaponais',
+                'attr'  => [
+                    'placeholder' => 'utilisateur.placeholder.nomJaponais'
+                ],
+                'required' => false
+            ])
             ->end()
             ->with('Sous utilisateur', [
                 'name'          => $this->trans('utilisateur.with.sousUtilisateurs', [], 'messages'),
@@ -90,7 +114,7 @@ class UtilisateurAdmin extends UserAdmin
             ->add('sousUtilisateurs', 'sonata_type_model_list', [
                 'label'     => $this->trans('utilisateur.sousUtilisateurs', [], 'messages'),
                 'required'  => false,
-            ],[
+            ], [
                 'edit'          => 'inline',
                 'inline'        => 'table',
                 'sortable'      => 'position'
@@ -107,19 +131,47 @@ class UtilisateurAdmin extends UserAdmin
                 'required' => false,
             ))
             ->end()
-            ->end();        
+            ->end();
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         parent::configureDatagridFilters($datagridMapper);
     
-        $datagridMapper            
+        $datagridMapper
             ->add('parent', null, [], 'entity', [
                 'class'         => Utilisateur::class,
                 'choice_label'  => 'lastname',
             ])
             ->add('lastname')
             ->add('firstname');
+    }
+
+    public function prePersist($page): void
+    {
+        parent::prePersist($page);
+        /** @var Utilisateur $page */
+        if (empty($page->getMembreNumero())) {
+            $this
+                ->getConfigurationPool()
+                ->getContainer()
+                ->get('session')
+                ->getFlashBag()
+                ->set('warning', $this->trans('utilisateur.membreNumero_empty'));
+        }
+    }
+
+    public function preUpdate($page): void
+    {
+        parent::preUpdate($page);
+        /** @var Utilisateur $page */
+        if (empty($page->getMembreNumero())) {
+            $this
+                ->getConfigurationPool()
+                ->getContainer()
+                ->get('session')
+                ->getFlashBag()
+                ->set('warning', $this->trans('utilisateur.membreNumero_empty'));
+        }
     }
 }

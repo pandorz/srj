@@ -28,7 +28,7 @@ class Utilisateur extends BaseUser
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    protected $id;    
+    protected $id;
     
    /**
     * @var string
@@ -51,13 +51,13 @@ class Utilisateur extends BaseUser
      * @ORM\Column(name="locked", type="integer")
      */
     private $locked;
-	
+
     /**
     * @var boolean
     *
     * @ORM\Column(name="est_professeur", type="boolean")
     */
-    private $estProfesseur;    
+    private $estProfesseur;
     
     /**
      * @var ArrayCollection
@@ -113,7 +113,7 @@ class Utilisateur extends BaseUser
      * @ORM\ManyToMany(targetEntity="Kouryukai", mappedBy="superviseurs")
      */
     private $kouryukaiSupervise;
-	
+
     /**
      * @var ArrayCollection
      *
@@ -168,9 +168,23 @@ class Utilisateur extends BaseUser
     private $membreNumero;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom_japonais", type="string", length=150, nullable=true)
+     */
+    private $prenomJaponais;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_japonais", type="string", length=150, nullable=true)
+     */
+    private $nomJaponais;
+
+    /**
     * Constructor
     */
-    public function __construct() 
+    public function __construct()
     {
         parent::__construct();
         $this->setEstProfesseur(false);
@@ -818,5 +832,37 @@ class Utilisateur extends BaseUser
     public function setMembreNumero($membreNumero)
     {
         $this->membreNumero = $membreNumero;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPrenomJaponais():? string
+    {
+        return $this->prenomJaponais;
+    }
+
+    /**
+     * @param string $prenomJaponais
+     */
+    public function setPrenomJaponais(string $prenomJaponais)
+    {
+        $this->prenomJaponais = $prenomJaponais;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNomJaponais():? string
+    {
+        return $this->nomJaponais;
+    }
+
+    /**
+     * @param string $nomJaponais
+     */
+    public function setNomJaponais(string $nomJaponais)
+    {
+        $this->nomJaponais = $nomJaponais;
     }
 }
