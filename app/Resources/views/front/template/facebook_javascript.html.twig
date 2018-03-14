@@ -1,10 +1,20 @@
 <div id="fb-root"></div>
 {% if app.environment == 'prod' %}
-<script>(function(d, s, id) {
+<script>
+    window.fbAsyncInit = function() {
+        FB.init({
+            appId            : {{ facebook_id is not empty ? '&appId='~facebook_id:'' }},
+            autoLogAppEvents : true,
+            xfbml            : true,
+            version          : 'v2.12'
+        });
+    };
+    (function(d, s, id){
         var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
+        if (d.getElementById(id)) {return;}
         js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.11{{ facebook_id is not empty ? '&appId='~facebook_id:'' }}";
+        js.src = "https://connect.facebook.net/fr_FR/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 {% endif %}
