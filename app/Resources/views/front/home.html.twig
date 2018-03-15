@@ -1,5 +1,9 @@
 {% extends "front/template/base_front.html.twig" %}
-{% block html_title %}| Association franco-japonaise pour apprendre le japonais et faire des échanges{% endblock %}
+{% set meta_title = 'Association franco-japonaise pour apprendre le japonais et faire des échanges' %}
+{% block html_title %}| {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block body_class %}home{% endblock %}
 {% block main %}
     {% include 'front/bandeau/bandeau_jap.html.twig' %}

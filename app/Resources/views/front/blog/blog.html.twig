@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}blogList{% endblock %}
-{% block html_title %} - Nos articles de blog{% endblock %}
+{% set meta_title = 'Nos articles de blog' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
 
     {% set hastagTitle = "Nos articles" %}

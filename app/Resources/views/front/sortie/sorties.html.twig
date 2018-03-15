@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}events outings{% endblock %}
-{% block html_title %}– Les sorties sur le thème de la culture japonaise{% endblock %}
+{% set meta_title = 'Les sorties sur le thème de la culture japonaise' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "Nos activités" %}

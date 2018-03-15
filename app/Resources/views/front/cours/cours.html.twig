@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}lessons{% endblock %}
-{% block html_title %}– Les cours de japonais et de culture japonaise : calligraphie, art de la cérémonie du thé, yoga, préparation au JLPT{% endblock %}
+{% set meta_title = 'Les cours de japonais et de culture japonaise : calligraphie, art de la cérémonie du thé, yoga, préparation au JLPT' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
     {% set hastagTitle = "Nos activités" %}
     {% set hastagList = "#Cours" %}

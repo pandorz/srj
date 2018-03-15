@@ -1,0 +1,9 @@
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content="{{ meta_title }}" />
+        {% set image_asset_url = url('home')|trim('/', 'right') ~ asset('medias/img/logo-ringo.jpg')  %}
+        <meta property="og:image"              content="{{ image_asset_url }}" />
+        <meta property="og:image:secure_url"   content="{{ image_asset_url }}" />
+        <meta property="og:image:type"         content="image/png" />
+        <meta property="og:image:width"        content="100" />
+        <meta property="og:image:height"       content="110" />
+        <meta property="og:image:alt"          content="A shiny red apple with a sakura flower" />

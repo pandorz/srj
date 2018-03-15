@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}news{% endblock %}
-{% block html_title %} - Actualités{% endblock %}
+{% set meta_title = 'Actualités' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "Actualités" %}

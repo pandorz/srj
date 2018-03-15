@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}asso{% endblock %}
-{% block html_title %} - ルーアン日仏協会のプレゼンテーション{% endblock %}
+{% set meta_title = 'ルーアン日仏協会のプレゼンテーション' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "ルーアン日本協会" %}

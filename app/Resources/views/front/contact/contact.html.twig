@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}contact{% endblock %}
-{% block html_title %}– Nous contacter{% endblock %}
+{% set meta_title = 'Nous contacter' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
     {% include 'front/bandeau/bandeau_jap.html.twig' %}
 
