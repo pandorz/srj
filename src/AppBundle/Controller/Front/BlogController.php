@@ -48,7 +48,7 @@ class BlogController extends BaseController
     }
 
     /**
-     * Tous
+     * Detail
      *
      * -------------------- *
      * @Route("/article/{slug}/", name="blog_detail")
@@ -69,10 +69,8 @@ class BlogController extends BaseController
             return $this->redirectToRoute('blog');
         }
 
-        if (!$this->peutVoirArticleSansCondition()) {
-            if (!$blog->getAffiche() || $blog->getDatePublication() > (new \DateTime())) {
-                return $this->redirectToRoute('blog');
-            }
+        if (!$blog->getAffiche() || $blog->getDatePublication() > (new \DateTime())) {
+            return $this->redirectToRoute('blog');
         }
 
         return $this->render('front/blog/blog-detail.html.twig', ['blog' => $blog]);
@@ -134,14 +132,5 @@ class BlogController extends BaseController
             ->findOneBy(['slug' => 'affichage-blog-public']);
 
         return (!empty($parametre) && $parametre->getValue() == "1");
-    }
-
-    /**
-     * @return bool
-     */
-    private function peutVoirArticleSansCondition()
-    {
-        return $this->isGranted('ROLE_APP_ADMIN_BLOG_ADMIN') ||
-             $this->isGranted('ROLE_APP_ADMIN_BLOG_EDITOR') || $this->isGranted('ROLE_SUPER_ADMIN');
     }
 }
