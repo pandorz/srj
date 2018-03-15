@@ -6,7 +6,7 @@
             <div class="postItemCtn newsItemCtn">
                 {% media actualite.image, 'reference' with {'class': 'postPhoto newsPhoto'} %}
                 <h4 class="postTitle newsTitle">{{ actualite.nom }}</h4>                    
-                <p class="postSummary newsSummary">{% if actualite.contenu|length > 99 %}{{ crop_entete_texte(actualite.contenu)|raw }}{% else %}{{ actualite.contenu|raw }}{% endif %}</p>
+                <div class="postSummary newsSummary">{% if actualite.contenu|length > 99 %}{{ crop_entete_texte(actualite.contenu)|raw }}{% else %}{{ actualite.contenu|raw }}{% endif %}</div>
                 {% if actualite.contenu|length > 99 %}
                 <div class="postMoreText" style="display: none;">
                     {{ get_corps_texte(actualite.contenu)|raw }}

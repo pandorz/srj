@@ -53,7 +53,7 @@ class TwigHelpers extends \Twig_Extension
     public function cropEnteteTexte($chaine)
     {
         if (strlen($chaine)>99) {
-            return substr($chaine,0, strpos($chaine, "</p>"));
+            return substr($chaine, 0, strpos($chaine, "</p>"));
         }
 
         return $chaine;
@@ -65,7 +65,7 @@ class TwigHelpers extends \Twig_Extension
             return '';
         }
 
-        return str_replace($this->cropEnteteTexte($chaine), '', $chaine);
+        return ltrim(str_replace($this->cropEnteteTexte($chaine), '', $chaine), "</p>");
     }
     
     private function returnParametreValue($parametre)

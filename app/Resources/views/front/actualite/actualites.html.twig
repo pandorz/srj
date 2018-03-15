@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}news{% endblock %}
-{% block html_title %} - Actualités{% endblock %}
+{% set meta_title = 'Actualités' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "Actualités" %}
@@ -23,7 +27,7 @@
                     <div class="postItemCtn newsItemCtn">
                         {% media actualite.image, 'reference' with {'class': 'postPhoto newsPhoto'} %}
                         <h4 class="postTitle newsTitle">{{ actualite.nom }}</h4>                    
-                        <p class="postSummary newsSummary"> {{ crop_entete_texte(actualite.contenu)|raw }}</p>
+                        <div class="postSummary newsSummary"> {{ crop_entete_texte(actualite.contenu)|raw }}</div>
                         <div class="postMoreText" style="display: none;">
                             {{ get_corps_texte(actualite.contenu)|raw }}
                         </div>

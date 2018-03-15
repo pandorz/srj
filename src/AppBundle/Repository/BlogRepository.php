@@ -19,7 +19,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
                     . 'FROM AppBundle:Blog e '
                     . 'WHERE e.timestampCreation >= :dateFin '
                     . 'ORDER BY e.datePublication DESC')
-                ->setParameter('dateFin', date("Y-m-d",strtotime("-1 month")));
+                ->setParameter('dateFin', date("Y-m-d", strtotime("-1 month")));
         } else {
             $query = $this
                 ->getEntityManager()
@@ -32,7 +32,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
                 ->setParameters([
                     'affiche' => true,
                     'datePublication' => date("Y-m-d H:i:s"),
-                    'dateFin' => date("Y-m-d",strtotime("-1 month"))
+                    'dateFin' => date("Y-m-d", strtotime("-1 month"))
                 ]);
         }
         return $query->getResult();
@@ -46,7 +46,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
                 . 'FROM AppBundle:Blog e '
                 . 'WHERE e.affiche = :affiche '
                 . 'AND e.datePublication <= :datePublication '
-                . 'ORDER BY e.timestampCreation DESC')
+                . 'ORDER BY e.datePublication DESC')
             ->setParameters([
                 'affiche' => true,
                 'datePublication' => date("Y-m-d H:i:s")
@@ -66,7 +66,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
             . "WHERE t.slug = :slug "
             . "AND b.affiche = :affiche "
             . "AND b.date_publication <= :datePublication "
-            . "ORDER BY b.timestamp_creation DESC"
+            . "ORDER BY b.date_publication DESC"
             . (is_null($limit)?'':' LIMIT :limit');
 
 
@@ -81,7 +81,7 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
 
         $stmt->setParameter(":affiche", true);
         $stmt->setParameter(":slug", $slugTag);
-        $stmt->setParameter(":datePublication",  date("Y-m-d H:i:s"));
+        $stmt->setParameter(":datePublication", date("Y-m-d H:i:s"));
         if (!is_null($limit)) {
             $stmt->setParameter(":limit", $limit);
         }

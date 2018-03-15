@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}blogList{% endblock %}
-{% block html_title %} - Nos articles de blog{% endblock %}
+{% set meta_title = 'Nos articles de blog' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
 
     {% set hastagTitle = "Nos articles" %}
@@ -15,7 +19,7 @@
                     <div class="postItemCtn blogItemCtn">
                         {% media blog.image, 'reference' with {'class': 'postPhoto blogPhoto'} %}
                         <h4 class="postTitle blogTitle">{{ blog.nom }}</h4>
-                        <div class="postSummary blogSummary">{{ blog.descriptionCourte }}</div>
+                        <p class="postSummary blogSummary">{{ blog.descriptionCourte }}</p>
                         <a class="postHover postLink" href="{{ path('blog_detail', {'slug': blog.slug}) }}" title="Voir l'article : {{ blog.nom }}"><span class="btn btn-blank" aria-hidden="true">Voir l'article</span></a>
                     </div>
                 </div>

@@ -56,7 +56,7 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
             ->setParameters([
                 'annule'  => false,
                 'affiche' => true,
-                'dateDebut' => date("Y-m-d"),
+                'dateDebut' => date("Y-m-d H:i:s"),
                 'datePublication' => date("Y-m-d H:i:s")
             ])
             ->setMaxResults(1)
@@ -77,7 +77,7 @@ class EvenementRepository extends \Doctrine\ORM\EntityRepository
             ->setParameters([
                 'annule'  => false,
                 'affiche' => true,
-                'dateDebut' => date("Y-m-d"),
+                'dateDebut' => date("Y-m-d H:i:s"),
                 'datePublication' => date("Y-m-d H:i:s")
             ])
             ->setMaxResults($limit)

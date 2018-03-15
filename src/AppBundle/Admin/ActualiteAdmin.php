@@ -113,7 +113,7 @@ class ActualiteAdmin extends AbstractAdmin
                 'attr'  => [
                     'placeholder' => 'actualite.placeholder.contenu'
                 ]
-            ])            
+            ])
             ->end()
             ->with('Meta data', [
                 'name'      => $this->trans('actualite.with.meta_data'),

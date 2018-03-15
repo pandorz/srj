@@ -1,6 +1,10 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}events workshops{% endblock %}
-{% block html_title %}– Les ateliers sur la culture japonaise : ikebana, origami, cuisine nippone{% endblock %}
+{% set meta_title = 'Les ateliers sur la culture japonaise : ikebana, origami, cuisine nippone' %}
+{% block html_title %} - {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
     
     {% set hastagTitle = "Nos activités" %}
@@ -51,7 +55,7 @@
                         <span class="day">{{atelier.date|date('d')}}</span> 
                         <span class="month">{{atelier.date|date('F')|slice(0, 3)}}.</span>
                     </time>
-                    <p class="postSummary">{{ crop_entete_texte(atelier.contenu)|raw }}</p>
+                    <div class="postSummary">{{ crop_entete_texte(atelier.contenu)|raw }}</div>
                     <div class="postMoreText" style="display: none;">
                         {{ get_corps_texte(atelier.contenu)|raw }}
                         <p>

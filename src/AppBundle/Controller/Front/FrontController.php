@@ -380,4 +380,19 @@ class FrontController extends BaseController
 
         return new Response($feed->render('rss'));
     }
+
+    /**
+     * Association
+     *
+     * -------------------- *
+     * @Route("/mentions-legales", name="mentions_legales")
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function mentionsLegalesAction()
+    {
+        return $this->render('front/mentions_legales/mentions.html.twig');
+    }
 }

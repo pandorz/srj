@@ -18,7 +18,6 @@ use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Sonata\AdminBundle\Admin\Pool;
 
-
 /**
  * Class TimeLineBlockService
  * @package AppBundle\Service
@@ -100,69 +99,81 @@ class TimeLineBlockService extends AbstractBlockService
 
 
         foreach ($evenements as $evenement) {
-            $temp = [
-                'icon'  => 'fa-calendar',
-                'objet' => $evenement,
-                'bg'    => 'bg-aqua',
-                'trans' => 'evenement.add_edit.to_string'
-            ];           
-            
-            $tab[$evenement->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            if (!empty($evenement->getDatePublication())) {
+                $temp = [
+                    'icon' => 'fa-calendar',
+                    'objet' => $evenement,
+                    'bg' => 'bg-aqua',
+                    'trans' => 'evenement.add_edit.to_string'
+                ];
+
+                $tab[$evenement->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            }
         }
         
         foreach ($actualites as $actualite) {
-            $temp = [
-                'icon'  => 'fa-newspaper-o',
-                'objet' => $actualite,
-                'bg'    => 'bg-purple',
-                'trans' => 'actualite.add_edit.to_string'
-            ];           
-            
-            $tab[$actualite->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            if (!empty($actualite->getDatePublication())) {
+                $temp = [
+                    'icon' => 'fa-newspaper-o',
+                    'objet' => $actualite,
+                    'bg' => 'bg-purple',
+                    'trans' => 'actualite.add_edit.to_string'
+                ];
+
+                $tab[$actualite->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            }
         }
         
-        foreach ($ateliers as $atelier) { 
-            $temp = [
-                'icon'  => 'fa-pencil',
-                'objet' => $atelier,
-                'bg'    => 'bg-maroon',
-                'trans' => 'atelier.add_edit.to_string'
-            ];           
-            
-            $tab[$atelier->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+        foreach ($ateliers as $atelier) {
+            if (!empty($atelier->getDatePublication())) {
+                $temp = [
+                    'icon' => 'fa-pencil',
+                    'objet' => $atelier,
+                    'bg' => 'bg-maroon',
+                    'trans' => 'atelier.add_edit.to_string'
+                ];
+
+                $tab[$atelier->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            }
         }
         
-        foreach ($sorties as $sortie) { 
-            $temp = [
-                'icon'  => 'fa-car',
-                'objet' => $sortie,
-                'bg'    => 'bg-yellow',
-                'trans' => 'sortie.add_edit.to_string'
-            ];           
-            
-            $tab[$sortie->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+        foreach ($sorties as $sortie) {
+            if (!empty($sortie->getDatePublication())) {
+                $temp = [
+                    'icon' => 'fa-car',
+                    'objet' => $sortie,
+                    'bg' => 'bg-yellow',
+                    'trans' => 'sortie.add_edit.to_string'
+                ];
+
+                $tab[$sortie->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            }
         }
 
         foreach ($kouryukai as $k) {
-            $temp = [
-                'icon'  => 'fa-clock-o',
-                'objet' => $k,
-                'bg'    => 'bg-olive',
-                'trans' => 'kouryukai.add_edit.to_string'
-            ];
+            if (!empty($k->getDatePublication())) {
+                $temp = [
+                    'icon' => 'fa-clock-o',
+                    'objet' => $k,
+                    'bg' => 'bg-olive',
+                    'trans' => 'kouryukai.add_edit.to_string'
+                ];
 
-            $tab[$k->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+                $tab[$k->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            }
         }
 
         foreach ($blogs as $blog) {
-            $temp = [
-                'icon'  => 'fa-rss',
-                'objet' => $blog,
-                'bg'    => 'bg-fuchsia',
-                'trans' => 'blog.add_edit.to_string'
-            ];
+            if (!empty($blog->getDatePublication())) {
+                $temp = [
+                    'icon' => 'fa-rss',
+                    'objet' => $blog,
+                    'bg' => 'bg-fuchsia',
+                    'trans' => 'blog.add_edit.to_string'
+                ];
 
-            $tab[$blog->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+                $tab[$blog->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
+            }
         }
         krsort($tab);
         return $this->renderResponse($blockContext->getTemplate(), array(

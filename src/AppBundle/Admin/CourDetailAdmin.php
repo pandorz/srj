@@ -64,7 +64,8 @@ class CourDetailAdmin extends AbstractAdmin
                 'label' => 'cour_detail.nom',
                 'attr'  => [
                     'placeholder' => 'cour_detail.placeholder.nom'
-                ]
+                ],
+                'required' => true
             ])
             ->add('contenu', 'text', [
                 'label' => 'cour_detail.contenu',

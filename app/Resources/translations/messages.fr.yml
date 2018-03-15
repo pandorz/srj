@@ -12,6 +12,8 @@
 'Blog Create': Créer
 'Blog List': Blog
 'Bonjour,': 'Bonjour,'
+'Conge Create': Créer
+'Conge List': 'Vacances et jours fériés'
 'Cour Create': Créer
 'Cour List': Cours
 'Demande Newsletter Create': Créer
@@ -19,6 +21,8 @@
 Email: Email
 'Evenement Create': Créer
 'Evenement List': Événements
+'Kouryukai Create': Créer
+'Kouryukai List': Kouryukai
 Nom: Nom
 'Parametre Create': Créer
 'Parametre List': Paramètres
@@ -27,11 +31,9 @@ Nom: Nom
 Prenom: Prénom
 'Sortie Create': Créer
 'Sortie List': Sorties
+Sujet: Sujet
 'Tag Create': Créer
 'Tag List': Tags
-'Kouryukai Create': Créer
-'Kouryukai List': Kouryukai
-Sujet: Sujet
 'Votre message': 'Votre message'
 
 actualite:
@@ -150,10 +152,11 @@ blog:
     contenu: Texte
     datePublication: 'Date de publication'
     descriptionCourte: 'Description courte'
-    image: 'Image principale'
 
     helper:
         image: 'Pour optimiser le référencement la taille de l''image doit être plus grande ou égale à 200x200px'
+
+    image: 'Image principale'
 
     liste:
         affiche: Affiché
@@ -179,7 +182,30 @@ blog:
 
 button:
     clone: Dupliquer
+    generateGoogleCalendar: 'Générer le calendrier sur le compte Google'
     view: 'Voir sur le site'
+
+conge:
+    add_edit:
+        to_string: 'Vacances ou jour férié'
+
+    dateDebut: 'Date début'
+    dateFin: 'Date fin'
+
+    liste:
+        dateDebut: 'Date début'
+        dateFin: 'Date fin'
+        nom: Nom
+
+    nom: Nom
+
+    placeholder:
+        dateDebut: 'Date début'
+        dateFin: 'Date fin'
+        nom: 'Nom de la période de vacances ou du jour férié'
+
+    with:
+        details: Détails
 
 contact:
     mail:
@@ -203,6 +229,7 @@ cour:
     contenu: Descriptif
     creneau: Creneau
     datePublication: 'Date de publication'
+    dates: Dates
     details: Détails
     image: Image
     lienInscription: 'Lien pour l''inscription'
@@ -244,14 +271,67 @@ cour:
 
     prix: Prix
     professeur: Professeur
+    reports: 'Annulation et report'
     titre: Titre
     titreNav: 'Titre pour la navigation'
     users: Inscrits
 
     with:
         content: Informations
+        dates: Dates
         details: 'Détails supplémentaires'
         meta_data: Paramètres
+        reports: 'Annulations et reports'
+
+cour_date:
+    add_edit:
+        to_string: 'Cours - date'
+
+    date: 'Date du cours ou date début'
+    dateFin: 'Date du fin (si necessaire)'
+    heureDebut: 'Heure début'
+    heureFin: 'Heure fin'
+    heure_debut: 'Heure début'
+    heure_fin: 'Heure fin'
+    jour: Jour
+    jour.dimanche: Dimanche
+    jour.jeudi: Jeudi
+    jour.lundi: Lundi
+    jour.mardi: Mardi
+    jour.mercredi: Mercredi
+    jour.samedi: Samedi
+    jour.vendredi: Vendredi
+
+    liste:
+        date: 'Date du cours ou date début'
+        dateFin: 'Date du fin (si necessaire)'
+        heureDebut: 'Heure début'
+        heureFin: 'Heure fin'
+        jour: Jour
+        repetition: Répétition
+        titre: Nom
+
+    nom: Nom
+
+    placeholder:
+        date: 'Date du cours ou date début'
+        dateFin: 'Date du fin (si necessaire)'
+        heureDebut: 'Heure début'
+        heureFin: 'Heure fin'
+        heure_debut: 'Heure début'
+        heure_fin: 'Heure fin'
+        jour: Jour
+        nom: Nom
+        repetition: Répétition
+
+    repetition: Répétition
+    repetition.aucune: Aucune
+    repetition.bihebdo: 'Toutes les deux semaines'
+    repetition.hebdo: 'Toutes les semaines'
+
+    with:
+        dates: 'Cours - Dates'
+        details: 'Cours - Dates'
 
 cour_detail:
     add_edit:
@@ -273,6 +353,30 @@ cour_detail:
 
     with:
         details: 'Cours - Details'
+
+cour_report:
+    add_edit:
+        to_string: 'Annulation et/ou report'
+
+    dateAnnule: 'Date annulé'
+    dateReport: 'Date choisi pour le report'
+    heure_debut: 'Heure début'
+    heure_fin: 'Heure fin'
+
+    liste:
+        dateAnnule: 'Date annulé'
+        dateReport: 'Date choisi pour le report'
+        heureDebut: 'Heure début'
+        heureFin: 'Heure fin'
+
+    placeholder:
+        dateAnnule: 'Date annulé'
+        dateReport: 'Date choisi pour le report'
+        heure_debut: 'Heure début'
+        heure_fin: 'Heure fin'
+
+    with:
+        reports: 'Annulation et report'
 
 demande_newsletter:
     liste:
@@ -511,10 +615,10 @@ tag:
     nom: Nom
 
     placeholder:
-        nom: Nom du tag
+        nom: 'Nom du tag'
 
     with:
-        details: 'Détails'
+        details: Détails
 
 utilisateur:
     accesSite: 'Peut acceder au site'
@@ -527,14 +631,19 @@ utilisateur:
         parent: Parent
 
     membreNumero: 'Numéro du membre'
+    membreNumero_empty: 'Cet utilisateur n''a pas de numéro de membre'
     membreTitre: 'Titre du membre'
+    nomJaponais: 'Nom en Japonais'
 
     placeholder:
         accesSite: 'Peut acceder au site'
         estProfesseur: 'Est professeur'
         membreNumero: 'Numéro d''adhésion du membre'
         membreTitre: 'Titre du membre à afficher'
+        nomJaponais: 'Nom en Japonais'
+        prenomJaponais: 'Prénom en Japonais'
 
+    prenomJaponais: 'Prénom en Japonais'
     sousUtilisateurs: Enfants
 
     tab:

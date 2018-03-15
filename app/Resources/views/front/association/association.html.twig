@@ -1,8 +1,11 @@
 {% extends "front/template/base_front.html.twig" %}
 {% block body_class %}asso{% endblock %}
-{% block html_title %}– Découvrir l’association franco-japonaise de Rouen{% endblock %}
+{% set meta_title = 'Découvrir l’association franco-japonaise de Rouen' %}
+{% block html_title %}– {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
 {% block main %}
-    
     {% set hastagTitle = "L'Association Rouen Japon" %}
     {% set hastagList = "" %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
