@@ -53,7 +53,7 @@
                             <span class="day">{{sortie.date|date('d')}}</span>
                             <span class="month">{{sortie.date|date('F')|slice(0, 3)}}.</span>
                         </time>
-                        <p class="postSummary">{{ crop_entete_texte(sortie.contenu)|raw }}</p>
+                        <div class="postSummary">{{ crop_entete_texte(sortie.contenu)|raw }}</div>
                         <div class="postMoreText" style="display: none;">
                             {{ get_corps_texte(sortie.contenu)|raw }}
                             <p>
