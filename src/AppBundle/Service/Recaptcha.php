@@ -59,19 +59,28 @@ class Recaptcha
 
 
         if (function_exists('curl_version')) {
-            $curl = curl_init($url);
-            curl_setopt($curl, CURLOPT_HEADER, false);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($curl, CURLOPT_TIMEOUT, 1);
-            curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($curl, CURLOPT_FOLLOWLOCATION, true);
+            $ch = curl_init();
+
+            if ($ch === false) {
+                throw new \Exception('Failed to initialize curl');
+            }
+
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
             curl_setopt(
-                $curl,
+                $ch,
                 CURLOPT_USERAGENT,
                 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0) Gecko/20100101 Firefox/52.0'
             );
 
-            $response = curl_exec($curl);
+            $response = curl_exec($ch);
+
+            if ($response === false) {
+                throw new \Exception(curl_error($ch));
+            }
         } else {
             $response = file_get_contents($url);
         }
