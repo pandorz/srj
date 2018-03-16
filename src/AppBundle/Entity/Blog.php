@@ -142,7 +142,7 @@ class Blog implements RoutedItemInterface
      *
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -154,7 +154,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function setNom($nom)
+    public function setNom($nom): Blog
     {
         $this->nom = $nom;
 
@@ -166,15 +166,15 @@ class Blog implements RoutedItemInterface
      *
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getDescriptionCourte()
+    public function getDescriptionCourte():? string
     {
         return $this->descriptionCourte;
     }
@@ -184,7 +184,7 @@ class Blog implements RoutedItemInterface
      *
      *  @return Blog
      */
-    public function setDescriptionCourte($descriptionCourte)
+    public function setDescriptionCourte($descriptionCourte): Blog
     {
         $this->descriptionCourte = $descriptionCourte;
 
@@ -198,7 +198,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function setAffiche($affiche)
+    public function setAffiche($affiche): Blog
     {
         $this->affiche = $affiche;
 
@@ -210,7 +210,7 @@ class Blog implements RoutedItemInterface
      *
      * @return boolean
      */
-    public function getAffiche()
+    public function getAffiche():? bool
     {
         return $this->affiche;
     }
@@ -220,7 +220,7 @@ class Blog implements RoutedItemInterface
      */
     public function __construct()
     {
-        $this->affiche      = true;
+        $this->affiche = true;
     }
 
     /**
@@ -230,7 +230,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function setSlug($slug)
+    public function setSlug($slug): Blog
     {
         $this->slug = $slug;
 
@@ -242,7 +242,7 @@ class Blog implements RoutedItemInterface
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -250,7 +250,7 @@ class Blog implements RoutedItemInterface
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
@@ -260,7 +260,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function setVersion($version)
+    public function setVersion($version): Blog
     {
         $this->version = $version;
 
@@ -274,7 +274,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function setImage(MediaInterface $image = null)
+    public function setImage(MediaInterface $image = null): Blog
     {
         $this->image = $image;
 
@@ -286,7 +286,7 @@ class Blog implements RoutedItemInterface
      *
      * @return MediaInterface
      */
-    public function getImage()
+    public function getImage():? MediaInterface
     {
         return $this->image;
     }
@@ -298,7 +298,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function setContenu($contenu)
+    public function setContenu($contenu): Blog
     {
         $this->contenu = $contenu;
 
@@ -310,7 +310,7 @@ class Blog implements RoutedItemInterface
      *
      * @return string
      */
-    public function getContenu()
+    public function getContenu():? string
     {
         return $this->contenu;
     }
@@ -351,7 +351,7 @@ class Blog implements RoutedItemInterface
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -363,7 +363,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Blog
     {
         $this->timestampModification = $timestampModification;
 
@@ -375,7 +375,7 @@ class Blog implements RoutedItemInterface
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -383,7 +383,7 @@ class Blog implements RoutedItemInterface
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -399,7 +399,7 @@ class Blog implements RoutedItemInterface
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -415,7 +415,7 @@ class Blog implements RoutedItemInterface
     /**
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getDatePublication():? \DateTime
     {
         return $this->datePublication;
     }
@@ -435,7 +435,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function addAuteur(Utilisateur $auteur)
+    public function addAuteur(Utilisateur $auteur): Blog
     {
         $this->auteurs[] = $auteur;
 
@@ -457,7 +457,7 @@ class Blog implements RoutedItemInterface
      *
      * @return ArrayCollection
      */
-    public function getAuteurs()
+    public function getAuteurs():? ArrayCollection
     {
         return $this->auteurs;
     }
@@ -469,7 +469,7 @@ class Blog implements RoutedItemInterface
      *
      * @return Blog
      */
-    public function addTag(Tag $tag)
+    public function addTag(Tag $tag): Blog
     {
         $this->tags[] = $tag;
 
@@ -479,7 +479,7 @@ class Blog implements RoutedItemInterface
     /**
      * Remove tag
      *
-     * @param (Tag $tag
+     * @param Tag $tag
      */
     public function removeTag(Tag $tag)
     {
@@ -491,7 +491,7 @@ class Blog implements RoutedItemInterface
      *
      * @return ArrayCollection
      */
-    public function getTags()
+    public function getTags():? ArrayCollection
     {
         return $this->tags;
     }
@@ -524,6 +524,6 @@ class Blog implements RoutedItemInterface
 
     public function getFeedItemUrlAnchor()
     {
-        return;
+        return null;
     }
 }

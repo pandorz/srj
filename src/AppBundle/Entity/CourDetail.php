@@ -88,7 +88,7 @@ class CourDetail
     /**
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -104,7 +104,7 @@ class CourDetail
     /**
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -120,7 +120,7 @@ class CourDetail
     /**
      * @return string
      */
-    public function getContenu()
+    public function getContenu():? string
     {
         return $this->contenu;
     }
@@ -136,7 +136,7 @@ class CourDetail
     /**
      * @return bool
      */
-    public function isComplet()
+    public function isComplet():? bool
     {
         return $this->complet;
     }
@@ -152,7 +152,7 @@ class CourDetail
     /**
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -168,7 +168,7 @@ class CourDetail
     /**
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -184,7 +184,7 @@ class CourDetail
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -200,7 +200,7 @@ class CourDetail
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -248,7 +248,7 @@ class CourDetail
     /**
      * @return Cour
      */
-    public function getCours()
+    public function getCours():? Cour
     {
         return $this->cours;
     }
@@ -261,7 +261,10 @@ class CourDetail
         $this->cours = $cours;
     }
 
-    public function __toString()
+    /**
+     * @return null|string
+     */
+    public function __toString():? string
     {
         return $this->nom;
     }

@@ -204,7 +204,7 @@ class Sortie
      *
      * @return integer
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -228,7 +228,7 @@ class Sortie
      *
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -252,7 +252,7 @@ class Sortie
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -264,7 +264,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setAffiche($affiche)
+    public function setAffiche($affiche): Sortie
     {
         $this->affiche = $affiche;
 
@@ -276,7 +276,7 @@ class Sortie
      *
      * @return boolean
      */
-    public function getAffiche()
+    public function getAffiche():? bool
     {
         return $this->affiche;
     }
@@ -288,7 +288,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setAnnule($annule)
+    public function setAnnule($annule): Sortie
     {
         $this->annule = $annule;
 
@@ -300,7 +300,7 @@ class Sortie
      *
      * @return boolean
      */
-    public function getAnnule()
+    public function getAnnule():? bool
     {
         return $this->annule;
     }
@@ -312,7 +312,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setNbPlace($nbPlace)
+    public function setNbPlace($nbPlace): Sortie
     {
         $this->nbPlace = $nbPlace;
 
@@ -324,7 +324,7 @@ class Sortie
      *
      * @return integer
      */
-    public function getNbPlace()
+    public function getNbPlace():? int
     {
         return $this->nbPlace;
     }
@@ -338,7 +338,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setDate($date)
+    public function setDate($date): Sortie
     {
         $this->date = $date;
 
@@ -350,7 +350,7 @@ class Sortie
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDate():? \DateTime
     {
         return $this->date;
     }
@@ -362,7 +362,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setDateLimite($dateLimite)
+    public function setDateLimite($dateLimite): Sortie
     {
         $this->dateLimite = $dateLimite;
 
@@ -374,7 +374,7 @@ class Sortie
      *
      * @return \DateTime
      */
-    public function getDateLimite()
+    public function getDateLimite():? \DateTime
     {
         return $this->dateLimite;
     }
@@ -386,7 +386,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setImage(MediaInterface $image = null)
+    public function setImage(MediaInterface $image = null): Sortie
     {
         $this->image = $image;
 
@@ -398,7 +398,7 @@ class Sortie
      *
      * @return MediaInterface
      */
-    public function getImage()
+    public function getImage():? MediaInterface
     {
         return $this->image;
     }
@@ -410,7 +410,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setContenu($contenu)
+    public function setContenu($contenu): Sortie
     {
         $this->contenu = $contenu;
 
@@ -422,7 +422,7 @@ class Sortie
      *
      * @return string
      */
-    public function getContenu()
+    public function getContenu():? string
     {
         return $this->contenu;
     }
@@ -430,17 +430,17 @@ class Sortie
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
     
     /**
      * @param int $version
-     * 
+     *
      * @return Sortie
      */
-    public function setVersion($version)
+    public function setVersion($version): Sortie
     {
         $this->version = $version;
         
@@ -454,7 +454,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function addSuperviseur(Utilisateur $superviseur)
+    public function addSuperviseur(Utilisateur $superviseur): Sortie
     {
         $this->superviseurs[] = $superviseur;
 
@@ -476,7 +476,7 @@ class Sortie
      *
      * @return ArrayCollection
      */
-    public function getSuperviseurs()
+    public function getSuperviseurs():? ArrayCollection
     {
         return $this->superviseurs;
     }
@@ -488,7 +488,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setReserveMembre($reserveMembre)
+    public function setReserveMembre($reserveMembre): Sortie
     {
         $this->reserveMembre = $reserveMembre;
 
@@ -500,7 +500,7 @@ class Sortie
      *
      * @return boolean
      */
-    public function getReserveMembre()
+    public function getReserveMembre():? bool
     {
         return $this->reserveMembre;
     }
@@ -512,7 +512,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setPrix($prix)
+    public function setPrix($prix): Sortie
     {
         $this->prix = $prix;
 
@@ -524,7 +524,7 @@ class Sortie
      *
      * @return integer
      */
-    public function getPrix()
+    public function getPrix():? int
     {
         return $this->prix;
     }
@@ -536,7 +536,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setPrixMembre($prixMembre)
+    public function setPrixMembre($prixMembre): Sortie
     {
         $this->prixMembre = $prixMembre;
 
@@ -548,7 +548,7 @@ class Sortie
      *
      * @return integer
      */
-    public function getPrixMembre()
+    public function getPrixMembre():? int
     {
         return $this->prixMembre;
     }
@@ -576,7 +576,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Sortie
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -588,7 +588,7 @@ class Sortie
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -600,7 +600,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Sortie
     {
         $this->timestampModification = $timestampModification;
 
@@ -612,7 +612,7 @@ class Sortie
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -620,7 +620,7 @@ class Sortie
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -636,7 +636,7 @@ class Sortie
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -656,7 +656,7 @@ class Sortie
      *
      * @return Sortie
      */
-    public function addInscrit(Utilisateur $inscrits)
+    public function addInscrit(Utilisateur $inscrits): Sortie
     {
         $this->inscrits[] = $inscrits;
 
@@ -678,7 +678,7 @@ class Sortie
      *
      * @return ArrayCollection
      */
-    public function getInscrits()
+    public function getInscrits():? ArrayCollection
     {
         return $this->inscrits;
     }
@@ -686,7 +686,7 @@ class Sortie
     /**
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getDatePublication():? \DateTime
     {
         return $this->datePublication;
     }
@@ -702,7 +702,7 @@ class Sortie
     /**
      * @return string
      */
-    public function getUrlInscription()
+    public function getUrlInscription():? string
     {
         return $this->urlInscription;
     }

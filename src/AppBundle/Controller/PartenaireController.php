@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
 /**
  * Class PartenaireController
  * @package AppBundle\Controller

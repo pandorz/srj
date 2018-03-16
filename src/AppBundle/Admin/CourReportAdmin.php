@@ -2,26 +2,24 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\CourReport;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-
-use AppBundle\Entity\CourReport;
 
 class CourReportAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_cour_report';
+    protected $baseRouteName = 'admin_cour_report';
     protected $baseRoutePattern = 'cour_report';
 
     public $supportsPreviewMode = false;
 
     protected $datagridValues = [
-        '_sort_order'   => 'DESC',
-        '_sort_by'      => 'timestampCreation',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'timestampCreation',
     ];
 
 
@@ -34,26 +32,25 @@ class CourReportAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('dateAnnule', 'date', [
-                'label'     => 'cour_report.liste.dateAnnule'
+                'label' => 'cour_report.liste.dateAnnule'
             ])
             ->add('dateReport', 'date', [
-                'label'     => 'cour_report.liste.dateReport'
+                'label' => 'cour_report.liste.dateReport'
             ])
             ->add('heureDebut', 'date', [
-                'label'     => 'cour_report.liste.heureDebut',
-                'format'=>'HH:mm',
+                'label' => 'cour_report.liste.heureDebut',
+                'format' => 'HH:mm',
             ])
             ->add('heureFin', 'date', [
-                'label'     => 'cour_report.liste.heureFin',
-                'format'=>'HH:mm',
+                'label' => 'cour_report.liste.heureFin',
+                'format' => 'HH:mm',
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -65,36 +62,36 @@ class CourReportAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('cour_report.with.reports')
+                'name' => $this->trans('cour_report.with.reports')
             ])
             ->add('dateAnnule', 'sonata_type_date_picker', [
                 'label' => 'cour_report.dateAnnule',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
                     'placeholder' => $this->trans('cour_report.placeholder.dateAnnule')
                 ],
                 'required' => false
             ])
             ->add('dateReport', 'sonata_type_date_picker', [
                 'label' => 'cour_report.dateReport',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
                     'placeholder' => $this->trans('cour_report.placeholder.dateReport')
                 ],
                 'required' => false
             ])
             ->add('heureDebut', 'time', [
                 'label' => 'cour_report.heure_debut',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => $this->trans('cour_report.placeholder.heure_debut')
                 ],
                 'required' => false
             ])
             ->add('heureFin', 'time', [
                 'label' => 'cour_report.heure_fin',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => $this->trans('cour_report.placeholder.heure_fin')
                 ],
                 'required' => false
@@ -111,8 +108,7 @@ class CourReportAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('heureDebut')
-            ->add('heureFin')
-        ;
+            ->add('heureFin');
     }
 
     /**
@@ -124,8 +120,7 @@ class CourReportAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('heureDebut')
-            ->add('heureFin')
-        ;
+            ->add('heureFin');
     }
 
     /**

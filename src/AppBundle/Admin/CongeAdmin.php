@@ -2,29 +2,24 @@
 
 namespace AppBundle\Admin;
 
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
-use Oh\GoogleMapFormTypeBundle\Form\Type\GoogleMapType;
+use AppBundle\Entity\Conge;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-
-use AppBundle\Entity\Conge;
-use AppBundle\Entity\Utilisateur;
 
 class CongeAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_conge';
+    protected $baseRouteName = 'admin_conge';
     protected $baseRoutePattern = 'conge';
 
     public $supportsPreviewMode = false;
 
     protected $datagridValues = [
-        '_sort_order'   => 'DESC',
-        '_sort_by'      => 'timestampCreation',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'timestampCreation',
     ];
 
     /**
@@ -39,22 +34,21 @@ class CongeAdmin extends AbstractAdmin
                 'label' => 'conge.liste.nom'
             ])
             ->add('dateDebut', 'date', [
-                'label'     => 'conge.liste.dateDebut'
+                'label' => 'conge.liste.dateDebut'
             ])
             ->add('dateFin', 'date', [
-                'label'     => 'conge.liste.dateFin'
+                'label' => 'conge.liste.dateFin'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
                     'clone' => array(
                         'template' => ':AdminCustom/button:clone.html.twig',
-                        'data'     => '1',
+                        'data' => '1',
                     ),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -66,34 +60,33 @@ class CongeAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('conge.with.details'),
+                'name' => $this->trans('conge.with.details'),
             ])
             ->add('nom', 'text', [
                 'label' => 'conge.nom',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'conge.placeholder.nom'
                 ]
             ])
             ->add('dateDebut', 'sonata_type_date_picker', [
                 'label' => 'conge.dateDebut',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
                     'placeholder' => $this->trans('conge.placeholder.dateDebut')
                 ],
                 'required' => true
             ])
             ->add('dateFin', 'sonata_type_date_picker', [
                 'label' => 'conge.dateFin',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy',
+                'attr' => [
                     'placeholder' => $this->trans('conge.placeholder.dateFin')
                 ],
                 'required' => true
             ])
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -106,8 +99,7 @@ class CongeAdmin extends AbstractAdmin
         $showMapper
             ->add('nom')
             ->add('dateDebut')
-            ->add('dateFin')
-        ;
+            ->add('dateFin');
     }
 
     /**
@@ -126,8 +118,7 @@ class CongeAdmin extends AbstractAdmin
             ])
             ->add('dateFin', null, [
                 'label' => 'conge.liste.dateFin'
-            ])
-        ;
+            ]);
     }
 
     /**
@@ -165,6 +156,6 @@ class CongeAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
-        $collection->add('clone', $this->getRouterIdParameter().'/clone');
+        $collection->add('clone', $this->getRouterIdParameter() . '/clone');
     }
 }

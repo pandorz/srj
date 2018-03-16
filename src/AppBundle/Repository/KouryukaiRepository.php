@@ -8,40 +8,49 @@ namespace AppBundle\Repository;
  */
 class KouryukaiRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param bool $admin
+     * @return mixed
+     */
     public function findAllValidOverOneMonth($admin = false)
     {
         if ($admin) {
             $query = $this
-            ->getEntityManager()
-            ->createQuery('SELECT e '
-                . 'FROM AppBundle:Kouryukai e '
-                . 'WHERE e.annule = :annule '
-                . 'AND e.date >= :date '
-                . 'ORDER BY e.date DESC')
-            ->setParameters([
-                'annule'  => false,
-                'date'    => date("Y-m-d",strtotime("-1 month")),
-            ]);
+                ->getEntityManager()
+                ->createQuery('SELECT e '
+                    . 'FROM AppBundle:Kouryukai e '
+                    . 'WHERE e.annule = :annule '
+                    . 'AND e.date >= :date '
+                    . 'ORDER BY e.date DESC')
+                ->setParameters([
+                    'annule' => false,
+                    'date' => date("Y-m-d", strtotime("-1 month")),
+                ]);
         } else {
             $query = $this
-            ->getEntityManager()
-            ->createQuery('SELECT e '
-                . 'FROM AppBundle:Kouryukai e '
-                . 'WHERE e.annule = :annule '
-                . 'AND e.affiche = :affiche '
-                . 'AND e.date >= :date '
-                . 'AND e.datePublication <= :datePublication '
-                . 'ORDER BY e.date DESC')
-            ->setParameters([
-                'annule'  => false,
-                'affiche' => true,
-                'date'    => date("Y-m-d",strtotime("-1 month")),
-                'datePublication' => date("Y-m-d H:i:s")
-            ]);
+                ->getEntityManager()
+                ->createQuery('SELECT e '
+                    . 'FROM AppBundle:Kouryukai e '
+                    . 'WHERE e.annule = :annule '
+                    . 'AND e.affiche = :affiche '
+                    . 'AND e.date >= :date '
+                    . 'AND e.datePublication <= :datePublication '
+                    . 'ORDER BY e.date DESC')
+                ->setParameters([
+                    'annule' => false,
+                    'affiche' => true,
+                    'date' => date("Y-m-d", strtotime("-1 month")),
+                    'datePublication' => date("Y-m-d H:i:s")
+                ]);
         }
         return $query->getResult();
     }
 
+    /**
+     * @param $limit
+     * @return mixed
+     */
     public function getTop($limit)
     {
         return $this
@@ -53,7 +62,7 @@ class KouryukaiRepository extends \Doctrine\ORM\EntityRepository
                 . 'AND e.datePublication <= :datePublication '
                 . 'ORDER BY e.date DESC')
             ->setParameters([
-                'annule'  => false,
+                'annule' => false,
                 'affiche' => true,
                 'datePublication' => date("Y-m-d H:i:s")
             ])
@@ -61,6 +70,9 @@ class KouryukaiRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     * @return mixed
+     */
     public function findProchain()
     {
         return $this
@@ -73,7 +85,7 @@ class KouryukaiRepository extends \Doctrine\ORM\EntityRepository
                 . 'AND e.datePublication <= :datePublication '
                 . 'ORDER BY e.date ASC ')
             ->setParameters([
-                'annule'  => false,
+                'annule' => false,
                 'affiche' => true,
                 'dateDebut' => date("Y-m-d H:i:s"),
                 'datePublication' => date("Y-m-d H:i:s")
@@ -82,6 +94,10 @@ class KouryukaiRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     * @param $limit
+     * @return mixed
+     */
     public function findDernier($limit)
     {
         return $this
@@ -94,7 +110,7 @@ class KouryukaiRepository extends \Doctrine\ORM\EntityRepository
                 . 'AND e.datePublication <= :datePublication '
                 . 'ORDER BY e.date DESC ')
             ->setParameters([
-                'annule'  => false,
+                'annule' => false,
                 'affiche' => true,
                 'dateDebut' => date("Y-m-d H:i:s"),
                 'datePublication' => date("Y-m-d H:i:s")

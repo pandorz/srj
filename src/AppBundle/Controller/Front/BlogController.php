@@ -2,13 +2,11 @@
 
 namespace AppBundle\Controller\Front;
 
-
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Parametre;
 use AppBundle\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-
 
 /**
  * Class BlogController

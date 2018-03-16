@@ -51,7 +51,7 @@ class Statistique
     /**
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -67,7 +67,7 @@ class Statistique
     /**
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -83,7 +83,7 @@ class Statistique
     /**
      * @return string
      */
-    public function getEntityName()
+    public function getEntityName():? string
     {
         return $this->entityName;
     }
@@ -99,7 +99,7 @@ class Statistique
     /**
      * @return int
      */
-    public function getOccurence()
+    public function getOccurence():? int
     {
         return $this->occurence;
     }

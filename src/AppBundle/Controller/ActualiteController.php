@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
 /**
  * Class ActualiteController
  * @package AppBundle\Controller

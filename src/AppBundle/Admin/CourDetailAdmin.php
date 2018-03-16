@@ -2,26 +2,24 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\CourDetail;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-
-use AppBundle\Entity\CourDetail;
 
 class CourDetailAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_cour_detail';
+    protected $baseRouteName = 'admin_cour_detail';
     protected $baseRoutePattern = 'cour_detail';
 
     public $supportsPreviewMode = false;
 
     protected $datagridValues = [
-        '_sort_order'   => 'DESC',
-        '_sort_by'      => 'timestampCreation',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'timestampCreation',
     ];
 
 
@@ -37,16 +35,15 @@ class CourDetailAdmin extends AbstractAdmin
                 'label' => 'cour_detail.liste.titre'
             ])
             ->add('complet', 'boolean', [
-                'label'     => 'cour_detail.liste.complet',
-                'editable'  => true
+                'label' => 'cour_detail.liste.complet',
+                'editable' => true
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -58,30 +55,29 @@ class CourDetailAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('cour_detail.with.details')
+                'name' => $this->trans('cour_detail.with.details')
             ])
             ->add('nom', 'text', [
                 'label' => 'cour_detail.nom',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'cour_detail.placeholder.nom'
                 ],
                 'required' => true
             ])
             ->add('contenu', 'text', [
                 'label' => 'cour_detail.contenu',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'cour_detail.placeholder.contenu'
                 ]
             ])
             ->add('complet', 'checkbox', [
                 'label' => 'cour_detail.complet',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'cour_detail.placeholder.complet'
                 ],
                 'required' => false
             ])
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -93,8 +89,7 @@ class CourDetailAdmin extends AbstractAdmin
     {
         $showMapper
             ->add('nom')
-            ->add('complet')
-        ;
+            ->add('complet');
     }
 
     /**
@@ -106,8 +101,7 @@ class CourDetailAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('nom')
-            ->add('complet')
-        ;
+            ->add('complet');
     }
 
     /**

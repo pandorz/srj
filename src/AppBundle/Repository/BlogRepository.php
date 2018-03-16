@@ -10,6 +10,11 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
  */
 class BlogRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param bool $admin
+     * @return mixed
+     */
     public function findAllValidOverOneMonth($admin = false)
     {
         if ($admin) {
@@ -38,6 +43,10 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * @param $limit
+     * @return mixed
+     */
     public function getTop($limit)
     {
         return $this
@@ -55,6 +64,11 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
             ->getResult();
     }
 
+    /**
+     * @param $slugTag
+     * @param $limit
+     * @return mixed
+     */
     public function findByTag($slugTag, $limit)
     {
         $table = $this->getClassMetadata()->table["name"];

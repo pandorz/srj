@@ -2,28 +2,26 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Sortie;
+use AppBundle\Entity\Utilisateur;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-
-use AppBundle\Entity\Sortie;
-use AppBundle\Entity\Utilisateur;
 
 class SortieAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_sortie';
+    protected $baseRouteName = 'admin_sortie';
     protected $baseRoutePattern = 'sortie';
 
     public $supportsPreviewMode = false;
 
     protected $datagridValues = [
-        '_sort_order'   => 'DESC',
-        '_sort_by'      => 'timestampCreation',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'timestampCreation',
     ];
 
     /**
@@ -38,40 +36,39 @@ class SortieAdmin extends AbstractAdmin
                 'label' => 'sortie.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label'     => 'sortie.liste.affiche',
-                'editable'  => true
-            ]) 
+                'label' => 'sortie.liste.affiche',
+                'editable' => true
+            ])
             ->add('datePublication', 'date', [
-                'label'     => 'sortie.liste.datePublication'
-            ])   
+                'label' => 'sortie.liste.datePublication'
+            ])
             ->add('annule', 'boolean', [
-                'label'     => 'sortie.liste.annule',
-                'editable'  => true
+                'label' => 'sortie.liste.annule',
+                'editable' => true
             ])
             ->add('reserveMembre', 'boolean', [
-                'label'     => 'sortie.liste.reserveMembre',
-                'editable'  => true
+                'label' => 'sortie.liste.reserveMembre',
+                'editable' => true
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'sortie.liste.nbPlace',
             ])
             ->add('date', 'date', [
-                'label'     => 'sortie.liste.date'
+                'label' => 'sortie.liste.date'
             ])
             ->add('dateLimite', 'date', [
-                'label'     => 'sortie.liste.dateLimite'
+                'label' => 'sortie.liste.dateLimite'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
                     'clone' => array(
                         'template' => ':AdminCustom/button:clone.html.twig',
-                        'data'     => '1',
+                        'data' => '1',
                     ),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -83,106 +80,106 @@ class SortieAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('sortie.with.details'),
-                'class'         => 'col-md-7'
+                'name' => $this->trans('sortie.with.details'),
+                'class' => 'col-md-7'
             ])
             ->add('nom', 'text', [
                 'label' => 'sortie.nom',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.nom'
                 ]
             ])
             ->add('affiche', 'checkbox', [
                 'label' => 'sortie.actif',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.actif'
                 ],
                 'required' => false
             ])
             ->add('datePublication', 'sonata_type_datetime_picker', [
                 'label' => 'sortie.datePublication',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => $this->trans('sortie.placeholder.datePublication')
                 ],
                 'required' => false
             ])
             ->add('annule', 'checkbox', [
                 'label' => 'sortie.annule',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.annule'
                 ],
                 'required' => false
             ])
             ->add('reserveMembre', 'checkbox', [
                 'label' => 'sortie.reserve_membre',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.reserve_membre'
                 ],
                 'required' => false
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'sortie.nbPlace',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.nbPlace'
                 ],
                 'required' => false
             ])
             ->add('prixMembre', 'number', [
-                'label' => 'sortie.prixMembre',                
-                'attr'  => [
+                'label' => 'sortie.prixMembre',
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.prixMembre'
                 ],
                 'required' => false
-            ])    
+            ])
             ->add('prix', 'number', [
-                'label' => 'sortie.prix',                
-                'attr'  => [
+                'label' => 'sortie.prix',
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.prix'
                 ],
                 'required' => false
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'sortie.contenu',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.contenu'
                 ]
-            ])            
+            ])
             ->end()
             ->with('Meta data', [
-                'name'      => $this->trans('sortie.with.meta_data'),
-                'class'     => 'col-md-5'
+                'name' => $this->trans('sortie.with.meta_data'),
+                'class' => 'col-md-5'
             ])
             ->add('urlInscription', 'url', [
                 'label' => 'sortie.urlInscription',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'sortie.placeholder.urlInscription'
                 ],
                 'required' => false
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
-                'class'     => Utilisateur::class,
-                'property'  => ['firstname','lastname'],
-                'label'     => 'sortie.superviseurs',
-                'multiple'  => true,
+                'class' => Utilisateur::class,
+                'property' => ['firstname', 'lastname'],
+                'label' => 'sortie.superviseurs',
+                'multiple' => true,
                 'placeholder' => $this->trans('sortie.placeholder.superviseurs'),
                 'required' => false
             ])
             ->add('date', 'sonata_type_datetime_picker', [
                 'label' => 'sortie.date',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => $this->trans('sortie.placeholder.date')
                 ],
                 'required' => false
             ])
             ->add('dateLimite', 'sonata_type_datetime_picker', [
                 'label' => 'sortie.date_limite',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => $this->trans('sortie.placeholder.date_limite')
                 ],
                 'required' => false
@@ -190,11 +187,10 @@ class SortieAdmin extends AbstractAdmin
             ->add('image', 'sonata_media_type', array(
                 'label' => 'sortie.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image',
+                'context' => 'image',
                 'required' => false,
             ))
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -210,10 +206,9 @@ class SortieAdmin extends AbstractAdmin
             ->add('annule')
             ->add('nbPlace')
             ->add('reserveMembre')
-            ->add('prix')    
+            ->add('prix')
             ->add('date')
-            ->add('dateLimite')
-        ;
+            ->add('dateLimite');
     }
 
     /**
@@ -253,8 +248,7 @@ class SortieAdmin extends AbstractAdmin
             ])
             ->add('datePublication', null, [
                 'label' => 'sortie.liste.datePublication'
-            ])
-        ;
+            ]);
     }
 
     /**
@@ -292,6 +286,6 @@ class SortieAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
-        $collection->add('clone', $this->getRouterIdParameter().'/clone');
+        $collection->add('clone', $this->getRouterIdParameter() . '/clone');
     }
 }

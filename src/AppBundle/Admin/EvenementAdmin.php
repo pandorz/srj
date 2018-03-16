@@ -2,6 +2,8 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Evenement;
+use AppBundle\Entity\Utilisateur;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -10,20 +12,16 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-
-use AppBundle\Entity\Evenement;
-use AppBundle\Entity\Utilisateur;
-
 class EvenementAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_evenement';
+    protected $baseRouteName = 'admin_evenement';
     protected $baseRoutePattern = 'evenement';
 
     public $supportsPreviewMode = false;
 
     protected $datagridValues = [
-        '_sort_order'   => 'DESC',
-        '_sort_by'      => 'timestampCreation',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'timestampCreation',
     ];
 
 
@@ -39,33 +37,32 @@ class EvenementAdmin extends AbstractAdmin
                 'label' => 'evenement.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label'     => 'evenement.liste.affiche',
-                'editable'  => true
+                'label' => 'evenement.liste.affiche',
+                'editable' => true
             ])
             ->add('datePublication', 'date', [
-                'label'     => 'evenement.liste.datePublication'
+                'label' => 'evenement.liste.datePublication'
             ])
             ->add('annule', 'boolean', [
-                'label'     => 'evenement.liste.annule',
-                'editable'  => true
+                'label' => 'evenement.liste.annule',
+                'editable' => true
             ])
             ->add('dateDebut', 'date', [
-                'label'     => 'evenement.liste.dateDebut'
+                'label' => 'evenement.liste.dateDebut'
             ])
             ->add('dateFin', 'date', [
-                'label'     => 'evenement.liste.dateFin'
+                'label' => 'evenement.liste.dateFin'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
                     'clone' => array(
                         'template' => ':AdminCustom/button:clone.html.twig',
-                        'data'     => '1',
+                        'data' => '1',
                     ),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -77,71 +74,71 @@ class EvenementAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('evenement.with.details'),
-                'class'         => 'col-md-7'
+                'name' => $this->trans('evenement.with.details'),
+                'class' => 'col-md-7'
             ])
             ->add('nom', 'text', [
                 'label' => 'evenement.nom',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'evenement.placeholder.nom'
                 ]
             ])
             ->add('affiche', 'checkbox', [
                 'label' => 'evenement.actif',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'evenement.placeholder.actif'
                 ],
                 'required' => false
             ])
             ->add('datePublication', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.datePublication',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => $this->trans('evenement.placeholder.datePublication')
                 ],
                 'required' => false
             ])
             ->add('annule', 'checkbox', [
                 'label' => 'evenement.annule',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'evenement.placeholder.annule'
                 ],
                 'required' => false
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'evenement.contenu',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'evenement.placeholder.contenu'
                 ]
-            ])            
+            ])
             ->end()
             ->with('Meta data', [
-                'name'      => $this->trans('evenement.with.meta_data'),
-                'class'     => 'col-md-5'
+                'name' => $this->trans('evenement.with.meta_data'),
+                'class' => 'col-md-5'
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
-                'class'     => Utilisateur::class,
-                'property'  => ['firstname','lastname'],
-                'label'     => 'evenement.superviseurs',
-                'multiple'  => true,
+                'class' => Utilisateur::class,
+                'property' => ['firstname', 'lastname'],
+                'label' => 'evenement.superviseurs',
+                'multiple' => true,
                 'placeholder' => $this->trans('evenement.placeholder.superviseurs'),
                 'required' => false
             ])
             ->add('dateDebut', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_debut',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => 'evenement.placeholder.date_debut'
                 ],
                 'required' => false
             ])
             ->add('dateFin', 'sonata_type_datetime_picker', [
                 'label' => 'evenement.date_fin',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => 'evenement.placeholder.date_fin'
                 ],
                 'required' => false
@@ -149,11 +146,10 @@ class EvenementAdmin extends AbstractAdmin
             ->add('image', 'sonata_media_type', array(
                 'label' => 'evenement.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image',
+                'context' => 'image',
                 'required' => false,
             ))
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -168,8 +164,7 @@ class EvenementAdmin extends AbstractAdmin
             ->add('affiche')
             ->add('annule')
             ->add('dateDebut')
-            ->add('dateFin')
-        ;
+            ->add('dateFin');
     }
 
     /**
@@ -197,8 +192,7 @@ class EvenementAdmin extends AbstractAdmin
             ])
             ->add('datePublication', null, [
                 'label' => 'evenement.liste.datePublication'
-            ])
-        ;
+            ]);
     }
 
     /**
@@ -236,6 +230,6 @@ class EvenementAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
-        $collection->add('clone', $this->getRouterIdParameter().'/clone');
+        $collection->add('clone', $this->getRouterIdParameter() . '/clone');
     }
 }

@@ -11,6 +11,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class CourController extends BaseController
 {
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
     public function generateGoogleCalendarAction($id)
     {
         $cour = $this->admin->getSubject();

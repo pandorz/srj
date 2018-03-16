@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use AppBundle\Entity\Utilisateur;
 use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
@@ -13,59 +14,66 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
  */
 class UtilisateurRepository extends \Doctrine\ORM\EntityRepository
 {
-   public function findAllBureau()
-   {
-       $table = $this->getClassMetadata()->table["name"];
+    /**
+     * @return mixed
+     */
+    public function findAllBureau()
+    {
+        $table = $this->getClassMetadata()->table["name"];
 
-       $sql =  "SELECT u.* "
-           . "FROM ".$table." AS u "
-           . "INNER JOIN fos_user_user_group f ON f.user_id=u.id "
-           . "INNER JOIN utilisateur_droits d ON f.group_id=d.id "
-           . "WHERE d.est_membre_bureau = :estMembreBureau "
-           . "AND u.enabled = :enabled "
-           . "AND u.locked = :locked "
-           . "ORDER BY u.slug DESC";
-
-
-       $rsm = new ResultSetMappingBuilder($this->getEntityManager());
-       $rsm->addEntityResult(Utilisateur::class, "u");
-
-       foreach ($this->getClassMetadata()->fieldMappings as $obj) {
-           $rsm->addFieldResult("u", $obj["columnName"], $obj["fieldName"]);
-       }
-
-       $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
-
-       $stmt->setParameter(":estMembreBureau", true);
-       $stmt->setParameter(":enabled", true);
-       $stmt->setParameter(":locked", false);
-
-       $stmt->execute();
-
-       return $stmt->getResult();
-   }
-
-   public function findMedia($idUtilisateur)
-   {
-       $sql =  "SELECT m.* "
-           . "FROM media__media AS m "
-           . "INNER JOIN utilisateur u ON u.image_id=m.id "
-           . "WHERE u.id=:idUtilisateur";
+        $sql = "SELECT u.* "
+            . "FROM " . $table . " AS u "
+            . "INNER JOIN fos_user_user_group f ON f.user_id=u.id "
+            . "INNER JOIN utilisateur_droits d ON f.group_id=d.id "
+            . "WHERE d.est_membre_bureau = :estMembreBureau "
+            . "AND u.enabled = :enabled "
+            . "AND u.locked = :locked "
+            . "ORDER BY u.slug DESC";
 
 
-       $rsm = new ResultSetMappingBuilder($this->getEntityManager());
-       $rsm->addEntityResult(Media::class, "m");
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addEntityResult(Utilisateur::class, "u");
 
-       foreach ($this->getClassMetadata()->fieldMappings as $obj) {
-           $rsm->addFieldResult("m", $obj["columnName"], $obj["fieldName"]);
-       }
+        foreach ($this->getClassMetadata()->fieldMappings as $obj) {
+            $rsm->addFieldResult("u", $obj["columnName"], $obj["fieldName"]);
+        }
 
-       $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+        $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
 
-       $stmt->setParameter(":idUtilisateur", $idUtilisateur);
+        $stmt->setParameter(":estMembreBureau", true);
+        $stmt->setParameter(":enabled", true);
+        $stmt->setParameter(":locked", false);
 
-       $stmt->execute();
+        $stmt->execute();
 
-       return $stmt->getResult();
-   }
+        return $stmt->getResult();
+    }
+
+    /**
+     * @param $idUtilisateur
+     * @return mixed
+     */
+    public function findMedia($idUtilisateur)
+    {
+        $sql = "SELECT m.* "
+            . "FROM media__media AS m "
+            . "INNER JOIN utilisateur u ON u.image_id=m.id "
+            . "WHERE u.id=:idUtilisateur";
+
+
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addEntityResult(Media::class, "m");
+
+        foreach ($this->getClassMetadata()->fieldMappings as $obj) {
+            $rsm->addFieldResult("m", $obj["columnName"], $obj["fieldName"]);
+        }
+
+        $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+
+        $stmt->setParameter(":idUtilisateur", $idUtilisateur);
+
+        $stmt->execute();
+
+        return $stmt->getResult();
+    }
 }

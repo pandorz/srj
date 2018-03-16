@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
 /**
  * Class EvenementController
  * @package AppBundle\Controller

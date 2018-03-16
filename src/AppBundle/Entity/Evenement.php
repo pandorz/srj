@@ -35,13 +35,13 @@ class Evenement
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-	
-   /**
-    * @var string
-    *
-    * @Gedmo\Slug(fields={"nom"})
-    * @ORM\Column(length=128, unique=true)
-    */
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(length=128, unique=true)
+     */
     private $slug;
 
     /**
@@ -58,7 +58,7 @@ class Evenement
      */
     private $annule;
 
-	
+
     /**
      * @var \DateTime
      *
@@ -80,14 +80,14 @@ class Evenement
      */
     private $datePublication;
 
-    
+
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
      * @ORM\joinColumn(onDelete="SET NULL")
      */
     private $image;
-   
+
     /**
      * @var string
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
@@ -102,9 +102,9 @@ class Evenement
      *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
      * )
      */
-    private $superviseurs;    
-    
-    
+    private $superviseurs;
+
+
     /**
      * @var \DateTime
      *
@@ -132,7 +132,7 @@ class Evenement
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
-    
+
     /**
      * For Sonata Admin Doctrine lock
      * @var int
@@ -140,13 +140,13 @@ class Evenement
      * @ORM\Version
      */
     protected $version;
-    
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -158,7 +158,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setNom($nom)
+    public function setNom($nom): Evenement
     {
         $this->nom = $nom;
 
@@ -170,7 +170,7 @@ class Evenement
      *
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -182,7 +182,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setAffiche($affiche)
+    public function setAffiche($affiche): Evenement
     {
         $this->affiche = $affiche;
 
@@ -194,7 +194,7 @@ class Evenement
      *
      * @return boolean
      */
-    public function getAffiche()
+    public function getAffiche():? bool
     {
         return $this->affiche;
     }
@@ -206,7 +206,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setAnnule($annule)
+    public function setAnnule($annule): Evenement
     {
         $this->annule = $annule;
 
@@ -218,17 +218,18 @@ class Evenement
      *
      * @return boolean
      */
-    public function getAnnule()
+    public function getAnnule():? bool
     {
         return $this->annule;
     }
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->annule       = false;
-        $this->affiche      = true;
+        $this->annule = false;
+        $this->affiche = true;
         $this->superviseurs = new ArrayCollection();
     }
 
@@ -239,7 +240,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setDateDebut($dateDebut)
+    public function setDateDebut($dateDebut): Evenement
     {
         $this->dateDebut = $dateDebut;
 
@@ -251,7 +252,7 @@ class Evenement
      *
      * @return \DateTime
      */
-    public function getDateDebut()
+    public function getDateDebut():? \DateTime
     {
         return $this->dateDebut;
     }
@@ -263,7 +264,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setDateFin($dateFin)
+    public function setDateFin($dateFin): Evenement
     {
         $this->dateFin = $dateFin;
 
@@ -275,7 +276,7 @@ class Evenement
      *
      * @return \DateTime
      */
-    public function getDateFin()
+    public function getDateFin():? \DateTime
     {
         return $this->dateFin;
     }
@@ -287,7 +288,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setSlug($slug)
+    public function setSlug($slug): Evenement
     {
         $this->slug = $slug;
 
@@ -299,28 +300,28 @@ class Evenement
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
-    
+
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
-    
+
     /**
      * @param int $version
-     * 
+     *
      * @return Evenement
      */
-    public function setVersion($version)
+    public function setVersion($version): Evenement
     {
         $this->version = $version;
-        
+
         return $this;
     }
 
@@ -331,7 +332,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setImage(MediaInterface $image  = null)
+    public function setImage(MediaInterface $image = null): Evenement
     {
         $this->image = $image;
 
@@ -343,7 +344,7 @@ class Evenement
      *
      * @return MediaInterface
      */
-    public function getImage()
+    public function getImage():? MediaInterface
     {
         return $this->image;
     }
@@ -355,7 +356,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setContenu($contenu)
+    public function setContenu($contenu): Evenement
     {
         $this->contenu = $contenu;
 
@@ -367,7 +368,7 @@ class Evenement
      *
      * @return string
      */
-    public function getContenu()
+    public function getContenu():? string
     {
         return $this->contenu;
     }
@@ -380,7 +381,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function addSuperviseur(Utilisateur $superviseur)
+    public function addSuperviseur(Utilisateur $superviseur): Evenement
     {
         $this->superviseurs[] = $superviseur;
 
@@ -402,11 +403,11 @@ class Evenement
      *
      * @return ArrayCollection
      */
-    public function getSuperviseurs()
+    public function getSuperviseurs():? ArrayCollection
     {
         return $this->superviseurs;
     }
-    
+
     /**
      * @ORM\PrePersist
      */
@@ -422,7 +423,7 @@ class Evenement
     {
         $this->setTimestampModification(new \DateTime('now'));
     }
-    
+
     /**
      * Set timestampCreation
      *
@@ -430,7 +431,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Evenement
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -442,11 +443,11 @@ class Evenement
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
-    
+
     /**
      * Set timestampModification
      *
@@ -454,7 +455,7 @@ class Evenement
      *
      * @return Evenement
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Evenement
     {
         $this->timestampModification = $timestampModification;
 
@@ -466,15 +467,15 @@ class Evenement
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
-    
+
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -490,7 +491,7 @@ class Evenement
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -506,7 +507,7 @@ class Evenement
     /**
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getDatePublication():? \DateTime
     {
         return $this->datePublication;
     }

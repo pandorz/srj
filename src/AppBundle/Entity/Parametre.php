@@ -75,18 +75,11 @@ class Parametre
     private $utilisateurModification;
 
     /**
-     * Parametre constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Get id
      *
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -110,7 +103,7 @@ class Parametre
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -123,7 +116,7 @@ class Parametre
      *
      * @return Parametre
      */
-    public function setNom($nom)
+    public function setNom($nom): Parametre
     {
         $this->nom = $nom;
 
@@ -135,7 +128,7 @@ class Parametre
      *
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -147,7 +140,7 @@ class Parametre
      *
      * @return Parametre
      */
-    public function setValue($value)
+    public function setValue($value): Parametre
     {
         $this->value = $value;
 
@@ -159,7 +152,7 @@ class Parametre
      *
      * @return string
      */
-    public function getValue()
+    public function getValue():? string
     {
         return $this->value;
     }
@@ -187,7 +180,7 @@ class Parametre
      *
      * @return Parametre
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Parametre
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -199,7 +192,7 @@ class Parametre
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -211,7 +204,7 @@ class Parametre
      *
      * @return Parametre
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Parametre
     {
         $this->timestampModification = $timestampModification;
 
@@ -223,7 +216,7 @@ class Parametre
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -231,7 +224,7 @@ class Parametre
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -247,7 +240,7 @@ class Parametre
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }

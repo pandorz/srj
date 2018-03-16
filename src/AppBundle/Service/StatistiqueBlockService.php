@@ -71,6 +71,7 @@ class StatistiqueBlockService extends AbstractBlockService
         $repoStatistique        = $this->em->getRepository(Statistique::class);
         $tabMois                = [];
         $tabMoisAnneeDerniere   = [];
+
         for ($i=1; $i<=12; $i++) {
             $sum = $repoStatistique->sumByMonth($i);
             $tabMois[] = (is_null($sum)?0:$sum);
