@@ -1,5 +1,6 @@
+{% trans_default_domain 'front' %}
 <section class="lastNews u-fitted">
-    <h3 class="lastNewsTitle">Actualités</h3>
+    <h3 class="lastNewsTitle">{{ 'general.title.actualites'|trans }}</h3>
     <div class="postsList newsList">
     {% for actualite in actualites %}       
         <div class="postItem shortPost newsItem">
@@ -12,12 +13,12 @@
                     {{ get_corps_texte(actualite.contenu)|raw }}
                 </div>
                 {% if actualite.contenu|length > 99 %}
-                <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                <button class="seeMore" aria-hidden="true">{{ 'general.button.know_more'|trans }}</button>
                 {% endif %}
                 {% endif %}
             </div>
         </div>
     {% endfor %}    
-        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{path('actualites')}}">Voir toutes les actualités</a></div>
+        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{path('actualites')}}">{{ 'actualite.button.see_all'|trans }}</a></div>
     </div>
 </section>

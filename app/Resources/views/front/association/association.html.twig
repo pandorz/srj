@@ -1,4 +1,5 @@
 {% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
 {% block body_class %}asso{% endblock %}
 {% set meta_title = 'Découvrir l’association franco-japonaise de Rouen' %}
 {% block html_title %}– {{ meta_title }}{% endblock %}
@@ -50,7 +51,7 @@
             <a class="btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
             {% endif %}
             <div class="joinText sectionText">
-                <strong class="conditions">Conditions</strong>
+                <strong class="conditions">{{ 'conditions.free_for_members'|trans }}</strong>
                 <p>Votre adhésion sera effective à la réception de la cotisation que vous pouvez régler en liquide ou par chèque à l'ordre de "Rouen Japon".<br>
                 Le montant de la cotisation peut être remis en mains propres lors d'un atelier, au professeur lors d'un cours de japonais ou à notre réunion de rentrée qui aura lieu le 17 septembre à 14h à la maison des associations de Saint-Sever.</p>
                 <p>Si vous avez d'autres questions, vous pouvez nous les poser via notre <a href="{{ path('contact') }}">formulaire de contact.</a></p>

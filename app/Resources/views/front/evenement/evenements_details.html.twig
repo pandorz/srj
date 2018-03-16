@@ -1,3 +1,4 @@
+{% trans_default_domain 'front' %}
 <div class="postItem shortPost">
     <div class="postItemCtn">
         {% media evenementOuKouryukai.image, 'reference' with {'class': 'postPhoto'} %}
@@ -16,7 +17,7 @@
             {% endif %}
             {% if evenementOuKouryukai.dateLimite is defined %}
                 <p>
-                    <b class="u-textColorRJ">Conditions :</b>
+                    <b class="u-textColorRJ">{{ 'conditions.free_for_members'|trans }}</b>
                     {% if evenementOuKouryukai.reserveMembre %}Réservé aux membres.{% endif %}<br>
                     {% if evenementOuKouryukai.dateLimite is not empty %}
                     <b class="u-textColorRJ">Clôture des réservations :</b> {{evenementOuKouryukai.dateLimite|date('d/m/Y')}}
@@ -34,7 +35,7 @@
             {% endif %}
         </div>
             {% if evenementOuKouryukai.contenu|length >1 %}
-            <button class="seeMore" aria-hidden="true">En savoir plus</button>
+            <button class="seeMore" aria-hidden="true">{{ 'general.button.know_more'|trans }}</button>
             {% endif %}
         {% endif %}
     </div>

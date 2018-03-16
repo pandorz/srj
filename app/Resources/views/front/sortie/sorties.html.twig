@@ -1,4 +1,5 @@
 {% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
 {% block body_class %}events outings{% endblock %}
 {% set meta_title = 'Les sorties sur le thème de la culture japonaise' %}
 {% block html_title %} - {{ meta_title }}{% endblock %}
@@ -7,7 +8,7 @@
 {% endblock %}
 {% block main %}
     
-    {% set hastagTitle = "Nos activités" %}
+    {% set hastagTitle = 'general.title.activites'|trans %}
     {% set hastagList = "#Sorties" %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
@@ -49,32 +50,32 @@
                     <div class="postItemCtn">
                         {% media sortie.image, 'reference' with {'class': 'postPhoto'} %}
                         <h4 class="postTitle">{{ sortie.nom }}</h4>
-                        <time class="postDate" datetime="{{sortie.date|date('Y-m-d')}}">
-                            <span class="day">{{sortie.date|date('d')}}</span>
-                            <span class="month">{{sortie.date|date('F')|slice(0, 3)}}.</span>
+                        <time class="postDate" datetime="{{ sortie.date|date('Y-m-d') }}">
+                            <span class="day">{{ sortie.date|date('d') }}</span>
+                            <span class="month">{{ sortie.date|date('F')|slice(0, 3) }}.</span>
                         </time>
                         <div class="postSummary">{{ crop_entete_texte(sortie.contenu)|raw }}</div>
                         <div class="postMoreText" style="display: none;">
                             {{ get_corps_texte(sortie.contenu)|raw }}
                             <p>
-                                <b class="u-textColorRJ">Conditions :</b>
+                                <b class="u-textColorRJ">{{ 'conditions.title'|trans }}</b>
                                 {%if sortie.prix>0 and not sortie.reserveMembre %}
-                                {{sortie.prix|replace({'.':','})}} euros pour les personnes non membres.
+                                {{ sortie.prix|replace({'.':','}) }} euros pour les personnes non membres.
                                 {% endif %}
                                 {%if sortie.prixMembre>0 %}
-                                    {{sortie.prixMembre|replace({'.':','})}} euros pour les membres.
+                                    {{ sortie.prixMembre|replace({'.':','}) }} euros pour les membres.
                                 {% else %}
-                                    Gratuit pour les membres.
+                                    {{ 'conditions.free_for_members'|trans }}
                                 {% endif %}
                                 {% if sortie.reserveMembre %}Réservé aux membres.{% endif %}<br>
-                                <b class="u-textColorRJ">Clôture des réservations :</b> {{sortie.dateLimite|date('d/m/Y')}}
+                                <b class="u-textColorRJ">Clôture des réservations :</b> {{ sortie.dateLimite|date('d/m/Y') }}
                             </p>
                             {% if sortie.urlInscription is not empty %}
                                 <p><b>&gt; <a class="u-textBlack" href="{{ sortie.urlInscription }}" target="_blank">Je veux participer !</a></b></p>
                             {% endif %}
                         </div>
                         {% if sortie.contenu|length > 1 %}
-                        <button class="seeMore" aria-hidden="true">En savoir plus</button>
+                        <button class="seeMore" aria-hidden="true">{{ 'general.button.know_more'|trans }}</button>
                         {% endif %}
                     </div>
                 </div>
