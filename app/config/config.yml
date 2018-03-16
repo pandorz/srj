@@ -17,6 +17,9 @@ imports:
 parameters:
     locale: fr
     web_path: "%kernel.root_dir%/../web"
+    media_dir: "/medias/img/logo-rouen-japon.png"
+    google_calendar_client_secret_path: "%kernel.root_dir%/../%google_calendar_client_secret%"
+    google_calendar_credential_filepath: "%kernel.root_dir%/../%google_calendar_credential_path%"
 
 framework:
     #esi: ~
@@ -55,7 +58,6 @@ twig:
     strict_variables: '%kernel.debug%'
     exception_controller: app.error_controller:showAction
     globals:
-        web_path: '%web_path%'
         google_recaptcha_public_token: '%google_recaptcha_public_token%'
         google_analytics_ua: '%google_analytics_ua%'
         trello_link: '%trello_link%'

@@ -1,7 +1,3 @@
-'*Nom': '*Nom'
-'*Objet de votre demande': '*Objet de votre demande'
-'*Prenom': '*Prenom'
-'*Votre email': '*Votre email'
 0: Invalide
 1: Valide
 2: Modérer
@@ -18,20 +14,16 @@
 'Cour List': Cours
 'Demande Newsletter Create': Créer
 'Demande Newsletter List': 'Demandes Newsletter'
-Email: Email
 'Evenement Create': Créer
 'Evenement List': Événements
 'Kouryukai Create': Créer
 'Kouryukai List': Kouryukai
-Nom: Nom
 'Parametre Create': Créer
 'Parametre List': Paramètres
 'Partenaire Create': Créer
 'Partenaire List': Partenaires
-Prenom: Prénom
 'Sortie Create': Créer
 'Sortie List': Sorties
-Sujet: Sujet
 'Tag Create': Créer
 'Tag List': Tags
 'Votre message': 'Votre message'
@@ -208,11 +200,26 @@ conge:
         details: Détails
 
 contact:
+    email: 'Email'
+
     mail:
         soustitre: 'Quelqu''un a laissé un message sur le site Rouen japon'
         sujet: 'Nouveau mail depuis le site rouen japon'
         texte: '%prenom% %nom% (%email%) à envoyé un message avec l''objet: <b>%objet%</b>.<br><br>Voici le contenu de son message:<br>%message%'
         titre: 'Nouveau contact'
+
+    message: 'Sujet'
+    nom: 'Nom'
+
+    placeholder:
+        email: 'Votre email'
+        message: 'Bonjour,'
+        nom: 'Votre nom'
+        prenom: 'Votre prénom'
+        sujet: 'Objet de votre demande'
+
+    prenom: 'Prénom'
+    sujet: 'Sujet'
 
 cour:
     actif: Actif

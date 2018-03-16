@@ -153,8 +153,20 @@ services:
 
     app.google_calendar:
         class: AppBundle\Service\GoogleCalendar
-        arguments: ["%google_calendar_application_name%", "%kernel.root_dir%/../%google_calendar_client_secret%", "%kernel.root_dir%/../%google_calendar_credential_path%", "@monolog.logger"]
+        arguments: ["%google_calendar_application_name%", "%google_calendar_client_secret_path%", "%google_calendar_credential_filepath%", "@monolog.logger"]
 
     app.generate_calendar:
         class: AppBundle\Service\GenerateCalendar
         arguments: ["@doctrine.orm.entity_manager", "@app.google_calendar"]
+
+    app.mailer:
+        class: AppBundle\Service\Mailer
+        arguments: ["%no-reply_email%", "%no-reply_name%", "%mailer_admin%", "%web_path%", "%media_dir%", '@twig_asset_version_extension', "@swiftmailer.mailer", '@Twig\Environment', '@monolog.logger']
+
+    app.recaptcha:
+        class: AppBundle\Service\Recaptcha
+        arguments: ["%google_recaptcha_url%", "%google_recaptcha_secret_token%", "%kernel.environment%"]
+
+    app.front_calendar:
+        class: AppBundle\Service\FrontCalendar
+        arguments: ["@doctrine.orm.entity_manager"]
