@@ -120,9 +120,13 @@ services:
         class: AppBundle\Controller\Front\ErrorController
         arguments: ['@twig', '%kernel.debug%']
 
+    app.service_parameter:
+        class: AppBundle\Service\Parameter
+        arguments: ["@doctrine.orm.entity_manager"]
+
     app.twig_helper:
         class: AppBundle\Twig\TwigHelpers
-        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image"]
+        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image", "@app.service_parameter"]
         tags:
             - { name: twig.extension }
     app.admin.block.timeline:
