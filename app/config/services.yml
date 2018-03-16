@@ -162,3 +162,7 @@ services:
     app.mailer:
         class: AppBundle\Service\Mailer
         arguments: ["%no-reply_email%", "%no-reply_name%", "%mailer_admin%", "%web_path%", "%media_dir%", '@twig_asset_version_extension', "@swiftmailer.mailer", '@Twig\Environment', '@monolog.logger']
+
+    app.recaptcha:
+        class: AppBundle\Service\Recaptcha
+        arguments: ["%google_recaptcha_url%", "%google_recaptcha_secret_token%", "%kernel.environment%"]

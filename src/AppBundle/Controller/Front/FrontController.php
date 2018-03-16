@@ -69,24 +69,22 @@ class FrontController extends BaseController
     {
         $captcha = true;
         //-- Check Google Recaptcha
-        if (hash_equals($this->getEnvironment(), 'prod')) {
-            try {
-                $this->checkGoogleRecaptcha($request->request->get('g-recaptcha-response'));
-            } catch (\Exception $e) {
-                if ($e->getCode() == self::EXCEPTION_CODE_GOOGLE_RECAPTCHA_FAILED) {
-                    $request
-                        ->getSession()
-                        ->getFlashBag()
-                        ->add(
-                            'error',
-                            $this->getTranslator()->trans(
-                                'general.error.grecaptcha.detected_as_robot',
-                                [],
-                                'validators'
-                            )
-                        );
-                    $captcha = false;
-                }
+        try {
+            $this->get('app.recaptcha')->check($request->request->get('g-recaptcha-response'));
+        } catch (\Exception $e) {
+            if ($e->getCode() == $this->get('app.recaptcha')->getCodeRecaptchaFailed()) {
+                $request
+                    ->getSession()
+                    ->getFlashBag()
+                    ->add(
+                        'error',
+                        $this->getTranslator()->trans(
+                            'general.error.grecaptcha.detected_as_robot',
+                            [],
+                            'validators'
+                        )
+                    );
+                $captcha = false;
             }
         }
         //--

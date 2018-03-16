@@ -58,7 +58,6 @@ twig:
     strict_variables: '%kernel.debug%'
     exception_controller: app.error_controller:showAction
     globals:
-        web_path: '%web_path%'
         google_recaptcha_public_token: '%google_recaptcha_public_token%'
         google_analytics_ua: '%google_analytics_ua%'
         trello_link: '%trello_link%'

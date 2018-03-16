@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller\Front;
 
-use AppBundle\Service\Mailer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -103,31 +102,29 @@ class ContactController extends BaseController
 
         if ($form->isSubmitted()) {
             //-- Check Google Recaptcha
-            if (hash_equals($this->getEnvironment(), 'prod')) {
-                try {
-                    $this->checkGoogleRecaptcha($request->request->get('g-recaptcha-response'));
-                } catch (\Exception $e) {
-                    if ($e->getCode() == self::EXCEPTION_CODE_GOOGLE_RECAPTCHA_FAILED) {
-                        $form->addError(
-                            new FormError(
-                                $this->getTranslator()->trans(
-                                    'general.error.grecaptcha.detected_as_robot',
-                                    [],
-                                    'validators'
-                                )
+            try {
+                $this->get('app.recaptcha')->check($request->request->get('g-recaptcha-response'));
+            } catch (\Exception $e) {
+                if ($e->getCode() == $this->get('app.recaptcha')->getCodeRecaptchaFailed()) {
+                    $form->addError(
+                        new FormError(
+                            $this->getTranslator()->trans(
+                                'general.error.grecaptcha.detected_as_robot',
+                                [],
+                                'validators'
                             )
-                        );
-                    } else {
-                        $form->addError(
-                            new FormError(
-                                $this->getTranslator()->trans(
-                                    'general.error.grecaptcha.error_on_verify',
-                                    [],
-                                    'validators'
-                                )
+                        )
+                    );
+                } else {
+                    $form->addError(
+                        new FormError(
+                            $this->getTranslator()->trans(
+                                'general.error.grecaptcha.error_on_verify',
+                                [],
+                                'validators'
                             )
-                        );
-                    }
+                        )
+                    );
                 }
             }
             //--
