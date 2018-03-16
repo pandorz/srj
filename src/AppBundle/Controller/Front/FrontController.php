@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller\Front;
 
-use AppBundle\Entity\Kouryukai;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
 use AppBundle\Entity\DemandeNewsletter;
