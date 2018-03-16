@@ -4,8 +4,8 @@ namespace AppBundle\Twig;
 
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
-use AppBundle\Entity\Parametre;
 use AppBundle\Entity\Utilisateur;
+use AppBundle\Service\Parameter;
 use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\EntityManager;
 use Sonata\MediaBundle\Provider\ImageProvider;
@@ -23,12 +23,20 @@ class TwigHelpers extends \Twig_Extension
     private $providerImage;
 
     /**
-     * @param EntityManager $entityManager
+     * @var Parameter
      */
-    public function __construct(EntityManager $entityManager, ImageProvider $providerImage)
+    private $parameter;
+
+    /**
+     * @param EntityManager $entityManager
+     * @param ImageProvider $providerImage
+     * @param Parameter $parameter
+     */
+    public function __construct(EntityManager $entityManager, ImageProvider $providerImage, Parameter $parameter)
     {
         $this->entityManager = $entityManager;
         $this->providerImage = $providerImage;
+        $this->parameter     = $parameter;
     }
 
     
@@ -79,24 +87,11 @@ class TwigHelpers extends \Twig_Extension
     }
 
     /**
-     * @param $parametre
-     * @return string
-     */
-    private function returnParametreValue($parametre)
-    {
-        if (!is_null($parametre) && !is_null($parametre->getValue())) {
-            return $parametre->getValue();
-        }
-        return '';
-    }
-
-    /**
      * @return string
      */
     public function getFacebookId()
     {
-        $parametre = $this->getParamBySlug('facebook-app-id');
-        return $this->returnParametreValue($parametre);
+        return $this->parameter->getParamBySlug('facebook-app-id');
     }
 
     /**
@@ -104,8 +99,7 @@ class TwigHelpers extends \Twig_Extension
      */
     public function getFacebookPageId()
     {
-        $parametre = $this->getParamBySlug('facebook-page-id');
-        return $this->returnParametreValue($parametre);
+        return $this->parameter->getParamBySlug('facebook-page-id');
     }
 
     /**
@@ -113,8 +107,7 @@ class TwigHelpers extends \Twig_Extension
      */
     public function getLienAdhesion()
     {
-        $parametre = $this->getParamBySlug('lien-adhesion-membre');
-        return $this->returnParametreValue($parametre);
+        return $this->parameter->getParamBySlug('lien-adhesion-membre');
     }
 
     /**
@@ -122,8 +115,7 @@ class TwigHelpers extends \Twig_Extension
      */
     public function getLienAdhesionJaponais()
     {
-        $parametre =$this->getParamBySlug('lien-adhesion-membre-japonais');
-        return $this->returnParametreValue($parametre);
+        return $this->parameter->getParamBySlug('lien-adhesion-membre-japonais');
     }
 
     /**
@@ -131,9 +123,7 @@ class TwigHelpers extends \Twig_Extension
      */
     public function isActifFacebookMessenger()
     {
-        $parametre = $this->getParamBySlug('affichage-facebook-messenger-app');
-
-        return $this->returnParametreValue($parametre) == "1";
+        return $this->parameter->getParamBySlug('affichage-facebook-messenger-app') == "1";
     }
 
     /**
@@ -141,9 +131,7 @@ class TwigHelpers extends \Twig_Extension
      */
     public function isActifBlog()
     {
-        $parametre = $this->getParamBySlug('affichage-blog-public');
-
-        return $this->returnParametreValue($parametre) == "1";
+        return $this->parameter->getParamBySlug('affichage-blog-public') == "1";
     }
 
     /**
@@ -156,17 +144,6 @@ class TwigHelpers extends \Twig_Extension
             ->getTop(4);
 
         return $blogs;
-    }
-    
-    /**
-     * @param string $slug
-     * @return Parametre
-     */
-    private function getParamBySlug($slug)
-    {
-        return $this->entityManager
-            ->getRepository(Parametre::class)
-            ->findOneBy(['slug' => $slug]);
     }
 
     /**

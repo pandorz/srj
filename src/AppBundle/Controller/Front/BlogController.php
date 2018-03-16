@@ -3,7 +3,6 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
-use AppBundle\Entity\Parametre;
 use AppBundle\Entity\Tag;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -125,10 +124,6 @@ class BlogController extends BaseController
      */
     private function isActifParamBlog()
     {
-        $parametre = $this->getEm()
-            ->getRepository(Parametre::class)
-            ->findOneBy(['slug' => 'affichage-blog-public']);
-
-        return (!empty($parametre) && $parametre->getValue() == "1");
+        return $this->get('app.service_parameter')->getParamBySlug('affichage-blog-public') == "1";
     }
 }
