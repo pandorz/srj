@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Form\ContactType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -34,70 +35,7 @@ class ContactController extends BaseController
      */
     public function indexAction(Request $request)
     {
-        $defaultContact = [];
-        $form = $this->createFormBuilder($defaultContact)
-            ->add(
-                'nom',
-                TextType::class,
-                [
-                    'required' => true,
-                    'label_attr' => ['class' => 'u-hiddenVisually'],
-                    'attr' => ['class' => 'fld', 'placeholder' => '*Nom'],
-                    'label' => 'Nom'
-                ]
-            )
-            ->add(
-                'prenom',
-                TextType::class,
-                [
-                    'required' => true,
-                    'label_attr' => ['class' => 'u-hiddenVisually'],
-                    'attr' => ['class' => 'fld', 'placeholder' => '*Prenom'],
-                    'label' => 'Prenom'
-                ]
-            )
-            ->add(
-                'objet',
-                TextType::class,
-                [
-                    'required' => true,
-                    'label_attr' => ['class' => 'u-hiddenVisually'],
-                    'attr' => [
-                        'class' => 'fld',
-                        'placeholder' => '*Objet de votre demande'
-                    ],
-                    'label' => 'Sujet'
-                ]
-            )
-            ->add(
-                'email',
-                EmailType::class,
-                [
-                    'required' => true,
-                    'label_attr' => ['class' => 'u-hiddenVisually'],
-                    'attr' => [
-                        'class' => 'fld',
-                        'placeholder' => '*Votre email'
-                    ],
-                    'label' => 'Email'
-                ]
-            )
-            ->add(
-                'message',
-                TextareaType::class,
-                [
-                    'required' => true,
-                    'label_attr' => ['class' => 'fldLabel'],
-                    'attr' => [
-                        'class' => 'fld',
-                        'placeholder' => 'Bonjour,',
-                        'rows' => 8
-                    ],
-                    'label' => 'Votre message'
-                ]
-            )
-            ->getForm();
-
+        $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
