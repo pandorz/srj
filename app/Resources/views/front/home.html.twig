@@ -1,5 +1,6 @@
 {% extends "front/template/base_front.html.twig" %}
-{% set meta_title = 'Association franco-japonaise pour apprendre le japonais et faire des échanges' %}
+{% trans_default_domain 'front' %}
+{% set meta_title = 'meta.title.home'|trans %}
 {% block html_title %}| {{ meta_title }}{% endblock %}
 {% block og_meta %}
     {% include 'front/template/basique_meta_pages.html.twig' %}
@@ -12,19 +13,19 @@
         <div class="u-fitted">
             <div class="activitiesList grid-3">
                 <div class="activityItem lessons">
-                    <h3 class="activityTitle">Cours</h3>
-                    <p class="activityText">Apprendre le japonais, pratiquer la calligraphie, s'initier à l'art de la cérémonie du thé...</p>
-                    <a class="btn btn-blank" href="{{path('cours')}}">En savoir plus</a>
+                    <h3 class="activityTitle">{{ 'activities.title.cours'|trans }}</h3>
+                    <p class="activityText">{{ 'activities.text.cours'|trans }}</p>
+                    <a class="btn btn-blank" href="{{path('cours')}}">{{ 'activities.more'|trans }}</a>
                 </div>
                 <div class="activityItem workshops">
-                    <h3 class="activityTitle">Ateliers</h3>
-                    <p class="activityText">Initiations Ikebana (art floral), ateliers cuisine (gyozas, okonomiyaki, ..), sessions origamis...</p>
-                    <a class="btn btn-blank" href="{{path('ateliers')}}">En savoir plus</a>
+                    <h3 class="activityTitle">{{ 'activities.title.ateliers'|trans }}</h3>
+                    <p class="activityText">{{ 'activities.text.ateliers'|trans }}</p>
+                    <a class="btn btn-blank" href="{{path('ateliers')}}">{{ 'activities.more'|trans }}</a>
                 </div>
                 <div class="activityItem outings">
-                    <h3 class="activityTitle">Sorties</h3>
-                    <p class="activityText">Assister à des conférences, aller au cinéma, voir des expos au musées, mettre en pratique les cours de japonais autour d'un verre...</p>
-                    <a class="btn btn-blank" href="{{path('sorties')}}">En savoir plus</a>
+                    <h3 class="activityTitle">{{ 'activities.title.sorties'|trans }}</h3>
+                    <p class="activityText">{{ 'activities.text.sorties'|trans }}</p>
+                    <a class="btn btn-blank" href="{{path('sorties')}}">{{ 'activities.more'|trans }}</a>
                 </div>
             </div>
         </div>

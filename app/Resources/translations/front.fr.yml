@@ -1,0 +1,65 @@
+activities:
+    more: 'En savoir plus'
+
+    text:
+        ateliers: 'Initiations Ikebana (art floral), ateliers cuisine (gyozas, okonomiyaki, ..), sessions origamis...'
+        cours: 'Apprendre le japonais, pratiquer la calligraphie, s''initier à l''art de la cérémonie du thé...'
+        sorties: 'Assister à des conférences, aller au cinéma, voir des expos au musées, mettre en pratique les cours de japonais autour d''un verre...'
+
+    title:
+        ateliers: Ateliers
+        cours: Cours
+        sorties: Sorties
+
+meta:
+    title:
+        home: 'Association franco-japonaise pour apprendre le japonais et faire des échanges'
+    description:
+        home: 'Favoriser les échanges entre les Français et la communauté japonaise de Rouen. 日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。'
+
+general:
+    button:
+        see_more: 'Charger plus'
+        see_less: 'Charger moins'
+        be_member: 'Devenir membre'
+        admin: 'Administration'
+        login: 'Déjà membre ?'
+    title:
+        site: 'Rouen Japon'
+        blog: 'Blog'
+        evenements: 'Événements'
+        actualites: 'Actualités'
+        nihon: '日本人です'
+        contact: 'Contact'
+        partenaires: 'Partenaires'
+        m_legales: 'Mentions légales'
+        cours: 'Les cours'
+        activites: 'Nos activités'
+        association: 'L''association'
+        ateliers: 'Nos ateliers'
+    navigation: 'Afficher/cacher le menu de navigation'
+    social:
+        twitter: 'Twitter'
+        facebook: 'Facebook'
+        rss: 'Rss'
+    cright: '&copy; 2016 Association franco-japonaise de Rouen - Tous droits réservés'
+    address: 'Association franco-japonaise de Rouen<br>4 quai de Paris<br>76000 Rouen'
+
+facebook:
+    messenger:
+        logged_in_greeting: 'Bienvenue sur le site de l''association Rouen Japon. Besoin d''aide ?'
+        logged_out_greeting: 'Bienvenue sur le site de l''association Rouen Japon. Connectez-vous à Facebook pour profiter de cette fonctionnalité.'
+
+bandeau:
+    title: 'Favoriser les échanges entre les Français et la communauté japonaise de Rouen.'
+    base_line: '日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。'
+
+footer:
+    button:
+        see_more: 'En savoir plus sur l''association'
+        send_message: 'Envoyer un message'
+    quick_links: 'Accès rapides'
+    home: 'Accueil'
+    description:
+        title: 'Créée en septembre 2009, l’association franco-japonaise de Rouen, alias "Rouen Japon", composée de Français et de Japonais, a pour vocation de :'
+        list: '<li>Favoriser les échanges entre les Rouennais et les Japonais,</li> <li>Partager nos cultures,</li> <li>Apprendre le japonais...</li>'

@@ -84,6 +84,10 @@ ROLE_SONATA_USER_ADMIN_USER_GUEST: 'Administateur - Invité'
 ROLE_SONATA_USER_ADMIN_USER_STAFF: 'Administateur - Staff'
 ROLE_SUPER_ADMIN: 'Super Administrateur'
 ROLE_USER: Utilisateur
+switch_user: 'Changer d''identité'
+switch_user_exit: 'Quitter l''identité'
+user_block_logout: Déconnexion
+user_block_profile: Profil
 
 utilisateur:
     accesSite: 'Peut acceder au site'

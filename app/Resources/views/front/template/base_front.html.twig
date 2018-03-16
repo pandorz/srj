@@ -1,8 +1,9 @@
 <!doctype html>
 <html class="no-js" lang="fr-FR">
     <head>
-        <title>Rouen Japon {% block html_title %}{% endblock %}</title>
-        {% set defaut_description = "Favoriser les échanges entre les Français et la communauté japonaise de Rouen. 日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。" %}
+        {% trans_default_domain 'front' %}
+        <title>{{ 'general.title.site'|trans }} {% block html_title %}{% endblock %}</title>
+        {% set defaut_description = 'meta.description.home'|trans %}
         {% set defaut_image = asset('medias/favicons/favicon-32x32.png') %}
         {% if app.request.attributes.get('_route') is not empty %}
         {% set defaut_url = url(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')) %}

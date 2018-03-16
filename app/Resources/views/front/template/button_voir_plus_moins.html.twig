@@ -1,10 +1,11 @@
 {% set route_attribut = app.request.attributes.get('_route_params') %}
+{% trans_default_domain 'front' %}
 
 {% if route_attribut['plus']=='voir-tout' %}
-    {% set text_button = 'Charger moins' %}
+    {% set text_button = 'general.button.see_less'|trans %}
     {% set route_attribut= route_attribut|merge({'plus':'recent'}) %}
 {% else %}
-    {% set text_button = 'Charger plus' %}
+    {% set text_button = 'general.button.see_more'|trans %}
     {% set route_attribut= route_attribut|merge({'plus':'voir-tout'}) %}
 {% endif %}
 {% set href = path(app.request.attributes.get('_route'), route_attribut) %}

@@ -1,10 +1,11 @@
+{% trans_default_domain 'front' %}
 <div class="hero">
-    <h1 class="heroTitle">Favoriser les échanges entre les Français et la communauté japonaise de Rouen.</h1>
-    <div class="heroJPbaseline" lang="ja">日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。</div>
+    <h1 class="heroTitle">{{ 'bandeau.title'|trans }}</h1>
+    <div class="heroJPbaseline" lang="ja">{{ 'bandeau.base_line'|trans }}</div>
     <div class="userGuide">
-        <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a>
+        <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">{{ 'general.title.nihon'|trans }}</a>
         {% if lien_adhesion() is not empty %}
-        <a class="btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
+        <a class="btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
         {% endif %}
     </div>
 </div>
