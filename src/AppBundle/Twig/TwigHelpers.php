@@ -46,7 +46,9 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
             new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog')),
             new \Twig_SimpleFunction('get_image_profil', array($this, 'getImageProfil')),
-            new \Twig_SimpleFunction('get_facebook_id', array($this, 'getFacebookId'))
+            new \Twig_SimpleFunction('get_facebook_id', array($this, 'getFacebookId')),
+            new \Twig_SimpleFunction('get_facebook_page_id', array($this, 'getFacebookPageId')),
+            new \Twig_SimpleFunction('is_actif_facebook_messenger', array($this, 'isActifFacebookMessenger')),
         );
     }
 
@@ -82,6 +84,12 @@ class TwigHelpers extends \Twig_Extension
         return $this->returnParametreValue($parametre);
     }
 
+    public function getFacebookPageId()
+    {
+        $parametre = $this->getParamBySlug('facebook-page-id');
+        return $this->returnParametreValue($parametre);
+    }
+
     public function getLienAdhesion()
     {
         $parametre = $this->getParamBySlug('lien-adhesion-membre');
@@ -94,12 +102,18 @@ class TwigHelpers extends \Twig_Extension
         return $this->returnParametreValue($parametre);
     }
 
+    public function isActifFacebookMessenger()
+    {
+        $parametre = $this->getParamBySlug('affichage-facebook-messenger-app');
+
+        return $this->returnParametreValue($parametre) == "1";
+    }
+
     public function isActifBlog()
     {
         $parametre = $this->getParamBySlug('affichage-blog-public');
 
         return $this->returnParametreValue($parametre) == "1";
-
     }
 
     public function getFooterBlog()
