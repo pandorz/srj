@@ -76,18 +76,11 @@ class Tag
     private $utilisateurModification;
 
     /**
-     * Tag constructor.
-     */
-    public function __construct()
-    {
-    }
-
-    /**
      * Get id
      *
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -111,7 +104,7 @@ class Tag
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -136,7 +129,7 @@ class Tag
      *
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -164,7 +157,7 @@ class Tag
      *
      * @return Tag
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Tag
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -176,7 +169,7 @@ class Tag
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -188,7 +181,7 @@ class Tag
      *
      * @return Tag
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Tag
     {
         $this->timestampModification = $timestampModification;
 
@@ -200,7 +193,7 @@ class Tag
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -208,7 +201,7 @@ class Tag
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -224,7 +217,7 @@ class Tag
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -249,7 +242,7 @@ class Tag
      *
      * @return Tag
      */
-    public function addBlog(Blog $blog)
+    public function addBlog(Blog $blog): Tag
     {
         $this->blogs[] = $blog;
 
@@ -259,7 +252,7 @@ class Tag
     /**
      * @return ArrayCollection
      */
-    public function getBlogs()
+    public function getBlogs():? ArrayCollection
     {
         return $this->blogs;
     }
@@ -279,7 +272,7 @@ class Tag
      *
      * @return ArrayCollection
      */
-    public function getAuteurDe()
+    public function getAuteurDe():? ArrayCollection
     {
         return $this->blogs;
     }

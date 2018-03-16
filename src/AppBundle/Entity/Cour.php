@@ -241,7 +241,7 @@ class Cour
      *
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -253,7 +253,7 @@ class Cour
      *
      * @return Cour
      */
-    public function setAnnule($annule)
+    public function setAnnule($annule): Cour
     {
         $this->annule = $annule;
 
@@ -265,7 +265,7 @@ class Cour
      *
      * @return boolean
      */
-    public function getAnnule()
+    public function getAnnule():? bool
     {
         return $this->annule;
     }
@@ -275,7 +275,7 @@ class Cour
      *
      * @return Cour
      */
-    public function setVersion($version)
+    public function setVersion($version): Cour
     {
         $this->version = $version;
 
@@ -285,7 +285,7 @@ class Cour
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
@@ -297,7 +297,7 @@ class Cour
      *
      * @return Cour
      */
-    public function setAffiche($affiche)
+    public function setAffiche($affiche): Cour
     {
         $this->affiche = $affiche;
 
@@ -309,7 +309,7 @@ class Cour
      *
      * @return boolean
      */
-    public function getAffiche()
+    public function getAffiche():? bool
     {
         return $this->affiche;
     }
@@ -321,7 +321,7 @@ class Cour
      *
      * @return Cour
      */
-    public function addInscrit(Utilisateur $inscrits)
+    public function addInscrit(Utilisateur $inscrits): Cour
     {
         $this->inscrits[] = $inscrits;
 
@@ -343,7 +343,7 @@ class Cour
      *
      * @return ArrayCollection
      */
-    public function getInscrits()
+    public function getInscrits():? ArrayCollection
     {
         return $this->inscrits;
     }
@@ -355,7 +355,7 @@ class Cour
      *
      * @return Cour
      */
-    public function addProfesseur(Utilisateur $professeur)
+    public function addProfesseur(Utilisateur $professeur): Cour
     {
         $this->professeurs[] = $professeur;
 
@@ -377,7 +377,7 @@ class Cour
      *
      * @return ArrayCollection
      */
-    public function getProfesseurs()
+    public function getProfesseurs():? ArrayCollection
     {
         return $this->professeurs;
     }
@@ -390,7 +390,7 @@ class Cour
      *
      * @return Cour
      */
-    public function setSlug($slug)
+    public function setSlug($slug): Cour
     {
         $this->slug = $slug;
 
@@ -402,7 +402,7 @@ class Cour
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -430,7 +430,7 @@ class Cour
      *
      * @return Cour
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Cour
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -442,7 +442,7 @@ class Cour
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -454,7 +454,7 @@ class Cour
      *
      * @return Cour
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Cour
     {
         $this->timestampModification = $timestampModification;
 
@@ -466,7 +466,7 @@ class Cour
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -474,7 +474,7 @@ class Cour
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -490,7 +490,7 @@ class Cour
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -506,7 +506,7 @@ class Cour
     /**
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getDatePublication():? \DateTime
     {
         return $this->datePublication;
     }
@@ -522,7 +522,7 @@ class Cour
     /**
      * @return bool
      */
-    public function isComplet()
+    public function isComplet():? bool
     {
         return $this->complet;
     }
@@ -538,7 +538,7 @@ class Cour
     /**
      * @return bool
      */
-    public function isBientotComplet()
+    public function isBientotComplet():? bool
     {
         return $this->bientotComplet;
     }
@@ -554,7 +554,7 @@ class Cour
     /**
      * @return string
      */
-    public function getLienInscription()
+    public function getLienInscription():? string
     {
         return $this->lienInscription;
     }
@@ -570,7 +570,7 @@ class Cour
     /**
      * @return string
      */
-    public function getLienPdf()
+    public function getLienPdf():? string
     {
         return $this->lienPdf;
     }
@@ -586,7 +586,7 @@ class Cour
     /**
      * @return string
      */
-    public function getAncre()
+    public function getAncre():? string
     {
         return $this->ancre;
     }
@@ -602,7 +602,7 @@ class Cour
     /**
      * @return string
      */
-    public function getTitre()
+    public function getTitre():? string
     {
         return $this->titre;
     }
@@ -618,7 +618,7 @@ class Cour
     /**
      * @return string
      */
-    public function getTitreNav()
+    public function getTitreNav():? string
     {
         return $this->titreNav;
     }
@@ -634,7 +634,7 @@ class Cour
     /**
      * @return float
      */
-    public function getPrix()
+    public function getPrix():? float
     {
         return $this->prix;
     }
@@ -650,7 +650,7 @@ class Cour
     /**
      * @return string
      */
-    public function getAmorce()
+    public function getAmorce():? string
     {
         return $this->amorce;
     }
@@ -666,7 +666,7 @@ class Cour
     /**
      * @return string
      */
-    public function getCreneau()
+    public function getCreneau():? string
     {
         return $this->creneau;
     }
@@ -682,7 +682,7 @@ class Cour
     /**
      * @return string
      */
-    public function getConditionParticuliere()
+    public function getConditionParticuliere():? string
     {
         return $this->conditionParticuliere;
     }
@@ -698,7 +698,7 @@ class Cour
     /**
      * @return string
      */
-    public function getNote()
+    public function getNote():? string
     {
         return $this->note;
     }
@@ -714,7 +714,7 @@ class Cour
     /**
      * @return CourDetail
      */
-    public function getDetails()
+    public function getDetails():? CourDetail
     {
         return $this->details;
     }
@@ -734,7 +734,7 @@ class Cour
      *
      * @return Cour
      */
-    public function setImage(MediaInterface $image = null)
+    public function setImage(MediaInterface $image = null): Cour
     {
         $this->image = $image;
 
@@ -746,7 +746,7 @@ class Cour
      *
      * @return MediaInterface
      */
-    public function getImage()
+    public function getImage():? MediaInterface
     {
         return $this->image;
     }
@@ -754,7 +754,7 @@ class Cour
     /**
      * @return string
      */
-    public function getMessageAnnulation()
+    public function getMessageAnnulation():? string
     {
         return $this->messageAnnulation;
     }
@@ -774,7 +774,7 @@ class Cour
      *
      * @return Cour
      */
-    public function addDetail(CourDetail $detail)
+    public function addDetail(CourDetail $detail): Cour
     {
         $this->details[] = $detail;
 
@@ -814,7 +814,7 @@ class Cour
      *
      * @return Cour
      */
-    public function addDate(CourDate $date)
+    public function addDate(CourDate $date): Cour
     {
         $this->dates[] = $date;
 
@@ -854,7 +854,7 @@ class Cour
      *
      * @return Cour
      */
-    public function addReport(CourReport $report)
+    public function addReport(CourReport $report): Cour
     {
         $this->reports[] = $report;
 

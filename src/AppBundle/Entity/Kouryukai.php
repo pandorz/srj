@@ -5,9 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Oh\GoogleMapFormTypeBundle\Validator\Constraints as OhAssert;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Oh\GoogleMapFormTypeBundle\Validator\Constraints as OhAssert;
 
 /**
  * Kouryukai
@@ -37,13 +37,13 @@ class Kouryukai
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-	
-   /**
-    * @var string
-    *
-    * @Gedmo\Slug(fields={"nom"})
-    * @ORM\Column(length=128, unique=true)
-    */
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(length=128, unique=true)
+     */
     private $slug;
 
     /**
@@ -59,15 +59,15 @@ class Kouryukai
      * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
-	
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
-    
-   /**
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_limite", type="datetime", nullable=true)
@@ -87,29 +87,29 @@ class Kouryukai
      * @ORM\Column(name="url_inscription", type="string", length=255, nullable=true)
      */
     private $urlInscription;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="nb_place", type="integer", nullable=true)
      */
     private $nbPlace;
-    
+
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
      * @ORM\joinColumn(onDelete="SET NULL")
      */
     private $image;
-   
-   /**
-    * @var string
-    *
-    * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
-    */
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
+     */
     private $contenu;
 
-    
+
     /**
      * @var ArrayCollection
      *
@@ -120,15 +120,15 @@ class Kouryukai
      * )
      */
     private $superviseurs;
-    
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="reserve_membre", type="boolean")
      */
     private $reserveMembre;
-    
-    
+
+
     /**
      * @var ArrayCollection
      *
@@ -174,7 +174,7 @@ class Kouryukai
      * @ORM\Column(name="coord_geo_longitude", type="float", precision=10, scale=0, nullable=true)
      */
     private $coordGeoLongitude;
-    
+
     /**
      * @var \DateTime
      *
@@ -188,7 +188,7 @@ class Kouryukai
      * @ORM\Column(name="timestamp_modification", type="datetime", nullable=true)
      */
     private $timestampModification;
-    
+
     /**
      * @var string
      *
@@ -202,7 +202,7 @@ class Kouryukai
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
-    
+
     /**
      * For Sonata Admin Doctrine lock
      * @var int
@@ -210,13 +210,13 @@ class Kouryukai
      * @ORM\Version
      */
     protected $version;
-    
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->superviseurs     = new ArrayCollection();
+        $this->superviseurs = new ArrayCollection();
     }
 
 
@@ -225,7 +225,7 @@ class Kouryukai
      *
      * @return integer
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -237,7 +237,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setNom($nom)
+    public function setNom($nom): Kouryukai
     {
         $this->nom = $nom;
 
@@ -249,7 +249,7 @@ class Kouryukai
      *
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -261,7 +261,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setSlug($slug)
+    public function setSlug($slug): Kouryukai
     {
         $this->slug = $slug;
 
@@ -273,7 +273,7 @@ class Kouryukai
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -285,7 +285,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setAffiche($affiche)
+    public function setAffiche($affiche): Kouryukai
     {
         $this->affiche = $affiche;
 
@@ -297,7 +297,7 @@ class Kouryukai
      *
      * @return boolean
      */
-    public function getAffiche()
+    public function getAffiche():? bool
     {
         return $this->affiche;
     }
@@ -309,7 +309,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setAnnule($annule)
+    public function setAnnule($annule): Kouryukai
     {
         $this->annule = $annule;
 
@@ -321,7 +321,7 @@ class Kouryukai
      *
      * @return boolean
      */
-    public function getAnnule()
+    public function getAnnule():? bool
     {
         return $this->annule;
     }
@@ -333,7 +333,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setNbPlace($nbPlace)
+    public function setNbPlace($nbPlace): Kouryukai
     {
         $this->nbPlace = $nbPlace;
 
@@ -345,11 +345,10 @@ class Kouryukai
      *
      * @return integer
      */
-    public function getNbPlace()
+    public function getNbPlace():? int
     {
         return $this->nbPlace;
     }
-
 
 
     /**
@@ -359,7 +358,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setDate($date)
+    public function setDate($date): Kouryukai
     {
         $this->date = $date;
 
@@ -371,7 +370,7 @@ class Kouryukai
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDate():? \DateTime
     {
         return $this->date;
     }
@@ -383,7 +382,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setDateLimite($dateLimite)
+    public function setDateLimite($dateLimite): Kouryukai
     {
         $this->dateLimite = $dateLimite;
 
@@ -395,7 +394,7 @@ class Kouryukai
      *
      * @return \DateTime
      */
-    public function getDateLimite()
+    public function getDateLimite():? \DateTime
     {
         return $this->dateLimite;
     }
@@ -407,7 +406,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setImage(MediaInterface $image = null)
+    public function setImage(MediaInterface $image = null): Kouryukai
     {
         $this->image = $image;
 
@@ -419,7 +418,7 @@ class Kouryukai
      *
      * @return MediaInterface
      */
-    public function getImage()
+    public function getImage():? MediaInterface
     {
         return $this->image;
     }
@@ -431,7 +430,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setContenu($contenu)
+    public function setContenu($contenu): Kouryukai
     {
         $this->contenu = $contenu;
 
@@ -443,28 +442,28 @@ class Kouryukai
      *
      * @return string
      */
-    public function getContenu()
+    public function getContenu():? string
     {
         return $this->contenu;
     }
-    
+
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
-    
+
     /**
      * @param int $version
-     * 
+     *
      * @return Kouryukai
      */
-    public function setVersion($version)
+    public function setVersion($version): Kouryukai
     {
         $this->version = $version;
-        
+
         return $this;
     }
 
@@ -475,7 +474,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function addSuperviseur(Utilisateur $superviseur)
+    public function addSuperviseur(Utilisateur $superviseur): Kouryukai
     {
         $this->superviseurs[] = $superviseur;
 
@@ -497,7 +496,7 @@ class Kouryukai
      *
      * @return ArrayCollection
      */
-    public function getSuperviseurs()
+    public function getSuperviseurs():? ArrayCollection
     {
         return $this->superviseurs;
     }
@@ -509,7 +508,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setReserveMembre($reserveMembre)
+    public function setReserveMembre($reserveMembre): Kouryukai
     {
         $this->reserveMembre = $reserveMembre;
 
@@ -521,12 +520,12 @@ class Kouryukai
      *
      * @return boolean
      */
-    public function getReserveMembre()
+    public function getReserveMembre():? bool
     {
         return $this->reserveMembre;
     }
 
-    
+
     /**
      * @ORM\PrePersist
      */
@@ -542,7 +541,7 @@ class Kouryukai
     {
         $this->setTimestampModification(new \DateTime('now'));
     }
-    
+
     /**
      * Set timestampCreation
      *
@@ -550,7 +549,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Kouryukai
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -562,11 +561,11 @@ class Kouryukai
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
-    
+
     /**
      * Set timestampModification
      *
@@ -574,7 +573,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Kouryukai
     {
         $this->timestampModification = $timestampModification;
 
@@ -586,15 +585,15 @@ class Kouryukai
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
-    
+
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -610,7 +609,7 @@ class Kouryukai
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -622,7 +621,7 @@ class Kouryukai
     {
         $this->utilisateurModification = $utilisateurModification;
     }
-    
+
     /**
      * Add inscrit
      *
@@ -630,7 +629,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function addInscrit(Utilisateur $inscrits)
+    public function addInscrit(Utilisateur $inscrits): Kouryukai
     {
         $this->inscrits[] = $inscrits;
 
@@ -652,7 +651,7 @@ class Kouryukai
      *
      * @return ArrayCollection
      */
-    public function getInscrits()
+    public function getInscrits():? ArrayCollection
     {
         return $this->inscrits;
     }
@@ -660,7 +659,7 @@ class Kouryukai
     /**
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getDatePublication():? \DateTime
     {
         return $this->datePublication;
     }
@@ -676,7 +675,7 @@ class Kouryukai
     /**
      * @return string
      */
-    public function getUrlInscription()
+    public function getUrlInscription():? string
     {
         return $this->urlInscription;
     }
@@ -696,7 +695,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setAdresse($adresse)
+    public function setAdresse($adresse): Kouryukai
     {
         $this->adresse = $adresse;
 
@@ -708,7 +707,7 @@ class Kouryukai
      *
      * @return string
      */
-    public function getAdresse()
+    public function getAdresse():? string
     {
         return $this->adresse;
     }
@@ -720,7 +719,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setCodePostal($codePostal)
+    public function setCodePostal($codePostal): Kouryukai
     {
         $this->codePostal = $codePostal;
 
@@ -732,7 +731,7 @@ class Kouryukai
      *
      * @return string
      */
-    public function getCodePostal()
+    public function getCodePostal():? string
     {
         return $this->codePostal;
     }
@@ -744,7 +743,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setVille($ville)
+    public function setVille($ville): Kouryukai
     {
         $this->ville = $ville;
 
@@ -756,7 +755,7 @@ class Kouryukai
      *
      * @return string
      */
-    public function getVille()
+    public function getVille():? string
     {
         return $this->ville;
     }
@@ -768,7 +767,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setCoordGeoLatitude($coordGeoLatitude)
+    public function setCoordGeoLatitude($coordGeoLatitude): Kouryukai
     {
         $this->coordGeoLatitude = $coordGeoLatitude;
 
@@ -780,7 +779,7 @@ class Kouryukai
      *
      * @return float
      */
-    public function getCoordGeoLatitude()
+    public function getCoordGeoLatitude():? float
     {
         return $this->coordGeoLatitude;
     }
@@ -792,7 +791,7 @@ class Kouryukai
      *
      * @return Kouryukai
      */
-    public function setCoordGeoLongitude($coordGeoLongitude)
+    public function setCoordGeoLongitude($coordGeoLongitude): Kouryukai
     {
         $this->coordGeoLongitude = $coordGeoLongitude;
 
@@ -804,7 +803,7 @@ class Kouryukai
      *
      * @return float
      */
-    public function getCoordGeoLongitude()
+    public function getCoordGeoLongitude():? float
     {
         return $this->coordGeoLongitude;
     }
@@ -813,19 +812,21 @@ class Kouryukai
      * @param $latlng
      * @return $this
      */
-    public function setLatLng($latlng)
+    public function setLatLng($latlng): Kouryukai
     {
         $this->setCoordGeoLatitude($latlng['lat']);
         $this->setCoordGeoLongitude($latlng['lng']);
+
         return $this;
     }
 
     /**
      * @Assert\NotBlank()
      * @OhAssert\LatLng()
+     * @return array
      */
-    public function getLatLng()
+    public function getLatLng(): array
     {
-        return array('lat' => $this->getCoordGeoLatitude(),'lng' => $this->getCoordGeoLongitude());
+        return array('lat' => $this->getCoordGeoLatitude(), 'lng' => $this->getCoordGeoLongitude());
     }
 }

@@ -239,15 +239,18 @@ class GenerateCalendar
         return $string;
     }
 
+    /**
+     * @return string
+     */
     private function getUntilDate()
     {
         $july = strtotime("1st July");
         $now  = time();
 
         if ($now > $july) {
-            echo date(self::GOOGLE_DATE_FORMAT, strtotime('+1 year', $july));
+            return date(self::GOOGLE_DATE_FORMAT, strtotime('+1 year', $july));
         } else {
-            echo date(self::GOOGLE_DATE_FORMAT, $july);
+            return date(self::GOOGLE_DATE_FORMAT, $july);
         }
     }
 }

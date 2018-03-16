@@ -11,7 +11,6 @@ use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-
 use AppBundle\Entity\Evenement;
 use AppBundle\Entity\Atelier;
 use AppBundle\Entity\Sortie;
@@ -289,7 +288,13 @@ class FrontController extends BaseController
     {
         $bureau         = $this->getEm()->getRepository(Utilisateur::class)->findAllBureau();
         $partenaires    = $this->getEm()->getRepository(Partenaire::class)->findBy([], ['slug' => 'ASC']);
-        return $this->render('front/association/association.html.twig', ['bureau' => $bureau, 'partenaires' => $partenaires]);
+        return $this->render(
+            'front/association/association.html.twig',
+            [
+                'bureau' => $bureau,
+                'partenaires' => $partenaires
+            ]
+        );
     }
     
     /**
@@ -340,6 +345,7 @@ class FrontController extends BaseController
             $limit = null;
         }
         $evenementsOuKouryukai = $this->getTopEvenementsOuKouruykai($limit);
+
         return $this->render(
             'front/evenement/evenements.html.twig',
             ['evenementsOuKouryukai' => $evenementsOuKouryukai]

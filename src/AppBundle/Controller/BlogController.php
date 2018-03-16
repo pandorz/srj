@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-
 /**
  * Class BlogController
  * @package AppBundle\Controller

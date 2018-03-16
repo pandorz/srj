@@ -105,7 +105,7 @@ class CourReport
     /**
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -121,7 +121,7 @@ class CourReport
     /**
      * @return \DateTime
      */
-    public function getDateAnnule()
+    public function getDateAnnule():? \DateTime
     {
         return $this->dateAnnule;
     }
@@ -137,7 +137,7 @@ class CourReport
     /**
      * @return \DateTime
      */
-    public function getDateReport()
+    public function getDateReport():? \DateTime
     {
         return $this->dateReport;
     }
@@ -153,7 +153,7 @@ class CourReport
     /**
      * @return \DateTime
      */
-    public function getHeureDebut(): \DateTime
+    public function getHeureDebut():? \DateTime
     {
         return $this->heureDebut;
     }
@@ -169,7 +169,7 @@ class CourReport
     /**
      * @return \DateTime
      */
-    public function getHeureFin(): \DateTime
+    public function getHeureFin():? \DateTime
     {
         return $this->heureFin;
     }
@@ -185,7 +185,7 @@ class CourReport
     /**
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -201,7 +201,7 @@ class CourReport
     /**
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -217,7 +217,7 @@ class CourReport
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -233,7 +233,7 @@ class CourReport
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -265,7 +265,7 @@ class CourReport
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
@@ -281,7 +281,7 @@ class CourReport
     /**
      * @return Cour
      */
-    public function getCours()
+    public function getCours(): Cour
     {
         return $this->cours;
     }
@@ -294,7 +294,10 @@ class CourReport
         $this->cours = $cours;
     }
 
-    public function __toString()
+    /**
+     * @return string
+     */
+    public function __toString(): string
     {
         $string = "";
         if (!is_null($this->dateAnnule)) {

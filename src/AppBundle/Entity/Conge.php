@@ -105,7 +105,7 @@ class Conge
      *
      * @return integer
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -129,7 +129,7 @@ class Conge
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -137,7 +137,7 @@ class Conge
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
@@ -157,7 +157,7 @@ class Conge
     /**
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -173,7 +173,7 @@ class Conge
     /**
      * @return \DateTime
      */
-    public function getDateDebut()
+    public function getDateDebut():? \DateTime
     {
         return $this->dateDebut;
     }
@@ -189,7 +189,7 @@ class Conge
     /**
      * @return \DateTime
      */
-    public function getDateFin()
+    public function getDateFin():? \DateTime
     {
         return $this->dateFin;
     }
@@ -225,7 +225,7 @@ class Conge
      *
      * @return Conge
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Conge
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -237,7 +237,7 @@ class Conge
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -249,7 +249,7 @@ class Conge
      *
      * @return Conge
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Conge
     {
         $this->timestampModification = $timestampModification;
 
@@ -261,7 +261,7 @@ class Conge
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -269,7 +269,7 @@ class Conge
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -285,7 +285,7 @@ class Conge
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }

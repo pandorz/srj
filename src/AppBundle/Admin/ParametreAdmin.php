@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Parametre;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -9,16 +10,12 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-
-use AppBundle\Entity\Parametre;
-
 class ParametreAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_parametre';
+    protected $baseRouteName = 'admin_parametre';
     protected $baseRoutePattern = 'parametre';
 
     public $supportsPreviewMode = false;
-
 
 
     /**
@@ -31,13 +28,12 @@ class ParametreAdmin extends AbstractAdmin
         $listMapper
             ->add('nom', 'text', [
                 'label' => 'parametre.liste.nom'
-            ])   
+            ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array()
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -49,25 +45,25 @@ class ParametreAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('parametre.with.details'),
-                'class'         => 'col-md-12'
+                'name' => $this->trans('parametre.with.details'),
+                'class' => 'col-md-12'
             ]);
         $parametre = $this->getSubject();
         if (!($parametre instanceof Parametre) || empty($parametre->getNom())) {
             $formMapper->add('nom', 'text', [
-                    'label' => 'parametre.nom',
-                    'attr'  => [
-                        'placeholder' => 'parametre.placeholder.nom'
-                    ]
-                ]);
+                'label' => 'parametre.nom',
+                'attr' => [
+                    'placeholder' => 'parametre.placeholder.nom'
+                ]
+            ]);
         }
         $formMapper->add('value', 'text', [
-                'label' => 'parametre.value',
-                'attr'  => [
-                    'placeholder' => 'parametre.placeholder.value'
-                ],
-                'required' => false
-            ])            
+            'label' => 'parametre.value',
+            'attr' => [
+                'placeholder' => 'parametre.placeholder.value'
+            ],
+            'required' => false
+        ])
             ->end();
     }
 

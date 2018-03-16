@@ -10,14 +10,14 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class DemandeNewsletterAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_demande_newsletter';
+    protected $baseRouteName = 'admin_demande_newsletter';
     protected $baseRoutePattern = 'demande_newsletter';
 
     public $supportsPreviewMode = false;
 
     protected $datagridValues = [
-        '_sort_order'   => 'DESC',
-        '_sort_by'      => 'timestampCreation',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'timestampCreation',
     ];
 
     /**
@@ -29,18 +29,17 @@ class DemandeNewsletterAdmin extends AbstractAdmin
     {
         $listMapper
             ->add('email', 'text', [
-                'label'     => 'demande_newsletter.liste.email',
-                'sortable'  => 'name'
+                'label' => 'demande_newsletter.liste.email',
+                'sortable' => 'name'
             ])
             ->add('timestampCreation', 'date', [
-                'label'     => 'demande_newsletter.liste.timestampCreation'
+                'label' => 'demande_newsletter.liste.timestampCreation'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -64,10 +63,10 @@ class DemandeNewsletterAdmin extends AbstractAdmin
     {
         $datagridMapper
             ->add('email', null, [
-                'label'     => 'demande_newsletter.liste.email'
+                'label' => 'demande_newsletter.liste.email'
             ])
             ->add('timestampCreation', null, [
-                'label'     => 'demande_newsletter.liste.timestampCreation'
+                'label' => 'demande_newsletter.liste.timestampCreation'
             ]);
     }
 

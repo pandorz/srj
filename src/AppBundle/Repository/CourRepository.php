@@ -8,6 +8,9 @@ namespace AppBundle\Repository;
  */
 class CourRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @return mixed
+     */
     public function getAffichable()
     {
         return $this

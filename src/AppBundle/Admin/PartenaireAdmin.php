@@ -2,7 +2,7 @@
 
 namespace AppBundle\Admin;
 
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use AppBundle\Entity\Partenaire;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -10,16 +10,12 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
 
-
-use AppBundle\Entity\Partenaire;
-
 class PartenaireAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_partenaire';
+    protected $baseRouteName = 'admin_partenaire';
     protected $baseRoutePattern = 'partenaire';
 
     public $supportsPreviewMode = false;
-
 
 
     /**
@@ -32,18 +28,17 @@ class PartenaireAdmin extends AbstractAdmin
         $listMapper
             ->add('nom', 'text', [
                 'label' => 'partenaire.liste.nom'
-            ])   
+            ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
                     'clone' => array(
                         'template' => ':AdminCustom/button:clone.html.twig',
-                        'data'     => '1',
+                        'data' => '1',
                     ),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -55,28 +50,28 @@ class PartenaireAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('partenaire.with.details'),
-                'class'         => 'col-md-12'
+                'name' => $this->trans('partenaire.with.details'),
+                'class' => 'col-md-12'
             ]);
 
-            $formMapper
+        $formMapper
             ->add('nom', 'text', [
                 'label' => 'partenaire.nom',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'partenaire.placeholder.nom'
                 ],
                 'required' => true
             ])
             ->add('description', 'text', [
                 'label' => 'partenaire.description',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'partenaire.placeholder.description'
                 ],
                 'required' => false
             ])
             ->add('lien', 'url', [
                 'label' => 'partenaire.lien',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'partenaire.placeholder.lien'
                 ],
                 'required' => false
@@ -131,7 +126,7 @@ class PartenaireAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
-        $collection->add('clone', $this->getRouterIdParameter().'/clone');
+        $collection->add('clone', $this->getRouterIdParameter() . '/clone');
     }
 
     /**

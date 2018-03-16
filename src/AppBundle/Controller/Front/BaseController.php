@@ -126,11 +126,9 @@ class BaseController extends Controller
      *
      * @return bool
      */
-    public function sendMail($subject, $template, $to = null, $replyTo = null, $bcc = null, $data = [], $attachments = [])
+    public function sendMail($subject, $template, $to = null, $replyTo = null, $bcc = null, $data =[], $attachments =[])
     {
         try {
-
-
             $noReplyEmail       = $this->getParameter('no-reply_email');
 
 

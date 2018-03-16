@@ -175,7 +175,9 @@ class TimeLineBlockService extends AbstractBlockService
                 $tab[$blog->getDatePublication()->format(self::FORMAT_DATE)][] = $temp;
             }
         }
+
         krsort($tab);
+
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block'         => $blockContext->getBlock(),
             'settings'      => $settings,

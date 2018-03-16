@@ -2,6 +2,7 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Actualite;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Tag;
 use AppBundle\Entity\Utilisateur;
@@ -9,24 +10,20 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-
-use AppBundle\Entity\Actualite;
-
 
 class BlogAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_blog';
+    protected $baseRouteName = 'admin_blog';
     protected $baseRoutePattern = 'blog';
 
     public $supportsPreviewMode = false;
 
     protected $datagridValues = [
-        '_sort_order'   => 'DESC',
-        '_sort_by'      => 'timestampCreation',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'timestampCreation',
     ];
 
     /**
@@ -41,27 +38,26 @@ class BlogAdmin extends AbstractAdmin
                 'label' => 'blog.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label'     => 'blog.liste.affiche',
-                'editable'  => true
+                'label' => 'blog.liste.affiche',
+                'editable' => true
             ])
             ->add('datePublication', 'date', [
-                'label'     => 'blog.liste.datePublication'
+                'label' => 'blog.liste.datePublication'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
                     'clone' => array(
                         'template' => ':AdminCustom/button:clone.html.twig',
-                        'data'     => '1',
+                        'data' => '1',
                     ),
                     'view' => array(
                         'template' => ':AdminCustom/button:view.html.twig',
-                        'data'     => '1',
+                        'data' => '1',
                     ),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -73,45 +69,45 @@ class BlogAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('blog.with.details'),
-                'class'         => 'col-md-7'
+                'name' => $this->trans('blog.with.details'),
+                'class' => 'col-md-7'
             ])
             ->add('nom', 'text', [
                 'label' => 'blog.nom',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'blog.placeholder.nom'
                 ]
             ])
             ->add('affiche', 'checkbox', [
                 'label' => 'blog.actif',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'blog.placeholder.actif'
                 ],
                 'required' => false
             ])
             ->add('descriptionCourte', 'text', [
                 'label' => 'blog.descriptionCourte',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'blog.placeholder.descriptionCourte'
                 ]
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'blog.contenu',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'blog.placeholder.contenu'
                 ],
                 'config_name' => 'news'
             ])
             ->end()
             ->with('Meta data', [
-                'name'      => $this->trans('blog.with.meta_data'),
-                'class'     => 'col-md-5'
+                'name' => $this->trans('blog.with.meta_data'),
+                'class' => 'col-md-5'
             ])
             ->add('datePublication', 'sonata_type_datetime_picker', [
                 'label' => 'blog.datePublication',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => $this->trans('blog.placeholder.datePublication')
                 ],
                 'required' => false
@@ -119,28 +115,27 @@ class BlogAdmin extends AbstractAdmin
             ->add('image', 'sonata_media_type', array(
                 'label' => 'blog.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image',
+                'context' => 'image',
                 'required' => false,
                 'help' => $this->trans('blog.helper.image')
             ))
             ->add('auteurs', 'sonata_type_model_autocomplete', [
-                'class'     => Utilisateur::class,
-                'property'  => ['firstname','lastname'],
-                'label'     => 'blog.auteur',
-                'multiple'  => true,
+                'class' => Utilisateur::class,
+                'property' => ['firstname', 'lastname'],
+                'label' => 'blog.auteur',
+                'multiple' => true,
                 'placeholder' => $this->trans('blog.placeholder.auteur'),
                 'required' => false
             ])
             ->add('tags', 'sonata_type_model_autocomplete', [
-                'class'     => Tag::class,
-                'property'  => ['nom'],
-                'label'     => 'blog.tag',
-                'multiple'  => true,
+                'class' => Tag::class,
+                'property' => ['nom'],
+                'label' => 'blog.tag',
+                'multiple' => true,
                 'placeholder' => $this->trans('blog.placeholder.tag'),
                 'required' => false
             ])
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -153,8 +148,7 @@ class BlogAdmin extends AbstractAdmin
         $showMapper
             ->add('nom')
             ->add('affiche')
-            ->add('datePublication')
-        ;
+            ->add('datePublication');
     }
 
     /**
@@ -173,8 +167,7 @@ class BlogAdmin extends AbstractAdmin
             ])
             ->add('datePublication', null, [
                 'label' => 'blog.liste.datePublication'
-            ])
-        ;
+            ]);
     }
 
     /**
@@ -219,7 +212,7 @@ class BlogAdmin extends AbstractAdmin
     {
         $list = parent::configureActionButtons($action, $object);
 
-        $blog  = $this->getSubject();
+        $blog = $this->getSubject();
 
         // Edit case
         if ($blog instanceof Blog && !empty($blog->getId())) {
@@ -235,7 +228,7 @@ class BlogAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
-        $collection->add('clone', $this->getRouterIdParameter().'/clone');
+        $collection->add('clone', $this->getRouterIdParameter() . '/clone');
         $collection->add('view', '/blog/article/{slug}/');
     }
 }

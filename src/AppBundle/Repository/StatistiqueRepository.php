@@ -10,6 +10,11 @@ namespace AppBundle\Repository;
  */
 class StatistiqueRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * @param $monthNumber
+     * @param bool $thisYear
+     * @return mixed
+     */
     public function sumByMonth($monthNumber, $thisYear = true)
     {
         $year = (int)(new \DateTime())->format('Y');

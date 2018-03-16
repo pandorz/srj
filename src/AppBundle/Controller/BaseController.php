@@ -12,6 +12,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
  */
 class BaseController extends Controller
 {
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
     public function cloneAction($id)
     {
         $object = $this->admin->getSubject();

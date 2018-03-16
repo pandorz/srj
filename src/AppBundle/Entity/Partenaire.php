@@ -24,7 +24,7 @@ class Partenaire
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-	
+
    /**
     * @var string
     *
@@ -96,14 +96,14 @@ class Partenaire
      *
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
     
     /**
      * @param int $version
-     * 
+     *
      * @return Partenaire
      */
     public function setVersion($version)
@@ -116,11 +116,10 @@ class Partenaire
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
-
 
     /**
      * Set slug
@@ -141,7 +140,7 @@ class Partenaire
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -169,7 +168,7 @@ class Partenaire
      *
      * @return Partenaire
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Partenaire
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -181,7 +180,7 @@ class Partenaire
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -193,7 +192,7 @@ class Partenaire
      *
      * @return Partenaire
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Partenaire
     {
         $this->timestampModification = $timestampModification;
 
@@ -205,7 +204,7 @@ class Partenaire
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -213,7 +212,7 @@ class Partenaire
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -229,7 +228,7 @@ class Partenaire
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -245,7 +244,7 @@ class Partenaire
     /**
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -261,7 +260,7 @@ class Partenaire
     /**
      * @return string
      */
-    public function getLien()
+    public function getLien():? string
     {
         return $this->lien;
     }
@@ -277,7 +276,7 @@ class Partenaire
     /**
      * @return string
      */
-    public function getDescription()
+    public function getDescription():? string
     {
         return $this->description;
     }

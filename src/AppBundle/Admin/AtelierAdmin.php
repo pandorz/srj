@@ -2,29 +2,27 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Atelier;
+use AppBundle\Entity\Utilisateur;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Oh\GoogleMapFormTypeBundle\Form\Type\GoogleMapType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Form\FormMapper;
+use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-
-use AppBundle\Entity\Atelier;
-use AppBundle\Entity\Utilisateur;
 
 class AtelierAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_atelier';
+    protected $baseRouteName = 'admin_atelier';
     protected $baseRoutePattern = 'atelier';
 
     public $supportsPreviewMode = false;
 
     protected $datagridValues = [
-        '_sort_order'   => 'DESC',
-        '_sort_by'      => 'timestampCreation',
+        '_sort_order' => 'DESC',
+        '_sort_by' => 'timestampCreation',
     ];
 
     /**
@@ -39,40 +37,39 @@ class AtelierAdmin extends AbstractAdmin
                 'label' => 'atelier.liste.nom'
             ])
             ->add('affiche', 'boolean', [
-                'label'     => 'atelier.liste.affiche',
-                'editable'  => true
+                'label' => 'atelier.liste.affiche',
+                'editable' => true
             ])
             ->add('datePublication', 'date', [
-                'label'     => 'atelier.liste.datePublication'
+                'label' => 'atelier.liste.datePublication'
             ])
             ->add('annule', 'boolean', [
-                'label'     => 'atelier.liste.annule',
-                'editable'  => true
+                'label' => 'atelier.liste.annule',
+                'editable' => true
             ])
             ->add('reserveMembre', 'boolean', [
-                'label'     => 'atelier.liste.reserveMembre',
-                'editable'  => true
+                'label' => 'atelier.liste.reserveMembre',
+                'editable' => true
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'atelier.liste.nbPlace',
             ])
             ->add('date', 'date', [
-                'label'     => 'atelier.liste.date'
+                'label' => 'atelier.liste.date'
             ])
             ->add('dateLimite', 'date', [
-                'label'     => 'atelier.liste.dateLimite'
+                'label' => 'atelier.liste.dateLimite'
             ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
                     'clone' => array(
                         'template' => ':AdminCustom/button:clone.html.twig',
-                        'data'     => '1',
+                        'data' => '1',
                     ),
                     'delete' => array(),
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -84,106 +81,106 @@ class AtelierAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('atelier.with.details'),
-                'class'         => 'col-md-7'
+                'name' => $this->trans('atelier.with.details'),
+                'class' => 'col-md-7'
             ])
             ->add('nom', 'text', [
                 'label' => 'atelier.nom',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.nom'
                 ]
             ])
             ->add('affiche', 'checkbox', [
                 'label' => 'atelier.actif',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.actif'
                 ],
                 'required' => false
             ])
             ->add('datePublication', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.datePublication',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => $this->trans('atelier.placeholder.datePublication')
                 ],
                 'required' => false
             ])
             ->add('annule', 'checkbox', [
                 'label' => 'atelier.annule',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.annule'
                 ],
                 'required' => false
             ])
             ->add('reserveMembre', 'checkbox', [
                 'label' => 'atelier.reserve_membre',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.reserve_membre'
                 ],
                 'required' => false
             ])
             ->add('nbPlace', 'integer', [
                 'label' => 'atelier.nbPlace',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.nbPlace'
                 ],
                 'required' => false
             ])
             ->add('prixMembre', 'number', [
-                'label' => 'atelier.prixMembre',                
-                'attr'  => [
+                'label' => 'atelier.prixMembre',
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.prixMembre'
                 ],
                 'required' => false
             ])
             ->add('prix', 'number', [
-                'label' => 'atelier.prix',                
-                'attr'  => [
+                'label' => 'atelier.prix',
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.prix'
                 ],
                 'required' => false
             ])
             ->add('contenu', CKEditorType::class, [
                 'label' => 'atelier.contenu',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.contenu'
                 ]
-            ])            
+            ])
             ->end()
             ->with('Meta data', [
-                'name'      => $this->trans('atelier.with.meta_data'),
-                'class'     => 'col-md-5 js-emplacement-container'
+                'name' => $this->trans('atelier.with.meta_data'),
+                'class' => 'col-md-5 js-emplacement-container'
             ])
             ->add('urlInscription', 'url', [
                 'label' => 'atelier.urlInscription',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'atelier.placeholder.urlInscription'
                 ],
                 'required' => false
             ])
             ->add('superviseurs', 'sonata_type_model_autocomplete', [
-                'class'     => Utilisateur::class,
-                'property'  => ['firstname','lastname'],
-                'label'     => 'atelier.superviseurs',
-                'multiple'  => true,
+                'class' => Utilisateur::class,
+                'property' => ['firstname', 'lastname'],
+                'label' => 'atelier.superviseurs',
+                'multiple' => true,
                 'placeholder' => $this->trans('atelier.placeholder.superviseurs'),
                 'required' => false
             ])
             ->add('date', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.date',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => $this->trans('atelier.placeholder.date')
                 ],
                 'required' => false
             ])
             ->add('dateLimite', 'sonata_type_datetime_picker', [
                 'label' => 'atelier.date_limite',
-                'dp_language'=>'fr',
-                'format'=>'dd/MM/yyyy HH:mm',
-                'attr'  => [
+                'dp_language' => 'fr',
+                'format' => 'dd/MM/yyyy HH:mm',
+                'attr' => [
                     'placeholder' => $this->trans('atelier.placeholder.date_limite')
                 ],
                 'required' => false
@@ -191,30 +188,30 @@ class AtelierAdmin extends AbstractAdmin
             ->add('image', 'sonata_media_type', array(
                 'label' => 'atelier.image',
                 'provider' => 'sonata.media.provider.image',
-                'context'  => 'image',
+                'context' => 'image',
                 'required' => false,
             ))
             ->add('adresse', 'text', [
                 'label' => 'atelier.adresse',
-                'attr'  => [
-                    'placeholder'   => 'atelier.placeholder.adresse',
-                    'class'         => 'js-data-emplacement'
+                'attr' => [
+                    'placeholder' => 'atelier.placeholder.adresse',
+                    'class' => 'js-data-emplacement'
                 ],
                 'required' => false
             ])
             ->add('codePostal', 'text', [
                 'label' => 'atelier.cp',
-                'attr'  => [
-                    'placeholder'   => 'atelier.placeholder.cp',
-                    'class'         => 'js-data-emplacement'
+                'attr' => [
+                    'placeholder' => 'atelier.placeholder.cp',
+                    'class' => 'js-data-emplacement'
                 ],
                 'required' => false
             ])
             ->add('ville', 'text', [
                 'label' => 'atelier.ville',
-                'attr'  => [
-                    'placeholder'   => 'atelier.placeholder.ville',
-                    'class'         => 'js-data-emplacement'
+                'attr' => [
+                    'placeholder' => 'atelier.placeholder.ville',
+                    'class' => 'js-data-emplacement'
                 ],
                 'required' => false
             ])
@@ -226,13 +223,12 @@ class AtelierAdmin extends AbstractAdmin
                 'lng_options' => [
                     'label' => 'atelier.longitude'
                 ],
-                'attr'  => [
+                'attr' => [
                     'class' => 'js-search-emplacement-container'
                 ],
-				'required' => false
+                'required' => false
             ])
-            ->end()
-        ;
+            ->end();
     }
 
     /**
@@ -248,10 +244,9 @@ class AtelierAdmin extends AbstractAdmin
             ->add('annule')
             ->add('nbPlace')
             ->add('reserveMembre')
-            ->add('prix')    
+            ->add('prix')
             ->add('date')
-            ->add('dateLimite')
-        ;
+            ->add('dateLimite');
     }
 
     /**
@@ -291,8 +286,7 @@ class AtelierAdmin extends AbstractAdmin
             ])
             ->add('datePublication', null, [
                 'label' => 'atelier.liste.datePublication'
-            ])
-        ;
+            ]);
     }
 
     /**
@@ -330,6 +324,6 @@ class AtelierAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->remove('show');
-        $collection->add('clone', $this->getRouterIdParameter().'/clone');
+        $collection->add('clone', $this->getRouterIdParameter() . '/clone');
     }
 }

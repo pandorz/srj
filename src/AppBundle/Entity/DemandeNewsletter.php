@@ -44,7 +44,7 @@ class DemandeNewsletter
     /**
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -60,7 +60,7 @@ class DemandeNewsletter
     /**
      * @return string
      */
-    public function getEmail()
+    public function getEmail():? string
     {
         return $this->email;
     }
@@ -76,7 +76,7 @@ class DemandeNewsletter
     /**
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }

@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller\Front;
 
-use AppBundle\Entity\Conference;
 use Symfony\Bundle\FrameworkBundle\Templating\TemplateReference;
 use Symfony\Bundle\TwigBundle\Controller\ExceptionController;
 use Symfony\Component\Debug\Exception\FlattenException;
@@ -14,12 +13,21 @@ class ErrorController extends ExceptionController
 
     /**
      * ErrorController constructor.
+     * @param \Twig_Environment $twig
+     * @param bool $debug
      */
     public function __construct(\Twig_Environment $twig, $debug)
     {
         parent::__construct($twig, $debug);
     }
 
+    /**
+     * @param Request $request
+     * @param string $format
+     * @param int $code
+     * @param bool $showException
+     * @return TemplateReference
+     */
     public function findTemplate(Request $request, $format, $code, $showException)
     {
         $locale = $request->getLocale();
@@ -33,16 +41,15 @@ class ErrorController extends ExceptionController
 
         // For error pages, add names of template for the specific HTTP status code and format
         if (!$showException) {
-
             if (!empty($locale)) {
-                $templates[] = $name.$code.'.'.$locale;
+                $templates[] = $name . $code . '.' . $locale;
             }
 
-            $templates[] = $name.$code;
+            $templates[] = $name . $code;
         }
 
         if (!empty($locale)) {
-            $templates[] = $name.'.'.$locale;
+            $templates[] = $name . '.' . $locale;
         }
 
         $templates[] = $name;
@@ -58,9 +65,21 @@ class ErrorController extends ExceptionController
         // default to a generic HTML exception
         $request->setRequestFormat('html');
 
-        return new TemplateReference('TwigBundle', 'Exception', $showException ? 'exception_full' : $name, 'html', 'twig');
+        return new TemplateReference(
+            'TwigBundle',
+            'Exception',
+            $showException ? 'exception_full' : $name,
+            'html',
+            'twig'
+        );
     }
 
+    /**
+     * @param Request $request
+     * @param FlattenException $exception
+     * @param DebugLoggerInterface|null $logger
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
     public function showAction(Request $request, FlattenException $exception, DebugLoggerInterface $logger = null)
     {
         return parent::showAction($request, $exception, $logger);

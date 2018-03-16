@@ -70,7 +70,7 @@ class UtilisateurLog
     /**
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -86,7 +86,7 @@ class UtilisateurLog
     /**
      * @return int
      */
-    public function getUtilisateurId()
+    public function getUtilisateurId():? int
     {
         return $this->utilisateurId;
     }
@@ -102,7 +102,7 @@ class UtilisateurLog
     /**
      * @return string
      */
-    public function getNumeroMembre()
+    public function getNumeroMembre():? string
     {
         return $this->numeroMembre;
     }
@@ -118,7 +118,7 @@ class UtilisateurLog
     /**
      * @return string
      */
-    public function getEntityName()
+    public function getEntityName():? string
     {
         return $this->entityName;
     }
@@ -134,7 +134,7 @@ class UtilisateurLog
     /**
      * @return int
      */
-    public function getEntityId()
+    public function getEntityId():? int
     {
         return $this->entityId;
     }
@@ -150,7 +150,7 @@ class UtilisateurLog
     /**
      * @return string
      */
-    public function getEventType()
+    public function getEventType():? string
     {
         return $this->eventType;
     }
@@ -166,7 +166,7 @@ class UtilisateurLog
     /**
      * @return \DateTime
      */
-    public function getDateAction()
+    public function getDateAction():? \DateTime
     {
         return $this->dateAction;
     }

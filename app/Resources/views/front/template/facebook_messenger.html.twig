@@ -1,9 +1,8 @@
-{% if app.environment == 'prod' %}
+{% if app.environment == 'prod' and is_actif_facebook_messenger() and get_facebook_page_id() is not empty %}
 <div class="fb-customerchat"
-     page_id="526752204060109"
+     page_id="{{ get_facebook_page_id() }}"
      theme_color="#e30613"
      logged_in_greeting="Bienvenue sur le site de l'association Rouen Japon. Besoin d'aide ?"
-     logged_out_greeting="Bienvenue sur le site de l'association Rouen Japon. Connectez-vous à Facebook pour profiter de cette fonctionnalité."
-     minimized = "true">
+     logged_out_greeting="Bienvenue sur le site de l'association Rouen Japon. Connectez-vous à Facebook pour profiter de cette fonctionnalité.">
 </div>
 {% endif %}

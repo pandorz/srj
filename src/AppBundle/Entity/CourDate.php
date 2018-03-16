@@ -129,7 +129,7 @@ class CourDate
     /**
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -145,7 +145,7 @@ class CourDate
     /**
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -161,7 +161,7 @@ class CourDate
     /**
      * @return int
      */
-    public function getJour(): int
+    public function getJour():? int
     {
         return $this->jour;
     }
@@ -177,7 +177,7 @@ class CourDate
     /**
      * @return \DateTime
      */
-    public function getHeureDebut(): \DateTime
+    public function getHeureDebut():? \DateTime
     {
         return $this->heureDebut;
     }
@@ -193,7 +193,7 @@ class CourDate
     /**
      * @return \DateTime
      */
-    public function getHeureFin(): \DateTime
+    public function getHeureFin():? \DateTime
     {
         return $this->heureFin;
     }
@@ -209,7 +209,7 @@ class CourDate
     /**
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
@@ -225,7 +225,7 @@ class CourDate
     /**
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
@@ -241,7 +241,7 @@ class CourDate
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -257,7 +257,7 @@ class CourDate
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -289,7 +289,7 @@ class CourDate
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
@@ -305,7 +305,7 @@ class CourDate
     /**
      * @return Cour
      */
-    public function getCours()
+    public function getCours(): Cour
     {
         return $this->cours;
     }
@@ -377,7 +377,7 @@ class CourDate
     /**
      * @return \DateTime
      */
-    public function getDate(): \DateTime
+    public function getDate():? \DateTime
     {
         return $this->date;
     }
@@ -393,7 +393,7 @@ class CourDate
     /**
      * @return int
      */
-    public function getRepetition(): int
+    public function getRepetition():? int
     {
         return $this->repetition;
     }

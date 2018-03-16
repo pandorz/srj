@@ -35,13 +35,13 @@ class Actualite
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-	
-	/**
-    * @var  string
-    *
-    * @Gedmo\Slug(fields={"nom"})
-    * @ORM\Column(length=128, unique=true)
-    */
+
+    /**
+     * @var  string
+     *
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(length=128, unique=true)
+     */
     private $slug;
 
     /**
@@ -58,7 +58,7 @@ class Actualite
      */
     private $annule;
 
-	
+
     /**
      * @var \DateTime
      *
@@ -79,18 +79,18 @@ class Actualite
      * @ORM\Column(name="date_publication", type="datetime", nullable=true)
      */
     private $datePublication;
-    
+
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
      * @ORM\joinColumn(onDelete="SET NULL")
      */
     private $image;
-   
-   /**
-    * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
-    */
-   private $contenu;
+
+    /**
+     * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
+     */
+    private $contenu;
 
     /**
      *
@@ -100,9 +100,9 @@ class Actualite
      *     inverseJoinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")}
      * )
      */
-    private $superviseurs;    
-    
-    
+    private $superviseurs;
+
+
     /**
      * @var \DateTime
      *
@@ -130,7 +130,7 @@ class Actualite
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
-    
+
     /**
      * For Sonata Admin Doctrine lock
      * @var int
@@ -138,13 +138,13 @@ class Actualite
      * @ORM\Version
      */
     protected $version;
-    
+
     /**
      * Get id
      *
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -168,7 +168,7 @@ class Actualite
      *
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -180,7 +180,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setAffiche($affiche)
+    public function setAffiche($affiche): Actualite
     {
         $this->affiche = $affiche;
 
@@ -192,7 +192,7 @@ class Actualite
      *
      * @return boolean
      */
-    public function getAffiche()
+    public function getAffiche():? bool
     {
         return $this->affiche;
     }
@@ -204,7 +204,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setAnnule($annule)
+    public function setAnnule($annule): Actualite
     {
         $this->annule = $annule;
 
@@ -216,10 +216,11 @@ class Actualite
      *
      * @return boolean
      */
-    public function getAnnule()
+    public function getAnnule():? bool
     {
         return $this->annule;
     }
+
     /**
      * Constructor
      */
@@ -237,7 +238,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setDateDebut($dateDebut)
+    public function setDateDebut($dateDebut): Actualite
     {
         $this->dateDebut = $dateDebut;
 
@@ -249,7 +250,7 @@ class Actualite
      *
      * @return \DateTime
      */
-    public function getDateDebut()
+    public function getDateDebut():? \DateTime
     {
         return $this->dateDebut;
     }
@@ -261,7 +262,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setDateFin($dateFin)
+    public function setDateFin($dateFin): Actualite
     {
         $this->dateFin = $dateFin;
 
@@ -273,7 +274,7 @@ class Actualite
      *
      * @return \DateTime
      */
-    public function getDateFin()
+    public function getDateFin():? \DateTime
     {
         return $this->dateFin;
     }
@@ -285,7 +286,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setSlug($slug)
+    public function setSlug($slug): Actualite
     {
         $this->slug = $slug;
 
@@ -297,28 +298,28 @@ class Actualite
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
-    
+
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
-    
+
     /**
      * @param int $version
-     * 
+     *
      * @return Actualite
      */
-    public function setVersion($version)
+    public function setVersion($version): Actualite
     {
         $this->version = $version;
-        
+
         return $this;
     }
 
@@ -329,7 +330,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setImage(MediaInterface $image = null)
+    public function setImage(MediaInterface $image = null): Actualite
     {
         $this->image = $image;
 
@@ -341,7 +342,7 @@ class Actualite
      *
      * @return MediaInterface
      */
-    public function getImage()
+    public function getImage():? MediaInterface
     {
         return $this->image;
     }
@@ -353,7 +354,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setContenu($contenu)
+    public function setContenu($contenu): Actualite
     {
         $this->contenu = $contenu;
 
@@ -365,7 +366,7 @@ class Actualite
      *
      * @return string
      */
-    public function getContenu()
+    public function getContenu():? string
     {
         return $this->contenu;
     }
@@ -378,7 +379,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function addSuperviseur(Utilisateur $superviseur)
+    public function addSuperviseur(Utilisateur $superviseur): Actualite
     {
         $this->superviseurs[] = $superviseur;
 
@@ -400,11 +401,11 @@ class Actualite
      *
      * @return ArrayCollection
      */
-    public function getSuperviseurs()
+    public function getSuperviseurs():? ArrayCollection
     {
         return $this->superviseurs;
     }
-    
+
     /**
      * @ORM\PrePersist
      */
@@ -420,7 +421,7 @@ class Actualite
     {
         $this->setTimestampModification(new \DateTime('now'));
     }
-    
+
     /**
      * Set timestampCreation
      *
@@ -428,7 +429,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Actualite
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -440,11 +441,11 @@ class Actualite
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
-    
+
     /**
      * Set timestampModification
      *
@@ -452,7 +453,7 @@ class Actualite
      *
      * @return Actualite
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Actualite
     {
         $this->timestampModification = $timestampModification;
 
@@ -464,15 +465,15 @@ class Actualite
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
-    
+
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -488,7 +489,7 @@ class Actualite
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -504,7 +505,7 @@ class Actualite
     /**
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getDatePublication():? \DateTime
     {
         return $this->datePublication;
     }

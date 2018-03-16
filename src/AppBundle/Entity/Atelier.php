@@ -5,9 +5,9 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Oh\GoogleMapFormTypeBundle\Validator\Constraints as OhAssert;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\Validator\Constraints as Assert;
-use Oh\GoogleMapFormTypeBundle\Validator\Constraints as OhAssert;
 
 /**
  * Atelier
@@ -37,13 +37,13 @@ class Atelier
      * @ORM\Column(name="nom", type="string", length=255)
      */
     private $nom;
-	
-   /**
-    * @var string
-    *
-    * @Gedmo\Slug(fields={"nom"})
-    * @ORM\Column(length=128, unique=true)
-    */
+
+    /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"nom"})
+     * @ORM\Column(length=128, unique=true)
+     */
     private $slug;
 
     /**
@@ -59,14 +59,14 @@ class Atelier
      * @ORM\Column(name="annule", type="boolean")
      */
     private $annule;
-	
+
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date", type="datetime", nullable=true)
      */
     private $date;
-    
+
     /**
      * @var \DateTime
      *
@@ -87,29 +87,29 @@ class Atelier
      * @ORM\Column(name="url_inscription", type="string", length=255, nullable=true)
      */
     private $urlInscription;
-    
+
     /**
      * @var int
      *
      * @ORM\Column(name="nb_place", type="integer", nullable=true)
      */
     private $nbPlace;
-    
+
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
      * @ORM\joinColumn(onDelete="SET NULL")
      */
     private $image;
-   
+
     /**
      * @var string
      *
      * @ORM\Column(name="contenu", type="text", length=65535, nullable=true)
      */
     private $contenu;
-    
-    
+
+
     /**
      * @var ArrayCollection
      *
@@ -120,29 +120,29 @@ class Atelier
      * )
      */
     private $superviseurs;
-    
+
     /**
      * @var boolean
      *
      * @ORM\Column(name="reserveMembre", type="boolean")
      */
     private $reserveMembre;
-    
+
     /**
      * @var double
      *
      * @ORM\Column(name="prix", type="float")
      */
     private $prix;
-    
+
     /**
      * @var double
      *
      * @ORM\Column(name="prix_membre", type="float")
      */
     private $prixMembre;
-    
-    
+
+
     /**
      * @var ArrayCollection
      *
@@ -188,7 +188,7 @@ class Atelier
      * @ORM\Column(name="coord_geo_longitude", type="float", precision=10, scale=0, nullable=true)
      */
     private $coordGeoLongitude;
-    
+
     /**
      * @var \DateTime
      *
@@ -216,7 +216,7 @@ class Atelier
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
-    
+
     /**
      * For Sonata Admin Doctrine lock
      * @var int
@@ -230,7 +230,7 @@ class Atelier
      *
      * @return int
      */
-    public function getId()
+    public function getId():? int
     {
         return $this->id;
     }
@@ -242,7 +242,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setNom($nom)
+    public function setNom($nom): Atelier
     {
         $this->nom = $nom;
 
@@ -254,7 +254,7 @@ class Atelier
      *
      * @return string
      */
-    public function getNom()
+    public function getNom():? string
     {
         return $this->nom;
     }
@@ -266,7 +266,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setAffiche($affiche)
+    public function setAffiche($affiche): Atelier
     {
         $this->affiche = $affiche;
 
@@ -278,7 +278,7 @@ class Atelier
      *
      * @return boolean
      */
-    public function getAffiche()
+    public function getAffiche():? bool
     {
         return $this->affiche;
     }
@@ -290,7 +290,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setAnnule($annule)
+    public function setAnnule($annule): Atelier
     {
         $this->annule = $annule;
 
@@ -302,18 +302,19 @@ class Atelier
      *
      * @return boolean
      */
-    public function getAnnule()
+    public function getAnnule():? bool
     {
         return $this->annule;
     }
+
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->superviseurs     = new ArrayCollection();
-        $this->prix             = 0;
-        $this->prixMembre       = 0;
+        $this->superviseurs = new ArrayCollection();
+        $this->prix         = 0;
+        $this->prixMembre   = 0;
     }
 
 
@@ -324,7 +325,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setDate($date)
+    public function setDate($date): Atelier
     {
         $this->date = $date;
 
@@ -336,7 +337,7 @@ class Atelier
      *
      * @return \DateTime
      */
-    public function getDate()
+    public function getDate():? \DateTime
     {
         return $this->date;
     }
@@ -348,7 +349,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setSlug($slug)
+    public function setSlug($slug): Atelier
     {
         $this->slug = $slug;
 
@@ -360,7 +361,7 @@ class Atelier
      *
      * @return string
      */
-    public function getSlug()
+    public function getSlug():? string
     {
         return $this->slug;
     }
@@ -372,7 +373,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setNbPlace($nbPlace)
+    public function setNbPlace($nbPlace): Atelier
     {
         $this->nbPlace = $nbPlace;
 
@@ -384,7 +385,7 @@ class Atelier
      *
      * @return integer
      */
-    public function getNbPlace()
+    public function getNbPlace():? int
     {
         return $this->nbPlace;
     }
@@ -396,7 +397,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setDateLimite($dateLimite)
+    public function setDateLimite($dateLimite): Atelier
     {
         $this->dateLimite = $dateLimite;
 
@@ -408,7 +409,7 @@ class Atelier
      *
      * @return \DateTime
      */
-    public function getDateLimite()
+    public function getDateLimite():? \DateTime
     {
         return $this->dateLimite;
     }
@@ -419,7 +420,7 @@ class Atelier
      * @param MediaInterface $image
      * @return Atelier
      */
-    public function setImage(MediaInterface $image = null)
+    public function setImage(MediaInterface $image = null): Atelier
     {
         $this->image = $image;
 
@@ -431,28 +432,28 @@ class Atelier
      *
      * @return MediaInterface
      */
-    public function getImage()
+    public function getImage():? MediaInterface
     {
         return $this->image;
     }
-    
+
     /**
      * @return int
      */
-    public function getVersion()
+    public function getVersion():? int
     {
         return $this->version;
     }
-    
+
     /**
      * @param int $version
-     * 
+     *
      * @return Atelier
      */
-    public function setVersion($version)
+    public function setVersion($version): Atelier
     {
         $this->version = $version;
-        
+
         return $this;
     }
 
@@ -463,7 +464,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setContenu($contenu)
+    public function setContenu($contenu): Atelier
     {
         $this->contenu = $contenu;
 
@@ -475,7 +476,7 @@ class Atelier
      *
      * @return string
      */
-    public function getContenu()
+    public function getContenu():? string
     {
         return $this->contenu;
     }
@@ -487,7 +488,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function addSuperviseur(Utilisateur $superviseur)
+    public function addSuperviseur(Utilisateur $superviseur): Atelier
     {
         $this->superviseurs[] = $superviseur;
 
@@ -509,7 +510,7 @@ class Atelier
      *
      * @return ArrayCollection
      */
-    public function getSuperviseurs()
+    public function getSuperviseurs():? ArrayCollection
     {
         return $this->superviseurs;
     }
@@ -521,7 +522,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setReserveMembre($reserveMembre)
+    public function setReserveMembre($reserveMembre): Atelier
     {
         $this->reserveMembre = $reserveMembre;
 
@@ -533,7 +534,7 @@ class Atelier
      *
      * @return boolean
      */
-    public function getReserveMembre()
+    public function getReserveMembre():? bool
     {
         return $this->reserveMembre;
     }
@@ -545,7 +546,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setPrix($prix)
+    public function setPrix($prix): Atelier
     {
         $this->prix = $prix;
 
@@ -557,11 +558,11 @@ class Atelier
      *
      * @return integer
      */
-    public function getPrix()
+    public function getPrix():? int
     {
         return $this->prix;
     }
-    
+
     /**
      * Set prixMembre
      *
@@ -569,7 +570,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setPrixMembre($prixMembre)
+    public function setPrixMembre($prixMembre): Atelier
     {
         $this->prixMembre = $prixMembre;
 
@@ -581,11 +582,11 @@ class Atelier
      *
      * @return integer
      */
-    public function getPrixMembre()
+    public function getPrixMembre():? int
     {
         return $this->prixMembre;
     }
-    
+
     /**
      * @ORM\PrePersist
      */
@@ -601,7 +602,7 @@ class Atelier
     {
         $this->setTimestampModification(new \DateTime('now'));
     }
-    
+
     /**
      * Set timestampCreation
      *
@@ -609,7 +610,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setTimestampCreation($timestampCreation)
+    public function setTimestampCreation($timestampCreation): Atelier
     {
         $this->timestampCreation = $timestampCreation;
 
@@ -621,11 +622,11 @@ class Atelier
      *
      * @return \DateTime
      */
-    public function getTimestampCreation()
+    public function getTimestampCreation():? \DateTime
     {
         return $this->timestampCreation;
     }
-    
+
     /**
      * Set timestampModification
      *
@@ -633,7 +634,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setTimestampModification($timestampModification)
+    public function setTimestampModification($timestampModification): Atelier
     {
         $this->timestampModification = $timestampModification;
 
@@ -645,15 +646,15 @@ class Atelier
      *
      * @return \DateTime
      */
-    public function getTimestampModification()
+    public function getTimestampModification():? \DateTime
     {
         return $this->timestampModification;
     }
-    
+
     /**
      * @return string
      */
-    public function getUtilisateurCreation()
+    public function getUtilisateurCreation():? string
     {
         return $this->utilisateurCreation;
     }
@@ -669,7 +670,7 @@ class Atelier
     /**
      * @return string
      */
-    public function getUtilisateurModification()
+    public function getUtilisateurModification():? string
     {
         return $this->utilisateurModification;
     }
@@ -681,7 +682,7 @@ class Atelier
     {
         $this->utilisateurModification = $utilisateurModification;
     }
-    
+
     /**
      * Add inscrit
      *
@@ -689,7 +690,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function addInscrit(Utilisateur $inscrits)
+    public function addInscrit(Utilisateur $inscrits): Atelier
     {
         $this->inscrits[] = $inscrits;
 
@@ -711,7 +712,7 @@ class Atelier
      *
      * @return ArrayCollection
      */
-    public function getInscrits()
+    public function getInscrits():? ArrayCollection
     {
         return $this->inscrits;
     }
@@ -719,7 +720,7 @@ class Atelier
     /**
      * @return \DateTime
      */
-    public function getDatePublication()
+    public function getDatePublication():? \DateTime
     {
         return $this->datePublication;
     }
@@ -735,7 +736,7 @@ class Atelier
     /**
      * @return string
      */
-    public function getUrlInscription()
+    public function getUrlInscription():? string
     {
         return $this->urlInscription;
     }
@@ -755,7 +756,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setAdresse($adresse)
+    public function setAdresse($adresse): Atelier
     {
         $this->adresse = $adresse;
 
@@ -767,7 +768,7 @@ class Atelier
      *
      * @return string
      */
-    public function getAdresse()
+    public function getAdresse():? string
     {
         return $this->adresse;
     }
@@ -779,7 +780,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setCodePostal($codePostal)
+    public function setCodePostal($codePostal): Atelier
     {
         $this->codePostal = $codePostal;
 
@@ -791,7 +792,7 @@ class Atelier
      *
      * @return string
      */
-    public function getCodePostal()
+    public function getCodePostal():? string
     {
         return $this->codePostal;
     }
@@ -803,7 +804,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setVille($ville)
+    public function setVille($ville): Atelier
     {
         $this->ville = $ville;
 
@@ -815,7 +816,7 @@ class Atelier
      *
      * @return string
      */
-    public function getVille()
+    public function getVille():? string
     {
         return $this->ville;
     }
@@ -827,7 +828,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setCoordGeoLatitude($coordGeoLatitude)
+    public function setCoordGeoLatitude($coordGeoLatitude): Atelier
     {
         $this->coordGeoLatitude = $coordGeoLatitude;
 
@@ -839,7 +840,7 @@ class Atelier
      *
      * @return float
      */
-    public function getCoordGeoLatitude()
+    public function getCoordGeoLatitude():? float
     {
         return $this->coordGeoLatitude;
     }
@@ -851,7 +852,7 @@ class Atelier
      *
      * @return Atelier
      */
-    public function setCoordGeoLongitude($coordGeoLongitude)
+    public function setCoordGeoLongitude($coordGeoLongitude): Atelier
     {
         $this->coordGeoLongitude = $coordGeoLongitude;
 
@@ -863,7 +864,7 @@ class Atelier
      *
      * @return float
      */
-    public function getCoordGeoLongitude()
+    public function getCoordGeoLongitude():? float
     {
         return $this->coordGeoLongitude;
     }
@@ -872,19 +873,21 @@ class Atelier
      * @param $latlng
      * @return $this
      */
-    public function setLatLng($latlng)
+    public function setLatLng($latlng): Atelier
     {
         $this->setCoordGeoLatitude($latlng['lat']);
         $this->setCoordGeoLongitude($latlng['lng']);
+
         return $this;
     }
 
     /**
      * @Assert\NotBlank()
      * @OhAssert\LatLng()
+     * @return array
      */
-    public function getLatLng()
+    public function getLatLng(): array
     {
-        return array('lat' => $this->getCoordGeoLatitude(),'lng' => $this->getCoordGeoLongitude());
+        return array('lat' => $this->getCoordGeoLatitude(), 'lng' => $this->getCoordGeoLongitude());
     }
 }

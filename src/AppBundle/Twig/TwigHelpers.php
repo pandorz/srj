@@ -46,10 +46,16 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
             new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog')),
             new \Twig_SimpleFunction('get_image_profil', array($this, 'getImageProfil')),
-            new \Twig_SimpleFunction('get_facebook_id', array($this, 'getFacebookId'))
+            new \Twig_SimpleFunction('get_facebook_id', array($this, 'getFacebookId')),
+            new \Twig_SimpleFunction('get_facebook_page_id', array($this, 'getFacebookPageId')),
+            new \Twig_SimpleFunction('is_actif_facebook_messenger', array($this, 'isActifFacebookMessenger')),
         );
     }
 
+    /**
+     * @param $chaine
+     * @return bool|string
+     */
     public function cropEnteteTexte($chaine)
     {
         if (strlen($chaine)>99) {
@@ -59,6 +65,10 @@ class TwigHelpers extends \Twig_Extension
         return $chaine;
     }
 
+    /**
+     * @param $chaine
+     * @return string
+     */
     public function getCorpsTexte($chaine)
     {
         if (strlen($chaine)<=99) {
@@ -67,7 +77,11 @@ class TwigHelpers extends \Twig_Extension
 
         return ltrim(str_replace($this->cropEnteteTexte($chaine), '', $chaine), "</p>");
     }
-    
+
+    /**
+     * @param $parametre
+     * @return string
+     */
     private function returnParametreValue($parametre)
     {
         if (!is_null($parametre) && !is_null($parametre->getValue())) {
@@ -76,32 +90,65 @@ class TwigHelpers extends \Twig_Extension
         return '';
     }
 
+    /**
+     * @return string
+     */
     public function getFacebookId()
     {
         $parametre = $this->getParamBySlug('facebook-app-id');
         return $this->returnParametreValue($parametre);
     }
 
+    /**
+     * @return string
+     */
+    public function getFacebookPageId()
+    {
+        $parametre = $this->getParamBySlug('facebook-page-id');
+        return $this->returnParametreValue($parametre);
+    }
+
+    /**
+     * @return string
+     */
     public function getLienAdhesion()
     {
         $parametre = $this->getParamBySlug('lien-adhesion-membre');
         return $this->returnParametreValue($parametre);
     }
-    
+
+    /**
+     * @return string
+     */
     public function getLienAdhesionJaponais()
     {
         $parametre =$this->getParamBySlug('lien-adhesion-membre-japonais');
         return $this->returnParametreValue($parametre);
     }
 
+    /**
+     * @return bool
+     */
+    public function isActifFacebookMessenger()
+    {
+        $parametre = $this->getParamBySlug('affichage-facebook-messenger-app');
+
+        return $this->returnParametreValue($parametre) == "1";
+    }
+
+    /**
+     * @return bool
+     */
     public function isActifBlog()
     {
         $parametre = $this->getParamBySlug('affichage-blog-public');
 
         return $this->returnParametreValue($parametre) == "1";
-
     }
 
+    /**
+     * @return mixed
+     */
     public function getFooterBlog()
     {
         $blogs = $this->entityManager
@@ -139,6 +186,10 @@ class TwigHelpers extends \Twig_Extension
         return $data;
     }
 
+    /**
+     * @param int $idUtilisateur
+     * @return mixed|null
+     */
     public function getImageProfil(int $idUtilisateur)
     {
         $result = $this->entityManager->getRepository(Utilisateur::class)->findMedia($idUtilisateur);
@@ -147,7 +198,7 @@ class TwigHelpers extends \Twig_Extension
             $media = $result[0];
             $media->setContext('image');
             $format = $this->providerImage->getFormatName($media, 'big');
-            return str_replace('.jpg','.jpeg', $this->providerImage->generatePublicUrl($media, $format));
+            return str_replace('.jpg', '.jpeg', $this->providerImage->generatePublicUrl($media, $format));
         }
         return null;
     }

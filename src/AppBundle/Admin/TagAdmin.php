@@ -2,23 +2,19 @@
 
 namespace AppBundle\Admin;
 
+use AppBundle\Entity\Tag;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
-
-
-use AppBundle\Entity\Tag;
 
 class TagAdmin extends AbstractAdmin
 {
-    protected $baseRouteName    = 'admin_Tag';
+    protected $baseRouteName = 'admin_Tag';
     protected $baseRoutePattern = 'tag';
 
     public $supportsPreviewMode = false;
-
 
 
     /**
@@ -31,13 +27,12 @@ class TagAdmin extends AbstractAdmin
         $listMapper
             ->add('nom', 'text', [
                 'label' => 'tag.liste.nom'
-            ])   
+            ])
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array()
                 )
-            ))
-        ;
+            ));
     }
 
     /**
@@ -49,12 +44,12 @@ class TagAdmin extends AbstractAdmin
     {
         $formMapper
             ->with('Content', [
-                'name'          => $this->trans('tag.with.details'),
-                'class'         => 'col-md-12'
+                'name' => $this->trans('tag.with.details'),
+                'class' => 'col-md-12'
             ])
             ->add('nom', 'text', [
                 'label' => 'tag.nom',
-                'attr'  => [
+                'attr' => [
                     'placeholder' => 'tag.placeholder.nom'
                 ]
             ])
