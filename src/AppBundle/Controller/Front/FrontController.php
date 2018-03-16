@@ -11,9 +11,6 @@ use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\Evenement;
-use AppBundle\Entity\Atelier;
-use AppBundle\Entity\Sortie;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -22,8 +19,6 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class FrontController extends BaseController
 {
-    const FORMAT_DATE = 'Y-m-d';
-
     /**
     * Accueil
     *
@@ -38,7 +33,7 @@ class FrontController extends BaseController
     {
         $evenementsOuKouryukai  = $this->getTopEvenementsOuKouruykai(3);
         $actualites             = $this->getTopActualites(4);
-        $dates                  = $this->getDatesCalendrier();
+        $dates                  = $this->get('app.front_calendar')->getDates();
         $blogs                  = $this->getTopBlogs(1);
         $blog                   = null;
 
@@ -107,7 +102,6 @@ class FrontController extends BaseController
                     ->getFlashBag()
                     ->add('error', 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument');
             }
-
         } elseif (empty($email)) {
             $request
                 ->getSession()
@@ -119,113 +113,16 @@ class FrontController extends BaseController
     }
 
     /**
-     * @return array
+     * Sorties
+     *
+     * -------------------- *
+     * @Route("/sorties/{plus}/", name="sorties", defaults={"plus" = "recent"})
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @param $plus
+     * @return Response
      */
-    private function getDatesCalendrier()
-    {
-        $data       = [];
-        $evenements = $this->getEm()
-                ->getRepository(Evenement::class)
-                ->findAllValidOverOneMonth();
-
-        foreach ($evenements as $evenement) {
-            $start = $evenement->getDateDebut();
-            $end   = $evenement->getDateFin();
-            
-            if (!is_null($start)) {
-                $start = $start->format(self::FORMAT_DATE);
-            }
-            
-            if (!is_null($end)) {
-                $end = $end->format(self::FORMAT_DATE);
-            }
-            
-            $data[] = [
-                'title' => $evenement->getNom(),
-                'start' => $start,
-                'end'   => $end
-            ];
-        }
-        
-        $ateliers= $this->getEm()
-                ->getRepository(Atelier::class)
-                ->findAllValidOverOneMonth();
-        
-        foreach ($ateliers as $atelier) {
-            $start = $atelier->getDate();
-            
-            if (!is_null($start)) {
-                $start = $start->format(self::FORMAT_DATE);
-            }
-            
-            $data_temp = [
-                'title' => $atelier->getNom(),
-                'start' => $start
-            ];
-
-            if (!empty($atelier->getUrlInscription())) {
-                $data_temp['url'] = $atelier->getUrlInscription();
-            }
-            $data[] = $data_temp;
-        }
-
-        $kouryukai= $this->getEm()
-            ->getRepository(Kouryukai::class)
-            ->findAllValidOverOneMonth();
-
-        foreach ($kouryukai as $k) {
-            $start = $k->getDate();
-
-            if (!is_null($start)) {
-                $start = $start->format(self::FORMAT_DATE);
-            }
-
-            $data_temp = [
-                'title' => $k->getNom(),
-                'start' => $start
-            ];
-
-            if (!empty($k->getUrlInscription())) {
-                $data_temp['url'] = $k->getUrlInscription();
-            }
-            $data[] = $data_temp;
-        }
-        
-        $sorties = $this->getEm()
-                ->getRepository(Sortie::class)
-                ->findAllValidOverOneMonth();
-        
-        foreach ($sorties as $sortie) {
-            $start = $sortie->getDate();
-            
-            if (!is_null($start)) {
-                $start = $start->format(self::FORMAT_DATE);
-            }
-
-            $data_temp = [
-                'title' => $sortie->getNom(),
-                'start' => $start
-            ];
-
-            if (!empty($sortie->getUrlInscription())) {
-                $data_temp['url'] = $sortie->getUrlInscription();
-            }
-            $data[] = $data_temp;
-        }
-        
-        return $data;
-    }
-    
-    /**
-    * Sorties
-    *
-    * -------------------- *
-    * @Route("/sorties/{plus}/", name="sorties", defaults={"plus" = "recent"})
-    * @Method("GET")
-    * -------------------- *
-    *
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
     public function sortiesAction($plus)
     {
         $limit = 4;
@@ -251,17 +148,18 @@ class FrontController extends BaseController
         $cours = $this->getEm()->getRepository(Cour::class)->getAffichable();
         return $this->render('front/cours/cours.html.twig', ['cours' => $cours]);
     }
-    
+
     /**
-    * Ateliers
-    *
-    * -------------------- *
-    * @Route("/ateliers/{plus}/", name="ateliers", defaults={"plus" = "recent"})
-    * @Method("GET")
-    * -------------------- *
-    *
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
+     * Ateliers
+     *
+     * -------------------- *
+     * @Route("/ateliers/{plus}/", name="ateliers", defaults={"plus" = "recent"})
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @param $plus
+     * @return Response
+     */
     public function ateliersAction($plus)
     {
         $limit = 4;
@@ -294,17 +192,18 @@ class FrontController extends BaseController
             ]
         );
     }
-    
+
     /**
-    * Actualites
-    *
-    * -------------------- *
-    * @Route("/actualites/{plus}/", name="actualites", defaults={"plus" = "recent"})
-    * @Method("GET")
-    * -------------------- *
-    *
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
+     * Actualites
+     *
+     * -------------------- *
+     * @Route("/actualites/{plus}/", name="actualites", defaults={"plus" = "recent"})
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @param $plus
+     * @return Response
+     */
     public function actualitesAction($plus)
     {
         $limit = 4;
@@ -325,17 +224,18 @@ class FrontController extends BaseController
             ['actualites' => $actualites, 'blog' => $blog]
         );
     }
-    
+
     /**
-    * Evenements
-    *
-    * -------------------- *
-    * @Route("/evenements/{plus}/", name="evenements", defaults={"plus" = "recent"})
-    * @Method("GET")
-    * -------------------- *
-    *
-    * @return \Symfony\Component\HttpFoundation\Response
-    */
+     * Evenements
+     *
+     * -------------------- *
+     * @Route("/evenements/{plus}/", name="evenements", defaults={"plus" = "recent"})
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @param $plus
+     * @return Response
+     */
     public function evenementsAction($plus)
     {
         $limit = 4;

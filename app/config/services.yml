@@ -166,3 +166,7 @@ services:
     app.recaptcha:
         class: AppBundle\Service\Recaptcha
         arguments: ["%google_recaptcha_url%", "%google_recaptcha_secret_token%", "%kernel.environment%"]
+
+    app.front_calendar:
+        class: AppBundle\Service\FrontCalendar
+        arguments: ["@doctrine.orm.entity_manager"]
