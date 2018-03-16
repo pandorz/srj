@@ -1,4 +1,4 @@
-{% if app.environment == 'prod' and isActifFacebookMessenger() and get_facebook_page_id() is not empty %}
+{% if app.environment == 'prod' and is_actif_facebook_messenger() and get_facebook_page_id() is not empty %}
 <div class="fb-customerchat"
      page_id="{{ get_facebook_page_id() }}"
      theme_color="#e30613"
