@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller\Front;
 
+use AppBundle\Service\Mailer;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -29,6 +30,7 @@ class ContactController extends BaseController
      * @Method({"GET", "POST"})
      * -------------------- *
      *
+     * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function indexAction(Request $request)
@@ -133,18 +135,19 @@ class ContactController extends BaseController
             if ($form->isValid()) {
                 $data = $form->getData();
 
-                $retour_mail = $this->sendMail(
-                    $this->getTranslator()->trans('contact.mail.sujet'),
-                    'contact',
-                    null,
-                    $data['email'],
-                    null,
-                    [
-                        'title' => $this->getTranslator()->trans('contact.mail.titre'),
-                        'subtitle' => $this->getTranslator()->trans('contact.mail.soustitre'),
-                        'data' => $data
-                    ]
-                );
+                $retour_mail = $this->get('app.mailer')
+                    ->setSubject($this->getTranslator()->trans('contact.mail.sujet'))
+                    ->setReplyTo($data['email'])
+                    ->setTemplate(
+                        'contact',
+                        [
+                            'title'     => $this->getTranslator()->trans('contact.mail.titre'),
+                            'subtitle'  => $this->getTranslator()->trans('contact.mail.soustitre'),
+                            'data'      => $data
+                        ]
+                    )
+                    ->send();
+
                 if ($retour_mail) {
                     $request
                         ->getSession()
