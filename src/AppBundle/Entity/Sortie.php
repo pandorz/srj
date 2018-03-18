@@ -476,7 +476,7 @@ class Sortie
      *
      * @return ArrayCollection
      */
-    public function getSuperviseurs():? ArrayCollection
+    public function getSuperviseurs()
     {
         return $this->superviseurs;
     }
@@ -678,7 +678,7 @@ class Sortie
      *
      * @return ArrayCollection
      */
-    public function getInscrits():? ArrayCollection
+    public function getInscrits()
     {
         return $this->inscrits;
     }

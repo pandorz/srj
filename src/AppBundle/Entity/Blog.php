@@ -457,7 +457,7 @@ class Blog implements RoutedItemInterface
      *
      * @return ArrayCollection
      */
-    public function getAuteurs():? ArrayCollection
+    public function getAuteurs()
     {
         return $this->auteurs;
     }
@@ -491,7 +491,7 @@ class Blog implements RoutedItemInterface
      *
      * @return ArrayCollection
      */
-    public function getTags():? ArrayCollection
+    public function getTags()
     {
         return $this->tags;
     }

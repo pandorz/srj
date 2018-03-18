@@ -343,7 +343,7 @@ class Cour
      *
      * @return ArrayCollection
      */
-    public function getInscrits():? ArrayCollection
+    public function getInscrits()
     {
         return $this->inscrits;
     }
@@ -377,7 +377,7 @@ class Cour
      *
      * @return ArrayCollection
      */
-    public function getProfesseurs():? ArrayCollection
+    public function getProfesseurs()
     {
         return $this->professeurs;
     }
