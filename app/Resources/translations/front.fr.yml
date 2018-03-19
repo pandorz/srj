@@ -55,6 +55,7 @@ general:
         twitter: Twitter
 
     title:
+        blog: 'Blog'
         activites: 'Nos activités'
         actualites: Actualités
         association: 'L''association'
@@ -101,6 +102,7 @@ cours:
 hastags:
     normandie: 'Normandie'
     japon: 'Japon'
+    blog: 'Blog'
 
 evenement:
     button:
@@ -134,3 +136,18 @@ contact:
         title: 'Nous contacter'
     title: 'Laissez-nous un message !'
     button: 'Envoyer'
+
+blog:
+    title: 'Nos articles'
+    meta:
+        title: 'Nos articles de blog'
+    button:
+        see_article: 'Voir l''article'
+        see_all: 'Voir tous les articles du blog'
+        see_all_light: 'Tous les articles'
+
+    last_article_title: 'Derniers articles%tag_sentence%'
+    last_article_tag: ' pour le tag %tag_name%'
+    auteur:
+        wrote_by : 'Ecrit par '
+        and: ' et '

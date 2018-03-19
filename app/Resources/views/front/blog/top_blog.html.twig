@@ -1,3 +1,4 @@
+{% trans_default_domain 'front' %}
 {% if blog is not empty %}
 <section class="blog">
     <div class="u-fitted">
@@ -6,10 +7,10 @@
                 {% media blog.image, 'reference' with {'class': 'postPhoto blogPhoto'} %}
                 <h4 class="postTitle blogTitle">{{ blog.nom }}</h4>
                 <p class="postSummary blogSummary">{{ blog.descriptionCourte }}</p>
-                <a class="postHover postLink" href="{{ path('blog_detail', {'slug': blog.slug}) }}" title="Voir l'article : {{ blog.nom }}"><span class="btn btn-blank" aria-hidden="true">Voir l'article</span></a>
+                <a class="postHover postLink" href="{{ path('blog_detail', {'slug': blog.slug}) }}" title="V{{ 'blog.button.see_article'|trans }} : {{ blog.nom }}"><span class="btn btn-blank" aria-hidden="true">{{ 'blog.button.see_article'|trans }}</span></a>
             </div>
         </div>
-        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{ path('blog') }}">Voir tous les articles du blog</a></div>
+        <div class="seeAllPosts"><a class="btn btn-blank-secondary" href="{{ path('blog') }}">{{ 'blog.button.see_all'|trans }}</a></div>
     </div>
 </section>
 {% endif %}

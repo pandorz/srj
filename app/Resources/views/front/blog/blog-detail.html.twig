@@ -1,4 +1,5 @@
 {% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
 {% block body_class %}blogDetail{% endblock %}
 {% block html_title %} - {{ blog.nom }}{% endblock %}
 {% block meta_description %}{{ blog.descriptionCourte }}{% endblock %}
@@ -12,13 +13,13 @@
 {% block meta_image_src %}{{ url('home')|trim('/', 'right') }}{% path blog.image, 'reference' %}{% endblock %}
 {% block main %}
 
-    {% set hastagTitle = "Nos articles" %}
-    {% set hastagList = "#Blog" %}
+    {% set hastagTitle = 'blog.title'|trans %}
+    {% set hastagList = "#"~'hastags.blog'|trans %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     {% set stringAuteurs = '' %}
     {% if blog.auteurs is not empty %}
-        {% set stringAuteurs = 'Ecrit par ' %}
+        {% set stringAuteurs = 'blog.auteur.wrote_by'|trans %}
         {% for auteur in blog.auteurs %}
             {% set auteur_toString = auteur %}
             {% if auteur.website is not empty %}
@@ -27,7 +28,7 @@
             {% if loop.first %}
                 {% set stringAuteurs = stringAuteurs~' '~auteur_toString %}
             {% elseif loop.last %}
-                {% set stringAuteurs = stringAuteurs~' et '~auteur_toString %}
+                {% set stringAuteurs = stringAuteurs~'blog.auteur.and'|trans~auteur_toString %}
             {% else %}
                 {% set stringAuteurs = stringAuteurs~', '~auteur_toString %}
             {% endif %}
