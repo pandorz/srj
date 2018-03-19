@@ -59,7 +59,8 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('is_actif_facebook_messenger', array($this, 'isActifFacebookMessenger')),
             new \Twig_SimpleFunction('lien_facebook', array($this, 'getLienFacebook')),
             new \Twig_SimpleFunction('lien_twitter', array($this, 'getLienTwitter')),
-            new \Twig_SimpleFunction('adresse_postal', array($this, 'getAdressePostale'))
+            new \Twig_SimpleFunction('adresse_postal', array($this, 'getAdressePostale')),
+            new \Twig_SimpleFunction('telephone', array($this, 'getTelephone'))
         );
     }
 
@@ -111,6 +112,14 @@ class TwigHelpers extends \Twig_Extension
     public function getAdressePostale()
     {
         return $this->parameter->getParamBySlug('adresse');
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelephone()
+    {
+        return $this->parameter->getParamBySlug('telephone');
     }
 
     /**
