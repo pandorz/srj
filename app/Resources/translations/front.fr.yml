@@ -75,6 +75,7 @@ general:
     items:
         reserver: 'Réservé aux membres.'
         cloture: 'Clôture des réservations :'
+        lieu: 'Lieu :'
 
 meta:
     description:
@@ -93,6 +94,8 @@ actualite:
 conditions:
     title: 'Conditions :'
     free_for_members: 'Gratuit pour les membres.'
+    prix: ' euros pour les personnes non membres.'
+    member_prix: ' euros pour les membres.'
 
 cours:
     button:
@@ -151,3 +154,42 @@ blog:
     auteur:
         wrote_by : 'Ecrit par '
         and: ' et '
+
+sortie:
+    title: 'Nos sorties'
+    none:
+        title: 'Aucune sortie n''est encore programmée pour le moment...'
+        description: 'Ça ne devrait pourtant pas tarder !'
+    meta:
+        title: 'Les sorties sur le thème de la culture japonaise'
+    presentation:
+        title: 'Les sorties'
+        header: 'Avec Rouen Japon, on fait aussi des sorties ! On va au musée, voir des expositions, assister à des conférences, ou visiter des jardins... Tous les ans l''association vous organise des petites sorties, très souvent à tarifs préférentiels*.'
+        texte: '<p>Comme pour les ateliers, le nombre et le type de sorties peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a>.</p>
+                                    <p><b>Pour cette saison 2017-2018</b> par exemple, Rouen Japon pense vous faire bénéficier de quelques sorties intéressantes :</p>
+                                    <ul class="u-ul-colorRJ">
+                                        <li><b>Visite du jardin japonais</b> (en octobre ou novembre, selon la date d''apparition des couleurs automnales)</li>
+                                    </ul>
+                                    <p>Presque chaque sortie est ouverte à tous, dans la limite des places disponibles et se règle à l''unité (évidemment, les tarifs diffèrent en fonction du fait que vous soyez adhérent(e) ou non).</p>
+                                    <p>Allez, mets ton kimono on sort !</p>'
+        note: '* À condition de faire partie de l''association :-)'
+
+atelier:
+    none:
+        title: 'Aucun atelier n''est encore programmé...'
+        description: 'Ça ne devrait pourtant pas tarder !'
+    meta:
+        title: 'Les ateliers sur la culture japonaise : ikebana, origami, cuisine nippone'
+    presentation:
+        title: 'Les ateliers'
+        header: 'Tous les ans, Rouen Japon vous propose de participer à divers ateliers, de l''initiation à l''<strong>Ikebana</strong> (art floral), aux <strong>ateliers cuisine</strong> (gyozas, okonomiyaki...), en passant par l''<strong>origami</strong>...'
+        texte: '<p>Le type et la fréquence de ces ateliers peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a></p>
+                                    <p>Pour cette saison 2017-2018 par exemple, Rouen Japon pense reprogrammer les ateliers de la saison précédente auxquels vous avez été nombreux à répondre présents, à savoir : </p>
+                                    <ul class="u-ul-colorRJ">
+                                        <li><b>Les Ateliers cuisine</b> (à raison d''un atelier par trimestre)</li>
+                                        <li><b>Les Ateliers origami</b> (à raison d''un atelier par trimestre)</li>
+                                        <li><b> Préparer son voyage au Japon</b>  (en octobre)</li>
+                                    </ul>
+                                    <p>Presque chaque atelier est ouvert à tous*, dans la limite des places disponibles et se règle à l''unité. Toutes les conditions figurent dans le détail des ateliers en question.</p>
+                                    <p>À bento ! Euh, ahem, à bientôt !</p>'
+        note: 'étails et conditions à consulter pour chaque atelier'

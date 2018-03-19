@@ -1,7 +1,7 @@
 {% extends "front/template/base_front.html.twig" %}
 {% trans_default_domain 'front' %}
 {% block body_class %}events workshops{% endblock %}
-{% set meta_title = 'Les ateliers sur la culture japonaise : ikebana, origami, cuisine nippone' %}
+{% set meta_title = 'atelier.meta.title'|trans %}
 {% block html_title %} - {{ meta_title }}{% endblock %}
 {% block og_meta %}
     {% include 'front/template/basique_meta_pages.html.twig' %}
@@ -9,29 +9,21 @@
 {% block main %}
     
     {% set hastagTitle = 'general.title.activites'|trans %}
-    {% set hastagList = "#Ateliers" %}
+    {% set hastagList = "#"~'activities.title.ateliers'|trans %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="workshopsIntro section u-fitted">
         <div class="grid-2">
             <div><img src="{{ asset('medias/img/ateliers.jpg') }}" alt="" width="580" height="435"></div>
             <div>
-                <h2 class="sectionTitle">Les ateliers</h2>
+                <h2 class="sectionTitle">{{ 'atelier.presentation.title'|trans }}</h2>
                 <div class="sectionChapo">
-                    <p>Tous les ans, Rouen Japon vous propose de participer à divers ateliers, de l'initiation à l'<strong>Ikebana</strong> (art floral), aux <strong>ateliers cuisine</strong> (gyozas, okonomiyaki...), en passant par l'<strong>origami</strong>...</p>
+                    <p>{{ 'atelier.presentation.header'|trans|raw }}</p>
                 </div>
 
                 <div class="sectionText">
-                    <p>Le type et la fréquence de ces ateliers peut varier d'une saison à l'autre, c'est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="https://www.facebook.com/AssoJaponRouen">ici</a> et <a href="https://twitter.com/rouenjapon">là</a></p>
-                    <p>Pour cette saison 2017-2018 par exemple, Rouen Japon pense reprogrammer les ateliers de la saison précédente auxquels vous avez été nombreux à répondre présents, à savoir : </p>
-                    <ul class="u-ul-colorRJ">
-                        <li><b>Les Ateliers cuisine</b> (à raison d'un atelier par trimestre)</li>
-                        <li><b>Les Ateliers origami</b> (à raison d'un atelier par trimestre)</li>
-                        <li><b> Préparer son voyage au Japon</b>  (en octobre)</li>
-                    </ul>
-                    <p>Presque chaque atelier est ouvert à tous*, dans la limite des places disponibles et se règle à l'unité. Toutes les conditions figurent dans le détail des ateliers en question.</p>
-                    <p>À bento ! Euh, ahem, à bientôt !</p>
-                    <p class="u-note">*Détails et conditions à consulter pour chaque atelier</p>
+                    {{ 'atelier.presentation.texte'|trans({'%facebook_link%': lien_facebook(), '%twitter_link%': lien_twitter()}))|raw }}
+                    <p class="u-note">{{ 'atelier.presentation.note'|trans }}</p>
                 </div>
             </div>
         </div>                
@@ -40,12 +32,12 @@
     <section class="comingEvents section">
         {% if ateliers is empty %}
         <div class="noWorkshop u-textCenter">
-            <b class="nothing">Aucun atelier n'est encore programmé...</b>
-            <p>Ça ne devrait pourtant pas tarder !</p>
+            <b class="nothing">{{ 'atelier.none.title'|trans }}</b>
+            <p>{{ 'atelier.none.description'|trans }}</p>
             {% include 'front/newsletter/newsletter_form_light.html.twig' %}
         </div>
         {% else %} 
-        <h2 class="sectionTitle">Nos Ateliers</h2>
+        <h2 class="sectionTitle">{{ 'general.title.activites'|trans }}</h2>
         <div class="postsList u-fitted">        
         {% for atelier in ateliers %}  
             <div class="postItem shortPost">
@@ -62,10 +54,10 @@
                         <p>
                             <b class="u-textColorRJ">{{ 'conditions.free_for_members'|trans }}</b>
                             {%if atelier.prix>0 and not atelier.reserveMembre%}
-                            {{atelier.prix|replace({'.':','})}} euros pour les personnes non membres. 
+                            {{atelier.prix|replace({'.':','})}}{{ 'conditions.member_prix'|trans }}
                             {% endif %}
                             {%if atelier.prixMembre>0 %}
-                            {{atelier.prixMembre|replace({'.':','})}} euros pour les membres. 
+                            {{atelier.prixMembre|replace({'.':','})}}{{ 'conditions.prix'|trans }}
                             {% else %}
                                 {{ 'conditions.free_for_members'|trans }}
                             {% endif %}
@@ -74,7 +66,7 @@
                         </p>
                         {% if atelier.coordGeoLatitude is not empty and atelier.coordGeoLongitude is not empty %}
                             <p>
-                                <b class="u-textColorRJ">Lieu :</b>
+                                <b class="u-textColorRJ">{{ 'general.items.lieu'|trans }}</b>
                                 <a class="u-textBlack" href="https://maps.google.fr/maps?q={{ atelier.coordGeoLatitude }},{{ atelier.coordGeoLongitude }}" target="_blank">{{ atelier.adresse is not null ? atelier.adresse~', ' : '' }}{{ atelier.codePostal is not null ? atelier.codePostal~' ' : '' }}{{ atelier.ville is not null ? atelier.ville : '' }}</a>
                             </p>
                         {% endif %}

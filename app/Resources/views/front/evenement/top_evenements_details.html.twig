@@ -25,7 +25,7 @@
                 </p>
                 {% if evenementOuKouryukai.coordGeoLatitude is not empty and evenementOuKouryukai.coordGeoLongitude is not empty %}
                     <p>
-                        <b class="u-textColorRJ">Lieu :</b>
+                        <b class="u-textColorRJ">{{ 'general.items.lieu'|trans }}</b>
                         <a class="u-textBlack" href="https://maps.google.fr/maps?q={{ evenementOuKouryukai.coordGeoLatitude }},{{ evenementOuKouryukai.coordGeoLongitude }}" target="_blank">{{ evenementOuKouryukai.adresse is not null ? evenementOuKouryukai.adresse~', ' : '' }}{{ evenementOuKouryukai.codePostal is not null ? evenementOuKouryukai.codePostal~' ' : '' }}{{ evenementOuKouryukai.ville is not null ? evenementOuKouryukai.ville : '' }}</a>
                     </p>
                 {% endif %}
