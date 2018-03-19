@@ -46,14 +46,14 @@
     <section class="u-fitted">
         <div class="join section">
             <h2 class="sectionTitle">Adhérer à l'association</h2>
-            <div class="joinChapo">Adhérer à l'association vous permet de vous inscrire aux cours de japonais et aux ateliers que nous organisons tout au long de l'année. Le montant de l'adhésion est de 20€ pour une année.</div>
+            <div class="joinChapo">Adhérer à l'association vous permet de vous inscrire aux cours de japonais et aux ateliers que nous organisons tout au long de l'année. Le montant de l'adhésion est de {{ montant-cotisation() }}€ pour une année.</div>
             {% if lien_adhesion() is not empty %}
             <a class="btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
             {% endif %}
             <div class="joinText sectionText">
                 <strong class="conditions">{{ 'conditions.free_for_members'|trans }}</strong>
                 <p>Votre adhésion sera effective à la réception de la cotisation que vous pouvez régler en liquide ou par chèque à l'ordre de "Rouen Japon".<br>
-                Le montant de la cotisation peut être remis en mains propres lors d'un atelier, au professeur lors d'un cours de japonais ou à notre réunion de rentrée qui aura lieu le 17 septembre à 14h à la maison des associations de Saint-Sever.</p>
+                Le montant de la cotisation peut être remis en mains propres lors d'un atelier, au professeur lors d'un cours de japonais ou à notre réunion de rentrée qui aura lieu le 17 septembre à 14h à la {{ adresse_cours() }}.</p>
                 <p>Si vous avez d'autres questions, vous pouvez nous les poser via notre <a href="{{ path('contact') }}">formulaire de contact.</a></p>
             </div>
         </div>
