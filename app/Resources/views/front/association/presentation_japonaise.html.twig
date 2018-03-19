@@ -1,41 +1,22 @@
 {% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
 {% block body_class %}asso{% endblock %}
-{% set meta_title = 'ルーアン日仏協会のプレゼンテーション' %}
+{% set meta_title = 'association.qui_sommes_nous.nihon.meta.title'|trans %}
 {% block html_title %} - {{ meta_title }}{% endblock %}
 {% block og_meta %}
     {% include 'front/template/basique_meta_pages.html.twig' %}
 {% endblock %}
 {% block main %}
     
-    {% set hastagTitle = "ルーアン日本協会" %}
+    {% set hastagTitle = 'association.qui_sommes_nous.nihon.title'|trans %}
     {% set hastagList = "" %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="about section u-fitted">
-        <h2 class="sectionTitle">私たちについて</h2>
+        <h2 class="sectionTitle">{{ 'association.qui_sommes_nous.nihon.presentation.title'|trans }}</h2>
         <div class="aboutText">
-            <p>
-                ルーアン日仏協会（ルーアン・ジャポン）は、2009年に設立され、現在では約120名の方にメンバー登録をしていただいています。
-                ルーアン・ジャポンは、
-            </p>
-            <ul class="u-ul-colorRJ">
-                <li>フランス人と日本人との交流の場を提供すること</li>
-                <li>日仏間のコミュニケーションのお手伝いをすること</li>
-                <li>日本語教室を提供すること（フランス語教室は企画中です）</li>
-                <li>日本文化、フランス文化に関わるイベントを企画、提供すること</li>
-            </ul><br>
-
-            <p><b>を目的として活動しています。</b></p>
-            <ul class="u-ul-colorRJ">
-                <li><b>2010年 :</b> 日本語教室の開講</li>
-                <li><b>2011年 :</b> ルーアン国立音楽学校（コンサルヴァトワール）、ルーアン赤十字との協力の元、東日本大地震の支援のためのチャリティーコンサートの実施</li>
-                <li><b>2013年 :</b> 日本文化を紹介するイベント「ハナミ2012」の開催</li>
-                <li><b>2013～2014年度 :</b> 藤野あかりからピエール・ジョズリエへ代表の交代</li>
-                <li><b>2014年 :</b> 第２回「ハナミ」開催</li>
-                <li><b>2014～2015年度 :</b> 茶道と書道教室の開講</li>
-                <li><b>2015年 :</b> ジャポン」の開始（日仏言語交流の場）</li>
-                <li><b>2016～2017年度 :</b> 子供向け日本語教室の開講</li>
-            </ul>
+            {{ 'association.qui_sommes_nous.nihon.presentation.texte'|trans({'%members_number%': nombre_membre()}) }}
+            {{ 'association.qui_sommes_nous.nihon.presentation.date'|trans }}
         </div>
     </section>
    

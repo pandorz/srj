@@ -75,7 +75,7 @@
                                 <p class="u-note">*{{ cour.note }}</p>
                             {% endif %}
                             <strong class="conditions">{{ 'conditions.free_for_members'|trans }}</strong>
-                            <p>{{ 'cour.adherer'|trans({'%adhesion_link%': lien_adhesion(), '%cotisation_amount%': montant-cotisation()})|raw }}</p>
+                            <p>{{ 'cour.adherer'|trans({'%adhesion_link%': lien_adhesion(), '%cotisation_amount%': montant_cotisation()})|raw }}</p>
                             <p>{{ 'cour.montant'|trans({'%price%': cour.prix}) }}</p>
                             {% if cour.conditionParticuliere is not empty %}
                                 <p>{{ cour.conditionParticuliere }}</p>

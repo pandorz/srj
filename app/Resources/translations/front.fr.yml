@@ -213,3 +213,68 @@ cour:
     montant: 'Le montant des cours pour la saison est fixé à %price%€ pour l''année (paiement au comptant ou prélèvement automatique mensuel).'
     give_by: 'Les cours sont dispensés'
     where: ' à la '
+
+association:
+    membres_bureau: 'Les membres du bureau'
+    partenaires: 'Les partenaires de l''association'
+    qui_sommes_nous:
+        version:
+            meta:
+                title: 'Découvrir l’association franco-japonaise de Rouen'
+            title: 'L''Association Rouen Japon'
+            presentation:
+                title: 'À propos de nous'
+                texte: '<p>
+                                        Rouen Japon a été créé en 2009 par Akari FUJINO. A l’heure actuelle, l’association compte %members_number% membres.<br>
+                                        Rouen Japon a pour objectif :
+                                    </p>
+                                    <ul class="u-ul-colorRJ">
+                                        <li>Être un lieu d''échange entre les Français et les Japonais</li>
+                                        <li>Mettre en relation des Français et des Japonais pour leur permettre de communiquer, d''échanger sur leurs pays respectifs</li>
+                                        <li>Proposer des cours de japonais et de français</li>
+                                        <li>Organiser des animations autour des cultures japonaises et françaises</li>
+                                    </ul><br>'
+                date: '<p><b>Quelques dates :</b></p>
+                                   <ul class="u-ul-colorRJ">
+                                       <li><b>2010 :</b> Mise en place des cours de japonais</li>
+                                       <li><b>2011 :</b> Concert de solidarité aux victimes du tsunami</li>
+                                       <li><b>2013 :</b> Premier festival Hanami</li>
+                                       <li><b>Saison 2013-14 :</b> Akari FUJINO cède la présidence de l’association à Pierre JOSELIER</li>
+                                       <li><b>2014 :</b> Deuxième festival Hanami</li>
+                                       <li><b>Saison 2014-15 :</b> Mise en place des cours de cérémonie du thé et de calligraphie</li>
+                                       <li><b>2015 :</b> Lancement du Café Japon (café d’échange linguistique)</li>
+                                       <li><b>Saison 2016-17 :</b> Mise en place des cours de japonais pour enfants</li>
+                                   </ul>'
+            adhesion:
+                title: 'Adhérer à l''association'
+                header: 'Adhérer à l''association vous permet de vous inscrire aux cours de japonais et aux ateliers que nous organisons tout au long de l''année. Le montant de l''adhésion est de %cotisation_amount%€ pour une année.'
+                texte: 'Votre adhésion sera effective à la réception de la cotisation que vous pouvez régler en liquide ou par chèque à l''ordre de "Rouen Japon".<br>
+                                        Le montant de la cotisation peut être remis en mains propres lors d''un atelier, au professeur lors d''un cours de japonais ou à notre réunion de rentrée qui aura lieu le 17 septembre à 14h à la %cour_adresse%.'
+                contact_form_link: 'Si vous avez d''autres questions, vous pouvez nous les poser via notre <a href="%contact_link%">formulaire de contact.</a>'
+        nihon:
+            meta:
+                title: 'ルーアン日仏協会のプレゼンテーション'
+            title: 'ルーアン日本協会'
+            presentation:
+                title: '私たちについて'
+                texte: '<p>
+                                        ルーアン日仏協会（ルーアン・ジャポン）は、2009年に設立され、現在では約%members_number%名の方にメンバー登録をしていただいています。
+                                        ルーアン・ジャポンは、<br>
+                                    </p>
+                                    <ul class="u-ul-colorRJ">
+                                        <li>フランス人と日本人との交流の場を提供すること</li>
+                                        <li>日仏間のコミュニケーションのお手伝いをすること</li>
+                                        <li>日本語教室を提供すること（フランス語教室は企画中です）</li>
+                                        <li>日本文化、フランス文化に関わるイベントを企画、提供すること</li>
+                                    </ul><br>'
+                date: '<p><b>を目的として活動しています。</b></p>
+                                   <ul class="u-ul-colorRJ">
+                                       <li><b>2010年 :</b> 日本語教室の開講</li>
+                                       <li><b>2011年 :</b> ルーアン国立音楽学校（コンサルヴァトワール）、ルーアン赤十字との協力の元、東日本大地震の支援のためのチャリティーコンサートの実施</li>
+                                       <li><b>2013年 :</b> 日本文化を紹介するイベント「ハナミ2012」の開催</li>
+                                       <li><b>2013～2014年度 :</b> 藤野あかりからピエール・ジョズリエへ代表の交代</li>
+                                       <li><b>2014年 :</b> 第２回「ハナミ」開催</li>
+                                       <li><b>2014～2015年度 :</b> 茶道と書道教室の開講</li>
+                                       <li><b>2015年 :</b> ジャポン」の開始（日仏言語交流の場）</li>
+                                       <li><b>2016～2017年度 :</b> 子供向け日本語教室の開講</li>
+                                   </ul>'
