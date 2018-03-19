@@ -193,3 +193,23 @@ atelier:
                                     <p>Presque chaque atelier est ouvert à tous*, dans la limite des places disponibles et se règle à l''unité. Toutes les conditions figurent dans le détail des ateliers en question.</p>
                                     <p>À bento ! Euh, ahem, à bientôt !</p>'
         note: 'étails et conditions à consulter pour chaque atelier'
+
+cour:
+    meta:
+        title: 'Les cours de japonais et de culture japonaise : calligraphie, art de la cérémonie du thé, yoga, préparation au JLPT'
+    presentation:
+        title: 'Les cours'
+        hedaer: 'Grâce aux cours de Rouen Japon, vous pourrez apprendre le japonais, pratiquer la calligraphie, le yoga ou vous initier à l''art de la cérémonie du thé.<br>
+                                 Les enfants pourront également découvrir la langue et la culture japonaises tout en s''amusant.<br>
+                                 Ci-dessous les différents cours pour la saison 2017-2018.'
+    professor:
+        by : ' par '
+        and: ' et '
+    bientot_complet: '// Plus que quelques places disponibles ! ///'
+    complet: '// Les cours sont complets ///'
+    detail_complet: 'COMPLET'
+    adherer: 'Pour suivre ce cours, il vous faut <b><a href="%adhesion_link%" target="_blank">adhérer à l''association</a></b> et vous acquitter du montant de la cotisation de %cotisation_amount%€.'
+    contact_form_link: 'Si vous avez d''autres questions, vous pouvez nous les poser via notre <a href="%contact_link%">formulaire de contact.</a>'
+    montant: 'Le montant des cours pour la saison est fixé à %price%€ pour l''année (paiement au comptant ou prélèvement automatique mensuel).'
+    give_by: 'Les cours sont dispensés'
+    where: ' à la '

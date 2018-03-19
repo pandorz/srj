@@ -60,7 +60,9 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('lien_facebook', array($this, 'getLienFacebook')),
             new \Twig_SimpleFunction('lien_twitter', array($this, 'getLienTwitter')),
             new \Twig_SimpleFunction('adresse_postal', array($this, 'getAdressePostale')),
-            new \Twig_SimpleFunction('telephone', array($this, 'getTelephone'))
+            new \Twig_SimpleFunction('adresse_cours', array($this, 'getAdresseCours')),
+            new \Twig_SimpleFunction('telephone', array($this, 'getTelephone')),
+            new \Twig_SimpleFunction('montant_cotisation', array($this, 'getMontantCotisation'))
         );
     }
 
@@ -112,6 +114,22 @@ class TwigHelpers extends \Twig_Extension
     public function getAdressePostale()
     {
         return $this->parameter->getParamBySlug('adresse');
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdresseCours()
+    {
+        return $this->parameter->getParamBySlug('adresse-cours');
+    }
+
+    /**
+     * @return string
+     */
+    public function getMontantCotisation()
+    {
+        return $this->parameter->getParamBySlug('montant-cotisation');
     }
 
     /**
