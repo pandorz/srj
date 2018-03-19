@@ -1,19 +1,16 @@
 {% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
 {% block body_class %}asso{% endblock %}
-{% set meta_title = 'Mentions Légales' %}
+{% set meta_title = 'mentions_legales.meta.title'|trans %}
 {% block html_title %} - {{ meta_title }}{% endblock %}
 {% block og_meta %}
     {% include 'front/template/basique_meta_pages.html.twig' %}
 {% endblock %}
 {% block main %}
 
-    {% set hastagTitle = "L'Association Rouen Japon" %}
-    {% set hastagList = "#MentionsLegales" %}
+    {% set hastagTitle = 'mentions_legales.title'|trans %}
+    {% set hastagList = "#"~'hastags.mention_legale'|trans %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
-
-{% set site_web = 'rouenjapon.fr' %}
-{% set extension_web = 'association-japon-rouen.fr' %}
-{% set titre_asso = "l'association Rouen Japon" %}
 
 {% include 'front/mentions_legales/immatriculation.html.twig' %}
 {% include 'front/mentions_legales/hebergement.html.twig' %}

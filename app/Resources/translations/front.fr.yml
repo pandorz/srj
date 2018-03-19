@@ -106,6 +106,7 @@ hastags:
     normandie: 'Normandie'
     japon: 'Japon'
     blog: 'Blog'
+    mention_legale: 'MentionsLegales'
 
 evenement:
     button:
@@ -278,3 +279,11 @@ association:
                                        <li><b>2015年 :</b> ジャポン」の開始（日仏言語交流の場）</li>
                                        <li><b>2016～2017年度 :</b> 子供向け日本語教室の開講</li>
                                    </ul>'
+
+mentions_legales:
+    site_web: 'rouenjapon.fr'
+    extension_web: 'association-japon-rouen.fr'
+    titre_asso: 'l''association Rouen Japon'
+    meta:
+        title: 'Mentions Légales'
+    title: 'L''Association Rouen Japon'

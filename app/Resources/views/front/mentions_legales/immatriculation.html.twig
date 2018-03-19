@@ -1,8 +1,9 @@
+{% trans_default_domain 'front' %}
 <section class="about section u-fitted">
     <h2 class="sectionTitle">IMMATRICULATION</h2>
     <div class="description">
         <p>
-            Le présent site internet est la propriété de {{ site_web }}, <a href="https://www.rouen.fr/associations/rouen_japon" target="_blank">association déclarée de Rouen</a> sous le numéro 521 320 358 00026 dont le siège social est situé {{ adresse_postal()|striptags }} Tél. {{ telephone() }}.
+            Le présent site internet est la propriété de {{ 'mentions_legales.site_web'|trans }}, <a href="https://www.rouen.fr/associations/rouen_japon" target="_blank">association déclarée de Rouen</a> sous le numéro 521 320 358 00026 dont le siège social est situé {{ adresse_postal()|striptags }} Tél. {{ telephone() }}.
         </p>
     </div>
 </section>

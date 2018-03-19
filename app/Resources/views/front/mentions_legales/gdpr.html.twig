@@ -1,11 +1,12 @@
+{% trans_default_domain 'front' %}
 <section class="about section u-fitted">
     <h2 class="sectionTitle">DONNÉES PERSONNELLES</h2>
     <div class="description">
         <p>
             Vous êtes informés que, lors de vos visites sur le site Internet, un mécanisme de suivi de navigation peut être mis en œuvre.
             Vous disposez d’un droit d’accès, de retrait et de modifcation des données personnelles communiquées par le biais de techniques de traçage.
-            Les utilisateurs du site internet de {{ titre_asso }} sont tenus de respecter les dispositions de la loi relative à l’informatique, aux fichiers et aux libertés, dont la violation est passible de sanctions pénales.
-            Conformément au règlement n° 2016/679, dit règlement général sur la protection des données (RGPD) vous pouvez demander toutes informations vous concernant et/ou en demander la suppression en envoyant un e-mail à {{ titre_asso }} ou via le <a href="{{ path('contact') }}">formulaire de contact</a>.
+            Les utilisateurs du site internet de {{ 'mentions_legales.titre_asso'|trans }} sont tenus de respecter les dispositions de la loi relative à l’informatique, aux fichiers et aux libertés, dont la violation est passible de sanctions pénales.
+            Conformément au règlement n° 2016/679, dit règlement général sur la protection des données (RGPD) vous pouvez demander toutes informations vous concernant et/ou en demander la suppression en envoyant un e-mail à {{ 'mentions_legales.titre_asso'|trans }} ou via le <a href="{{ path('contact') }}">formulaire de contact</a>.
         </p>
     </div>
 </section>
