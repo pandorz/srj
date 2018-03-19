@@ -714,7 +714,7 @@ class Cour
     /**
      * @return CourDetail
      */
-    public function getDetails():? CourDetail
+    public function getDetails()
     {
         return $this->details;
     }

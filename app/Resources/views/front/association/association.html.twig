@@ -14,8 +14,8 @@
     <section class="about section u-fitted">
         <h2 class="sectionTitle">{{ 'association.qui_sommes_nous.version.presentation.title'|trans }}</h2>
         <div class="aboutText">
-            {{ 'association.qui_sommes_nous.version.presentation.texte'|trans({'%members_number%': nombre_membre()}) }}
-            {{ 'association.qui_sommes_nous.version.presentation.date'|trans }}
+            {{ 'association.qui_sommes_nous.version.presentation.texte'|trans({'%members_number%': nombre_membre()})|raw }}
+            {{ 'association.qui_sommes_nous.version.presentation.date'|trans|raw }}
         </div>
     </section>
 

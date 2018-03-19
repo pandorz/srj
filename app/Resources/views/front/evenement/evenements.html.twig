@@ -8,7 +8,7 @@
 {% endblock %}
 {% block main %}
     {% set hastagTitle ='general.title.evenements'|trans %}
-    {% set hastagList = "#"~{{ 'hastags.normandie'|trans }}~"#"~{{ 'hastags.japon'|trans }} %}
+    {% set hastagList = "#"~ 'hastags.normandie'|trans~"#"~'hastags.japon'|trans %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
     
     {% set coming = 0 %}

@@ -13,7 +13,7 @@
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="blog">
-        <h2 class="sectionTitle"> {{ 'blog.last_article_title'|trans({ '%tag_sentence%' : (tagName is defined ? 'blog.last_article_tag'|trans({'%tag_name%' : tagName }} : '') })}}</h2>
+        <h2 class="sectionTitle"> {{ 'blog.last_article_title'|trans({ '%tag_sentence%' : (tagName is defined ? 'blog.last_article_tag'|trans({'%tag_name%' : tagName }) : '') })}}</h2>
         <div class="postsList u-fitted">
             {% for blog in blogs %}
                 <div class="postItem shortPost blogItem">
