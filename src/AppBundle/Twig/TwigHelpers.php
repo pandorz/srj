@@ -57,6 +57,9 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('get_facebook_id', array($this, 'getFacebookId')),
             new \Twig_SimpleFunction('get_facebook_page_id', array($this, 'getFacebookPageId')),
             new \Twig_SimpleFunction('is_actif_facebook_messenger', array($this, 'isActifFacebookMessenger')),
+            new \Twig_SimpleFunction('lien_facebook', array($this, 'getLienFacebook')),
+            new \Twig_SimpleFunction('lien_twitter', array($this, 'getLienTwitter')),
+            new \Twig_SimpleFunction('adresse_postal', array($this, 'getAdressePostale'))
         );
     }
 
@@ -84,6 +87,30 @@ class TwigHelpers extends \Twig_Extension
         }
 
         return ltrim(str_replace($this->cropEnteteTexte($chaine), '', $chaine), "</p>");
+    }
+
+    /**
+     * @return string
+     */
+    public function getLienFacebook()
+    {
+        return $this->parameter->getParamBySlug('lien-page-facebook');
+    }
+
+    /**
+     * @return string
+     */
+    public function getLienTwitter()
+    {
+        return $this->parameter->getParamBySlug('lien-page-twitter');
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdressePostale()
+    {
+        return $this->parameter->getParamBySlug('adresse');
     }
 
     /**

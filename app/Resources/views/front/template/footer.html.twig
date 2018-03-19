@@ -34,12 +34,16 @@
         <div class="footerItem footerContact">
             <b class="footerTitle h3">{{ 'general.title.contact'|trans }}</b>
             <div class="footerText">
-                <p>{{ 'general.address'|trans|raw }}</p>
+                <p>{{ adresse_postal()|raw }}</p>
             </div>
             <a class="btn btn-blank btn-small" href="{{path('contact')}}">{{ 'footer.button.send_message'|trans }}</a>
             <div class="contactSocial">
-                <a class="contactFacebook" href="https://www.facebook.com/AssoJaponRouen" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.facebook'|trans }}</span></a>
-                <a class="contactTwitter" href="https://twitter.com/rouenjapon" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.twitter'|trans }}</span></a>
+                {% if lien_facebook() is not empty %}
+                    <a class="contactFacebook" href="{{ lien_facebook() }}" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.facebook'|trans }}</span></a>
+                {% endif %}
+                {% if lien_twitter() is not empty %}
+                    <a class="contactTwitter" href="{{ lien_twitter() }}" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.twitter'|trans }}</span></a>
+                {% endif %}
                 <a class="contactRss" href="{{ path('flux_rss') }}" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.rss'|trans }}</span></a>
             </div>
         </div>
