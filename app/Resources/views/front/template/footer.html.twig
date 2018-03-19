@@ -18,15 +18,15 @@
             <b class="footerTitle h3">{{ 'footer.quick_links'|trans }}</b>
             <ul class="footerQuickList u-ul-mute">
                 <li class="footerQuickItem"><a class="footerQuickLink" href="/">{{ 'footer.home'|trans }}</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('association')}}">{{ 'general.title.association'|trans }}</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('ateliers')}}">{{ 'general.title.ateliers'|trans }}</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('evenements')}}">{{ 'general.title.evenements'|trans }}</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('actualites')}}">{{ 'general.title.actualites'|trans }}</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('contact')}}">{{ 'general.title.contact'|trans }}</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('association')}}#partenaires">{{ 'general.title.partenaires'|trans }}</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('mentions_legales')}}">{{ 'general.title.m_legales'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('association') }}">{{ 'general.title.association'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('ateliers') }}">{{ 'general.title.ateliers'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('evenements') }}">{{ 'general.title.evenements'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('actualites') }}">{{ 'general.title.actualites'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('contact') }}">{{ 'general.title.contact'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('association') }}#partenaires">{{ 'general.title.partenaires'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('mentions_legales') }}">{{ 'general.title.m_legales'|trans }}</a></li>
             </ul>
-            <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">{{ 'general.title.nihon'|trans }}</a>
+            <a class="btn btn-blank" href="{{ path('presentation_japonaise') }}" lang="ja">{{ 'general.title.nihon'|trans }}</a>
         </div>
         {% if is_actif_blog() %}
             {% include 'front/blog/footer_blog.html.twig' %}
@@ -36,7 +36,7 @@
             <div class="footerText">
                 <p>{{ adresse_postal()|raw }}</p>
             </div>
-            <a class="btn btn-blank btn-small" href="{{path('contact')}}">{{ 'footer.button.send_message'|trans }}</a>
+            <a class="btn btn-blank btn-small" href="{{ path('contact') }}">{{ 'footer.button.send_message'|trans }}</a>
             <div class="contactSocial">
                 {% if lien_facebook() is not empty %}
                     <a class="contactFacebook" href="{{ lien_facebook() }}" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.facebook'|trans }}</span></a>

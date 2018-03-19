@@ -1,13 +1,14 @@
 {% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
 {% block body_class %}events allEvent{% endblock %}
-{% set meta_title = 'Les événements de l’association, venez nous rencontrer !' %}
+{% set meta_title = 'evenement.meta.title'|trans %}
 {% block html_title %} - {{ meta_title }}{% endblock %}
 {% block og_meta %}
     {% include 'front/template/basique_meta_pages.html.twig' %}
 {% endblock %}
 {% block main %}
-    {% set hastagTitle = "Evenements" %}
-    {% set hastagList = "#Normandie #Japon" %}
+    {% set hastagTitle ='general.title.evenements'|trans %}
+    {% set hastagList = "#"~{{ 'hastags.normandie'|trans }}~"#"~{{ 'hastags.japon'|trans }} %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
     
     {% set coming = 0 %}
@@ -16,8 +17,8 @@
     {% if evenementsOuKouryukai is empty %}
         <section class="comingEvents section">
             <div class="noWorkshop u-textCenter">
-                <b class="nothing">Aucun événement n'est encore programmée pour le moment...</b>
-                <p>Ça ne devrait pourtant pas tarder !</p>
+                <b class="nothing">{{ 'evenement.none.title'|trans }}</b>
+                <p>{{ 'evenement.none.description'|trans }}</p>
                 {% include 'front/newsletter/newsletter_form_light.html.twig' %}
             </div>
         </section>
@@ -27,7 +28,7 @@
             {% if date_to_compare|date('Y-m-d') > 'now'|date('Y-m-d') %}
                 {% if coming == 0 %} 
                     <section class="comingEvents section">
-                    <h2 class="sectionTitle">Prochainement</h2>
+                    <h2 class="sectionTitle">{{ 'general.title.prochainement'|trans }}</h2>
                     <div class="postsList u-fitted">
                     {% set coming = 1 %}
                 {% endif %}
@@ -37,7 +38,7 @@
                     </section>
                     {% endif %}
                     <section class="pastEvents section">
-                    <h2 class="sectionTitle">Dernièrement</h2>
+                    <h2 class="sectionTitle">{{ 'general.title.dernierement'|trans }}</h2>
                     <div class="postsList u-fitted">
                     {% set past = 1 %}
                 {% endif %}
@@ -55,8 +56,6 @@
         {% include 'front/template/button_voir_plus_moins.html.twig' %}
     </section>
     {% endif %}
-        
-        
 
     {% include 'front/bandeau/follow_us.html.twig' %}
     

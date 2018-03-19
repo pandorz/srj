@@ -1,3 +1,4 @@
+{% trans_default_domain 'front' %}
 <section class="events">
     {% set coming = 0 %}
     {% set past = 0 %}
@@ -7,13 +8,13 @@
             {% if date_to_compare|date('Y-m-d H:i:s') > 'now'|date('Y-m-d H:i:s') %}
                 {% if coming == 0 %} 
                     <div class="comingEvent">
-                        <h3 class="comingTitle">Prochainement</h3>
+                        <h3 class="comingTitle">{{ 'general.title.prochainement'|trans }}</h3>
                     {% set coming = 1 %}
                 {% endif %}
             {% else %}
                 {% if past == 0 %}
                     <div class="pastEvents">
-                        <h3 class="pastTitle">Dernièrement</h3>
+                        <h3 class="pastTitle">{{ 'general.title.dernierement'|trans }}</h3>
                     {% set past = 1 %}
                 {% endif %}
             {% endif %}  
@@ -28,9 +29,9 @@
     {% endif %} 
         <div class="postItem shortPost eventItem eventsCalendar">
             <div class="postItemCtn eventItemCtn">
-                <div class="calendarTitle">Calendrier</div>
+                <div class="calendarTitle">{{ 'general.title.calendrier'|trans }}</div>
                 <div id='calendar'></div>
-                <a class="btn btn-blank-secondary" href="{{path('evenements')}}">Voir tous les événements</a>
+                <a class="btn btn-blank-secondary" href="{{path('evenements')}}">{{ 'evenement.button.see_all'|trans }}</a>
             </div>
         </div>
 </section>

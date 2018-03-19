@@ -48,7 +48,7 @@
             <h2 class="sectionTitle">Adhérer à l'association</h2>
             <div class="joinChapo">Adhérer à l'association vous permet de vous inscrire aux cours de japonais et aux ateliers que nous organisons tout au long de l'année. Le montant de l'adhésion est de 20€ pour une année.</div>
             {% if lien_adhesion() is not empty %}
-            <a class="btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
+            <a class="btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
             {% endif %}
             <div class="joinText sectionText">
                 <strong class="conditions">{{ 'conditions.free_for_members'|trans }}</strong>

@@ -42,9 +42,12 @@ general:
         see_less: 'Charger moins'
         see_more: 'Charger plus'
         know_more: 'En savoir plus'
+        participer: 'Je veux participer !'
 
     cright: '&copy; 2016 Association franco-japonaise de Rouen - Tous droits réservés'
     navigation: 'Afficher/cacher le menu de navigation'
+    date_du_au: 'Du %start_date% au %end_date%'
+    accroche_be_member: 'Sortir une fois, c''est bien.<br> Multiplier des moments conviviaux entre passionnés en étant membre de Rouen Japon, c''est mieux ! ;-)'
 
     social:
         facebook: Facebook
@@ -64,6 +67,13 @@ general:
         nihon: 日本人です
         partenaires: Partenaires
         site: 'Rouen Japon'
+        prochainement: 'Prochainement'
+        dernierement: 'Dernièrement'
+        calendrier: 'Calendrier'
+
+    items:
+        reserver: 'Réservé aux membres.'
+        cloture: 'Clôture des réservations :'
 
 meta:
     description:
@@ -75,6 +85,9 @@ meta:
 actualite:
     button:
         see_all: 'Voir toutes les actualités'
+    none:
+        title: 'Aucune actualités n''est encore écrite pour le moment...'
+        description: 'Ça ne devrait pourtant pas tarder !'
 
 conditions:
     title: 'Conditions :'
@@ -84,3 +97,40 @@ cours:
     button:
         calendrier: 'Voir le calendrier'
         inscription: 'S''incrire'
+
+hastags:
+    normandie: 'Normandie'
+    japon: 'Japon'
+
+evenement:
+    button:
+        see_all: 'Voir toutes les événements'
+    none:
+        title: 'Aucun événement n''est encore programmé pour le moment...'
+        description: 'Ça ne devrait pourtant pas tarder !'
+    meta:
+        title: 'Les événements de l’association, venez nous rencontrer !'
+
+follow_us:
+    title: 'Suivez-nous...'
+    facebook:
+        title: '...sur Facebook'
+        button: 'Facebook de l''Association franco-japonaise de Rouen'
+    twitter:
+        title: '...sur Twitter'
+        button: 'Suivre @rouenjapon'
+        config_title: 'Tweets de RouenJapon'
+
+newsletter:
+    accroche: 'Et abonnez-vous à notre newsletter'
+    email:
+        placeholder: 'Mon adresse email'
+        label: 'Adresse e-mail:'
+    button: 'Je m''abonne !'
+    button_inform: 'Me tenir informé(e) svp !'
+
+contact:
+    meta:
+        title: 'Nous contacter'
+    title: 'Laissez-nous un message !'
+    button: 'Envoyer'

@@ -1,3 +1,4 @@
+{% trans_default_domain 'front' %}
 {% for flashMessage in app.session.flashbag.get('error') %}
     <div class="alert alert-warning">{{ flashMessage }}</div>
 {% endfor %}
@@ -6,10 +7,10 @@
 {% endfor %}
 <form class="newsletterForm js-form-grecaptcha" action="{{ path('add_newsletter') }}">
     <div class="formItem">
-        <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">Adresse e-mail:</label>
-        <input class="fld" type="email" name="newsletter_email" placeholder="Mon adresse email">
+        <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">{{ 'newsletter.email.label'|trans }}</label>
+        <input class="fld" type="email" name="newsletter_email" placeholder="{{ 'newsletter.email.placeholder'|trans }}">
     </div>
     <div class="js-container-grecaptcha"></div>
-    <button class="btn js-button-grecaptcha" type="submit" data-grecaptcha-key="{{ google_recaptcha_public_token }}">Me tenir informé(e) svp !</button>
+    <button class="btn js-button-grecaptcha" type="submit" data-grecaptcha-key="{{ google_recaptcha_public_token }}">{{ 'newsletter.button_inform'|trans }}</button>
 </form>
 

@@ -1,9 +1,9 @@
+{% trans_default_domain 'front' %}
 <div class="sectionCTA">
     <div class="u-fitted">
-        <p>Sortir une fois, c'est bien.<br>
-            Multiplier des moments conviviaux entre passionnés en étant membre de Rouen Japon, c'est mieux ! ;-)</p>
+        <p>{{ 'general.accroche_be_member'|trans|raw }}</p>
         {% if lien_adhesion() is not empty %}
-        <a class="btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
+        <a class="btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
         {% endif %}
     </div>
 </div>

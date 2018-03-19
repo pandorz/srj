@@ -13,14 +13,14 @@
         <div class="postMoreText" style="display: none;">
             {{ get_corps_texte(evenementOuKouryukai.contenu)|raw }}<br>
             {% if date_to_show|date('d/m/Y') != date_to_compare|date('d/m/Y') %}
-            <b class="u-textColorRJ">Du {{date_to_show|date('d/m/Y')}} au {{date_to_compare|date('d/m/Y')}}</b>
+            <b class="u-textColorRJ">{{ 'general.date_du_au'|trans({'%start_date%': date_to_show|date('d/m/Y'), '%end_date%': date_to_compare|date('d/m/Y')}) }}</b>
             {% endif %}
             {% if evenementOuKouryukai.dateLimite is defined %}
                 <p>
                     <b class="u-textColorRJ">{{ 'conditions.free_for_members'|trans }}</b>
-                    {% if evenementOuKouryukai.reserveMembre %}Réservé aux membres.{% endif %}<br>
+                    {% if evenementOuKouryukai.reserveMembre %}{{ 'general.items.reserver'|trans }}{% endif %}<br>
                     {% if evenementOuKouryukai.dateLimite is not empty %}
-                    <b class="u-textColorRJ">Clôture des réservations :</b> {{evenementOuKouryukai.dateLimite|date('d/m/Y')}}
+                    <b class="u-textColorRJ">{{ 'general.items.cloture'|trans }}</b> {{evenementOuKouryukai.dateLimite|date('d/m/Y')}}
                     {% endif %}
                 </p>
                 {% if evenementOuKouryukai.coordGeoLatitude is not empty and evenementOuKouryukai.coordGeoLongitude is not empty %}
@@ -30,7 +30,7 @@
                     </p>
                 {% endif %}
                 {% if evenementOuKouryukai.urlInscription is not empty %}
-                    <p><b>&gt; <a class="u-textBlack" href="{{ evenementOuKouryukai.urlInscription }}" target="_blank">Je veux participer !</a></b></p>
+                    <p><b>&gt; <a class="u-textBlack" href="{{ evenementOuKouryukai.urlInscription }}" target="_blank">{{ 'general.button.participer'|trans }}</a></b></p>
                 {% endif %}
             {% endif %}
         </div>
