@@ -1,25 +1,30 @@
+{% trans_default_domain 'front' %}
 <section class="followUs u-fitted">
-    <h3 class="followTitle">Suivez-nous...</h3>
+    <h3 class="followTitle">{{ 'follow_us.title'|trans }}</h3>
     <div class="grid-3">
+        {% if lien_facebook() is not empty %}
         <div class="followItem facebook">
-            <b class="facebookTitle">...sur Facebook</b>
+            <b class="facebookTitle">{{ 'follow_us.facebook.title'|trans }}</b>
             <div class="facebookCtn">
                 <!-- Timeline -->
-                <div class="fb-page" data-href="https://www.facebook.com/AssoJaponRouen" data-tabs="timeline" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/AssoJaponRouen" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/AssoJaponRouen">Facebook de l'Association franco-japonaise de Rouen</a></blockquote></div>
+                <div class="fb-page" data-href="{{ lien_facebook() }}" data-tabs="timeline" data-height="500" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="{{ lien_facebook() }}" class="fb-xfbml-parse-ignore"><a href="{{ lien_facebook() }}">{{ 'follow_us.facebook.button'|trans }}</a></blockquote></div>
             </div>
             <!-- Like button -->
             <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button" data-action="like" data-size="small" data-show-faces="true" data-share="false"></div>
             <!-- Share button -->
             <div class="fb-share-button" data-href="https://developers.facebook.com/docs/plugins/" data-layout="button_count" data-size="small" data-mobile-iframe="true"></div>
         </div>
+        {% endif %}
+        {% if lien_twitter() is not empty %}
         <div class="followItem twitter">
-            <b class="twitterTitle">...sur Twitter</b>
+            <b class="twitterTitle">{{ 'follow_us.twitter.title'|trans }}</b>
                 <!-- Config : https://publish.twitter.com/ -->
             <div class="twitterCtn">
-                <p><a class="twitter-timeline" data-lang="fr" data-height="500" data-dnt="true" href="https://twitter.com/RouenJapon">Tweets de RouenJapon</a></p> <script async src="//platform.twitter.com/widgets.js"></script>
+                <p><a class="twitter-timeline" data-lang="fr" data-height="500" data-dnt="true" href="{{ lien_twitter() }}">{{ 'follow_us.twitter.config_title'|trans }}</a></p> <script async src="//platform.twitter.com/widgets.js"></script>
             </div>
-            <a href="https://twitter.com/rouenjapon" class="twitter-follow-button" data-show-count="false">Suivre @rouenjapon</a><script async src="//platform.twitter.com/widgets.js"></script>
+            <a href="{{ lien_twitter() }}" class="twitter-follow-button" data-show-count="false">{{ 'follow_us.twitter.button'|trans }}</a><script async src="//platform.twitter.com/widgets.js"></script>
         </div>
+        {% endif %}
         {% include 'front/newsletter/newsletter_form.html.twig' %}
     </div>
 </section>

@@ -1,18 +1,19 @@
 {% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
 {% block body_class %}blogList{% endblock %}
-{% set meta_title = 'Nos articles de blog' %}
+{% set meta_title = 'blog.meta.title'|trans %}
 {% block html_title %} - {{ meta_title }}{% endblock %}
 {% block og_meta %}
     {% include 'front/template/basique_meta_pages.html.twig' %}
 {% endblock %}
 {% block main %}
 
-    {% set hastagTitle = "Nos articles" %}
-    {% set hastagList = "#Blog" %}
+    {% set hastagTitle = 'blog.title'|trans %}
+    {% set hastagList = "#"~'hastags.blog'|trans %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
     <section class="blog">
-        <h2 class="sectionTitle">Derniers articles{{ tagName is defined ? ' pour le tag '~tagName : '' }}</h2>
+        <h2 class="sectionTitle"> {{ 'blog.last_article_title'|trans({ '%tag_sentence%' : (tagName is defined ? 'blog.last_article_tag'|trans({'%tag_name%' : tagName }) : '') })}}</h2>
         <div class="postsList u-fitted">
             {% for blog in blogs %}
                 <div class="postItem shortPost blogItem">
@@ -20,7 +21,7 @@
                         {% media blog.image, 'reference' with {'class': 'postPhoto blogPhoto'} %}
                         <h4 class="postTitle blogTitle">{{ blog.nom }}</h4>
                         <p class="postSummary blogSummary">{{ blog.descriptionCourte }}</p>
-                        <a class="postHover postLink" href="{{ path('blog_detail', {'slug': blog.slug}) }}" title="Voir l'article : {{ blog.nom }}"><span class="btn btn-blank" aria-hidden="true">Voir l'article</span></a>
+                        <a class="postHover postLink" href="{{ path('blog_detail', {'slug': blog.slug}) }}" title="{{ 'blog.button.see_article'|trans }} : {{ blog.nom }}"><span class="btn btn-blank" aria-hidden="true">{{ 'blog.button.see_article'|trans }}</span></a>
                     </div>
                 </div>
             {% endfor %}

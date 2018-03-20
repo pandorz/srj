@@ -1,6 +1,8 @@
 statistique:
     title: 'Nombre de demande de newsletter par mois'
 
+stats_view_more: 'Voir plus'
+
 timeline:
     title: 'A venir par date de publication'
 

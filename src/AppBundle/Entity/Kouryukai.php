@@ -496,7 +496,7 @@ class Kouryukai
      *
      * @return ArrayCollection
      */
-    public function getSuperviseurs():? ArrayCollection
+    public function getSuperviseurs()
     {
         return $this->superviseurs;
     }
@@ -651,7 +651,7 @@ class Kouryukai
      *
      * @return ArrayCollection
      */
-    public function getInscrits():? ArrayCollection
+    public function getInscrits()
     {
         return $this->inscrits;
     }

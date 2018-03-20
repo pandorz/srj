@@ -1,9 +1,10 @@
+{% trans_default_domain 'front' %}
 <div class="hero">
-    <h1 class="heroTitle">{{ hastagTitle }} <span class="u-textColorRJ">{{ hastagList}}</span></h1>
+    <h1 class="heroTitle">{{ hastagTitle }} <span class="u-textColorRJ">{{ hastagList }}</span></h1>
     <div class="userGuide">
-        <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a>
+        <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">{{ 'general.title.nihon'|trans }}</a>
         {% if lien_adhesion() is not empty %}
-        <a class="btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
+        <a class="btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
         {% endif %}
     </div>
 </div>

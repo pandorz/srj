@@ -252,7 +252,7 @@ class Tag
     /**
      * @return ArrayCollection
      */
-    public function getBlogs():? ArrayCollection
+    public function getBlogs()
     {
         return $this->blogs;
     }
@@ -272,7 +272,7 @@ class Tag
      *
      * @return ArrayCollection
      */
-    public function getAuteurDe():? ArrayCollection
+    public function getAuteurDe()
     {
         return $this->blogs;
     }

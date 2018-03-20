@@ -57,6 +57,13 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('get_facebook_id', array($this, 'getFacebookId')),
             new \Twig_SimpleFunction('get_facebook_page_id', array($this, 'getFacebookPageId')),
             new \Twig_SimpleFunction('is_actif_facebook_messenger', array($this, 'isActifFacebookMessenger')),
+            new \Twig_SimpleFunction('lien_facebook', array($this, 'getLienFacebook')),
+            new \Twig_SimpleFunction('lien_twitter', array($this, 'getLienTwitter')),
+            new \Twig_SimpleFunction('adresse_postal', array($this, 'getAdressePostale')),
+            new \Twig_SimpleFunction('adresse_cours', array($this, 'getAdresseCours')),
+            new \Twig_SimpleFunction('telephone', array($this, 'getTelephone')),
+            new \Twig_SimpleFunction('montant_cotisation', array($this, 'getMontantCotisation')),
+            new \Twig_SimpleFunction('nombre_membre', array($this, 'getMembreNombre'))
         );
     }
 
@@ -84,6 +91,62 @@ class TwigHelpers extends \Twig_Extension
         }
 
         return ltrim(str_replace($this->cropEnteteTexte($chaine), '', $chaine), "</p>");
+    }
+
+    /**
+     * @return string
+     */
+    public function getLienFacebook()
+    {
+        return $this->parameter->getParamBySlug('lien-page-facebook');
+    }
+
+    /**
+     * @return string
+     */
+    public function getLienTwitter()
+    {
+        return $this->parameter->getParamBySlug('lien-page-twitter');
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdressePostale()
+    {
+        return $this->parameter->getParamBySlug('adresse');
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdresseCours()
+    {
+        return $this->parameter->getParamBySlug('adresse-cours');
+    }
+
+    /**
+     * @return string
+     */
+    public function getMontantCotisation()
+    {
+        return $this->parameter->getParamBySlug('montant-cotisation');
+    }
+
+    /**
+     * @return string
+     */
+    public function getMembreNombre()
+    {
+        return $this->parameter->getParamBySlug('membre-nombre');
+    }
+
+    /**
+     * @return string
+     */
+    public function getTelephone()
+    {
+        return $this->parameter->getParamBySlug('telephone');
     }
 
     /**

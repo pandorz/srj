@@ -1,21 +1,22 @@
+{% trans_default_domain 'front' %}
 <header class="siteHeader">
     <div class="siteHeaderCtn u-fitted">
         <span class="siteTitle">
-            <a class="siteHomeLink" href="/"><img class="siteLogo" src="{{ asset('medias/img/logo-rouen-japon.png') }}" alt="Rouen Japon" width="170" height="55"></a>
+            <a class="siteHomeLink" href="/"><img class="siteLogo" src="{{ asset('medias/img/logo-rouen-japon.png') }}" alt="{{ 'general.title.site'|trans }}" width="170" height="55"></a>
         </span>
 
         <nav class="mainNav">
-            <button class="toggleNav"><span class="u-hiddenVisually">Afficher/cacher le menu de navigation</span></button>
+            <button class="toggleNav"><span class="u-hiddenVisually">{{ 'general.navigation'|trans }}</span></button>
             <div class="mainNavContent">
                 <ul class="mainNavList u-ul-mute">
                     <li class="mainNavItem">
-                        <a class="mainNavLink" href="{{path('association')}}">L'association</a>
+                        <a class="mainNavLink" href="{{path('association')}}">{{ 'general.title.association'|trans }}</a>
                     </li>
                     <li class="mainNavItem has-subMenu">
-                        <a class="mainNavLink">Nos activités</a>
+                        <a class="mainNavLink">{{ 'general.title.activites'|trans }}</a>
                         <ul class="mainSubNavList">
                             <li class="mainSubNavItem has-subMenu">
-                                <a class="mainSubNavLink" href="#">Les cours</a>
+                                <a class="mainSubNavLink" href="#">{{ 'general.title.cours'|trans }}</a>
                                 <ul class="mainSubSubNavList">
                                     <li class="mainSubSubNavItem">
                                         {% for item_cours in liste_cours_nav() %}
@@ -24,25 +25,25 @@
                                     </li>
                                 </ul>
                             </li>
-                            <li class="mainSubNavItem"><a class="mainSubNavLink" href="{{path('ateliers')}}">Ateliers</a></li>
-                            <li class="mainSubNavItem"><a class="mainSubNavLink" href="{{path('sorties')}}">Sorties</a></li>
+                            <li class="mainSubNavItem"><a class="mainSubNavLink" href="{{path('ateliers')}}">{{ 'activities.title.ateliers'|trans }}</a></li>
+                            <li class="mainSubNavItem"><a class="mainSubNavLink" href="{{path('sorties')}}">{{ 'activities.title.sorties'|trans }}</a></li>
                         </ul>
                     </li>
-                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('evenements')}}">Événements</a></li>
-                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('actualites')}}">Actualités</a></li>
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('evenements')}}">{{ 'general.title.evenements'|trans }}</a></li>
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('actualites')}}">{{ 'general.title.actualites'|trans }}</a></li>
                     {% if is_actif_blog() %}
-                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('blog')}}">Blog</a></li>
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('blog')}}">{{ 'general.title.blog'|trans }}</a></li>
                     {% endif %}
-                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a></li>
-                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('contact')}}">Contact</a></li>
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('presentation_japonaise')}}" lang="ja">{{ 'general.title.nihon'|trans }}</a></li>
+                    <li class="mainNavItem"><a class="mainNavLink" href="{{path('contact')}}">{{ 'general.title.contact'|trans }}</a></li>
                 </ul>
                 <div class="mainNavMember">
                     {% if lien_adhesion() is not empty %}
-                    <a class="mainNavMemberLink signup btn btn-blank btn-small" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a>
+                    <a class="mainNavMemberLink signup btn btn-blank btn-small" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
                     {% endif %}
-                    {#<a class="mainNavMemberLink login" href="#">Déjà membre ?</a>#}
+                    {#<a class="mainNavMemberLink login" href="#">{{ 'general.button.login'|trans }}</a>#}
                     {% if app.user and is_granted('ROLE_SONATA_ADMIN')%}
-                        <a class="mainNavMemberLink admin" href="{{ path('sonata_admin_dashboard') }}" target="_blank">Administration</a>
+                        <a class="mainNavMemberLink admin" href="{{ path('sonata_admin_dashboard') }}" target="_blank">{{ 'general.button.admin'|trans }}</a>
                     {% endif %}
             </div>
             </div>

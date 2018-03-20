@@ -403,7 +403,7 @@ class Evenement
      *
      * @return ArrayCollection
      */
-    public function getSuperviseurs():? ArrayCollection
+    public function getSuperviseurs()
     {
         return $this->superviseurs;
     }

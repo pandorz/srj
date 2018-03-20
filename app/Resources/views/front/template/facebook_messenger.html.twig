@@ -1,8 +1,9 @@
 {% if app.environment == 'prod' and is_actif_facebook_messenger() and get_facebook_page_id() is not empty %}
+    {% trans_default_domain 'front' %}
 <div class="fb-customerchat"
      page_id="{{ get_facebook_page_id() }}"
      theme_color="#e30613"
-     logged_in_greeting="Bienvenue sur le site de l'association Rouen Japon. Besoin d'aide ?"
-     logged_out_greeting="Bienvenue sur le site de l'association Rouen Japon. Connectez-vous à Facebook pour profiter de cette fonctionnalité.">
+     logged_in_greeting="{{ 'facebook.messenger.logged_in_greeting'|trans }}"
+     logged_out_greeting="{{ 'facebook.messenger.logged_out_greeting'|trans }}">
 </div>
 {% endif %}

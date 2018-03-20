@@ -1,7 +1,8 @@
+{% trans_default_domain 'front' %}
 {% if partenaires is not empty %}
 <a id="partenaires"></a>
 <section class="partners section u-fitted">
-    <h2 class="sectionTitle">Les partenaires de l'association</h2>
+    <h2 class="sectionTitle">{{ 'association.partenaires'|trans }}</h2>
     <ul class="partnersList u-ul-mute">
         {% for partenaire in partenaires %}
             <li class="partnerItem">

@@ -1,3 +1,4 @@
+{% trans_default_domain 'front' %}
 <div class="followItem newsletter">
 {% for flashMessage in app.session.flashbag.get('error') %}
     <div class="alert alert-warning">{{ flashMessage }}</div>
@@ -6,12 +7,12 @@
     <div class="alert alert-success">{{ flashMessage }}</div>
 {% endfor %}
     <form class="newsletterForm js-form-grecaptcha" action="{{ path('add_newsletter') }}">
-        <span class="newsletterTitle">Et abonnez-vous à notre newsletter <small class="nospam">#nospam</small></span>
+        <span class="newsletterTitle">{{ 'newsletter.accroche'|trans }} <small class="nospam">#nospam</small></span>
         <div class="formItem">
-            <input class="fld" type="email" name="newsletter_email" placeholder="Mon adresse email">
+            <input class="fld" type="email" name="newsletter_email" placeholder="{{ 'newsletter.email.placeholder'|trans }}">
         </div>
         <div class="js-container-grecaptcha"></div>
-        <button class="btn js-button-grecaptcha" type="submit" data-grecaptcha-key="{{ google_recaptcha_public_token }}">Je m'abonne !</button>
+        <button class="btn js-button-grecaptcha" type="submit" data-grecaptcha-key="{{ google_recaptcha_public_token }}">{{ 'newsletter.button'|trans }}</button>
     </form>
 </div>
 

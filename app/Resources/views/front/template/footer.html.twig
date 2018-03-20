@@ -1,53 +1,54 @@
+{% trans_default_domain 'front' %}
 <footer class="siteFooter">
     <div class="siteFooterCtn u-fitted">
         <div class="footerItem footerAsso">
-            <h3 class="footerTitle h3">Rouen Japon</h3>
+            <h3 class="footerTitle h3">{{ 'general.title.site'|trans }}</h3>
             <div class="footerText">
-                <p>Créée en septembre 2009, l’association franco-japonaise de Rouen, alias "Rouen Japon", composée de Français et de Japonais, a pour vocation de :</p>
+                <p>{{ 'footer.description.title'|trans }}</p>
                 <ul>
-                    <li>Favoriser les échanges entre les Rouennais et les Japonais,</li>
-                    <li>Partager nos cultures,</li>
-                    <li>Apprendre le japonais...</li>
+                    {{ 'footer.description.list'|trans|raw }}
                 </ul>
             </div>
             {% if lien_adhesion() is not empty %}
-            <a class="assoMemberBtn btn" href="{{ lien_adhesion() }}" target="_blank">Devenir membre</a><br>
+            <a class="assoMemberBtn btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a><br>
             {% endif %}
-            <a class="seeMore" href="{{path('association')}}">En savoir plus sur l'association</a>
+            <a class="seeMore" href="{{path('association')}}">{{ 'footer.button.see_more'|trans }}</a>
         </div>
         <div class="footerItem footerQuickLinks">
-            <b class="footerTitle h3">Accès rapides</b>
+            <b class="footerTitle h3">{{ 'footer.quick_links'|trans }}</b>
             <ul class="footerQuickList u-ul-mute">
-                <li class="footerQuickItem"><a class="footerQuickLink" href="/">Accueil</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('association')}}">L'association</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('ateliers')}}">Nos Ateliers</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('evenements')}}">Événements</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('actualites')}}">Actualités</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('contact')}}">Contact</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('association')}}#partenaires">Partenaires</a></li>
-                <li class="footerQuickItem"><a class="footerQuickLink" href="{{path('mentions_legales')}}">Mentions légales</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="/">{{ 'footer.home'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('association') }}">{{ 'general.title.association'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('ateliers') }}">{{ 'general.title.ateliers'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('evenements') }}">{{ 'general.title.evenements'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('actualites') }}">{{ 'general.title.actualites'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('contact') }}">{{ 'general.title.contact'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('association') }}#partenaires">{{ 'general.title.partenaires'|trans }}</a></li>
+                <li class="footerQuickItem"><a class="footerQuickLink" href="{{ path('mentions_legales') }}">{{ 'general.title.m_legales'|trans }}</a></li>
             </ul>
-            <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">日本人です</a>
+            <a class="btn btn-blank" href="{{ path('presentation_japonaise') }}" lang="ja">{{ 'general.title.nihon'|trans }}</a>
         </div>
         {% if is_actif_blog() %}
             {% include 'front/blog/footer_blog.html.twig' %}
         {% endif %}
         <div class="footerItem footerContact">
-            <b class="footerTitle h3">Contact</b>
+            <b class="footerTitle h3">{{ 'general.title.contact'|trans }}</b>
             <div class="footerText">
-                <p>Association franco-japonaise de Rouen<br>
-                4 quai de Paris<br>
-                76000 Rouen</p>
+                <p>{{ adresse_postal()|raw }}</p>
             </div>
-            <a class="btn btn-blank btn-small" href="{{path('contact')}}">Envoyer un message</a>
+            <a class="btn btn-blank btn-small" href="{{ path('contact') }}">{{ 'footer.button.send_message'|trans }}</a>
             <div class="contactSocial">
-                <a class="contactFacebook" href="https://www.facebook.com/AssoJaponRouen" target="_blank"><span class="u-hiddenVisually">Facebook</span></a>
-                <a class="contactTwitter" href="https://twitter.com/rouenjapon" target="_blank"><span class="u-hiddenVisually">Twitter</span></a>
-                <a class="contactRss" href="{{ path('flux_rss') }}" target="_blank"><span class="u-hiddenVisually">Rss</span></a>
+                {% if lien_facebook() is not empty %}
+                    <a class="contactFacebook" href="{{ lien_facebook() }}" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.facebook'|trans }}</span></a>
+                {% endif %}
+                {% if lien_twitter() is not empty %}
+                    <a class="contactTwitter" href="{{ lien_twitter() }}" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.twitter'|trans }}</span></a>
+                {% endif %}
+                <a class="contactRss" href="{{ path('flux_rss') }}" target="_blank"><span class="u-hiddenVisually">{{ 'general.social.rss'|trans }}</span></a>
             </div>
         </div>
     </div>
     <div class="siteCredits">
-        <div class="u-fitted">&copy; 2016 Association franco-japonaise de Rouen - Tous droits réservés</div>
+        <div class="u-fitted">{{ 'general.cright'|trans|raw }}</div>
     </div>
 </footer>
