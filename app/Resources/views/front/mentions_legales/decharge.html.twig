@@ -1,17 +1,14 @@
 {% trans_default_domain 'front' %}
 <section class="about section u-fitted">
-    <h2 class="sectionTitle">DÉCHARGE DE RESPONSABILITÉ</h2>
+    <h2 class="sectionTitle">{{ 'mentions_legales.decharge.title'|trans }}</h2>
     <div class="description">
         <p>
-            Les informations diffusées sur ce site internet ne sauraient être considérées comme une proposition de vente ou d’achat.
-            L’ensemble des produits, services, procédés et programmes présentés dans le cadre du site {{ 'mentions_legales.site_web'|trans }} et de son extension {{ 'mentions_legales.extension_web'|trans }} peuvent ne pas être proposés dans chaque pays.
-            En conséquence, l’utilisateur reconnaît utiliser ces informations sous sa responsabilité exclusive. {{ 'mentions_legales.titre_asso'|trans|capitalize }} n’est tenue que d’une simple obligation de moyens concernant les informations qu’elle met à disposition des personnes qui accèdent à son site web {{ 'mentions_legales.site_web'|trans }} et de son extension {{ 'mentions_legales.extension_web'|trans }}. {{ 'mentions_legales.titre_asso'|trans|capitalize }} a effectué toutes les démarches pour s’assurer de la fiabilité des informations contenues sur ce site web, et ne peut encourir aucune responsabilité du fait d’erreurs, d’omissions, ou pour les résultats qui pourraient être obtenus par l’usage de ces informations.
-            Notamment, l’usage de liens hypertextes peut conduire votre consultation de notre site vers d’autres serveurs pour prendre connaissance de l’information recherchée, serveurs sur lesquels {{ 'mentions_legales.titre_asso'|trans }} n’a aucun contrôle.
-            Le site web de {{ 'mentions_legales.titre_asso'|trans }}, {{ 'mentions_legales.site_web'|trans }} et son extension {{ 'mentions_legales.extension_web'|trans }}, sont normalement accessibles 24h/24H et 7j/7j.
-            En cas de force majeure, de difficultés informatiques, de difficultés liées à la structure des réseaux de télécommunications ou difficultés techniques, pour des raisons de maintenance, sans que cette liste ne soit exhaustive, l’accès à toute ou partie du site pourra être suspendue ou supprimée sur simple décision de {{ 'mentions_legales.titre_asso'|trans }}.
-            Pour des raisons de maintenance, et/ou pour toute autre décision de la société {{ 'mentions_legales.titre_asso'|trans }}, l’accès au site internet pourra être interrompu.
-            Le site internet est susceptible de modifications et d’évolutions sans notification d’aucune sorte.
-            Les informations, descriptifs produits, budget et photos ne sont pas contractuels.
+            {{ 'mentions_legales.decharge.texte'|trans({
+                '%titre_asso%': 'mentions_legales.titre_asso'|trans,
+                '%titre_asso_maj%': 'mentions_legales.titre_asso'|trans|capitalize,
+                '%site_web%':  'mentions_legales.site_web'|trans,
+                '%extension_web%': 'mentions_legales.extension_web'|trans
+            })|raw }}
         </p>
     </div>
 </section>
