@@ -52,12 +52,12 @@
                     <div class="postMoreText" style="display: none;">
                         {{ get_corps_texte(atelier.contenu)|raw }}
                         <p>
-                            <b class="u-textColorRJ">{{ 'conditions.free_for_members'|trans }}</b>
+                            <b class="u-textColorRJ">{{ 'conditions.title'|trans }}</b>
                             {%if atelier.prix>0 and not atelier.reserveMembre%}
-                            {{atelier.prix|replace({'.':','})}}{{ 'conditions.member_prix'|trans }}
+                            {{atelier.prix|replace({'.':','})}}{{ 'conditions.prix'|trans }}
                             {% endif %}
                             {%if atelier.prixMembre>0 %}
-                            {{atelier.prixMembre|replace({'.':','})}}{{ 'conditions.prix'|trans }}
+                            {{atelier.prixMembre|replace({'.':','})}}{{ 'conditions.member_prix'|trans }}
                             {% else %}
                                 {{ 'conditions.free_for_members'|trans }}
                             {% endif %}

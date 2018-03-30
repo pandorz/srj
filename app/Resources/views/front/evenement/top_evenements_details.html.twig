@@ -17,7 +17,7 @@
             {% endif %}
             {% if evenementOuKouryukai.dateLimite is defined %}
                 <p>
-                    <b class="u-textColorRJ">{{ 'conditions.free_for_members'|trans }}</b>
+                    <b class="u-textColorRJ">{{ 'conditions.title'|trans }}</b>
                     {% if evenementOuKouryukai.reserveMembre %}{{ 'general.items.reserver'|trans }}{% endif %}<br>
                     {% if evenementOuKouryukai.dateLimite is not empty %}
                     <b class="u-textColorRJ">{{ 'general.items.cloture'|trans }}</b> {{evenementOuKouryukai.dateLimite|date('d/m/Y')}}
