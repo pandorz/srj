@@ -1,0 +1,9 @@
+{% trans_default_domain 'front' %}
+<section class="about section u-fitted">
+    <h2 class="sectionTitle">{{ 'mentions_legales.cookies.title'|trans }}</h2>
+    <div class="description">
+        <p>
+            {{ 'mentions_legales.cookies.texte'|trans({'%policy_facebook_url%': 'https://fr-fr.facebook.com/policies/cookies/', '%policy_twitter_url%':'https://help.twitter.com/en/rules-and-policies/twitter-cookies', '%policy_google_url%':'https://policies.google.com/technologies/cookies?hl=fr'})|raw }}
+        </p>
+    </div>
+</section>
