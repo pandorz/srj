@@ -74,3 +74,14 @@ Permet d'ouvrir un contenu en fenêtre modale en cliquant sur un lien ou un bout
 .modal-close__text {
     @include hiddenVisually;
 }
+
+#modal-content {
+  max-height: 700px;
+  overflow-y: auto;
+}
+
+@include media('<=1100px') {
+  #modal-content {
+    max-height: 300px;
+  }
+}
