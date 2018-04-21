@@ -202,6 +202,15 @@ a {
     }
 }
 
+a.white_link {
+  color: $color-white;
+}
+
+a.white_link:active,
+a.white_link:hover {
+  color: $color-grey-dark;
+}
+
 /*
  * Improve readability of focused elements when they are also in an
  * active/hover state.

@@ -15,12 +15,18 @@
     display: flex;
     justify-content: space-between;
     color: $color-white;
-    font-size: 18px;
+}
+
+.cookieBandeauBtn {
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    text-align: center;
 }
 
 @include media('<=1100px') {
     .cookieBandeau {
-        height: rem(60);
+        min-height: rem(60);
     }
 }
 

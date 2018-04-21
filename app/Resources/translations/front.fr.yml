@@ -1,5 +1,5 @@
 cookies:
-    texte: 'En poursuivant votre navigation, vous acceptez le dépôt de cookies tiers destinés à vous proposer des vidéos, des boutons de partage, des remontées de contenus de plateformes sociales. <a href="%url_mentions_legales%">En savoir plus</a>'
+    texte: 'En poursuivant votre navigation, vous acceptez le dépôt de cookies tiers destinés à vous proposer des vidéos, des boutons de partage, des remontées de contenus de plateformes sociales. <a href="%url_mentions_legales%" class="white_link">En savoir plus</a>'
     button:
         ok: 'OK, tout accepter'
         personnaliser: 'Personnaliser'

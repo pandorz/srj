@@ -2,8 +2,12 @@
 <div class="cookieBandeau">
     <div class="cookieBandeauCtn u-fitted">
         <p>{{ 'cookies.texte'|trans({'%url_mentions_legales%': url('mentions_legales')})|raw }}</p>
-        <span class="btn btn-blank-third more_cookies modal" data-modal-content-id="modal-cookies" data-modal-title="{{ 'cookies.personnaliser.title'|trans }}">{{ 'cookies.button.personnaliser'|trans }}</span>
-        <span class="btn btn-inverse accept_all_cookies">{{ 'cookies.button.ok'|trans }}</span>
+    </div>
+    <div class="cookieBandeauCtn u-fitted">
+        <div class="cookieBandeauBtn">
+            <div class="btn btn-blank-third more_cookies modal" data-modal-content-id="modal-cookies" data-modal-title="{{ 'cookies.personnaliser.title'|trans }}">{{ 'cookies.button.personnaliser'|trans }}</div>
+            <div class="btn btn-inverse accept_all_cookies">{{ 'cookies.button.ok'|trans }}</div>
+        </div>
     </div>
 </div>
 
