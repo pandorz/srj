@@ -45,10 +45,12 @@
         </div>
         <div class="blogFooter">
             <p class="u-note">{{ stringAuteurs|raw }}</p>
+             {% if a_repondu_bandeau() == false or is_cookie_facebook_ok() == true %}
             <div class="blogShare">
                 <div class="fb-like" data-href="{{ url }}" data-layout="button" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
                 <div class="fb-save" data-uri="{{ url }}" data-size="large"></div>
             </div>
+            {% endif %}
             <div class="tags">
             {% if blog.tags is not empty %}
                 {% for tag in blog.tags %}
@@ -57,9 +59,11 @@
             {% endif %}
             </div>
         </div>
+        {% if a_repondu_bandeau() == false or is_cookie_facebook_ok() == true %}
         <div class="blogComments">
             <div class="fb-comments" data-href="{{ url }}" data-numposts="5"></div>
         </div>
+        {% endif %}
     </section>
 
     {% include 'front/bandeau/bandeau_devenir_membre.html.twig' %}

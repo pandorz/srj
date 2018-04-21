@@ -63,7 +63,11 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('adresse_cours', array($this, 'getAdresseCours')),
             new \Twig_SimpleFunction('telephone', array($this, 'getTelephone')),
             new \Twig_SimpleFunction('montant_cotisation', array($this, 'getMontantCotisation')),
-            new \Twig_SimpleFunction('nombre_membre', array($this, 'getMembreNombre'))
+            new \Twig_SimpleFunction('nombre_membre', array($this, 'getMembreNombre')),
+            new \Twig_SimpleFunction('a_repondu_bandeau', array($this, 'aReponduCookieBandeau')),
+            new \Twig_SimpleFunction('is_cookie_facebook_ok', array($this, 'isCookieFacebookOk')),
+            new \Twig_SimpleFunction('is_cookie_twitter_ok', array($this, 'isCookieTwitterOk')),
+            new \Twig_SimpleFunction('is_cookie_google_ok', array($this, 'isCookieGoogleOk'))
         );
     }
 
@@ -241,5 +245,37 @@ class TwigHelpers extends \Twig_Extension
             return str_replace('.jpg', '.jpeg', $this->providerImage->generatePublicUrl($media, $format));
         }
         return null;
+    }
+
+    /**
+     * @return bool
+     */
+    public function aReponduCookieBandeau()
+    {
+        return isset($_COOKIE['bandeau']);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCookieFacebookOk()
+    {
+        return isset($_COOKIE['facebook_service']) && $_COOKIE['facebook_service'];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCookieTwitterOk()
+    {
+        return isset($_COOKIE['twitter_service']) && $_COOKIE['twitter_service'];
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCookieGoogleOk()
+    {
+        return isset($_COOKIE['google_service']) && $_COOKIE['google_service'];
     }
 }

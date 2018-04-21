@@ -1,3 +1,32 @@
+cookies:
+    texte: 'En poursuivant votre navigation, vous acceptez le dépôt de cookies tiers destinés à vous proposer des vidéos, des boutons de partage, des remontées de contenus de plateformes sociales. <a href="%url_mentions_legales%">En savoir plus</a>'
+    button:
+        ok: 'OK, tout accepter'
+        personnaliser: 'Personnaliser'
+    personnaliser:
+        title: 'Gestion de vos préférences sur les cookies'
+        texte: 'Certaines fonctionnalités de ce site (partage de contenus sur les réseaux sociaux, lecture directe de vidéos) s’appuient sur des services proposés par des sites tiers. Elles sont necessaire au bon fonctionnement du site. Ces fonctionnalités déposent des cookies permettant notamment à ces sites de tracer votre navigation. Ces cookies ne sont déposés que si vous donnez votre accord. Vous pouvez vous informer sur la nature des cookies déposés, les accepter ou les refuser soit globalement pour l’ensemble du site et l’ensemble des services, soit service par service. <a href="%url_mentions_legales%">En savoir plus</a>'
+        all_services:
+            title: 'Préférences pour tous les services'
+        details_services:
+            title: 'Réseaux sociaux'
+        performance_services:
+            title: 'Service de performance'
+        label:
+            all_services: 'Tous les services'
+            facebook: 'Facebook'
+            twitter: 'Twitter'
+            google: 'Google Analytics'
+        facebook:
+            detail: 'Facebook permet d''améliorer la convivialité du site, permet l''ajout de commentaire sur les articles de blog et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
+        twitter:
+            detail: 'Facebook permet d''améliorer la convivialité du site et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
+        google:
+            detail: 'Google Analytics nous permet de compter le nombre de visiteurs afin de mesurer les performances du site. Cela nous aide à determiner quelles sont les pages les plus populaires et comment les visiteurs naviguent à travers le site. Toutes ses informations sont anonymes. Si vous desactivez ce cookie nous ne seront plus en mesure de superviser le site.'
+        button:
+            cancel: 'Annuler'
+            save: 'Sauvegarder'
+
 activities:
     more: 'En savoir plus'
 

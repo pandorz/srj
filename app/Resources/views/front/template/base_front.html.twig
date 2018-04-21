@@ -38,6 +38,9 @@
             <p class="browserupgrade">Vous utilisez un navigateur <strong>déprécié</strong>. Veuillez faire une <a href="http://browsehappy.com/">mise à jour de votre navigateur</a> pour visualiser correctement notre site.</p>
         <![endif]-->
         {% include 'front/template/nav_barre.html.twig' %}
+        {% if a_repondu_bandeau() == false  %}
+            {% include 'front/template/cookies.html.twig' %}
+        {% endif %}
         <main class="siteBody">
         {% block main %}{% endblock %}
         </main>
@@ -47,6 +50,7 @@
             <script>
                 $(document).ready(function(){
                     app.headerController.defaultAction.init();
+                    app.cookieController.defaultAction.init();
                 });
             </script>
         {% endblock %}

@@ -44,7 +44,9 @@ app.formsController.defaultAction = {
         $checkbox = $('[type="checkbox"]');
         $checkbox.each(function(){
             $check = $(this);
-            $check.wrap('<span class="dummyCheck"></span>').after('<span class="dummySelected"></span>');
+            if (!$check.hasClass('no-dummy')) {
+                $check.wrap('<span class="dummyCheck"></span>').after('<span class="dummySelected"></span>');
+            }
         });
     },
     

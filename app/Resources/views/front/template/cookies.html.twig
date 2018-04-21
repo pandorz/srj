@@ -1,0 +1,56 @@
+{% trans_default_domain 'front' %}
+<div class="cookieBandeau">
+    <div class="cookieBandeauCtn u-fitted">
+        <p>{{ 'cookies.texte'|trans({'%url_mentions_legales%': url('mentions_legales')})|raw }}</p>
+        <span class="btn btn-blank-third more_cookies modal" data-modal-content-id="modal-cookies" data-modal-title="{{ 'cookies.personnaliser.title'|trans }}">{{ 'cookies.button.personnaliser'|trans }}</span>
+        <span class="btn btn-inverse accept_all_cookies">{{ 'cookies.button.ok'|trans }}</span>
+    </div>
+</div>
+
+<div class="u-hidden" id="modal-cookies" >
+    <p>
+        {{ 'cookies.personnaliser.texte'|trans({'%url_mentions_legales%': url('mentions_legales')})|raw }}
+    </p>
+    <div>
+        <h2>{{ 'cookies.personnaliser.all_services.title'|trans }}</h2>
+        <div class="cookie-service-info">
+            <span class="switch-title">{{ 'cookies.personnaliser.label.all_services'|trans }}</span>
+            <label class="switch" for="all_services">
+                <input type="checkbox" class="no-dummy" id="all_services" name="all_services" checked="checked"/>
+                <span class="slider round"></span>
+            </label>
+        </div>
+    </div>
+    <div>
+        <h2>{{ 'cookies.personnaliser.details_services.title'|trans }}</h2>
+        <div class="cookie-service-info">
+            <span class="switch-title">{{ 'cookies.personnaliser.label.facebook'|trans }}</span>
+            <label class="switch" for="facebook_service">
+                <input type="checkbox" class="no-dummy" id="facebook_service" name="facebook_service" checked="checked"/>
+                <span class="slider round"></span>
+            </label>
+            <p>{{ 'cookies.personnaliser.facebook.detail'|trans({'%policies_url%':'https://fr-fr.facebook.com/policies/cookies/'})|raw }}</p>
+        </div>
+        <div class="cookie-service-info">
+            <span class="switch-title">{{ 'cookies.personnaliser.label.twitter'|trans }}</span>
+            <label class="switch" for="twitter_service">
+                <input type="checkbox" class="no-dummy" id="twitter_service" name="twitter_service" checked="checked"/>
+                <span class="slider round"></span>
+            </label>
+            <p>{{ 'cookies.personnaliser.twitter.detail'|trans({'%policies_url%':'https://help.twitter.com/en/rules-and-policies/twitter-cookies'})|raw }}</p>
+        </div>
+        <h2>{{ 'cookies.personnaliser.performance_services.title'|trans }}</h2>
+        <div class="cookie-service-info">
+            <span class="switch-title">{{ 'cookies.personnaliser.label.google'|trans }}</span>
+            <label class="switch" for="google_service">
+                <input type="checkbox" class="no-dummy" id="google_service" name="google_service" checked="checked"/>
+                <span class="slider round"></span>
+            </label>
+            <p>{{ 'cookies.personnaliser.google.detail'|trans({'%policies_url%':'https://policies.google.com/technologies/cookies?hl=fr'})|raw }}</p>
+        </div>
+    </div>
+    <div>
+        <span class="btn accept_custom_cookies">{{ 'cookies.personnaliser.button.save'|trans }}</span>
+        <span class="btn btn-blank btn-modal-close">{{ 'cookies.personnaliser.button.cancel'|trans }}</span>
+    </div>
+</div>

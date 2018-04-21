@@ -1,0 +1,52 @@
+
+/* 
+    Author     : Lucie guilbert
+*/
+
+.cookieBandeau {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 888;
+    width: 100%;
+    background-color: $color-rj-darker;
+}
+.cookieBandeauCtn {
+    display: flex;
+    justify-content: space-between;
+    color: $color-white;
+    font-size: 18px;
+}
+
+@include media('<=1100px') {
+    .cookieBandeau {
+        height: rem(60);
+    }
+}
+
+@include media('>1100px') {
+    .cookieBandeauCtn {
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+
+@include media('>#{$site-width}') {
+    .cookieBandeau {
+        padding: 0 $margin-xl;
+    }
+}
+.cookie-service-info {
+    .switch-title {
+        height: 34px;
+        line-height: 34px;
+        vertical-align: middle;
+        display: block;
+        float: left;
+        min-width: 130px;
+    }
+    p {
+        color: $color-grey-dark;
+        font-style: italic;
+    }
+}

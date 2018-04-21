@@ -85,6 +85,7 @@ app.doScripts = function() {
         config.assetsDir+'/js/04-showhide.js',
         config.assetsDir+'/js/05-dropdown.js',
         config.assetsDir+'/js/06-slider.js',
+        config.assetsDir+'/js/07-cookie.js',
         config.assetsDir+'/js/08-accordion.js',
         config.assetsDir+'/js/09-modal.js',
         config.assetsDir+'/js/10-grecaptcha.js',
