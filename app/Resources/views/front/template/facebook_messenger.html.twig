@@ -1,9 +1,11 @@
-{% if app.environment == 'prod' and is_actif_facebook_messenger() and get_facebook_page_id() is not empty %}
-    {% trans_default_domain 'front' %}
-<div class="fb-customerchat"
-     page_id="{{ get_facebook_page_id() }}"
-     theme_color="#e30613"
-     logged_in_greeting="{{ 'facebook.messenger.logged_in_greeting'|trans }}"
-     logged_out_greeting="{{ 'facebook.messenger.logged_out_greeting'|trans }}">
-</div>
+{% if a_repondu_bandeau() == false or is_cookie_facebook_ok() == true %}
+    {% if app.environment == 'prod' and is_actif_facebook_messenger() and get_facebook_page_id() is not empty %}
+        {% trans_default_domain 'front' %}
+    <div class="fb-customerchat"
+         page_id="{{ get_facebook_page_id() }}"
+         theme_color="#e30613"
+         logged_in_greeting="{{ 'facebook.messenger.logged_in_greeting'|trans }}"
+         logged_out_greeting="{{ 'facebook.messenger.logged_out_greeting'|trans }}">
+    </div>
+    {% endif %}
 {% endif %}

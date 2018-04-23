@@ -52,7 +52,7 @@ app.modalController.defaultAction = {
 
                 // insert code at the end
                   $modal_code = '<div id="modal" class="dialog js-modal ' + modal_content_id + '" role="dialog" aria-labelledby="modal-title"><div role="document">';
-                  $modal_code += '<button id="modal-close" class="modal-close" data-content-back-id="' + modal_content_id + '" data-focus-back="' + $modal_starter_id + '" title="Fermer la fenÃªtre"><span class="modal-close__text">Fermer la fenÃªtre</span></button>';
+                  $modal_code += '<button id="modal-close" class="modal-close" data-content-back-id="' + modal_content_id + '" data-focus-back="' + $modal_starter_id + '" title="Fermer la fenêtre"><span class="modal-close__text">Fermer la fenêtre</span></button>';
                   if ($modal_title !== ''){
                      $modal_code += '<h1 id="modal-title" class="modal-title">' + $modal_title + '</h1>';
                      }

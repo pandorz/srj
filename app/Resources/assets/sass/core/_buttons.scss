@@ -27,6 +27,14 @@
     }
 }
 
+.btn-inverse {
+    background-color: $color-white;
+    color: $color-rj;
+    @include activeLink {
+        background-color: $color-grey-dark;
+    }
+}
+
 .btn-blank {
     border-color: $color-rj;
     color: $color-rj;
