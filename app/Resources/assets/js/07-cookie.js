@@ -43,18 +43,8 @@ app.cookieController.defaultAction = {
             var $checkbox = this.getElementsByTagName('input')[0];
             if ($checkbox.checked) {
                 $checkbox.checked = false;
-                if ($checkbox.getAttribute('name') !== 'all_services') {
-                    document.getElementById("all_services").checked = false;
-                }
             } else {
                 $checkbox.checked = true;
-                if ($checkbox.getAttribute('name') !== 'all_services' && self.allServicesAreChecked()) {
-                    document.getElementById("all_services").checked = true;
-                }
-
-                if ($checkbox.getAttribute('name') === 'all_services') {
-                    self.checkAllServices();
-                }
             }
         } );
     },
