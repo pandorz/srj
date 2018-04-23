@@ -20,7 +20,7 @@ cookies:
         facebook:
             detail: 'Facebook permet d''améliorer la convivialité du site, permet l''ajout de commentaire sur les articles de blog et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
         twitter:
-            detail: 'Facebook permet d''améliorer la convivialité du site et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
+            detail: 'Twitter permet d''améliorer la convivialité du site et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
         google:
             detail: 'Google Analytics nous permet de compter le nombre de visiteurs afin de mesurer les performances du site. Cela nous aide à determiner quelles sont les pages les plus populaires et comment les visiteurs naviguent à travers le site. Toutes ses informations sont anonymes. Si vous desactivez ce cookie nous ne seront plus en mesure de superviser le site.'
         button:
