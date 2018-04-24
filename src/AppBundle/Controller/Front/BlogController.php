@@ -61,7 +61,8 @@ class BlogController extends BaseController
         }
 
         /** @var Blog $blog */
-        $blog = $this->getEm()->getRepository(Blog::class)->findOneBySlug($slug);
+        $repoBlog   = $this->getEm()->getRepository(Blog::class);
+        $blog       = $repoBlog->findOneBySlug($slug);
         if (empty($blog)) {
             return $this->redirectToRoute('blog');
         }
@@ -70,7 +71,14 @@ class BlogController extends BaseController
             return $this->redirectToRoute('blog');
         }
 
-        return $this->render('front/blog/blog-detail.html.twig', ['blog' => $blog]);
+        return $this->render(
+            'front/blog/blog-detail.html.twig',
+            [
+                'blog' => $blog,
+                'next' => $repoBlog->getNext($blog),
+                'prev' => $repoBlog->getPrevious($blog)
+            ]
+        );
     }
 
     /**

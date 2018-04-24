@@ -12,6 +12,53 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
 {
 
     /**
+     * @param Blog $blog
+     * @return mixed
+     */
+    public function getNext(Blog $blog)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Blog e '
+                . 'WHERE e.affiche = :affiche '
+                . 'AND e.datePublication >= :datePublication '
+                . 'AND e.id != :idStart '
+                . 'ORDER BY e.datePublication DESC')
+            ->setParameters([
+                'affiche'           => true,
+                'datePublication'   => $blog->getDatePublication()->format("Y-m-d H:i:s"),
+                'idStart'           => $blog->getId()
+            ])
+            ->setMaxResults(1)
+            ->getResult();
+    }
+
+    /**
+     * @param Blog $blog
+     * @return mixed
+     */
+    public function getPrevious(Blog $blog)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Blog e '
+                . 'WHERE e.affiche = :affiche '
+                . 'AND e.datePublication <= :datePublication '
+                . 'AND e.id != :idStart '
+                . 'ORDER BY e.datePublication DESC')
+            ->setParameters([
+                'affiche'           => true,
+                'datePublication'   => $blog->getDatePublication()->format("Y-m-d H:i:s"),
+                'idStart'           => $blog->getId()
+            ])
+            ->setMaxResults(1)
+            ->getResult();
+    }
+
+
+    /**
      * @param bool $admin
      * @return mixed
      */
