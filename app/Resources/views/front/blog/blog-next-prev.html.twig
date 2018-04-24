@@ -2,12 +2,18 @@
 <div class="blogNavigation">
     {% if prev is not empty %}
         <div class="blogNavigation_prev">
-            {# TODO #}
+            <span class="blogNavigation_title">{{ 'blog.previous'|trans }}</span>
+            <span class="blogNavigation_blog-title">{{ prev.nom }}</span>
+            {% set media_prev_path = get_image_profil(prev.id) %}
+            <span class="blogNavigation_blog-image"><img class="memberPhoto" src="{{ media_prev_path }}" alt="{{ prev.nom }}"></span>
         </div>
     {% endif %}
     {% if next is not empty %}
         <div class="blogNavigation_next">
-            {# TODO #}
+            <span class="blogNavigation_title">{{ 'blog.next'|trans }}</span>
+            <span class="blogNavigation_blog-title">{{ next.nom }}</span>
+            {% set media_next_path = get_image_profil(next.id) %}
+            <span class="blogNavigation_blog-image"><img class="memberPhoto" src="{{ media_next_path }}" alt="{{ next.nom }}"></span>
         </div>
     {% endif %}
 </div>

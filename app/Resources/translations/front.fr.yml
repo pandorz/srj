@@ -184,6 +184,8 @@ blog:
     auteur:
         wrote_by : 'Ecrit par '
         and: ' et '
+    previous: 'Article précédent'
+    next: 'Article suivant'
 
 sortie:
     title: 'Nos sorties'
