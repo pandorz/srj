@@ -4,16 +4,20 @@
         <div class="blogNavigation_prev">
             <span class="blogNavigation_title">{{ 'blog.previous'|trans }}</span>
             <span class="blogNavigation_blog-title">{{ prev.nom }}</span>
-            {% set media_prev_path = get_image_profil(prev.id) %}
-            <span class="blogNavigation_blog-image"><img class="memberPhoto" src="{{ media_prev_path }}" alt="{{ prev.nom }}"></span>
+            {% set media_prev_path = get_image_blog(prev.id) %}
+            {% if media_prev_path is not empty %}
+                <span class="blogNavigation_blog-image"><img class="memberPhoto" src="{{ media_prev_path }}" alt="{{ prev.nom }}"></span>
+            {% endif %}
         </div>
     {% endif %}
     {% if next is not empty %}
         <div class="blogNavigation_next">
             <span class="blogNavigation_title">{{ 'blog.next'|trans }}</span>
             <span class="blogNavigation_blog-title">{{ next.nom }}</span>
-            {% set media_next_path = get_image_profil(next.id) %}
-            <span class="blogNavigation_blog-image"><img class="memberPhoto" src="{{ media_next_path }}" alt="{{ next.nom }}"></span>
+            {% set media_next_path = get_image_blog(next.id) %}
+            {% if media_next_path is not empty %}
+                <span class="blogNavigation_blog-image"><img class="memberPhoto" src="{{ media_next_path }}" alt="{{ next.nom }}"></span>
+            {% endif %}
         </div>
     {% endif %}
 </div>

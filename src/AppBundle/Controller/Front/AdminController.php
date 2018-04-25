@@ -30,11 +30,19 @@ class AdminController extends BaseController
     public function detailAction($slug)
     {
         /** @var Blog $blog */
-        $blog = $this->getEm()->getRepository(Blog::class)->findOneBySlug($slug);
+        $repoBlog   = $this->getEm()->getRepository(Blog::class);
+        $blog       = $repoBlog->findOneBySlug($slug);
         if (empty($blog)) {
             return $this->redirectToRoute('blog');
         }
 
-        return $this->render('front/blog/blog-detail.html.twig', ['blog' => $blog]);
+        return $this->render(
+            'front/blog/blog-detail.html.twig',
+            [
+                'blog' => $blog,
+                'next' => (isset($repoBlog->getNext($blog)[0])?$repoBlog->getNext($blog)[0]:''),
+                'prev' => (isset($repoBlog->getPrevious($blog)[0])?$repoBlog->getPrevious($blog)[0]:'')
+            ]
+        );
     }
 }

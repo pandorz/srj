@@ -75,8 +75,8 @@ class BlogController extends BaseController
             'front/blog/blog-detail.html.twig',
             [
                 'blog' => $blog,
-                'next' => $repoBlog->getNext($blog),
-                'prev' => $repoBlog->getPrevious($blog)
+                'next' => (isset($repoBlog->getNext($blog)[0])?$repoBlog->getNext($blog)[0]:''),
+                'prev' => (isset($repoBlog->getPrevious($blog)[0])?$repoBlog->getPrevious($blog)[0]:'')
             ]
         );
     }
