@@ -1,0 +1,26 @@
+{% trans_default_domain 'front' %}
+<div class="blogNavigation">
+    {% if prev is not empty %}
+        <div class="postItem shortPost blogItem blogNavigation_prev">
+            <div class="postItemCtn blogItemCtn">
+                {% set media_prev_path = get_image_blog(prev.id) %}
+                <img class="postPhoto blogPhoto" src="{{ media_prev_path }}">
+                <h4 class="postTitle blogTitle">{{ prev.nom }}</h4>
+                <p class="postSummary blogSummary">{{ prev.descriptionCourte }}</p>
+                <a class="postHover postLink" href="{{ path('blog_detail', {'slug': prev.slug}) }}" title="{{ 'blog.button.see_article'|trans }} : {{ prev.nom }}"><span class="btn btn-blank" aria-hidden="true">{{ 'blog.previous'|trans }}</span></a>
+            </div>
+        </div>
+    {% endif %}
+    {% if next is not empty %}
+        <div class="postItem shortPost blogItem blogNavigation_next">
+            <div class="postItemCtn blogItemCtn">
+                {% set media_next_path = get_image_blog(next.id) %}
+                <img class="postPhoto blogPhoto" src="{{ media_next_path }}">
+                <h4 class="postTitle blogTitle">{{ next.nom }}</h4>
+                <p class="postSummary blogSummary">{{ next.descriptionCourte }}</p>
+                <a class="postHover postLink" href="{{ path('blog_detail', {'slug': next.slug}) }}" title="{{ 'blog.button.see_article'|trans }} : {{ next.nom }}"><span class="btn btn-blank" aria-hidden="true">{{ 'blog.next'|trans }}</span></a>
+            </div>
+        </div>
+    {% endif %}
+</div>
+<div style="clear: both"></div>

@@ -63,11 +63,37 @@
 			margin-bottom: 5px;
 		}
 	}
+	.blogNavigation {
+		max-width: rem(800);
+		margin: rem(40) auto;
+		.postItem {
+			width: 45% !important;
+		}
+		.blogNavigation_prev {
+			float: left;
+		}
+		.blogNavigation_next {
+			float: right;
+		}
+	}
 	.blogComments {
 		max-width: rem(800);
 		margin: rem(40) auto;
 		.fb_iframe_widget, .fb_iframe_widget span, .fb_iframe_widget span iframe[style] {
 			width: 100% !important;
+		}
+	}
+}
+
+@include media('<=900px') {
+	.blogDetail {
+		.blogNavigation {
+			.blogNavigation_prev, .blogNavigation_next {
+				float: none;
+			}
+			.postItem {
+				width: auto !important;
+			}
 		}
 	}
 }
