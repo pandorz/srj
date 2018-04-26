@@ -89,6 +89,13 @@ class Import
     protected $version;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="timestamp_execution", type="datetime", nullable=true)
+     */
+    private $timestampExecution;
+
+    /**
      * @var UtilisateurDroits
      *
      * @ORM\ManyToOne(targetEntity="UtilisateurDroits")
@@ -429,5 +436,21 @@ class Import
     public function setStatut(string $statut)
     {
         $this->statut = $statut;
+    }
+
+    /**
+     * @return \DateTime
+     */
+    public function getTimestampExecution():? \DateTime
+    {
+        return $this->timestampExecution;
+    }
+
+    /**
+     * @param \DateTime $timestampExecution
+     */
+    public function setTimestampExecution(\DateTime $timestampExecution)
+    {
+        $this->timestampExecution = $timestampExecution;
     }
 }
