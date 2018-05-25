@@ -27,6 +27,8 @@
 'Tag Create': Créer
 'Tag List': Tags
 'Votre message': 'Votre message'
+'Import Create': Importer
+'Import List': Imports
 
 actualite:
     actif: Active

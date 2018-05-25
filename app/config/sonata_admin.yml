@@ -130,6 +130,9 @@ sonata_admin:
                     - route: admin_utilisateur_droits_list
                       roles: [ROLE_SONATA_USER_ADMIN_GROUP_EDITOR, ROLE_SONATA_USER_ADMIN_GROUP_STAFF, ROLE_SONATA_USER_ADMIN_GROUP_GUEST, ROLE_SONATA_USER_ADMIN_GROUP_ADMIN]
                       label: "Groupes"
+                    - route: admin_import_list
+                      roles: [ROLE_APP_ADMIN_IMPORTS_GUEST, ROLE_APP_ADMIN_IMPORTS_STAFF, ROLE_APP_ADMIN_IMPORTS_EDITOR, ROLE_APP_ADMIN_IMPORTS_ADMIN]
+                      label: "Imports"
         blocks:
             -
                 class: col-lg-2 col-xs-6
