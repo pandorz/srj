@@ -1,6 +1,6 @@
 {% if object.timestampExecution is defined and object.timestampExecution is null %}
-<a href="{{ path('admin_import_import_file', {'id' : object.id}) }}" class="btn btn-sm btn-default delete_link" title="{{ 'import_objet_musee.import_objet.button'|trans({}) }}">
+<a href="{{ path('admin_import_import_file', {'id' : object.id}) }}" class="btn btn-sm btn-default delete_link" title="{{ 'import.button'|trans({}) }}">
     <i class="fa fa-upload" aria-hidden="true"></i>
-    {{ 'import_objet_musee.import_objet.button'|trans({}) }}
+    {{ 'import.button'|trans({}) }}
 </a>
 {% endif %}

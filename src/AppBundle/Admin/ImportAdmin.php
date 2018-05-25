@@ -86,7 +86,7 @@ class ImportAdmin extends AbstractAdmin
             ->add('fkUtilisateurDroit', 'sonata_type_model_autocomplete', [
                 'class'     => UtilisateurDroits::class,
                 'property'  => 'name',
-                'label'     => 'fkUtilisateurDroit.nom',
+                'label'     => 'import.liste.fkUtilisateurDroit',
                 'placeholder' => $this->trans('import.placeholder.fkUtilisateurDroit')
             ])
             ->add('file', 'file', array(
@@ -111,7 +111,7 @@ class ImportAdmin extends AbstractAdmin
             ->add('fkUtilisateurDroit', null, [], 'entity', [
                 'class'         => UtilisateurDroits::class,
                 'choice_label'  => 'name',
-            ], ['label'     => 'fkUtilisateurDroit.nom'])
+            ], ['label'     => 'import.liste.fkUtilisateurDroit'])
             ->add('utilisateurCreation', null, [], null, [], ['label' => 'import.liste.utilisateurCreation'])
         ;
     }

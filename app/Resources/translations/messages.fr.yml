@@ -16,6 +16,8 @@
 'Demande Newsletter List': 'Demandes Newsletter'
 'Evenement Create': Créer
 'Evenement List': Événements
+'Import Create': Importer
+'Import List': Imports
 'Kouryukai Create': Créer
 'Kouryukai List': Kouryukai
 'Parametre Create': Créer
@@ -27,8 +29,6 @@
 'Tag Create': Créer
 'Tag List': Tags
 'Votre message': 'Votre message'
-'Import Create': Importer
-'Import List': Imports
 
 actualite:
     actif: Active
@@ -449,6 +449,27 @@ http_error_500:
 http_error_503:
     description: 'Service indisponible'
     suggestion: 'Essayez plus tard'
+
+import:
+    button: Importer
+    add_edit:
+        to_string: Import
+        file: Fichier
+        details: 'Import d''utilisateur'
+        details.description: 'Importer ici de nouveaux utilisateurs en suivant le <a href="%url_file%" target=_blank>fichier d''exemple</a>. <b>Attention</b> les numéros de membres existants seront mis à jour.'
+
+    liste:
+        fkUtilisateurDroit: Groupe
+        nom_fichier: Fichier
+        statut: Statut
+        timestamp_creation: 'Date de création'
+        utilisateurCreation: Utilisateur
+
+    placeholder:
+        fkUtilisateurDroit: 'Nom du groupe'
+
+    with:
+        details: Détails
 
 kouryukai:
     actif: Actif
