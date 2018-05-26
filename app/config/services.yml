@@ -179,3 +179,10 @@ services:
     app.front_calendar:
         class: AppBundle\Service\FrontCalendar
         arguments: ["@doctrine.orm.entity_manager"]
+
+    app.import:
+        class: AppBundle\Service\Imports
+        arguments: ["@doctrine.orm.entity_manager", "@monolog.logger.import", "@phpexcel", "@validator", "%web_path%"]
+        tags:
+          - { name: monolog.logger, channel: import}
+

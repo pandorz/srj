@@ -24,6 +24,11 @@ class Import
     const STATUT_KO = 'En erreur';
 
     /**
+     * Statut de l'import : KO
+     */
+    const STATUT_WARNING = 'Incomplet';
+
+    /**
      * Statut de l'import : pas encore fait
      */
     const STATUT_ATTENTE    = 'En attente';
@@ -345,6 +350,10 @@ class Import
 
         if (hash_equals($this->statut, self::STATUT_KO)) {
             $label = "label-danger";
+        }
+
+        if (hash_equals($this->statut, self::STATUT_WARNING)) {
+            $label = "label-warning";
         }
 
         if (hash_equals($this->statut, self::STATUT_LOCK)) {

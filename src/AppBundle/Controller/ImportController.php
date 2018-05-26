@@ -25,8 +25,8 @@ class ImportController extends BaseController
             return new Response('', Response::HTTP_BAD_REQUEST);
         }
 
-        $importObjetController = $this->get('app.import');
-        $importObjetController->importFile($id);
+        $importService = $this->get('app.import');
+        $importService->execute($id);
 
         return $this->redirectToRoute('admin_import_list');
     }
