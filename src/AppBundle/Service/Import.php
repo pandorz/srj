@@ -105,6 +105,7 @@ class Import
                 } else {
                     if ($this->isLineOk($line, $lineNumber)) {
                         $user = $this->insertOrUpdateUser($line);
+                        $this->getEm()->persist($user);
                         $this->addLog("Insertion ou mise à jour du membre ".$user->getMembreNumero()." (Ligne ".$lineNumber.")");
                     } elseif ($this->importEntity->getStatut() != ImportEntity::STATUT_WARNING) {
                         $this->importEntity->setStatut(ImportEntity::STATUT_WARNING);
@@ -119,7 +120,7 @@ class Import
             $this->saveLog();
 
             try {
-                $this->em->flush();
+                $this->getEm()->flush();
             } catch (\Exception $e) {
                 $this->setCriticalError("Erreur à la fin de l'import");
                 return false;
@@ -139,8 +140,8 @@ class Import
     private function setCriticalError(string $textError)
     {
         $this->importEntity->setStatut(ImportEntity::STATUT_KO);
-        $this->em->persist($this->importEntity);
-        $this->em->flush();
+        $this->getEm()->persist($this->importEntity);
+        $this->getEm()->flush();
         $this->logger->addCritical($textError);
     }
 
@@ -192,7 +193,7 @@ class Import
         }
 
         /** @var ImportEntity $import */
-        $import = $this->em->getRepository(ImportEntity::class)->find($idImport);
+        $import = $this->getEm()->getRepository(ImportEntity::class)->find($idImport);
 
         if (empty($import) || $import->getStatut() != ImportEntity::STATUT_ATTENTE || empty($import->getFilepath())) {
             return false;
@@ -202,8 +203,8 @@ class Import
 
         $this->importEntity->setStatut(ImportEntity::STATUT_LOCK);
         $this->importEntity->setTimestampExecution(new \DateTime());
-        $this->em->persist($this->importEntity);
-        $this->em->flush();
+        $this->getEm()->persist($this->importEntity);
+        $this->getEm()->flush();
 
 
         return true;
@@ -297,7 +298,7 @@ class Import
      */
     private function getUserByMemberNumber(string $memberNumber)
     {
-        $user = $this->em->getRepository(Utilisateur::class)->findByMembreNumero($memberNumber);
+        $user = $this->getEm()->getRepository(Utilisateur::class)->findByMembreNumero($memberNumber);
 
         if (empty($user)) {
             return null;
@@ -317,7 +318,8 @@ class Import
             $user = new Utilisateur();
         }
         $user = $this->setUser($line, $user);
-        $this->em->persist($user);
+
+        return $user;
     }
 
     /**
@@ -365,7 +367,7 @@ class Import
         fputs($file, $this->logs);
         fclose($file);
         $this->importEntity->setFilepathLog($filePath);
-        $this->em->persist($this->importEntity);
+        $this->getEm()->persist($this->importEntity);
     }
 
     /**
@@ -501,4 +503,23 @@ class Import
         return $data;
     }
 
+    /**
+     * Get entity manager
+     * @return \Doctrine\Common\Persistence\ObjectManager|object
+     * @throws \Doctrine\ORM\ORMException
+     */
+    private function getEm()
+    {
+        // connexion closed après exception critical, réouverture
+        if (!$this->em->isOpen()) {
+            $em = $this->em->create(
+                $this->em->getConnection(),
+                $this->em->getConfiguration()
+            );
+
+            $this->em = $em;
+        }
+
+        return $this->em;
+    }
 }
