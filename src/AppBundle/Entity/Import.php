@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
  *
  * @ORM\Table(name="import")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\ImportRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Import
 {
@@ -365,7 +366,7 @@ class Import
     /**
      * @param UploadedFile $file
      */
-    public function setFile(UploadedFile $file)
+    public function setFile(UploadedFile $file = null)
     {
         $this->file = $file;
     }
