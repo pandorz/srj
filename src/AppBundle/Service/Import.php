@@ -444,11 +444,6 @@ class Import
             $this->setHeader();
         }
 
-        // On enlève l'entete du fichier
-        if (isset($sheet[1])) {
-            unset($sheet[1]);
-        }
-
         foreach ($sheet as $line) {
             $data[] = [
                 'numero_membre' => $line['A'],
