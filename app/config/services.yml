@@ -181,7 +181,7 @@ services:
         arguments: ["@doctrine.orm.entity_manager"]
 
     app.import:
-        class: AppBundle\Service\Imports
+        class: AppBundle\Service\Import
         arguments: ["@doctrine.orm.entity_manager", "@monolog.logger.import", "@phpexcel", "@validator", "%web_path%"]
         tags:
           - { name: monolog.logger, channel: import}
