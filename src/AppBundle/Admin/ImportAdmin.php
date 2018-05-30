@@ -9,7 +9,6 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
-use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\Validator\Constraints\File;
 
 class ImportAdmin extends AbstractAdmin
@@ -20,7 +19,7 @@ class ImportAdmin extends AbstractAdmin
     public $supportsPreviewMode = false;
 
     const PATH_EXAMPLE_FILE = 'medias/documents/';
-    const NAME_EXAMPLE_FILE = 'proscitec_import.xlsx';
+    const NAME_EXAMPLE_FILE = 'import_membre.xlsx';
 
     protected $datagridValues = [
         '_sort_order'   => 'DESC',
