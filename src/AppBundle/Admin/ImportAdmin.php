@@ -86,11 +86,12 @@ class ImportAdmin extends AbstractAdmin
                 'class'     => UtilisateurDroits::class,
                 'property'  => 'name',
                 'label'     => 'import.liste.fkUtilisateurDroit',
-                'placeholder' => $this->trans('import.placeholder.fkUtilisateurDroit')
+                'placeholder' => $this->trans('import.placeholder.fkUtilisateurDroit'),
+                'required'  => false
             ])
             ->add('file', 'file', array(
                 'label'         => 'import.add_edit.file',
-                'constraints'   => [new File(['mimeTypes' => Import::TYPE_MIME, 'maxSize' => Import::getMaxFileSize()])]
+                'constraints'   => [new File(['mimeTypes' => Import::TYPE_MIME])]
             ))
             ->end();
     }
@@ -135,6 +136,7 @@ class ImportAdmin extends AbstractAdmin
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurCreation($user->__toString());
         $page->setTimestampCreation(new \DateTime('now'));
+        $page->setStatut(Import::STATUT_ATTENTE);
         $this->manageFileUpload($page);
     }
 
