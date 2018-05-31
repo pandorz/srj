@@ -356,6 +356,26 @@ class Import
     }
 
     /**
+     * @return string
+     */
+    public function getCliquableImportFile()
+    {
+        return '<a target="_blank" href="'.$this->filepath.'">'.$this->filename.'</a>';
+    }
+
+    /**
+     * @return string
+     */
+    public function getCliquableLogFile()
+    {
+        if (empty($this->filepathLog)) {
+            return '';
+        }
+
+        return '<a target="_blank" href="'.$this->filepathLog.'">Voir le fichier de log</a>';
+    }
+
+    /**
      * @return UploadedFile
      */
     public function getFile():? UploadedFile

@@ -39,7 +39,7 @@ class ImportAdmin extends AbstractAdmin
                 'route'     => ['name' => 'show'],
                 'sortable'  => 'name'
             ])
-            ->add('filename', 'text', array(
+            ->add('cliquableImportFile', 'html', array(
                 'label'         => 'import.liste.nom_fichier'
             ))
             ->add('statutWithStyle', 'html', [
@@ -54,6 +54,14 @@ class ImportAdmin extends AbstractAdmin
             ->add('utilisateurCreation', 'text', array(
                 'label'         => 'import.liste.utilisateurCreation'
             ))
+            ->add('cliquableLogFile', 'html', array(
+                'label'         => 'import.liste.log_fichier'
+            ))
+            ->add('timestampExecution', 'datetime', [
+                'label' => 'import.liste.timestampExecution',
+                'locale' => 'fr',
+                'timezone' => 'Europe/Paris',
+            ])
             ->add('_action', null, array(
                 'actions' => array(
                     'import_objet' => array(

@@ -464,6 +464,8 @@ import:
         statut: Statut
         timestamp_creation: 'Date de création'
         utilisateurCreation: Utilisateur
+        timestampExecution: 'Executé le'
+        log_fichier: 'Log'
 
     placeholder:
         fkUtilisateurDroit: 'Nom du groupe'
