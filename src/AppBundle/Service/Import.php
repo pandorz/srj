@@ -118,16 +118,17 @@ class Import
             }
 
             $this->saveLog();
-
-            try {
-                $this->getEm()->flush();
-            } catch (\Exception $e) {
-                $this->setCriticalError("Erreur à la fin de l'import");
-                return false;
-            }
         } else {
             $this->importEntity->setTimestampExecution(new \DateTime());
             $this->setCriticalError("Impossible de lancer l'import");
+            return false;
+        }
+
+        try {
+            $this->getEm()->flush();
+        } catch (\Exception $e) {
+            $this->getEm()->clear();
+            $this->setCriticalError("Erreur à la fin de l'import");
             return false;
         }
 
@@ -261,6 +262,11 @@ class Import
             $this->addLog("Le mail ne peut être vide ligne ".$lineNumber);
         }
 
+        if ($this->isMailAlreadyUsed(trim($line['mail']), trim($line['numero_membre']))) {
+            $isValid = false;
+            $this->addLog("L'adresse mail ".$line['mail']." est déjà utilisé ".$lineNumber);
+        }
+
         if (empty(trim($line['nom']))) {
             $isValid = false;
             $this->addLog("Le nom ne peut être vide ligne ".$lineNumber);
@@ -298,7 +304,7 @@ class Import
      */
     private function getUserByMemberNumber(string $memberNumber)
     {
-        $user = $this->getEm()->getRepository(Utilisateur::class)->findByMembreNumero($memberNumber);
+        $user = $this->getEm()->getRepository(Utilisateur::class)->findOneByMembreNumero($memberNumber);
 
         if (empty($user)) {
             return null;
@@ -341,6 +347,12 @@ class Import
         if (!empty(trim($line['nomJP']))) {
             $user->setPrenomJaponais(trim($line['prenomJP']));
         }
+
+        if (empty($user->getUsername())) {
+            $user->setUsername(mb_strtolower(ucfirst($user->getFirstname()).$user->getLastname()));
+        }
+
+        $user->setPassword($this->generatePassword());
 
         $user = $this->addToGroup($user);
         return $user;
@@ -516,5 +528,31 @@ class Import
         }
 
         return $this->em;
+    }
+
+    private function generatePassword()
+    {
+        return preg_replace('/[+><\(\)~*\"@\/=]+/', '', base64_encode(random_bytes(8)));
+    }
+
+    /**
+     * @param string $mail
+     * @param string $memberNumber
+     * @return bool
+     */
+    private function isMailAlreadyUsed(string $mail, string $memberNumber)
+    {
+        if (empty($mail)) {
+            return false;
+        }
+
+        /** @var Utilisateur $user */
+        $user = $this->getEm()->getRepository(Utilisateur::class)->findOneByEmail($mail);
+
+        if (empty($user)) {
+            return false;
+        }
+
+        return !hash_equals($user->getMembreNumero(), $memberNumber);
     }
 }

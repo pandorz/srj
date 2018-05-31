@@ -45,12 +45,6 @@ class Utilisateur extends BaseUser
     */
     private $accesSite;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="adherent", type="boolean")
-     */
-    private $adherent;
 
     /**
      * @var boolean
@@ -871,21 +865,5 @@ class Utilisateur extends BaseUser
     public function setNomJaponais(string $nomJaponais)
     {
         $this->nomJaponais = $nomJaponais;
-    }
-
-    /**
-     * @return bool
-     */
-    public function isAdherent(): bool
-    {
-        return $this->adherent;
-    }
-
-    /**
-     * @param bool $adherent
-     */
-    public function setAdherent(bool $adherent)
-    {
-        $this->adherent = $adherent;
     }
 }
