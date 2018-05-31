@@ -8,9 +8,7 @@ use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 /**
  * UtilisateurDroits
  *
- * @ORM\Table(name="utilisateur_droits", indexes={
- *     @ORM\Index(name="fk_id_utilisateur", columns={"fk_id_utilisateur"})
- * })
+ * @ORM\Table(name="utilisateur_droits")
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  */
@@ -24,15 +22,6 @@ class UtilisateurDroits extends BaseGroup
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-    /**
-     * @var Utilisateur
-     *
-     * @ORM\ManyToOne(targetEntity="Utilisateur")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="fk_id_utilisateur", referencedColumnName="id")
-     * })
-     */
-    private $fkUtilisateur;
 
     /**
      * @var boolean
@@ -72,30 +61,6 @@ class UtilisateurDroits extends BaseGroup
         return $this->id;
     }
 
-   
-    /**
-     * Set fkUtilisateur
-     *
-     * @param Utilisateur $fkUtilisateur
-     *
-     * @return UtilisateurDroits
-     */
-    public function setFkUtilisateur(Utilisateur $fkUtilisateur = null)
-    {
-        $this->fkUtilisateur = $fkUtilisateur;
-
-        return $this;
-    }
-
-    /**
-     * Get fkUtilisateur
-     *
-     * @return \AppBundle\Entity\Utilisateur
-     */
-    public function getFkUtilisateur()
-    {
-        return $this->fkUtilisateur;
-    }
 
     /**
      * Set timestampCreation

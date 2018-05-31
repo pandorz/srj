@@ -16,6 +16,8 @@
 'Demande Newsletter List': 'Demandes Newsletter'
 'Evenement Create': Créer
 'Evenement List': Événements
+'Import Create': Importer
+'Import List': Imports
 'Kouryukai Create': Créer
 'Kouryukai List': Kouryukai
 'Parametre Create': Créer
@@ -448,6 +450,29 @@ http_error_503:
     description: 'Service indisponible'
     suggestion: 'Essayez plus tard'
 
+import:
+    button: Importer
+    add_edit:
+        to_string: Import
+        file: Fichier
+        details: 'Import d''utilisateur'
+        details.description: 'Importer ici de nouveaux utilisateurs en suivant le <a href="%url_file%" target=_blank>fichier d''exemple</a>. <b>Attention</b> les numéros de membres existants seront mis à jour.'
+
+    liste:
+        fkUtilisateurDroit: Groupe
+        nom_fichier: Fichier
+        statut: Statut
+        timestamp_creation: 'Date de création'
+        utilisateurCreation: Utilisateur
+        timestampExecution: 'Executé le'
+        log_fichier: 'Log'
+
+    placeholder:
+        fkUtilisateurDroit: 'Nom du groupe'
+
+    with:
+        details: Détails
+
 kouryukai:
     actif: Actif
 
@@ -626,53 +651,3 @@ tag:
 
     with:
         details: Détails
-
-utilisateur:
-    accesSite: 'Peut acceder au site'
-    estProfesseur: 'Est professeur'
-    image: 'Image de profil'
-
-    liste:
-        accesSite: 'Acces site'
-        estProfesseur: Professeur
-        parent: Parent
-
-    membreNumero: 'Numéro du membre'
-    membreNumero_empty: 'Cet utilisateur n''a pas de numéro de membre'
-    membreTitre: 'Titre du membre'
-    nomJaponais: 'Nom en Japonais'
-
-    placeholder:
-        accesSite: 'Peut acceder au site'
-        estProfesseur: 'Est professeur'
-        membreNumero: 'Numéro d''adhésion du membre'
-        membreTitre: 'Titre du membre à afficher'
-        nomJaponais: 'Nom en Japonais'
-        prenomJaponais: 'Prénom en Japonais'
-
-    prenomJaponais: 'Prénom en Japonais'
-    sousUtilisateurs: Enfants
-
-    tab:
-        profil: 'Autres informations'
-        sousUtilisateurs: 'Liste des enfants'
-
-    with:
-        description: Informations
-        meta_data: 'Autres données'
-        sousUtilisateurs: Enfants
-
-utilisateur_droit:
-    estMembreBureau: 'Est membre du bureau'
-
-    liste:
-        estMembreBureau: 'Membre du bureau'
-
-    placeholder:
-        estMembreBureau: 'Est membre du bureau'
-
-    tab:
-        detail: Détails
-
-    with:
-        parametre: Paramètres

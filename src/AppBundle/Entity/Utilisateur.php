@@ -45,6 +45,7 @@ class Utilisateur extends BaseUser
     */
     private $accesSite;
 
+
     /**
      * @var boolean
      *

@@ -1,32 +1,3 @@
-cookies:
-    texte: 'En poursuivant votre navigation, vous acceptez le dépôt de cookies tiers destinés à vous proposer des vidéos, des boutons de partage, des remontées de contenus de plateformes sociales. <a href="%url_mentions_legales%" class="white_link">En savoir plus</a>'
-    button:
-        ok: 'OK, tout accepter'
-        personnaliser: 'Personnaliser'
-    personnaliser:
-        title: 'Gestion de vos préférences sur les cookies'
-        texte: 'Certaines fonctionnalités de ce site (partage de contenus sur les réseaux sociaux, lecture directe de vidéos) s’appuient sur des services proposés par des sites tiers. Elles sont necessaire au bon fonctionnement du site. Ces fonctionnalités déposent des cookies permettant notamment à ces sites de tracer votre navigation. Ces cookies ne sont déposés que si vous donnez votre accord. Vous pouvez vous informer sur la nature des cookies déposés, les accepter ou les refuser soit globalement pour l’ensemble du site et l’ensemble des services, soit service par service. <a href="%url_mentions_legales%">En savoir plus</a>'
-        all_services:
-            title: 'Préférences pour tous les services'
-        details_services:
-            title: 'Réseaux sociaux'
-        performance_services:
-            title: 'Service de performance'
-        label:
-            all_services: 'Tous les services'
-            facebook: 'Facebook'
-            twitter: 'Twitter'
-            google: 'Google Analytics'
-        facebook:
-            detail: 'Facebook permet d''améliorer la convivialité du site, permet l''ajout de commentaire sur les articles de blog et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
-        twitter:
-            detail: 'Twitter permet d''améliorer la convivialité du site et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
-        google:
-            detail: 'Google Analytics nous permet de compter le nombre de visiteurs afin de mesurer les performances du site. Cela nous aide à determiner quelles sont les pages les plus populaires et comment les visiteurs naviguent à travers le site. Toutes ses informations sont anonymes. Si vous desactivez ce cookie nous ne seront plus en mesure de superviser le site.'
-        button:
-            cancel: 'Annuler'
-            save: 'Sauvegarder'
-
 activities:
     more: 'En savoir plus'
 
@@ -40,14 +11,193 @@ activities:
         cours: Cours
         sorties: Sorties
 
+actualite:
+    button:
+        see_all: 'Voir toutes les actualités'
+
+    none:
+        description: 'Ça ne devrait pourtant pas tarder !'
+        title: 'Aucune actualités n''est encore écrite pour le moment...'
+
+association:
+    membres_bureau: 'Les membres du bureau'
+    partenaires: 'Les partenaires de l''association'
+
+    qui_sommes_nous:
+        nihon:
+            meta:
+                title: ルーアン日仏協会のプレゼンテーション
+
+            presentation:
+                date: '<p><b>を目的として活動しています。</b></p> <ul class="u-ul-colorRJ"> <li><b>2010年 :</b> 日本語教室の開講</li> <li><b>2011年 :</b> ルーアン国立音楽学校（コンサルヴァトワール）、ルーアン赤十字との協力の元、東日本大地震の支援のためのチャリティーコンサートの実施</li> <li><b>2013年 :</b> 日本文化を紹介するイベント「ハナミ2012」の開催</li> <li><b>2013～2014年度 :</b> 藤野あかりからピエール・ジョズリエへ代表の交代</li> <li><b>2014年 :</b> 第２回「ハナミ」開催</li> <li><b>2014～2015年度 :</b> 茶道と書道教室の開講</li> <li><b>2015年 :</b> ジャポン」の開始（日仏言語交流の場）</li> <li><b>2016～2017年度 :</b> 子供向け日本語教室の開講</li> </ul>'
+                texte: '<p> ルーアン日仏協会（ルーアン・ジャポン）は、2009年に設立され、現在では約%members_number%名の方にメンバー登録をしていただいています。 ルーアン・ジャポンは、<br> </p> <ul class="u-ul-colorRJ"> <li>フランス人と日本人との交流の場を提供すること</li> <li>日仏間のコミュニケーションのお手伝いをすること</li> <li>日本語教室を提供すること（フランス語教室は企画中です）</li> <li>日本文化、フランス文化に関わるイベントを企画、提供すること</li> </ul><br>'
+                title: 私たちについて
+
+            title: ルーアン日本協会
+
+        version:
+            adhesion:
+                contact_form_link: 'Si vous avez d''autres questions, vous pouvez nous les poser via notre <a href="%contact_link%">formulaire de contact.</a>'
+                header: 'Adhérer à l''association vous permet de vous inscrire aux cours de japonais et aux ateliers que nous organisons tout au long de l''année. Le montant de l''adhésion est de %cotisation_amount%€ pour une année.'
+                texte: 'Votre adhésion sera effective à la réception de la cotisation que vous pouvez régler en liquide ou par chèque à l''ordre de "Rouen Japon".<br> Le montant de la cotisation peut être remis en mains propres lors d''un atelier, au professeur lors d''un cours de japonais ou à notre réunion de rentrée qui aura lieu le 17 septembre à 14h à la %cour_adresse%.'
+                title: 'Adhérer à l''association'
+
+            meta:
+                title: 'Découvrir l’association franco-japonaise de Rouen'
+
+            presentation:
+                date: '<p><b>Quelques dates :</b></p> <ul class="u-ul-colorRJ"> <li><b>2010 :</b> Mise en place des cours de japonais</li> <li><b>2011 :</b> Concert de solidarité aux victimes du tsunami</li> <li><b>2013 :</b> Premier festival Hanami</li> <li><b>Saison 2013-14 :</b> Akari FUJINO cède la présidence de l’association à Pierre JOSELIER</li> <li><b>2014 :</b> Deuxième festival Hanami</li> <li><b>Saison 2014-15 :</b> Mise en place des cours de cérémonie du thé et de calligraphie</li> <li><b>2015 :</b> Lancement du Café Japon (café d’échange linguistique)</li> <li><b>Saison 2016-17 :</b> Mise en place des cours de japonais pour enfants</li> <li><b>Saison 2017-18 :</b> Mise en place des cours de yoga et de préparation au JLPT</li> </ul>'
+                texte: '<p> Rouen Japon a été créé en 2009 par Akari FUJINO. A l’heure actuelle, l’association compte %members_number% membres.<br> Rouen Japon a pour objectif : </p> <ul class="u-ul-colorRJ"> <li>Être un lieu d''échange entre les Français et les Japonais</li> <li>Mettre en relation des Français et des Japonais pour leur permettre de communiquer, d''échanger sur leurs pays respectifs</li> <li>Proposer des cours de japonais et de français</li> <li>Organiser des animations autour des cultures japonaises et françaises</li> </ul><br>'
+                title: 'À propos de nous'
+
+            title: 'L''Association Rouen Japon'
+
+atelier:
+    meta:
+        title: 'Les ateliers sur la culture japonaise : ikebana, origami, cuisine nippone'
+
+    none:
+        description: 'Ça ne devrait pourtant pas tarder !'
+        title: 'Aucun atelier n''est encore programmé...'
+
+    presentation:
+        header: 'Tous les ans, Rouen Japon vous propose de participer à divers ateliers, de l''initiation à l''<strong>Ikebana</strong> (art floral), aux <strong>ateliers cuisine</strong> (gyozas, okonomiyaki...), en passant par l''<strong>origami</strong>...'
+        note: 'étails et conditions à consulter pour chaque atelier'
+        texte: '<p>Le type et la fréquence de ces ateliers peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a></p> <p>Pour cette saison 2017-2018 par exemple, Rouen Japon pense reprogrammer les ateliers de la saison précédente auxquels vous avez été nombreux à répondre présents, à savoir : </p> <ul class="u-ul-colorRJ"> <li><b>Les Ateliers cuisine</b> (à raison d''un atelier par trimestre)</li> <li><b>Les Ateliers origami</b> (à raison d''un atelier par trimestre)</li> <li><b> Préparer son voyage au Japon</b>  (en octobre)</li> </ul> <p>Presque chaque atelier est ouvert à tous*, dans la limite des places disponibles et se règle à l''unité. Toutes les conditions figurent dans le détail des ateliers en question.</p> <p>À bento ! Euh, ahem, à bientôt !</p>'
+        title: 'Les ateliers'
+
 bandeau:
     base_line: 日仏文化交流会は、ルーアンにおける日本文化との交流を目的とし活動しています。
     title: 'Favoriser les échanges entre les Français et la communauté japonaise de Rouen.'
+
+blog:
+    auteur:
+        and: ' et '
+        wrote_by: 'Ecrit par '
+
+    button:
+        see_all: 'Voir tous les articles du blog'
+        see_all_light: 'Tous les articles'
+        see_article: 'Voir l''article'
+
+    last_article_tag: ' pour le tag %tag_name%'
+    last_article_title: 'Derniers articles%tag_sentence%'
+
+    meta:
+        title: 'Nos articles de blog'
+
+    next: 'Article suivant'
+    previous: 'Article précédent'
+    title: 'Nos articles'
+
+conditions:
+    free_for_members: 'Gratuit pour les membres.'
+    member_prix: ' euros pour les membres.'
+    prix: ' euros pour les personnes non membres.'
+    title: 'Conditions :'
+
+contact:
+    button: Envoyer
+
+    meta:
+        title: 'Nous contacter'
+
+    title: 'Laissez-nous un message !'
+
+cookies:
+    button:
+        ok: 'OK, tout accepter'
+        personnaliser: Personnaliser
+
+    personnaliser:
+        all_services:
+            title: 'Préférences pour tous les services'
+
+        button:
+            cancel: Annuler
+            save: Sauvegarder
+
+        details_services:
+            title: 'Réseaux sociaux'
+
+        facebook:
+            detail: 'Facebook permet d''améliorer la convivialité du site, permet l''ajout de commentaire sur les articles de blog et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
+
+        google:
+            detail: 'Google Analytics nous permet de compter le nombre de visiteurs afin de mesurer les performances du site. Cela nous aide à determiner quelles sont les pages les plus populaires et comment les visiteurs naviguent à travers le site. Toutes ses informations sont anonymes. Si vous desactivez ce cookie nous ne seront plus en mesure de superviser le site.'
+
+        label:
+            all_services: 'Tous les services'
+            facebook: Facebook
+            google: 'Google Analytics'
+            twitter: Twitter
+
+        performance_services:
+            title: 'Service de performance'
+
+        texte: 'Certaines fonctionnalités de ce site (partage de contenus sur les réseaux sociaux, lecture directe de vidéos) s’appuient sur des services proposés par des sites tiers. Elles sont necessaire au bon fonctionnement du site. Ces fonctionnalités déposent des cookies permettant notamment à ces sites de tracer votre navigation. Ces cookies ne sont déposés que si vous donnez votre accord. Vous pouvez vous informer sur la nature des cookies déposés, les accepter ou les refuser soit globalement pour l’ensemble du site et l’ensemble des services, soit service par service. <a href="%url_mentions_legales%">En savoir plus</a>'
+        title: 'Gestion de vos préférences sur les cookies'
+
+        twitter:
+            detail: 'Twitter permet d''améliorer la convivialité du site et aide à sa promotion via les partages. <a href="%policies_url%" target="_blank">En savoir plus</a>'
+
+    texte: 'En poursuivant votre navigation, vous acceptez le dépôt de cookies tiers destinés à vous proposer des vidéos, des boutons de partage, des remontées de contenus de plateformes sociales. <a href="%url_mentions_legales%" class="white_link">En savoir plus</a>'
+
+cour:
+    adherer: 'Pour suivre ce cours, il vous faut <b><a href="%adhesion_link%" target="_blank">adhérer à l''association</a></b> et vous acquitter du montant de la cotisation de %cotisation_amount%€.'
+    bientot_complet: '// Plus que quelques places disponibles ! ///'
+    complet: '// Les cours sont complets ///'
+    contact_form_link: 'Si vous avez d''autres questions, vous pouvez nous les poser via notre <a href="%contact_link%">formulaire de contact.</a>'
+    detail_complet: COMPLET
+    give_by: 'Les cours sont dispensés'
+
+    meta:
+        title: 'Les cours de japonais et de culture japonaise : calligraphie, art de la cérémonie du thé, yoga, préparation au JLPT'
+
+    montant: 'Le montant des cours pour la saison est fixé à %price%€ pour l''année (paiement au comptant ou prélèvement automatique mensuel).'
+
+    presentation:
+        hedaer: 'Grâce aux cours de Rouen Japon, vous pourrez apprendre le japonais, pratiquer la calligraphie, le yoga ou vous initier à l''art de la cérémonie du thé.<br> Les enfants pourront également découvrir la langue et la culture japonaises tout en s''amusant.<br> Ci-dessous les différents cours pour la saison 2017-2018.'
+        title: 'Les cours'
+
+    professor:
+        and: ' et '
+        by: ' par '
+
+    where: ' à la '
+
+cours:
+    button:
+        calendrier: 'Voir le calendrier'
+        inscription: 'S''incrire'
+
+evenement:
+    button:
+        see_all: 'Voir toutes les événements'
+
+    meta:
+        title: 'Les événements de l’association, venez nous rencontrer !'
+
+    none:
+        description: 'Ça ne devrait pourtant pas tarder !'
+        title: 'Aucun événement n''est encore programmé pour le moment...'
 
 facebook:
     messenger:
         logged_in_greeting: 'Bienvenue sur le site de l''association Rouen Japon. Besoin d''aide ?'
         logged_out_greeting: 'Bienvenue sur le site de l''association Rouen Japon. Connectez-vous à Facebook pour profiter de cette fonctionnalité.'
+
+follow_us:
+    facebook:
+        button: 'Facebook de l''Association franco-japonaise de Rouen'
+        title: '...sur Facebook'
+
+    title: Suivez-nous...
+
+    twitter:
+        button: 'Suivre @rouenjapon'
+        config_title: 'Tweets de RouenJapon'
+        title: '...sur Twitter'
 
 footer:
     button:
@@ -62,21 +212,27 @@ footer:
     quick_links: 'Accès rapides'
 
 general:
+    accroche_be_member: 'Sortir une fois, c''est bien.<br> Multiplier des moments conviviaux entre passionnés en étant membre de Rouen Japon, c''est mieux ! ;-)'
     address: 'Association franco-japonaise de Rouen<br>4 quai de Paris<br>76000 Rouen'
 
     button:
         admin: Administration
         be_member: 'Devenir membre'
+        know_more: 'En savoir plus'
         login: 'Déjà membre ?'
+        participer: 'Je veux participer !'
         see_less: 'Charger moins'
         see_more: 'Charger plus'
-        know_more: 'En savoir plus'
-        participer: 'Je veux participer !'
 
     cright: '&copy; 2016 Association franco-japonaise de Rouen - Tous droits réservés'
-    navigation: 'Afficher/cacher le menu de navigation'
     date_du_au: 'Du %start_date% au %end_date%'
-    accroche_be_member: 'Sortir une fois, c''est bien.<br> Multiplier des moments conviviaux entre passionnés en étant membre de Rouen Japon, c''est mieux ! ;-)'
+
+    items:
+        cloture: 'Clôture des réservations :'
+        lieu: 'Lieu :'
+        reserver: 'Réservé aux membres.'
+
+    navigation: 'Afficher/cacher le menu de navigation'
 
     social:
         facebook: Facebook
@@ -84,27 +240,63 @@ general:
         twitter: Twitter
 
     title:
-        blog: 'Blog'
         activites: 'Nos activités'
         actualites: Actualités
         association: 'L''association'
         ateliers: 'Nos ateliers'
         blog: Blog
+        calendrier: Calendrier
         contact: Contact
         cours: 'Les cours'
+        dernierement: Dernièrement
         evenements: Événements
         m_legales: 'Mentions légales'
         nihon: 日本人です
         partenaires: Partenaires
+        prochainement: Prochainement
         site: 'Rouen Japon'
-        prochainement: 'Prochainement'
-        dernierement: 'Dernièrement'
-        calendrier: 'Calendrier'
 
-    items:
-        reserver: 'Réservé aux membres.'
-        cloture: 'Clôture des réservations :'
-        lieu: 'Lieu :'
+hastags:
+    blog: Blog
+    japon: Japon
+    mention_legale: MentionsLegales
+    normandie: Normandie
+
+mentions_legales:
+    conceptor:
+        title: 'CONCEPTION ET RÉALISATION'
+
+    cookies:
+        texte: "Un cookie est un fichier de petite taille, qui ne permet pas l’identification de l’utilisateur, mais qui enregistre des informations relatives à la navigation d’un ordinateur sur un site. Les données ainsi obtenues visent à faciliter la navigation ultérieure sur le site, et ont également vocation à permettre diverses mesures de fréquentation. Le refus d’installation d’un cookie peut entraîner l’impossibilité d’accéder à certains services.<br>\nNous utilisons les cookies à diverses fins. Nous les employons pour vous inviter à commenter ou partager des informations sur vos comptes Facebook et Twitter receuillir des statistiques de visite et d'autres informations d'utilisation afin d'étoffer nos offres.<br>\nVous pouvez à tout moment choisir de désactiver ces cookies. Votre navigateur peut également être paramétré pour vous signaler les cookies qui sont déposés dans votre ordinateur et vous demander de les accepter ou pas. Vous pouvez accepter ou refuser les cookies au cas par cas ou bien les refuser systématiquement. Nous vous rappelons que le paramétrage est susceptible de modifier vos conditions d'accès à nos contenus et services nécessitant l'utilisation de cookies. Si votre navigateur est configuré de manière à refuser l'ensemble des cookies, vous ne pourrez pas profiter d'une partie de nos services.<br><br>\nVous trouverez la politique d'utilisation de nos services tiers ici :<br> <ul> <li><a href=\"%policy_facebook_url%\" target=_blank>Facebook</a></li> <li><a href=\"%policy_twitter_url%\" target=_blank>Twitter</a></li> <li><a href=\"%policy_google_url%\" target=_blank>Google Analytics</a></li> </ul>"
+        title: 'POLITIQUE D’UTILISATION DES COOKIES'
+
+    decharge:
+        texte: 'Les informations diffusées sur ce site internet ne sauraient être considérées comme une proposition de vente ou d’achat. L''ensemble des produits, services, procédés et programmes présentés dans le cadre du site %site_web% et de son extension %extension_web% peuvent ne pas être proposés dans chaque pays. En conséquence, l’utilisateur reconnaît utiliser ces informations sous sa responsabilité exclusive. %titre_asso_maj% n’est tenue que d’une simple obligation de moyens concernant les informations qu’elle met à disposition des personnes qui accèdent à son site web  %site_web% et de son extension %extension_web%. %titre_asso_maj% a effectué toutes les démarches pour s’assurer de la fiabilité des informations contenues sur ce site web, et ne peut encourir aucune responsabilité du fait d’erreurs, d’omissions, ou pour les résultats qui pourraient être obtenus par l’usage de ces informations. Notamment, l''usage de liens hypertextes peut conduire votre consultation de notre site vers d’autres serveurs pour prendre connaissance de l’information recherchée, serveurs sur lesquels %titre_asso% n’a aucun contrôle. Le site web de %titre_asso%, %site_web% et son extension %extension_web% , sont normalement accessibles 24h/24H et 7j/7j. En cas de force majeure, de difficultés informatiques, de difficultés liées à la structure des réseaux de télécommunications ou difficultés techniques, pour des raisons de maintenance, sans que cette liste ne soit exhaustive, l’accès à toute ou partie du site pourra être suspendue ou supprimée sur simple décision de %titre_asso%. Pour des raisons de maintenance, et/ou pour toute autre décision de la société %titre_asso%, l’accès au site internet pourra être interrompu. Le site internet est susceptible de modifications et d’évolutions sans notification d’aucune sorte. Les informations, descriptifs produits, budget et photos ne sont pas contractuels.'
+        title: 'DÉCHARGE DE RESPONSABILITÉ'
+
+    extension_web: association-japon-rouen.fr
+
+    gdpr:
+        texte: 'Vous êtes informés que, lors de vos visites sur le site Internet, un mécanisme de suivi de navigation peut être mis en œuvre. Vous disposez d’un droit d’accès, de retrait et de modifcation des données personnelles communiquées par le biais de techniques de traçage. Les utilisateurs du site internet de %titre_asso% sont tenus de respecter les dispositions de la loi relative à l’informatique, aux fichiers et aux libertés, dont la violation est passible de sanctions pénales. Conformément au règlement n° 2016/679, dit règlement général sur la protection des données (RGPD) vous pouvez demander toutes informations vous concernant et/ou en demander la suppression en envoyant un e-mail à %titre_asso% ou via le <a href="%contact_link%">formulaire de contact</a>.'
+        title: 'DONNÉES PERSONNELLES'
+
+    graphismes:
+        title: GRAPHISME
+
+    hebergement:
+        texte: 'Le site et son extension sont hébergés sur la plateforme OVH.<br> 2 rue Kellermann<br> 59100 Roubaix – France.<br> Tel : 09 72 10 10 07'
+        title: HÉBERGEMENT
+
+    immatriculation:
+        texte: 'Le présent site internet est la propriété de %site_web%, <a href="https://www.rouen.fr/associations/rouen_japon" target="_blank">association déclarée de Rouen</a> sous le numéro 521 320 358 00026 dont le siège social est situé %adresse_postal% Tél. %telephone%.'
+        title: IMMATRICULATION
+
+    meta:
+        title: 'Mentions Légales'
+
+    site_web: rouenjapon.fr
+    title: 'L''Association Rouen Japon'
+    titre_asso: 'l''association Rouen Japon'
 
 meta:
     description:
@@ -113,255 +305,27 @@ meta:
     title:
         home: 'Association franco-japonaise pour apprendre le japonais et faire des échanges'
 
-actualite:
-    button:
-        see_all: 'Voir toutes les actualités'
-    none:
-        title: 'Aucune actualités n''est encore écrite pour le moment...'
-        description: 'Ça ne devrait pourtant pas tarder !'
-
-conditions:
-    title: 'Conditions :'
-    free_for_members: 'Gratuit pour les membres.'
-    prix: ' euros pour les personnes non membres.'
-    member_prix: ' euros pour les membres.'
-
-cours:
-    button:
-        calendrier: 'Voir le calendrier'
-        inscription: 'S''incrire'
-
-hastags:
-    normandie: 'Normandie'
-    japon: 'Japon'
-    blog: 'Blog'
-    mention_legale: 'MentionsLegales'
-
-evenement:
-    button:
-        see_all: 'Voir toutes les événements'
-    none:
-        title: 'Aucun événement n''est encore programmé pour le moment...'
-        description: 'Ça ne devrait pourtant pas tarder !'
-    meta:
-        title: 'Les événements de l’association, venez nous rencontrer !'
-
-follow_us:
-    title: 'Suivez-nous...'
-    facebook:
-        title: '...sur Facebook'
-        button: 'Facebook de l''Association franco-japonaise de Rouen'
-    twitter:
-        title: '...sur Twitter'
-        button: 'Suivre @rouenjapon'
-        config_title: 'Tweets de RouenJapon'
-
 newsletter:
     accroche: 'Et abonnez-vous à notre newsletter'
-    email:
-        placeholder: 'Mon adresse email'
-        label: 'Adresse e-mail:'
     button: 'Je m''abonne !'
     button_inform: 'Me tenir informé(e) svp !'
 
-contact:
-    meta:
-        title: 'Nous contacter'
-    title: 'Laissez-nous un message !'
-    button: 'Envoyer'
-
-blog:
-    title: 'Nos articles'
-    meta:
-        title: 'Nos articles de blog'
-    button:
-        see_article: 'Voir l''article'
-        see_all: 'Voir tous les articles du blog'
-        see_all_light: 'Tous les articles'
-
-    last_article_title: 'Derniers articles%tag_sentence%'
-    last_article_tag: ' pour le tag %tag_name%'
-    auteur:
-        wrote_by : 'Ecrit par '
-        and: ' et '
-    previous: 'Article précédent'
-    next: 'Article suivant'
+    email:
+        label: 'Adresse e-mail:'
+        placeholder: 'Mon adresse email'
 
 sortie:
-    title: 'Nos sorties'
-    none:
-        title: 'Aucune sortie n''est encore programmée pour le moment...'
-        description: 'Ça ne devrait pourtant pas tarder !'
     meta:
         title: 'Les sorties sur le thème de la culture japonaise'
-    presentation:
-        title: 'Les sorties'
-        header: 'Avec Rouen Japon, on fait aussi des sorties ! On va au musée, voir des expositions, assister à des conférences, ou visiter des jardins... Tous les ans l''association vous organise des petites sorties, très souvent à tarifs préférentiels*.'
-        texte: '<p>Comme pour les ateliers, le nombre et le type de sorties peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a>.</p>
-                                    <p><b>Pour cette saison 2017-2018</b> par exemple, Rouen Japon pense vous faire bénéficier de quelques sorties intéressantes :</p>
-                                    <ul class="u-ul-colorRJ">
-                                        <li><b>Visite du jardin japonais</b> (en octobre ou novembre, selon la date d''apparition des couleurs automnales)</li>
-                                    </ul>
-                                    <p>Presque chaque sortie est ouverte à tous, dans la limite des places disponibles et se règle à l''unité (évidemment, les tarifs diffèrent en fonction du fait que vous soyez adhérent(e) ou non).</p>
-                                    <p>Allez, mets ton kimono on sort !</p>'
-        note: '* À condition de faire partie de l''association :-)'
 
-atelier:
     none:
-        title: 'Aucun atelier n''est encore programmé...'
         description: 'Ça ne devrait pourtant pas tarder !'
-    meta:
-        title: 'Les ateliers sur la culture japonaise : ikebana, origami, cuisine nippone'
+        title: 'Aucune sortie n''est encore programmée pour le moment...'
+
     presentation:
-        title: 'Les ateliers'
-        header: 'Tous les ans, Rouen Japon vous propose de participer à divers ateliers, de l''initiation à l''<strong>Ikebana</strong> (art floral), aux <strong>ateliers cuisine</strong> (gyozas, okonomiyaki...), en passant par l''<strong>origami</strong>...'
-        texte: '<p>Le type et la fréquence de ces ateliers peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a></p>
-                                    <p>Pour cette saison 2017-2018 par exemple, Rouen Japon pense reprogrammer les ateliers de la saison précédente auxquels vous avez été nombreux à répondre présents, à savoir : </p>
-                                    <ul class="u-ul-colorRJ">
-                                        <li><b>Les Ateliers cuisine</b> (à raison d''un atelier par trimestre)</li>
-                                        <li><b>Les Ateliers origami</b> (à raison d''un atelier par trimestre)</li>
-                                        <li><b> Préparer son voyage au Japon</b>  (en octobre)</li>
-                                    </ul>
-                                    <p>Presque chaque atelier est ouvert à tous*, dans la limite des places disponibles et se règle à l''unité. Toutes les conditions figurent dans le détail des ateliers en question.</p>
-                                    <p>À bento ! Euh, ahem, à bientôt !</p>'
-        note: 'étails et conditions à consulter pour chaque atelier'
+        header: 'Avec Rouen Japon, on fait aussi des sorties ! On va au musée, voir des expositions, assister à des conférences, ou visiter des jardins... Tous les ans l''association vous organise des petites sorties, très souvent à tarifs préférentiels*.'
+        note: '* À condition de faire partie de l''association :-)'
+        texte: '<p>Comme pour les ateliers, le nombre et le type de sorties peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a>.</p> <p><b>Pour cette saison 2017-2018</b> par exemple, Rouen Japon pense vous faire bénéficier de quelques sorties intéressantes :</p> <ul class="u-ul-colorRJ"> <li><b>Visite du jardin japonais</b> (en octobre ou novembre, selon la date d''apparition des couleurs automnales)</li> </ul> <p>Presque chaque sortie est ouverte à tous, dans la limite des places disponibles et se règle à l''unité (évidemment, les tarifs diffèrent en fonction du fait que vous soyez adhérent(e) ou non).</p> <p>Allez, mets ton kimono on sort !</p>'
+        title: 'Les sorties'
 
-cour:
-    meta:
-        title: 'Les cours de japonais et de culture japonaise : calligraphie, art de la cérémonie du thé, yoga, préparation au JLPT'
-    presentation:
-        title: 'Les cours'
-        hedaer: 'Grâce aux cours de Rouen Japon, vous pourrez apprendre le japonais, pratiquer la calligraphie, le yoga ou vous initier à l''art de la cérémonie du thé.<br>
-                                 Les enfants pourront également découvrir la langue et la culture japonaises tout en s''amusant.<br>
-                                 Ci-dessous les différents cours pour la saison 2017-2018.'
-    professor:
-        by : ' par '
-        and: ' et '
-    bientot_complet: '// Plus que quelques places disponibles ! ///'
-    complet: '// Les cours sont complets ///'
-    detail_complet: 'COMPLET'
-    adherer: 'Pour suivre ce cours, il vous faut <b><a href="%adhesion_link%" target="_blank">adhérer à l''association</a></b> et vous acquitter du montant de la cotisation de %cotisation_amount%€.'
-    contact_form_link: 'Si vous avez d''autres questions, vous pouvez nous les poser via notre <a href="%contact_link%">formulaire de contact.</a>'
-    montant: 'Le montant des cours pour la saison est fixé à %price%€ pour l''année (paiement au comptant ou prélèvement automatique mensuel).'
-    give_by: 'Les cours sont dispensés'
-    where: ' à la '
-
-association:
-    membres_bureau: 'Les membres du bureau'
-    partenaires: 'Les partenaires de l''association'
-    qui_sommes_nous:
-        version:
-            meta:
-                title: 'Découvrir l’association franco-japonaise de Rouen'
-            title: 'L''Association Rouen Japon'
-            presentation:
-                title: 'À propos de nous'
-                texte: '<p>
-                                        Rouen Japon a été créé en 2009 par Akari FUJINO. A l’heure actuelle, l’association compte %members_number% membres.<br>
-                                        Rouen Japon a pour objectif :
-                                    </p>
-                                    <ul class="u-ul-colorRJ">
-                                        <li>Être un lieu d''échange entre les Français et les Japonais</li>
-                                        <li>Mettre en relation des Français et des Japonais pour leur permettre de communiquer, d''échanger sur leurs pays respectifs</li>
-                                        <li>Proposer des cours de japonais et de français</li>
-                                        <li>Organiser des animations autour des cultures japonaises et françaises</li>
-                                    </ul><br>'
-                date: '<p><b>Quelques dates :</b></p>
-                                   <ul class="u-ul-colorRJ">
-                                       <li><b>2010 :</b> Mise en place des cours de japonais</li>
-                                       <li><b>2011 :</b> Concert de solidarité aux victimes du tsunami</li>
-                                       <li><b>2013 :</b> Premier festival Hanami</li>
-                                       <li><b>Saison 2013-14 :</b> Akari FUJINO cède la présidence de l’association à Pierre JOSELIER</li>
-                                       <li><b>2014 :</b> Deuxième festival Hanami</li>
-                                       <li><b>Saison 2014-15 :</b> Mise en place des cours de cérémonie du thé et de calligraphie</li>
-                                       <li><b>2015 :</b> Lancement du Café Japon (café d’échange linguistique)</li>
-                                       <li><b>Saison 2016-17 :</b> Mise en place des cours de japonais pour enfants</li>
-                                       <li><b>Saison 2017-18 :</b> Mise en place des cours de yoga et de préparation au JLPT</li>
-                                   </ul>'
-            adhesion:
-                title: 'Adhérer à l''association'
-                header: 'Adhérer à l''association vous permet de vous inscrire aux cours de japonais et aux ateliers que nous organisons tout au long de l''année. Le montant de l''adhésion est de %cotisation_amount%€ pour une année.'
-                texte: 'Votre adhésion sera effective à la réception de la cotisation que vous pouvez régler en liquide ou par chèque à l''ordre de "Rouen Japon".<br>
-                                        Le montant de la cotisation peut être remis en mains propres lors d''un atelier, au professeur lors d''un cours de japonais ou à notre réunion de rentrée qui aura lieu le 17 septembre à 14h à la %cour_adresse%.'
-                contact_form_link: 'Si vous avez d''autres questions, vous pouvez nous les poser via notre <a href="%contact_link%">formulaire de contact.</a>'
-        nihon:
-            meta:
-                title: 'ルーアン日仏協会のプレゼンテーション'
-            title: 'ルーアン日本協会'
-            presentation:
-                title: '私たちについて'
-                texte: '<p>
-                                        ルーアン日仏協会（ルーアン・ジャポン）は、2009年に設立され、現在では約%members_number%名の方にメンバー登録をしていただいています。
-                                        ルーアン・ジャポンは、<br>
-                                    </p>
-                                    <ul class="u-ul-colorRJ">
-                                        <li>フランス人と日本人との交流の場を提供すること</li>
-                                        <li>日仏間のコミュニケーションのお手伝いをすること</li>
-                                        <li>日本語教室を提供すること（フランス語教室は企画中です）</li>
-                                        <li>日本文化、フランス文化に関わるイベントを企画、提供すること</li>
-                                    </ul><br>'
-                date: '<p><b>を目的として活動しています。</b></p>
-                                   <ul class="u-ul-colorRJ">
-                                       <li><b>2010年 :</b> 日本語教室の開講</li>
-                                       <li><b>2011年 :</b> ルーアン国立音楽学校（コンサルヴァトワール）、ルーアン赤十字との協力の元、東日本大地震の支援のためのチャリティーコンサートの実施</li>
-                                       <li><b>2013年 :</b> 日本文化を紹介するイベント「ハナミ2012」の開催</li>
-                                       <li><b>2013～2014年度 :</b> 藤野あかりからピエール・ジョズリエへ代表の交代</li>
-                                       <li><b>2014年 :</b> 第２回「ハナミ」開催</li>
-                                       <li><b>2014～2015年度 :</b> 茶道と書道教室の開講</li>
-                                       <li><b>2015年 :</b> ジャポン」の開始（日仏言語交流の場）</li>
-                                       <li><b>2016～2017年度 :</b> 子供向け日本語教室の開講</li>
-                                   </ul>'
-
-mentions_legales:
-    site_web: 'rouenjapon.fr'
-    extension_web: 'association-japon-rouen.fr'
-    titre_asso: 'l''association Rouen Japon'
-    meta:
-        title: 'Mentions Légales'
-    title: 'L''Association Rouen Japon'
-    conceptor:
-        title: 'CONCEPTION ET RÉALISATION'
-    graphismes:
-        title: 'GRAPHISME'
-    gdpr:
-        title: 'DONNÉES PERSONNELLES'
-        texte: 'Vous êtes informés que, lors de vos visites sur le site Internet, un mécanisme de suivi de navigation peut être mis en œuvre.
-                           Vous disposez d’un droit d’accès, de retrait et de modifcation des données personnelles communiquées par le biais de techniques de traçage.
-                           Les utilisateurs du site internet de %titre_asso% sont tenus de respecter les dispositions de la loi relative à l’informatique, aux fichiers et aux libertés, dont la violation est passible de sanctions pénales.
-                           Conformément au règlement n° 2016/679, dit règlement général sur la protection des données (RGPD) vous pouvez demander toutes informations vous concernant et/ou en demander la suppression en envoyant un e-mail à %titre_asso% ou via le <a href="%contact_link%">formulaire de contact</a>.'
-    decharge:
-        title: 'DÉCHARGE DE RESPONSABILITÉ'
-        texte: 'Les informations diffusées sur ce site internet ne sauraient être considérées comme une proposition de vente ou d’achat.
-                            L''ensemble des produits, services, procédés et programmes présentés dans le cadre du site %site_web% et de son extension %extension_web% peuvent ne pas être proposés dans chaque pays.
-                            En conséquence, l’utilisateur reconnaît utiliser ces informations sous sa responsabilité exclusive. %titre_asso_maj% n’est tenue que d’une simple obligation de moyens concernant les informations qu’elle met à disposition des personnes qui accèdent à son site web  %site_web% et de son extension %extension_web%. %titre_asso_maj% a effectué toutes les démarches pour s’assurer de la fiabilité des informations contenues sur ce site web, et ne peut encourir aucune responsabilité du fait d’erreurs, d’omissions, ou pour les résultats qui pourraient être obtenus par l’usage de ces informations.
-                            Notamment, l''usage de liens hypertextes peut conduire votre consultation de notre site vers d’autres serveurs pour prendre connaissance de l’information recherchée, serveurs sur lesquels %titre_asso% n’a aucun contrôle.
-                            Le site web de %titre_asso%, %site_web% et son extension %extension_web% , sont normalement accessibles 24h/24H et 7j/7j.
-                            En cas de force majeure, de difficultés informatiques, de difficultés liées à la structure des réseaux de télécommunications ou difficultés techniques, pour des raisons de maintenance, sans que cette liste ne soit exhaustive, l’accès à toute ou partie du site pourra être suspendue ou supprimée sur simple décision de %titre_asso%.
-                            Pour des raisons de maintenance, et/ou pour toute autre décision de la société %titre_asso%, l’accès au site internet pourra être interrompu.
-                            Le site internet est susceptible de modifications et d’évolutions sans notification d’aucune sorte.
-                            Les informations, descriptifs produits, budget et photos ne sont pas contractuels.'
-    hebergement:
-        title: 'HÉBERGEMENT'
-        texte: 'Le site et son extension sont hébergés sur la plateforme OVH.<br>
-                            2 rue Kellermann<br>
-                            59100 Roubaix – France.<br>
-                            Tel : 09 72 10 10 07'
-    immatriculation:
-        title: 'IMMATRICULATION'
-        texte: 'Le présent site internet est la propriété de %site_web%, <a href="https://www.rouen.fr/associations/rouen_japon" target="_blank">association déclarée de Rouen</a> sous le numéro 521 320 358 00026 dont le siège social est situé %adresse_postal% Tél. %telephone%.'
-
-    cookies:
-        title: 'POLITIQUE D’UTILISATION DES COOKIES'
-        texte: 'Un cookie est un fichier de petite taille, qui ne permet pas l’identification de l’utilisateur, mais qui enregistre des informations relatives à la navigation d’un ordinateur sur un site. Les données ainsi obtenues visent à faciliter la navigation ultérieure sur le site, et ont également vocation à permettre diverses mesures de fréquentation. Le refus d’installation d’un cookie peut entraîner l’impossibilité d’accéder à certains services.<br>
-
-                Nous utilisons les cookies à diverses fins. Nous les employons pour vous inviter à commenter ou partager des informations sur vos comptes Facebook et Twitter receuillir des statistiques de visite et d''autres informations d''utilisation afin d''étoffer nos offres.<br>
-
-                Vous pouvez à tout moment choisir de désactiver ces cookies. Votre navigateur peut également être paramétré pour vous signaler les cookies qui sont déposés dans votre ordinateur et vous demander de les accepter ou pas. Vous pouvez accepter ou refuser les cookies au cas par cas ou bien les refuser systématiquement.
-                Nous vous rappelons que le paramétrage est susceptible de modifier vos conditions d''accès à nos contenus et services nécessitant l''utilisation de cookies. Si votre navigateur est configuré de manière à refuser l''ensemble des cookies, vous ne pourrez pas profiter d''une partie de nos services.<br><br>
-
-                Vous trouverez la politique d''utilisation de nos services tiers ici :<br>
-                <ul>
-                  <li><a href="%policy_facebook_url%" target=_blank>Facebook</a></li>
-                  <li><a href="%policy_twitter_url%" target=_blank>Twitter</a></li>
-                  <li><a href="%policy_google_url%" target=_blank>Google Analytics</a></li>
-                </ul>'
+    title: 'Nos sorties'
