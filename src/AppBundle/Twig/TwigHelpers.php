@@ -54,6 +54,7 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('get_corps_texte', array($this, 'getCorpsTexte')),
             new \Twig_SimpleFunction('get_footer_blog', array($this, 'getFooterBlog')),
             new \Twig_SimpleFunction('get_image_profil', array($this, 'getImageProfil')),
+            new \Twig_SimpleFunction('get_image_blog', array($this, 'getImageBlog')),
             new \Twig_SimpleFunction('get_facebook_id', array($this, 'getFacebookId')),
             new \Twig_SimpleFunction('get_facebook_page_id', array($this, 'getFacebookPageId')),
             new \Twig_SimpleFunction('is_actif_facebook_messenger', array($this, 'isActifFacebookMessenger')),
@@ -237,6 +238,23 @@ class TwigHelpers extends \Twig_Extension
     public function getImageProfil(int $idUtilisateur)
     {
         $result = $this->entityManager->getRepository(Utilisateur::class)->findMedia($idUtilisateur);
+        if (!empty($result) && isset($result[0])) {
+            /** @var Media $media */
+            $media = $result[0];
+            $media->setContext('image');
+            $format = $this->providerImage->getFormatName($media, 'big');
+            return str_replace('.jpg', '.jpeg', $this->providerImage->generatePublicUrl($media, $format));
+        }
+        return null;
+    }
+
+    /**
+     * @param int $idBlog
+     * @return mixed|null
+     */
+    public function getImageBlog(int $idBlog)
+    {
+        $result = $this->entityManager->getRepository(Blog::class)->findMedia($idBlog);
         if (!empty($result) && isset($result[0])) {
             /** @var Media $media */
             $media = $result[0];

@@ -36,6 +36,10 @@ ROLE_APP_ADMIN_EVENEMENTS_ADMIN: 'Administrateur - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_EDITOR: 'Editeur - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_GUEST: 'Invité - Événements'
 ROLE_APP_ADMIN_EVENEMENTS_STAFF: 'Staff - Événements'
+ROLE_APP_ADMIN_IMPORTS_ADMIN: 'Administrateur - Imports'
+ROLE_APP_ADMIN_IMPORTS_EDITOR: 'Editeur- Imports'
+ROLE_APP_ADMIN_IMPORTS_GUEST: 'Invité- Imports'
+ROLE_APP_ADMIN_IMPORTS_STAFF: 'Staff- Imports'
 ROLE_APP_ADMIN_KOURYUKAI_ADMIN: 'Administrateur - Kouryukai'
 ROLE_APP_ADMIN_KOURYUKAI_EDITOR: 'Editeur- Kouryukai'
 ROLE_APP_ADMIN_KOURYUKAI_GUEST: 'Invité- Kouryukai'
@@ -107,6 +111,8 @@ utilisateur:
         estProfesseur: 'Est professeur'
         membreNumero: 'Numéro d''adhésion du membre'
         membreTitre: 'Titre du membre à afficher'
+        nomJaponais: 'Nom en Japonais'
+        prenomJaponais: 'Prénom en Japonais'
 
     sousUtilisateurs: Enfants
 
@@ -118,6 +124,8 @@ utilisateur:
         description: Informations
         meta_data: 'Autres données'
         sousUtilisateurs: Enfants
+    nomJaponais: 'Nom en Japonais'
+    prenomJaponais: 'Prénom en Japonais'
 
 utilisateur_droit:
     estMembreBureau: 'Est membre du bureau'

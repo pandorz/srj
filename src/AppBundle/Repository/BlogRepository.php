@@ -1,8 +1,10 @@
 <?php
 
 namespace AppBundle\Repository;
+
 use AppBundle\Entity\Blog;
 use Doctrine\ORM\Query\ResultSetMappingBuilder;
+use Application\Sonata\MediaBundle\Entity\Media;
 
 /**
  * Class BlogRepository
@@ -10,6 +12,53 @@ use Doctrine\ORM\Query\ResultSetMappingBuilder;
  */
 class BlogRepository extends \Doctrine\ORM\EntityRepository
 {
+
+    /**
+     * @param Blog $blog
+     * @return mixed
+     */
+    public function getNext(Blog $blog)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Blog e '
+                . 'WHERE e.affiche = :affiche '
+                . 'AND e.datePublication >= :datePublication '
+                . 'AND e.id != :idStart '
+                . 'ORDER BY e.datePublication DESC')
+            ->setParameters([
+                'affiche'           => true,
+                'datePublication'   => $blog->getDatePublication()->format("Y-m-d H:i:s"),
+                'idStart'           => $blog->getId()
+            ])
+            ->setMaxResults(1)
+            ->getResult();
+    }
+
+    /**
+     * @param Blog $blog
+     * @return mixed
+     */
+    public function getPrevious(Blog $blog)
+    {
+        return $this
+            ->getEntityManager()
+            ->createQuery('SELECT e '
+                . 'FROM AppBundle:Blog e '
+                . 'WHERE e.affiche = :affiche '
+                . 'AND e.datePublication <= :datePublication '
+                . 'AND e.id != :idStart '
+                . 'ORDER BY e.datePublication DESC')
+            ->setParameters([
+                'affiche'           => true,
+                'datePublication'   => $blog->getDatePublication()->format("Y-m-d H:i:s"),
+                'idStart'           => $blog->getId()
+            ])
+            ->setMaxResults(1)
+            ->getResult();
+    }
+
 
     /**
      * @param bool $admin
@@ -99,6 +148,34 @@ class BlogRepository extends \Doctrine\ORM\EntityRepository
         if (!is_null($limit)) {
             $stmt->setParameter(":limit", $limit);
         }
+
+        $stmt->execute();
+
+        return $stmt->getResult();
+    }
+
+    /**
+     * @param $idBlog
+     * @return mixed
+     */
+    public function findMedia($idBlog)
+    {
+        $sql = "SELECT m.* "
+            . "FROM media__media AS m "
+            . "INNER JOIN blog u ON u.image_id=m.id "
+            . "WHERE u.id=:idBlog";
+
+
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addEntityResult(Media::class, "m");
+
+        foreach ($this->getClassMetadata()->fieldMappings as $obj) {
+            $rsm->addFieldResult("m", $obj["columnName"], $obj["fieldName"]);
+        }
+
+        $stmt = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+
+        $stmt->setParameter(":idBlog", $idBlog);
 
         $stmt->execute();
 

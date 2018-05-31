@@ -28,8 +28,14 @@ class BaseController extends Controller
         // to set its id to null !
         $clonedObject = clone $object;
 
-        $clonedObject->setNom($object->getNom().' (Clone)');
-        $clonedObject->setSlug($clonedObject->getSlug().'-clone');
+        if (method_exists($object, 'getNom')) {
+            $clonedObject->setNom($object->getNom() . ' (Clone)');
+        }
+
+        if (method_exists($object, 'getSlug')) {
+            $clonedObject->setSlug($clonedObject->getSlug() . '-clone');
+        }
+
         if (method_exists($clonedObject, 'setImage')) {
             $clonedObject->setImage(null);
         }

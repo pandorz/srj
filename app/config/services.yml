@@ -53,7 +53,6 @@ services:
         class: AppBundle\Admin\PartenaireAdmin
         arguments: [~, AppBundle\Entity\Partenaire, AppBundle:Partenaire]
         tags:
-
             - { name: sonata.admin, manager_type: orm, group: admin, label: Partenaire }
 
     app.admin.newsletter:
@@ -116,6 +115,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: CoursReport }
 
+    app.admin.imports:
+        class: AppBundle\Admin\ImportAdmin
+        arguments: [~, AppBundle\Entity\Import, AppBundle:Import]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Import }
+
     app.error_controller:
         class: AppBundle\Controller\Front\ErrorController
         arguments: ['@twig', '%kernel.debug%']
@@ -174,3 +179,10 @@ services:
     app.front_calendar:
         class: AppBundle\Service\FrontCalendar
         arguments: ["@doctrine.orm.entity_manager"]
+
+    app.import:
+        class: AppBundle\Service\Import
+        arguments: ["@doctrine.orm.entity_manager", "@monolog.logger.import", "@phpexcel", "@validator", "%web_path%"]
+        tags:
+          - { name: monolog.logger, channel: import}
+

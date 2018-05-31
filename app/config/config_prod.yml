@@ -11,8 +11,15 @@ monolog:
             type: rotating_file
             path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
+            max_files: 35
         console:
             type: console
+        import:
+            type: rotating_file
+            path: '%kernel.logs_dir%/%kernel.environment%/import.log'
+            level: debug
+            max_files: 35
+            facility: user
 
 
 framework:
