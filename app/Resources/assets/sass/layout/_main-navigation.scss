@@ -104,7 +104,46 @@
     }
 }
 .mainNavMemberLink {
+    cursor: pointer;
     &.login {
+        position: relative;
+        line-height: rem(28);
+        padding-right: $margin-l;
+        color: $color-rj;
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: block;
+            width: rem(20);
+            height: rem(20);
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            background-size: rem(20);
+            @include transition;
+        }
+        &:before {
+            background-image: url(../medias/img/icon-user-red.svg);
+            opacity: 1;
+        }
+        &:after {
+            background-image: url(../medias/img/icon-user-black.svg);
+            opacity: 0;
+        }
+        @include activeLink {
+            color: $color-text;
+            &:before {
+                opacity: 0;
+            }
+            &:after {
+                opacity: 1;
+            }
+        }
+    }
+
+    &.account {
         position: relative;
         line-height: rem(28);
         padding-right: $margin-l;
@@ -260,7 +299,7 @@
         margin-left: $margin-s;
     }
     .mainNavMemberLink {
-        &.login {
+        &.login, &.admin, &.account {
             margin-left: $margin-m;
         }
     }
@@ -277,7 +316,7 @@
         padding-right: 1em;
     }
     .mainNavMemberLink {
-        &.login {
+        &.login, &.admin, &.account {
             margin-left: $margin-s;
         }
     }

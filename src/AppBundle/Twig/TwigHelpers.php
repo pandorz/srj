@@ -9,6 +9,8 @@ use AppBundle\Service\Parameter;
 use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\EntityManager;
 use Sonata\MediaBundle\Provider\ImageProvider;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Security;
 
 class TwigHelpers extends \Twig_Extension
 {
@@ -28,15 +30,21 @@ class TwigHelpers extends \Twig_Extension
     private $parameter;
 
     /**
+     * @var
+     */
+    private $tokenManagerService;
+
+    /**
      * @param EntityManager $entityManager
      * @param ImageProvider $providerImage
      * @param Parameter $parameter
      */
-    public function __construct(EntityManager $entityManager, ImageProvider $providerImage, Parameter $parameter)
+    public function __construct(EntityManager $entityManager, ImageProvider $providerImage, Parameter $parameter, $tokenManagerService)
     {
         $this->entityManager = $entityManager;
         $this->providerImage = $providerImage;
         $this->parameter     = $parameter;
+        $this->tokenManagerService = $tokenManagerService;
     }
 
     
@@ -68,7 +76,9 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('a_repondu_bandeau', array($this, 'aReponduCookieBandeau')),
             new \Twig_SimpleFunction('is_cookie_facebook_ok', array($this, 'isCookieFacebookOk')),
             new \Twig_SimpleFunction('is_cookie_twitter_ok', array($this, 'isCookieTwitterOk')),
-            new \Twig_SimpleFunction('is_cookie_google_ok', array($this, 'isCookieGoogleOk'))
+            new \Twig_SimpleFunction('is_cookie_google_ok', array($this, 'isCookieGoogleOk')),
+            new \Twig_SimpleFunction('get_csrf_token', array($this, 'getCsrfToken')),
+            new \Twig_SimpleFunction('get_last_username', array($this, 'getLastUsername'))
         );
     }
 
@@ -295,5 +305,21 @@ class TwigHelpers extends \Twig_Extension
     public function isCookieGoogleOk()
     {
         return isset($_COOKIE['google_service']) && $_COOKIE['google_service'];
+    }
+
+    public function getCsrfToken()
+    {
+        $csrfToken = !is_null($this->tokenManagerService)
+            ? $this->tokenManagerService->getToken('authenticate')->getValue()
+            : null;
+
+        return $csrfToken;
+    }
+
+    public function getLastUsername(Session $session)
+    {
+        $lastUsername = (null === $session) ? '' : $session->get(Security::LAST_USERNAME);
+
+        return $lastUsername;
     }
 }

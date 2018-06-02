@@ -38,12 +38,17 @@
                     <li class="mainNavItem"><a class="mainNavLink" href="{{path('contact')}}">{{ 'general.title.contact'|trans }}</a></li>
                 </ul>
                 <div class="mainNavMember">
-                    {% if lien_adhesion() is not empty %}
+                    {% if lien_adhesion() is not empty and app.user == false %}
                     <a class="mainNavMemberLink signup btn btn-blank btn-small" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
                     {% endif %}
-                    {#<a class="mainNavMemberLink login" href="#">{{ 'general.button.login'|trans }}</a>#}
-                    {% if app.user and is_granted('ROLE_SONATA_ADMIN')%}
-                        <a class="mainNavMemberLink admin" href="{{ path('sonata_admin_dashboard') }}" target="_blank">{{ 'general.button.admin'|trans }}</a>
+                    {% if app.user == false %}
+                        <a class="mainNavMemberLink login modal" data-modal-content-id="modal-login" data-modal-title="{{ 'general.connexion.title'|trans }}">{{ 'general.button.login'|trans }}</a>
+                    {% else %}
+                        <a class="mainNavMemberLink account" href="#">{{ 'general.button.account'|trans }}</a>
+                        {% if is_granted('ROLE_SONATA_ADMIN')%}
+                            <a class="mainNavMemberLink admin" href="{{ path('sonata_admin_dashboard') }}" target="_blank">{{ 'general.button.admin'|trans }}</a>
+                        {% endif %}
+                        <a class="mainNavMemberLink logout" href="{{ path('logout') }}">{{ 'general.button.logout'|trans }}</a>
                     {% endif %}
             </div>
             </div>

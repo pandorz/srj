@@ -212,6 +212,8 @@ footer:
     quick_links: 'Accès rapides'
 
 general:
+    connexion:
+        title: 'Déjà membre ? Connectez-vous'
     accroche_be_member: 'Sortir une fois, c''est bien.<br> Multiplier des moments conviviaux entre passionnés en étant membre de Rouen Japon, c''est mieux ! ;-)'
     address: 'Association franco-japonaise de Rouen<br>4 quai de Paris<br>76000 Rouen'
 

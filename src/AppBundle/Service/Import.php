@@ -349,6 +349,7 @@ class Import
         }
 
         if (empty($user->getUsername())) {
+            // TODO check si existe pas deja
             $user->setUsername(mb_strtolower(ucfirst($user->getFirstname()).$user->getLastname()));
         }
 

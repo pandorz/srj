@@ -66,7 +66,7 @@ security:
             security: false
 
         admin:
-            pattern:            /(.*)
+            pattern:            /gyosei/(.*)
             context:            user
             form_login:
                 provider:       fos_userbundle
@@ -82,23 +82,25 @@ security:
             switch_user: true
 
         main:
-            pattern:             .*
-            context:             user
+            pattern:             /(.*)
             form_login:
-                provider:       fos_userbundle
-                login_path:     /login
-                use_forward:    false
-                check_path:     /login_check
-                failure_path:   null
-            logout:             true
-            anonymous:          true
+                provider: fos_userbundle
+                csrf_token_generator: security.csrf.token_manager
+                remember_me: true
+                login_path:  /
+                check_path:  /login_check
+                success_handler: authentication_handler
+                failure_handler: authentication_handler
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800
+                path:     /
+            logout:
+                path:        /logout
+                target:      /
+            anonymous:    true
 
     access_control:
-        # URL of FOSUserBundle which need to be available to anonymous users
-        - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
-
         # Admin login page needs to be accessed without credential
         - { path: ^/gyosei/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/gyosei/logout$, role: IS_AUTHENTICATED_ANONYMOUSLY }
