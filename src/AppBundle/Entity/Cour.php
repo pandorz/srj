@@ -212,13 +212,13 @@ class Cour
 
     /**
      * @var CourDetail
-     * @ORM\OneToMany(targetEntity="CourDetail", mappedBy="cours", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="CourDetail", mappedBy="cours", cascade={"all"})
      */
     private $details;
 
     /**
      * @var CourDate
-     * @ORM\OneToMany(targetEntity="CourDate", mappedBy="cours", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="CourDate", mappedBy="cours", cascade={"all"})
      */
     private $dates;
 
@@ -788,6 +788,7 @@ class Cour
      */
     public function removeDetail(CourDetail $detail)
     {
+        $detail->setCours(null);
         $this->details->removeElement($detail);
     }
 
@@ -828,6 +829,7 @@ class Cour
      */
     public function removeDate(CourDate $date)
     {
+        $date->setCours(null);
         $this->dates->removeElement($date);
     }
 

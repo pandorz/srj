@@ -7,6 +7,7 @@ use AppBundle\Entity\CourDate;
 use AppBundle\Entity\CourDetail;
 use AppBundle\Entity\CourReport;
 use AppBundle\Entity\Utilisateur;
+use Doctrine\ORM\PersistentCollection;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -234,7 +235,7 @@ class CourAdmin extends AbstractAdmin
                 'name' => $this->trans('cour.with.details')
             ])
             ->add('details', 'sonata_type_collection', [
-                'by_reference' => true,
+                'by_reference' => false,
                 'label' => $this->trans('cour.details', [], 'messages'),
                 'required' => false,
             ], [
@@ -249,7 +250,7 @@ class CourAdmin extends AbstractAdmin
                 'name' => $this->trans('cour.with.dates')
             ])
             ->add('dates', 'sonata_type_collection', [
-                'by_reference' => true,
+                'by_reference' => false,
                 'label' => $this->trans('cour.dates', [], 'messages'),
                 'required' => false,
             ], [

@@ -109,7 +109,7 @@ class CourDate
     /**
      * @var Cour
      * @ORM\ManyToOne(targetEntity="Cour", inversedBy="dates")
-     * @ORM\JoinColumn(name="fk_cour", referencedColumnName="id", nullable=true)
+     * @ORM\JoinColumn(name="fk_cour", referencedColumnName="id", onDelete="SET NULL")
      */
     private $cours;
 
@@ -313,7 +313,7 @@ class CourDate
     /**
      * @param Cour $cours
      */
-    public function setCours(Cour $cours)
+    public function setCours(Cour $cours = null)
     {
         $this->cours = $cours;
     }
