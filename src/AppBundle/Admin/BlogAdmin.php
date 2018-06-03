@@ -69,6 +69,14 @@ class BlogAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $serviceWorkflow = $this->getConfigurationPool()->getContainer()->get('app.workflow.blog');
+        $blog            = $this->getSubject();
+        $disabledAffiche = false;
+
+        if ($blog instanceof Blog && !empty($blog->getId())) {
+            $disabledAffiche = !$serviceWorkflow->canBePublished($blog);
+        }
+
         $formMapper
             ->with('Content', [
                 'name' => $this->trans('blog.with.details'),
@@ -85,7 +93,8 @@ class BlogAdmin extends AbstractAdmin
                 'attr' => [
                     'placeholder' => 'blog.placeholder.actif'
                 ],
-                'required' => false
+                'required' => false,
+                'disabled' => $disabledAffiche
             ])
             ->add('descriptionCourte', 'text', [
                 'label' => 'blog.descriptionCourte',
@@ -240,6 +249,9 @@ class BlogAdmin extends AbstractAdmin
     {
         $collection->remove('show');
         $collection->add('clone', $this->getRouterIdParameter() . '/clone');
+        $collection->add('reject', $this->getRouterIdParameter() . '/rejeter');
+        $collection->add('to_review', $this->getRouterIdParameter() . '/relecture');
+        $collection->add('to_reopen', $this->getRouterIdParameter() . '/reouvrir');
         $collection->add('view', '/blog/article/{slug}/');
     }
 }

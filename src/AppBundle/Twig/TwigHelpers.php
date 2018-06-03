@@ -78,7 +78,8 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('is_cookie_twitter_ok', array($this, 'isCookieTwitterOk')),
             new \Twig_SimpleFunction('is_cookie_google_ok', array($this, 'isCookieGoogleOk')),
             new \Twig_SimpleFunction('get_csrf_token', array($this, 'getCsrfToken')),
-            new \Twig_SimpleFunction('get_last_username', array($this, 'getLastUsername'))
+            new \Twig_SimpleFunction('get_last_username', array($this, 'getLastUsername')),
+            new \Twig_SimpleFunction('is_instance_of_blog', array($this, 'isInstanceOfBlog'))
         );
     }
 
@@ -307,6 +308,9 @@ class TwigHelpers extends \Twig_Extension
         return isset($_COOKIE['google_service']) && $_COOKIE['google_service'];
     }
 
+    /**
+     * @return null
+     */
     public function getCsrfToken()
     {
         $csrfToken = !is_null($this->tokenManagerService)
@@ -316,10 +320,23 @@ class TwigHelpers extends \Twig_Extension
         return $csrfToken;
     }
 
+    /**
+     * @param Session $session
+     * @return mixed|string
+     */
     public function getLastUsername(Session $session)
     {
         $lastUsername = (null === $session) ? '' : $session->get(Security::LAST_USERNAME);
 
         return $lastUsername;
+    }
+
+    /**
+     * @param $object
+     * @return bool
+     */
+    public function isInstanceOfBlog($object)
+    {
+        return $object instanceof Blog;
     }
 }

@@ -11,3 +11,7 @@ title_edit: Editer
 url_planneur_link: 'Voir le planner'
 url_site_link: 'Voir le site'
 url_trello_link: 'Voir le trello'
+
+link_to_review: 'Soumettre à relecture'
+link_to_reopen: 'Resoumettre à relecture'
+link_reject: 'Refuser l''article'

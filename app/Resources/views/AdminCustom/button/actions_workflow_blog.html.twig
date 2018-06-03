@@ -1,0 +1,13 @@
+{% if object is defined and is_instance_of_blog(object) and objectId|default(admin.id(object)) is not null %}
+    {% if workflow_can(object, 'to_review') %}
+        <a class="btn btn-info pull-right" href="{{ admin.generateObjectUrl('to_review', object) }}"><i class="fa fa-eye" aria-hidden="true"></i> {{ 'link_to_review'|trans({}, 'SonataAdminBundle') }}</a>
+    {% endif %}
+
+    {% if workflow_can(object, 'to_reopen') %}
+        <a class="btn btn-info pull-right" href="{{ admin.generateObjectUrl('to_reopen', object) }}"><i class="fa fa-eye" aria-hidden="true"></i> {{ 'link_to_reopen'|trans({}, 'SonataAdminBundle') }}</a>
+    {% endif %}
+
+    {% if workflow_can(object, 'reject') %}
+        <a class="btn btn-danger pull-right" href="{{ admin.generateObjectUrl('reject', object) }}"><i class="fa  fa-eye-slash" aria-hidden="true"></i> {{ 'link_reject'|trans({}, 'SonataAdminBundle') }}</a>
+    {% endif %}
+{% endif %}
