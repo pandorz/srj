@@ -334,7 +334,7 @@ class Import
         foreach ($users as $user) {
             if (empty($user->getMembreNumero())) {
                 return true;
-            } elseif (hash_equals($user->getMembreNumero(), $memberNumber)) {
+            } elseif (!hash_equals($user->getMembreNumero(), $memberNumber)) {
                 return true;
             }
         }
