@@ -337,7 +337,7 @@ sortie:
     title: 'Nos sorties'
 
 my_space:
-    meta:
-        title: 'Mon espace personnel'
     dashboard:
         title: 'Tableau de bord'
+        meta:
+            title: 'Mon espace personnel'
