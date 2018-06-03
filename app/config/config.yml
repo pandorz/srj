@@ -46,6 +46,37 @@ framework:
     assets: ~
     php_errors:
         log: true
+    workflows:
+        blog_publishing:
+            type: 'workflow'
+            marking_store:
+                type: 'multiple_state'
+                arguments:
+                    - 'currentPlace'
+            supports:
+                - AppBundle\Entity\Blog
+            initial_place: draft
+            places:
+                - draft
+                - review
+                - rejected
+                - published
+            transitions:
+                to_review:
+                    from: draft
+                    to:   review
+                admin_publish:
+                    from: draft
+                    to:   published
+                publish:
+                    from: review
+                    to:   published
+                reject:
+                    from: review
+                    to:   rejected
+                to_reopen:
+                    from: rejected
+                    to:   review
 
 # Twig Configuration
 twig:
