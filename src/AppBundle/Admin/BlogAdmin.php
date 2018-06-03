@@ -13,6 +13,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Workflow\Registry;
+use Symfony\Component\Workflow\Workflow;
 
 class BlogAdmin extends AbstractAdmin
 {
@@ -188,6 +190,15 @@ class BlogAdmin extends AbstractAdmin
         $user = $this->getConfigurationPool()->getContainer()->get('security.token_storage')->getToken()->getUser();
         $page->setUtilisateurModification($user->__toString());
         $page->setTimestampModification(new \DateTime('now'));
+    }
+
+    public function postUpdate($object)
+    {
+        /** @var Blog $object */
+        if ($object->getAffiche()) {
+            $this->getConfigurationPool()->getContainer()->get('app.workflow.blog')->publier($object);
+        }
+        parent::postUpdate($object);
     }
 
     /**

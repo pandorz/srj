@@ -1,6 +1,7 @@
 <?php
 namespace AppBundle\EventListener;
 
+use AppBundle\Entity\Blog;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\Workflow\Event\GuardEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -19,7 +20,10 @@ class BlogAdminPublishListener implements EventSubscriberInterface
 
     public function guardAdminPublish(GuardEvent $event)
     {
-        if (false === $this->authChecker->isGranted('ROLE_SONATA_ADMIN')) {
+        /** @var Blog $blog */
+        $blog = $event->getSubject();
+
+        if (false === $this->authChecker->isGranted('ROLE_SONATA_ADMIN') || !$blog->getAffiche()) {
             $event->setBlocked(true);
         }
     }
@@ -27,7 +31,7 @@ class BlogAdminPublishListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            'workflow.blog.guard.admin_publish' => array('guardAdminPublish'),
+            'workflow.blog.guard.admin_publish' => ['guardAdminPublish'],
         ];
     }
 }

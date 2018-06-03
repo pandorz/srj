@@ -110,9 +110,9 @@ class Blog implements RoutedItemInterface
     private $utilisateurModification;
 
     /**
-     * @var string
+     * @var array
      *
-     * @ORM\Column(name="current_place", type="string", length=20)
+     * @ORM\Column(name="current_place", type="json_array", nullable=true)
      */
     private $currentPlace;
 
@@ -532,5 +532,21 @@ class Blog implements RoutedItemInterface
     public function getFeedItemUrlAnchor()
     {
         return null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurrentPlace():? array
+    {
+        return $this->currentPlace;
+    }
+
+    /**
+     * @param array $currentPlace
+     */
+    public function setCurrentPlace(array $currentPlace)
+    {
+        $this->currentPlace = $currentPlace;
     }
 }

@@ -196,6 +196,11 @@ services:
         tags:
             - { name: kernel.event_subscriber }
 
+    app.workflow.guard.blog.publish:
+        class: AppBundle\EventListener\BlogPublishListener
+        tags:
+            - { name: kernel.event_subscriber }
+
     app.workflow.guard.blog.toreopen:
         class: AppBundle\EventListener\BlogToReOpenListener
         arguments: ["@security.token_storage", "@security.authorization_checker"]
@@ -206,3 +211,7 @@ services:
         class: AppBundle\EventListener\WorkflowNotification
         tags:
             - { name: kernel.event_subscriber }
+
+    app.workflow.blog:
+        class: AppBundle\Service\BlogWorkflow
+        arguments: ["@doctrine.orm.entity_manager", "@workflow.blog_publishing"]
