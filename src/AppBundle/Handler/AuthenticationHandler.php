@@ -4,6 +4,7 @@ namespace AppBundle\Handler;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -36,7 +37,11 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
-        return new RedirectResponse($this->router->generate('home'));
+        $result = [
+            'path' => $this->router->generate('my_space', [], UrlGeneratorInterface::ABSOLUTE_URL)
+        ];
+
+        return new JsonResponse($result);
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
@@ -45,6 +50,6 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
             'message' => $this->translator->trans('fos_user.bad_credentials', [], 'validators', $request->getLocale())
         ];
 
-        return new JsonResponse($result);
+        return new JsonResponse($result, Response::HTTP_BAD_REQUEST);
     }
 }

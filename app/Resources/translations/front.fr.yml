@@ -227,6 +227,8 @@ general:
         see_less: 'Charger moins'
         see_more: 'Charger plus'
         account: 'Mon espace'
+        forgot_password: 'J''ai oublié mon mot de passe ?'
+        get_an_access: 'Demander un accès'
 
     cright: '&copy; 2016 Association franco-japonaise de Rouen - Tous droits réservés'
     date_du_au: 'Du %start_date% au %end_date%'
@@ -333,3 +335,9 @@ sortie:
         title: 'Les sorties'
 
     title: 'Nos sorties'
+
+my_space:
+    meta:
+        title: 'Mon espace personnel'
+    dashboard:
+        title: 'Tableau de bord'

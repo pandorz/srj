@@ -16,15 +16,14 @@ app.loginController.defaultAction = {
                 url         : $form.attr( 'action' ),
                 data        : $form.serialize(),
                 dataType    : "json",
-                success     : function(data, status, object)
-                {
-                    console.log("aqui");
-                    console.log(data);
-                    if (data.message) {
-                        var $errorMessage = $('.js-form_login_error');
-                        $errorMessage.find('.alert').html(data.message);
-                        $errorMessage.show();
-                    }
+                error: function(xhr, status, error){
+                    var err = eval("(" + xhr.responseText + ")");
+                    var $errorMessage = $('.js-form_login_error');
+                    $errorMessage.find('.alert').html(err.message);
+                    $errorMessage.show();
+                },
+                success: function (data) {
+                    window.location.href = data.path;
                 }
             });
         });
