@@ -27,6 +27,8 @@ fos_user:
         long: 'Le username est trop long'
         short: 'Le username est trop court'
 
+    bad_credentials: 'Ce compte n''existe pas ou le mot de passe est erroné.'
+
 general:
     error:
         grecaptcha:

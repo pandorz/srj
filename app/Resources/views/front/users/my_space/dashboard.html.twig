@@ -1,0 +1,23 @@
+{% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
+{% block body_class %}my_space{% endblock %}
+{% set meta_title = 'my_space.dashboard.meta.title'|trans %}
+{% block html_title %}– {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
+{% block main %}
+    {% set hastagTitle = 'my_space.dashboard.title'|trans %}
+    {% set hastagList = "" %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
+
+    <section class="u-fitted">
+        <div class="join section">
+            <h2 class="sectionTitle">Un titre</h2>
+            <div class="joinText sectionText">
+                Du texte
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

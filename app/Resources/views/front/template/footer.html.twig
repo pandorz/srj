@@ -9,7 +9,7 @@
                     {{ 'footer.description.list'|trans|raw }}
                 </ul>
             </div>
-            {% if lien_adhesion() is not empty %}
+            {% if lien_adhesion() is not empty and app.user == false %}
             <a class="assoMemberBtn btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a><br>
             {% endif %}
             <a class="seeMore" href="{{path('association')}}">{{ 'footer.button.see_more'|trans }}</a>

@@ -44,6 +44,9 @@
         <main class="siteBody">
         {% block main %}{% endblock %}
         </main>
+        {% if app.user == false %}
+            {% include 'front/template/login.html.twig' %}
+        {% endif %}
         {% include 'front/template/footer.html.twig' %}
         {% block javascript %}
             <script src="{{ asset('js/app.js'|asset_version) }}"></script>

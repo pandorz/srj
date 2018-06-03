@@ -314,6 +314,35 @@ class Import
     }
 
     /**
+     * @param string $memberNumber
+     * @param string $username
+     * @return bool
+     */
+    private function usernameAllreadyUsed(string $memberNumber, string $username)
+    {
+        $users = $this->getEm()->getRepository(Utilisateur::class)->findByUsername($username);
+
+        if (empty($users)) {
+            return false;
+        }
+
+        if (empty($memberNumber)) {
+            return true;
+        }
+
+        /** @var Utilisateur $user */
+        foreach ($users as $user) {
+            if (empty($user->getMembreNumero())) {
+                return true;
+            } elseif (!hash_equals($user->getMembreNumero(), $memberNumber)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * @param array $line
      * @return Utilisateur
      */
@@ -349,13 +378,31 @@ class Import
         }
 
         if (empty($user->getUsername())) {
-            $user->setUsername(mb_strtolower(ucfirst($user->getFirstname()).$user->getLastname()));
+            $user->setUsername($this->generateUsername($user->getMembreNumero(), $user->getFirstname() ,$user->getLastname()));
         }
 
         $user->setPassword($this->generatePassword());
 
         $user = $this->addToGroup($user);
         return $user;
+    }
+
+    /**
+     * @param string $memberNumber
+     * @param string $firstname
+     * @param string $lastname
+     * @param int $occurence
+     * @return string
+     */
+    private function generateUsername(string $memberNumber, string $firstname, string $lastname, int $occurence = 0)
+    {
+        $username = mb_strtolower(ucfirst($firstname).$lastname).($occurence>0?$occurence:'');
+
+        if ($this->usernameAllreadyUsed()) {
+            return $this->generateUsername($memberNumber, $firstname, $lastname, ($occurence+1));
+        }
+
+        return $username;
     }
 
     /**

@@ -212,17 +212,23 @@ footer:
     quick_links: 'Accès rapides'
 
 general:
+    connexion:
+        title: 'Déjà membre ? Connectez-vous'
     accroche_be_member: 'Sortir une fois, c''est bien.<br> Multiplier des moments conviviaux entre passionnés en étant membre de Rouen Japon, c''est mieux ! ;-)'
     address: 'Association franco-japonaise de Rouen<br>4 quai de Paris<br>76000 Rouen'
 
     button:
         admin: Administration
+        logout: 'Se déconnecter'
         be_member: 'Devenir membre'
         know_more: 'En savoir plus'
         login: 'Déjà membre ?'
         participer: 'Je veux participer !'
         see_less: 'Charger moins'
         see_more: 'Charger plus'
+        account: 'Mon espace'
+        forgot_password: 'J''ai oublié mon mot de passe ?'
+        get_an_access: 'Demander un accès'
 
     cright: '&copy; 2016 Association franco-japonaise de Rouen - Tous droits réservés'
     date_du_au: 'Du %start_date% au %end_date%'
@@ -329,3 +335,9 @@ sortie:
         title: 'Les sorties'
 
     title: 'Nos sorties'
+
+my_space:
+    dashboard:
+        title: 'Tableau de bord'
+        meta:
+            title: 'Mon espace personnel'

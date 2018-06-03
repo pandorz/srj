@@ -131,7 +131,7 @@ services:
 
     app.twig_helper:
         class: AppBundle\Twig\TwigHelpers
-        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image", "@app.service_parameter"]
+        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image", "@app.service_parameter", "@security.csrf.token_manager"]
         tags:
             - { name: twig.extension }
     app.admin.block.timeline:
@@ -186,3 +186,6 @@ services:
         tags:
           - { name: monolog.logger, channel: import}
 
+    authentication_handler:
+        class: AppBundle\Handler\AuthenticationHandler
+        arguments: ["@translator", "@router"]
