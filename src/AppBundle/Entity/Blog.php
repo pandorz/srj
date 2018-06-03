@@ -549,4 +549,31 @@ class Blog implements RoutedItemInterface
     {
         $this->currentPlace = $currentPlace;
     }
+
+    public function getHtmlState()
+    {
+        $label  = "label-default";
+        $state   = 'draft';
+        $stateFR = 'Brouillon';
+        if (!empty($this->getCurrentPlace())) {
+            $state = key(array_slice($this->getCurrentPlace(), 0, 1));
+        }
+
+        if (hash_equals($state, 'rejected')) {
+            $label   = "label-danger";
+            $stateFR = "Refusé";
+        }
+
+        if (hash_equals($state, 'published')) {
+            $label = "label-success";
+            $stateFR = "Validé";
+        }
+
+        if (hash_equals($state, 'review')) {
+            $label = "label-info";
+            $stateFR = "A relire";
+        }
+
+        return '<span class="label '.$label.'">'.$stateFR.'</span>';
+    }
 }

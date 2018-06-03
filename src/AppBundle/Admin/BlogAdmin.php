@@ -46,6 +46,10 @@ class BlogAdmin extends AbstractAdmin
             ->add('datePublication', 'date', [
                 'label' => 'blog.liste.datePublication'
             ])
+            ->add('htmlState', 'html', array(
+                'label'         => 'blog.liste.state',
+                'sortable'  => 'name'
+            ))
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -72,15 +76,23 @@ class BlogAdmin extends AbstractAdmin
         $serviceWorkflow = $this->getConfigurationPool()->getContainer()->get('app.workflow.blog');
         $blog            = $this->getSubject();
         $disabledAffiche = false;
+        $state           = 'draft';
 
-        if ($blog instanceof Blog && !empty($blog->getId())) {
-            $disabledAffiche = !$serviceWorkflow->canBePublished($blog);
+        if ($blog instanceof Blog) {
+            if (!empty($blog->getCurrentPlace())) {
+                $state = key(array_slice($blog->getCurrentPlace(), 0, 1));
+            }
+
+            if (!empty($blog->getId())) {
+                $disabledAffiche = !$serviceWorkflow->canBePublished($blog);
+            }
         }
 
         $formMapper
             ->with('Content', [
                 'name' => $this->trans('blog.with.details'),
-                'class' => 'col-md-7'
+                'class' => 'col-md-7',
+                'description' => $this->trans('blog.add_edit.details.description.'.$state)
             ])
             ->add('nom', 'text', [
                 'label' => 'blog.nom',

@@ -141,6 +141,12 @@ blog:
 
     add_edit:
         to_string: 'Article de blog'
+        details:
+            description:
+                draft: 'Cet article est un brouillon.'
+                published: ''
+                rejected: 'Cet article à été refusé. Il ne peut pas être publié en l''état.'
+                review: 'Cet article est en attente de relecture. Changez l''état en actif pour l''accepter ou bien refusez le. (Le refus n''est pas irreversible)'
 
     auteur: Auteur(s)
     contenu: Texte
@@ -156,6 +162,7 @@ blog:
         affiche: Affiché
         datePublication: 'Date de publication'
         nom: Titre
+        state: 'Etat'
 
     nom: Titre
 
