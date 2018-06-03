@@ -189,3 +189,20 @@ services:
     authentication_handler:
         class: AppBundle\Handler\AuthenticationHandler
         arguments: ["@translator", "@router"]
+
+    app.workflow.guard.blog.adminpublish:
+        class: AppBundle\EventListener\BlogAdminPublishListener
+        arguments: ["@security.authorization_checker"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.workflow.guard.blog.toreopen:
+        class: AppBundle\EventListener\BlogToReOpenListener
+        arguments: ["@security.token_storage", "@security.authorization_checker"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.workflow.notifications:
+        class: AppBundle\EventListener\WorkflowNotification
+        tags:
+            - { name: kernel.event_subscriber }

@@ -110,6 +110,13 @@ class Blog implements RoutedItemInterface
     private $utilisateurModification;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="current_place", type="string", length=20)
+     */
+    private $currentPlace;
+
+    /**
      * For Sonata Admin Doctrine lock
      * @var int
      * @ORM\Column(type="integer")
