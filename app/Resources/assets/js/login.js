@@ -18,9 +18,13 @@ app.loginController.defaultAction = {
                 dataType    : "json",
                 success     : function(data, status, object)
                 {
-                    var $errorMessage = $('.js-form_login_error');
-                    $errorMessage.find('.alert').html(data.message);
-                    $errorMessage.show();
+                    console.log("aqui");
+                    console.log(data);
+                    if (data.message) {
+                        var $errorMessage = $('.js-form_login_error');
+                        $errorMessage.find('.alert').html(data.message);
+                        $errorMessage.show();
+                    }
                 }
             });
         });

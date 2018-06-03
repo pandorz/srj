@@ -219,6 +219,44 @@
             }
         }
     }
+
+    &.logout {
+        position: relative;
+        line-height: rem(28);
+        padding-right: $margin-l;
+        color: $color-rj;
+        &:before,
+        &:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            display: block;
+            width: rem(20);
+            height: rem(20);
+            background-repeat: no-repeat;
+            background-position: 0 0;
+            background-size: rem(20);
+            @include transition;
+        }
+        &:before {
+            background-image: url(../medias/img/icon-logout-red.svg);
+            opacity: 1;
+        }
+        &:after {
+            background-image: url(../medias/img/icon-logout-black.svg);
+            opacity: 0;
+        }
+        @include activeLink {
+            color: $color-text;
+            &:before {
+                opacity: 0;
+            }
+            &:after {
+                opacity: 1;
+            }
+        }
+    }
 }
 
 @include media('<=1100px') {
@@ -299,7 +337,7 @@
         margin-left: $margin-s;
     }
     .mainNavMemberLink {
-        &.login, &.admin, &.account {
+        &.login, &.admin, &.account, &.logout {
             margin-left: $margin-m;
         }
     }
@@ -316,7 +354,7 @@
         padding-right: 1em;
     }
     .mainNavMemberLink {
-        &.login, &.admin, &.account {
+        &.login, &.admin, &.account, &.logout {
             margin-left: $margin-s;
         }
     }

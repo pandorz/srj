@@ -219,12 +219,14 @@ general:
 
     button:
         admin: Administration
+        logout: 'Se déconnecter'
         be_member: 'Devenir membre'
         know_more: 'En savoir plus'
         login: 'Déjà membre ?'
         participer: 'Je veux participer !'
         see_less: 'Charger moins'
         see_more: 'Charger plus'
+        account: 'Mon espace'
 
     cright: '&copy; 2016 Association franco-japonaise de Rouen - Tous droits réservés'
     date_du_au: 'Du %start_date% au %end_date%'
