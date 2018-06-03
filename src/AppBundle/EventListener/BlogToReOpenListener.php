@@ -33,7 +33,7 @@ class BlogToReOpenListener implements EventSubscriberInterface
 
         /** @var Utilisateur $utilisateur */
         $utilisateur = $this->tokenStorage->getToken()->getUser();
-        if (!hash_equals($blog->getUtilisateurCreation(), $utilisateur->__toString() || false === $this->authChecker->isGranted('ROLE_SONATA_ADMIN'))) {
+        if (! $blog->getAuteurs()->contains($utilisateur) || false === $this->authChecker->isGranted('ROLE_SONATA_ADMIN')) {
             $event->setBlocked(true);
         }
     }
