@@ -1,8 +1,4 @@
 
-/* 
-    Author     : cecilejeanne <contact@cecile-jeanne.be>
-*/
-
 .siteBody {
     
 }
@@ -27,6 +23,14 @@
   .center
   {
     margin: auto;
+  }
+}
+
+.loginLinks {
+  max-width: rem(580);
+  margin: 0 auto;
+  a {
+    padding-left: 40px;
   }
 }
 

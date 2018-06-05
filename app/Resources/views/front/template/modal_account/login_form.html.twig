@@ -1,0 +1,32 @@
+{% trans_default_domain 'FOSUserBundle' %}
+<form action="{{ path("fos_user_security_check") }}" method="post" role="form" data-async class="text-left js-form-login loginForm">
+    <div class="modal-body">
+        <div class="js-form_login_error">
+            <div class="alert alert-error"></div>
+        </div>
+        <input type="hidden" name="_csrf_token" value="{{ get_csrf_token() }}" />
+        <div class="formItem">
+            <div class="form-group container">
+                <label for="username" class="u-hiddenVisually">{{ 'security.login.username'|trans }}</label>
+                <input type="text" class="form-control fld center" id="username" name="_username" value="{{ get_last_username(app.session) }}" required="required" placeholder="{{ 'login.placeholder.username'|trans({}, 'front') }}">
+            </div>
+        </div>
+        <div class="formItem">
+            <div class="form-group container">
+                <label for="password" class="u-hiddenVisually">{{ 'security.login.password'|trans }}</label><br />
+                <input type="password" id="password" name="_password" required="required" class="form-control fld center" placeholder="********">
+            </div>
+        </div>
+        <div class="formItem">
+            <div class="form-group container decalage center">
+                <label for="remember_me">
+                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                    {{ 'security.login.remember_me'|trans }}
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" class="btn center">
+    </div>
+</form>

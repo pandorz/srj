@@ -341,3 +341,7 @@ my_space:
         title: 'Tableau de bord'
         meta:
             title: 'Mon espace personnel'
+
+login:
+    placeholder:
+        username: 'Nom d''utilisateur'
