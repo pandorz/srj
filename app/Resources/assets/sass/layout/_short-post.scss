@@ -24,6 +24,8 @@
 }
 .postTitle {
 	margin: $margin-s $margin-m;
+	min-height: rem(80);
+	max-height: rem(80);
 }
 .postTitle {
 	color: $color-rj;
@@ -60,6 +62,21 @@
 .postSummary {
 	padding-bottom: $margin-s;
 	font-size: rem(13);
+	p {
+		max-height: rem(20);
+		min-height: rem(20);
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+}
+
+.moreSummary {
+	p {
+		text-overflow: initial !important;
+		max-height: none !important;
+		white-space: normal !important;
+	}
 }
 .postMoreText {
 	padding: 1px 0;

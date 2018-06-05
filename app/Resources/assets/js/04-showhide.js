@@ -11,8 +11,8 @@ app.showhideController.defaultAction = {
         if ($moreBtn.length > 0) {
             $moreBtn.on('click', function(e) {
                 $target = $(e.target);
-                //$moreBtn.removeClass('is-active');
                 $target.toggleClass('is-active');
+                $target.parents('.shortPost').find('.postSummary').toggleClass('moreSummary');
                 $target.parents('.shortPost').find('.postMoreText').animate({
                     height : "toggle"
                 }, 300, function() {
