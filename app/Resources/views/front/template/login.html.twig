@@ -2,10 +2,12 @@
 <div class="u-hidden" id="modal-login">
     <div class="modal-content">
         {% include 'front/template/modal_account/login_form.html.twig' %}
+        {% include 'front/template/modal_account/lost_pwd_form.html.twig' %}
+        {% include 'front/template/modal_account/ask_account_form.html.twig' %}
         <div class="loginLinks">
-            <a href="#" class="u-hidden">{{ 'general.button.login'|trans }}</a>
-            <a href="#">{{ 'general.button.forgot_password'|trans }}</a>
-            <a href="#">{{ 'general.button.get_an_access'|trans }}</a>
+            <a href="#" class="js-show-login-form u-hidden">{{ 'general.button.login'|trans }}</a>
+            <a href="#" class="js-show-pwd-form">{{ 'general.button.forgot_password'|trans }}</a>
+            <a href="#" class="js-show-access-form">{{ 'general.button.get_an_access'|trans }}</a>
         </div>
     </div>
 </div>

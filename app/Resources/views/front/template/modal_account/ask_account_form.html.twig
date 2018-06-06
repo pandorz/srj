@@ -1,0 +1,18 @@
+{% trans_default_domain 'front' %}
+<form action="" method="post" role="form" data-async class="text-left js-form-ask-account askAccessForm u-hidden">
+    <div class="modal-body">
+        <div class="js-form_ask-account_messages">
+            <div class="alert alert-error"></div>
+            <div class="alert alert-success"></div>
+        </div>
+        <div class="formItem">
+            <div class="form-group container">
+                <label for="username" class="u-hiddenVisually">{{ 'ask-account.memberNumber'|trans }}</label>
+                <input type="text" class="form-control fld center" id="memberNumber" name="memberNumber" required="required" placeholder="{{ 'ask-account.placeholder.memberNumber'|trans }}">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" id="_submit_access" name="_submit_access" value="{{ 'ask-account.button.submit'|trans }}" class="btn center">
+    </div>
+</form>

@@ -345,3 +345,17 @@ my_space:
 login:
     placeholder:
         username: 'Nom d''utilisateur'
+
+lost_pwd:
+    email: 'Email du compte'
+    placeholder:
+        email: 'Email du compte'
+    button:
+        submit: 'Réinitialiser mon mot de passe'
+
+ask-account:
+    memberNumber: 'Numéro de membre'
+    placeholder:
+        memberNumber: 'Numéro de membre'
+    button:
+        submit: 'Demander un accès'

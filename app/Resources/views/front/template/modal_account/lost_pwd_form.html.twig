@@ -1,0 +1,18 @@
+{% trans_default_domain 'front' %}
+<form action="" method="post" role="form" data-async class="text-left js-form-lost-pwd lostPwdForm u-hidden">
+    <div class="modal-body">
+        <div class="js-form_lost_pwd_messages">
+            <div class="alert alert-error"></div>
+            <div class="alert alert-success"></div>
+        </div>
+        <div class="formItem">
+            <div class="form-group container">
+                <label for="username" class="u-hiddenVisually">{{ 'lost_pwd.email'|trans }}</label>
+                <input type="email" class="form-control fld center" id="email" name="email" required="required" placeholder="{{ 'lost_pwd.placeholder.email'|trans }}">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <input type="submit" id="_submit_pwd" name="_submit_pwd" value="{{ 'lost_pwd.button.submit'|trans }}" class="btn center">
+    </div>
+</form>
