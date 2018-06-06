@@ -9,6 +9,7 @@ use AppBundle\Entity\Partenaire;
 use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -64,7 +65,7 @@ class FrontController extends BaseController
         $captcha = true;
         //-- Check Google Recaptcha
         try {
-            $this->get('app.recaptcha')->check($request->request->get('g-recaptcha-response'));
+            //$this->get('app.recaptcha')->check($request->request->get('g-recaptcha-response'));
         } catch (\Exception $e) {
             if ($e->getCode() == $this->get('app.recaptcha')->getCodeRecaptchaFailed()) {
                 $request
@@ -297,5 +298,46 @@ class FrontController extends BaseController
     public function mentionsLegalesAction()
     {
         return $this->render('front/mentions_legales/mentions.html.twig');
+    }
+
+    /**
+     * Newsletter
+     *
+     * -------------------- *
+     * @Route("/get-an-access", name="ask_account")
+     * @Method("POST")
+     * -------------------- *
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function askAccountAction(Request $request)
+    {
+        $memberNumber = $request->get('memberNumber');
+        if (!empty($memberNumber)) {
+            try {
+                /** @var Utilisateur $user */
+                $user = $this->getEm()->getRepository(Utilisateur::class)->findOneByMembreNumero($memberNumber);
+
+                if (!empty($user)) {
+                    // TODO check si pas déjà actif
+                }
+                $demandeAccount = new DemandeNewsletter();
+                // TODO
+                $em->persist($demandeAccount);
+                $em->flush();
+                // TODO
+                $reponse = 'Nous avons enregistré votre demande';
+
+            } catch (\Exception $exception) {
+                //TODO
+                $reponse = 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument';
+            }
+        } elseif (empty($email)) {
+            // TODO
+            $reponse = 'Votre numéro de membre ne peut pas être vide';
+        }
+//TODO
+        return new JsonResponse($reponse);
     }
 }

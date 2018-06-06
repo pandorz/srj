@@ -9,7 +9,7 @@ app.loginController.defaultAction = {
 
     initlogin: function() {
         var $errorMessage       = $('.js-form_login_error');
-        var $errorMessageAlert  = $errorMessage.find('.alert');
+        var $errorMessageAlert  = $errorMessage.find('.alert-error');
         $errorMessageAlert.html('');
         $errorMessage.hide();
 
@@ -43,16 +43,16 @@ app.loginController.defaultAction = {
 
     initPwd: function () {
         var $containerMessage       = $('.js-form_lost_pwd_messages');
-        var $errorMessageAlert      = $containerMessage.find('.alert');
-        var $successMessageAlert    = $containerMessage.find('.success');
+        var $errorMessageAlert      = $containerMessage.find('.alert-error');
+        var $successMessageAlert    = $containerMessage.find('.alert-success');
         this.resetMessage($successMessageAlert, $errorMessageAlert);
         this.formActionAccessPwd($successMessageAlert, $errorMessageAlert, '_submit_pwd', 'js-form-lost-pwd');
     },
 
     initAccess: function () {
         var $containerMessage       = $('.js-form_ask-account_messages');
-        var $errorMessageAlert      = $containerMessage.find('.alert');
-        var $successMessageAlert    = $containerMessage.find('.success');
+        var $errorMessageAlert      = $containerMessage.find('.alert-error');
+        var $successMessageAlert    = $containerMessage.find('.alert-success');
         this.resetMessage($successMessageAlert, $errorMessageAlert);
         this.formActionAccessPwd($successMessageAlert, $errorMessageAlert, '_submit_access', 'js-form-ask-account');
     },
@@ -62,6 +62,25 @@ app.loginController.defaultAction = {
         $successMessageAlert.html('');
         $errorMessageAlert.hide();
         $successMessageAlert.hide();
+    },
+
+    showErrorMessage: function($errorMessageAlert, message) {
+        $errorMessageAlert.html(message);
+        $errorMessageAlert.show();
+    },
+
+    showSuccesMessage: function($successMessageAlert, message) {
+        $successMessageAlert.html(message);
+        $successMessageAlert.show();
+    },
+
+    showMessage: function($successMessageAlert, $errorMessageAlert, data) {
+        var mess = data.responseText;
+        if (data.status !== 200) {
+            this.showErrorMessage($errorMessageAlert, mess);
+        } else {
+            this.showSuccesMessage($successMessageAlert, mess);
+        }
     },
 
     formActionAccessPwd: function ($successMessageAlert, $errorMessageAlert, idButton, classForm) {
@@ -79,15 +98,12 @@ app.loginController.defaultAction = {
                     url: $form.attr('action'),
                     data: $form.serialize(),
                     dataType: "json",
-                    error: function (xhr, status, error) {
-                        var err = eval("(" + xhr.responseText + ")");
-                        $errorMessageAlert.html(err.message);
-                        $errorMessageAlert.show();
+                    error: function (data, status, error) {
+                        self.showMessage($successMessageAlert, $errorMessageAlert, data);
                         $button.removeClass('wait-cursor disabled');
                     },
                     success: function (data) {
-                        $successMessageAlert.html(data.message);
-                        $successMessageAlert.show();
+                        self.showMessage($successMessageAlert, $errorMessageAlert, data);
                         $button.removeClass('wait-cursor disabled');
                     }
                 });

@@ -1,5 +1,5 @@
 {% trans_default_domain 'front' %}
-<form action="" method="post" role="form" data-async class="text-left js-form-lost-pwd lostPwdForm u-hidden">
+<form action="{{ path('fos_user_resetting_send_email') }}" method="post" role="form" data-async class="text-left js-form-lost-pwd lostPwdForm u-hidden">
     <div class="modal-body">
         <div class="js-form_lost_pwd_messages">
             <div class="alert alert-error"></div>
@@ -8,7 +8,7 @@
         <div class="formItem">
             <div class="form-group container">
                 <label for="username" class="u-hiddenVisually">{{ 'lost_pwd.email'|trans }}</label>
-                <input type="email" class="form-control fld center" id="email" name="email" required="required" placeholder="{{ 'lost_pwd.placeholder.email'|trans }}">
+                <input type="email" class="form-control fld center" id="username" name="username" required="required" placeholder="{{ 'lost_pwd.placeholder.email'|trans }}">
             </div>
         </div>
     </div>
