@@ -658,3 +658,17 @@ tag:
 
     with:
         details: Détails
+
+lost_pwd:
+    mail:
+        sujet: 'Réinitialisation de votre mot de passe'
+        titre: 'Oubli de votre mot de passe'
+        soustitre: 'Réinitialisation de votre mot de passe'
+        message:  |
+                   Bonjour %username% !<br><br>
+
+                   Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
+                   Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer ce message.<br><br>
+
+                   Cordialement,<br>
+                   L'association RouenJapon

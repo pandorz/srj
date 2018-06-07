@@ -43,6 +43,9 @@ class FOSCustomMailer implements MailerInterface
         // TODO: Implement sendConfirmationEmailMessage() method.
     }
 
+    /**
+     * @param UserInterface $user
+     */
     public function sendResettingEmailMessage(UserInterface $user)
     {
         $url  = $this->router->generate('fos_user_resetting_reset', array('token' => $user->getConfirmationToken()), UrlGeneratorInterface::ABSOLUTE_URL);

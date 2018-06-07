@@ -352,17 +352,6 @@ lost_pwd:
         email: 'Email du compte'
     button:
         submit: 'Réinitialiser mon mot de passe'
-    mail:
-        titre: 'Oubli de votre mot de passe'
-        soustitre: 'Réinitialisation de votre mot de passe'
-        message:  |
-                   Bonjour %username% !
-
-                   Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
-                   Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer ce message.
-
-                   Cordialement,
-                   L'association RouenJapon
 
 ask-account:
     memberNumber: 'Numéro de membre'
