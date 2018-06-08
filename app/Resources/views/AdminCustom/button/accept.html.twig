@@ -1,0 +1,11 @@
+{% if can_be_accepted(object) %}
+<a href="{{ path('admin_demande_acces_accept', {'id' : object.id}) }}" class="btn btn-sm btn-success delete_link" title="{{ 'access.button'|trans({}) }}">
+    <i class="fa fa-check" aria-hidden="true"></i>
+    {{ 'access.button'|trans({}) }}
+</a>
+{% else %}
+    <a href="#" class="btn btn-sm btn-danger delete_link disabled" title="{{ 'access.nope'|trans({}) }}">
+        <i class="glyphicon glyphicon-ban-circle" aria-hidden="true"></i>
+        {{ 'access.nope'|trans({}) }}
+    </a>
+{% endif %}

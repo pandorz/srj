@@ -686,3 +686,7 @@ ask_account:
         nan: 'Ce numéro de membre est invalide'
         pending: 'Une demande est déjà en cours'
     success: 'Nous avons enregistré votre demande'
+
+access:
+    button: 'Activer l''utilisateur'
+    nope: 'Utilisateur non importé'

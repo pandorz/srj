@@ -38,6 +38,10 @@ class DemandeAccesAdmin extends AbstractAdmin
             ->add('_action', null, array(
                 'actions' => array(
                     'delete' => array(),
+                    'accept' => array(
+                        'template' => ':AdminCustom/button:accept.html.twig',
+                        'data'     => '1',
+                    )
                 )
             ));
     }
@@ -74,5 +78,6 @@ class DemandeAccesAdmin extends AbstractAdmin
     protected function configureRoutes(RouteCollection $collection)
     {
         $collection->clearExcept(array('list', 'delete', 'export', 'batch'));
+        $collection->add('accept', 'accept/{id}');
     }
 }
