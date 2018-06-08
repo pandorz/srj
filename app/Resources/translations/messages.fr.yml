@@ -672,3 +672,12 @@ lost_pwd:
 
                    Cordialement,<br>
                    L'association RouenJapon
+
+ask_account:
+    error:
+        has_access: 'Vous possédez déjà un access à RouenJapon. Vous avez oublié votre mot de passe ?'
+        server: 'Erreur lors de l''envoi de votre message. Réessayez ultérieument'
+        empty: 'Votre numéro de membre ne peut pas être vide'
+        nan: 'Ce numéro de membre est invalide'
+        pending: 'Une demande est déjà en cours'
+    success: 'Nous avons enregistré votre demande'
