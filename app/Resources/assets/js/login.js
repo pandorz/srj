@@ -11,17 +11,18 @@ app.loginController.defaultAction = {
         var $errorMessage       = $('.js-form_login_error');
         var $errorMessageAlert  = $errorMessage.find('.alert-error');
         $errorMessageAlert.html('');
-        $errorMessage.hide();
+        $errorMessageAlert.hide();
 
         $('body').on( 'click', '#_submit_login', function(e){
             var $form   = $('.js-form-login');
             var $button = $(this);
+            $errorMessageAlert  = $form.find('.alert-error');
             e.preventDefault();
 
             if (!$button.hasClass('disabled')) {
                 $button.addClass('wait-cursor disabled');
                 $errorMessageAlert.html('');
-                $errorMessage.hide();
+                $errorMessageAlert.hide();
                 $.ajax({
                     type: $form.attr('method'),
                     url: $form.attr('action'),
@@ -30,7 +31,7 @@ app.loginController.defaultAction = {
                     error: function (xhr, status, error) {
                         var err = eval("(" + xhr.responseText + ")");
                         $errorMessageAlert.html(err.message);
-                        $errorMessage.show();
+                        $errorMessageAlert.show();
                         $button.removeClass('wait-cursor disabled');
                     },
                     success: function (data) {

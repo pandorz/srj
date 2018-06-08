@@ -28,6 +28,7 @@ fos_user:
         short: 'Le username est trop court'
 
     bad_credentials: 'Ce compte n''existe pas ou le mot de passe est erroné.'
+    no_access: 'Vous n''avez pas les droits suffisants pour vous connecter à cet espace.'
 
 general:
     error:

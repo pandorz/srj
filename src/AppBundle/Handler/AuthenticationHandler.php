@@ -2,6 +2,7 @@
 
 namespace AppBundle\Handler;
 
+use AppBundle\Entity\Utilisateur;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -37,6 +38,18 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
+        /** @var Utilisateur $user */
+        $user   = $token->getUser();
+        if (!$user->getAccesSite()) {
+            $request->getSession()->invalidate();
+
+            $result = [
+                'message' => $this->translator->trans('fos_user.no_access', [], 'validators', $request->getLocale())
+            ];
+
+            return new JsonResponse($result, Response::HTTP_BAD_REQUEST);
+        }
+
         $result = [
             'path' => $this->router->generate('my_space', [], UrlGeneratorInterface::ABSOLUTE_URL)
         ];
