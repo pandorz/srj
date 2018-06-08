@@ -4,6 +4,7 @@ namespace AppBundle\Twig;
 
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
+use AppBundle\Entity\DemandeAcces;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Service\Parameter;
 use Application\Sonata\MediaBundle\Entity\Media;
@@ -79,7 +80,8 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('is_cookie_google_ok', array($this, 'isCookieGoogleOk')),
             new \Twig_SimpleFunction('get_csrf_token', array($this, 'getCsrfToken')),
             new \Twig_SimpleFunction('get_last_username', array($this, 'getLastUsername')),
-            new \Twig_SimpleFunction('is_instance_of_blog', array($this, 'isInstanceOfBlog'))
+            new \Twig_SimpleFunction('is_instance_of_blog', array($this, 'isInstanceOfBlog')),
+            new \Twig_SimpleFunction('can_be_accepted',array($this, 'canBeAccepted'))
         );
     }
 
@@ -338,5 +340,21 @@ class TwigHelpers extends \Twig_Extension
     public function isInstanceOfBlog($object)
     {
         return $object instanceof Blog;
+    }
+
+    /**
+     * @param DemandeAcces $demandeAcces
+     * @return bool
+     */
+    public function canBeAccepted(DemandeAcces $demandeAcces)
+    {
+        /** @var Utilisateur $user */
+        $user = $this->entityManager->getRepository(Utilisateur::class)->findOneByMembreNumero($demandeAcces->getNumeroMembre());
+
+        if (!empty($user)) {
+            return !$user->getAccesSite() || $user->getLocked() || !$user->isEnabled();
+        }
+
+        return false;
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
+use AppBundle\Entity\DemandeAcces;
 use AppBundle\Entity\DemandeNewsletter;
 use AppBundle\Entity\Partenaire;
 use AppBundle\Entity\Utilisateur;
@@ -65,7 +66,7 @@ class FrontController extends BaseController
         $captcha = true;
         //-- Check Google Recaptcha
         try {
-            //$this->get('app.recaptcha')->check($request->request->get('g-recaptcha-response'));
+            $this->get('app.recaptcha')->check($request->request->get('g-recaptcha-response'));
         } catch (\Exception $e) {
             if ($e->getCode() == $this->get('app.recaptcha')->getCodeRecaptchaFailed()) {
                 $request
@@ -315,29 +316,36 @@ class FrontController extends BaseController
     {
         $memberNumber = $request->get('memberNumber');
         if (!empty($memberNumber)) {
+            if (!preg_match('`^[[:digit:]]+$`', $memberNumber)) {
+                return new JsonResponse($this->getTranslator()->trans('ask_account.error.nan'), Response::HTTP_BAD_REQUEST);
+            }
+
             try {
                 /** @var Utilisateur $user */
                 $user = $this->getEm()->getRepository(Utilisateur::class)->findOneByMembreNumero($memberNumber);
 
-                if (!empty($user)) {
-                    // TODO check si pas déjà actif
-                }
-                $demandeAccount = new DemandeNewsletter();
-                // TODO
-                $em->persist($demandeAccount);
-                $em->flush();
-                // TODO
-                $reponse = 'Nous avons enregistré votre demande';
+                if (empty($user) || $user->getLocked() || !$user->getAccesSite() || !$user->isEnabled()) {
 
+                    // Si une demande n'est pas déjà en cours
+                    $demandeAccount = $this->getEm()->getRepository(DemandeAcces::class)->findOneByNumeroMembre($memberNumber);
+                    if (!empty($demandeAccount)) {
+                        return new JsonResponse($this->getTranslator()->trans('ask_account.error.pending'));
+                    }
+
+                    $demandeAccount = new DemandeAcces();
+                    $demandeAccount->setNumeroMembre($memberNumber);
+                    $this->getEm()->persist($demandeAccount);
+                    $this->getEm()->flush();
+
+                    return new JsonResponse($this->getTranslator()->trans('ask_account.success'));
+                } else {
+                    return new JsonResponse($this->getTranslator()->trans('ask_account.error.has_access'));
+                }
             } catch (\Exception $exception) {
-                //TODO
-                $reponse = 'Erreur lors de l\'envoi de votre message. Réessayez ultérieument';
+                return new JsonResponse($this->getTranslator()->trans('ask_account.error.server'), Response::HTTP_INTERNAL_SERVER_ERROR);
             }
         } elseif (empty($email)) {
-            // TODO
-            $reponse = 'Votre numéro de membre ne peut pas être vide';
+            return new JsonResponse($this->getTranslator()->trans('ask_account.error.empty'), Response::HTTP_BAD_REQUEST);
         }
-//TODO
-        return new JsonResponse($reponse);
     }
 }

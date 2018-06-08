@@ -75,12 +75,12 @@ app.loginController.defaultAction = {
         $successMessageAlert.show();
     },
 
-    showMessage: function($successMessageAlert, $errorMessageAlert, data) {
-        var mess = data.responseText;
-        if (data.status !== 200) {
-            this.showErrorMessage($errorMessageAlert, mess);
+    showMessage: function($successMessageAlert, $errorMessageAlert, message, status) {
+        console.log(message);
+        if (status !== 200) {
+            this.showErrorMessage($errorMessageAlert, message);
         } else {
-            this.showSuccesMessage($successMessageAlert, mess);
+            this.showSuccesMessage($successMessageAlert, message);
         }
     },
 
@@ -100,11 +100,11 @@ app.loginController.defaultAction = {
                     data: $form.serialize(),
                     dataType: "json",
                     error: function (data, status, error) {
-                        self.showMessage($successMessageAlert, $errorMessageAlert, data);
+                        self.showMessage($successMessageAlert, $errorMessageAlert, JSON.parse(data.responseText), data.status);
                         $button.removeClass('wait-cursor disabled');
                     },
                     success: function (data) {
-                        self.showMessage($successMessageAlert, $errorMessageAlert, data);
+                        self.showMessage($successMessageAlert, $errorMessageAlert, data, 200);
                         $button.removeClass('wait-cursor disabled');
                     }
                 });

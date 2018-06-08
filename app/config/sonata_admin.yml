@@ -106,6 +106,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_NEWSLETTER_GUEST, ROLE_APP_ADMIN_NEWSLETTER_STAFF, ROLE_APP_ADMIN_NEWSLETTER_EDITOR, ROLE_APP_ADMIN_NEWSLETTER_ADMIN]
                 items:
                     - app.admin.newsletter
+            app.admin.group.principal.demandeacces:
+                on_top: true
+                label: "Demande d'acces"
+                icon: '<i class="glyphicon glyphicon-log-in"></i>'
+                roles: [ROLE_APP_ADMIN_ACCES_GUEST, ROLE_APP_ADMIN_ACCES_STAFF, ROLE_APP_ADMIN_ACCES_EDITOR, ROLE_APP_ADMIN_ACCES_ADMIN]
+                items:
+                    - app.admin.acces
             app.admin.group.principal.parametres:
                 keep_open: false
                 label: "Outils"
@@ -134,6 +141,17 @@ sonata_admin:
                       roles: [ROLE_APP_ADMIN_IMPORTS_GUEST, ROLE_APP_ADMIN_IMPORTS_STAFF, ROLE_APP_ADMIN_IMPORTS_EDITOR, ROLE_APP_ADMIN_IMPORTS_ADMIN]
                       label: "Imports"
         blocks:
+            -
+                class: col-lg-12 col-xs-6
+                position: top
+                type: app.admin.block.stats
+                settings:
+                    template: :AdminCustom/dashboard:block/block_stats_acces.html.twig
+                    icon: glyphicon glyphicon-log-in
+                    text: Demande d'accès
+                    color: bg-red
+                    entity: AppBundle\Entity\DemandeAcces
+                    filters:
             -
                 class: col-lg-2 col-xs-6
                 position: top
