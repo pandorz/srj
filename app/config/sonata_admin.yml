@@ -106,6 +106,13 @@ sonata_admin:
                 roles: [ROLE_APP_ADMIN_NEWSLETTER_GUEST, ROLE_APP_ADMIN_NEWSLETTER_STAFF, ROLE_APP_ADMIN_NEWSLETTER_EDITOR, ROLE_APP_ADMIN_NEWSLETTER_ADMIN]
                 items:
                     - app.admin.newsletter
+            app.admin.group.principal.demandeacces:
+                on_top: true
+                label: "Demande d'acces"
+                icon: '<i class="glyphicon glyphicon-log-in"></i>'
+                roles: [ROLE_APP_ADMIN_ACCES_GUEST, ROLE_APP_ADMIN_ACCES_STAFF, ROLE_APP_ADMIN_ACCES_EDITOR, ROLE_APP_ADMIN_ACCES_ADMIN]
+                items:
+                    - app.admin.acces
             app.admin.group.principal.parametres:
                 keep_open: false
                 label: "Outils"

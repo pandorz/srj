@@ -399,6 +399,11 @@ demande_newsletter:
         email: 'Adresse email'
         timestampCreation: 'Date de la demande'
 
+demande_acces:
+    liste:
+        numeroMembre: 'Numéro de membre'
+        timestampCreation: 'Date de la demande'
+
 evenement:
     actif: Actif
 

@@ -316,7 +316,7 @@ class FrontController extends BaseController
     {
         $memberNumber = $request->get('memberNumber');
         if (!empty($memberNumber)) {
-            if (!preg_match('[0-9]', $memberNumber)) {
+            if (!preg_match('`^[[:digit:]]+$`', $memberNumber)) {
                 return new JsonResponse($this->getTranslator()->trans('ask_account.error.nan'), Response::HTTP_BAD_REQUEST);
             }
 
