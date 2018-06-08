@@ -344,7 +344,7 @@ my_space:
 
 login:
     placeholder:
-        username: 'Nom d''utilisateur'
+        username: 'Nom d''utilisateur ou email'
 
 lost_pwd:
     email: 'Email du compte'
