@@ -1,0 +1,24 @@
+{% trans_default_domain 'front' %}
+<header class="userNav">
+    <div id="profil-picture" class="menuUp">
+        <h1><img class="my-profil" src="" alt="{{ 'user.title.mon-profil'|trans }}"></h1>
+        <div id="navToggleUser"><a href="#"><span class="u-hiddenVisually">{{ 'general.navigation'|trans }}</span></a></div>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#">{{ 'user.title.mon-profil'|trans }}</a></li>
+            <li>
+                <a href="#">{{ 'user.title.blog'|trans }} <span class="toggle">Expand</span><span class="caret"></span></a>
+                <nav>
+                    <ul>
+                        <li><a href="#">{{ 'user.title.new-article'|trans }}</a></li>
+                        <li><a href="#">{{ 'user.title.my-drafts'|trans }}</a></li>
+                        <li><a href="#">{{ 'user.title.my-articles'|trans }}</a></li>
+                    </ul>
+                </nav>
+            </li>
+            <li><a href="#">{{ 'user.title.new-article'|trans }}</a></li>
+        </ul>
+    </nav>
+</header>
+

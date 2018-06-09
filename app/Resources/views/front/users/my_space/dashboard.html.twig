@@ -11,6 +11,7 @@
     {% set hastagList = "" %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
+    {% include 'front/users/my_space/nav_barre.html.twig' %}
     <section class="u-fitted">
         <div class="join section">
             <h2 class="sectionTitle">Un titre</h2>
@@ -20,4 +21,13 @@
         </div>
     </section>
 
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            app.headerUserController.defaultAction.init();
+        });
+    </script>
 {% endblock %}
