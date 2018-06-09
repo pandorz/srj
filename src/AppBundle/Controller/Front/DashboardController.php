@@ -34,6 +34,11 @@ class DashboardController extends BaseController
      */
     public function indexAction()
     {
+        /** @var Utilisateur $user */
+        $user = $this->getUser();
+        if (!$user->getAccesSite()) {
+            return $this->redirectToRoute('fos_user_security_logout');
+        }
         return $this->render('front/users/my_space/dashboard.html.twig');
     }
 }

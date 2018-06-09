@@ -76,7 +76,6 @@ app.loginController.defaultAction = {
     },
 
     showMessage: function($successMessageAlert, $errorMessageAlert, message, status) {
-        console.log(message);
         if (status !== 200) {
             this.showErrorMessage($errorMessageAlert, message);
         } else {
@@ -100,7 +99,11 @@ app.loginController.defaultAction = {
                     data: $form.serialize(),
                     dataType: "json",
                     error: function (data, status, error) {
-                        self.showMessage($successMessageAlert, $errorMessageAlert, JSON.parse(data.responseText), data.status);
+                        var mess = data.responseText;
+                        if (data.status !== 200) {
+                            mess = JSON.parse(mess);
+                        }
+                        self.showMessage($successMessageAlert, $errorMessageAlert, mess, data.status);
                         $button.removeClass('wait-cursor disabled');
                     },
                     success: function (data) {
