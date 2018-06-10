@@ -6,7 +6,6 @@
     </div>
     <nav>
         <ul>
-            <li><a href="#">{{ 'user.title.mon-profil'|trans }}</a></li>
             <li>
                 <a href="#">{{ 'user.title.blog'|trans }} <span class="toggle">Expand</span><span class="caret"></span></a>
                 <nav>
@@ -17,7 +16,20 @@
                     </ul>
                 </nav>
             </li>
-            <li><a href="#">{{ 'user.title.documents'|trans }}</a></li>
+            {% set has_documents_utilisateur = has_documents_utilisateur() %}
+            <li><a href="#">{{ 'user.title.documents'|trans }}{{ has_documents_utilisateur?'  <span class="toggle">Expand</span><span class="caret"></span>':'' }}</a>
+                {% if has_documents_utilisateur %}
+                <nav>
+                    <ul>
+                    {% set documents = get_documents_utilisateur() %}
+                    {% for document in documents %}
+                        <li><a href="{% path document.file, 'reference' %}" target="_blank">{{ document.nom }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </nav>
+                {% endif %}
+            </li>
+            <li><a href="#">{{ 'user.title.mon-profil'|trans }}</a></li>
         </ul>
     </nav>
 </header>
