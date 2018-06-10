@@ -1,7 +1,11 @@
 {% trans_default_domain 'front' %}
 <header class="userNav">
     <div id="profil-picture" class="menuUp">
-        <h1><img class="my-profil" src="" alt="{{ 'user.title.mon-profil'|trans }}"></h1>
+        {% set media_path = get_image_profil(app.user.id) %}
+        {% if media_path is null %}
+            {% set media_path = asset(sonata_user.defaultAvatar) %}
+        {% endif %}
+        <h1><img class="my-profil" src="{{ media_path }}" alt="{{ app.user.slug }}" width="90" height="90"><span class="my-name">{{ app.user }}</span></h1>
         <div id="navToggleUser"><a href="#"><span class="u-hiddenVisually">{{ 'general.navigation'|trans }}</span></a></div>
     </div>
     <nav>
