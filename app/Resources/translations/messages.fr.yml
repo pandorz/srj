@@ -14,10 +14,14 @@
 'Cour List': Cours
 'Demande Newsletter Create': Créer
 'Demande Newsletter List': 'Demandes Newsletter'
+'Demande Acces Create': Créer
+'Demande Acces List': 'Demandes d''accès'
 'Evenement Create': Créer
 'Evenement List': Événements
 'Import Create': Importer
 'Import List': Imports
+'Document Create': Créer
+'Document List': Imports
 'Kouryukai Create': Créer
 'Kouryukai List': Kouryukai
 'Parametre Create': Créer
@@ -674,6 +678,18 @@ lost_pwd:
 
                    Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
                    Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer ce message.<br><br>
+
+                   Cordialement,<br>
+                   L'association RouenJapon
+
+activation:
+    mail:
+        message:  |
+                   Félicitations !<br><br>
+
+                   Vous bénéficiez maintenant d'un accès à RouenJapon. Votre mot de passe <b>%password%</b> a été généré aléatoirement.<br>
+                   Personne, au sein de notre équipe n'en a connaissance. Nos mots de passe sont chiffrés, toutefois nous vous conseillons
+                    de modifier ce mot de passe dès votre première connexion.<br><br>
 
                    Cordialement,<br>
                    L'association RouenJapon
