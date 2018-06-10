@@ -1,0 +1,31 @@
+{% trans_default_domain 'front' %}
+{% for blog in detail_user.auteurDe|slice(0, 5) %}
+    {# Actions #}
+    {% set to_disable = true %}
+    {% set title_link = 'blog.button.publicationDate'|trans({'%date%': blog.datePublication is not empty? blog.datePublication|date('d/m/Y à H:i:s'): 'blog.date_to_see'|trans}) %}
+    {% if workflow_has_marked_place(blog, 'published') %}
+        {% if blog.affiche and blog.datePublication < date() %}
+            {% set title_link = 'blog.button.see_article'|trans ~ ' : ' ~ blog.nom %}
+            {% set to_disable = false %}
+        {% endif %}
+    {% endif %}
+    {% if app.user != detail_user %}
+        {% set title_link = '('~ detail_user ~')'~ title_link %}
+    {% endif %}
+    <a class="list-group-item {{ to_disable?' disabled':'' }}" {{ to_disable?'':'href="'~ path('blog_detail', {'slug': blog.slug}) ~'"' }} title="{{ title_link }}">
+        {# labels #}
+        {% if workflow_has_marked_place(blog, 'draft') %}
+            <span class="badge label label-default">{{ 'blog.status.draft'|trans }}</span>
+        {% endif %}
+        {% if workflow_has_marked_place(blog, 'published') %}
+            <span class="badge label label-success">{{ 'blog.status.published'|trans }}</span>
+        {% endif %}
+        {% if workflow_has_marked_place(blog, 'review') %}
+            <span class="badge label label-info">{{ 'blog.status.review'|trans }}</span>
+        {% endif %}
+        {% if workflow_has_marked_place(blog, 'rejected') %}
+            <span class="badge label label-danger">{{ 'blog.status.rejected'|trans }}</span>
+        {% endif %}
+        {{ blog.nom }}
+    </a>
+{% endfor %}

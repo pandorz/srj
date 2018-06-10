@@ -71,6 +71,7 @@ bandeau:
     title: 'Favoriser les échanges entre les Français et la communauté japonaise de Rouen.'
 
 blog:
+    date_to_see: '[à venir]'
     auteur:
         and: ' et '
         wrote_by: 'Ecrit par '
@@ -79,6 +80,7 @@ blog:
         see_all: 'Voir tous les articles du blog'
         see_all_light: 'Tous les articles'
         see_article: 'Voir l''article'
+        publicationDate: 'Date publication prévu le %date%'
 
     last_article_tag: ' pour le tag %tag_name%'
     last_article_title: 'Derniers articles%tag_sentence%'
@@ -89,6 +91,12 @@ blog:
     next: 'Article suivant'
     previous: 'Article précédent'
     title: 'Nos articles'
+
+    status:
+        draft: 'Brouillon'
+        rejected: 'Refusé'
+        review: 'En relecture'
+        published: 'Accepté'
 
 conditions:
     free_for_members: 'Gratuit pour les membres.'
@@ -350,6 +358,13 @@ user:
         my-articles: 'Mes articles'
         my-drafts: 'Mes brouillons'
         documents: 'Documents'
+        cour: 'Mes cours'
+        my-children:
+            title: 'Mes enfants'
+            articles: 'Leurs articles'
+            cours: 'Leurs cours'
+    button:
+        see_all: 'Voir tout'
 
 login:
     placeholder:

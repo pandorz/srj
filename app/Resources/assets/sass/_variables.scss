@@ -1,8 +1,4 @@
 
-/*
-    Author     : cecilejeanne <contact@cecile-jeanne.be>
-*/
-
 /*---
 title:      Couleurs
 section:    Styles de base
@@ -37,6 +33,10 @@ section:    Styles de base
 
 */
 
+$font-weight-light:           300 !default;
+$font-weight-normal:          400 !default;
+$font-weight-bold:            700 !default;
+
 $color-white: #fff;
 $color-grey-lighter: #f5f5f5;
 $color-grey-light: #eee;
@@ -58,6 +58,37 @@ $color-success: #eeffe1;
 $color-success-dark: #8ab833;
 $color-info: #ebf6ff;
 $color-info-dark: #3993ff;
+
+$blue:    #007bff !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e83e8c !default;
+$red:     #dc3545 !default;
+$orange:  #fd7e14 !default;
+$yellow:  #ffc107 !default;
+$green:   #28a745 !default;
+$teal:    #20c997 !default;
+$cyan:    #17a2b8 !default;
+
+$colors: () !default;
+$colors: map-merge((
+        "blue":       $blue,
+        "indigo":     $indigo,
+        "purple":     $purple,
+        "pink":       $pink,
+        "red":        $red,
+        "orange":     $orange,
+        "yellow":     $yellow,
+        "green":      $green,
+        "teal":       $teal,
+        "cyan":       $cyan,
+        "white":      $color-white,
+        "gray":       $color-grey-dark,
+        "gray-dark":  $color-grey-darker
+), $colors);
+
+$enable-rounded:            true !default;
+$theme-color-interval:      8% !default;
 
 $text-fontfamily : Arial, "Lucida Grande", sans-serif;
 $text-lineheight: 1.25;
@@ -88,3 +119,75 @@ $trans-prop: transform opacity;
 $trans-duration: .3s;
 $trans-function: ease;
 $trans-delay: 0s;
+
+$primary:       $color-rj !default;
+$secondary:     $color-grey-dark !default;
+$success:       $color-success-dark !default;
+$info:          $color-info-dark !default;
+$warning:       $color-warning-dark !default;
+$danger:        $color-error-dark !default;
+$light:         $color-grey-lighter !default;
+$dark:          $color-grey-darker !default;
+
+$theme-colors: () !default;
+$theme-colors: map-merge((
+        "primary":    $primary,
+        "secondary":  $secondary,
+        "success":    $success,
+        "info":       $info,
+        "warning":    $warning,
+        "danger":     $danger,
+        "light":      $light,
+        "dark":       $dark
+), $theme-colors);
+
+// List group
+$component-active-color:            $color-white !default;
+$component-active-bg:               theme-color("primary") !default;
+$border-radius:                     .25rem !default;
+
+$list-group-bg:                     $color-white !default;
+$list-group-border-color:           rgba($color-black, .125) !default;
+$list-group-border-width:           1px !default;
+$list-group-border-radius:          $border-radius !default;
+
+$list-group-item-padding-y:         .75rem !default;
+$list-group-item-padding-x:         1.25rem !default;
+
+$list-group-hover-bg:               $color-grey-lighter !default;
+$list-group-active-color:           $component-active-color !default;
+$list-group-active-bg:              $component-active-bg !default;
+$list-group-active-border-color:    $list-group-active-bg !default;
+
+$list-group-disabled-color:         $color-grey-dark !default;
+$list-group-disabled-bg:            $list-group-bg !default;
+
+$list-group-action-color:           $color-grey-lighter !default;
+$list-group-action-hover-color:     $list-group-action-color !default;
+
+$list-group-action-active-color:    $color-rj !default;
+$list-group-action-active-bg:       $color-grey-lighter !default;
+
+// Badges
+
+$badge-font-size:                   75% !default;
+$badge-font-weight:                 $font-weight-bold !default;
+$badge-padding-y:                   .25em !default;
+$badge-padding-x:                   .4em !default;
+$badge-border-radius:               $border-radius !default;
+
+$badge-pill-padding-x:              .6em !default;
+// Use a higher than normal value to ensure completely rounded edges when
+// customizing padding or font-size on labels.
+$badge-pill-border-radius:          10rem !default;
+
+// Set a specific jump point for requesting color jumps
+$theme-color-interval:      8% !default;
+
+// The yiq lightness value that determines when the lightness of color changes from "dark" to "light". Acceptable values are between 0 and 255.
+$yiq-contrasted-threshold: 150 !default;
+
+// Customize the light and dark text colors for use in our YIQ color contrast function.
+$yiq-text-dark: $color-grey-darker !default;
+$yiq-text-light: $color-white !default;
+
