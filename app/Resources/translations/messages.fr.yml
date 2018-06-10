@@ -690,3 +690,28 @@ ask_account:
 access:
     button: 'Activer l''utilisateur'
     nope: 'Utilisateur non importé'
+
+document:
+    with:
+        details: 'Détails'
+    add_edit:
+        details:
+            description: 'Ce document sera affiché pour tous les utilisateurs dans leur espace privé'
+        to_string: 'Document'
+
+    nom: 'Nom'
+    file: 'Fichier'
+
+    liste:
+        nom: 'Nom'
+    placeholder:
+        nom: 'Nom du document'
+
+utilisateur:
+    placeholder:
+        accesSite: 'Peut acceder au site'
+        estProfesseur: 'Est professeur'
+        membreNumero: 'Numéro d''adhésion du membre'
+        membreTitre: 'Titre du membre à afficher'
+        nomJaponais: 'Nom en Japonais'
+        prenomJaponais: 'Prénom en Japonais'

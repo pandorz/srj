@@ -342,6 +342,15 @@ my_space:
         meta:
             title: 'Mon espace personnel'
 
+user:
+    title:
+        mon-profil: 'Mon profil'
+        blog: 'Blog'
+        new-article: 'Écrire un nouvel article'
+        my-articles: 'Mes articles'
+        my-drafts: 'Mes brouillons'
+        documents: 'Documents'
+
 login:
     placeholder:
         username: 'Nom d''utilisateur ou email'
