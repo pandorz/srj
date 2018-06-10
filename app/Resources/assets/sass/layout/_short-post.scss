@@ -20,9 +20,6 @@
 	.postItemCtn {
 		width: 100%;
 	}
-	.postItem {
-		padding-left: 10px;
-	}
 	.articles {
 		max-width: rem(600);
 	}
@@ -197,6 +194,11 @@
 	.home {
 		.postItem {
 			margin-bottom: 0;
+		}
+	}
+	.my_space {
+		.postItem {
+			padding-left: 10px;
 		}
 	}
 }
