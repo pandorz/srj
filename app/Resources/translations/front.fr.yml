@@ -358,11 +358,13 @@ user:
         my-articles: 'Mes articles'
         my-drafts: 'Mes brouillons'
         documents: 'Documents'
-        cour: 'Mes cours'
+        cours: 'Mes cours'
+        groups: 'Mes groupes'
         my-children:
             title: 'Mes enfants'
             articles: 'Leurs articles'
             cours: 'Leurs cours'
+            groups: 'Leurs groupes'
     button:
         see_all: 'Voir tout'
 

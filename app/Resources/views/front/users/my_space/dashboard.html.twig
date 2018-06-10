@@ -28,9 +28,17 @@
             </div>
             <div class="postItem">
                 <div class="postItemCtn">
-                    <h4>{{ 'user.title.cour'|trans }}</h4>
+                    <h4>{{ 'user.title.cours'|trans }}</h4>
                     <div class="list-group">
                         {% include 'front/users/my_space/cours.html.twig' %}
+                    </div>
+                </div>
+            </div>
+            <div class="postItem">
+                <div class="postItemCtn">
+                    <h4>{{ 'user.title.groups'|trans }}</h4>
+                    <div class="list-group">
+                        {% include 'front/users/my_space/groupes.html.twig' %}
                     </div>
                 </div>
             </div>
@@ -58,6 +66,18 @@
                             <h4>{{ 'user.title.my-children.cours'|trans }}</h4>
                             <div class="list-group">
                                 {% include 'front/users/my_space/cours.html.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="postItem">
+                {% for detail_user in app.user.sousUtilisateurs %}
+                    <div class="postItem">
+                        <div class="postItemCtn articles">
+                            <h4>{{ 'user.title.my-children.groups'|trans }}</h4>
+                            <div class="list-group">
+                                {% include 'front/users/my_space/groupes.html.twig' %}
                             </div>
                         </div>
                     </div>
