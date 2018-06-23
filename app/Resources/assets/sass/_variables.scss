@@ -134,6 +134,7 @@ $warning:       $color-warning-dark !default;
 $danger:        $color-error-dark !default;
 $light:         $color-grey-lighter !default;
 $dark:          $color-grey-darker !default;
+$black:         $color-black !default;
 
 $theme-colors: () !default;
 $theme-colors: map-merge((
@@ -396,5 +397,24 @@ $grid-breakpoints: (
 ) !default;
 
 $text-muted:                  $color-grey-medium !default;
+
+// Close
+
+$close-font-size:                   $font-size-base * 1.5 !default;
+$close-font-weight:                 $font-weight-bold !default;
+$close-color:                       $black !default;
+$close-text-shadow:                 0 1px 0 $white !default;
+
+$alert-padding-y:                   .75rem !default;
+$alert-padding-x:                   1.25rem !default;
+$alert-margin-bottom:               1rem !default;
+$alert-border-radius:               $border-radius !default;
+$alert-link-font-weight:            $font-weight-bold !default;
+$alert-border-width:                $border-width !default;
+
+$alert-bg-level:                    -10 !default;
+$alert-border-level:                -9 !default;
+$alert-color-level:                 6 !default;
+
 
 

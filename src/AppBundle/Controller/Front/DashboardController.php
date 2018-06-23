@@ -85,11 +85,11 @@ class DashboardController extends BaseController
             return $this->redirectToRoute('my_articles');
         }
 
-        $form = $this->createForm(BlogType::class);
+        $form = $this->createForm(BlogType::class, $blog);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $form->bindRequest($request);
+            //$form->bindRequest($request);
             $this->getEm()->persist($blog);
             $this->getEm()->flush();
             $request->getSession()
@@ -99,6 +99,7 @@ class DashboardController extends BaseController
                     [],
                     'validators'
                 ));
+            return $this->redirectToRoute('edit_article', ['slug' => $blog->getSlug()]);
         }
 
         return $this->render('front/users/my_space/article_form.html.twig', ['form' => $form->createView()]);

@@ -26,7 +26,14 @@ app.commonController.defaultAction = {
 
         // Back to top link
         this.backToTop();
+        this.closeAlert();
         
+    },
+
+    closeAlert: function () {
+        $('.close').on('click', function () {
+            $(this).parent().hide();
+        });
     },
     
     backToTop : function () {

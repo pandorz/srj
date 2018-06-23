@@ -22,6 +22,15 @@ class BlogType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->setMethod('POST')
+
+            ->add('image', 'sonata_media_type', [
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'default',
+                    'label'    => 'En-tête de l\'article',
+                    'required' => false,
+                    'attr'  => ['class' => 'js-form-image form-image']
+                ]
+            )
             ->add(
                 'nom',
                 TextType::class,
@@ -54,12 +63,6 @@ class BlogType extends AbstractType
                     'constraints'   => [
                         new NotBlank()
                     ]
-                ]
-            )
-            ->add('image', 'sonata_media_type', [
-                    'provider' => 'sonata.media.provider.image',
-                    'context'  => 'default',
-                    'label'    => 'En-tête de l\'article'
                 ]
             );
         ;
