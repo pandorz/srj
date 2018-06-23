@@ -1,0 +1,14 @@
+{% trans_default_domain 'front' %}
+{# labels #}
+{% if workflow_has_marked_place(blog, 'draft') %}
+    <span class="badge label label-default">{{ 'blog.status.draft'|trans }}</span>
+{% endif %}
+{% if workflow_has_marked_place(blog, 'published') %}
+    <span class="badge label label-success">{{ 'blog.status.published'|trans }}</span>
+{% endif %}
+{% if workflow_has_marked_place(blog, 'review') %}
+    <span class="badge label label-info">{{ 'blog.status.review'|trans }}</span>
+{% endif %}
+{% if workflow_has_marked_place(blog, 'rejected') %}
+    <span class="badge label label-danger">{{ 'blog.status.rejected'|trans }}</span>
+{% endif %}

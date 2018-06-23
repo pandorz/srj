@@ -1,0 +1,50 @@
+{% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
+{% block body_class %}my_space{% endblock %}
+{% set meta_title = 'my_space.dashboard.meta.my_drafts'|trans %}
+{% block html_title %}– {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
+{% block main %}
+    {% set hastagTitle = 'my_space.dashboard.title'|trans %}
+    {% set hastagList = "" %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
+
+    {% include 'front/users/my_space/nav_barre.html.twig' %}
+
+
+    <section class="u-fitted">
+        <h2 class="sectionTitle">{{ 'user.my_drafts'|trans }}</h2>
+        {% include 'front/template/flash_messages.html.twig' %}
+        <div class="list-group">
+            {% for blog in app.user.auteurDe %}
+                {% if workflow_has_marked_place(blog, 'draft') or workflow_has_marked_place(blog, 'rejected') %}
+                    {# Actions #}
+                    {% set to_disable = true %}
+                    {% set title_link = 'blog.button.publicationDate'|trans({'%date%': blog.datePublication is not empty? blog.datePublication|date('d/m/Y à H:i:s'): 'blog.date_to_see'|trans}) %}
+                    {% if workflow_has_marked_place(blog, 'published') %}
+                        {% if blog.affiche and blog.datePublication < date() %}
+                            {% set title_link = 'blog.button.see_article'|trans ~ ' : ' ~ blog.nom %}
+                            {% set to_disable = false %}
+                        {% endif %}
+                    {% endif %}
+                    <a class="list-group-item {{ to_disable?' disabled':'' }}" {{ to_disable?'':'href="'~ path('blog_detail', {'slug': blog.slug}) ~'"' }} title="{{ title_link }}">
+                        {% include 'front/users/my_space/label_workflow_article.html.twig' %}
+                        {{ blog.nom }}
+                    </a>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+<script>
+    $(document).ready(function(){
+        app.headerUserController.defaultAction.init();
+    });
+</script>
+{% endblock %}
+

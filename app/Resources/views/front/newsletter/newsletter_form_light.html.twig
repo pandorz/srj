@@ -1,10 +1,5 @@
 {% trans_default_domain 'front' %}
-{% for flashMessage in app.session.flashbag.get('error') %}
-    <div class="alert alert-warning">{{ flashMessage }}</div>
-{% endfor %}
-{% for flashMessage in app.session.flashbag.get('success') %}
-    <div class="alert alert-success">{{ flashMessage }}</div>
-{% endfor %}
+{% include 'front/template/flash_messages.html.twig' %}
 <form class="newsletterForm js-form-grecaptcha" action="{{ path('add_newsletter') }}">
     <div class="formItem">
         <label class="fldLabel u-hiddenVisually" for="fld-email-newsletter">{{ 'newsletter.email.label'|trans }}</label>

@@ -13,6 +13,7 @@
 
     {% include 'front/users/my_space/nav_barre.html.twig' %}
     <section class="u-fitted mes_infos">
+        {% include 'front/template/flash_messages.html.twig' %}
         <div class="postsList u-fitted">
             {% set detail_user = app.user %}
             <div class="postItem">

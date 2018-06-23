@@ -15,8 +15,8 @@
                 <nav>
                     <ul>
                         <li><a href="{{ path('add_article') }}">{{ 'user.title.new-article'|trans }}</a></li>
-                        <li><a href="#">{{ 'user.title.my-drafts'|trans }}</a></li>
-                        <li><a href="#">{{ 'user.title.my-articles'|trans }}</a></li>
+                        <li><a href="{{ path('my_drafts') }}">{{ 'user.title.my-drafts'|trans }}</a></li>
+                        <li><a href="{{ path('my_articles') }}">{{ 'user.title.my-articles'|trans }}</a></li>
                     </ul>
                 </nav>
             </li>

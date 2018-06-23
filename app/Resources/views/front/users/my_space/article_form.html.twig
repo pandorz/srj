@@ -1,7 +1,7 @@
 {% extends "front/template/base_front.html.twig" %}
 {% trans_default_domain 'front' %}
 {% block body_class %}my_space{% endblock %}
-{% set meta_title = 'my_space.dashboard.meta.title'|trans %}
+{% set meta_title = 'my_space.dashboard.meta.article_title'|trans %}
 {% block html_title %}– {{ meta_title }}{% endblock %}
 {% block og_meta %}
     {% include 'front/template/basique_meta_pages.html.twig' %}
@@ -14,6 +14,7 @@
     {% include 'front/users/my_space/nav_barre.html.twig' %}
     <section class="section u-fitted">
         <h2 class="sectionTitle">{{ 'user.article.title'|trans }}</h2>
+        {% include 'front/template/flash_messages.html.twig' %}
         <div class="aboutText">
             {{ 'user.article.texte'|trans|raw }}
         </div>

@@ -59,7 +59,7 @@ class BlogType extends AbstractType
             ->add('image', 'sonata_media_type', [
                     'provider' => 'sonata.media.provider.image',
                     'context'  => 'default',
-                    'label'    => 'blog.image'
+                    'label'    => 'En-tête de l\'article'
                 ]
             );
         ;

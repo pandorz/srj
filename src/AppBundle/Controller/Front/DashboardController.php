@@ -44,7 +44,7 @@ class DashboardController extends BaseController
     }
 
     /**
-     * Dashboard
+     * Dashboard add/edit article
      *
      * -------------------- *
      * @Route("/article", name="add_article")
@@ -52,10 +52,17 @@ class DashboardController extends BaseController
      * @Method({"GET", "POST"})
      * -------------------- *
      *
+     * @param Request $request
+     * @param null $slug
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function blogAction(Request $request, $slug = null)
     {
+        $user = $this->getUser();
+        if (!$user->getAccesSite()) {
+            return $this->redirectToRoute('fos_user_security_logout');
+        }
+
         if (!is_null($slug)) {
             $blog = $this->getEm()->getRepository(Blog::class)->findOneBySlug($slug);
         }
@@ -65,17 +72,77 @@ class DashboardController extends BaseController
             $blog->addAuteur($this->getUser());
         }
 
+        // Ne peut pas etre edité
+        $serviceWorkflow = $this->get('app.workflow.blog');
+        if (!empty($blog->getCurrentPlace()) && !$serviceWorkflow->canBeReview($blog)) {
+            $request->getSession()
+                ->getFlashBag()
+                ->add('info', $this->getTranslator()->trans(
+                    'my_space.info.cant_be_edited',
+                    [],
+                    'validators'
+                ));
+            return $this->redirectToRoute('my_articles');
+        }
+
         $form = $this->createForm(BlogType::class);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $form->bindRequest($request);
-            // TODO tag
-            // TODO workflow
             $this->getEm()->persist($blog);
             $this->getEm()->flush();
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', $this->getTranslator()->trans(
+                    'my_space.success.save_article',
+                    [],
+                    'validators'
+                ));
         }
 
         return $this->render('front/users/my_space/article_form.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * Dashboard show my articles
+     *
+     * -------------------- *
+     * @Route("/articles", name="my_articles")
+     * @Method({"GET"})
+     * -------------------- *
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function myArticlesAction(Request $request)
+    {
+        /** @var Utilisateur $user */
+        $user = $this->getUser();
+        if (!$user->getAccesSite()) {
+            return $this->redirectToRoute('fos_user_security_logout');
+        }
+        return $this->render('front/users/my_space/my_articles.html.twig');
+    }
+
+    /**
+     * Dashboard show my drafts
+     *
+     * -------------------- *
+     * @Route("/brouillons", name="my_drafts")
+     * @Method({"GET"})
+     * -------------------- *
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function myDraftsAction(Request $request)
+    {
+        /** @var Utilisateur $user */
+        $user = $this->getUser();
+        if (!$user->getAccesSite()) {
+            return $this->redirectToRoute('fos_user_security_logout');
+        }
+        return $this->render('front/users/my_space/my_drafts.html.twig');
     }
 }
