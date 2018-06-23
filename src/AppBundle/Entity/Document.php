@@ -45,7 +45,7 @@ class Document
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
-     * @ORM\joinColumn(onDelete="SET NULL")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $file;
 
