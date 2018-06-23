@@ -42,5 +42,6 @@ my_space:
     success:
         save_article: 'Article sauvegardé'
         send_to_review: 'L''article à été envoyé en relecture'
+        del_article: 'Article supprimé'
     error:
         article_not_found: 'Article non trouvé'

@@ -208,4 +208,50 @@ class DashboardController extends BaseController
 
         return $this->redirectToRoute('my_drafts');
     }
+
+    /**
+     * Dashboard del article
+     *
+     * -------------------- *
+     * @Route("/article/supprimer/{slug}", name="del_article")
+     * @Method({"GET", "POST"})
+     * -------------------- *
+     *
+     * @param Request $request
+     * @param null $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function delBlogAction(Request $request, $slug = null)
+    {
+        $user = $this->getUser();
+        if (!$user->getAccesSite()) {
+            return $this->redirectToRoute('fos_user_security_logout');
+        }
+
+        if (!is_null($slug)) {
+            $blog = $this->getEm()->getRepository(Blog::class)->findOneBySlug($slug);
+        }
+
+        if (is_null($slug) || (isset($blog) && empty($blog))) {
+            $request->getSession()
+                ->getFlashBag()
+                ->add('error', $this->getTranslator()->trans(
+                    'my_space.error.article_not_found',
+                    [],
+                    'validators'
+                ));
+        } else {
+            $this->getEm()->remove($blog);
+            $this->getEm()->flush();
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', $this->getTranslator()->trans(
+                    'my_space.success.del_article',
+                    [],
+                    'validators'
+                ));
+        }
+
+        return $this->redirectToRoute('my_drafts');
+    }
 }

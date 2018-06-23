@@ -20,20 +20,12 @@
         <ul class="list-group list-group-flush">
             {% for blog in app.user.auteurDe %}
                 {% if workflow_has_marked_place(blog, 'draft') or workflow_has_marked_place(blog, 'rejected') %}
-                    {# Actions #}
-                    {% set to_disable = true %}
-                    {% set title_link = 'blog.button.publicationDate'|trans({'%date%': blog.datePublication is not empty? blog.datePublication|date('d/m/Y à H:i:s'): 'blog.date_to_see'|trans}) %}
-                    {% if workflow_has_marked_place(blog, 'published') %}
-                        {% if blog.affiche and blog.datePublication < date() %}
-                            {% set title_link = 'blog.button.see_article'|trans ~ ' : ' ~ blog.nom %}
-                            {% set to_disable = false %}
-                        {% endif %}
-                    {% endif %}
-                    <li class="list-group-item disabled" title="{{ title_link }}">
+                    <li class="list-group-item disabled">
                         {% include 'front/users/my_space/label_workflow_article.html.twig' %}
                         {{ blog.nom }}
-                        <a class="btn right" href="{{ path('submit_to_review', {'slug': blog.slug}) }}">{{ 'user.button.submit_to_review'|trans }}</a>
-                        <a class="btn right" href="{{ path('edit_article', {'slug': blog.slug}) }}">{{ 'user.button.edit'|trans }}</a>
+                        <a class="btn btn-blank btn-small right" href="{{ path('submit_to_review', {'slug': blog.slug}) }}">{{ 'user.button.submit_to_review'|trans }}</a>
+                        <a class="btn btn-small right" href="{{ path('del_article', {'slug': blog.slug}) }}">{{ 'user.button.del'|trans }}</a>
+                        <a class="btn btn-small right" href="{{ path('edit_article', {'slug': blog.slug}) }}">{{ 'user.button.edit'|trans }}</a>
                     </li>
                 {% endif %}
             {% endfor %}
