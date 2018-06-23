@@ -1,0 +1,18 @@
+{% trans_default_domain 'front' %}
+{% for cour in detail_user.cours %}
+    {# Actions #}
+    {% set to_disable = true %}
+    {% set title_link = '' %}
+
+    {% if cour.lienPdf is not empty %}
+        {% set title_link = 'cours.button.calendrier'|trans %}
+        {% set to_disable = false %}
+    {% endif %}
+
+    {% if app.user != detail_user %}
+        {% set title_link = '('~ detail_user ~')'~ title_link %}
+    {% endif %}
+    <a class="list-group-item {{ to_disable?' disabled':'' }}" {{ to_disable?'':'href="'~ cour.lienPdf ~'"' }} target="_blank" title="{{ title_link }}">
+        {{ cour.titre }}
+    </a>
+{% endfor %}

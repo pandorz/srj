@@ -1,11 +1,6 @@
 {% trans_default_domain 'front' %}
 <div class="followItem newsletter">
-{% for flashMessage in app.session.flashbag.get('error') %}
-    <div class="alert alert-warning">{{ flashMessage }}</div>
-{% endfor %}
-{% for flashMessage in app.session.flashbag.get('success') %}
-    <div class="alert alert-success">{{ flashMessage }}</div>
-{% endfor %}
+    {% include 'front/template/flash_messages.html.twig' %}
     <form class="newsletterForm js-form-grecaptcha" action="{{ path('add_newsletter') }}">
         <span class="newsletterTitle">{{ 'newsletter.accroche'|trans }} <small class="nospam">#nospam</small></span>
         <div class="formItem">

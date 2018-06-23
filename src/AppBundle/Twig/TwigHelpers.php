@@ -5,6 +5,7 @@ namespace AppBundle\Twig;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
 use AppBundle\Entity\DemandeAcces;
+use AppBundle\Entity\Document;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Service\Parameter;
 use Application\Sonata\MediaBundle\Entity\Media;
@@ -81,7 +82,9 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('get_csrf_token', array($this, 'getCsrfToken')),
             new \Twig_SimpleFunction('get_last_username', array($this, 'getLastUsername')),
             new \Twig_SimpleFunction('is_instance_of_blog', array($this, 'isInstanceOfBlog')),
-            new \Twig_SimpleFunction('can_be_accepted',array($this, 'canBeAccepted'))
+            new \Twig_SimpleFunction('can_be_accepted',array($this, 'canBeAccepted')),
+            new \Twig_SimpleFunction('get_documents_utilisateur',array($this, 'getDocumentsUtilisateur')),
+            new \Twig_SimpleFunction('has_documents_utilisateur',array($this, 'hasDocumentsUtilisateur')),
         );
     }
 
@@ -356,5 +359,22 @@ class TwigHelpers extends \Twig_Extension
         }
 
         return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDocumentsUtilisateur()
+    {
+        return $this->entityManager->getRepository(Document::class)->findAll();
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDocumentsUtilisateur()
+    {
+        $documents = $this->getDocumentsUtilisateur();
+        return is_array($documents) && !empty($documents);
     }
 }

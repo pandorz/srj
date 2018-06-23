@@ -1,0 +1,214 @@
+.userNav {
+    background-color: $color-rj;
+    border-bottom: 1px solid rgba(0,0,0,.15);
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    .my-profil {
+        border-radius: 50%;
+    }
+    .my-name {
+        display: none;
+    }
+
+    li {
+        &:before {
+            content: none;
+        }
+    }
+
+    div#profil-picture {
+        line-height: 70px;
+        position: relative;
+        h1 {
+            color: $color-white;
+            font-weight: 300 !important;
+            text-transform: lowercase;
+        }
+        div#navToggleUser {
+            position: absolute;
+            right: 0;
+            top: 0;
+            transition: 300ms all ease;
+            line-height: 84px;
+            &:hover {
+                background-color: rgba(0,0,0,.1);
+                a {
+                    color: rgba(255,255,255,1);
+                }
+            }
+            a {
+                color: rgba(255,255,255,.85);
+                display: block;
+                font-size: 0.85em;
+                font-weight: 600;
+                padding: 0 2.5rem;
+                text-decoration: none;
+                transition: 300ms all ease;
+                content: '';
+                background-image: url(../medias/img/menu_user.svg);
+                opacity: 1;
+                width: 100%;
+                height: 84px;
+                background-repeat: no-repeat;
+                background-position: center center;
+                background-size: contain;
+                margin-right: rem(25);
+            }
+        }
+    }
+
+    .menuDown {
+        /*box-shadow: 0 3px 5px rgba(0,0,0,.15);*/
+    }
+
+    .menuUp {
+        box-shadow: none;
+    }
+    nav {
+        background-color: $color-white;
+        display: none;
+        flex: 1;
+        transform: 300ms all ease;
+
+        ul {
+            li {
+                border-bottom: 1px dotted rgba(0,0,0,.1);
+                position: relative;
+                &:last-of-type {
+                    border-bottom: none;
+                }
+                &:hover {
+                    a {
+                        color: $color-rj;
+                    }
+                }
+                a {
+                    display: block;
+                    color: $color-black;
+                    font-size: rem(14);
+                    padding: 1.5rem 0;
+                    text-decoration: none !important;
+                    transition: 250ms all ease
+                }
+                span.caret {
+                    display: none;
+                }
+                span.toggle {
+                    background-color: rgba(0,0,0,.05);
+                    border-radius: 3rem;
+                    color: rgba(0,0,0,.25);
+                    font-size: 0.75em;
+                    font-weight: 500;
+                    padding: 2px 8px;
+                    text-transform: lowercase;
+                }
+                nav {
+                    background-color: $color-rj;
+                    display: none;
+                    overflow: hidden;
+                    position: absolute;
+                    right: 5%;
+                    width: 90%;
+                    z-index: 100;
+                    ul {
+                        width: 100%;
+                        li {
+                            padding: 0;
+                            width: 100%;
+                            border-bottom: 1px solid $color-rj-darker;
+                            a {
+                                color: $color-white !important;
+                                transition: 300ms all ease;
+                            }
+                            &:hover {
+                                a {
+                                    background-color: $color-rj-darker;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* Medium screens */
+@media all and (min-width: 600px) {
+    .userNav {
+        background-color: $color-white;
+        flex-direction: row;
+        line-height: 90px;
+        padding: 0 3rem;
+        text-align: left;
+        width: 100%;
+        .my-name {
+            display: inline;
+            padding-left: 5px;
+        }
+        div#profil-picture {
+            background-color: transparent;
+            line-height: 90px;
+            h1 {
+                color: $color-rj;
+            }
+            div#navToggleUser {
+                display: none;
+            }
+        }
+        nav {
+            background-color: transparent;
+            display: block;
+            ul {
+                display: flex;
+                flex-flow: row wrap;
+                justify-content: flex-end;
+                li {
+                    border-bottom: none;
+                    a {
+                        padding: 1.25rem 1.25rem 0 0;
+                    }
+                    span.toggle {
+                        display: none;
+                    }
+                    span.caret {
+                        border-bottom: 4px solid transparent;
+                        border-top: 4px solid $color-rj;
+                        border-right: 4px solid transparent;
+                        border-left: 4px solid transparent;
+                        border-radius: 1px;
+                        content: "";
+                        display: inline-block;
+                        height: 0;
+                        margin: 0 0 0 .25rem;
+                        transition: 250ms all ease;
+                        width: 0;
+                        vertical-align: middle;
+                    }
+                    &:hover {
+                        span.caret {
+                            border-top-color: $color-rj;
+                            transform: rotate(270deg);
+                        }
+                        nav {
+                            margin-top: -20px;
+                            background-color: $color-rj-dark;
+                            display: block;
+                            line-height: 3em;
+                            right: -50%;
+                            width: 196px;
+                            ul {
+                                li {
+                                    a {
+                                        padding: 0 1.25rem;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

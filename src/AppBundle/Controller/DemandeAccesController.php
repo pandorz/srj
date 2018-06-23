@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\DemandeAcces;
 use AppBundle\Entity\Utilisateur;
+use AppBundle\Service\Import;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -33,12 +34,32 @@ class DemandeAccesController extends BaseController
 
         if (!empty($user)) {
             try {
+                $password = Import::generatePassword();
+
                 $user->setAccesSite(true);
                 $user->setEnabled(true);
                 $user->setLocked(false);
+                $user->setPassword($password);
+
                 $em->persist($user);
                 $em->remove($demandeAcces);
                 $em->flush();
+
+                $data['password'] = $password;
+
+                $this->get('app.mailer')
+                    ->setTo($user->getEmail())
+                    ->setSubject('Activation de votre compte')
+                    ->setTemplate(
+                        'activation',
+                        [
+                            'title' => 'Votre demande a été accepté',
+                            'subtitle' => 'Vous pouvez maintenant vous connecter',
+                            'data' => $data
+                        ]
+                    )
+                    ->send();
+
                 $this->addFlash('sonata_flash_success', 'Activation du membre réussi');
             } catch (\Exception $e) {
                 $this->addFlash('sonata_flash_error', $e->getMessage());

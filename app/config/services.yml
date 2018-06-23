@@ -42,6 +42,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Blog }
 
+    app.admin.document:
+        class: AppBundle\Admin\DocumentAdmin
+        arguments: [~, AppBundle\Entity\Document, AppBundle:Document]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Document }
+
     app.admin.tags:
         class: AppBundle\Admin\TagAdmin
         arguments: [~, AppBundle\Entity\Tag, SonataAdminBundle:CRUD]

@@ -140,6 +140,9 @@ sonata_admin:
                     - route: admin_import_list
                       roles: [ROLE_APP_ADMIN_IMPORTS_GUEST, ROLE_APP_ADMIN_IMPORTS_STAFF, ROLE_APP_ADMIN_IMPORTS_EDITOR, ROLE_APP_ADMIN_IMPORTS_ADMIN]
                       label: "Imports"
+                    - route: admin_document_list
+                      roles: [ROLE_APP_ADMIN_DOCUMENT_GUEST, ROLE_APP_ADMIN_DOCUMENT_STAFF, ROLE_APP_ADMIN_DOCUMENT_EDITOR, ROLE_APP_ADMIN_DOCUMENT_ADMIN]
+                      label: "Documents"
         blocks:
             -
                 class: col-lg-12 col-xs-6

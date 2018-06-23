@@ -14,10 +14,14 @@
 'Cour List': Cours
 'Demande Newsletter Create': Créer
 'Demande Newsletter List': 'Demandes Newsletter'
+'Demande Acces Create': Créer
+'Demande Acces List': 'Demandes d''accès'
 'Evenement Create': Créer
 'Evenement List': Événements
 'Import Create': Importer
 'Import List': Imports
+'Document Create': Créer
+'Document List': Imports
 'Kouryukai Create': Créer
 'Kouryukai List': Kouryukai
 'Parametre Create': Créer
@@ -678,6 +682,18 @@ lost_pwd:
                    Cordialement,<br>
                    L'association RouenJapon
 
+activation:
+    mail:
+        message:  |
+                   Félicitations !<br><br>
+
+                   Vous bénéficiez maintenant d'un accès à RouenJapon. Votre mot de passe <b>%password%</b> a été généré aléatoirement.<br>
+                   Personne, au sein de notre équipe n'en a connaissance. Nos mots de passe sont chiffrés, toutefois nous vous conseillons
+                    de modifier ce mot de passe dès votre première connexion.<br><br>
+
+                   Cordialement,<br>
+                   L'association RouenJapon
+
 ask_account:
     error:
         has_access: 'Vous possédez déjà un access à RouenJapon. Vous avez oublié votre mot de passe ?'
@@ -690,3 +706,28 @@ ask_account:
 access:
     button: 'Activer l''utilisateur'
     nope: 'Utilisateur non importé'
+
+document:
+    with:
+        details: 'Détails'
+    add_edit:
+        details:
+            description: 'Ce document sera affiché pour tous les utilisateurs dans leur espace privé'
+        to_string: 'Document'
+
+    nom: 'Nom'
+    file: 'Fichier'
+
+    liste:
+        nom: 'Nom'
+    placeholder:
+        nom: 'Nom du document'
+
+utilisateur:
+    placeholder:
+        accesSite: 'Peut acceder au site'
+        estProfesseur: 'Est professeur'
+        membreNumero: 'Numéro d''adhésion du membre'
+        membreTitre: 'Titre du membre à afficher'
+        nomJaponais: 'Nom en Japonais'
+        prenomJaponais: 'Prénom en Japonais'

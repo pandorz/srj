@@ -1,0 +1,44 @@
+{% extends "front/template/base_front.html.twig" %}
+{% trans_default_domain 'front' %}
+{% block body_class %}my_space{% endblock %}
+{% set meta_title = 'my_space.dashboard.meta.my_drafts'|trans %}
+{% block html_title %}– {{ meta_title }}{% endblock %}
+{% block og_meta %}
+    {% include 'front/template/basique_meta_pages.html.twig' %}
+{% endblock %}
+{% block main %}
+    {% set hastagTitle = 'my_space.dashboard.title'|trans %}
+    {% set hastagList = "" %}
+    {% include 'front/bandeau/bandeau_hastag.html.twig' %}
+
+    {% include 'front/users/my_space/nav_barre.html.twig' %}
+
+
+    <section class="u-fitted">
+        <h2 class="sectionTitle">{{ 'user.my_drafts'|trans }}</h2>
+        {% include 'front/template/flash_messages.html.twig' %}
+        <ul class="list-group list-group-flush">
+            {% for blog in app.user.auteurDe %}
+                {% if workflow_has_marked_place(blog, 'draft') or workflow_has_marked_place(blog, 'rejected') %}
+                    <li class="list-group-item disabled">
+                        {% include 'front/users/my_space/label_workflow_article.html.twig' %}
+                        {{ blog.nom }}
+                        <a class="btn btn-blank btn-small right" href="{{ path('submit_to_review', {'slug': blog.slug}) }}">{{ 'user.button.submit_to_review'|trans }}</a>
+                        <a class="btn btn-small right" href="{{ path('del_article', {'slug': blog.slug}) }}">{{ 'user.button.del'|trans }}</a>
+                        <a class="btn btn-small right" href="{{ path('edit_article', {'slug': blog.slug}) }}">{{ 'user.button.edit'|trans }}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock %}
+
+{% block javascript %}
+{{ parent() }}
+<script>
+    $(document).ready(function(){
+        app.headerUserController.defaultAction.init();
+    });
+</script>
+{% endblock %}
+

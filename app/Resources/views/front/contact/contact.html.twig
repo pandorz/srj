@@ -14,12 +14,7 @@
         {{ form_start(form, {'attr': {
                         'class': 'contactForm js-form-grecaptcha'
                     }}) }}
-        {% for flashMessage in app.session.flashbag.get('error') %}
-            <div class="alert alert-warning">{{ flashMessage }}</div>
-        {% endfor %}
-        {% for flashMessage in app.session.flashbag.get('success') %}    
-            <div class="alert alert-success">{{ flashMessage }}</div>    
-        {% endfor %}
+        {% include 'front/template/flash_messages.html.twig' %}
         {{ form_errors(form) }}
             <div class="grid-2">
                 <div>

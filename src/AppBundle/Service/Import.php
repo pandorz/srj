@@ -381,7 +381,7 @@ class Import
             $user->setUsername($this->generateUsername($user->getMembreNumero(), $user->getFirstname() ,$user->getLastname()));
         }
 
-        $user->setPassword($this->generatePassword());
+        $user->setPassword(self::generatePassword());
 
         $user = $this->addToGroup($user);
         return $user;
@@ -577,7 +577,7 @@ class Import
         return $this->em;
     }
 
-    private function generatePassword()
+    public static function generatePassword()
     {
         return preg_replace('/[+><\(\)~*\"@\/=]+/', '', base64_encode(random_bytes(8)));
     }

@@ -1,21 +1,30 @@
+@mixin hover {
+    &:hover { @content; }
+}
 
-/* 
-    Author     : cecilejeanne <contact@cecile-jeanne.be>
-*/
+@mixin hover-focus {
+    &:hover,
+    &:focus {
+        @content;
+    }
+}
 
-/*---
-title:      Alertes
-section:    Composants CSS
----
+@mixin plain-hover-focus {
+    &,
+    &:hover,
+    &:focus {
+        @content;
+    }
+}
 
-``` exemple:html
-<div class="alert alert-error icon-error-empty">Attention ! Vous avez oublié certaines infos obligatoires !</div>
-<div class="alert alert-warning icon-warning-empty">Oups ! Il y a du avoir quelques erreurs !</div>
-<div class="alert alert-success icon-success-empty">Super ! Votre requête a bien été prise en compte !</div>
-<div class="alert alert-info icon-info-empty">Voici une information pas trop importante !</div>
-```
+@mixin hover-focus-active {
+    &:hover,
+    &:focus,
+    &:active {
+        @content;
+    }
+}
 
-*/
 
 .alert {
     padding: $margin-s $margin-m;
@@ -55,4 +64,51 @@ section:    Composants CSS
 .alert-error {
     color: $color-error-dark;
     background-color: $color-error;
+}
+
+.alert-dismissible {
+    padding-right: ($close-font-size + $alert-padding-x * 2);
+
+    // Adjust close link position
+    .close {
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: $alert-padding-y $alert-padding-x;
+        color: inherit;
+    }
+}
+
+.close {
+    float: right;
+    font-size: $close-font-size;
+    font-weight: $close-font-weight;
+    line-height: 1;
+    color: $close-color;
+    text-shadow: $close-text-shadow;
+    opacity: .5;
+
+    @include hover-focus {
+        color: $close-color;
+        text-decoration: none;
+        opacity: .75;
+    }
+
+    // Opinionated: add "hand" cursor to non-disabled .close elements
+    &:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+}
+
+// Additional properties for button version
+// iOS requires the button element instead of an anchor tag.
+// If you want the anchor version, it requires `href="#"`.
+// See https://developer.mozilla.org/en-US/docs/Web/Events/click#Safari_Mobile
+
+// stylelint-disable property-no-vendor-prefix, selector-no-qualifying-type
+button.close {
+    padding: 0;
+    background-color: transparent;
+    border: 0;
+    -webkit-appearance: none;
 }

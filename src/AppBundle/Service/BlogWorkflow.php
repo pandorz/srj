@@ -24,9 +24,12 @@ class BlogWorkflow
         $this->blogWorkflow = $blogWorkflow;
     }
 
+
     /**
      * @param Blog $blog
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function publier(Blog $blog)
     {
@@ -55,9 +58,12 @@ class BlogWorkflow
         return $publied;
     }
 
+
     /**
      * @param Blog $blog
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function rejeter(Blog $blog)
     {
@@ -76,9 +82,12 @@ class BlogWorkflow
         return false;
     }
 
+
     /**
      * @param Blog $blog
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function relecture(Blog $blog)
     {
@@ -100,6 +109,8 @@ class BlogWorkflow
     /**
      * @param Blog $blog
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function reouvrir(Blog $blog)
     {
@@ -125,5 +136,23 @@ class BlogWorkflow
     public function canBePublished(Blog $blog)
     {
         return $this->blogWorkflow->can($blog, 'publish') or $this->blogWorkflow->can($blog, 'admin_publish');
+    }
+
+    /**
+     * @param Blog $blog
+     * @return bool
+     */
+    public function canBeReview(Blog $blog)
+    {
+        return $this->nextIsReopen($blog) or $this->blogWorkflow->can($blog, 'to_review');
+    }
+
+    /**
+     * @param Blog $blog
+     * @return bool
+     */
+    public function nextIsReopen(Blog $blog)
+    {
+        return $this->blogWorkflow->can($blog, 'to_reopen');
     }
 }

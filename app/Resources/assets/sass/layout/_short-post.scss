@@ -16,6 +16,14 @@
 	padding-bottom: rem(30);
 	background-color: $color-white;
 }
+.my_space {
+	.postItemCtn {
+		width: 100%;
+	}
+	.articles {
+		max-width: rem(600);
+	}
+}
 .postPhoto {
 	width: 100%;
 	height: rem(210);
@@ -186,6 +194,11 @@
 	.home {
 		.postItem {
 			margin-bottom: 0;
+		}
+	}
+	.my_space {
+		.postItem {
+			padding-left: 10px;
 		}
 	}
 }

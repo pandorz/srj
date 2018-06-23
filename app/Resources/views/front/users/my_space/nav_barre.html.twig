@@ -1,0 +1,40 @@
+{% trans_default_domain 'front' %}
+<header class="userNav">
+    <div id="profil-picture" class="menuUp">
+        {% set media_path = get_image_profil(app.user.id) %}
+        {% if media_path is null %}
+            {% set media_path = asset(sonata_user.defaultAvatar) %}
+        {% endif %}
+        <h1><img class="my-profil" src="{{ media_path }}" alt="{{ app.user.slug }}" width="90" height="90"><span class="my-name">{{ app.user }}</span></h1>
+        <div id="navToggleUser"><a href="#"><span class="u-hiddenVisually">{{ 'general.navigation'|trans }}</span></a></div>
+    </div>
+    <nav>
+        <ul>
+            <li>
+                <a href="#">{{ 'user.title.blog'|trans }} <span class="toggle">Expand</span><span class="caret"></span></a>
+                <nav>
+                    <ul>
+                        <li><a href="{{ path('add_article') }}">{{ 'user.title.new-article'|trans }}</a></li>
+                        <li><a href="{{ path('my_drafts') }}">{{ 'user.title.my-drafts'|trans }}</a></li>
+                        <li><a href="{{ path('my_articles') }}">{{ 'user.title.my-articles'|trans }}</a></li>
+                    </ul>
+                </nav>
+            </li>
+            {% set has_documents_utilisateur = has_documents_utilisateur() %}
+            <li><a href="#">{{ 'user.title.documents'|trans }}{{ has_documents_utilisateur?'  <span class="toggle">Expand</span><span class="caret"></span>':'' }}</a>
+                {% if has_documents_utilisateur %}
+                <nav>
+                    <ul>
+                    {% set documents = get_documents_utilisateur() %}
+                    {% for document in documents %}
+                        <li><a href="{% path document.file, 'reference' %}" target="_blank">{{ document.nom }}</a></li>
+                    {% endfor %}
+                    </ul>
+                </nav>
+                {% endif %}
+            </li>
+            <li><a href="{{ path('my_profil') }}">{{ 'user.title.mon-profil'|trans }}</a></li>
+        </ul>
+    </nav>
+</header>
+

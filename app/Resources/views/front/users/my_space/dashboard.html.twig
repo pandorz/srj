@@ -11,13 +11,90 @@
     {% set hastagList = "" %}
     {% include 'front/bandeau/bandeau_hastag.html.twig' %}
 
-    <section class="u-fitted">
-        <div class="join section">
-            <h2 class="sectionTitle">Un titre</h2>
-            <div class="joinText sectionText">
-                Du texte
+    {% include 'front/users/my_space/nav_barre.html.twig' %}
+    <section class="u-fitted mes_infos">
+        {% include 'front/template/flash_messages.html.twig' %}
+        <div class="postsList u-fitted">
+            {% set detail_user = app.user %}
+            <div class="postItem">
+                <div class="postItemCtn articles">
+                    <h4>{{ 'user.title.my-articles'|trans }}</h4>
+                    <div class="list-group">
+                        {% include 'front/users/my_space/articles.html.twig' %}
+                    </div>
+                    <div class="list-button">
+                        <a class="btn" href="#">{{ 'user.button.see_all'|trans }}</a>
+                    </div>
+                </div>
+            </div>
+            <div class="postItem">
+                <div class="postItemCtn">
+                    <h4>{{ 'user.title.cours'|trans }}</h4>
+                    <div class="list-group">
+                        {% include 'front/users/my_space/cours.html.twig' %}
+                    </div>
+                </div>
+            </div>
+            <div class="postItem">
+                <div class="postItemCtn">
+                    <h4>{{ 'user.title.groups'|trans }}</h4>
+                    <div class="list-group">
+                        {% include 'front/users/my_space/groupes.html.twig' %}
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
+    {% if app.user.sousUtilisateurs is not empty %}
+    <section class="u-fitted">
+        <h2 class="sectionTitle">{{ 'user.title.my-children.title'|trans }}</h2>
+        <div class="postsList u-fitted">
+            {% for detail_user in app.user.sousUtilisateurs %}
+            <div class="postItem">
+                <div class="postItemCtn articles">
+                    <h4>{{ 'user.title.my-children.articles'|trans }}</h4>
+                    <div class="list-group">
+                        {% include 'front/users/my_space/articles.html.twig' %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="postItem">
+                {% for detail_user in app.user.sousUtilisateurs %}
+                    <div class="postItem">
+                        <div class="postItemCtn articles">
+                            <h4>{{ 'user.title.my-children.cours'|trans }}</h4>
+                            <div class="list-group">
+                                {% include 'front/users/my_space/cours.html.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="postItem">
+                {% for detail_user in app.user.sousUtilisateurs %}
+                    <div class="postItem">
+                        <div class="postItemCtn articles">
+                            <h4>{{ 'user.title.my-children.groups'|trans }}</h4>
+                            <div class="list-group">
+                                {% include 'front/users/my_space/groupes.html.twig' %}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function(){
+            app.headerUserController.defaultAction.init();
+        });
+    </script>
 {% endblock %}

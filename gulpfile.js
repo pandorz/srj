@@ -81,6 +81,7 @@ app.doScripts = function() {
         config.assetsDir+'/js/00-app.js',
         config.assetsDir+'/js/01-common.js',
         config.assetsDir+'/js/02-header.js',
+        config.assetsDir+'/js/02-header_user.js',
         config.assetsDir+'/js/03-forms.js',
         config.assetsDir+'/js/04-showhide.js',
         config.assetsDir+'/js/05-dropdown.js',
