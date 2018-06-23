@@ -17,7 +17,28 @@
         {% include 'front/template/flash_messages.html.twig' %}
         <div>
             {{ form_start(form, {'attr': { 'class': 'profil-form' } }) }}
-            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+
+            {{ form_row(form.image) }}
+
+            <div>
+                <div class="small-form left">
+                    {{ form_row(form.firstname) }}
+                </div>
+                <div class="small-form right">
+                    {{ form_row(form.lastname) }}
+                </div>
+            </div>
+            <div>
+                <div class="small-form left">
+                    {{ form_row(form.prenomJaponais) }}
+                </div>
+                <div class="small-form right">
+                    {{ form_row(form.nomJaponais) }}
+                </div>
+            </div>
+            <div class="clear"></div>
+            {{ form_row(form.website) }}
             <div>
                 <input type="submit" value="{{ 'user.profil.button.submit'|trans }}" class="btn" />
             </div>

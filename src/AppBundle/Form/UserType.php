@@ -60,9 +60,6 @@ class UserType extends AbstractType
                 [
                     'label'         => 'utilisateur.prenomJaponais',
                     'required'      => false,
-                    'constraints'   => [
-                        new NotBlank()
-                    ],
                     'translation_domain' => 'SonataUserBundle'
                 ]
             )
@@ -72,9 +69,6 @@ class UserType extends AbstractType
                 [
                     'label'         => 'utilisateur.nomJaponais',
                     'required'      => false,
-                    'constraints'   => [
-                        new NotBlank()
-                    ],
                     'translation_domain' => 'SonataUserBundle'
                 ]
             )
@@ -84,9 +78,6 @@ class UserType extends AbstractType
                 [
                     'label'         => 'form.label_website',
                     'required'      => false,
-                    'constraints'   => [
-                        new NotBlank()
-                    ],
                     'translation_domain' => 'SonataUserBundle'
                 ]
             )
