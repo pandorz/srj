@@ -483,7 +483,7 @@
 		}
 	}
 
-	.article-form {
+	.article-form, .profil-form {
 		margin-top: 10px;
 		label {
 			color: $color-rj-dark;
@@ -500,6 +500,9 @@
 			&:focus, &:active {
 				color: $color-black;
 			}
+		}
+		.small-form {
+			width: 50%;
 		}
 	}
 }

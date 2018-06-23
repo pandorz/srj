@@ -352,6 +352,7 @@ my_space:
             article_title: 'Écrire un article'
             my_articles: 'Mes articles'
             my_drafts: 'Mes brouillons'
+            profil_title: 'Mon profil'
 
 user:
     title:
@@ -383,6 +384,10 @@ user:
             submit: 'Sauvegarder'
     my_articles: 'Mes articles'
     my_drafts: 'Mes brouillons'
+    profil:
+        button:
+            submit: 'Mettre à jour'
+        title: 'Mon profil'
 
 login:
     placeholder:

@@ -3,15 +3,12 @@
 namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
-use AppBundle\Entity\Cour;
-use AppBundle\Entity\DemandeNewsletter;
-use AppBundle\Entity\Partenaire;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Form\BlogType;
+use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class UserController
@@ -263,5 +260,41 @@ class DashboardController extends BaseController
         }
 
         return $this->redirectToRoute('my_drafts');
+    }
+
+    /**
+     * Dashboard my_profil
+     *
+     * -------------------- *
+     * @Route("/mon-profil", name="my_profil")
+     * @Method({"GET", "POST"})
+     * -------------------- *
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function profilAction(Request $request)
+    {
+        $user = $this->getUser();
+        if (!$user->getAccesSite()) {
+            return $this->redirectToRoute('fos_user_security_logout');
+        }
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getEm()->persist($user);
+            $this->getEm()->flush();
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', $this->getTranslator()->trans(
+                    'my_space.success.save_profil',
+                    [],
+                    'validators'
+                ));
+        }
+
+        return $this->render('front/users/my_space/profil_form.html.twig', ['form' => $form->createView()]);
     }
 }
