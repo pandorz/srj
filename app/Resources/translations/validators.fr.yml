@@ -41,3 +41,6 @@ my_space:
         cant_be_edited: 'Vous ne pouvez pas éditer cet article pour l''instant.'
     success:
         save_article: 'Article sauvegardé'
+        send_to_review: 'L''article à été envoyé en relecture'
+    error:
+        article_not_found: 'Article non trouvé'

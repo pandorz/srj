@@ -17,7 +17,7 @@
     <section class="u-fitted">
         <h2 class="sectionTitle">{{ 'user.my_drafts'|trans }}</h2>
         {% include 'front/template/flash_messages.html.twig' %}
-        <div class="list-group">
+        <ul class="list-group list-group-flush">
             {% for blog in app.user.auteurDe %}
                 {% if workflow_has_marked_place(blog, 'draft') or workflow_has_marked_place(blog, 'rejected') %}
                     {# Actions #}
@@ -29,13 +29,15 @@
                             {% set to_disable = false %}
                         {% endif %}
                     {% endif %}
-                    <a class="list-group-item {{ to_disable?' disabled':'' }}" {{ to_disable?'':'href="'~ path('blog_detail', {'slug': blog.slug}) ~'"' }} title="{{ title_link }}">
+                    <li class="list-group-item disabled" title="{{ title_link }}">
                         {% include 'front/users/my_space/label_workflow_article.html.twig' %}
                         {{ blog.nom }}
-                    </a>
+                        <a class="btn right" href="{{ path('submit_to_review', {'slug': blog.slug}) }}">{{ 'user.button.submit_to_review'|trans }}</a>
+                        <a class="btn right" href="{{ path('edit_article', {'slug': blog.slug}) }}">{{ 'user.button.edit'|trans }}</a>
+                    </li>
                 {% endif %}
             {% endfor %}
-        </div>
+        </ul>
     </section>
 {% endblock %}
 

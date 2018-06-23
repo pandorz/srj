@@ -74,7 +74,7 @@ class DashboardController extends BaseController
 
         // Ne peut pas etre edité
         $serviceWorkflow = $this->get('app.workflow.blog');
-        if (!empty($blog->getCurrentPlace()) && !$serviceWorkflow->canBeReview($blog)) {
+        if (!$serviceWorkflow->canBeReview($blog)) {
             $request->getSession()
                 ->getFlashBag()
                 ->add('info', $this->getTranslator()->trans(
@@ -144,5 +144,67 @@ class DashboardController extends BaseController
             return $this->redirectToRoute('fos_user_security_logout');
         }
         return $this->render('front/users/my_space/my_drafts.html.twig');
+    }
+
+    /**
+     * Sumbit to review
+     *
+     * -------------------- *
+     * @Route("/soumettre/{slug}/", name="submit_to_review")
+     * @Method("GET")
+     * -------------------- *
+     *
+     * @param Request $request
+     * @param $slug
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function toReviewAction(Request $request, $slug)
+    {
+        /** @var Blog $blog */
+        $repoBlog   = $this->getEm()->getRepository(Blog::class);
+        $blog       = $repoBlog->findOneBySlug($slug);
+
+        $serviceWorkflow = $this->get('app.workflow.blog');
+        if (empty($blog)) {
+            $request->getSession()
+                ->getFlashBag()
+                ->add('error', $this->getTranslator()->trans(
+                    'my_space.error.article_not_found',
+                    [],
+                    'validators'
+                ));
+        } elseif (!$serviceWorkflow->canBeReview($blog)) {
+            $request->getSession()
+                ->getFlashBag()
+                ->add('info', $this->getTranslator()->trans(
+                    'my_space.info.cant_be_edited',
+                    [],
+                    'validators'
+                ));
+        } else {
+            $succeed = ($serviceWorkflow->nextIsReopen($blog)?
+                $serviceWorkflow->reouvrir($blog):
+                $serviceWorkflow->relecture($blog));
+
+            if ($succeed) {
+                $request->getSession()
+                    ->getFlashBag()
+                    ->add('success', $this->getTranslator()->trans(
+                        'my_space.success.send_to_review',
+                        [],
+                        'validators'
+                    ));
+            } else {
+                $request->getSession()
+                    ->getFlashBag()
+                    ->add('info', $this->getTranslator()->trans(
+                        'my_space.info.cant_be_edited',
+                        [],
+                        'validators'
+                    ));
+            }
+        }
+
+        return $this->redirectToRoute('my_drafts');
     }
 }

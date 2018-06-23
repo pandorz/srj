@@ -370,6 +370,8 @@ user:
             groups: 'Leurs groupes'
     button:
         see_all: 'Voir tout'
+        submit_to_review: 'Envoyer en relecture'
+        edit: 'Editer'
     article:
         title: 'Écrire un article'
         texte: '<b>Chaque article engage la <a href="https://fr.wikipedia.org/wiki/Responsabilit%C3%A9_p%C3%A9nale_en_France" target="_blank">responsabilité</a> de son auteur.</b><br>

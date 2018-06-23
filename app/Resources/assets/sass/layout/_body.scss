@@ -3,6 +3,14 @@
     
 }
 
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
 .loginForm, .lostPwdForm, .askAccessForm {
   max-width: rem(580);
   margin: 0 auto;
