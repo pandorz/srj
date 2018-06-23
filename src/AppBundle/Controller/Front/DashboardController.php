@@ -232,11 +232,21 @@ class DashboardController extends BaseController
             $blog = $this->getEm()->getRepository(Blog::class)->findOneBySlug($slug);
         }
 
+        $serviceWorkflow = $this->get('app.workflow.blog');
+
         if (is_null($slug) || (isset($blog) && empty($blog))) {
             $request->getSession()
                 ->getFlashBag()
                 ->add('error', $this->getTranslator()->trans(
                     'my_space.error.article_not_found',
+                    [],
+                    'validators'
+                ));
+        } elseif (!$serviceWorkflow->canBeReview($blog)) {
+            $request->getSession()
+                ->getFlashBag()
+                ->add('info', $this->getTranslator()->trans(
+                    'my_space.info.cant_be_edited',
                     [],
                     'validators'
                 ));
