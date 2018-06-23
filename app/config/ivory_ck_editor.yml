@@ -3,9 +3,15 @@ ivory_ck_editor:
         my_config:
             language: fr
             toolbar: "essentiels"
+            skin: 'moonocolor,/bundles/ivoryckeditor/skins/moonocolor/'
         news:
             language: fr
             toolbar: "full"
+            skin: 'moonocolor,/bundles/ivoryckeditor/skins/moonocolor/'
+        article:
+            language: fr
+            toolbar: "full"
+            skin: 'flat,/bundles/ivoryckeditor/skins/flat/'
     toolbars:
         configs:
             essentiels: [ "@source", "-", "@basicstyles", "-", "@links" , "-", "@paragraph" ,]

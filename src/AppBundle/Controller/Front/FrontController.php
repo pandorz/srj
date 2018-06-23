@@ -4,11 +4,13 @@ namespace AppBundle\Controller\Front;
 
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
+use AppBundle\Entity\DemandeAcces;
 use AppBundle\Entity\DemandeNewsletter;
 use AppBundle\Entity\Partenaire;
 use AppBundle\Entity\Utilisateur;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -297,5 +299,53 @@ class FrontController extends BaseController
     public function mentionsLegalesAction()
     {
         return $this->render('front/mentions_legales/mentions.html.twig');
+    }
+
+    /**
+     * Newsletter
+     *
+     * -------------------- *
+     * @Route("/get-an-access", name="ask_account")
+     * @Method("POST")
+     * -------------------- *
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function askAccountAction(Request $request)
+    {
+        $memberNumber = $request->get('memberNumber');
+        if (!empty($memberNumber)) {
+            if (!preg_match('`^[[:digit:]]+$`', $memberNumber)) {
+                return new JsonResponse($this->getTranslator()->trans('ask_account.error.nan'), Response::HTTP_BAD_REQUEST);
+            }
+
+            try {
+                /** @var Utilisateur $user */
+                $user = $this->getEm()->getRepository(Utilisateur::class)->findOneByMembreNumero($memberNumber);
+
+                if (empty($user) || $user->getLocked() || !$user->getAccesSite() || !$user->isEnabled()) {
+
+                    // Si une demande n'est pas déjà en cours
+                    $demandeAccount = $this->getEm()->getRepository(DemandeAcces::class)->findOneByNumeroMembre($memberNumber);
+                    if (!empty($demandeAccount)) {
+                        return new JsonResponse($this->getTranslator()->trans('ask_account.error.pending'));
+                    }
+
+                    $demandeAccount = new DemandeAcces();
+                    $demandeAccount->setNumeroMembre($memberNumber);
+                    $this->getEm()->persist($demandeAccount);
+                    $this->getEm()->flush();
+
+                    return new JsonResponse($this->getTranslator()->trans('ask_account.success'));
+                } else {
+                    return new JsonResponse($this->getTranslator()->trans('ask_account.error.has_access'));
+                }
+            } catch (\Exception $exception) {
+                return new JsonResponse($this->getTranslator()->trans('ask_account.error.server'), Response::HTTP_INTERNAL_SERVER_ERROR);
+            }
+        } elseif (empty($email)) {
+            return new JsonResponse($this->getTranslator()->trans('ask_account.error.empty'), Response::HTTP_BAD_REQUEST);
+        }
     }
 }

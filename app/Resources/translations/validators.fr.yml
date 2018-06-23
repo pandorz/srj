@@ -27,8 +27,22 @@ fos_user:
         long: 'Le username est trop long'
         short: 'Le username est trop court'
 
+    bad_credentials: 'Ce compte n''existe pas ou le mot de passe est erroné.'
+    no_access: 'Vous n''avez pas les droits suffisants pour vous connecter à cet espace.'
+
 general:
     error:
         grecaptcha:
             detected_as_robot: 'Êtes-vous un robot ?'
             error_on_verify: 'Erreur lors de la vérification du captcha'
+
+my_space:
+    info:
+        cant_be_edited: 'Vous ne pouvez pas éditer cet article pour l''instant.'
+    success:
+        save_article: 'Article sauvegardé'
+        send_to_review: 'L''article à été envoyé en relecture'
+        del_article: 'Article supprimé'
+        save_profil: 'Profil mis à jour'
+    error:
+        article_not_found: 'Article non trouvé'

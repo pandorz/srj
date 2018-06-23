@@ -4,11 +4,15 @@ namespace AppBundle\Twig;
 
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Cour;
+use AppBundle\Entity\DemandeAcces;
+use AppBundle\Entity\Document;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Service\Parameter;
 use Application\Sonata\MediaBundle\Entity\Media;
 use Doctrine\ORM\EntityManager;
 use Sonata\MediaBundle\Provider\ImageProvider;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Security\Core\Security;
 
 class TwigHelpers extends \Twig_Extension
 {
@@ -28,15 +32,21 @@ class TwigHelpers extends \Twig_Extension
     private $parameter;
 
     /**
+     * @var
+     */
+    private $tokenManagerService;
+
+    /**
      * @param EntityManager $entityManager
      * @param ImageProvider $providerImage
      * @param Parameter $parameter
      */
-    public function __construct(EntityManager $entityManager, ImageProvider $providerImage, Parameter $parameter)
+    public function __construct(EntityManager $entityManager, ImageProvider $providerImage, Parameter $parameter, $tokenManagerService)
     {
         $this->entityManager = $entityManager;
         $this->providerImage = $providerImage;
         $this->parameter     = $parameter;
+        $this->tokenManagerService = $tokenManagerService;
     }
 
     
@@ -68,7 +78,13 @@ class TwigHelpers extends \Twig_Extension
             new \Twig_SimpleFunction('a_repondu_bandeau', array($this, 'aReponduCookieBandeau')),
             new \Twig_SimpleFunction('is_cookie_facebook_ok', array($this, 'isCookieFacebookOk')),
             new \Twig_SimpleFunction('is_cookie_twitter_ok', array($this, 'isCookieTwitterOk')),
-            new \Twig_SimpleFunction('is_cookie_google_ok', array($this, 'isCookieGoogleOk'))
+            new \Twig_SimpleFunction('is_cookie_google_ok', array($this, 'isCookieGoogleOk')),
+            new \Twig_SimpleFunction('get_csrf_token', array($this, 'getCsrfToken')),
+            new \Twig_SimpleFunction('get_last_username', array($this, 'getLastUsername')),
+            new \Twig_SimpleFunction('is_instance_of_blog', array($this, 'isInstanceOfBlog')),
+            new \Twig_SimpleFunction('can_be_accepted',array($this, 'canBeAccepted')),
+            new \Twig_SimpleFunction('get_documents_utilisateur',array($this, 'getDocumentsUtilisateur')),
+            new \Twig_SimpleFunction('has_documents_utilisateur',array($this, 'hasDocumentsUtilisateur')),
         );
     }
 
@@ -295,5 +311,70 @@ class TwigHelpers extends \Twig_Extension
     public function isCookieGoogleOk()
     {
         return isset($_COOKIE['google_service']) && $_COOKIE['google_service'];
+    }
+
+    /**
+     * @return null
+     */
+    public function getCsrfToken()
+    {
+        $csrfToken = !is_null($this->tokenManagerService)
+            ? $this->tokenManagerService->getToken('authenticate')->getValue()
+            : null;
+
+        return $csrfToken;
+    }
+
+    /**
+     * @param Session $session
+     * @return mixed|string
+     */
+    public function getLastUsername(Session $session)
+    {
+        $lastUsername = (null === $session) ? '' : $session->get(Security::LAST_USERNAME);
+
+        return $lastUsername;
+    }
+
+    /**
+     * @param $object
+     * @return bool
+     */
+    public function isInstanceOfBlog($object)
+    {
+        return $object instanceof Blog;
+    }
+
+    /**
+     * @param DemandeAcces $demandeAcces
+     * @return bool
+     */
+    public function canBeAccepted(DemandeAcces $demandeAcces)
+    {
+        /** @var Utilisateur $user */
+        $user = $this->entityManager->getRepository(Utilisateur::class)->findOneByMembreNumero($demandeAcces->getNumeroMembre());
+
+        if (!empty($user)) {
+            return !$user->getAccesSite() || $user->getLocked() || !$user->isEnabled();
+        }
+
+        return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function getDocumentsUtilisateur()
+    {
+        return $this->entityManager->getRepository(Document::class)->findAll();
+    }
+
+    /**
+     * @return bool
+     */
+    public function hasDocumentsUtilisateur()
+    {
+        $documents = $this->getDocumentsUtilisateur();
+        return is_array($documents) && !empty($documents);
     }
 }

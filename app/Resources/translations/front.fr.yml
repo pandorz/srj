@@ -71,6 +71,7 @@ bandeau:
     title: 'Favoriser les échanges entre les Français et la communauté japonaise de Rouen.'
 
 blog:
+    date_to_see: '[à venir]'
     auteur:
         and: ' et '
         wrote_by: 'Ecrit par '
@@ -79,6 +80,7 @@ blog:
         see_all: 'Voir tous les articles du blog'
         see_all_light: 'Tous les articles'
         see_article: 'Voir l''article'
+        publicationDate: 'Date publication prévu le %date%'
 
     last_article_tag: ' pour le tag %tag_name%'
     last_article_title: 'Derniers articles%tag_sentence%'
@@ -89,6 +91,12 @@ blog:
     next: 'Article suivant'
     previous: 'Article précédent'
     title: 'Nos articles'
+
+    status:
+        draft: 'Brouillon'
+        rejected: 'Refusé'
+        review: 'En relecture'
+        published: 'Accepté'
 
 conditions:
     free_for_members: 'Gratuit pour les membres.'
@@ -212,17 +220,23 @@ footer:
     quick_links: 'Accès rapides'
 
 general:
+    connexion:
+        title: 'Déjà membre ? Connectez-vous'
     accroche_be_member: 'Sortir une fois, c''est bien.<br> Multiplier des moments conviviaux entre passionnés en étant membre de Rouen Japon, c''est mieux ! ;-)'
     address: 'Association franco-japonaise de Rouen<br>4 quai de Paris<br>76000 Rouen'
 
     button:
         admin: Administration
+        logout: 'Se déconnecter'
         be_member: 'Devenir membre'
         know_more: 'En savoir plus'
         login: 'Déjà membre ?'
         participer: 'Je veux participer !'
         see_less: 'Charger moins'
         see_more: 'Charger plus'
+        account: 'Mon espace'
+        forgot_password: 'J''ai oublié mon mot de passe ?'
+        get_an_access: 'Demander un accès'
 
     cright: '&copy; 2016 Association franco-japonaise de Rouen - Tous droits réservés'
     date_du_au: 'Du %start_date% au %end_date%'
@@ -329,3 +343,66 @@ sortie:
         title: 'Les sorties'
 
     title: 'Nos sorties'
+
+my_space:
+    dashboard:
+        title: 'Tableau de bord'
+        meta:
+            title: 'Mon espace personnel'
+            article_title: 'Écrire un article'
+            my_articles: 'Mes articles'
+            my_drafts: 'Mes brouillons'
+            profil_title: 'Mon profil'
+
+user:
+    title:
+        mon-profil: 'Mon profil'
+        blog: 'Blog'
+        new-article: 'Écrire un nouvel article'
+        my-articles: 'Mes articles'
+        my-drafts: 'Mes brouillons'
+        documents: 'Documents'
+        cours: 'Mes cours'
+        groups: 'Mes groupes'
+        my-children:
+            title: 'Mes enfants'
+            articles: 'Leurs articles'
+            cours: 'Leurs cours'
+            groups: 'Leurs groupes'
+    button:
+        see_all: 'Voir tout'
+        submit_to_review: 'Envoyer en relecture'
+        edit: 'Editer'
+        del: 'Supprimer'
+    article:
+        title: 'Écrire un article'
+        texte: '<b>Chaque article engage la <a href="https://fr.wikipedia.org/wiki/Responsabilit%C3%A9_p%C3%A9nale_en_France" target="_blank">responsabilité</a> de son auteur.</b><br>
+        Ne seront tolérés aucun propos diffamants ou discriminants. Il est bon de rappeler que le plagiat est condamnable.<br>
+        Les liens vers des téléchargements engage la responsabilité du Président/de la Présidente de l''association RouenJapon. En cas de doute, contactez-nous.<br><br>
+        Une fois soumis à validation vous n''aurez plus la possibilité de modifier votre article. Si votre article est refusé, vous aurez la possibilité de le modifier avant de le re-soumettre.'
+        button:
+            submit: 'Sauvegarder'
+    my_articles: 'Mes articles'
+    my_drafts: 'Mes brouillons'
+    profil:
+        button:
+            submit: 'Mettre à jour'
+        title: 'Mon profil'
+
+login:
+    placeholder:
+        username: 'Nom d''utilisateur ou email'
+
+lost_pwd:
+    email: 'Email du compte'
+    placeholder:
+        email: 'Email du compte'
+    button:
+        submit: 'Réinitialiser mon mot de passe'
+
+ask-account:
+    memberNumber: 'Numéro de membre'
+    placeholder:
+        memberNumber: 'Numéro de membre'
+    button:
+        submit: 'Demander un accès'

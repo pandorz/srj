@@ -42,6 +42,12 @@ services:
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: Blog }
 
+    app.admin.document:
+        class: AppBundle\Admin\DocumentAdmin
+        arguments: [~, AppBundle\Entity\Document, AppBundle:Document]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Document }
+
     app.admin.tags:
         class: AppBundle\Admin\TagAdmin
         arguments: [~, AppBundle\Entity\Tag, SonataAdminBundle:CRUD]
@@ -60,6 +66,12 @@ services:
         arguments: [~, AppBundle\Entity\DemandeNewsletter, AppBundle:DemandeNewsletter]
         tags:
             - { name: sonata.admin, manager_type: orm, group: admin, label: DemandeNewsletter }
+
+    app.admin.acces:
+        class: AppBundle\Admin\DemandeAccesAdmin
+        arguments: [~, AppBundle\Entity\DemandeAcces, AppBundle:DemandeAcces]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: DemandeAcces }
 
     app.admin.sorties:
         class: AppBundle\Admin\SortieAdmin
@@ -131,7 +143,7 @@ services:
 
     app.twig_helper:
         class: AppBundle\Twig\TwigHelpers
-        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image", "@app.service_parameter"]
+        arguments: ["@doctrine.orm.entity_manager", "@sonata.media.provider.image", "@app.service_parameter", "@security.csrf.token_manager"]
         tags:
             - { name: twig.extension }
     app.admin.block.timeline:
@@ -172,6 +184,10 @@ services:
         class: AppBundle\Service\Mailer
         arguments: ["%no-reply_email%", "%no-reply_name%", "%mailer_admin%", "%web_path%", "%media_dir%", '@twig_asset_version_extension', "@swiftmailer.mailer", '@Twig\Environment', '@monolog.logger']
 
+    app.custom_fos_user_mailer:
+        class: AppBundle\Service\FOSCustomMailer
+        arguments: ["@app.mailer", "@router", "@translator", "@monolog.logger"]
+
     app.recaptcha:
         class: AppBundle\Service\Recaptcha
         arguments: ["%google_recaptcha_url%", "%google_recaptcha_secret_token%", "%kernel.environment%"]
@@ -186,3 +202,32 @@ services:
         tags:
           - { name: monolog.logger, channel: import}
 
+    authentication_handler:
+        class: AppBundle\Handler\AuthenticationHandler
+        arguments: ["@translator", "@router"]
+
+    app.workflow.guard.blog.adminpublish:
+        class: AppBundle\EventListener\BlogAdminPublishListener
+        arguments: ["@security.authorization_checker"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.workflow.guard.blog.publish:
+        class: AppBundle\EventListener\BlogPublishListener
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.workflow.guard.blog.toreopen:
+        class: AppBundle\EventListener\BlogToReOpenListener
+        arguments: ["@security.token_storage", "@security.authorization_checker"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.workflow.notifications:
+        class: AppBundle\EventListener\WorkflowNotification
+        tags:
+            - { name: kernel.event_subscriber }
+
+    app.workflow.blog:
+        class: AppBundle\Service\BlogWorkflow
+        arguments: ["@doctrine.orm.entity_manager", "@workflow.blog_publishing"]

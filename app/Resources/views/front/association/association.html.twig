@@ -27,7 +27,7 @@
         <div class="join section">
             <h2 class="sectionTitle">{{ 'association.qui_sommes_nous.version.adhesion.title'|trans }}</h2>
             <div class="joinChapo">{{ 'association.qui_sommes_nous.version.adhesion.header'|trans({'%cotisation_amount%': montant_cotisation()})|raw }}</div>
-            {% if lien_adhesion() is not empty %}
+            {% if lien_adhesion() is not empty and app.user == false %}
             <a class="btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
             {% endif %}
             <div class="joinText sectionText">

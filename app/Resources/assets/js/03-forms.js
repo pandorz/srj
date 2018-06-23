@@ -38,6 +38,22 @@ app.formsController.defaultAction = {
         if ($('.formSlider').length > 0) {
             this.transformSlider();
         }
+
+        this.hideSonataMediaInfo();
+    },
+
+    hideSonataMediaInfo: function () {
+        var $sonata_img = $('.img-polaroid');
+        if ($sonata_img.length) {
+            var $div_img = $sonata_img.parent().parent();
+            $div_img.siblings().each(function () {
+                if ($(this).find('.js-form-image').length === 0) {
+                    $(this).hide();
+                }
+            });
+            var $div_row = $div_img.parent();
+            $div_row.prev().hide();
+        }
     },
     
     transformCheck : function () {

@@ -69,7 +69,7 @@ class Blog implements RoutedItemInterface
     /**
      * @var \Application\Sonata\MediaBundle\Entity\Media
      * @ORM\OneToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist", "remove", "refresh"}, fetch="LAZY")
-     * @ORM\joinColumn(onDelete="SET NULL")
+     * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $image;
 
@@ -108,6 +108,13 @@ class Blog implements RoutedItemInterface
      * @ORM\Column(name="utilisateur_modification", type="string", length=255, nullable=true)
      */
     private $utilisateurModification;
+
+    /**
+     * @var array
+     *
+     * @ORM\Column(name="current_place", type="json_array", nullable=true)
+     */
+    private $currentPlace;
 
     /**
      * For Sonata Admin Doctrine lock
@@ -525,5 +532,48 @@ class Blog implements RoutedItemInterface
     public function getFeedItemUrlAnchor()
     {
         return null;
+    }
+
+    /**
+     * @return array
+     */
+    public function getCurrentPlace():? array
+    {
+        return $this->currentPlace;
+    }
+
+    /**
+     * @param array $currentPlace
+     */
+    public function setCurrentPlace(array $currentPlace)
+    {
+        $this->currentPlace = $currentPlace;
+    }
+
+    public function getHtmlState()
+    {
+        $label  = "label-default";
+        $state   = 'draft';
+        $stateFR = 'Brouillon';
+        if (!empty($this->getCurrentPlace())) {
+            $state = key(array_slice($this->getCurrentPlace(), 0, 1));
+        }
+
+        if (hash_equals($state, 'rejected')) {
+            $label   = "label-danger";
+            $stateFR = "Refusé";
+        }
+
+        if (hash_equals($state, 'published')) {
+            $label = "label-success";
+            $stateFR = "Validé";
+        }
+
+        if (hash_equals($state, 'review')) {
+            $label = "label-info";
+            $stateFR = "A relire";
+        }
+
+        return '<span class="label '.$label.'">'.$stateFR.'</span>';
     }
 }

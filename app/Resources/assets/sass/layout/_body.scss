@@ -1,8 +1,47 @@
 
-/* 
-    Author     : cecilejeanne <contact@cecile-jeanne.be>
-*/
-
 .siteBody {
     
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.loginForm, .lostPwdForm, .askAccessForm {
+  max-width: rem(580);
+  margin: 0 auto;
+  padding: 50px 0px 50px 0px;
+
+  .btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    max-width: rem(500);
+  }
+
+  .decalage {
+    width: 100%;
+    text-align: left;
+    max-width: rem(495);
+  }
+  .center
+  {
+    margin: auto;
+  }
+}
+
+.loginLinks {
+  max-width: rem(580);
+  margin: 0 auto;
+  a {
+    padding-left: 40px;
+  }
+}
+
+.wait-cursor {
+  cursor: wait !important;
 }

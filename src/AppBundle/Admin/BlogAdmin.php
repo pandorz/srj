@@ -13,6 +13,8 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Route\RouteCollection;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Symfony\Component\Workflow\Registry;
+use Symfony\Component\Workflow\Workflow;
 
 class BlogAdmin extends AbstractAdmin
 {
@@ -44,6 +46,10 @@ class BlogAdmin extends AbstractAdmin
             ->add('datePublication', 'date', [
                 'label' => 'blog.liste.datePublication'
             ])
+            ->add('htmlState', 'html', array(
+                'label'         => 'blog.liste.state',
+                'sortable'  => 'name'
+            ))
             ->add('_action', null, array(
                 'actions' => array(
                     'edit' => array(),
@@ -67,10 +73,26 @@ class BlogAdmin extends AbstractAdmin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $serviceWorkflow = $this->getConfigurationPool()->getContainer()->get('app.workflow.blog');
+        $blog            = $this->getSubject();
+        $disabledAffiche = false;
+        $state           = 'draft';
+
+        if ($blog instanceof Blog) {
+            if (!empty($blog->getCurrentPlace())) {
+                $state = key(array_slice($blog->getCurrentPlace(), 0, 1));
+            }
+
+            if (!empty($blog->getId())) {
+                $disabledAffiche = !$serviceWorkflow->canBePublished($blog);
+            }
+        }
+
         $formMapper
             ->with('Content', [
                 'name' => $this->trans('blog.with.details'),
-                'class' => 'col-md-7'
+                'class' => 'col-md-7',
+                'description' => $this->trans('blog.add_edit.details.description.'.$state)
             ])
             ->add('nom', 'text', [
                 'label' => 'blog.nom',
@@ -83,7 +105,8 @@ class BlogAdmin extends AbstractAdmin
                 'attr' => [
                     'placeholder' => 'blog.placeholder.actif'
                 ],
-                'required' => false
+                'required' => false,
+                'disabled' => $disabledAffiche
             ])
             ->add('descriptionCourte', 'text', [
                 'label' => 'blog.descriptionCourte',
@@ -190,6 +213,15 @@ class BlogAdmin extends AbstractAdmin
         $page->setTimestampModification(new \DateTime('now'));
     }
 
+    public function postUpdate($object)
+    {
+        /** @var Blog $object */
+        if ($object->getAffiche()) {
+            $this->getConfigurationPool()->getContainer()->get('app.workflow.blog')->publier($object);
+        }
+        parent::postUpdate($object);
+    }
+
     /**
      * @param mixed $object
      *
@@ -229,6 +261,9 @@ class BlogAdmin extends AbstractAdmin
     {
         $collection->remove('show');
         $collection->add('clone', $this->getRouterIdParameter() . '/clone');
+        $collection->add('reject', $this->getRouterIdParameter() . '/rejeter');
+        $collection->add('to_review', $this->getRouterIdParameter() . '/relecture');
+        $collection->add('to_reopen', $this->getRouterIdParameter() . '/reouvrir');
         $collection->add('view', '/blog/article/{slug}/');
     }
 }

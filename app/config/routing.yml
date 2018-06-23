@@ -23,9 +23,30 @@ sonata_user_impersonating:
     path:  /gyosei/dashboard
     defaults: { _controller: SonataPageBundle:Page:catchAll }
 
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
-    
+fos_user_security_check:
+    path: '/login_check'
+    defaults: { _controller: FOSUserBundle:Security:check }
+    methods:  [POST]
+
+fos_user_security_logout:
+    path: '/logout'
+    defaults: { _controller: FOSUserBundle:Security:logout }
+    methods:  [GET, POST]
+
+fos_user_security_login:
+    path: '/'
+
+fos_user_profile_show:
+    path: '/'
+    defaults:
+        _controller: FrameworkBundle:Redirect:urlRedirect
+        route: my_space
+        permanent: true
+
+
+fos_user_resetting:
+    resource: '@FOSUserBundle/Resources/config/routing/resetting.xml'
+    prefix: /resetting
 
 gallery:
     resource: '@SonataMediaBundle/Resources/config/routing/gallery.xml'

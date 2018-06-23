@@ -2,7 +2,7 @@
 <div class="sectionCTA">
     <div class="u-fitted">
         <p>{{ 'general.accroche_be_member'|trans|raw }}</p>
-        {% if lien_adhesion() is not empty %}
+        {% if lien_adhesion() is not empty and app.user == false %}
         <a class="btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
         {% endif %}
     </div>

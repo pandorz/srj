@@ -84,7 +84,7 @@ app.modalController.defaultAction = {
 
             // add overlay
             if ($('.overlay-classic').length < 1) {
-                $modal_overlay = '<span id="modal-overlay" class="overlay overlay-classic" title="Fermer la fenÃªtre" data-background-click="enabled"><span class="u-hiddenVisually">Fermer la fenÃªtre</span></span>';
+                $modal_overlay = '<span id="modal-overlay" class="overlay overlay-classic" title="Fermer la fenÃªtre" data-background-click="enabled"><span class="u-hiddenVisually">Fermer la fenêtre</span></span>';
             }
             else { $modal_overlay = '<span id="modal-overlay" class="overlay overlay-classic" data-background-click="disabled"></span>'; }
 

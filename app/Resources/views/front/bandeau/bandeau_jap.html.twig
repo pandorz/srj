@@ -4,7 +4,7 @@
     <div class="heroJPbaseline" lang="ja">{{ 'bandeau.base_line'|trans }}</div>
     <div class="userGuide">
         <a class="btn btn-blank" href="{{path('presentation_japonaise')}}" lang="ja">{{ 'general.title.nihon'|trans }}</a>
-        {% if lien_adhesion() is not empty %}
+        {% if lien_adhesion() is not empty and app.user == false %}
         <a class="btn" href="{{ lien_adhesion() }}" target="_blank">{{ 'general.button.be_member'|trans }}</a>
         {% endif %}
     </div>

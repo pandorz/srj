@@ -19,6 +19,9 @@
 		margin-left: rem(10);
 		margin-right: rem(10);
 	}
+	.blogSummary {
+		min-height: rem(50);
+	}
 
 	@include media('>phablet') {
 		.blogItem {

@@ -29,7 +29,7 @@
 
         {% if app.environment == 'prod' %}
         {#JS Grecaptcha#}
-        <script src='https://www.google.com/recaptcha/api.js?hl=fr&render=explicit' async defer></script>
+            <script src='https://www.google.com/recaptcha/api.js?hl={{ app.request.locale }}&onload=initGrecaptcha&render=explicit' async defer></script>
         {#END JS Grecaptcha#}
         {% endif %}
     </head>
@@ -44,6 +44,9 @@
         <main class="siteBody">
         {% block main %}{% endblock %}
         </main>
+        {% if app.user == false %}
+            {% include 'front/template/login.html.twig' %}
+        {% endif %}
         {% include 'front/template/footer.html.twig' %}
         {% block javascript %}
             <script src="{{ asset('js/app.js'|asset_version) }}"></script>

@@ -1,0 +1,9 @@
+{% extends ':emails:email_tpl.html.twig' %}
+
+{% block main %}
+    {{ title }}
+    {% if subtitle %}
+        {{ subtitle }}
+    {% endif %}
+    {{ 'activation.mail.message'|trans({'%password%': data.password})|striptags }}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% trans_default_domain 'front' %}
+{% for group in detail_user.groups %}
+    {# Actions #}
+    {% set title_link = group.name %}
+
+    {% if app.user != detail_user %}
+        {% set title_link = '('~ detail_user ~')'~ title_link %}
+    {% endif %}
+    <a class="list-group-item disabled" title="{{ title_link }}">
+        {{ group.name }}
+    </a>
+{% endfor %}

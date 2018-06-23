@@ -14,10 +14,14 @@
 'Cour List': Cours
 'Demande Newsletter Create': Créer
 'Demande Newsletter List': 'Demandes Newsletter'
+'Demande Acces Create': Créer
+'Demande Acces List': 'Demandes d''accès'
 'Evenement Create': Créer
 'Evenement List': Événements
 'Import Create': Importer
 'Import List': Imports
+'Document Create': Créer
+'Document List': Imports
 'Kouryukai Create': Créer
 'Kouryukai List': Kouryukai
 'Parametre Create': Créer
@@ -141,6 +145,12 @@ blog:
 
     add_edit:
         to_string: 'Article de blog'
+        details:
+            description:
+                draft: 'Cet article est un brouillon.'
+                published: ''
+                rejected: 'Cet article à été refusé. Il ne peut pas être publié en l''état.'
+                review: 'Cet article est en attente de relecture. Changez l''état en actif pour l''accepter ou bien refusez le. (Le refus n''est pas irreversible)'
 
     auteur: Auteur(s)
     contenu: Texte
@@ -156,6 +166,7 @@ blog:
         affiche: Affiché
         datePublication: 'Date de publication'
         nom: Titre
+        state: 'Etat'
 
     nom: Titre
 
@@ -390,6 +401,11 @@ cour_report:
 demande_newsletter:
     liste:
         email: 'Adresse email'
+        timestampCreation: 'Date de la demande'
+
+demande_acces:
+    liste:
+        numeroMembre: 'Numéro de membre'
         timestampCreation: 'Date de la demande'
 
 evenement:
@@ -651,3 +667,67 @@ tag:
 
     with:
         details: Détails
+
+lost_pwd:
+    mail:
+        sujet: 'Réinitialisation de votre mot de passe'
+        titre: 'Oubli de votre mot de passe'
+        soustitre: 'Réinitialisation de votre mot de passe'
+        message:  |
+                   Bonjour %username% !<br><br>
+
+                   Pour réinitialiser votre mot de passe, merci de vous rendre sur %confirmationUrl%
+                   Si vous n'êtes pas à l'origine de cette demande, merci d'ignorer ce message.<br><br>
+
+                   Cordialement,<br>
+                   L'association RouenJapon
+
+activation:
+    mail:
+        message:  |
+                   Félicitations !<br><br>
+
+                   Vous bénéficiez maintenant d'un accès à RouenJapon. Votre mot de passe <b>%password%</b> a été généré aléatoirement.<br>
+                   Personne, au sein de notre équipe n'en a connaissance. Nos mots de passe sont chiffrés, toutefois nous vous conseillons
+                    de modifier ce mot de passe dès votre première connexion.<br><br>
+
+                   Cordialement,<br>
+                   L'association RouenJapon
+
+ask_account:
+    error:
+        has_access: 'Vous possédez déjà un access à RouenJapon. Vous avez oublié votre mot de passe ?'
+        server: 'Erreur lors de l''envoi de votre message. Réessayez ultérieument'
+        empty: 'Votre numéro de membre ne peut pas être vide'
+        nan: 'Ce numéro de membre est invalide'
+        pending: 'Une demande est déjà en cours'
+    success: 'Nous avons enregistré votre demande'
+
+access:
+    button: 'Activer l''utilisateur'
+    nope: 'Utilisateur non importé'
+
+document:
+    with:
+        details: 'Détails'
+    add_edit:
+        details:
+            description: 'Ce document sera affiché pour tous les utilisateurs dans leur espace privé'
+        to_string: 'Document'
+
+    nom: 'Nom'
+    file: 'Fichier'
+
+    liste:
+        nom: 'Nom'
+    placeholder:
+        nom: 'Nom du document'
+
+utilisateur:
+    placeholder:
+        accesSite: 'Peut acceder au site'
+        estProfesseur: 'Est professeur'
+        membreNumero: 'Numéro d''adhésion du membre'
+        membreTitre: 'Titre du membre à afficher'
+        nomJaponais: 'Nom en Japonais'
+        prenomJaponais: 'Prénom en Japonais'

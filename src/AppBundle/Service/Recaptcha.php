@@ -55,35 +55,9 @@ class Recaptcha
         $params = array('secret'    => $this->token,
                         'response'  => $response);
 
-        $url = $this->url.'?'. http_build_query($params);
+        $url        = $this->url.'?'. http_build_query($params);
+        $response   = file_get_contents($url);
 
-
-        if (function_exists('curl_version')) {
-            $ch = curl_init();
-
-            if ($ch === false) {
-                throw new \Exception('Failed to initialize curl');
-            }
-
-            curl_setopt($ch, CURLOPT_HEADER, false);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            curl_setopt($ch, CURLOPT_TIMEOUT, 1);
-            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-            curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-            curl_setopt(
-                $ch,
-                CURLOPT_USERAGENT,
-                'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:52.0) Gecko/20100101 Firefox/52.0'
-            );
-
-            $response = curl_exec($ch);
-
-            if ($response === false) {
-                throw new \Exception(curl_error($ch));
-            }
-        } else {
-            $response = file_get_contents($url);
-        }
 
         $json = json_decode($response);
 
