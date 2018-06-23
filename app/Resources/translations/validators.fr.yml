@@ -44,5 +44,6 @@ my_space:
         send_to_review: 'L''article à été envoyé en relecture'
         del_article: 'Article supprimé'
         save_profil: 'Profil mis à jour'
+        save_password: 'Mot de passe modifié'
     error:
         article_not_found: 'Article non trouvé'
