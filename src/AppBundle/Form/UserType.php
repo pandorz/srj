@@ -10,7 +10,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
- * Class UtilisateurType
+ * Class UserType
  * @package AppBundle\Form
  */
 class UserType extends AbstractType

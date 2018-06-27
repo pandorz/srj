@@ -353,9 +353,11 @@ my_space:
             my_articles: 'Mes articles'
             my_drafts: 'Mes brouillons'
             profil_title: 'Mon profil'
+            update_password_title: 'Mon compte'
 
 user:
     title:
+        mon-compte: 'Mon compte'
         mon-profil: 'Mon profil'
         blog: 'Blog'
         new-article: 'Écrire un nouvel article'
@@ -388,6 +390,10 @@ user:
         button:
             submit: 'Mettre à jour'
         title: 'Mon profil'
+    update_password:
+        title: 'Modifier mon mot de passe'
+        button:
+            submit: 'Modifier'
 
 login:
     placeholder:
@@ -406,3 +412,8 @@ ask-account:
         memberNumber: 'Numéro de membre'
     button:
         submit: 'Demander un accès'
+
+update_password:
+    label:
+        confirm_password: 'Confirmation'
+        password: 'Mot de passe'

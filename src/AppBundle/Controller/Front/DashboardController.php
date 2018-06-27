@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Front;
 use AppBundle\Entity\Blog;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Form\BlogType;
+use AppBundle\Form\UserPasswordType;
 use AppBundle\Form\UserType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -296,5 +297,42 @@ class DashboardController extends BaseController
         }
 
         return $this->render('front/users/my_space/profil_form.html.twig', ['form' => $form->createView()]);
+    }
+
+    /**
+     * Dashboard my_account
+     *
+     * -------------------- *
+     * @Route("/mon-compte", name="my_account")
+     * @Method({"GET", "POST"})
+     * -------------------- *
+     *
+     * @param Request $request
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function accountAction(Request $request)
+    {
+        /** @var Utilisateur $user */
+        $user = $this->getUser();
+        if (!$user->getAccesSite()) {
+            return $this->redirectToRoute('fos_user_security_logout');
+        }
+
+        $form = $this->createForm(UserPasswordType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->getEm()->persist($user);
+            $this->getEm()->flush();
+            $request->getSession()
+                ->getFlashBag()
+                ->add('success', $this->getTranslator()->trans(
+                    'my_space.success.save_password',
+                    [],
+                    'validators'
+                ));
+        }
+
+        return $this->render('front/users/my_space/update_password_form.html.twig', ['form' => $form->createView()]);
     }
 }
