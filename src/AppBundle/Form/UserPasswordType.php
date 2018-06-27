@@ -23,7 +23,7 @@ class UserPasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->setMethod('POST')
-            ->add('password', RepeatedType::class, [
+            ->add('plainPassword', RepeatedType::class, [
                 'type'              => PasswordType::class,
                 'required'          => true,
                 'invalid_message'   => 'update_password.not_similar',

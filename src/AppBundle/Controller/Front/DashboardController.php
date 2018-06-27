@@ -312,6 +312,7 @@ class DashboardController extends BaseController
      */
     public function accountAction(Request $request)
     {
+        /** @var Utilisateur $user */
         $user = $this->getUser();
         if (!$user->getAccesSite()) {
             return $this->redirectToRoute('fos_user_security_logout');
