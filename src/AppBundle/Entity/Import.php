@@ -360,7 +360,19 @@ class Import
      */
     public function getCliquableImportFile()
     {
-        return '<a target="_blank" href="'.$this->filepath.'">'.$this->filename.'</a>';
+        return '<a target="_blank" href="/'.$this->delBeforeWebDir($this->filepath).'">'.$this->filename.'</a>';
+    }
+
+    private function delBeforeWebDir($filepath)
+    {
+        $pos = strpos($filepath, 'web/');
+
+        if ($pos>0) {
+            $pos = $pos+4;
+            return substr($filepath, $pos, strlen($filepath));
+        }
+
+        return $filepath;
     }
 
     /**
@@ -372,7 +384,7 @@ class Import
             return '';
         }
 
-        return '<a target="_blank" href="'.$this->filepathLog.'">Voir le fichier de log</a>';
+        return '<a target="_blank" href="/'.$this->delBeforeWebDir($this->filepathLog).'">Voir le fichier de log</a>';
     }
 
     /**

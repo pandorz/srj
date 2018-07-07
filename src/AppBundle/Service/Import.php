@@ -317,6 +317,7 @@ class Import
      * @param string $memberNumber
      * @param string $username
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
      */
     private function usernameAllreadyUsed(string $memberNumber, string $username)
     {
@@ -398,7 +399,7 @@ class Import
     {
         $username = mb_strtolower(ucfirst($firstname).$lastname).($occurence>0?$occurence:'');
 
-        if ($this->usernameAllreadyUsed()) {
+        if ($this->usernameAllreadyUsed($memberNumber, $username)) {
             return $this->generateUsername($memberNumber, $firstname, $lastname, ($occurence+1));
         }
 
