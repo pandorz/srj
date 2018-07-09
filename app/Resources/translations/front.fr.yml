@@ -181,7 +181,7 @@ cours:
 
 evenement:
     button:
-        see_all: 'Voir toutes les événements'
+        see_all: 'Voir tous les événements'
 
     meta:
         title: 'Les événements de l’association, venez nous rencontrer !'
@@ -417,3 +417,17 @@ update_password:
     label:
         confirm_password: 'Confirmation'
         password: 'Mot de passe'
+
+
+Jan: 'Jan.'
+Feb: 'Fev.'
+Mar: 'Mar.'
+Apr: 'Avr.'
+May: 'Mai'
+Jun: 'Jui.'
+Jul: 'Juil.'
+Aug: 'Août'
+Sep: 'Sep.'
+Oct: 'Oct.'
+Nov: 'Nov.'
+Dec: 'Dec.'

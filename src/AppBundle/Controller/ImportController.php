@@ -2,6 +2,9 @@
 
 namespace AppBundle\Controller;
 
+use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Input\ArrayInput;
+use Symfony\Component\Console\Output\BufferedOutput;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -17,7 +20,7 @@ class ImportController extends BaseController
      * @param $id
      *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
-     * @throws \Doctrine\ORM\ORMException
+     * @throws \Exception
      */
     public function importFileAction($id)
     {

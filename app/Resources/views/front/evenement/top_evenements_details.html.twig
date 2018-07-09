@@ -6,7 +6,7 @@
         {% set date_to_show = evenementOuKouryukai.dateDebut is defined ? evenementOuKouryukai.dateDebut : evenementOuKouryukai.date %}
         <time class="postDate eventDate" datetime="{{date_to_show|date('Y-m-d')}}">
             <span class="day">{{date_to_show|date('d')}}</span>
-            <span class="month">{{date_to_show|date('F')|slice(0, 3)}}.</span>
+            <span class="month">{{date_to_show|date('F')|slice(0, 3)|trans}}</span>
         </time>
         <div class="postSummary eventSummary">{% if evenementOuKouryukai.contenu|length > 99 %}{{ crop_entete_texte(evenementOuKouryukai.contenu)|raw }}{% else %}{{ evenementOuKouryukai.contenu|raw }}{% endif %}</div>
         {% if evenementOuKouryukai.contenu|length > 99 %}

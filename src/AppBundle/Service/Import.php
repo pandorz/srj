@@ -3,6 +3,7 @@
 namespace AppBundle\Service;
 
 
+use AppBundle\Admin\UtilisateurAdmin;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Entity\Import as ImportEntity;
 use Doctrine\ORM\EntityManager;
@@ -64,26 +65,35 @@ class Import
     private $uploadPath;
 
     /**
+     * @var UtilisateurAdmin
+     */
+    private $userAdmin;
+
+    /**
      * Import constructor.
      * @param EntityManager $em
      * @param Logger $logger
      * @param Factory $phpExcelService
      * @param ValidatorInterface $validator
      * @param string $uploadPath
+     * @param UtilisateurAdmin $userAdmin
      */
-    public function __construct(EntityManager $em, Logger $logger, Factory $phpExcelService, ValidatorInterface $validator, string $uploadPath)
+    public function __construct(EntityManager $em, Logger $logger, Factory $phpExcelService, ValidatorInterface $validator, string $uploadPath, UtilisateurAdmin $userAdmin)
     {
         $this->em               = $em;
         $this->logger           = $logger;
         $this->phpExcelService  = $phpExcelService;
         $this->validator        = $validator;
         $this->uploadPath       = $uploadPath;
+        $this->userAdmin        = $userAdmin;
         $this->setHeader();
     }
 
     /**
      * @param $idImport
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
+     * @throws \PHPExcel_Exception
      */
     public function execute($idImport)
     {
@@ -97,6 +107,7 @@ class Import
                 return false;
             }
 
+            $userToAcl = [];
             foreach ($lines as $lineNumber => $line) {
                 if ($lineNumber==0) {
                     if (!$this->isHeaderOk($line)) {
@@ -106,6 +117,7 @@ class Import
                     if ($this->isLineOk($line, $lineNumber)) {
                         $user = $this->insertOrUpdateUser($line);
                         $this->getEm()->persist($user);
+                        $userToAcl[] = $user;
                         $this->addLog("Insertion ou mise à jour du membre ".$user->getMembreNumero()." (Ligne ".$lineNumber.")");
                     } elseif ($this->importEntity->getStatut() != ImportEntity::STATUT_WARNING) {
                         $this->importEntity->setStatut(ImportEntity::STATUT_WARNING);
@@ -126,6 +138,9 @@ class Import
 
         try {
             $this->getEm()->flush();
+            foreach ($userToAcl as $user) {
+                $this->userAdmin->createObjectSecurity($user);
+            }
         } catch (\Exception $e) {
             $this->getEm()->clear();
             $this->setCriticalError("Erreur à la fin de l'import");
@@ -137,6 +152,7 @@ class Import
 
     /**
      * @param string $textError
+     * @throws \Doctrine\ORM\ORMException
      */
     private function setCriticalError(string $textError)
     {
@@ -149,6 +165,7 @@ class Import
     /**
      * @param string $filePath
      * @return array|null
+     * @throws \PHPExcel_Exception
      */
     private function getData(string $filePath)
     {
@@ -186,6 +203,7 @@ class Import
     /**
      * @param $idImport
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
      */
     private function setImportEntity($idImport)
     {
@@ -237,6 +255,7 @@ class Import
      * @param array $line
      * @param int $lineNumber
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
      */
     private function isLineOk(array $line, int $lineNumber)
     {
@@ -301,6 +320,7 @@ class Import
     /**
      * @param string $memberNumber
      * @return Utilisateur|null
+     * @throws \Doctrine\ORM\ORMException
      */
     private function getUserByMemberNumber(string $memberNumber)
     {
@@ -346,6 +366,7 @@ class Import
     /**
      * @param array $line
      * @return Utilisateur
+     * @throws \Doctrine\ORM\ORMException
      */
     private function insertOrUpdateUser(array $line)
     {
@@ -362,6 +383,7 @@ class Import
      * @param array $line
      * @param Utilisateur $user
      * @return Utilisateur
+     * @throws \Doctrine\ORM\ORMException
      */
     private function setUser(array $line, Utilisateur $user)
     {
@@ -382,7 +404,9 @@ class Import
             $user->setUsername($this->generateUsername($user->getMembreNumero(), $user->getFirstname() ,$user->getLastname()));
         }
 
-        $user->setPassword(self::generatePassword());
+        if (empty($user->getId())) {
+            $user->setPassword(self::generatePassword());
+        }
 
         $user = $this->addToGroup($user);
         return $user;
@@ -394,6 +418,7 @@ class Import
      * @param string $lastname
      * @param int $occurence
      * @return string
+     * @throws \Doctrine\ORM\ORMException
      */
     private function generateUsername(string $memberNumber, string $firstname, string $lastname, int $occurence = 0)
     {
@@ -492,6 +517,7 @@ class Import
     /**
      * @param $filePath
      * @return array|null
+     * @throws \PHPExcel_Exception
      */
     private function getDataFromXls($filePath)
     {
@@ -587,6 +613,7 @@ class Import
      * @param string $mail
      * @param string $memberNumber
      * @return bool
+     * @throws \Doctrine\ORM\ORMException
      */
     private function isMailAlreadyUsed(string $mail, string $memberNumber)
     {

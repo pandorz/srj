@@ -68,6 +68,7 @@ class DashboardController extends BaseController
         if (is_null($slug) || (isset($blog) && empty($blog))) {
             $blog = new Blog();
             $blog->addAuteur($this->getUser());
+            $blog->setAffiche(false);
         }
 
         // Ne peut pas etre edité
@@ -88,8 +89,10 @@ class DashboardController extends BaseController
 
         if ($form->isSubmitted() && $form->isValid()) {
             //$form->bindRequest($request);
+            $blogAdmin = $this->get('app.admin.blog');
             $this->getEm()->persist($blog);
             $this->getEm()->flush();
+            $blogAdmin->createObjectSecurity($blog);
             $request->getSession()
                 ->getFlashBag()
                 ->add('success', $this->getTranslator()->trans(
