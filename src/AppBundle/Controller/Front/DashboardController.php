@@ -35,6 +35,10 @@ class DashboardController extends BaseController
     {
         /** @var Utilisateur $user */
         $user = $this->getUser();
+        if (empty($user)) {
+            return $this->redirectToRoute('home');
+        }
+
         if (!$user->getAccesSite()) {
             return $this->redirectToRoute('fos_user_security_logout');
         }
@@ -57,6 +61,11 @@ class DashboardController extends BaseController
     public function blogAction(Request $request, $slug = null)
     {
         $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->redirectToRoute('home');
+        }
+
         if (!$user->getAccesSite()) {
             return $this->redirectToRoute('fos_user_security_logout');
         }
@@ -121,6 +130,11 @@ class DashboardController extends BaseController
     {
         /** @var Utilisateur $user */
         $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->redirectToRoute('home');
+        }
+
         if (!$user->getAccesSite()) {
             return $this->redirectToRoute('fos_user_security_logout');
         }
@@ -142,6 +156,11 @@ class DashboardController extends BaseController
     {
         /** @var Utilisateur $user */
         $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->redirectToRoute('home');
+        }
+
         if (!$user->getAccesSite()) {
             return $this->redirectToRoute('fos_user_security_logout');
         }
@@ -225,6 +244,11 @@ class DashboardController extends BaseController
     public function delBlogAction(Request $request, $slug = null)
     {
         $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->redirectToRoute('home');
+        }
+
         if (!$user->getAccesSite()) {
             return $this->redirectToRoute('fos_user_security_logout');
         }
@@ -280,6 +304,11 @@ class DashboardController extends BaseController
     public function profilAction(Request $request)
     {
         $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->redirectToRoute('home');
+        }
+
         if (!$user->getAccesSite()) {
             return $this->redirectToRoute('fos_user_security_logout');
         }
@@ -317,6 +346,11 @@ class DashboardController extends BaseController
     {
         /** @var Utilisateur $user */
         $user = $this->getUser();
+
+        if (empty($user)) {
+            return $this->redirectToRoute('home');
+        }
+
         if (!$user->getAccesSite()) {
             return $this->redirectToRoute('fos_user_security_logout');
         }
