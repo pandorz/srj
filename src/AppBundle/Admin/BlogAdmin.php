@@ -47,8 +47,7 @@ class BlogAdmin extends AbstractAdmin
                 'label' => 'blog.liste.datePublication'
             ])
             ->add('htmlState', 'html', array(
-                'label'         => 'blog.liste.state',
-                'sortable'  => 'name'
+                'label'         => 'blog.liste.state'
             ))
             ->add('_action', null, array(
                 'actions' => array(
@@ -190,6 +189,9 @@ class BlogAdmin extends AbstractAdmin
             ])
             ->add('datePublication', null, [
                 'label' => 'blog.liste.datePublication'
+            ])
+            ->add('currentPlace', null, [
+                'label' => 'blog.liste.state'
             ]);
     }
 

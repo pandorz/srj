@@ -53,7 +53,7 @@ class DemandeAccesController extends BaseController
                     ->setTemplate(
                         'activation',
                         [
-                            'title' => 'Votre demande a été accepté',
+                            'title' => 'Votre demande a été acceptée',
                             'subtitle' => 'Vous pouvez maintenant vous connecter',
                             'data' => $data
                         ]

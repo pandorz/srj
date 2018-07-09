@@ -46,7 +46,7 @@
                         <h4 class="postTitle">{{ sortie.nom }}</h4>
                         <time class="postDate" datetime="{{ sortie.date|date('Y-m-d') }}">
                             <span class="day">{{ sortie.date|date('d') }}</span>
-                            <span class="month">{{ sortie.date|date('F')|slice(0, 3) }}.</span>
+                            <span class="month">{{ sortie.date|date('F')|slice(0, 3)|trans }}</span>
                         </time>
                         <div class="postSummary">{{ crop_entete_texte(sortie.contenu)|raw }}</div>
                         <div class="postMoreText" style="display: none;">

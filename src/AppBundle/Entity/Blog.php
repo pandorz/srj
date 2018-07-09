@@ -228,6 +228,7 @@ class Blog implements RoutedItemInterface
     public function __construct()
     {
         $this->affiche = true;
+        $this->timestampCreation = new \DateTime();
     }
 
     /**
@@ -554,24 +555,24 @@ class Blog implements RoutedItemInterface
     {
         $label  = "label-default";
         $state   = 'draft';
-        $stateFR = 'Brouillon';
+        $stateFR = 'Brouillon/Draft';
         if (!empty($this->getCurrentPlace())) {
             $state = key(array_slice($this->getCurrentPlace(), 0, 1));
         }
 
         if (hash_equals($state, 'rejected')) {
             $label   = "label-danger";
-            $stateFR = "Refusé";
+            $stateFR = "Refusé/Rejected";
         }
 
         if (hash_equals($state, 'published')) {
             $label = "label-success";
-            $stateFR = "Validé";
+            $stateFR = "Validé/Published";
         }
 
         if (hash_equals($state, 'review')) {
             $label = "label-info";
-            $stateFR = "A relire";
+            $stateFR = "A relire/Review";
         }
 
         return '<span class="label '.$label.'">'.$stateFR.'</span>';

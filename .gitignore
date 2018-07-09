@@ -29,6 +29,7 @@ puphpet/config-custom.yaml
 /app/Resources/assets/rev-manifest.json
 /composer.phar
 /web/uploads/medias/
+/web/imports/*
 .idea
 /apprss.xml
 apptest.xml
