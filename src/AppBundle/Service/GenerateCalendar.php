@@ -44,12 +44,12 @@ class GenerateCalendar
                 $calendarId = $this->googleCalendar->getCalendarIdBySummary($cour->getSlug());
 
                 if (empty($calendarId)) {
-                    $calendar = $this->googleCalendar->createCalendar($cour->getSlug());
+                    $calendar   = $this->googleCalendar->createCalendar($cour->getSlug());
                     $calendarId = $calendar->getId();
-                }
-
-                if (!$this->googleCalendar->clearCalendar($calendarId)) {
-                    $this->googleCalendar->clearManuallyCalendar($calendarId);
+                } else {
+                    if (!$this->googleCalendar->clearCalendar($calendarId)) {
+                        $this->googleCalendar->clearManuallyCalendar($calendarId);
+                    }
                 }
 
                 /** @var CourDate $courDate */

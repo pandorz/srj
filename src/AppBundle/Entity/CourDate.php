@@ -305,7 +305,7 @@ class CourDate
     /**
      * @return Cour
      */
-    public function getCours(): Cour
+    public function getCours():? Cour
     {
         return $this->cours;
     }
@@ -417,7 +417,7 @@ class CourDate
     /**
      * @param \DateTime $dateFin
      */
-    public function setDateFin(\DateTime $dateFin)
+    public function setDateFin(\DateTime $dateFin = null)
     {
         $this->dateFin = $dateFin;
     }

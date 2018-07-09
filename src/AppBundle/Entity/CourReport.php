@@ -129,7 +129,7 @@ class CourReport
     /**
      * @param \DateTime $dateAnnule
      */
-    public function setDateAnnule(\DateTime $dateAnnule)
+    public function setDateAnnule(\DateTime $dateAnnule = null)
     {
         $this->dateAnnule = $dateAnnule;
     }
@@ -281,7 +281,7 @@ class CourReport
     /**
      * @return Cour
      */
-    public function getCours(): Cour
+    public function getCours():? Cour
     {
         return $this->cours;
     }
