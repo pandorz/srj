@@ -308,7 +308,7 @@ cour_date:
         to_string: 'Cours - date'
 
     date: 'Date du cours ou date début'
-    dateFin: 'Date du fin (si necessaire)'
+    dateFin: 'Date de fin (si necessaire)'
     heureDebut: 'Heure début'
     heureFin: 'Heure fin'
     heure_debut: 'Heure début'
@@ -324,7 +324,7 @@ cour_date:
 
     liste:
         date: 'Date du cours ou date début'
-        dateFin: 'Date du fin (si necessaire)'
+        dateFin: 'Date de fin (si necessaire)'
         heureDebut: 'Heure début'
         heureFin: 'Heure fin'
         jour: Jour
@@ -335,7 +335,7 @@ cour_date:
 
     placeholder:
         date: 'Date du cours ou date début'
-        dateFin: 'Date du fin (si necessaire)'
+        dateFin: 'Date de fin (si necessaire)'
         heureDebut: 'Heure début'
         heureFin: 'Heure fin'
         heure_debut: 'Heure début'

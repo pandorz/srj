@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Sonata\UserBundle\Entity\BaseUser;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -132,7 +133,7 @@ class Utilisateur extends BaseUser
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="Utilisateur",  inversedBy="parent")
+     * @ORM\OneToMany(targetEntity="Utilisateur",  mappedBy="parent")
      * @ORM\JoinTable(name="Utilisateur_relations",
      *     joinColumns={@ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")},
      *     inverseJoinColumns={@ORM\JoinColumn(name="enfant_utilisateur_id", referencedColumnName="id")}
@@ -143,7 +144,7 @@ class Utilisateur extends BaseUser
     /**
      * @var Utilisateur
      *
-     * @ORM\OneToMany(targetEntity="Utilisateur", mappedBy="sousUtilisateurs")
+     * @ORM\ManyToOne(targetEntity="Utilisateur", inversedBy="sousUtilisateurs", cascade={"persist"})
      */
     private $parent;
 
@@ -191,6 +192,7 @@ class Utilisateur extends BaseUser
         $this->setEstProfesseur(false);
         $this->setAccesSite(true);
         $this->setLocked(false);
+        $this->sousUtilisateurs = new ArrayCollection();
     }
 
     /**
@@ -514,13 +516,11 @@ class Utilisateur extends BaseUser
      *
      * @param Utilisateur $sousUtilisateur
      *
-     * @return Utilisateur
      */
     public function addSousUtilisateur(Utilisateur $sousUtilisateur)
     {
+        $sousUtilisateur->setParent($this);
         $this->sousUtilisateurs[] = $sousUtilisateur;
-
-        return $this;
     }
 
     /**
@@ -542,6 +542,16 @@ class Utilisateur extends BaseUser
     {
         return $this->sousUtilisateurs;
     }
+
+    /**
+     * @param $sousUtilisateurs
+     */
+    public function setSousUtilisateurs(ArrayCollection $sousUtilisateurs)
+    {
+        $this->sousUtilisateurs = $sousUtilisateurs;
+
+    }
+
 
     /**
      * Set parent

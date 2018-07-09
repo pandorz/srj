@@ -108,18 +108,27 @@ class UtilisateurAdmin extends UserAdmin
                 'required' => false
             ])
             ->end()
-            ->with('Sous utilisateur', [
-                'name' => $this->trans('utilisateur.with.sousUtilisateurs', [], 'messages'),
+            ->with('Parent', [
+                'name' => $this->trans('utilisateur.with.parent', [], 'messages'),
                 'description' => $this->trans('utilisateur.with.description', [], 'messages'),
                 'class' => 'col-md-4'
             ])
-            ->add('sousUtilisateurs', 'sonata_type_model_list', [
-                'label' => $this->trans('utilisateur.sousUtilisateurs', [], 'messages'),
-                'required' => false,
+            ->add('parent', 'sonata_type_model_list', [
+                'label' => $this->trans('utilisateur.parent', [], 'messages'),
+                'required' => false
             ], [
                 'edit' => 'inline',
                 'inline' => 'table',
-                'sortable' => 'position'
+                'sortable' => 'position',
+
+            ])
+            ->add('sousUtilisateurs', 'sonata_type_model_autocomplete', [
+                'class' => Utilisateur::class,
+                'property' => ['firstname', 'lastname'],
+                'label' => 'utilisateur.sousUtilisateurs',
+                'multiple' => true,
+                'placeholder' => $this->trans('utilisateur.placeholder.sousUtilisateurs'),
+                'required' => false
             ])
             ->end()
             ->with('Meta data', [

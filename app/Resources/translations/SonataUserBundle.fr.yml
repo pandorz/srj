@@ -121,17 +121,20 @@ utilisateur:
         membreTitre: 'Titre du membre à afficher'
         nomJaponais: 'Nom en Japonais'
         prenomJaponais: 'Prénom en Japonais'
+        sousUtilisateurs: 'Liste des enfants'
 
     sousUtilisateurs: Enfants
+    parent: Parent
 
     tab:
         profil: 'Autres informations'
         sousUtilisateurs: 'Liste des enfants'
 
     with:
-        description: Informations
+        description: 'Parent et enfants de cet utilisateur'
         meta_data: 'Autres données'
         sousUtilisateurs: Enfants
+        parent: Parent
     nomJaponais: 'Nom en Japonais'
     prenomJaponais: 'Prénom en Japonais'
 
