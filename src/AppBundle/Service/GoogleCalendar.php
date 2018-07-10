@@ -255,10 +255,10 @@ class GoogleCalendar
      * @param \DateTime $startDate
      * @param \DateTime $endDate
      * @param string $description
-     * @param string $recurrence
+     * @param array $recurrences
      * @return \Google_Service_Calendar_Event
      */
-    public function newEvent($summary, \DateTime $startDate, \DateTime $endDate, $description = '', $recurrence = '')
+    public function newEvent($summary, \DateTime $startDate, \DateTime $endDate, $description = '', $recurrences = [])
     {
         $data = [
             'summary' => $summary,
@@ -276,8 +276,12 @@ class GoogleCalendar
             $data['description'] = $description;
         }
 
-        if (!empty($recurrence)) {
-            $data['recurrence'] = [$recurrence];
+        if (!empty($recurrences)) {
+            foreach ($recurrences as $list_recurrence) {
+                foreach ($list_recurrence as $recurrence) {
+                    $data['recurrence'] = [$recurrence];
+                }
+            }
         }
 
         return new \Google_Service_Calendar_Event($data);
