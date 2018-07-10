@@ -20,7 +20,9 @@ class GenerateCalendar
      */
     private $googleCalendar;
 
-    const GOOGLE_DATE_FORMAT= 'Ymd';
+    const GOOGLE_DATE_FORMAT = 'Ymd';
+
+    const GOOGLE_DATE_TIME_FORMAT = 'Ymd\THis\Z';
 
     /**
      * GenerateCalendar constructor.
@@ -58,16 +60,20 @@ class GenerateCalendar
                     $startDate->modify("+".$courDate->getHeureDebut()->format('i')." minutes");
                     $startDate->modify("+".$courDate->getHeureDebut()->format('H')." hours");
 
-                    $endDate = (is_null($courDate->getDateFin()) ? clone $courDate->getDate(): $courDate->getDateFin());
+                    $endDate = clone $courDate->getDate();
                     $endDate->modify("+".$courDate->getHeureFin()->format('i')." minutes");
                     $endDate->modify("+".$courDate->getHeureFin()->format('H')." hours");
+
+                    $endDateRecurrence = clone $courDate->getDateFin();
+                    $endDateRecurrence->modify("+".$courDate->getHeureFin()->format('i')." minutes");
+                    $endDateRecurrence->modify("+".$courDate->getHeureFin()->format('H')." hours");
 
                     $reccurence = $this->makeReccurence(
                         $cour,
                         $courDate->getRepetition(),
                         $courDate->getJour(),
                         $startDate,
-                        $endDate
+                        $endDateRecurrence
                     );
 
                     $event = $this->googleCalendar->newEvent(
@@ -96,7 +102,7 @@ class GenerateCalendar
      * @param \DateTime $endDate
      * @return mixed
      */
-    private function makeReccurence(Cour $cour, int $repetition, int $day, \DateTime $startDate, \DateTime $endDate)
+    private function makeReccurence(Cour $cour, int $repetition, int $day, \DateTime $startDate, \DateTime $endDate = null)
     {
         $tabReccurence['recurrence'] = [];
 
@@ -114,9 +120,13 @@ class GenerateCalendar
             $tabReccurence['recurrence'][] = $reportsDates;
         }
 
-        $tabReccurence['recurrence'][] =  "RRULE:FREQ=WEEKLY;INTERVAL=".$repetition.
-            ";UNTIL=".$this->getUntilDate().";".
-            ($repetition !=1 ? "BYDAY=".$this->getCodeDayByW($day) : '');
+        $untilDate_string = (is_null($endDate)?$this->getUntilDate():$endDate->format(self::GOOGLE_DATE_FORMAT));
+        $day = $this->getCodeDayByW($day);
+
+        $repetition_string = "RRULE:FREQ=WEEKLY;UNTIL=".$untilDate_string.";BYDAY=".$day.
+            ($repetition !=1 ? ";INTERVAL=".$repetition : '');
+
+        $tabReccurence['recurrence'][] = $repetition_string;
 
         return $tabReccurence;
     }
