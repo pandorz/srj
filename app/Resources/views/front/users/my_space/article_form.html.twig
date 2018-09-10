@@ -16,7 +16,8 @@
         <h2 class="sectionTitle">{{ 'user.article.title'|trans }}</h2>
         {% include 'front/template/flash_messages.html.twig' %}
         <div class="aboutText">
-            {{ 'user.article.texte'|trans|raw }}
+            {% set link_soumission = blog.id is empty? '': '. <a href="'~ path('submit_to_review', {'slug': blog.slug}) ~'">' ~'user.button.submit_to_review'|trans ~'</a>' %}
+            {{ 'user.article.texte'|trans({'%link_soumission%': link_soumission})|raw }}
         </div>
         <div>
             {{ form_start(form, {'attr': { 'class': 'article-form' } }) }}
