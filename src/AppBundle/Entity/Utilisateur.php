@@ -856,8 +856,11 @@ class Utilisateur extends BaseUser
     /**
      * @param string $prenomJaponais
      */
-    public function setPrenomJaponais(string $prenomJaponais)
+    public function setPrenomJaponais($prenomJaponais)
     {
+        if (is_null($prenomJaponais)) {
+            $prenomJaponais = "";
+        }
         $this->prenomJaponais = $prenomJaponais;
     }
 
@@ -872,8 +875,11 @@ class Utilisateur extends BaseUser
     /**
      * @param string $nomJaponais
      */
-    public function setNomJaponais(string $nomJaponais)
+    public function setNomJaponais($nomJaponais)
     {
+        if (is_null($nomJaponais)) {
+            $nomJaponais = "";
+        }
         $this->nomJaponais = $nomJaponais;
     }
 }

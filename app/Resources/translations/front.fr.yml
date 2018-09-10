@@ -46,7 +46,7 @@ association:
                 title: 'Découvrir l’association franco-japonaise de Rouen'
 
             presentation:
-                date: '<p><b>Quelques dates :</b></p> <ul class="u-ul-colorRJ"> <li><b>2010 :</b> Mise en place des cours de japonais</li> <li><b>2011 :</b> Concert de solidarité aux victimes du tsunami</li> <li><b>2013 :</b> Premier festival Hanami</li> <li><b>Saison 2013-14 :</b> Akari FUJINO cède la présidence de l’association à Pierre JOSELIER</li> <li><b>2014 :</b> Deuxième festival Hanami</li> <li><b>Saison 2014-15 :</b> Mise en place des cours de cérémonie du thé et de calligraphie</li> <li><b>2015 :</b> Lancement du Café Japon (café d’échange linguistique)</li> <li><b>Saison 2016-17 :</b> Mise en place des cours de japonais pour enfants</li> <li><b>Saison 2017-18 :</b> Mise en place des cours de yoga et de préparation au JLPT</li> </ul>'
+                date: '<p><b>Quelques dates :</b></p> <ul class="u-ul-colorRJ"> <li><b>2010 :</b> Mise en place des cours de japonais</li> <li><b>2011 :</b> Concert de solidarité aux victimes du tsunami</li> <li><b>2013 :</b> Premier festival <a href="http://www.hanami-rouen.fr">Hanami</a></li> <li><b>Saison 2013-14 :</b> Akari FUJINO cède la présidence de l’association à Pierre JOSELIER</li> <li><b>2014 :</b> Deuxième festival Hanami</li> <li><b>Saison 2014-15 :</b> Mise en place des cours de cérémonie du thé et de calligraphie</li> <li><b>2015 :</b> Lancement du Café Japon (café d’échange linguistique)</li> <li><b>Saison 2016-17 :</b> Mise en place des cours de japonais pour enfants</li> <li><b>Saison 2017-18 :</b> Mise en place des cours de yoga, de préparation au JLPT et des Café Manga</li><li><b>Saison 2018-19 :</b> Pierre JOSELIER cède la présidence à Valentin CASTRONOVO et mise en place de la chorale en japonais</li> </ul>'
                 texte: '<p> Rouen Japon a été créé en 2009 par Akari FUJINO. A l’heure actuelle, l’association compte %members_number% membres.<br> Rouen Japon a pour objectif : </p> <ul class="u-ul-colorRJ"> <li>Être un lieu d''échange entre les Français et les Japonais</li> <li>Mettre en relation des Français et des Japonais pour leur permettre de communiquer, d''échanger sur leurs pays respectifs</li> <li>Proposer des cours de japonais et de français</li> <li>Organiser des animations autour des cultures japonaises et françaises</li> </ul><br>'
                 title: 'À propos de nous'
 
@@ -63,7 +63,7 @@ atelier:
     presentation:
         header: 'Tous les ans, Rouen Japon vous propose de participer à divers ateliers, de l''initiation à l''<strong>Ikebana</strong> (art floral), aux <strong>ateliers cuisine</strong> (gyozas, okonomiyaki...), en passant par l''<strong>origami</strong>...'
         note: 'étails et conditions à consulter pour chaque atelier'
-        texte: '<p>Le type et la fréquence de ces ateliers peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a></p> <p>Pour cette saison 2017-2018 par exemple, Rouen Japon pense reprogrammer les ateliers de la saison précédente auxquels vous avez été nombreux à répondre présents, à savoir : </p> <ul class="u-ul-colorRJ"> <li><b>Les Ateliers cuisine</b> (à raison d''un atelier par trimestre)</li> <li><b>Les Ateliers origami</b> (à raison d''un atelier par trimestre)</li> <li><b> Préparer son voyage au Japon</b>  (en octobre)</li> </ul> <p>Presque chaque atelier est ouvert à tous*, dans la limite des places disponibles et se règle à l''unité. Toutes les conditions figurent dans le détail des ateliers en question.</p> <p>À bento ! Euh, ahem, à bientôt !</p>'
+        texte: '<p>Le type et la fréquence de ces ateliers peuvent varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a></p> <p>Pour cette saison 2018-2019 par exemple, Rouen Japon pense reprogrammer les ateliers de la saison précédente auxquels vous avez été nombreux à répondre présents, à savoir : </p> <ul class="u-ul-colorRJ"> <li><b>Origami</b> (à raison d''un atelier par trimestre)</li> <li><b>Préparer son voyage au Japon</b>  (en novembre)</li><li><b>Ikebana</b></li> </ul> <p>Presque chaque atelier est ouvert à tous*, dans la limite des places disponibles et se règle à l''unité. Toutes les conditions figurent dans le détail des ateliers en question.</p> <p>À bento ! Euh, ahem, à bientôt !</p>'
         title: 'Les ateliers'
 
 bandeau:
@@ -160,12 +160,12 @@ cour:
     give_by: 'Les cours sont dispensés'
 
     meta:
-        title: 'Les cours de japonais et de culture japonaise : calligraphie, art de la cérémonie du thé, yoga, préparation au JLPT'
+        title: 'Les cours de japonais adultes ou enfants et de culture japonaise : art de la cérémonie du thé, préparation au JLPT'
 
     montant: 'Le montant des cours pour la saison est fixé à %price%€ pour l''année (paiement au comptant ou prélèvement automatique mensuel).'
 
     presentation:
-        hedaer: 'Grâce aux cours de Rouen Japon, vous pourrez apprendre le japonais, pratiquer la calligraphie, le yoga ou vous initier à l''art de la cérémonie du thé.<br> Les enfants pourront également découvrir la langue et la culture japonaises tout en s''amusant.<br> Ci-dessous les différents cours pour la saison 2017-2018.'
+        header: 'Grâce aux cours de Rouen Japon, vous pourrez apprendre le japonais ou vous initier à l''art de la cérémonie du thé.<br> Les enfants pourront également découvrir la langue et la culture japonaises tout en s''amusant.<br> Ci-dessous les différents cours pour la saison 2018-2019.'
         title: 'Les cours'
 
     professor:
@@ -229,6 +229,7 @@ general:
         admin: Administration
         logout: 'Se déconnecter'
         be_member: 'Devenir membre'
+        be_member_jap: '入会方法'
         know_more: 'En savoir plus'
         login: 'Déjà membre ?'
         participer: 'Je veux participer !'
@@ -339,7 +340,7 @@ sortie:
     presentation:
         header: 'Avec Rouen Japon, on fait aussi des sorties ! On va au musée, voir des expositions, assister à des conférences, ou visiter des jardins... Tous les ans l''association vous organise des petites sorties, très souvent à tarifs préférentiels*.'
         note: '* À condition de faire partie de l''association :-)'
-        texte: '<p>Comme pour les ateliers, le nombre et le type de sorties peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a>.</p> <p><b>Pour cette saison 2017-2018</b> par exemple, Rouen Japon pense vous faire bénéficier de quelques sorties intéressantes :</p> <ul class="u-ul-colorRJ"> <li><b>Visite du jardin japonais</b> (en octobre ou novembre, selon la date d''apparition des couleurs automnales)</li> </ul> <p>Presque chaque sortie est ouverte à tous, dans la limite des places disponibles et se règle à l''unité (évidemment, les tarifs diffèrent en fonction du fait que vous soyez adhérent(e) ou non).</p> <p>Allez, mets ton kimono on sort !</p>'
+        texte: '<p>Comme pour les ateliers, le nombre et le type de sorties peut varier d''une saison à l''autre, c''est pourquoi nous vous invitons à repasser régulièrement par ici, consulter notre calendrier et/ou nous suivre <a href="%facebook_link%">ici</a> et <a href="%twitter_link%">là</a>.</p> <p><b>Pour cette saison 2018-2019</b> par exemple, Rouen Japon pense vous faire bénéficier de quelques sorties intéressantes :</p> <ul class="u-ul-colorRJ"> <li><b>Visite du jardin japonais</b> (en octobre ou novembre, selon la date d''apparition des couleurs automnales)</li><li><b>Randonnées</b></li><li><b>Fête du nouvel an</b> (le 13 janvier)</li><li><b>Visite en japonais</b> (Rouen ou alentours)</li> </ul> <p>Presque chaque sortie est ouverte à tous, dans la limite des places disponibles et se règle à l''unité (évidemment, les tarifs diffèrent en fonction du fait que vous soyez adhérent(e) ou non).</p> <p>Allez, mets ton kimono on sort !</p>'
         title: 'Les sorties'
 
     title: 'Nos sorties'

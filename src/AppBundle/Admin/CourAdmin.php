@@ -9,6 +9,7 @@ use AppBundle\Entity\CourReport;
 use AppBundle\Entity\Utilisateur;
 use Doctrine\ORM\PersistentCollection;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+use Oh\GoogleMapFormTypeBundle\Form\Type\GoogleMapType;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -230,6 +231,47 @@ class CourAdmin extends AbstractAdmin
                 'context' => 'image',
                 'required' => false,
             ))
+            ->end()
+            ->with('Adresse', [
+                'name' => $this->trans('cour.with.adresse')
+            ])
+            ->add('adresse', 'text', [
+                'label' => 'cour.adresse',
+                'attr' => [
+                    'placeholder' => 'cour.placeholder.adresse',
+                    'class' => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('codePostal', 'text', [
+                'label' => 'cour.cp',
+                'attr' => [
+                    'placeholder' => 'cour.placeholder.cp',
+                    'class' => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('ville', 'text', [
+                'label' => 'cour.ville',
+                'attr' => [
+                    'placeholder' => 'cour.placeholder.ville',
+                    'class' => 'js-data-emplacement'
+                ],
+                'required' => false
+            ])
+            ->add('latlng', GoogleMapType::class, [
+                'label' => 'cour.position',
+                'lat_options' => [
+                    'label' => 'cour.latitude'
+                ],
+                'lng_options' => [
+                    'label' => 'cour.longitude'
+                ],
+                'attr' => [
+                    'class' => 'js-search-emplacement-container'
+                ],
+                'required' => false
+            ])
             ->end()
             ->with('Détails', [
                 'name' => $this->trans('cour.with.details')

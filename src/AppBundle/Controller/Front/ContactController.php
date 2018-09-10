@@ -71,7 +71,7 @@ class ContactController extends BaseController
                 $data = $form->getData();
 
                 $retour_mail = $this->get('app.mailer')
-                    ->setSubject($this->getTranslator()->trans('contact.mail.sujet'))
+                    ->setSubject($data['objet'])
                     ->setReplyTo($data['email'])
                     ->setTemplate(
                         'contact',
