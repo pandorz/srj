@@ -44,6 +44,8 @@ class Recaptcha
      */
     public function check($response)
     {
+        //desactivation
+        return true;
         if (!hash_equals($this->environnement, 'prod')) {
             return true;
         }

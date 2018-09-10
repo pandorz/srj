@@ -7,6 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Sonata\MediaBundle\Model\MediaInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Oh\GoogleMapFormTypeBundle\Validator\Constraints as OhAssert;
 
 /**
  * Cour
@@ -234,6 +235,41 @@ class Cour
      * @ORM\JoinColumn(onDelete="SET NULL")
      */
     private $image;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adresse", type="string", length=255, nullable=true)
+     */
+    private $adresse;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code_postal", type="string", length=6, nullable=true)
+     */
+    private $codePostal;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="ville", type="string", length=60, nullable=true)
+     */
+    private $ville;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="coord_geo_latitude", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $coordGeoLatitude;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="coord_geo_longitude", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $coordGeoLongitude;
 
 
     /**
@@ -871,5 +907,147 @@ class Cour
     public function removeReport(CourReport $report)
     {
         $this->reports->removeElement($report);
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param string $adresse
+     *
+     * @return Cour
+     */
+    public function setAdresse($adresse): Cour
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return string
+     */
+    public function getAdresse():? string
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set codePostal
+     *
+     * @param string $codePostal
+     *
+     * @return Cour
+     */
+    public function setCodePostal($codePostal): Cour
+    {
+        $this->codePostal = $codePostal;
+
+        return $this;
+    }
+
+    /**
+     * Get codePostal
+     *
+     * @return string
+     */
+    public function getCodePostal():? string
+    {
+        return $this->codePostal;
+    }
+
+    /**
+     * Set ville
+     *
+     * @param string $ville
+     *
+     * @return Cour
+     */
+    public function setVille($ville): Cour
+    {
+        $this->ville = $ville;
+
+        return $this;
+    }
+
+    /**
+     * Get ville
+     *
+     * @return string
+     */
+    public function getVille():? string
+    {
+        return $this->ville;
+    }
+
+    /**
+     * Set coordGeoLatitude
+     *
+     * @param float $coordGeoLatitude
+     *
+     * @return Cour
+     */
+    public function setCoordGeoLatitude($coordGeoLatitude): Cour
+    {
+        $this->coordGeoLatitude = $coordGeoLatitude;
+
+        return $this;
+    }
+
+    /**
+     * Get coordGeoLatitude
+     *
+     * @return float
+     */
+    public function getCoordGeoLatitude():? float
+    {
+        return $this->coordGeoLatitude;
+    }
+
+    /**
+     * Set coordGeoLongitude
+     *
+     * @param float $coordGeoLongitude
+     *
+     * @return Cour
+     */
+    public function setCoordGeoLongitude($coordGeoLongitude): Cour
+    {
+        $this->coordGeoLongitude = $coordGeoLongitude;
+
+        return $this;
+    }
+
+    /**
+     * Get coordGeoLongitude
+     *
+     * @return float
+     */
+    public function getCoordGeoLongitude():? float
+    {
+        return $this->coordGeoLongitude;
+    }
+
+    /**
+     * @param $latlng
+     * @return $this
+     */
+    public function setLatLng($latlng): Cour
+    {
+        $this->setCoordGeoLatitude($latlng['lat']);
+        $this->setCoordGeoLongitude($latlng['lng']);
+
+        return $this;
+    }
+
+    /**
+     * @Assert\NotBlank()
+     * @OhAssert\LatLng()
+     * @return array
+     */
+    public function getLatLng(): array
+    {
+        return array('lat' => $this->getCoordGeoLatitude(), 'lng' => $this->getCoordGeoLongitude());
     }
 }

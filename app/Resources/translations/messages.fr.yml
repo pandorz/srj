@@ -216,7 +216,7 @@ contact:
     email: Email
 
     mail:
-        soustitre: 'Quelqu''un a laissé un message sur le site Rouen japon'
+        soustitre: 'Quelqu''un à laissé un message sur le site Rouen japon'
         sujet: 'Nouveau mail depuis le site rouen japon'
         texte: '%prenom% %nom% (%email%) à envoyé un message avec l''objet: <b>%objet%</b>.<br><br>Voici le contenu de son message:<br>%message%'
         titre: 'Nouveau contact'
@@ -288,7 +288,21 @@ cour:
         titre: 'Titre du cours'
         titreNav: 'Ce titre sera afficher dans la barre de navigation'
         users: 'Les inscrits'
+        adresse: 'Adresse du cours'
+        cp: 'Code postal du cours'
+        ville: 'Ville du cours'
 
+    latitude: Latitude
+    position: Emplacement
+
+    positon:
+        current_position: 'Ma position actuelle'
+        search: Rechercher
+
+    longitude: Longitude
+    adresse: Adresse
+    cp: 'Code postal'
+    ville: Ville
     prix: Prix
     professeur: Professeur
     reports: 'Annulation et report'
@@ -302,6 +316,7 @@ cour:
         details: 'Détails supplémentaires'
         meta_data: Paramètres
         reports: 'Annulations et reports'
+        adresse: 'Adresse du cours'
 
 cour_date:
     add_edit:

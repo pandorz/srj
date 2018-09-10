@@ -17,6 +17,8 @@
         <div class="aboutText">
             {{ 'association.qui_sommes_nous.nihon.presentation.texte'|trans({'%members_number%': nombre_membre()})|raw }}
             {{ 'association.qui_sommes_nous.nihon.presentation.date'|trans|raw }}
+            <br>
+            <a class="btn" href="{{ lien_adhesion_japonais() }}" target="_blank">{{ 'general.button.be_member_jap'|trans }}</a>
         </div>
     </section>
    

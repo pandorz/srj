@@ -14,7 +14,7 @@
     <section class="about section u-fitted">
         <h2 class="sectionTitle">{{ 'cour.presentation.title'|trans }}</h2>
         <div class="sectionChapo u-textCenter aboutText">
-            <p>{{ 'cour.presentation.hedaer'|trans|raw }}</p>
+            <p>{{ 'cour.presentation.header'|trans|raw }}</p>
         </div>
     </section>
 
@@ -51,7 +51,7 @@
                                 {% endif %}
                                 {{ cour.amorce is empty ? '' : cour.amorce|raw }}
                                 <p>
-                                    {{ 'cour.give_by'|trans }}{{ cour.creneau is empty ? '' : ' '~cour.creneau }}{{ 'cour.where'|trans }}<strong>{{ adresse_cours() }}</strong>{{ stringProf|raw }}.
+                                    {{ 'cour.give_by'|trans }}{{ cour.creneau is empty ? '' : ' '~cour.creneau }} {{ stringProf|raw }}.
                                 </p>
                                 {% if cour.bientotComplet %}
                                     <p class="u-warning">{{ 'cour.bientot_complet'|trans }}</p>
@@ -73,6 +73,12 @@
 
                             {% if cour.note is not empty %}
                                 <p class="u-note">*{{ cour.note }}</p>
+                            {% endif %}
+                            {% if cour.coordGeoLatitude is not empty and cour.coordGeoLongitude is not empty %}
+                                <p>
+                                    <strong class="conditions">{{ 'general.items.lieu'|trans }}</strong>
+                                    <a class="u-textBlack" href="https://maps.google.fr/maps?q={{ cour.coordGeoLatitude }},{{ cour.coordGeoLongitude }}" target="_blank">{{ cour.adresse is not null ? cour.adresse~', ' : '' }}{{ cour.codePostal is not null ? cour.codePostal~' ' : '' }}{{ cour.ville is not null ? cour.ville : '' }}</a>
+                                </p>
                             {% endif %}
                             <strong class="conditions">{{ 'conditions.title'|trans }}</strong>
                             <p>{{ 'cour.adherer'|trans({'%adhesion_link%': lien_adhesion(), '%cotisation_amount%': montant_cotisation()})|raw }}</p>
