@@ -372,6 +372,8 @@ user:
             articles: 'Leurs articles'
             cours: 'Leurs cours'
             groups: 'Leurs groupes'
+    warning: 'Pour que vos articles s''affichent sur le blog RouenJapon vous devez les soumettre à validation.<br>
+              Une fois soumis à validation vous n''aurez plus la possibilité de modifier vos articles. Si vos articles sont refusés, vous aurez la possibilité de les modifier avant de les re-soumettre.'
     button:
         see_all: 'Voir tout'
         submit_to_review: 'Envoyer en relecture'
@@ -381,7 +383,8 @@ user:
         title: 'Écrire un article'
         texte: '<b>Chaque article engage la <a href="https://fr.wikipedia.org/wiki/Responsabilit%C3%A9_p%C3%A9nale_en_France" target="_blank">responsabilité</a> de son auteur.</b><br>
         Ne seront tolérés aucun propos diffamants ou discriminants. Il est bon de rappeler que le plagiat est condamnable.<br>
-        Les liens vers des téléchargements engage la responsabilité du Président/de la Présidente de l''association RouenJapon. En cas de doute, contactez-nous.<br><br>
+        Les liens vers des téléchargements engage la responsabilité du Président/de la Présidente de l''association RouenJapon. En cas de doute, contactez-nous.<br>
+        Pour que votre article s''affiche sur le blog RouenJapon vous devez le soumettre à validation%link_soumission%.<br><br>
         Une fois soumis à validation vous n''aurez plus la possibilité de modifier votre article. Si votre article est refusé, vous aurez la possibilité de le modifier avant de le re-soumettre.'
         button:
             submit: 'Sauvegarder'

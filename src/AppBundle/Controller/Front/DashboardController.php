@@ -112,7 +112,12 @@ class DashboardController extends BaseController
             return $this->redirectToRoute('edit_article', ['slug' => $blog->getSlug()]);
         }
 
-        return $this->render('front/users/my_space/article_form.html.twig', ['form' => $form->createView()]);
+        return $this->render('front/users/my_space/article_form.html.twig',
+            [
+                'form' => $form->createView(),
+                'blog' => $blog
+            ]
+        );
     }
 
     /**
