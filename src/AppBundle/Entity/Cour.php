@@ -1050,4 +1050,12 @@ class Cour
     {
         return array('lat' => $this->getCoordGeoLatitude(), 'lng' => $this->getCoordGeoLongitude());
     }
+
+    /**
+     * @return string
+     */
+    public function getLocation()
+    {
+        return $this->getAdresse().', '.$this->getCodePostal().' '.$this->getVille();
+    }
 }
