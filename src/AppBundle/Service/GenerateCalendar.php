@@ -22,7 +22,14 @@ class GenerateCalendar
 
     const GOOGLE_DATE_FORMAT = 'Ymd';
 
+    const SYMFONY_DATE_FORMAT = 'Y-m-d';
+
+    const SYMFONY_TIME_FORMAT = 'H:i:s';
+
+    const SYMFONY_DATE_TIME_FORMAT = 'Y-m-d H:i:s';
+
     const GOOGLE_DATE_TIME_FORMAT = 'Ymd\THis\Z';
+    const GOOGLE_DATETIME_FORMAT = 'Ymd\THis';
 
     /**
      * GenerateCalendar constructor.
@@ -64,9 +71,13 @@ class GenerateCalendar
                     $endDate->modify("+".$courDate->getHeureFin()->format('i')." minutes");
                     $endDate->modify("+".$courDate->getHeureFin()->format('H')." hours");
 
-                    $endDateRecurrence = clone $courDate->getDateFin();
-                    $endDateRecurrence->modify("+".$courDate->getHeureFin()->format('i')." minutes");
-                    $endDateRecurrence->modify("+".$courDate->getHeureFin()->format('H')." hours");
+                    if (is_null($courDate->getDateFin())) {
+                        $endDateRecurrence = null;
+                    } else {
+                        $endDateRecurrence = clone $courDate->getDateFin();
+                        $endDateRecurrence->modify("+".$courDate->getHeureFin()->format('i')." minutes");
+                        $endDateRecurrence->modify("+".$courDate->getHeureFin()->format('H')." hours");
+                    }
 
                     $reccurence = $this->makeReccurence(
                         $cour,
@@ -81,7 +92,8 @@ class GenerateCalendar
                         $startDate,
                         $endDate,
                         $cour->getTitre(),
-                        $reccurence
+                        $reccurence,
+                        $cour->getLocation()
                     );
 
                     $this->googleCalendar->createEvent($calendarId, $event);
@@ -110,12 +122,12 @@ class GenerateCalendar
             return $tabReccurence;
         }
 
-        $holydaysDates = $this->generateHolidays($startDate, $endDate);
+        $holydaysDates = $this->generateExcludedDate($cour, $startDate, $endDate);
         if (!empty($holydaysDates)) {
             $tabReccurence['recurrence'][] = $holydaysDates;
         }
 
-        $reportsDates  = $this->generateReportDate($cour, $startDate, $endDate);
+        $reportsDates  = $this->generateReportedDate($cour, $startDate, $endDate);
         if (!empty($reportsDates)) {
             $tabReccurence['recurrence'][] = $reportsDates;
         }
@@ -132,36 +144,74 @@ class GenerateCalendar
     }
 
     /**
+     * @param Cour $cour
      * @param \DateTime $startDate
      * @param \DateTime $endDate
      * @return string
      */
-    private function generateHolidays(\DateTime $startDate, \DateTime $endDate)
+    private function generateExcludedDate(Cour $cour, \DateTime $startDate, \DateTime $endDate = null)
     {
+        if (is_null($endDate)) {
+            $endDate = (is_null($endDate)?\DateTime::createFromFormat(self::GOOGLE_DATE_FORMAT, $this->getUntilDate()):$endDate);
+        }
+
+        // Search for holidays
         $holidaysDates = $this->em
             ->getRepository(Conge::class)
             ->findBetween($startDate, $endDate);
 
+        $stringholidaysDate = "";
+
         if (!empty($holidaysDates)) {
-            $stringholidaysDate = "";
 
             /** @var Conge $holidaysDate */
             foreach ($holidaysDates as $holidaysDate) {
                 if (!empty($stringholidaysDate)) {
-                    $stringholidaysDate.=",";
+                    $stringholidaysDate .= ",";
                 }
 
                 if ($holidaysDate->getDateDebut() == $holidaysDate->getDateFin()) {
-                    $stringholidaysDate.= $holidaysDate->getDateDebut()->format(self::GOOGLE_DATE_FORMAT);
+                    $dateComplete = \DateTime::createFromFormat(
+                        self::SYMFONY_DATE_TIME_FORMAT,
+                        $holidaysDate->getDateDebut()->format(self::SYMFONY_DATE_FORMAT) . ' ' . $startDate->format(self::SYMFONY_TIME_FORMAT)
+                    );
+                    $stringholidaysDate .= $dateComplete->format(self::GOOGLE_DATETIME_FORMAT);
                 } else {
-                    $stringholidaysDate.= $this->getAlldaysBetween(
+                    $stringholidaysDate .= $this->getAlldaysBetween(
                         $holidaysDate->getDateDebut(),
-                        $holidaysDate->getDateFin()
+                        $holidaysDate->getDateFin(),
+                        $startDate
                     );
                 }
             }
+        }
 
-            return "EXDATE;VALUE=DATE:".$stringholidaysDate;
+        $reports = $this->em
+            ->getRepository(CourReport::class)
+            ->findBetweenByCour($cour, $startDate, $endDate);
+
+        $stringReportDates = "";
+
+        if (!empty($reports)) {
+            /** @var CourReport $report */
+            foreach ($reports as $report) {
+                if (!empty($stringReportDates)) {
+                    $stringReportDates.=",";
+                }
+                $dateComplete = \DateTime::createFromFormat(
+                    self::SYMFONY_DATE_TIME_FORMAT,
+                    $report->getDateAnnule()->format(self::SYMFONY_DATE_FORMAT).' '.' '.$startDate->format(self::SYMFONY_TIME_FORMAT)
+                );
+                $stringReportDates.=$dateComplete->format(self::GOOGLE_DATETIME_FORMAT);
+            }
+        }
+
+        if (!empty($stringholidaysDate) && !empty($stringReportDates)) {
+            $stringReportDates = ','.$stringReportDates;
+        }
+
+        if (!empty($stringholidaysDate) || !empty($stringReportDates)) {
+            return "EXDATE;TZID=".GoogleCalendar::TIMEZONE.":".$stringholidaysDate.$stringReportDates;
         }
 
         return "";
@@ -173,8 +223,12 @@ class GenerateCalendar
      * @param \DateTime $endDate
      * @return string
      */
-    private function generateReportDate(Cour $cour, \DateTime $startDate, \DateTime $endDate)
+    private function generateReportedDate(Cour $cour, \DateTime $startDate, \DateTime $endDate = null)
     {
+        if (is_null($endDate)) {
+            $endDate = (is_null($endDate)?\DateTime::createFromFormat(self::GOOGLE_DATE_FORMAT, $this->getUntilDate()):$endDate);
+        }
+
         $reports = $this->em
             ->getRepository(CourReport::class)
             ->findBetweenByCour($cour, $startDate, $endDate);
@@ -187,7 +241,11 @@ class GenerateCalendar
                 if (!empty($stringReportDates)) {
                     $stringReportDates.=",";
                 }
-                $stringReportDates.=$report->getDateReport()->format(self::GOOGLE_DATE_FORMAT);
+                $dateComplete = \DateTime::createFromFormat(
+                    self::SYMFONY_DATE_TIME_FORMAT,
+                    $report->getDateReport()->format(self::SYMFONY_DATE_FORMAT).' '.$report->getHeureDebut()->format(self::SYMFONY_TIME_FORMAT)
+                );
+                $stringReportDates.=$dateComplete->format(self::GOOGLE_DATE_TIME_FORMAT);
             }
 
             return "RDATE;VALUE=DATE:".$stringReportDates;
@@ -201,14 +259,19 @@ class GenerateCalendar
      * @param \DateTime $endDate
      * @return string
      */
-    private function getAlldaysBetween(\DateTime $startDate, \DateTime $endDate)
+    private function getAlldaysBetween(\DateTime $startDate, \DateTime $endDate, \DateTime $initialDate)
     {
         $stringAllDaysBetween = "";
         while ($startDate <= $endDate) {
             if (!empty($stringAllDaysBetween)) {
                 $stringAllDaysBetween.= ",";
             }
-            $stringAllDaysBetween.= $startDate->format(self::GOOGLE_DATE_FORMAT);
+            $dateComplete = \DateTime::createFromFormat(
+                self::SYMFONY_DATE_TIME_FORMAT,
+                $startDate->format(self::SYMFONY_DATE_FORMAT).' '.$initialDate->format(self::SYMFONY_TIME_FORMAT)
+            );
+
+            $stringAllDaysBetween.= $dateComplete->format(self::GOOGLE_DATETIME_FORMAT);
             $startDate->modify('+1 day');
         }
 

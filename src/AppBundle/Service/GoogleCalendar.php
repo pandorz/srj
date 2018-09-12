@@ -258,7 +258,7 @@ class GoogleCalendar
      * @param array $recurrences
      * @return \Google_Service_Calendar_Event
      */
-    public function newEvent($summary, \DateTime $startDate, \DateTime $endDate, $description = '', $recurrences = [])
+    public function newEvent($summary, \DateTime $startDate, \DateTime $endDate, $description = '', $recurrences = [], $location = "")
     {
         $data = [
             'summary' => $summary,
@@ -269,7 +269,8 @@ class GoogleCalendar
             'end' => [
                 'dateTime' => $endDate->format(self::TDATEFORMAT),
                 'timeZone' => self::TIMEZONE
-            ]
+            ],
+            'location' => $location
         ];
 
         if (!empty($description)) {
@@ -279,7 +280,7 @@ class GoogleCalendar
         if (!empty($recurrences)) {
             foreach ($recurrences as $list_recurrence) {
                 foreach ($list_recurrence as $recurrence) {
-                    $data['recurrence'] = [$recurrence];
+                    $data['recurrence'][] = $recurrence;
                 }
             }
         }
