@@ -170,16 +170,19 @@ class GenerateCalendar
                     $stringholidaysDate .= ",";
                 }
 
-                if ($holidaysDate->getDateDebut() == $holidaysDate->getDateFin()) {
+                $coursStartDate = clone $holidaysDate->getDateDebut();
+                $coursEndDate   = clone $holidaysDate->getDateFin();
+
+                if ($coursStartDate == $coursEndDate) {
                     $dateComplete = \DateTime::createFromFormat(
                         self::SYMFONY_DATE_TIME_FORMAT,
-                        $holidaysDate->getDateDebut()->format(self::SYMFONY_DATE_FORMAT) . ' ' . $startDate->format(self::SYMFONY_TIME_FORMAT)
+                        $coursStartDate->format(self::SYMFONY_DATE_FORMAT) . ' ' . $startDate->format(self::SYMFONY_TIME_FORMAT)
                     );
                     $stringholidaysDate .= $dateComplete->format(self::GOOGLE_DATETIME_FORMAT);
                 } else {
                     $stringholidaysDate .= $this->getAlldaysBetween(
-                        $holidaysDate->getDateDebut(),
-                        $holidaysDate->getDateFin(),
+                        $coursStartDate,
+                        $coursEndDate,
                         $startDate
                     );
                 }
@@ -198,9 +201,12 @@ class GenerateCalendar
                 if (!empty($stringReportDates)) {
                     $stringReportDates.=",";
                 }
+
+                $reportDateAnnule = clone $report->getDateAnnule();
+
                 $dateComplete = \DateTime::createFromFormat(
                     self::SYMFONY_DATE_TIME_FORMAT,
-                    $report->getDateAnnule()->format(self::SYMFONY_DATE_FORMAT).' '.' '.$startDate->format(self::SYMFONY_TIME_FORMAT)
+                    $reportDateAnnule->format(self::SYMFONY_DATE_FORMAT).' '.' '.$startDate->format(self::SYMFONY_TIME_FORMAT)
                 );
                 $stringReportDates.=$dateComplete->format(self::GOOGLE_DATETIME_FORMAT);
             }
