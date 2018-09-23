@@ -137,6 +137,7 @@ utilisateur:
         parent: Parent
     nomJaponais: 'Nom en Japonais'
     prenomJaponais: 'Prénom en Japonais'
+    membreNumero_empty: 'Attention cet utilisateur n''a pas de numéro de membre'
 
 utilisateur_droit:
     estMembreBureau: 'Est membre du bureau'
