@@ -229,7 +229,7 @@ general:
         admin: Administration
         logout: 'Se déconnecter'
         be_member: 'Devenir membre'
-        be_member_jap: '入会方法'
+        be_member_jap: '会員登録'
         know_more: 'En savoir plus'
         login: 'Déjà membre ?'
         participer: 'Je veux participer !'
